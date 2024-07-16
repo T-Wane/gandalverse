@@ -28,11 +28,11 @@ class _InitializationPageState extends State<InitializationPage> {
       home: FutureBuilder(
         future: Init.initialize(),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
+          /*if (snapshot.connectionState == ConnectionState.done) {
             return const MyApp();
-          } else {
+          } else {*/
             return const SplashScreen();
-          }
+          //}
         },
       ),
     );
@@ -74,15 +74,7 @@ class SplashScreen extends StatelessWidget {
                   image: AssetImage("assets/images/GverseToken_OnboardingPage.png"),
                   fit: BoxFit.cover),
             ),
-          ),
-          Opacity(
-            opacity: 0.1,
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.black,
-              ),
-            ),
-          ),
+          ), 
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -102,10 +94,10 @@ class SplashScreen extends StatelessWidget {
           ),
           Scaffold(
             backgroundColor: Colors.transparent,
-           /* body: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+         body: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const SizedBox(
+               /* const SizedBox(
                   height: 10,
                 ),
                 Align(
@@ -137,13 +129,13 @@ class SplashScreen extends StatelessWidget {
                           fontWeight: FontWeight.w200),
                     ),
                   ),
-                ),
+                ),*/
                 const Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: Alignment.center,
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     child: Text(
-                      "#Korix Africa",
+                      "build en cours ...",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontFamily: 'Aller',
@@ -154,7 +146,7 @@ class SplashScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            ),*/
+            ), 
             floatingActionButton: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               child: CircularProgressIndicator(
