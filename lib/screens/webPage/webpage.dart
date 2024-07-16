@@ -83,14 +83,14 @@ class _WebViewStackState extends State<WebViewStack> {
 
     return Stack(
       children: [
-        WebViewWidget(
+       /* WebViewWidget(
           controller: widget.controller,
         ),
-        if (loadingPercentage < 100) ...[
+        if (loadingPercentage < 100) ...[*/
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/images/img_back2.png"),
+                  image: AssetImage("assets/images/GverseToken_OnboardingPage.png"),
                   fit: BoxFit.cover),
             ),
           ),
@@ -173,7 +173,7 @@ class _WebViewStackState extends State<WebViewStack> {
             ),
           ),
         ]
-      ],
+     // ],
     );
   }
 }

@@ -71,7 +71,7 @@ class SplashScreen extends StatelessWidget {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/images/img_back2.png"),
+                  image: AssetImage("assets/images/GverseToken_OnboardingPage.png"),
                   fit: BoxFit.cover),
             ),
           ),
@@ -102,7 +102,7 @@ class SplashScreen extends StatelessWidget {
           ),
           Scaffold(
             backgroundColor: Colors.transparent,
-            body: Column(
+           /* body: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(
@@ -154,7 +154,7 @@ class SplashScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            ),
+            ),*/
             floatingActionButton: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               child: CircularProgressIndicator(
