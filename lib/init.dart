@@ -28,11 +28,11 @@ class _InitializationPageState extends State<InitializationPage> {
       home: FutureBuilder(
         future: Init.initialize(),
         builder: (context, snapshot) {
-          /*if (snapshot.connectionState == ConnectionState.done) {
+           if (snapshot.connectionState == ConnectionState.done) {
             return const MyApp();
-          } else {*/
+          } else { 
             return const SplashScreen();
-          //}
+          }
         },
       ),
     );
