@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
             .copyWith(background: const Color(0xffe7e9f0)),
       ),
-      home: InAppWebViewExampleScreen(),
+      home: MyHomePage(),
       //backgroundColor: Theme.of(context).colorScheme.inversePrimary,
     );
   }
