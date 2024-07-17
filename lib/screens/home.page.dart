@@ -107,6 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 elevation: 1.2,
                 borderOnForeground: true,
                 surfaceTintColor: Colors.transparent,
+                color: Color3,
                 shadowColor: Colors.deepPurple.shade400.withOpacity(0.3),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
@@ -163,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     child: Text(
                                       "GV Junior >",
                                       style: TextStyle(
-                                          fontWeight: FontWeight.w400,
+                                          fontWeight: FontWeight.w300,
                                           color: Colors.purple.shade100,
                                           fontFamily: "Aller",
                                           fontSize: 10),
