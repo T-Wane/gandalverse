@@ -136,58 +136,61 @@ class _MyHomePageState extends State<MyHomePage> {
                             "${telegram.initData.user.username ?? ''} ${telegram.initData.user.lastname ?? ''}",
                             textAlign: TextAlign.left,
                             style: const TextStyle(
-                              fontFamily: "Aller",
-                              fontSize: 14,
-                              color: Colors.white,
-                            ),
+                                fontFamily: "Aller",
+                                fontSize: 14,
+                                color: Colors.white,
+                                fontWeight: FontWeight.normal),
                           ),
                           const SizedBox(
                             height: 2,
                           ),
-                          Text(
+                          /*Text(
                             "GV Junior",
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 color: Colors.green.shade400,
                                 fontFamily: "Aller",
                                 fontSize: 10),
-                          ),
+                          ),*/
                           const SizedBox(
                             height: 2,
                           ),
-                          LinearPercentIndicator(
-                            percent: 0.5,
-                            backgroundColor:
-                                Colors.grey.shade200.withOpacity(0.2),
-                            progressColor: Colors.deepPurple.shade500,
-                            lineHeight: 5.0,
-                            barRadius: const Radius.circular(10),
-                            trailing: const Text(
-                              "Niveau 1",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.white70,
-                                  fontFamily: "Aller",
-                                  fontSize: 10),
+                          SizedBox(
+                            width: 100,
+                            child: LinearPercentIndicator(
+                              percent: 0.5,
+                              backgroundColor:
+                                  Colors.grey.shade200.withOpacity(0.2),
+                              progressColor: Colors.deepPurple.shade500,
+                              lineHeight: 5.0,
+                              barRadius: const Radius.circular(10),
+                              trailing: Text(
+                                "GV Junior",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w300,
+                                    color: Colors.green.shade400,
+                                    fontFamily: "Aller",
+                                    fontSize: 10),
+                              ),
                             ),
                           )
                         ],
                       ),
                     ),
-                    const Row(
+                    Row(
                       children: [
                         Icon(
                           LineAwesomeIcons.coins_solid,
-                          color: Colors.white,
-                          size: 25,
+                          color: Colors.yellow.shade400,
+                          size: 20,
                         ),
-                        Text(
+                        const Text(
                           "200K",
                           style: TextStyle(
                               fontWeight: FontWeight.w300,
                               color: Colors.white70,
                               fontFamily: "Aller",
-                              fontSize: 10),
+                              fontSize: 11),
                         ),
                       ],
                     )
