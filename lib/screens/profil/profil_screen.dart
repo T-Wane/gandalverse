@@ -46,7 +46,7 @@ class _MonProfilScreenState extends State<MonProfilScreen> {
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     color: Colors.white,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.normal,
                     fontSize: 14,
                     fontFamily: 'Aller',
                   ),
@@ -68,51 +68,51 @@ class _MonProfilScreenState extends State<MonProfilScreen> {
               ),
             ]),
       ),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            width: double.infinity,
-            height: 50,
-            decoration: BoxDecoration(
-              color: Color3.withOpacity(0.9),
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
-            ),
-            padding: const EdgeInsetsDirectional.symmetric(
-              horizontal: 10,
-              vertical: 10,
-            ),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
-                    child: AutoSizeText(
-                      "Partager GandalVerse",
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                        fontFamily: 'Aller',
-                      ),
-                    ),
+      Container(
+        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+        width: double.infinity,
+        height: 50,
+        decoration: BoxDecoration(
+          color: Color3.withOpacity(0.9),
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+        ),
+        padding: const EdgeInsetsDirectional.symmetric(
+          horizontal: 10,
+          vertical: 10,
+        ),
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                child: AutoSizeText(
+                  "Partager GandalVerse",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 14,
+                    fontFamily: 'Aller',
                   ),
-                  Container(
-                    height: 40,
-                    width: 40,
-                    padding: const EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      border: Border.all(width: 1, color: Colors.white),
-                    ),
-                    child: Icon(
-                      Icons.share,
-                      color: Color3,
-                    ),
-                  ),
-                ]),
-          ),
+                ),
+              ),
+              Container(
+                height: 40,
+                width: 40,
+                padding: const EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                  border: Border.all(width: 1, color: Colors.white),
+                ),
+                child: Icon(
+                  Icons.share,
+                  color: Color3,
+                ),
+              ),
+            ]),
+      ),
 
       const SizedBox(
         height: 10,

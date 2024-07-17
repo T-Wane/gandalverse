@@ -54,7 +54,7 @@ class detailsLigne extends StatelessWidget {
                 fontFamily: "Aller",
                 fontSize: maxFontTitre,
                 color: titreColor,
-                fontWeight: setTitre_bold ? FontWeight.w500 : FontWeight.w400,
+                fontWeight: setTitre_bold ? FontWeight.normal : FontWeight.w400,
               ),
             ),
           ),
@@ -74,7 +74,7 @@ class detailsLigne extends StatelessWidget {
                       setContenu_italic ? FontStyle.italic : FontStyle.normal,
                   color: dataColor,
                   fontWeight:
-                      setContenu_bold ? FontWeight.w500 : FontWeight.normal,
+                      setContenu_bold ? FontWeight.normal : FontWeight.normal,
                 ),
               ),
             )

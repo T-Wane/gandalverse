@@ -67,7 +67,7 @@ class CustomBottomModalSheet extends StatelessWidget {
                   fontSize: 17,
                   color: Color3,
                   fontFamily: "Aller",
-                  fontWeight: FontWeight.w500),
+                  fontWeight: FontWeight.normal),
             ),
           ),
         ),

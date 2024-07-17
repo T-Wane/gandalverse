@@ -235,7 +235,7 @@ class AnnonceDetailsAlertState extends State<AnnonceDetailsAlert>
               TextSpan(
                 text: "$titre : ",
                 style: const TextStyle(
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.normal,
                   color: Colors.black,
                 ),
               ),

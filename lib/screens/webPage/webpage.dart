@@ -126,7 +126,7 @@ class _WebViewStackState extends State<WebViewStack> {
                       fontFamily: 'Aller',
                       fontSize: 25,
                       color: Colors.white,
-                      fontWeight: FontWeight.w500),
+                      fontWeight: FontWeight.normal),
                 ),
               ),
               const Padding(

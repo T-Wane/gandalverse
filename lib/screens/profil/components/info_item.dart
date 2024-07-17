@@ -1,4 +1,3 @@
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +27,7 @@ class infoItem extends StatelessWidget {
                 textAlign: TextAlign.start,
                 style: TextStyle(
                   color: Colors.white,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.normal,
                   fontSize: 13,
                   fontFamily: 'Aller',
                 ),
@@ -39,13 +38,11 @@ class infoItem extends StatelessWidget {
                 textAlign: TextAlign.end,
                 text: TextSpan(
                   text: '$data  ',
-                  children: [
-
-                  ],
+                  children: [],
                   style: TextStyle(
                       fontSize: 13.5,
                       fontFamily: "Aller",
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.normal,
                       color: dataColor),
                 ),
               ),
@@ -61,13 +58,12 @@ class infoItem2 extends StatelessWidget {
   String titre, data;
   Color dataColor;
   bool toEnd;
-  infoItem2({
-    super.key,
-    required this.titre,
-    required this.data,
-    this.dataColor = Colors.white,
-    this.toEnd=  false
-  });
+  infoItem2(
+      {super.key,
+      required this.titre,
+      required this.data,
+      this.dataColor = Colors.white,
+      this.toEnd = false});
 
   @override
   Widget build(BuildContext context) {
@@ -81,10 +77,10 @@ class infoItem2 extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 5),
               child: AutoSizeText(
                 titre,
-                textAlign:toEnd?TextAlign.end: TextAlign.start,
+                textAlign: toEnd ? TextAlign.end : TextAlign.start,
                 style: TextStyle(
                   color: Colors.white,
-                  fontWeight: FontWeight.w500,
+                  fontWeight: FontWeight.normal,
                   fontSize: 13,
                   fontFamily: 'Aller',
                 ),
@@ -92,14 +88,14 @@ class infoItem2 extends StatelessWidget {
             ),
             Expanded(
               child: RichText(
-                textAlign: toEnd?TextAlign.end: TextAlign.start,
+                textAlign: toEnd ? TextAlign.end : TextAlign.start,
                 text: TextSpan(
                   text: '$data  ',
                   children: [],
                   style: TextStyle(
                       fontSize: 13,
                       fontFamily: "Aller",
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.normal,
                       color: dataColor),
                 ),
               ),

@@ -42,7 +42,8 @@ class itemCard extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: 1,right: 1,
+                bottom: 1,
+                right: 1,
                 child: Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
@@ -85,7 +86,7 @@ class itemCard extends StatelessWidget {
                     textAlign: TextAlign.start,
                     style: TextStyle(
                       color: Colors.white,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.normal,
                       fontFamily: 'Aller',
                     ),
                   ),

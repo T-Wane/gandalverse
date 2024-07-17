@@ -99,102 +99,112 @@ class _MyHomePageState extends State<MyHomePage> {
         extendBody: true,
         // backgroundColor: telegram.backgroundColor,
         body: Stack(
-          //surfaceTintColor: tg.
           children: [
             Align(
               alignment: Alignment.topCenter,
-              child: Container(
-                height: 50,
+              child: Card(
                 margin: const EdgeInsets.all(5),
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(15)),
-                child: Row(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white10,
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          width: 1,
+                elevation: 1.2,
+                borderOnForeground: true,
+                surfaceTintColor: Colors.transparent,
+                shadowColor: Colors.deepPurple.shade400.withOpacity(0.3),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                child: SizedBox(
+                  height: 50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white10,
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                            width: 1,
+                            color: Colors.purple.shade100,
+                          ),
+                        ),
+                        margin: const EdgeInsets.only(left: 5, right: 2),
+                        padding: const EdgeInsets.all(5),
+                        child: const Icon(
+                          CupertinoIcons.person,
                           color: Colors.white,
+                          size: 25,
                         ),
                       ),
-                      margin: const EdgeInsets.only(left: 5, right: 2),
-                      padding: const EdgeInsets.all(5),
-                      child: const Icon(
-                        CupertinoIcons.person,
-                        color: Colors.white,
-                        size: 25,
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "${telegram.initData.user.username ?? ''} ${telegram.initData.user.lastname ?? ''}",
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                                fontFamily: "Aller",
-                                fontSize: 14,
-                                color: Colors.white,
-                                fontWeight: FontWeight.normal),
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          /*Text(
-                            "GV Junior",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: Colors.green.shade400,
-                                fontFamily: "Aller",
-                                fontSize: 10),
-                          ),*/
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          SizedBox(
-                            width: 100,
-                            child: LinearPercentIndicator(
-                              percent: 0.5,
-                              backgroundColor:
-                                  Colors.grey.shade200.withOpacity(0.2),
-                              progressColor: Colors.deepPurple.shade500,
-                              lineHeight: 5.0,
-                              barRadius: const Radius.circular(10),
-                              trailing: Text(
-                                "GV Junior",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w300,
-                                    color: Colors.green.shade400,
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Text(
+                                "${telegram.initData.user.username ?? ''} ${telegram.initData.user.lastname ?? ''}",
+                                textAlign: TextAlign.left,
+                                style: const TextStyle(
                                     fontFamily: "Aller",
-                                    fontSize: 10),
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.normal),
                               ),
                             ),
-                          )
-                        ],
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            SizedBox(
+                              width: 120,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      "GV Junior >",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.purple.shade100,
+                                          fontFamily: "Aller",
+                                          fontSize: 10),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 2,
+                                  ),
+                                  LinearPercentIndicator(
+                                    percent: 0.5,
+                                    backgroundColor:
+                                        Colors.grey.shade200.withOpacity(0.2),
+                                    progressColor: Colors.deepPurple.shade400,
+                                    lineHeight: 5.0,
+                                    barRadius: const Radius.circular(10),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          LineAwesomeIcons.coins_solid,
-                          color: Colors.yellow.shade400,
-                          size: 20,
-                        ),
-                        const Text(
-                          "200K",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white70,
-                              fontFamily: "Aller",
-                              fontSize: 11),
-                        ),
-                      ],
-                    )
-                  ],
+                      Row(
+                        children: [
+                          Icon(
+                            LineAwesomeIcons.coins_solid,
+                            color: Colors.yellow.shade400,
+                            size: 20,
+                          ),
+                          const Text(
+                            "200K",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white70,
+                                fontFamily: "Aller",
+                                fontSize: 11),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),

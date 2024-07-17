@@ -88,7 +88,7 @@ class _itemDetailsAlertState extends State<itemDetailsAlert>
                           style: TextStyle(
                             fontSize: 18,
                             fontFamily: 'Aller',
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.normal,
                             color: Color3,
                           ),
                         ),
