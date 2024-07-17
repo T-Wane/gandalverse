@@ -50,12 +50,12 @@ class detailsLigne extends StatelessWidget {
               maxLines: nLigneTitre,
               textAlign: TextAlign.left,
               overflow: TextOverflow.ellipsis,
-              style:   TextStyle( fontFamily: "Aller",
-                  fontSize: maxFontTitre,
-                  color: titreColor,
-                  fontWeight: setTitre_bold ? FontWeight.bold : FontWeight.w400,
-                ),
-
+              style: TextStyle(
+                fontFamily: "Aller",
+                fontSize: maxFontTitre,
+                color: titreColor,
+                fontWeight: setTitre_bold ? FontWeight.w500 : FontWeight.w400,
+              ),
             ),
           ),
           if (showData == true) ...[
@@ -65,17 +65,16 @@ class detailsLigne extends StatelessWidget {
                 maxLines: nLigne,
                 minFontSize: 11,
                 textAlign:
-                setContenu_nearbyTitle ? TextAlign.left : TextAlign.right,
+                    setContenu_nearbyTitle ? TextAlign.left : TextAlign.right,
                 overflow: TextOverflow.ellipsis,
-                style:  TextStyle(
+                style: TextStyle(
                   fontFamily: "Aller",
-                    fontSize: maxFontData,
-                    fontStyle:
-                    setContenu_italic ? FontStyle.italic : FontStyle.normal,
-                    color: dataColor,
-                    fontWeight:
-                    setContenu_bold ? FontWeight.bold : FontWeight.normal,
-
+                  fontSize: maxFontData,
+                  fontStyle:
+                      setContenu_italic ? FontStyle.italic : FontStyle.normal,
+                  color: dataColor,
+                  fontWeight:
+                      setContenu_bold ? FontWeight.w500 : FontWeight.normal,
                 ),
               ),
             )

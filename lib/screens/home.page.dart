@@ -6,6 +6,7 @@ import 'package:gandalverse/screens/decouvrir/decouvir_page.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
 import 'package:gandalverse/widgets/bottomSheet_modal.dart';
+import 'package:gandalverse/widgets/customImageView.dart';
 //import 'package:telegram_web_app/telegram_web_app.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'components/body.dart';
@@ -37,25 +38,45 @@ class _MyHomePageState extends State<MyHomePage> {
 
   //##############################################################//
   late final WebViewController controller;
+  final TelegramWebApp telegram = TelegramWebApp.instance;
+
   bool? isDefinedVersion;
   String? clipboardText;
 
   @override
   void initState() {
     super.initState();
-    /*controller = WebViewController()
-      ..loadRequest(
-        Uri.parse('https://gandalverse.com'),
-      );
     FlutterError.onError = (details) {
-      //showSnackbar("Flutter error: $details");
       print("Flutter error happened: $details");
-    };*/
+    };
 
-    //TelegramWebApp.instance.ready();
+    TelegramWebApp.instance.ready();
 
-    //  check();
+    check();
   }
+
+  void check() async {
+    await Future.delayed(const Duration(seconds: 2));
+    isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
+    setState(() {});
+  }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   /*controller = WebViewController()
+  //     ..loadRequest(
+  //       Uri.parse('https://gandalverse.com'),
+  //     );
+  //   FlutterError.onError = (details) {
+  //     //showSnackbar("Flutter error: $details");
+  //     print("Flutter error happened: $details");
+  //   };*/
+
+  //   //TelegramWebApp.instance.ready();
+
+  //   //  check();
+  // }
 /*
   void check() async {
     await Future.delayed(const Duration(seconds: 2));
@@ -92,42 +113,45 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             margin: const EdgeInsets.only(left: 5, right: 2),
             padding: const EdgeInsets.all(5),
-            child: const Icon(
+            child: CustomImageView(
+              fit: BoxFit.cover,
+              imagePath:
+                  "https://cdn1.iconfinder.com/data/icons/cryptocurrency-set-2018/375/Asset_1480-256.png",
+            ), /*const Icon(
               CupertinoIcons.person,
               color: Colors.white,
               size: 25,
-            ),
+            ),*/
           ),
           title: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-          
-              /*Text(
-                "${tg.WebAppUser.}",
+              Text(
+                "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''}",
                 textAlign: TextAlign.left,
-                style: tg.TelegramTheme.currentTheme?.textTheme.titleMedium!
-                    .copyWith(
+                style: TextStyle(
                   fontFamily: "Aller",
                   fontSize: 14,
                   color: Colors.white,
                 ),
-              ),*/
+              ),
               const SizedBox(
                 height: 2,
               ),
               Text(
-                "+223 65567057",
+                "Niveau 1",
                 textAlign: TextAlign.left,
-                /*style: tg.TelegramTheme.currentTheme?.textTheme.titleMedium!
-                    .copyWith(
-                  fontWeight: FontWeight.w300,
-                  fontSize: 11,
-                ),*/
+                style: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    fontSize: 11,
+                    color: Colors.white70),
               ),
             ],
           ),
-          actions: [_selectedMenu()],
+          actions: [
+            //_selectedMenu()
+          ],
         ),
         body: Stack(
           //surfaceTintColor: tg.

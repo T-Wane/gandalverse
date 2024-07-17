@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 const Color3 = Color.fromARGB(255, 18, 40, 70);
@@ -68,7 +67,7 @@ class CustomBottomModalSheet extends StatelessWidget {
                   fontSize: 17,
                   color: Color3,
                   fontFamily: "Aller",
-                  fontWeight: FontWeight.bold),
+                  fontWeight: FontWeight.w500),
             ),
           ),
         ),

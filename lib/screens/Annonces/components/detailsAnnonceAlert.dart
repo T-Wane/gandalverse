@@ -94,12 +94,14 @@ class AnnonceDetailsAlertState extends State<AnnonceDetailsAlert>
                             ),
                             Container(
                               height: 200,
-                              margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                              margin: const EdgeInsets.symmetric(
+                                  horizontal: 5, vertical: 5),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.black87,
                                 image: DecorationImage(
-                                  image: AssetImage("assets/images/img_back1.jpg"),
+                                  image:
+                                      AssetImage("assets/images/img_back1.jpg"),
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -233,7 +235,7 @@ class AnnonceDetailsAlertState extends State<AnnonceDetailsAlert>
               TextSpan(
                 text: "$titre : ",
                 style: const TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
                   color: Colors.black,
                 ),
               ),

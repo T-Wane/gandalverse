@@ -1,5 +1,4 @@
- 
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 
 class itemDetailsAlert extends StatefulWidget {
   itemDetailsAlert({
@@ -80,8 +79,8 @@ class _itemDetailsAlertState extends State<itemDetailsAlert>
                           ),
                         ),
                       ),
-                       Padding(
-                        padding:const EdgeInsets.symmetric(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 10.0),
                         child: Text(
                           "Badge ajouté avec succès",
@@ -89,7 +88,7 @@ class _itemDetailsAlertState extends State<itemDetailsAlert>
                           style: TextStyle(
                             fontSize: 18,
                             fontFamily: 'Aller',
-                            fontWeight: FontWeight.bold,
+                            fontWeight: FontWeight.w500,
                             color: Color3,
                           ),
                         ),
@@ -118,7 +117,6 @@ class _itemDetailsAlertState extends State<itemDetailsAlert>
                               child: ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
-
                                 },
                                 style: ElevatedButton.styleFrom(
                                   elevation: 0.0,
@@ -147,7 +145,6 @@ class _itemDetailsAlertState extends State<itemDetailsAlert>
                               child: ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).pop();
-
                                 },
                                 style: ElevatedButton.styleFrom(
                                   elevation: 0.0,
@@ -155,7 +152,7 @@ class _itemDetailsAlertState extends State<itemDetailsAlert>
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15)),
                                 ),
-                                child:   Text(
+                                child: Text(
                                   "AJOUTER UN AUTRE",
                                   style: TextStyle(
                                       fontFamily: "Aller",

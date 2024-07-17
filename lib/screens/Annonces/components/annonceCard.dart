@@ -23,7 +23,7 @@ class AnnonceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:  const EdgeInsetsDirectional.symmetric(vertical: 5, horizontal: 5),
+      margin: const EdgeInsetsDirectional.symmetric(vertical: 5, horizontal: 5),
       width: MediaQuery.of(context).size.width * 0.9,
       height: 70,
       decoration: BoxDecoration(
@@ -47,14 +47,17 @@ class AnnonceCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: const EdgeInsetsDirectional.symmetric(horizontal: 2,vertical: 5),
+              padding: const EdgeInsetsDirectional.symmetric(
+                  horizontal: 2, vertical: 5),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    height:50, width: 60,
-                    margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                    height: 50,
+                    width: 60,
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.black87,
@@ -77,8 +80,7 @@ class AnnonceCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                       child: Text(
                         title,
                         textAlign: TextAlign.start,
@@ -86,7 +88,7 @@ class AnnonceCard extends StatelessWidget {
                           fontFamily: 'Aller',
                           color: Color3,
                           fontSize: 15,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ),
