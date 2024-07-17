@@ -39,14 +39,14 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    controller = WebViewController()
+    /*controller = WebViewController()
       ..loadRequest(
         Uri.parse('https://gandalverse.com'),
       );
     FlutterError.onError = (details) {
       //showSnackbar("Flutter error: $details");
       print("Flutter error happened: $details");
-    };
+    };*/
 
     //TelegramWebApp.instance.ready();
 
