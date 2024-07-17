@@ -20,7 +20,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "c85bcc7489efa79fc6ad3fe57dd52e3e
 "assets/fonts/MaterialIcons-Regular.otf": "97544d666fadf40070d50b8217168d1d",
 "assets/NOTICES": "718477b3cbc78c9f003ddd83a3b5b11e",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "0120f479465c9bc32607f02e9dc68228",
-"assets/packages/line_awesome_flutter/lib/fonts/LineAwesome.ttf": "29062d625876cce964b16e1266ff802f",
+"assets/packages/line_awesome_flutter/lib/fonts/LineAwesome.ttf": "c9f7bb62655415e80068b01558fb8d4e",
 "assets/shaders/ink_sparkle.frag": "ecc85a2e95f5e9f53123dcaf8cb9b6ce",
 "canvaskit/canvaskit.js": "c86fbd9e7b17accae76e5ad116583dc4",
 "canvaskit/canvaskit.js.symbols": "38cba9233b92472a36ff011dc21c2c9f",
@@ -38,9 +38,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "c85bcc7489efa79fc6ad3fe57dd52e3e
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "46ec642fe0491176154e0e9d1b3171a9",
-"/": "46ec642fe0491176154e0e9d1b3171a9",
-"main.dart.js": "5720e1edec9b4b74608b65029c78a3a0",
+"index.html": "1f2c54edbdf2e509c767c3292686c176",
+"/": "1f2c54edbdf2e509c767c3292686c176",
+"main.dart.js": "8b0fb1b44294b22ce29b7a7e4f908b4c",
 "manifest.json": "9f6f1bf5b67cd2b30e68a99551f02cad",
 "version.json": "bdbf5533cd872db8379bf13ff58db6f3"};
 // The application shell files that are downloaded before a service worker can

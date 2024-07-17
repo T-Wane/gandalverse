@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gandalverse/screens/Annonces/annonces_page.dart';
 import 'package:gandalverse/screens/decouvrir/decouvir_page.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
 import 'package:gandalverse/widgets/bottomSheet_modal.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
+import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 //import 'package:telegram_web_app/telegram_web_app.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'components/body.dart';
@@ -93,72 +96,104 @@ class _MyHomePageState extends State<MyHomePage> {
           .copyWith(textScaler: const TextScaler.linear(1)),
       child: Scaffold(
         key: _key,
-        //extendBody: true,
+        extendBody: true,
         // backgroundColor: telegram.backgroundColor,
-        appBar: AppBar(
-          elevation: 0.0,
-          backgroundColor: Color3,
-          iconTheme: const IconThemeData(color: Colors.white),
-          automaticallyImplyLeading: false,
-          centerTitle: false,
-          leadingWidth: 40,
-          leading: Container(
-            decoration: BoxDecoration(
-              color: Colors.white10,
-              shape: BoxShape.circle,
-              border: Border.all(
-                width: 1,
-                color: Colors.white,
-              ),
-            ),
-            margin: const EdgeInsets.only(left: 5, right: 2),
-            padding: const EdgeInsets.all(5),
-            child: CustomImageView(
-              fit: BoxFit.cover,
-              imagePath:
-                  "https://cdn1.iconfinder.com/data/icons/cryptocurrency-set-2018/375/Asset_1480-256.png",
-            ), /*const Icon(
-              CupertinoIcons.person,
-              color: Colors.white,
-              size: 25,
-            ),*/
-          ),
-          title: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''}",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontFamily: "Aller",
-                  fontSize: 14,
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(
-                height: 2,
-              ),
-              Text(
-                "Niveau 1",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    fontSize: 11,
-                    color: Colors.white70),
-              ),
-            ],
-          ),
-          actions: [
-            //_selectedMenu()
-          ],
-        ),
         body: Stack(
           //surfaceTintColor: tg.
           children: [
             Align(
               alignment: Alignment.topCenter,
-              child: Container(),
+              child: Container(
+                height: 50,
+                margin: const EdgeInsets.all(5),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(15)),
+                child: Row(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white10,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          width: 1,
+                          color: Colors.white,
+                        ),
+                      ),
+                      margin: const EdgeInsets.only(left: 5, right: 2),
+                      padding: const EdgeInsets.all(5),
+                      child: const Icon(
+                        CupertinoIcons.person,
+                        color: Colors.white,
+                        size: 25,
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "${telegram.initData.user.username ?? ''} ${telegram.initData.user.lastname ?? ''}",
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(
+                              fontFamily: "Aller",
+                              fontSize: 14,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          Text(
+                            "GV Junior",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: Colors.green.shade400,
+                                fontFamily: "Aller",
+                                fontSize: 10),
+                          ),
+                          const SizedBox(
+                            height: 2,
+                          ),
+                          LinearPercentIndicator(
+                            percent: 0.5,
+                            backgroundColor:
+                                Colors.grey.shade200.withOpacity(0.2),
+                            progressColor: Colors.deepPurple.shade500,
+                            lineHeight: 5.0,
+                            barRadius: const Radius.circular(10),
+                            trailing: const Text(
+                              "Niveau 1",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w300,
+                                  color: Colors.white70,
+                                  fontFamily: "Aller",
+                                  fontSize: 10),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    const Row(
+                      children: [
+                        Icon(
+                          LineAwesomeIcons.coins_solid,
+                          color: Colors.white,
+                          size: 25,
+                        ),
+                        Text(
+                          "200K",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white70,
+                              fontFamily: "Aller",
+                              fontSize: 10),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
             ),
             /*Center(
               child:  GandalVerseWebView(controller: controller),
