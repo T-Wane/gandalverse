@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gandalverse/screens/Annonces/annonces_page.dart';
+import 'package:gandalverse/screens/amis/amis_page.dart';
 import 'package:gandalverse/screens/decouvrir/decouvir_page.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
@@ -254,7 +255,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
+                padding: const EdgeInsets.symmetric(vertical: 5),
                 child: _buildFloatingBarCustom(),
               ),
             ),
@@ -291,7 +292,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         CustomNavigationBarItem(
           icon: const Icon(
-            CupertinoIcons.building_2_fill,
+            Icons.auto_fix_high,
           ),
           title: const Text(
             "Découvrir",
@@ -300,6 +301,21 @@ class _MyHomePageState extends State<MyHomePage> {
               fontFamily: "Aller",
               fontSize: 12,
               fontWeight: FontWeight.w200,
+              color: Colors.white70,
+            ),
+          ),
+        ),
+        CustomNavigationBarItem(
+          icon: const Icon(
+            CupertinoIcons.person_2_fill,
+          ),
+          title: const Text(
+            "Amis",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: "Aller",
+              fontSize: 12,
+              fontWeight: FontWeight.w300,
               color: Colors.white70,
             ),
           ),
@@ -320,16 +336,17 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
         CustomNavigationBarItem(
-          icon: const Icon(
-            CupertinoIcons.person,
+          icon: CustomImageView(
+            imagePath: "assets/images/coin.png",
+            fit: BoxFit.contain,
           ),
           title: const Text(
-            "Profil",
+            "AirDrops",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontFamily: "Aller",
               fontSize: 12,
-              fontWeight: FontWeight.w200,
+              fontWeight: FontWeight.w400,
               color: Colors.white70,
             ),
           ),
@@ -344,9 +361,13 @@ class _MyHomePageState extends State<MyHomePage> {
             break;
           case 2:
             CustomBottomModalSheet.show(context,
-                child: AnnoncesPage(), titre: 'Nos Annonces');
+                child: AmisPage(), titre: 'Mes Amis');
             break;
           case 3:
+            CustomBottomModalSheet.show(context,
+                child: AnnoncesPage(), titre: 'Nos Annonces');
+            break;
+          case 4:
             CustomBottomModalSheet.show(context,
                 child: MonProfilScreen(), titre: 'Profil ');
             break;

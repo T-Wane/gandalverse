@@ -79,8 +79,7 @@ class itemCard extends StatelessWidget {
                       style: TextStyle(
                           fontWeight: FontWeight.w300,
                           color: Colors.white70,
-                          fontFamily: "Aller",
-                          fontStyle: FontStyle.italic,
+                          fontFamily: "Aller", 
                           fontSize: 7),
                     ),
                   ],
