@@ -12,7 +12,7 @@ class CustomBottomModalSheet extends StatelessWidget {
         enableDrag: true,
         constraints: BoxConstraints(
             minHeight: MediaQuery.of(context).size.height * 0.5,
-            maxHeight: MediaQuery.of(context).size.height * 0.9),
+            maxHeight: MediaQuery.of(context).size.height * 0.95),
         isScrollControlled: true,
         isDismissible: isDismissible,
         context: context,
@@ -79,7 +79,7 @@ class CustomBottomModalSheet extends StatelessWidget {
           color: Colors.grey.shade200,
         ),
       ),
-      child
+      Expanded(child: child)
     ]);
   }
 }

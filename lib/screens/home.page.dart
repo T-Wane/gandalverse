@@ -103,16 +103,19 @@ class _MyHomePageState extends State<MyHomePage> {
             Align(
               alignment: Alignment.topCenter,
               child: Card(
-                margin: const EdgeInsets.all(5),
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                 elevation: 1.2,
                 borderOnForeground: true,
-                surfaceTintColor: Colors.transparent,
-                color: Color3,
-                shadowColor: Colors.deepPurple.shade400.withOpacity(0.3),
+                surfaceTintColor: Color3.withOpacity(0.9),
+                color: Color3.withOpacity(0.9),
+                shadowColor:
+                    const Color.fromARGB(255, 151, 116, 211).withOpacity(0.5),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
-                child: SizedBox(
-                  height: 50,
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                  height: 65,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -142,13 +145,17 @@ class _MyHomePageState extends State<MyHomePage> {
                             Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: Text(
-                                "${telegram.initData.user.username ?? ''} ${telegram.initData.user.lastname ?? ''}",
+                                "User Name",
+                                //   "${telegram.initData.user.username ?? ''} ${telegram.initData.user.lastname ?? ''}",
                                 textAlign: TextAlign.left,
-                                style: const TextStyle(
-                                    fontFamily: "Aller",
-                                    fontSize: 14,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.normal),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium!
+                                    .copyWith(
+                                      fontFamily: "Aller",
+                                      fontSize: 14,
+                                      color: Colors.white,
+                                    ),
                               ),
                             ),
                             const SizedBox(
@@ -187,20 +194,52 @@ class _MyHomePageState extends State<MyHomePage> {
                           ],
                         ),
                       ),
-                      Row(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Icon(
-                            LineAwesomeIcons.coins_solid,
-                            color: Colors.yellow.shade400,
+                          const Icon(
+                            Icons.settings,
+                            color: Colors.white,
                             size: 20,
                           ),
-                          const Text(
-                            "200K",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w300,
-                                color: Colors.white70,
-                                fontFamily: "Aller",
-                                fontSize: 11),
+                          const Row(
+                            children: [
+                              Text(
+                                "Profit par heure",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w300,
+                                    color: Colors.white70,
+                                    fontFamily: "Aller",
+                                    fontSize: 8),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Icon(
+                                CupertinoIcons.info_circle_fill,
+                                color: Colors.white60,
+                                size: 15,
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              CustomImageView(
+                                imagePath: "assets/images/coin.png",
+                                fit: BoxFit.contain,
+                                height: 25,
+                                width: 25,
+                              ),
+                              const Text(
+                                "200K",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w300,
+                                    color: Colors.white70,
+                                    fontFamily: "Aller",
+                                    fontSize: 11),
+                              ),
+                            ],
                           ),
                         ],
                       )

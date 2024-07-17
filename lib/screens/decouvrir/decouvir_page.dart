@@ -23,8 +23,7 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
+    return  Column(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 5),
@@ -35,29 +34,30 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
               segments: sections,
             ),
           ),
-          ValueListenableBuilder<String>(
-              valueListenable: _selectedSegment,
-              builder: (_, key, __) {
-                return GridView.builder(
-                    controller: _scrollController,
-                    primary: false,
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 180,
-                      mainAxisExtent: 180,
-                      crossAxisSpacing: 2,
-                      mainAxisSpacing: 2,
-                    ),
-                    itemCount: 5,
-                    itemBuilder: (BuildContext ctx, index) {
-                      return itemCard();
-                    });
-              })
+          Expanded(
+            child: ValueListenableBuilder<String>(
+                valueListenable: _selectedSegment,
+                builder: (_, key, __) {
+                  return GridView.builder(
+                      controller: _scrollController,
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      // physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 180,
+                        mainAxisExtent: 200,
+                        crossAxisSpacing: 2,
+                        mainAxisSpacing: 2,
+                      ),
+                      itemCount: 5,
+                      itemBuilder: (BuildContext ctx, index) {
+                        return itemCard();
+                      });
+                }),
+          ),
         ],
-      ),
+     
     );
   }
 }
