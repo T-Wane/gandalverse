@@ -126,9 +126,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Stack(
           children: [
-            Center(
+            /*Center(
               child:  GandalVerseWebView(controller: controller),
-            ),
+            ),*/
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
