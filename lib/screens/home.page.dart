@@ -13,6 +13,11 @@ import 'custom_bubble_navigation_bar/src/custom_navigation_bar_item.dart';
 import 'custom_bubble_navigation_bar/src/custome_navigation_bar.dart';
 import 'package:gandalverse/widgets/snackBar/sstring_snack_extension.dart';
 
+// import 'package:flutter_telegram_web_app/flutter_telegram_web_app.dart' as tg;
+// import 'package:flutter_telegram_web_app/flutter_telegram_web_app.dart';
+
+import 'package:telegram_web_app/telegram_web_app.dart';
+
 const Color3 = Color.fromARGB(255, 18, 40, 70);
 
 class MyHomePage extends StatefulWidget {
@@ -23,7 +28,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   //final TelegramWebApp telegram = TelegramWebApp.instance;
 
   int _currentIndex = 0;
@@ -50,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     //TelegramWebApp.instance.ready();
 
-  //  check();
+    //  check();
   }
 /*
   void check() async {
@@ -69,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         key: _key,
         //extendBody: true,
-       // backgroundColor: telegram.backgroundColor,
+        // backgroundColor: telegram.backgroundColor,
         appBar: AppBar(
           elevation: 0.0,
           backgroundColor: Color3,
@@ -94,38 +98,44 @@ class _MyHomePageState extends State<MyHomePage> {
               size: 25,
             ),
           ),
-          title: const Column(
+          title: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Joe Brig",
+          
+              /*Text(
+                "${tg.WebAppUser.}",
                 textAlign: TextAlign.left,
-                style: TextStyle(
+                style: tg.TelegramTheme.currentTheme?.textTheme.titleMedium!
+                    .copyWith(
                   fontFamily: "Aller",
-                  fontWeight: FontWeight.bold,
                   fontSize: 14,
                   color: Colors.white,
                 ),
-              ),
-              SizedBox(
+              ),*/
+              const SizedBox(
                 height: 2,
               ),
               Text(
                 "+223 65567057",
                 textAlign: TextAlign.left,
-                style: TextStyle(
+                /*style: tg.TelegramTheme.currentTheme?.textTheme.titleMedium!
+                    .copyWith(
                   fontWeight: FontWeight.w300,
                   fontSize: 11,
-                  color: Colors.white70,
-                ),
+                ),*/
               ),
             ],
           ),
           actions: [_selectedMenu()],
         ),
         body: Stack(
+          //surfaceTintColor: tg.
           children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(),
+            ),
             /*Center(
               child:  GandalVerseWebView(controller: controller),
             ),*/
@@ -218,18 +228,15 @@ class _MyHomePageState extends State<MyHomePage> {
         switch (index) {
           case 1:
             CustomBottomModalSheet.show(context,
-                child: DecouvrirPage(),
-                titre: 'Décourir ');
+                child: DecouvrirPage(), titre: 'Décourir ');
             break;
           case 2:
             CustomBottomModalSheet.show(context,
-                child: AnnoncesPage(),
-                titre: 'Nos Annonces');
+                child: AnnoncesPage(), titre: 'Nos Annonces');
             break;
           case 3:
             CustomBottomModalSheet.show(context,
-                child: MonProfilScreen(),
-                titre: 'Profil ');
+                child: MonProfilScreen(), titre: 'Profil ');
             break;
         }
       },

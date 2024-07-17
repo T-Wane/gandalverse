@@ -5,15 +5,32 @@ import 'dart:collection';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+// import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:gandalverse/init.dart';
+import 'package:telegram_web_app/telegram_web_app.dart';
 //import 'package:telegram_web_app/telegram_web_app.dart';
 import 'screens/home.page.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
+// import 'package:flutter_telegram_web_app/flutter_telegram_web_app.dart' as tg;
+// import 'package:flutter_telegram_web_app/flutter_telegram_web_app.dart';
+
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  //WidgetsFlutterBinding.ensureInitialized();
+  try {
+    if (TelegramWebApp.instance.isSupported) {
+      await TelegramWebApp.instance.ready();
+      Future.delayed(const Duration(seconds: 1), TelegramWebApp.instance.expand);
+    }
+  } catch (e) {
+    print("Error happened in Flutter while loading Telegram $e");
+    // add delay for 'Telegram not loading sometimes' bug
+    await Future.delayed(const Duration(milliseconds: 200));
+    main();
+    return;
+  }
+
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -48,29 +65,32 @@ void main() async {
   runApp(const InitializationPage()); //InitializationPage
 }
 
+ 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'GandalVerse',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        primaryColor: Colors.white,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        fontFamily: 'Aller',
-        textTheme: Theme.of(context).textTheme,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
-            .copyWith(background: const Color(0xffe7e9f0)),
-      ),
-      home: MyHomePage(),
-      //backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-    );
-  }
+    return   MaterialApp(
+            title: 'GandalVerse',
+            debugShowCheckedModeBanner: false,
+           theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance),
+             
+            /*theme: ThemeData( 
+              primaryColor: Colors.white, 
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+              fontFamily: 'Aller',
+              textTheme: Theme.of(context).textTheme,
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
+                  .copyWith(background: const Color(0xffe7e9f0)),
+            ),*/
+            home: MyHomePage(),
+          );
+        }
+  
 }
+/*
 
 class InAppWebViewExampleScreen extends StatefulWidget {
   @override
@@ -79,10 +99,6 @@ class InAppWebViewExampleScreen extends StatefulWidget {
 }
 
 class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
- 
- 
- 
- 
   final GlobalKey webViewKey = GlobalKey();
 
   InAppWebViewController? webViewController;
@@ -125,7 +141,8 @@ class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
         },
         onContextMenuActionItemClicked: (contextMenuItemClicked) async {
           var id = contextMenuItemClicked.id;
-          print("onContextMenuActionItemClicked: $id ${contextMenuItemClicked.title}");
+          print(
+              "onContextMenuActionItemClicked: $id ${contextMenuItemClicked.title}");
         });
 
     pullToRefreshController = kIsWeb ||
@@ -163,8 +180,7 @@ class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
           children: [
             InAppWebView(
               key: webViewKey,
-              initialUrlRequest:
-                  URLRequest(url: WebUri('https://flutter.dev')),
+              initialUrlRequest: URLRequest(url: WebUri('https://flutter.dev')),
               // initialUrlRequest:https://gandalverse.com
               // URLRequest(url: WebUri(Uri.base.toString().replaceFirst("/#/", "/") + 'page.html')),
               // initialFile: "assets/index.html",
@@ -258,10 +274,10 @@ class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
                             ],
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter)),
-                        child:const Column(
+                        child: const Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                             SizedBox.square(
+                            SizedBox.square(
                               dimension: 30,
                               child: CircularProgressIndicator(
                                 color: Colors.white,
@@ -288,3 +304,4 @@ class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
     ]));
   }
 }
+*/
