@@ -146,8 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Padding(
                               padding: const EdgeInsets.only(left: 10),
                               child: Text(
-                                "User Name",
-                                //   "${telegram.initData.user.username ?? ''} ${telegram.initData.user.lastname ?? ''}",
+                                   "${telegram.initData.user.username ?? ''} ${telegram.initData.user.lastname ?? ''}",
                                 textAlign: TextAlign.left,
                                 style: Theme.of(context)
                                     .textTheme
@@ -292,7 +291,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         CustomNavigationBarItem(
           icon: const Icon(
-            Icons.auto_fix_high,
+            CupertinoIcons.flame,
           ),
           title: const Text(
             "Découvrir",
@@ -307,7 +306,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         CustomNavigationBarItem(
           icon: const Icon(
-            CupertinoIcons.person_2_fill,
+            Icons.group_rounded,
           ),
           title: const Text(
             "Amis",
