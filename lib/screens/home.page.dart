@@ -88,6 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         key: _key,
         extendBody: true,
+        backgroundColor: Colors.white,
         // backgroundColor: telegram.backgroundColor,
         body: Stack(
           children: [

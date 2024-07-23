@@ -23,6 +23,7 @@ class _AmisPageState extends State<AmisPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(children: [
           Flexible(

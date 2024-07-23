@@ -17,6 +17,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
+      backgroundColor: Colors.white,
       body: SafeArea(
         minimum: const EdgeInsets.all(5.0),
         child: Column(children: [
