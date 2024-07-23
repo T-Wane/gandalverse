@@ -1,6 +1,15 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:gandalverse/components/default_btn.dart';
+import 'package:gandalverse/components/user_top_infos.dart';
 import 'package:gandalverse/screens/Annonces/components/annonceCard.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
+import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 
+import '../../widgets/customImageView.dart';
+import 'components/_build_telegram_communauty.dart';
+import 'components/_build_youtube_communauty.dart';
 import 'components/detailsAnnonceAlert.dart';
 
 class AnnoncesPage extends StatefulWidget {
@@ -20,144 +29,128 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
       backgroundColor: Colors.white,
       body: SafeArea(
         minimum: const EdgeInsets.all(5.0),
-        child: Column(children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Récompense",
-                textAlign: TextAlign.left,
-                textDirection: TextDirection.ltr,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontSize: 15,
-                    color: Color3,
-                    fontFamily: "Aller",
-                    fontWeight: FontWeight.normal),
+        child: Column(
+          children: [
+            userTopInfos(),
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: SingleChildScrollView(
+                  child: Column(children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Récompense",
+                          textAlign: TextAlign.left,
+                          textDirection: TextDirection.ltr,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Color3,
+                              fontFamily: "Aller",
+                              fontWeight: FontWeight.normal),
+                        ),
+                      ),
+                    ),
+                    AnnonceCard(
+                        title: 'Daily',
+                        text: 'Récupérer votre récompense quotidienne',
+                        imagePath: Images.dailyCalendar,
+                        backColors: const [
+                          Colors.white,
+                          Colors.white,
+                        ],
+                        fit: BoxFit.contain,
+                        press: () {
+                          showDialog(
+                            barrierDismissible: true,
+                            context: context,
+                            builder: (_) => AnnonceDetailsAlert(),
+                          );
+                        },
+                        textColor: Colors.black,
+                        titleColor: Color3),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Défi du jour",
+                          textAlign: TextAlign.left,
+                          textDirection: TextDirection.ltr,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Color3,
+                              fontFamily: "Aller",
+                              fontWeight: FontWeight.normal),
+                        ),
+                      ),
+                    ),
+                    AnnonceCard(
+                        title: 'Go Words',
+                        text: 'Trouver le mot caché dans le Monde virtuel',
+                        imagePath: Images.parchment,
+                        backColors: const [
+                          Colors.white,
+                          Colors.white,
+                        ],
+                        fit: BoxFit.contain,
+                        press: () {},
+                        textColor: Colors.black,
+                        titleColor: Color3),
+                    AnnonceCard(
+                        title: 'Enigmes',
+                        text: 'Gagner en résolvant l\'énigme du jour',
+                        imagePath: Images.question,
+                        backColors: const [
+                          Colors.white,
+                          Colors.white,
+                        ],
+                        fit: BoxFit.contain,
+                        press: () {},
+                        textColor: Colors.black,
+                        titleColor: Color3),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "Tâches",
+                          textAlign: TextAlign.left,
+                          textDirection: TextDirection.ltr,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: Color3,
+                              fontFamily: "Aller",
+                              fontWeight: FontWeight.normal),
+                        ),
+                      ),
+                    ),
+                    AnnonceCard(
+                        title: 'Scanner & Gagner',
+                        text:
+                            'Scanner codeQr de nos partenaires et gagner des Go coins',
+                        imagePath: Images.scanQr,
+                        backColors: const [
+                          Colors.white,
+                          Colors.white,
+                        ],
+                        fit: BoxFit.contain,
+                        press: () {},
+                        textColor: Colors.black,
+                        titleColor: Color3),
+                    buildTelegramCommunauty(Color3: Color3),
+                    buildYoutubeCommunauty(Color3: Color3),
+                  ]),
+                ),
               ),
-            ),
-          ),
-          AnnonceCard(
-              title: 'Votre récompense quotidienne',
-              text: '---',
-              icon: Icons.info_outline_rounded,
-              backColors: const [
-                Colors.white,
-                Colors.white,
-              ],
-              press: () {
-                showDialog(
-                  barrierDismissible: true,
-                  context: context,
-                  builder: (_) => AnnonceDetailsAlert(),
-                );
-              },
-              textColor: Colors.black,
-              titleColor: Color3),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Tâches",
-                textAlign: TextAlign.left,
-                textDirection: TextDirection.ltr,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontSize: 15,
-                    color: Color3,
-                    fontFamily: "Aller",
-                    fontWeight: FontWeight.normal),
-              ),
-            ),
-          ),
-          AnnonceCard(
-              title: 'Tâche du jour',
-              text: '---',
-              icon: Icons.info_outline_rounded,
-              backColors: const [
-                Colors.white,
-                Colors.white,
-              ],
-              press: () {
-                showDialog(
-                  barrierDismissible: true,
-                  context: context,
-                  builder: (_) => AnnonceDetailsAlert(),
-                );
-              },
-              textColor: Colors.black,
-              titleColor: Color3),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Annonces",
-                textAlign: TextAlign.left,
-                textDirection: TextDirection.ltr,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontSize: 15,
-                    color: Color3,
-                    fontFamily: "Aller",
-                    fontWeight: FontWeight.normal),
-              ),
-            ),
-          ),
-          AnnonceCard(
-              title: 'Titre de l\'annonce',
-              text: 'Description ou information sur l\'annonce',
-              icon: Icons.info_outline_rounded,
-              backColors: const [
-                Colors.white,
-                Colors.white,
-              ],
-              press: () {
-                showDialog(
-                  barrierDismissible: true,
-                  context: context,
-                  builder: (_) => AnnonceDetailsAlert(),
-                );
-              },
-              textColor: Colors.black,
-              titleColor: Color3),
-          AnnonceCard(
-              title: 'Titre de l\'annonce',
-              text: 'Description ou information sur l\'annonce',
-              icon: Icons.info_outline_rounded,
-              backColors: const [
-                Colors.white,
-                Colors.white,
-              ],
-              press: () {
-                showDialog(
-                  barrierDismissible: true,
-                  context: context,
-                  builder: (_) => AnnonceDetailsAlert(),
-                );
-              },
-              textColor: Colors.black,
-              titleColor: Color3),
-          AnnonceCard(
-              title: 'Titre de l\'annonce',
-              text: 'Description ou information sur l\'annonce',
-              icon: Icons.info_outline_rounded,
-              backColors: const [
-                Colors.white,
-                Colors.white,
-              ],
-              press: () {
-                showDialog(
-                  barrierDismissible: true,
-                  context: context,
-                  builder: (_) => AnnonceDetailsAlert(),
-                );
-              },
-              textColor: Colors.black,
-              titleColor: Color3),
-        ]),
+            )
+          ],
+        ),
       ),
     );
   }

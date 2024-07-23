@@ -113,11 +113,12 @@ class itemCard extends StatelessWidget {
                     textColor: Colors.white,
                     fontSize: 15,
                     height: 50,
+                    press: () {},
                   )
                 ],
               ),
             ),
-            titre: 'Nos Annonces');
+            image: "assets/images/img_back1.jpg");
       },
       child: Container(
         margin: const EdgeInsets.all(6),

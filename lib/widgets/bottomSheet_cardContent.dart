@@ -7,7 +7,7 @@ class CardContentBottomSheet extends StatelessWidget {
   static void show(BuildContext context,
           {Key? key,
           required Widget child,
-          required String titre,
+          required String image,
           bool isDismissible = true}) =>
       showModalBottomSheet(
         enableDrag: true,
@@ -57,7 +57,7 @@ class CardContentBottomSheet extends StatelessWidget {
                   padding: MediaQuery.of(context).viewInsets,
                   child: CardContentBottomSheet(
                     key: key,
-                    titre: titre,
+                    image: image,
                     child: child,
                   ),
                 ),
@@ -88,7 +88,7 @@ class CardContentBottomSheet extends StatelessWidget {
                         color: Colors.purpleAccent.withOpacity(0.1),
                       ),
                       child: CustomImageView(
-                        imagePath: "assets/images/img_back1.jpg",
+                        imagePath: image,
                         height: 100,
                         width: 100,
                         radius: BorderRadius.circular(50),
@@ -104,10 +104,10 @@ class CardContentBottomSheet extends StatelessWidget {
 
   static void hide(BuildContext context) => Navigator.pop(context);
 
-  CardContentBottomSheet({Key? key, required this.titre, required this.child})
+  CardContentBottomSheet({Key? key, required this.image, required this.child})
       : super(key: key);
 
-  String titre;
+  String image;
   Widget child;
 
   @override
