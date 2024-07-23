@@ -8,6 +8,8 @@ import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 
 import '../../widgets/customImageView.dart';
+import 'components/_build_daily_days.dart';
+import 'components/_build_go_words.dart';
 import 'components/_build_telegram_communauty.dart';
 import 'components/_build_youtube_communauty.dart';
 import 'components/detailsAnnonceAlert.dart';
@@ -54,24 +56,9 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                         ),
                       ),
                     ),
-                    AnnonceCard(
-                        title: 'Daily',
-                        text: 'Récupérer votre récompense quotidienne',
-                        imagePath: Images.dailyCalendar,
-                        backColors: const [
-                          Colors.white,
-                          Colors.white,
-                        ],
-                        fit: BoxFit.contain,
-                        press: () {
-                          showDialog(
-                            barrierDismissible: true,
-                            context: context,
-                            builder: (_) => AnnonceDetailsAlert(),
-                          );
-                        },
-                        textColor: Colors.black,
-                        titleColor: Color3),
+                    buildDailyDays(
+                      Color3: Color3,
+                    ),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Align(
@@ -89,18 +76,9 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                         ),
                       ),
                     ),
-                    AnnonceCard(
-                        title: 'Go Words',
-                        text: 'Trouver le mot caché dans le Monde virtuel',
-                        imagePath: Images.parchment,
-                        backColors: const [
-                          Colors.white,
-                          Colors.white,
-                        ],
-                        fit: BoxFit.contain,
-                        press: () {},
-                        textColor: Colors.black,
-                        titleColor: Color3),
+                    buildGoWords(
+                      Color3: Color3,
+                    ),
                     AnnonceCard(
                         title: 'Enigmes',
                         text: 'Gagner en résolvant l\'énigme du jour',
