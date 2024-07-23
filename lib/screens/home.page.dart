@@ -12,7 +12,8 @@ import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 //import 'package:telegram_web_app/telegram_web_app.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+//import 'package:webview_flutter/webview_flutter.dart';
+import '../components/user_top_infos.dart';
 import 'components/body.dart';
 import 'custom_bubble_navigation_bar/src/custom_navigation_bar_item.dart';
 import 'custom_bubble_navigation_bar/src/custome_navigation_bar.dart';
@@ -22,6 +23,9 @@ import 'package:gandalverse/widgets/snackBar/sstring_snack_extension.dart';
 // import 'package:flutter_telegram_web_app/flutter_telegram_web_app.dart';
 
 import 'package:telegram_web_app/telegram_web_app.dart';
+
+import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
+import 'package:webview_flutter_web/webview_flutter_web.dart';
 
 const Color3 = Color.fromARGB(255, 18, 40, 70);
 
@@ -41,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   //##############################################################//
-  late final WebViewController controller;
+  late final PlatformWebViewController controller;
   final TelegramWebApp telegram = TelegramWebApp.instance;
 
   bool? isDefinedVersion;
@@ -50,7 +54,16 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    controller = PlatformWebViewController(
+      const PlatformWebViewControllerCreationParams(),
+    )..loadRequest(
+        LoadRequestParams(
+          uri: Uri.parse('https://gandalverse.com'),
+        ),
+      );
+
     FlutterError.onError = (details) {
+      //showSnackbar("Flutter error: $details");
       print("Flutter error happened: $details");
     };
 
@@ -65,29 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   /*controller = WebViewController()
-  //     ..loadRequest(
-  //       Uri.parse('https://gandalverse.com'),
-  //     );
-  //   FlutterError.onError = (details) {
-  //     //showSnackbar("Flutter error: $details");
-  //     print("Flutter error happened: $details");
-  //   };*/
-
-  //   //TelegramWebApp.instance.ready();
-
-  //   //  check();
-  // }
-/*
-  void check() async {
-    await Future.delayed(const Duration(seconds: 2));
-    isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
-    setState(() {});
-  }*/
-
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
@@ -101,165 +91,34 @@ class _MyHomePageState extends State<MyHomePage> {
         // backgroundColor: telegram.backgroundColor,
         body: Stack(
           children: [
-            Align(
-              alignment: Alignment.topCenter,
-              child: Card(
-                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                elevation: 1.2,
-                borderOnForeground: true,
-                surfaceTintColor: Color3.withOpacity(0.9),
-                color: Color3.withOpacity(0.9),
-                shadowColor:
-                    const Color.fromARGB(255, 151, 116, 211).withOpacity(0.5),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-                  height: 65,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white10,
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(
-                            width: 1,
-                            color: Colors.purple.shade100,
-                          ),
-                        ),
-                        margin: const EdgeInsets.only(left: 5, right: 2),
-                        padding: const EdgeInsets.all(5),
-                        child: const Icon(
-                          CupertinoIcons.person,
-                          color: Colors.white,
-                          size: 25,
-                        ),
-                      ),
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Text(
-                                   "${telegram.initData.user.username ?? ''} ${telegram.initData.user.lastname ?? ''}",
-                                textAlign: TextAlign.left,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(
-                                      fontFamily: "Aller",
-                                      fontSize: 14,
-                                      color: Colors.white,
-                                    ),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 2,
-                            ),
-                            SizedBox(
-                              width: 120,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    child: Text(
-                                      "GV Junior >",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w300,
-                                          color: Colors.purple.shade100,
-                                          fontFamily: "Aller",
-                                          fontSize: 10),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 2,
-                                  ),
-                                  LinearPercentIndicator(
-                                    percent: 0.5,
-                                    backgroundColor:
-                                        Colors.grey.shade200.withOpacity(0.2),
-                                    progressColor: Colors.deepPurple.shade400,
-                                    lineHeight: 5.0,
-                                    barRadius: const Radius.circular(10),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          const Icon(
-                            Icons.settings,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                          const Row(
-                            children: [
-                              Text(
-                                "Profit par heure",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w300,
-                                    color: Colors.white70,
-                                    fontFamily: "Aller",
-                                    fontSize: 8),
-                              ),
-                              SizedBox(
-                                width: 5,
-                              ),
-                              Icon(
-                                CupertinoIcons.info_circle_fill,
-                                color: Colors.white60,
-                                size: 15,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              CustomImageView(
-                                imagePath: "assets/images/coin.png",
-                                fit: BoxFit.contain,
-                                height: 25,
-                                width: 25,
-                              ),
-                              const Text(
-                                "200K",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w300,
-                                    color: Colors.white70,
-                                    fontFamily: "Aller",
-                                    fontSize: 11),
-                              ),
-                            ],
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
+            IndexedStack(
+              index: _currentIndex,
+              children: [
+                Container(
+                  child: Stack(children: [
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: userTopInfos(),
+                    ),
+                    //  GandalVerseWebView(controller: controller),
+                  ]),
                 ),
-              ),
+                DecouvrirPage(),
+                AmisPage(),
+                AnnoncesPage(),
+                Container(),
+              ],
             ),
-            /*Center(
-              child:  GandalVerseWebView(controller: controller),
-            ),*/
-            Align(
+            /* Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: _buildFloatingBarCustom(),
               ),
-            ),
+            ),*/
           ],
         ),
+        bottomNavigationBar: _buildFloatingBarCustom(),
       ),
     );
   }
@@ -269,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
       iconSize: 22.0,
       selectedColor: Colors.white,
       strokeColor: const Color(0x300c18fb),
-      unSelectedColor: Colors.grey.shade100,
+      unSelectedColor: Colors.grey.shade200,
       backgroundColor: Color3.withOpacity(0.9),
       borderRadius: const Radius.circular(10.0),
       items: [
@@ -278,60 +137,56 @@ class _MyHomePageState extends State<MyHomePage> {
           icon: const Icon(
             CupertinoIcons.hexagon,
           ),
-          title: const Text(
+          title: Text(
             "",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontFamily: "Aller",
-              fontWeight: FontWeight.w200,
-              fontSize: 12,
-              color: Colors.white70,
-            ),
+                fontFamily: "Aller",
+                fontWeight: FontWeight.w200,
+                fontSize: 12,
+                color: getColor(0)),
           ),
         ),
         CustomNavigationBarItem(
           icon: const Icon(
             CupertinoIcons.flame,
           ),
-          title: const Text(
+          title: Text(
             "Découvrir",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontFamily: "Aller",
-              fontSize: 12,
-              fontWeight: FontWeight.w200,
-              color: Colors.white70,
-            ),
+                fontFamily: "Aller",
+                fontSize: 12,
+                fontWeight: FontWeight.w300,
+                color: getColor(1)),
           ),
         ),
         CustomNavigationBarItem(
           icon: const Icon(
             Icons.group_rounded,
           ),
-          title: const Text(
+          title: Text(
             "Amis",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontFamily: "Aller",
-              fontSize: 12,
-              fontWeight: FontWeight.w300,
-              color: Colors.white70,
-            ),
+                fontFamily: "Aller",
+                fontSize: 12,
+                fontWeight: FontWeight.w300,
+                color: getColor(2)),
           ),
         ),
         CustomNavigationBarItem(
           icon: const Icon(
             Icons.newspaper_rounded,
           ),
-          title: const Text(
-            "Annonces",
+          title: Text(
+            "Défis",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontFamily: "Aller",
-              fontSize: 12,
-              fontWeight: FontWeight.w300,
-              color: Colors.white70,
-            ),
+                fontFamily: "Aller",
+                fontSize: 12,
+                fontWeight: FontWeight.w300,
+                color: getColor(3)),
           ),
         ),
         CustomNavigationBarItem(
@@ -339,21 +194,22 @@ class _MyHomePageState extends State<MyHomePage> {
             imagePath: "assets/images/coin.png",
             fit: BoxFit.contain,
           ),
-          title: const Text(
+          title: Text(
             "AirDrops",
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontFamily: "Aller",
-              fontSize: 12,
-              fontWeight: FontWeight.w400,
-              color: Colors.white70,
-            ),
+                fontFamily: "Aller",
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+                color: getColor(4)),
           ),
         ),
       ],
       currentIndex: _currentIndex,
-      onTap: (int index) {
-        switch (index) {
+      onTap: (int index) => setState(() {
+        _currentIndex = index;
+      }),
+      /* switch (index) {
           case 1:
             CustomBottomModalSheet.show(context,
                 child: DecouvrirPage(), titre: 'Décourir ');
@@ -370,11 +226,14 @@ class _MyHomePageState extends State<MyHomePage> {
             CustomBottomModalSheet.show(context,
                 child: MonProfilScreen(), titre: 'Profil ');
             break;
-        }
-      },
+        }*/
+      //},
       isFloating: true,
     );
   }
+
+  Color getColor(int index) =>
+      _currentIndex == index ? Colors.white : Colors.white70;
 
   Widget _selectedMenu() => Padding(
         padding: const EdgeInsets.only(left: 2, right: 5),

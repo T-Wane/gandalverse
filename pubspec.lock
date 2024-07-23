@@ -533,6 +533,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.10.0"
+  webview_flutter_web:
+    dependency: "direct main"
+    description:
+      name: webview_flutter_web
+      sha256: a9122bde996d9cdd03954e30c80188cdac0b3258a97573639f022c9d7cca3862
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.3+1"
   webview_flutter_wkwebview:
     dependency: transitive
     description:

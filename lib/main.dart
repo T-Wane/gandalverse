@@ -8,20 +8,26 @@ import 'package:flutter/services.dart';
 // import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:gandalverse/init.dart';
 import 'package:telegram_web_app/telegram_web_app.dart';
+import 'package:webview_flutter_web/webview_flutter_web.dart';
 //import 'package:telegram_web_app/telegram_web_app.dart';
+import 'animations/coinsAnimations_test2.dart';
+import 'animations/coinsAnomations_test1.dart';
 import 'screens/home.page.dart';
 
+import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // import 'package:flutter_telegram_web_app/flutter_telegram_web_app.dart' as tg;
 // import 'package:flutter_telegram_web_app/flutter_telegram_web_app.dart';
 
 void main() async {
-  //WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
+  WebViewPlatform.instance = WebWebViewPlatform();
   try {
     if (TelegramWebApp.instance.isSupported) {
       await TelegramWebApp.instance.ready();
-      Future.delayed(const Duration(seconds: 1), TelegramWebApp.instance.expand);
+      Future.delayed(
+          const Duration(seconds: 1), TelegramWebApp.instance.expand);
     }
   } catch (e) {
     print("Error happened in Flutter while loading Telegram $e");
@@ -30,7 +36,6 @@ void main() async {
     main();
     return;
   }
-
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -62,22 +67,21 @@ void main() async {
     };
 */
 
-  runApp(const InitializationPage()); //InitializationPage
+  runApp(const MyApp()); //InitializationPage
 }
 
- 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return   MaterialApp(
-            title: 'GandalVerse',
-            debugShowCheckedModeBanner: false,
-           theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance),
-             
-            /*theme: ThemeData( 
+    return MaterialApp(
+        title: 'GandalVerse',
+        debugShowCheckedModeBanner: false,
+        theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance),
+
+        /*theme: ThemeData( 
               primaryColor: Colors.white, 
               visualDensity: VisualDensity.adaptivePlatformDensity,
               fontFamily: 'Aller',
@@ -85,10 +89,9 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
                   .copyWith(background: const Color(0xffe7e9f0)),
             ),*/
-            home: MyHomePage(),
-          );
-        }
-  
+        home: MyHomePage() // CoinAnimation()//FlyCoinAnimation()//MyHomePage(),
+        );
+  }
 }
 /*
 

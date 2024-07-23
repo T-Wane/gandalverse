@@ -10,10 +10,10 @@ class CustomBottomModalSheet extends StatelessWidget {
           bool isDismissible = true}) =>
       showModalBottomSheet(
         enableDrag: true,
-        constraints: BoxConstraints(
+       /* constraints: BoxConstraints(
             minHeight: MediaQuery.of(context).size.height * 0.5,
             maxHeight: MediaQuery.of(context).size.height * 0.95),
-        isScrollControlled: true,
+        */isScrollControlled: true,
         isDismissible: isDismissible,
         context: context,
         backgroundColor: Colors.white,
@@ -79,10 +79,13 @@ class CustomBottomModalSheet extends StatelessWidget {
           color: Colors.grey.shade200,
         ),
       ),
-      Expanded(child: child)
+      Flexible(child: child)
     ]);
   }
 }
+
+
+
 
 GestureDetector closeIcon(BuildContext context, {Function? press}) =>
     GestureDetector(
