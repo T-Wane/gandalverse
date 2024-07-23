@@ -10,6 +10,7 @@ import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import '../../widgets/customImageView.dart';
 import 'components/_build_daily_days.dart';
 import 'components/_build_go_words.dart';
+import 'components/_build_scanQr_partenaire.dart';
 import 'components/_build_telegram_communauty.dart';
 import 'components/_build_youtube_communauty.dart';
 import 'components/detailsAnnonceAlert.dart';
@@ -108,19 +109,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                         ),
                       ),
                     ),
-                    AnnonceCard(
-                        title: 'Scanner & Gagner',
-                        text:
-                            'Scanner codeQr de nos partenaires et gagner des Go coins',
-                        imagePath: Images.scanQr,
-                        backColors: const [
-                          Colors.white,
-                          Colors.white,
-                        ],
-                        fit: BoxFit.contain,
-                        press: () {},
-                        textColor: Colors.black,
-                        titleColor: Color3),
+                    buildScanQrPartenaire(Color3: Color3),
                     buildTelegramCommunauty(Color3: Color3),
                     buildYoutubeCommunauty(Color3: Color3),
                   ]),

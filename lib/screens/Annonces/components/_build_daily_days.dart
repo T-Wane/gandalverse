@@ -120,6 +120,8 @@ class buildDailyDays extends StatelessWidget {
                   ],
                 ),
               ),
+              fit: BoxFit.contain,
+              setCircle: false,
               image: Images.dailyCalendar);
         },
         textColor: Colors.black,

@@ -105,6 +105,8 @@ class buildGoWords extends StatelessWidget {
                   ),
                 ),
               ),
+              fit: BoxFit.contain,
+              setCircle: false,
               image: Images.parchment);
         },
         textColor: Colors.black,

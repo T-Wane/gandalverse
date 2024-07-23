@@ -90,20 +90,19 @@ class _MyHomePageState extends State<MyHomePage> {
         extendBody: true,
         backgroundColor: Colors.white,
         // backgroundColor: telegram.backgroundColor,
-        body: Stack(
-          children: [
+        body:  
             IndexedStack(
               index: _currentIndex,
               children: [
-                Container(
+                /*Container(
                   child: Stack(children: [
                     Align(
                       alignment: Alignment.topCenter,
                       child: userTopInfos(),
-                    ),
-                    //  GandalVerseWebView(controller: controller),
-                  ]),
-                ),
+                    ),*/
+                    GandalVerseWebView(controller: controller),
+                  /*]),
+                ),*/
                 DecouvrirPage(),
                 AmisPage(),
                 AnnoncesPage(),
@@ -117,8 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: _buildFloatingBarCustom(),
               ),
             ),*/
-          ],
-        ),
+         
         bottomNavigationBar: _buildFloatingBarCustom(),
       ),
     );

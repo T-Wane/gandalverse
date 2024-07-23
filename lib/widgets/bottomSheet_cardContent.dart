@@ -8,6 +8,8 @@ class CardContentBottomSheet extends StatelessWidget {
           {Key? key,
           required Widget child,
           required String image,
+          bool setCircle = true,
+          BoxFit fit = BoxFit.cover,
           bool isDismissible = true}) =>
       showModalBottomSheet(
         enableDrag: true,
@@ -91,7 +93,8 @@ class CardContentBottomSheet extends StatelessWidget {
                         imagePath: image,
                         height: 100,
                         width: 100,
-                        radius: BorderRadius.circular(50),
+                        radius: setCircle? BorderRadius.circular(50) : null,
+                        fit: fit,
                       ),
                     ),
                   ),
@@ -115,7 +118,8 @@ class CardContentBottomSheet extends StatelessWidget {
     return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
       Padding(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-          child: closeIcon(context)),
+          child: Align(
+              alignment: Alignment.centerRight, child: closeIcon(context))),
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
         child: Divider(
