@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
 import 'package:webview_flutter_web/webview_flutter_web.dart';
 
@@ -90,10 +91,21 @@ class _WebViewStackState extends State<WebViewStack> {
     const Color3 = Color.fromARGB(255, 18, 40, 70);
 
     return SafeArea(
-        child: Column(children: [
-      Flexible(
         child: Stack(
-          children: [
+      children: [
+        Container(
+          height: double.infinity,
+          width: double.infinity,
+          child: PlatformWebViewWidget(PlatformWebViewWidgetCreationParams(
+                  controller: widget.controller))
+              .build(context),
+        ),
+        const Align(
+            alignment: Alignment.topCenter, child: const userTopInfos()),
+      ],
+    ) /*Column(children: [
+        Flexible(
+          child: Stack(children: [
             if (loadingPercentage < 100) ...[
               Container(
                 decoration: const BoxDecoration(
@@ -190,9 +202,10 @@ class _WebViewStackState extends State<WebViewStack> {
                   .build(context),
             ),
             const userTopInfos(),
-          ],
+          ]),
         ),
-      )
-    ]));
+      ]),*/
+
+        );
   }
 }
