@@ -90,33 +90,15 @@ class _MyHomePageState extends State<MyHomePage> {
         extendBody: true,
         backgroundColor: Colors.white,
         // backgroundColor: telegram.backgroundColor,
-        body:  
-            IndexedStack(
-              index: _currentIndex,
-              children: [
-                /*Container(
-                  child: Stack(children: [
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: userTopInfos(),
-                    ),*/
-                    GandalVerseWebView(controller: controller),
-                  /*]),
-                ),*/
-                DecouvrirPage(),
-                AmisPage(),
-                AnnoncesPage(),
-                Container(),
-              ],
-            ),
-            /* Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5),
-                child: _buildFloatingBarCustom(),
-              ),
-            ),*/
-         
+        body: Stack(children: [
+          IndexedStack(index: _currentIndex, children: [
+            GandalVerseWebView(controller: controller),
+            DecouvrirPage(),
+            AmisPage(),
+            AnnoncesPage(),
+            Container(),
+          ]),
+        ]),
         bottomNavigationBar: _buildFloatingBarCustom(),
       ),
     );
@@ -128,8 +110,8 @@ class _MyHomePageState extends State<MyHomePage> {
       selectedColor: Colors.white,
       strokeColor: const Color(0x300c18fb),
       unSelectedColor: Colors.grey.shade200,
-      backgroundColor: Color3.withOpacity(0.9),
-      borderRadius: const Radius.circular(10.0),
+      backgroundColor: Color3,
+      borderRadius: Radius.circular(_currentIndex == 0 ? 1 : 10.0),
       items: [
         CustomNavigationBarItem(
           isMain: true,
@@ -227,7 +209,7 @@ class _MyHomePageState extends State<MyHomePage> {
             break;
         }*/
       //},
-      isFloating: true,
+      isFloating: false,
     );
   }
 
