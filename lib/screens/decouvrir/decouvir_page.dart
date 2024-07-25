@@ -14,12 +14,13 @@ class DecouvrirPage extends StatefulWidget {
 
 class _DecouvrirPageState extends State<DecouvrirPage> {
   final ScrollController _scrollController = ScrollController();
-  final _selectedSegment = ValueNotifier('Tous');
+  final _selectedSegment = ValueNotifier('Equipe');
   final Map<String, String> sections = {
-    "Tous": "Tous",
-    "Entreprise": "Entreprise",
-    "Expositions": "Expositions",
-    "Publicités": "Publicités"
+    "Equipe": "Equipe",
+    "Partenaire": "Partenaire",
+    "Education": "Education",
+    "Tourisme": "Tourisme",
+    "Evenement": "Evenement",
   };
   Color Color3 = Color.fromARGB(255, 18, 40, 70);
 
@@ -31,22 +32,6 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
       extendBodyBehindAppBar: true,
       body: Column(children: [
         const userTopInfos(),
-        /*Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 5),
-          child: Align(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Découvrir",
-              textAlign: TextAlign.left,
-              textDirection: TextDirection.ltr,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  color: Color3,
-                  fontFamily: "Aller",
-                  fontWeight: FontWeight.normal),
-            ),
-          ),
-        ),*/
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
           child: AdvancedSegment(

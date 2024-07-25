@@ -7,6 +7,9 @@ class Images {
   static String youtubeVideo = "$ressourcePath/videoYoutube.png";
   static String playstore = "$ressourcePath/playstore.png";
   static String youtube = "$ressourcePath/youtube.png";
+  static String facebook = "$ressourcePath/facebook.png";
+  static String tiktok = "$ressourcePath/tiktok.png";
+  static String twitter = "$ressourcePath/twitter.png";
 
   //OTHERS
   static String gift = "$ressourcePath/gift.png";
@@ -18,10 +21,13 @@ class Images {
   static String scanQr = "$ressourcePath/scanQr.png";
   static String question = "$ressourcePath/question.png";
 
+  static String pub = "$ressourcePath/pub.png";
+  static String panneaux = "$ressourcePath/panel.png";
+  static String redistribuer = "$ressourcePath/redistribuer.png";
+
   //GAME
   static String game_gift = "$ressourcePath/game_gift.png";
   static String game_key = "$ressourcePath/game_key.png";
   static String game_money = "$ressourcePath/game_money.png";
   static String game_puzzle_piece = "$ressourcePath/game_puzzle_piece.png";
-
 }

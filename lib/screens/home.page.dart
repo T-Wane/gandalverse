@@ -6,6 +6,7 @@ import 'package:gandalverse/screens/Annonces/annonces_page.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
 import 'package:gandalverse/screens/decouvrir/decouvir_page.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
+import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
 import 'package:gandalverse/widgets/bottomSheet_modal.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
@@ -93,10 +94,10 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Stack(children: [
           IndexedStack(index: _currentIndex, children: [
             GandalVerseWebView(controller: controller),
-            DecouvrirPage(),
-            AmisPage(),
-            AnnoncesPage(),
-            Container(),
+            const DecouvrirPage(),
+            const AmisPage(),
+            const AnnoncesPage(),
+            const AllRevenusPage(),
           ]),
         ]),
         bottomNavigationBar: _buildFloatingBarCustom(),
@@ -133,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
             CupertinoIcons.flame,
           ),
           title: Text(
-            "Découvrir",
+            "Bureau",
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontFamily: "Aller",
@@ -176,7 +177,7 @@ class _MyHomePageState extends State<MyHomePage> {
             fit: BoxFit.contain,
           ),
           title: Text(
-            "AirDrops",
+            "Revenus",
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontFamily: "Aller",
@@ -237,7 +238,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 value: 3, child: _actionList(CupertinoIcons.power, "Quitter")),
           ],
           offset: const Offset(0, 40),
-          color: Color.fromARGB(255, 18, 54, 96),
+          color: const Color.fromARGB(255, 18, 54, 96),
           elevation: 2,
           // on selected we show the dialog box
           onSelected: (value) {

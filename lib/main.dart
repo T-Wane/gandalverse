@@ -79,16 +79,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'GandalVerse',
         debugShowCheckedModeBanner: false,
-        theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance),
-
-        /*theme: ThemeData( 
-              primaryColor: Colors.white, 
-              visualDensity: VisualDensity.adaptivePlatformDensity,
-              fontFamily: 'Aller',
-              textTheme: Theme.of(context).textTheme,
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
-                  .copyWith(background: const Color(0xffe7e9f0)),
-            ),*/
+        theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance), 
         home: MyHomePage() // CoinAnimation()//FlyCoinAnimation()//MyHomePage(),
         );
   }

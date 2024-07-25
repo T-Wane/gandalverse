@@ -25,28 +25,7 @@ class AnnonceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return /*Container(
-      margin: const EdgeInsetsDirectional.symmetric(vertical: 5, horizontal: 5),
-      width: MediaQuery.of(context).size.width * 0.9,
-      height: 70,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: backColors),
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 1,
-            spreadRadius: 1,
-            color: Colors.blueAccent.shade100.withOpacity(0.1),
-            offset: const Offset(0, 1),
-          )
-        ],
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: */
-
-        Card(
+    return Card(
       clipBehavior: Clip.antiAlias,
       borderOnForeground: false,
       shadowColor: Colors.blueAccent.shade100,
@@ -76,8 +55,8 @@ class AnnonceCard extends StatelessWidget {
                   children: [
                     CustomImageView(
                       imagePath: imagePath,
-                      height: 50,
-                      width: 50,
+                      height: 40,
+                      width: 40,
                       fit: fit,
                       margin: const EdgeInsets.symmetric(
                           horizontal: 5, vertical: 5),
