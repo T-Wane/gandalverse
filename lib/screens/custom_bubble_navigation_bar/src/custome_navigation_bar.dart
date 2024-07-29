@@ -247,7 +247,7 @@ class _CustomNavigationBarState extends State<CustomNavigationBar>
 
   Widget _buildIcon(int index) {
     double getIconsSize() =>
-        widget.items[index].isMain ? 30.0 : widget.iconSize;
+        widget.items[index].isMain ? 40.0 : widget.iconSize;
 
     return SizedBox(
       height: getIconsSize(),

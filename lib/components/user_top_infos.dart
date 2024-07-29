@@ -13,7 +13,7 @@ class userTopInfos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
       elevation: 1.2,
       borderOnForeground: true,
       surfaceTintColor: Color3.withOpacity(0.9),
@@ -22,7 +22,7 @@ class userTopInfos extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-        height: 65,
+        height: 60,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -53,13 +53,13 @@ class userTopInfos extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 10),
                     child: Text(
                       "UserName",
-                      // "${telegram.initData.user.username ?? ''} ${telegram.initData.user.lastname ?? ''}",
+                      //"${telegram.initData.user.username ?? ''} ${telegram.initData.user.lastname ?? ''}",
                       textAlign: TextAlign.left,
-                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                            fontFamily: "Aller",
-                            fontSize: 14,
-                            color: Colors.white,
-                          ),
+                      style: TextStyle(
+                        fontFamily: "Aller",
+                        fontSize: 13,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   const SizedBox(
@@ -102,29 +102,6 @@ class userTopInfos extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Profit par heure",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          color: Colors.white70,
-                          fontFamily: "Aller",
-                          fontSize: 8),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Icon(
-                      CupertinoIcons.info_circle_fill,
-                      color: Colors.white60,
-                      size: 15,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 5),
                 Row(
                   children: [
                     CustomImageView(
@@ -147,6 +124,28 @@ class userTopInfos extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 5),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Profit par heure",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          color: Colors.white70,
+                          fontFamily: "Aller",
+                          fontSize: 7),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      CupertinoIcons.info_circle_fill,
+                      color: Colors.white60,
+                      size: 15,
+                    ),
+                  ],
+                ),
               ],
             ),
             const Padding(

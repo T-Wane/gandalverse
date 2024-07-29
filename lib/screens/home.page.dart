@@ -109,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _buildFloatingBarCustom() {
     return CustomNavigationBar(
       iconSize: 22.0,
-      selectedColor: Colors.white,
+      selectedColor: Colors.purple.shade400,
       strokeColor: const Color(0x300c18fb),
       unSelectedColor: Colors.grey.shade200,
       backgroundColor: Color3,
@@ -131,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontFamily: "Aller",
-                fontWeight: FontWeight.w200,
+                fontWeight: getFontSize(0),
                 fontSize: 12,
                 color: getColor(0)),
           ),
@@ -146,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
             style: TextStyle(
                 fontFamily: "Aller",
                 fontSize: 12,
-                fontWeight: FontWeight.w300,
+                fontWeight: getFontSize(1),
                 color: getColor(1)),
           ),
         ),
@@ -160,7 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
             style: TextStyle(
                 fontFamily: "Aller",
                 fontSize: 12,
-                fontWeight: FontWeight.w300,
+                fontWeight: getFontSize(2),
                 color: getColor(2)),
           ),
         ),
@@ -174,7 +174,7 @@ class _MyHomePageState extends State<MyHomePage> {
             style: TextStyle(
                 fontFamily: "Aller",
                 fontSize: 12,
-                fontWeight: FontWeight.w300,
+                fontWeight: getFontSize(3),
                 color: getColor(3)),
           ),
         ),
@@ -189,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
             style: TextStyle(
                 fontFamily: "Aller",
                 fontSize: 12,
-                fontWeight: FontWeight.w400,
+                fontWeight: getFontSize(4),
                 color: getColor(4)),
           ),
         ),
@@ -222,7 +222,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Color getColor(int index) =>
-      _currentIndex == index ? Colors.white : Colors.white70;
+      _currentIndex == index ? Colors.deepPurple.shade400 : Colors.white70;
+
+  FontWeight getFontSize(int index) =>
+      _currentIndex == index ? FontWeight.w300 : FontWeight.w500;
 
   Widget _selectedMenu() => Padding(
         padding: const EdgeInsets.only(left: 2, right: 5),
