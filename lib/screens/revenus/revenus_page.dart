@@ -45,7 +45,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
                   'Gagner comme jamais',
                   maxLines: 1,
                   minFontSize: 20,
-                  textAlign: TextAlign.left,
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 25, color: Color3, fontFamily: "Aller"),
                 ),

@@ -138,7 +138,7 @@ class itemCard extends StatelessWidget {
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Divider(
-                        color: Colors.white12,
+                        color: Colors.white30,
                         thickness: 0.1,
                       ),
                     ),
@@ -281,6 +281,7 @@ class bureauCarteDetails extends StatelessWidget {
                 height: 20,
                 width: 20,
               ),
+              const SizedBox(width: 5),
               AutoSizeText(
                 '20,5K',
                 maxLines: 1,
@@ -294,7 +295,7 @@ class bureauCarteDetails extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 5,
+            height: 8,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -302,13 +303,14 @@ class bureauCarteDetails extends StatelessWidget {
               CustomImageView(
                 imagePath: Images.gvt,
                 fit: BoxFit.contain,
-                height: 40,
-                width: 40,
+                height: 30,
+                width: 30,
               ),
+              const SizedBox(width: 5),
               AutoSizeText(
                 '205 000',
                 maxLines: 1,
-                presetFontSizes: [22, 20, 18, 15, 14],
+                presetFontSizes: const [22, 20, 18, 15, 14],
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color3,
