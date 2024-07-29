@@ -26,96 +26,94 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
         child: Column(children: [
           const userTopInfos(),
           Expanded(
-            child: SingleChildScrollView(
-              child: Column(children: [
-                Container(
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                  child: CustomImageView(
-                    imagePath: "assets/images/coin.png",
-                    fit: BoxFit.contain,
-                    height: 90,
-                    width: 150,
-                  ),
+            child: ListView(children: [
+              Container(
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: AutoSizeText(
-                    'Gagner comme jamais',
-                    maxLines: 1,
-                    minFontSize: 20,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                        fontSize: 25, color: Color3, fontFamily: "Aller"),
-                  ),
+                child: CustomImageView(
+                  imagePath: "assets/images/coin.png",
+                  fit: BoxFit.contain,
+                  height: 90,
+                  width: 150,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: AutoSizeText(
-                    'Suivez les revenus générés par la publicité et découvrez comment ils sont redistribués',
-                    maxLines: 2,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: Color3.withOpacity(0.7)),
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: AutoSizeText(
+                  'Gagner comme jamais',
+                  maxLines: 1,
+                  minFontSize: 20,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontSize: 25, color: Color3, fontFamily: "Aller"),
                 ),
-                AnnonceCard(
-                    title: 'Publicité',
-                    text: 'Profiter d\'une commission jusqu\'à 20%',
-                    imagePath: Images.pub,
-                    backColors: [
-                      Color3.withOpacity(0.2),
-                      Color3.withOpacity(0.5),
-                      Color3.withOpacity(0.8),
-                      Color3,
-                    ],
-                    fit: BoxFit.contain,
-                    press: () {},
-                    textColor: Colors.black,
-                    titleColor: Color3),
-                AnnonceCard(
-                    title: 'Panneaux',
-                    text:
-                        'Voir les panneaux disponibles et ceux qui sont loués avec les revenus générés',
-                    imagePath: Images.panneaux,
-                    backColors: const [
-                      Colors.white,
-                      Colors.white,
-                    ],
-                    fit: BoxFit.contain,
-                    press: () {},
-                    textColor: Colors.black,
-                    titleColor: Color3),
-                AnnonceCard(
-                    title: 'Redistribution',
-                    text:
-                        'Suivre comment les revenus sont redistribués aux utilisateurs actifs',
-                    imagePath: Images.redistribuer,
-                    backColors: const [
-                      Colors.white,
-                      Colors.white,
-                    ],
-                    fit: BoxFit.contain,
-                    press: () {},
-                    textColor: Colors.black,
-                    titleColor: Color3),
-                AnnonceCard(
-                    title: 'AirDrop',
-                    text: 'Airdrop du token GVT à venir',
-                    imagePath: Images.coin,
-                    backColors: const [
-                      Colors.white,
-                      Colors.white,
-                    ],
-                    fit: BoxFit.contain,
-                    press: () {},
-                    textColor: Colors.black,
-                    titleColor: Color3),
-              ]),
-            ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: AutoSizeText(
+                  'Suivez les revenus générés par la publicité et découvrez comment ils sont redistribués',
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Color3.withOpacity(0.7)),
+                ),
+              ),
+              AnnonceCard(
+                  title: 'Publicité',
+                  text: 'Profiter d\'une commission jusqu\'à 20%',
+                  imagePath: Images.pub,
+                  backColors: [
+                    Color3.withOpacity(0.2),
+                    Color3.withOpacity(0.5),
+                    Color3.withOpacity(0.8),
+                    Color3,
+                  ],
+                  fit: BoxFit.contain,
+                  press: () {},
+                  textColor: Colors.black,
+                  titleColor: Color3),
+              AnnonceCard(
+                  title: 'Panneaux',
+                  text:
+                      'Voir les panneaux disponibles et ceux qui sont loués avec les revenus générés',
+                  imagePath: Images.panneaux,
+                  backColors: const [
+                    Colors.white,
+                    Colors.white,
+                  ],
+                  fit: BoxFit.contain,
+                  press: () {},
+                  textColor: Colors.black,
+                  titleColor: Color3),
+              AnnonceCard(
+                  title: 'Redistribution',
+                  text:
+                      'Suivre comment les revenus sont redistribués aux utilisateurs actifs',
+                  imagePath: Images.redistribuer,
+                  backColors: const [
+                    Colors.white,
+                    Colors.white,
+                  ],
+                  fit: BoxFit.contain,
+                  press: () {},
+                  textColor: Colors.black,
+                  titleColor: Color3),
+              AnnonceCard(
+                  title: 'AirDrop',
+                  text: 'Airdrop du token GVT à venir',
+                  imagePath: Images.coin,
+                  backColors: const [
+                    Colors.white,
+                    Colors.white,
+                  ],
+                  fit: BoxFit.contain,
+                  press: () {},
+                  textColor: Colors.black,
+                  titleColor: Color3),
+            ]),
           ),
         ]),
       ),

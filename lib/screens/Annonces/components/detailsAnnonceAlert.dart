@@ -119,48 +119,46 @@ class AnnonceDetailsAlertState extends State<AnnonceDetailsAlert>
                                 scrollbarOrientation:
                                     ScrollbarOrientation.right,
                                 thickness: 2.0,
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 5.0, horizontal: 10.0),
-                                        child: Text(
-                                          Information,
-                                          textAlign: TextAlign.left,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodySmall!
-                                              .copyWith(
-                                                color: Colors.black,
-                                              ),
-                                        ),
+                                child: ListView(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 5.0, horizontal: 10.0),
+                                      child: Text(
+                                        Information,
+                                        textAlign: TextAlign.left,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .copyWith(
+                                              color: Colors.black,
+                                            ),
                                       ),
-
-                                      //--------------------------------//
-                                      //Pour Particulier
-                                      //--------------------------------//
-                                      title(
-                                          text:
-                                              "Certification pour les Particuliers"),
-                                      subTitle(text: "Comment ça marche ?"),
-                                      content(
-                                          index: "1",
-                                          titre: "Soumettez vos Documents",
-                                          contenu:
-                                              "Les utilisateurs particuliers souhaitant être certifiés doivent fournir une pièce d'identité valide  en recto et verso."),
-                                      content(
-                                          index: "2",
-                                          titre: "Vérification Rigoureuse",
-                                          contenu:
-                                              "Notre équipe dédiée effectuera une vérification approfondie pour assurer la validité de vos informations."),
-                                      content(
-                                          index: "3",
-                                          titre: "Notification en Temps Réel ",
-                                          contenu:
-                                              "Soyez informé du statut de votre certification. En cas d'approbation, votre profil sera agrémenté d'un badge de confiance."),
-                                    ],
-                                  ),
+                                    ),
+                                
+                                    //--------------------------------//
+                                    //Pour Particulier
+                                    //--------------------------------//
+                                    title(
+                                        text:
+                                            "Certification pour les Particuliers"),
+                                    subTitle(text: "Comment ça marche ?"),
+                                    content(
+                                        index: "1",
+                                        titre: "Soumettez vos Documents",
+                                        contenu:
+                                            "Les utilisateurs particuliers souhaitant être certifiés doivent fournir une pièce d'identité valide  en recto et verso."),
+                                    content(
+                                        index: "2",
+                                        titre: "Vérification Rigoureuse",
+                                        contenu:
+                                            "Notre équipe dédiée effectuera une vérification approfondie pour assurer la validité de vos informations."),
+                                    content(
+                                        index: "3",
+                                        titre: "Notification en Temps Réel ",
+                                        contenu:
+                                            "Soyez informé du statut de votre certification. En cas d'approbation, votre profil sera agrémenté d'un badge de confiance."),
+                                  ],
                                 ),
                               ),
                             ),

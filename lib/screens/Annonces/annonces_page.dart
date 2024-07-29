@@ -35,101 +35,97 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
       backgroundColor: Colors.white,
       body: SafeArea(
         minimum: const EdgeInsets.all(5.0),
-        child: Column(
-          children: [
-            const userTopInfos(),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: SingleChildScrollView(
-                  child: Column(children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Récompense",
-                          textAlign: TextAlign.left,
-                          textDirection: TextDirection.ltr,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Color3,
-                              fontFamily: "Aller",
-                              fontWeight: FontWeight.normal),
-                        ),
-                      ),
+        child: Column(children: [
+          const userTopInfos(),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: ListView(children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Récompense",
+                      textAlign: TextAlign.left,
+                      textDirection: TextDirection.ltr,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Color3,
+                          fontFamily: "Aller",
+                          fontWeight: FontWeight.normal),
                     ),
-                    buildDailyDays(
-                      Color3: Color3,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Défi du jour",
-                          textAlign: TextAlign.left,
-                          textDirection: TextDirection.ltr,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Color3,
-                              fontFamily: "Aller",
-                              fontWeight: FontWeight.normal),
-                        ),
-                      ),
-                    ),
-                    buildGoWords(
-                      Color3: Color3,
-                    ),
-                    AnnonceCard(
-                        title: 'Enigmes',
-                        text: 'Gagner en résolvant l\'énigme du jour',
-                        imagePath: Images.question,
-                        backColors: const [
-                          Colors.white,
-                          Colors.white,
-                        ],
-                        fit: BoxFit.contain,
-                        press: () {},
-                        textColor: Colors.black,
-                        titleColor: Color3),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Tâches",
-                          textAlign: TextAlign.left,
-                          textDirection: TextDirection.ltr,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Color3,
-                              fontFamily: "Aller",
-                              fontWeight: FontWeight.normal),
-                        ),
-                      ),
-                    ),
-                    buildScanQrPartenaire(Color3: Color3),
-                    buildTelegramCommunauty(Color3: Color3),
-                    buildYoutubeCommunauty(Color3: Color3),
-                    buildFacebookCommunauty(
-                      Color3: Color3,
-                    ),
-                    buildTiktokCommunauty(
-                      Color3: Color3,
-                    ),
-                    buildTwitterCommunauty(
-                      Color3: Color3,
-                    ),
-                  ]),
+                  ),
                 ),
-              ),
-            )
-          ],
-        ),
+                buildDailyDays(
+                  Color3: Color3,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Défi du jour",
+                      textAlign: TextAlign.left,
+                      textDirection: TextDirection.ltr,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Color3,
+                          fontFamily: "Aller",
+                          fontWeight: FontWeight.normal),
+                    ),
+                  ),
+                ),
+                buildGoWords(
+                  Color3: Color3,
+                ),
+                AnnonceCard(
+                    title: 'Enigmes',
+                    text: 'Gagner en résolvant l\'énigme du jour',
+                    imagePath: Images.question,
+                    backColors: const [
+                      Colors.white,
+                      Colors.white,
+                    ],
+                    fit: BoxFit.contain,
+                    press: () {},
+                    textColor: Colors.black,
+                    titleColor: Color3),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "Tâches",
+                      textAlign: TextAlign.left,
+                      textDirection: TextDirection.ltr,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Color3,
+                          fontFamily: "Aller",
+                          fontWeight: FontWeight.normal),
+                    ),
+                  ),
+                ),
+                buildScanQrPartenaire(Color3: Color3),
+                buildTelegramCommunauty(Color3: Color3),
+                buildYoutubeCommunauty(Color3: Color3),
+                buildFacebookCommunauty(
+                  Color3: Color3,
+                ),
+                buildTiktokCommunauty(
+                  Color3: Color3,
+                ),
+                buildTwitterCommunauty(
+                  Color3: Color3,
+                ),
+              ]),
+            ),
+          ),
+        ]),
       ),
     );
   }
