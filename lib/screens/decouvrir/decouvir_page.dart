@@ -27,7 +27,7 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       extendBody: true,
       extendBodyBehindAppBar: true,
       body: Column(children: [
@@ -56,8 +56,8 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
                           const SliverGridDelegateWithMaxCrossAxisExtent(
                         maxCrossAxisExtent: 180,
                         mainAxisExtent: 170,
-                        crossAxisSpacing: 2,
-                        mainAxisSpacing: 2,
+                        crossAxisSpacing: 1,
+                        mainAxisSpacing: 1,
                       ),
                       itemCount: 8,
                       itemBuilder: (BuildContext ctx, index) {

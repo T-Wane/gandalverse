@@ -23,6 +23,7 @@ class Images {
   static String bag_coin = "$ressourcePath/bag_coin.png";
   static String scanQr = "$ressourcePath/scanQr.png";
   static String question = "$ressourcePath/question.png";
+  static String word = "$ressourcePath/word.png";
 
   static String pub = "$ressourcePath/pub.png";
   static String panneaux = "$ressourcePath/panel.png";

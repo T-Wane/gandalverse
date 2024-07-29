@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 
 class infoItem extends StatelessWidget {
@@ -12,6 +13,8 @@ class infoItem extends StatelessWidget {
       this.dataColor = Colors.white,
       this.showCopy = false});
 
+  Color Color3 = Color.fromARGB(255, 18, 40, 70);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,13 +24,13 @@ class infoItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5),
+              padding: EdgeInsets.symmetric(horizontal: 2),
               child: AutoSizeText(
                 titre,
                 textAlign: TextAlign.start,
                 style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.normal,
+                  color: Color3,
+                  fontWeight: FontWeight.w400,
                   fontSize: 13,
                   fontFamily: 'Aller',
                 ),
@@ -38,11 +41,44 @@ class infoItem extends StatelessWidget {
                 textAlign: TextAlign.end,
                 text: TextSpan(
                   text: '$data  ',
-                  children: [],
+                  children: [
+                    if (showCopy == true) ...[
+                      WidgetSpan(
+                        child: GestureDetector(
+                          onTap: () => FlutterClipboard.copy(data).then(
+                            (value) =>
+                                ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: const Text(
+                                  "Code Copié",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontFamily: 'Aller',
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.black),
+                                ),
+                                elevation: 1.0,
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 5, horizontal: 10),
+                                dismissDirection: DismissDirection.horizontal,
+                                backgroundColor: Colors.grey.shade400,
+                              ),
+                            ),
+                          ),
+                          child: Icon(
+                            Icons.copy,
+                            size: 22,
+                            color: Colors.deepPurple.shade400,
+                          ),
+                        ),
+                      ),
+                    ]
+                  ],
                   style: TextStyle(
-                      fontSize: 13.5,
+                      fontSize: 14,
                       fontFamily: "Aller",
-                      fontWeight: FontWeight.normal,
+                      fontWeight: FontWeight.w500,
                       color: dataColor),
                 ),
               ),
@@ -74,13 +110,13 @@ class infoItem2 extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 5),
               child: AutoSizeText(
                 titre,
                 textAlign: toEnd ? TextAlign.end : TextAlign.start,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.w500,
                   fontSize: 13,
                   fontFamily: 'Aller',
                 ),
@@ -95,7 +131,7 @@ class infoItem2 extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 13,
                       fontFamily: "Aller",
-                      fontWeight: FontWeight.normal,
+                      fontWeight: FontWeight.w500,
                       color: dataColor),
                 ),
               ),

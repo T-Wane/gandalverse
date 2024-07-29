@@ -21,7 +21,7 @@ class buildGoWords extends StatelessWidget {
     return AnnonceCard(
         title: 'Go Words',
         text: 'Trouver le mot caché dans le Monde virtuel',
-        imagePath: Images.parchment,
+        imagePath: Images.word,
         backColors: const [
           Colors.white,
           Colors.white,
@@ -104,7 +104,7 @@ class buildGoWords extends StatelessWidget {
               ),
               fit: BoxFit.contain,
               setCircle: false,
-              image: Images.parchment);
+              image: Images.word);
         },
         textColor: Colors.black,
         titleColor: Color3);

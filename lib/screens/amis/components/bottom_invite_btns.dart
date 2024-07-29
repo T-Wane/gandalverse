@@ -45,13 +45,13 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
                 child: Container(
                   height: 50,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(20),
                     gradient: LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
                         colors: [
                           Colors.deepPurple.shade400,
-                          Colors.deepPurple.shade500,
+                          Colors.deepPurple.shade400,
                           Colors.deepPurple.shade500,
                           Colors.deepPurple.shade600,
                           Colors.deepPurple.shade700,
@@ -93,10 +93,10 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
               height: 50,
               width: 60,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                shape: BoxShape.circle,
                 gradient: LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
                     colors: [
                       Colors.deepPurple.shade400,
                       Colors.deepPurple.shade500,
