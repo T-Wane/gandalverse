@@ -98,6 +98,9 @@ class userTopInfos extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(
+              width: 5,
+            ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,

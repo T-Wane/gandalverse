@@ -222,7 +222,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Color getColor(int index) =>
-      _currentIndex == index ? Colors.deepPurple.shade400 : Colors.white70;
+      _currentIndex == index ? Colors.purple.shade400 : Colors.white70;
 
   FontWeight getFontSize(int index) =>
       _currentIndex == index ? FontWeight.w300 : FontWeight.w500;
