@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/screens/home.page.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
 
@@ -17,13 +18,10 @@ class userTopInfos extends StatelessWidget {
       borderOnForeground: true,
       surfaceTintColor: Color3.withOpacity(0.9),
       color: Color3.withOpacity(0.9),
-      shadowColor:
-          const Color.fromARGB(255, 151, 116, 211).withOpacity(0.5),
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10)),
+      shadowColor: const Color.fromARGB(255, 151, 116, 211).withOpacity(0.5),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Container(
-        padding:
-            const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
         height: 65,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -57,10 +55,7 @@ class userTopInfos extends StatelessWidget {
                       "UserName",
                       // "${telegram.initData.user.username ?? ''} ${telegram.initData.user.lastname ?? ''}",
                       textAlign: TextAlign.left,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium!
-                          .copyWith(
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
                             fontFamily: "Aller",
                             fontSize: 14,
                             color: Colors.white,
@@ -104,15 +99,12 @@ class userTopInfos extends StatelessWidget {
               ),
             ),
             Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(
-                  Icons.settings,
-                  color: Colors.white,
-                  size: 20,
-                ),
                 const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       "Profit par heure",
@@ -132,13 +124,17 @@ class userTopInfos extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(height: 5),
                 Row(
                   children: [
                     CustomImageView(
-                      imagePath: "assets/images/coin.png",
+                      imagePath: Images.gvt,
                       fit: BoxFit.contain,
-                      height: 25,
-                      width: 25,
+                      height: 20,
+                      width: 20,
+                    ),
+                    const SizedBox(
+                      width: 5,
                     ),
                     const Text(
                       "200K",
@@ -146,12 +142,21 @@ class userTopInfos extends StatelessWidget {
                           fontWeight: FontWeight.w300,
                           color: Colors.white70,
                           fontFamily: "Aller",
-                          fontSize: 11),
+                          fontSize: 12),
                     ),
                   ],
                 ),
+                const SizedBox(height: 5),
               ],
-            )
+            ),
+            const Padding(
+              padding: EdgeInsets.all(5.0),
+              child: Icon(
+                Icons.settings,
+                color: Colors.white,
+                size: 20,
+              ),
+            ),
           ],
         ),
       ),

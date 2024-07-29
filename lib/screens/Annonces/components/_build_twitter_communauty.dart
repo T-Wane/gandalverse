@@ -19,7 +19,7 @@ class buildTwitterCommunauty extends StatelessWidget {
     return AnnonceCard(
         title: 'Twitter',
         text: 'Rejoindre notre communauté Twitter',
-        imagePath: Images.twitter,
+        imagePath: Images.black_twitter,
         backColors: const [
           Colors.white,
           Colors.white,
@@ -62,7 +62,7 @@ class buildTwitterCommunauty extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomImageView(
-                          imagePath: "assets/images/coin.png",
+                          imagePath: Images.gvt,
                           fit: BoxFit.contain,
                           height: 40,
                           width: 40,
@@ -94,7 +94,7 @@ class buildTwitterCommunauty extends StatelessWidget {
                   ],
                 ),
               ),
-              image: Images.twitter);
+              image: Images.black_twitter);
         },
         textColor: Colors.black,
         titleColor: Color3);

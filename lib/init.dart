@@ -29,7 +29,7 @@ class _InitializationPageState extends State<InitializationPage> {
         future: Init.initialize(),
         builder: (context, snapshot) {
            if (snapshot.connectionState == ConnectionState.done) {
-            return const MyApp();
+            return   MyApp();
           } else { 
             return const SplashScreen();
           }

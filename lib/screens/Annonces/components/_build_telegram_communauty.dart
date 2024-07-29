@@ -19,7 +19,7 @@ class buildTelegramCommunauty extends StatelessWidget {
     return AnnonceCard(
         title: 'Telegram',
         text: 'Rejoindre notre communauté Telegram',
-        imagePath: Images.telegram,
+        imagePath: Images.black_telegram,
         backColors: const [
           Colors.white,
           Colors.white,
@@ -62,7 +62,7 @@ class buildTelegramCommunauty extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomImageView(
-                          imagePath: "assets/images/coin.png",
+                          imagePath: Images.gvt,
                           fit: BoxFit.contain,
                           height: 40,
                           width: 40,
@@ -94,7 +94,7 @@ class buildTelegramCommunauty extends StatelessWidget {
                   ],
                 ),
               ),
-              image: Images.telegram);
+              image: Images.black_telegram);
         },
         textColor: Colors.black,
         titleColor: Color3);

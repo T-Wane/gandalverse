@@ -12,7 +12,6 @@ class buildYoutubeCommunauty extends StatelessWidget {
     required this.Color3,
   });
 
-    
   final Color Color3;
 
   @override
@@ -20,7 +19,7 @@ class buildYoutubeCommunauty extends StatelessWidget {
     return AnnonceCard(
         title: 'Youtube',
         text: 'S\'abonner à la chaine youtube',
-        imagePath: Images.youtube,
+        imagePath: Images.black_youtube,
         backColors: const [
           Colors.white,
           Colors.white,
@@ -63,7 +62,7 @@ class buildYoutubeCommunauty extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomImageView(
-                          imagePath: "assets/images/coin.png",
+                          imagePath: Images.gvt,
                           fit: BoxFit.contain,
                           height: 40,
                           width: 40,
@@ -95,7 +94,7 @@ class buildYoutubeCommunauty extends StatelessWidget {
                   ],
                 ),
               ),
-              image: Images.youtube);
+              image: Images.black_youtube);
         },
         textColor: Colors.black,
         titleColor: Color3);

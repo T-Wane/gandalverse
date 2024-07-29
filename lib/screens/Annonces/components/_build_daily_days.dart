@@ -85,7 +85,7 @@ class buildDailyDays extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Image.asset(
-                                    "assets/images/coin.png",
+                                  Images.gvt,
                                     fit: BoxFit.contain,
                                     height: 25,
                                     width: 25,

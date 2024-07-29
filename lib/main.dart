@@ -67,11 +67,18 @@ void main() async {
     };
 */
 
-  runApp(const MyApp()); //InitializationPage
+  runApp(MyApp()); //InitializationPage
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Offset _offset = Offset.zero;
 
   // This widget is the root of your application.
   @override
@@ -79,8 +86,28 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'GandalVerse',
         debugShowCheckedModeBanner: false,
-        theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance), 
-        home: MyHomePage() // CoinAnimation()//FlyCoinAnimation()//MyHomePage(),
+        theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance),
+       /* builder: (_, child) {
+          return Stack(
+            children: [
+              child!,
+              Positioned(
+                left: _offset.dx,
+                top: _offset.dy,
+                child: GestureDetector(
+                  onPanUpdate: (details) =>
+                      setState(() => _offset += details.delta),
+                  child: FloatingActionButton(
+                    onPressed: () {},
+                    backgroundColor: Colors.red,
+                    child: const Icon(Icons.add, color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
+          );
+        },*/
+        home: MyHomePage() 
         );
   }
 }

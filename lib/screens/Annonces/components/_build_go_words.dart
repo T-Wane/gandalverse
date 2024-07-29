@@ -63,7 +63,7 @@ class buildGoWords extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomImageView(
-                          imagePath: "assets/images/coin.png",
+                          imagePath: Images.gvt,
                           fit: BoxFit.contain,
                           height: 40,
                           width: 40,

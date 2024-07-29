@@ -1,5 +1,8 @@
+// ignore_for_file: non_constant_identifier_names
+
 class Images {
   static String ressourcePath = "assets/images";
+  static String ressourceBlack = "$ressourcePath/social_black";
 
   //SOCIAL
   static String telegram = "$ressourcePath/telegram.png";
@@ -30,4 +33,19 @@ class Images {
   static String game_key = "$ressourcePath/game_key.png";
   static String game_money = "$ressourcePath/game_money.png";
   static String game_puzzle_piece = "$ressourcePath/game_puzzle_piece.png";
+
+  //MENU
+  //Vr
+  static String vr = "$ressourcePath/GverseIconePNG.png";
+
+  //coins
+  static String gvt = "$ressourcePath/GVT.png";
+
+  //Black Socials icons
+  static String black_telegram = "$ressourceBlack/telegram.png";
+  static String black_barcodescanner = "$ressourceBlack/barcode-scanner.png"; 
+  static String black_youtube = "$ressourceBlack/youtube.png";
+  static String black_facebook = "$ressourceBlack/facebook.png";
+  static String black_tiktok = "$ressourceBlack/tiktok.png";
+  static String black_twitter = "$ressourceBlack/twitter.png";
 }

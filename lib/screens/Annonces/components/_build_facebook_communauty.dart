@@ -19,7 +19,7 @@ class buildFacebookCommunauty extends StatelessWidget {
     return AnnonceCard(
         title: 'Facebook',
         text: 'Rejoindre notre communauté Facebook',
-        imagePath: Images.facebook,
+        imagePath: Images.black_facebook,
         backColors: const [
           Colors.white,
           Colors.white,
@@ -62,7 +62,7 @@ class buildFacebookCommunauty extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomImageView(
-                          imagePath: "assets/images/coin.png",
+                          imagePath: Images.gvt,
                           fit: BoxFit.contain,
                           height: 40,
                           width: 40,
@@ -94,7 +94,7 @@ class buildFacebookCommunauty extends StatelessWidget {
                   ],
                 ),
               ),
-              image: Images.facebook);
+              image: Images.black_facebook);
         },
         textColor: Colors.black,
         titleColor: Color3);

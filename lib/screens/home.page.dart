@@ -8,6 +8,7 @@ import 'package:gandalverse/screens/decouvrir/decouvir_page.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
 import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_modal.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
@@ -116,9 +117,15 @@ class _MyHomePageState extends State<MyHomePage> {
       items: [
         CustomNavigationBarItem(
           isMain: true,
-          icon: const Icon(
-            CupertinoIcons.hexagon,
+          icon: CustomImageView(
+            imagePath: Images.vr,
+            fit: BoxFit.contain,
+            height: double.infinity,
+            width: double.infinity,
           ),
+          // const Icon(
+          //   CupertinoIcons.hexagon,
+          // ),
           title: Text(
             "",
             textAlign: TextAlign.center,
@@ -131,7 +138,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         CustomNavigationBarItem(
           icon: const Icon(
-            CupertinoIcons.flame,
+            Icons.business_rounded,
           ),
           title: Text(
             "Bureau",
@@ -159,7 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         CustomNavigationBarItem(
           icon: const Icon(
-            Icons.newspaper_rounded,
+            CupertinoIcons.flame,
           ),
           title: Text(
             "Défis",
@@ -173,7 +180,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         CustomNavigationBarItem(
           icon: CustomImageView(
-            imagePath: "assets/images/coin.png",
+            imagePath: Images.gvt,
             fit: BoxFit.contain,
           ),
           title: Text(

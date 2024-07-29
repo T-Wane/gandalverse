@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:gandalverse/components/default_btn.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
@@ -16,108 +17,7 @@ class itemCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         CardContentBottomSheet.show(context,
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    "titre de la carte",
-                    maxLines: 1,
-                    textAlign: TextAlign.center,
-                    textDirection: TextDirection.ltr,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        fontSize: 15,
-                        color: Color3,
-                        fontFamily: "Aller",
-                        fontWeight: FontWeight.normal),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  AutoSizeText(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non tincidunt odio. Nunc id tellus lectus.',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                          color: Color3.withOpacity(0.95),
-                          fontWeight: FontWeight.normal,
-                        ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "Profit par heure",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        color: Color3,
-                        fontFamily: "Aller",
-                        fontSize: 12),
-                  ),
-                  const SizedBox(
-                    height: 2,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomImageView(
-                        imagePath: "assets/images/coin.png",
-                        fit: BoxFit.contain,
-                        height: 20,
-                        width: 20,
-                      ),
-                      AutoSizeText(
-                        '20,5K',
-                        maxLines: 1,
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: Color3,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomImageView(
-                        imagePath: "assets/images/coin.png",
-                        fit: BoxFit.contain,
-                        height: 40,
-                        width: 40,
-                      ),
-                      AutoSizeText(
-                        '205 000',
-                        maxLines: 1,
-                        presetFontSizes: [22, 20, 18, 15, 14],
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color3,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  DefaultButton(
-                    backColor: Colors.purple.shade400,
-                    text: 'Go',
-                    elevation: 1.0,
-                    textColor: Colors.white,
-                    fontSize: 15,
-                    height: 50,
-                    press: () {},
-                  )
-                ],
-              ),
-            ),
+            child: bureauCarteDetails(Color3: Color3),
             image: "assets/images/img_back1.jpg");
       },
       child: Container(
@@ -167,10 +67,13 @@ class itemCard extends StatelessWidget {
                       Row(
                         children: [
                           CustomImageView(
-                            imagePath: "assets/images/coin.png",
+                            imagePath: Images.gvt,
                             fit: BoxFit.contain,
-                            height: 20,
-                            width: 20,
+                            height: 15,
+                            width: 15,
+                          ),
+                          const SizedBox(
+                            width: 5,
                           ),
                           const AutoSizeText(
                             '20,5K',
@@ -220,7 +123,7 @@ class itemCard extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                           ),
                     ),
-                    AutoSizeText(
+                    /* AutoSizeText(
                       'Decriprion de la carte',
                       maxLines: 1,
                       textAlign: TextAlign.left,
@@ -231,11 +134,11 @@ class itemCard extends StatelessWidget {
                     ),
                     SizedBox(
                       height: 2,
-                    ),
+                    ),*/
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Divider(
-                        color: Colors.white38,
+                        color: Colors.white12,
                         thickness: 0.1,
                       ),
                     ),
@@ -260,10 +163,13 @@ class itemCard extends StatelessWidget {
                         Row(
                           children: [
                             CustomImageView(
-                              imagePath: "assets/images/coin.png",
+                              imagePath: Images.gvt,
                               fit: BoxFit.contain,
-                              height: 20,
-                              width: 20,
+                              height: 15,
+                              width: 15,
+                            ),
+                            const SizedBox(
+                              width: 3,
                             ),
                             AutoSizeText(
                               '20,5K',
@@ -309,6 +215,121 @@ class itemCard extends StatelessWidget {
                 ),*/
               ),
         ]),
+      ),
+    );
+  }
+}
+
+class bureauCarteDetails extends StatelessWidget {
+  const bureauCarteDetails({
+    super.key,
+    required this.Color3,
+  });
+
+  final Color Color3;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            "titre de la carte",
+            maxLines: 1,
+            textAlign: TextAlign.center,
+            textDirection: TextDirection.ltr,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+                fontSize: 15,
+                color: Color3,
+                fontFamily: "Aller",
+                fontWeight: FontWeight.normal),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          AutoSizeText(
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non tincidunt odio. Nunc id tellus lectus.',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: Color3.withOpacity(0.95),
+                  fontWeight: FontWeight.normal,
+                ),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(
+            "Profit par heure",
+            style: TextStyle(
+                fontWeight: FontWeight.w300,
+                color: Color3,
+                fontFamily: "Aller",
+                fontSize: 12),
+          ),
+          const SizedBox(
+            height: 2,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomImageView(
+                imagePath: Images.gvt,
+                fit: BoxFit.contain,
+                height: 20,
+                width: 20,
+              ),
+              AutoSizeText(
+                '20,5K',
+                maxLines: 1,
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Color3,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomImageView(
+                imagePath: Images.gvt,
+                fit: BoxFit.contain,
+                height: 40,
+                width: 40,
+              ),
+              AutoSizeText(
+                '205 000',
+                maxLines: 1,
+                presetFontSizes: [22, 20, 18, 15, 14],
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color3,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          DefaultButton(
+            backColor: Colors.purple.shade400,
+            text: 'Go',
+            elevation: 1.0,
+            textColor: Colors.white,
+            fontSize: 15,
+            height: 50,
+            press: () {},
+          )
+        ],
       ),
     );
   }

@@ -55,7 +55,7 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
                       gridDelegate:
                           const SliverGridDelegateWithMaxCrossAxisExtent(
                         maxCrossAxisExtent: 180,
-                        mainAxisExtent: 200,
+                        mainAxisExtent: 170,
                         crossAxisSpacing: 2,
                         mainAxisSpacing: 2,
                       ),

@@ -19,7 +19,7 @@ class buildTiktokCommunauty extends StatelessWidget {
     return AnnonceCard(
         title: 'Tiktok',
         text: 'Rejoindre notre communauté Tiktok',
-        imagePath: Images.tiktok,
+        imagePath: Images.black_tiktok,
         backColors: const [
           Colors.white,
           Colors.white,
@@ -62,7 +62,7 @@ class buildTiktokCommunauty extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomImageView(
-                          imagePath: "assets/images/coin.png",
+                          imagePath: Images.gvt,
                           fit: BoxFit.contain,
                           height: 40,
                           width: 40,
@@ -94,7 +94,7 @@ class buildTiktokCommunauty extends StatelessWidget {
                   ],
                 ),
               ),
-              image: Images.tiktok);
+              image: Images.black_tiktok);
         },
         textColor: Colors.black,
         titleColor: Color3);

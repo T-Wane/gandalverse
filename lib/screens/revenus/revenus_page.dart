@@ -28,11 +28,12 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
           Expanded(
             child: ListView(children: [
               Container(
+                margin: const EdgeInsets.all(10),
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
                 ),
                 child: CustomImageView(
-                  imagePath: "assets/images/coin.png",
+                  imagePath: Images.gvt,
                   fit: BoxFit.contain,
                   height: 90,
                   width: 150,

@@ -26,7 +26,7 @@ class _buildScanQrPartenaireState extends State<buildScanQrPartenaire> {
     return AnnonceCard(
         title: 'Scanner & Gagner',
         text: 'Scanner codeQr de nos partenaires et gagner des Go coins',
-        imagePath: Images.scanQr,
+        imagePath: Images.black_barcodescanner,
         backColors: const [
           Colors.white,
           Colors.white,
@@ -69,7 +69,7 @@ class _buildScanQrPartenaireState extends State<buildScanQrPartenaire> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         CustomImageView(
-                          imagePath: "assets/images/coin.png",
+                          imagePath: Images.gvt,
                           fit: BoxFit.contain,
                           height: 40,
                           width: 40,
@@ -150,7 +150,7 @@ class _buildScanQrPartenaireState extends State<buildScanQrPartenaire> {
               ),
               fit: BoxFit.contain,
               setCircle: false,
-              image: Images.scanQr);
+              image: Images.black_barcodescanner);
         },
         textColor: Colors.black,
         titleColor: widget.Color3);
