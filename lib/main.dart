@@ -54,7 +54,7 @@ void main() async {
         statusBarIconBrightness: Brightness.dark),
   );
 
-  /* try {
+   try {
       if (TelegramWebApp.instance.isSupported) {
         await TelegramWebApp.instance.ready();
         Future.delayed(const Duration(seconds: 1), TelegramWebApp.instance.expand);
@@ -70,9 +70,9 @@ void main() async {
     FlutterError.onError = (details) {
       print("Flutter error happened: $details");
     };
-*/
+ 
 
-  runApp(MyApp()); //InitializationPage
+  runApp(InitializationPage()); //InitializationPage
 }
 
 class MyApp extends StatefulWidget {

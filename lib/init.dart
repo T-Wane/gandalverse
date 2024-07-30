@@ -47,7 +47,7 @@ class Init {
 
   static _registerServices() async {
     print("debut chargement service");
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 2));
   }
 
   static _loadSettings() async {

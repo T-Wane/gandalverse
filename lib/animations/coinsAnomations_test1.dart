@@ -123,8 +123,8 @@ class FlyCoinAnimationState extends State<FlyCoinAnimation>
                         '+1',
                         style: TextStyle(
                           fontSize: 45,
-                          color: Colors.blueAccent.shade200,
-                          fontFamily: "Aller",
+                          color: Colors.yellow,
+                          fontFamily: "Aller",fontWeight: FontWeight.w500
                         ),
                       ),
                     ),
@@ -222,7 +222,7 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
             Blob(
                 color: Colors.purple.shade400.withOpacity(0.5),
                 scale: _scale * 0.92,
-                rotation: _rotation * 2 - 45),
+                rotation: _rotation * 2),
           ],
           Container(
             constraints: const BoxConstraints.expand(),

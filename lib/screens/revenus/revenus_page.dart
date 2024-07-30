@@ -227,9 +227,10 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
         children: eligibilitesData
             .map(
               (e) => content(
-                  index: '-',
-                  titre: "Invitez 20 personnes",
-                  contenu: 'et devenez éligible pour la commission.'),
+                index: e['index'],
+                titre: e['title'],
+                contenu: e['content'],
+              ),
             )
             .toList(),
       );
