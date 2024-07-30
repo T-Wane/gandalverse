@@ -4,6 +4,15 @@ A new Flutter project.
 
 ## Getting Started
 
+-  flutter build web --web-renderer canvaskit --base-href /starbrigVerse/
+
+- copy the content off build/web and past in docs
+- git add .
+- git commit -m "update" 
+
+## PUSH on master for deployment
+- git push -u origin master
+
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
