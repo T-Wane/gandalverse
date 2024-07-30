@@ -158,8 +158,8 @@ class PlayButton extends StatefulWidget {
 }
 
 class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
-  static const _kToggleDuration = Duration(seconds: 4);
-  static const _kRotationDuration = Duration(seconds: 5);
+  static const _kToggleDuration = Duration(seconds: 5);
+  static const _kRotationDuration = Duration(seconds: 6);
 
   late bool isPlaying;
 
@@ -217,12 +217,12 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
           if (_showWaves) ...[
             Blob(
                 color: Colors.deepPurple.shade400.withOpacity(0.5),
-                scale: _scale * 0.95,
+                scale: _scale * 0.91,
                 rotation: _rotation),
             Blob(
                 color: Colors.purple.shade400.withOpacity(0.5),
-                scale: _scale * 0.97,
-                rotation: _rotation * 2 - 60),
+                scale: _scale * 0.92,
+                rotation: _rotation * 2 - 45),
           ],
           Container(
             constraints: const BoxConstraints.expand(),

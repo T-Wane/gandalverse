@@ -139,7 +139,7 @@ class userTopInfos extends StatelessWidget {
                     ),
                     SizedBox(height: 2),
                     Text(
-                      "Gain par clic",
+                      "Force",
                       style: TextStyle(
                           fontWeight: FontWeight.w300,
                           color: Colors.white70,
@@ -212,14 +212,6 @@ class ProfilDetails extends StatelessWidget {
               backgroundColor: Color3.withOpacity(0.2),
               animateFromLastPercent: true,
               restartAnimation: true,
-              widgetIndicator: Text(
-                "50%",
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    color: Color3,
-                    fontFamily: "Aller",
-                    fontSize: 12),
-              ),
               linearGradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
@@ -263,7 +255,7 @@ class ProfilDetails extends StatelessWidget {
             height: 5,
           ),
           Padding(
-            padding: const EdgeInsets.all(5.0),
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
             child: AutoSizeText(
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non tincidunt odio. Nunc id tellus lectus.',
               textAlign: TextAlign.center,
@@ -276,43 +268,46 @@ class ProfilDetails extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Profit par heure",
-                style: TextStyle(
-                    fontWeight: FontWeight.w300,
-                    color: Color3,
-                    fontFamily: "Aller",
-                    fontSize: 12),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomImageView(
-                      imagePath: Images.gvt,
-                      fit: BoxFit.contain,
-                      height: 20,
-                      width: 20,
-                    ),
-                    const SizedBox(width: 5),
-                    AutoSizeText(
-                      '20,5K',
-                      maxLines: 1,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Color3,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                  ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Force",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      color: Color3,
+                      fontFamily: "Aller",
+                      fontSize: 12),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomImageView(
+                        imagePath: Images.gvt,
+                        fit: BoxFit.contain,
+                        height: 20,
+                        width: 20,
+                      ),
+                      const SizedBox(width: 5),
+                      AutoSizeText(
+                        '20,5K',
+                        maxLines: 1,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Color3,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
           const SizedBox(
             height: 5,

@@ -97,6 +97,9 @@ class _MyHomePageState extends State<MyHomePage> {
         floatingActionButton:
             (_currentIndex == 1 || _currentIndex == 3 || _currentIndex == 4)
                 ? FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    elevation: 1.5,
+                    shape: CircleBorder(),
                     onPressed: () {
                       TapToEarnCard.show(
                         context,
@@ -105,9 +108,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       );
                     },
                     child: Icon(
-                      CupertinoIcons.shift_fill,
-                      color: Colors.green.shade400,
-                      size: 30,
+                      CupertinoIcons.rocket,
+                      color: Color3,
+                      size: 28,
                     ),
                   )
                 : null,
