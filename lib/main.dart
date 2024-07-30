@@ -73,7 +73,6 @@ void main() async {
   runApp(MyApp()); //InitializationPage
 }
 
-/*
 class MyApp extends StatefulWidget {
   MyApp({super.key});
 
@@ -94,7 +93,7 @@ class _MyAppState extends State<MyApp> {
         builder: (_, child) {
           return Stack(
             children: [
-              child!,
+              IgnorePointer(ignoring: true, child: child!),
               Positioned(
                 left: _offset.dx,
                 top: _offset.dy,
@@ -102,17 +101,13 @@ class _MyAppState extends State<MyApp> {
                     GestureDetector(
                   onPanUpdate: (details) {
                     setState(() => _offset += details.delta);
-
                     print("is clicked");
                   },
-                  
-                  child: AbsorbPointer(
-                    absorbing: true,
-                    child: FloatingActionButton(
-                      onPressed: () {},
-                      backgroundColor: Colors.red,
-                      child: const Icon(Icons.add, color: Colors.white),
-                    ),
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    color: Colors.red,
+                    child: const Icon(Icons.add, color: Colors.white),
                   ),
                 ),
               ),
@@ -121,32 +116,119 @@ class _MyAppState extends State<MyApp> {
         },
         home: MyHomePage());
   }
-}*/
-class MyApp extends StatelessWidget {
+}
+
+// Votre classe FlyCoinAnimation
+class FlyCoinAnimation extends StatefulWidget {
+  const FlyCoinAnimation({super.key});
+
+  @override
+  State<FlyCoinAnimation> createState() => FlyCoinAnimationState();
+}
+
+class FlyCoinAnimationState extends State<FlyCoinAnimation>
+    with TickerProviderStateMixin {
+  final List<AnimationItem> _animationItems = [];
+
+  @override
+  void dispose() {
+    // Dispose all animation controllers when the widget is disposed
+    for (var item in _animationItems) {
+      item.controller.dispose();
+    }
+    super.dispose();
+  }
+
+  void _startAnimation() {
+    final controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..forward();
+
+    final newAnimationItem = AnimationItem(controller: controller);
+
+    controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        controller.dispose();
+        setState(() {
+          _animationItems.remove(newAnimationItem);
+        });
+      }
+    });
+
+    setState(() {
+      _animationItems.add(newAnimationItem);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: ThemeData.dark().copyWith(
-            scaffoldBackgroundColor: const Color.fromARGB(255, 18, 32, 47)),
-        debugShowCheckedModeBanner: false,
-        home: /*Scaffold(
-        body: Center(
-          child: SizedBox(
-            height: 250,
-            width: 250,
-            child: PlayButton(
-              pauseIcon: const Icon(Icons.pause, color: Colors.black, size: 90),
-              playIcon:
-                  const Icon(Icons.play_arrow, color: Colors.black, size: 90),
-              onPressed: () {},
+    return Scaffold(
+      body: Stack(
+        children: [
+          Center(
+            child: SizedBox.square(
+              dimension: 200,
+              child: PlayButton(
+                onPressed: _startAnimation,
+                initialIsPlaying: false,
+                playIcon: const Icon(Icons.play_arrow),
+                pauseIcon: const Icon(Icons.pause),
+              ),
             ),
           ),
-        ),
-      ),*/
-            FlyCoinAnimation());
+          ..._animationItems.map((animationItem) {
+            final opacityAnimation =
+                Tween<double>(begin: 1.0, end: 0.0).animate(
+              CurvedAnimation(
+                parent: animationItem.controller,
+                curve: Curves.easeOut,
+              ),
+            );
+
+            final radiusAnimation =
+                Tween<double>(begin: 0.0, end: 100.0).animate(
+              CurvedAnimation(
+                parent: animationItem.controller,
+                curve: Curves.easeOut,
+              ),
+            );
+
+            return AnimatedBuilder(
+              animation: animationItem.controller,
+              builder: (context, child) {
+                final angle =
+                    (animationItem.controller.value * 2 * pi) % (2 * pi);
+                final radius = radiusAnimation.value;
+                final x = radius * cos(angle);
+                final y = radius * sin(angle);
+
+                return FadeTransition(
+                  opacity: opacityAnimation,
+                  child: Transform.translate(
+                    offset: Offset(x, y),
+                    child: Center(
+                      child: Text(
+                        '+1',
+                        style: TextStyle(
+                          fontSize: 35,
+                          color: Colors.purple.shade400,
+                          fontFamily: "Aller",
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          }).toList(),
+        ],
+      ),
+    );
   }
 }
 
+// Classe PlayButton
 class PlayButton extends StatefulWidget {
   final bool initialIsPlaying;
   final Icon playIcon;
@@ -203,13 +285,13 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
       key: ValueKey<bool>(isPlaying),
       child: IconButton(
         icon: CustomImageView(
-          imagePath: Images.vr,
+          imagePath: Images.vr, // Remplacez par le chemin correct
           fit: BoxFit.contain,
-          color: Colors.white, //.deepPurple.shade400
+          color: Colors.white,
           height: 100,
           width: 150,
         ),
-        onPressed: () {},
+        onPressed: widget.onPressed, // Appel de la fonction de rappel
       ),
     );
   }
@@ -226,10 +308,6 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
                 color: Colors.blueAccent.shade400,
                 scale: _scale * 0.95,
                 rotation: _rotation),
-            /* Blob(
-                color: const Color(0xff4ac7b7),
-                scale: _scale,
-                rotation: _rotation * 1.5 - 30),*/
             Blob(
                 color: Colors.purple.shade400.withOpacity(0.5),
                 scale: _scale * 0.97,
@@ -284,112 +362,6 @@ class Blob extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-//#####################################"
-//
-class FlyCoinAnimation extends StatefulWidget {
-  const FlyCoinAnimation({super.key});
-
-  @override
-  State<FlyCoinAnimation> createState() => FlyCoinAnimationState();
-}
-
-class FlyCoinAnimationState extends State<FlyCoinAnimation>
-    with TickerProviderStateMixin {
-  final List<AnimationItem> _animationItems = [];
-
-  @override
-  void dispose() {
-    // Dispose all animation controllers when the widget is disposed
-    for (var item in _animationItems) {
-      item.controller.dispose();
-    }
-    super.dispose();
-  }
-
-  void _startAnimation() {
-    final controller = AnimationController(
-      duration: const Duration(seconds: 2),
-      vsync: this,
-    )..forward();
-
-    final newAnimationItem = AnimationItem(controller: controller);
-
-    controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        controller.dispose();
-        setState(() {
-          _animationItems.remove(newAnimationItem);
-        });
-      }
-    });
-
-    setState(() {
-      _animationItems.add(newAnimationItem);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          Center(
-            child: ElevatedButton(
-              onPressed: _startAnimation,
-              child: const Text('Animate +1'),
-            ),
-          ),
-          ..._animationItems.map((animationItem) {
-            final opacityAnimation =
-                Tween<double>(begin: 1.0, end: 0.0).animate(
-              CurvedAnimation(
-                parent: animationItem.controller,
-                curve: Curves.easeOut,
-              ),
-            );
-
-            final offsetAnimation =
-                Tween<double>(begin: 0.0, end: 100.0).animate(
-              CurvedAnimation(
-                parent: animationItem.controller,
-                curve: Curves.easeOut,
-              ),
-            );
-
-            return AnimatedBuilder(
-              animation: animationItem.controller,
-              builder: (context, child) {
-                final angle =
-                    (animationItem.controller.value * 2 * pi) % (2 * pi);
-                final radius = 100.0;
-                final x = radius * cos(angle);
-                final y = radius * sin(angle);
-
-                return FadeTransition(
-                  opacity: opacityAnimation,
-                  child: Transform.translate(
-                    offset: Offset(x, y),
-                    child: Center(
-                      child: Text(
-                        '+1',
-                        style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.white,
-                          fontFamily: "Aller",
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
-            );
-          }).toList(),
-        ],
       ),
     );
   }
