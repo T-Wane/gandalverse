@@ -1,12 +1,15 @@
 // ignore_for_file: avoid_print
 
 import 'dart:collection';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:gandalverse/init.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
+import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:telegram_web_app/telegram_web_app.dart';
 import 'package:webview_flutter_web/webview_flutter_web.dart';
 //import 'package:telegram_web_app/telegram_web_app.dart';
@@ -70,6 +73,7 @@ void main() async {
   runApp(MyApp()); //InitializationPage
 }
 
+/*
 class MyApp extends StatefulWidget {
   MyApp({super.key});
 
@@ -117,219 +121,163 @@ class _MyAppState extends State<MyApp> {
         },
         home: MyHomePage());
   }
-}
-/*
-
-class InAppWebViewExampleScreen extends StatefulWidget {
+}*/
+class MyApp extends StatelessWidget {
   @override
-  _InAppWebViewExampleScreenState createState() =>
-      _InAppWebViewExampleScreenState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData.dark()
+          .copyWith(scaffoldBackgroundColor: Color.fromARGB(255, 18, 32, 47)),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: Center(
+          child: SizedBox(
+            height: 200,
+            width: 200,
+            child: PlayButton(
+              pauseIcon: Icon(Icons.pause, color: Colors.black, size: 90),
+              playIcon: Icon(Icons.play_arrow, color: Colors.black, size: 90),
+              onPressed: () {},
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
-class _InAppWebViewExampleScreenState extends State<InAppWebViewExampleScreen> {
-  final GlobalKey webViewKey = GlobalKey();
+class PlayButton extends StatefulWidget {
+  final bool initialIsPlaying;
+  final Icon playIcon;
+  final Icon pauseIcon;
+  final VoidCallback onPressed;
 
-  InAppWebViewController? webViewController;
-  InAppWebViewSettings settings = InAppWebViewSettings(
-      isInspectable: kDebugMode,
-      mediaPlaybackRequiresUserGesture: false,
-      allowsInlineMediaPlayback: true,
-      iframeAllow: "camera; microphone",
-      iframeAllowFullscreen: true);
+  PlayButton({
+    required this.onPressed,
+    this.initialIsPlaying = false,
+    this.playIcon = const Icon(Icons.play_arrow),
+    this.pauseIcon = const Icon(Icons.pause),
+  }) : assert(onPressed != null);
 
-  PullToRefreshController? pullToRefreshController;
+  @override
+  _PlayButtonState createState() => _PlayButtonState();
+}
 
-  late ContextMenu contextMenu;
-  String url = "";
-  double progress = 0;
+class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
+  static const _kToggleDuration = Duration(seconds: 2);
+  static const _kRotationDuration = Duration(seconds: 5);
+
+  late bool isPlaying;
+
+  // rotation and scale animations
+  late AnimationController _rotationController;
+  late AnimationController _scaleController;
+  double _rotation = 0;
+  double _scale = 0.85;
+
+  bool get _showWaves => !_scaleController.isDismissed;
+
+  void _updateRotation() => _rotation = _rotationController.value * 2 * pi;
+  void _updateScale() => _scale = (_scaleController.value * 0.2) + 0.85;
 
   @override
   void initState() {
+    isPlaying = widget.initialIsPlaying;
+    _rotationController =
+        AnimationController(vsync: this, duration: _kRotationDuration)
+          ..addListener(() => setState(_updateRotation))
+          ..repeat();
+
+    _scaleController =
+        AnimationController(vsync: this, duration: _kToggleDuration)
+          ..addListener(() => setState(_updateScale));
+    _scaleController.forward();
     super.initState();
-
-    contextMenu = ContextMenu(
-        menuItems: [
-          ContextMenuItem(
-              id: 1,
-              title: "Special",
-              action: () async {
-                print("Menu item Special clicked!");
-                print(await webViewController?.getSelectedText());
-                await webViewController?.clearFocus();
-              })
-        ],
-        settings: ContextMenuSettings(hideDefaultSystemContextMenuItems: false),
-        onCreateContextMenu: (hitTestResult) async {
-          print("onCreateContextMenu");
-          print(hitTestResult.extra);
-          print(await webViewController?.getSelectedText());
-        },
-        onHideContextMenu: () {
-          print("onHideContextMenu");
-        },
-        onContextMenuActionItemClicked: (contextMenuItemClicked) async {
-          var id = contextMenuItemClicked.id;
-          print(
-              "onContextMenuActionItemClicked: $id ${contextMenuItemClicked.title}");
-        });
-
-    pullToRefreshController = kIsWeb ||
-            ![TargetPlatform.iOS, TargetPlatform.android]
-                .contains(defaultTargetPlatform)
-        ? null
-        : PullToRefreshController(
-            settings: PullToRefreshSettings(
-              color: Colors.blue,
-            ),
-            onRefresh: () async {
-              if (defaultTargetPlatform == TargetPlatform.android) {
-                webViewController?.reload();
-              } else if (defaultTargetPlatform == TargetPlatform.iOS ||
-                  defaultTargetPlatform == TargetPlatform.macOS) {
-                webViewController?.loadUrl(
-                    urlRequest:
-                        URLRequest(url: await webViewController?.getUrl()));
-              }
-            },
-          );
   }
 
-  @override
-  void dispose() {
-    super.dispose();
+  Widget _buildIcon(bool isPlaying) {
+    return SizedBox.expand(
+      key: ValueKey<bool>(isPlaying),
+      child: IconButton(
+        icon: CustomImageView(
+          imagePath: Images.vr,
+          fit: BoxFit.contain,
+          color: Colors.deepPurple.shade400,
+          height: 100,
+          width: 150,
+        ),
+        onPressed: () {},
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Column(children: <Widget>[
-      Expanded(
-        child: Stack(
-          children: [
-            InAppWebView(
-              key: webViewKey,
-              initialUrlRequest: URLRequest(url: WebUri('https://flutter.dev')),
-              // initialUrlRequest:https://gandalverse.com
-              // URLRequest(url: WebUri(Uri.base.toString().replaceFirst("/#/", "/") + 'page.html')),
-              // initialFile: "assets/index.html",
-              initialUserScripts: UnmodifiableListView<UserScript>([]),
-              initialSettings: settings,
-              contextMenu: contextMenu,
-              pullToRefreshController: pullToRefreshController,
-              onWebViewCreated: (controller) async {
-                webViewController = controller;
-              },
-
-              onPermissionRequest: (controller, request) async {
-                return PermissionResponse(
-                    resources: request.resources,
-                    action: PermissionResponseAction.GRANT);
-              },
-              shouldOverrideUrlLoading: (controller, navigationAction) async {
-                var uri = navigationAction.request.url!;
-
-                if (![
-                  "http",
-                  "https",
-                  "file",
-                  "chrome",
-                  "data",
-                  "javascript",
-                  "about"
-                ].contains(uri.scheme)) {
-                  if (await canLaunchUrl(uri)) {
-                    // Launch the App
-                    await launchUrl(
-                      uri,
-                    );
-                    // and cancel the request
-                    return NavigationActionPolicy.CANCEL;
-                  }
-                }
-
-                return NavigationActionPolicy.ALLOW;
-              },
-
-              onReceivedError: (controller, request, error) {
-                pullToRefreshController?.endRefreshing();
-              },
-              // onProgressChanged: (controller, progress) {
-              //   if (progress == 100) {
-              //     pullToRefreshController?.endRefreshing();
-              //   }
-              //   setState(() {
-              //     this.progress = progress / 100;
-              //     urlController.text = this.url;
-              //   });
-              // },
-              // onUpdateVisitedHistory: (controller, url, isReload) {
-              //   setState(() {
-              //     this.url = url.toString();
-              //     urlController.text = this.url;
-              //   });
-              // },
-              onConsoleMessage: (controller, consoleMessage) {
-                print(consoleMessage);
-              },
-            ),
-            progress < 1.0
-                ? Stack(children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(
-                                "assets/images/GverseToken_OnboardingPage.png"),
-                            fit: BoxFit.cover),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.7,
-                        width: double.infinity,
-                        decoration: const BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: [
-                              Colors.transparent,
-                              Colors.transparent,
-                              Colors.transparent,
-                              Colors.black12,
-                              Colors.black26,
-                              Colors.black38,
-                              Colors.black45,
-                              Colors.black54,
-                              Colors.black87,
-                            ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter)),
-                        child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            SizedBox.square(
-                              dimension: 30,
-                              child: CircularProgressIndicator(
-                                color: Colors.white,
-                                strokeWidth: 1.2,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 1, left: 1, right: 1),
-                      child: LinearProgressIndicator(
-                        color: Colors.blue.shade400,
-                        value: progress,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ])
-                : Container(),
+    return ConstrainedBox(
+      constraints: BoxConstraints(minWidth: 48, minHeight: 48),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          if (_showWaves) ...[
+            Blob(color: Color(0xff0092ff), scale: _scale, rotation: _rotation),
+            Blob(
+                color: Color(0xff4ac7b7),
+                scale: _scale,
+                rotation: _rotation * 2 - 30),
+            Blob(
+                color: Color(0xffa4a6f6),
+                scale: _scale,
+                rotation: _rotation * 3 - 45),
           ],
-        ),
+          Container(
+            constraints: BoxConstraints.expand(),
+            child: AnimatedSwitcher(
+              child: _buildIcon(isPlaying),
+              duration: _kToggleDuration,
+            ),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
-    ]));
+    );
+  }
+
+  @override
+  void dispose() {
+    _scaleController.dispose();
+    _rotationController.dispose();
+    super.dispose();
   }
 }
-*/
+
+class Blob extends StatelessWidget {
+  final double rotation;
+  final double scale;
+  final Color color;
+
+  const Blob({required this.color, this.rotation = 0, this.scale = 1});
+
+  @override
+  Widget build(BuildContext context) {
+    return Transform.scale(
+      scale: scale,
+      child: Transform.rotate(
+        angle: rotation,
+        child: Container(
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(150),
+              topRight: Radius.circular(240),
+              bottomLeft: Radius.circular(220),
+              bottomRight: Radius.circular(180),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
