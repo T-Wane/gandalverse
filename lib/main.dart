@@ -126,10 +126,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: const Color.fromARGB(255, 18, 32, 47)),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+        theme: ThemeData.dark().copyWith(
+            scaffoldBackgroundColor: const Color.fromARGB(255, 18, 32, 47)),
+        debugShowCheckedModeBanner: false,
+        home: /*Scaffold(
         body: Center(
           child: SizedBox(
             height: 250,
@@ -142,8 +142,8 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      ),*/
+            FlyCoinAnimation());
   }
 }
 
@@ -205,7 +205,7 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
         icon: CustomImageView(
           imagePath: Images.vr,
           fit: BoxFit.contain,
-          color: Colors.white,//.deepPurple.shade400
+          color: Colors.white, //.deepPurple.shade400
           height: 100,
           width: 150,
         ),
@@ -287,4 +287,112 @@ class Blob extends StatelessWidget {
       ),
     );
   }
+}
+
+//#####################################"
+//
+class FlyCoinAnimation extends StatefulWidget {
+  const FlyCoinAnimation({super.key});
+
+  @override
+  State<FlyCoinAnimation> createState() => FlyCoinAnimationState();
+}
+
+class FlyCoinAnimationState extends State<FlyCoinAnimation>
+    with TickerProviderStateMixin {
+  late AnimationController _animationController;
+  final List<AnimationItem> _animationItems = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _animationController = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  void _startAnimation() {
+    final newAnimationItem = AnimationItem(
+      controller: AnimationController(
+        duration: const Duration(seconds: 1),
+        vsync: this,
+      )..forward(),
+    );
+
+    newAnimationItem.controller.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        newAnimationItem.controller.dispose();
+        setState(() {
+          _animationItems.remove(newAnimationItem);
+        });
+      }
+    });
+
+    setState(() {
+      _animationItems.add(newAnimationItem);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          Center(
+            child: ElevatedButton(
+              onPressed: _startAnimation,
+              child: const Text('Animate +1'),
+            ),
+          ),
+          ..._animationItems.map((animationItem) {
+            final opacityAnimation =
+                Tween<double>(begin: 1.0, end: 0.0).animate(
+              CurvedAnimation(
+                parent: animationItem.controller,
+                curve: Curves.easeOut,
+              ),
+            );
+
+            final offsetAnimation =
+                Tween<Offset>(begin: Offset.zero, end: Offset(0, -2)).animate(
+              CurvedAnimation(
+                parent: animationItem.controller,
+                curve: Curves.easeOut,
+              ),
+            );
+
+            return AnimatedBuilder(
+              animation: animationItem.controller,
+              builder: (context, child) {
+                return FadeTransition(
+                  opacity: opacityAnimation,
+                  child: SlideTransition(
+                    position: offsetAnimation,
+                    child: Center(
+                      child: Text(
+                        '+1',
+                        style: TextStyle(fontSize: 50, color: Colors.black),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          }).toList(),
+        ],
+      ),
+    );
+  }
+}
+
+class AnimationItem {
+  AnimationItem({required this.controller});
+  final AnimationController controller;
 }
