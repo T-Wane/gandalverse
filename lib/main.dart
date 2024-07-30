@@ -126,17 +126,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark()
-          .copyWith(scaffoldBackgroundColor: Color.fromARGB(255, 18, 32, 47)),
+      theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: const Color.fromARGB(255, 18, 32, 47)),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
           child: SizedBox(
-            height: 200,
-            width: 200,
+            height: 250,
+            width: 250,
             child: PlayButton(
-              pauseIcon: Icon(Icons.pause, color: Colors.black, size: 90),
-              playIcon: Icon(Icons.play_arrow, color: Colors.black, size: 90),
+              pauseIcon: const Icon(Icons.pause, color: Colors.black, size: 90),
+              playIcon:
+                  const Icon(Icons.play_arrow, color: Colors.black, size: 90),
               onPressed: () {},
             ),
           ),
@@ -164,7 +165,7 @@ class PlayButton extends StatefulWidget {
 }
 
 class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
-  static const _kToggleDuration = Duration(seconds: 2);
+  static const _kToggleDuration = Duration(seconds: 4);
   static const _kRotationDuration = Duration(seconds: 5);
 
   late bool isPlaying;
@@ -174,6 +175,8 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
   late AnimationController _scaleController;
   double _rotation = 0;
   double _scale = 0.85;
+
+  Color Color3 = Color.fromARGB(255, 18, 40, 70);
 
   bool get _showWaves => !_scaleController.isDismissed;
 
@@ -202,7 +205,7 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
         icon: CustomImageView(
           imagePath: Images.vr,
           fit: BoxFit.contain,
-          color: Colors.deepPurple.shade400,
+          color: Colors.white,//.deepPurple.shade400
           height: 100,
           width: 150,
         ),
@@ -214,30 +217,33 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(minWidth: 48, minHeight: 48),
+      constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
       child: Stack(
         alignment: Alignment.center,
         children: [
           if (_showWaves) ...[
-            Blob(color: Color(0xff0092ff), scale: _scale, rotation: _rotation),
             Blob(
-                color: Color(0xff4ac7b7),
+                color: Colors.blueAccent.shade400,
+                scale: _scale * 0.95,
+                rotation: _rotation),
+            /* Blob(
+                color: const Color(0xff4ac7b7),
                 scale: _scale,
-                rotation: _rotation * 2 - 30),
+                rotation: _rotation * 1.5 - 30),*/
             Blob(
-                color: Color(0xffa4a6f6),
-                scale: _scale,
-                rotation: _rotation * 3 - 45),
+                color: Colors.purple.shade400.withOpacity(0.5),
+                scale: _scale * 0.97,
+                rotation: _rotation * 2 - 60),
           ],
           Container(
-            constraints: BoxConstraints.expand(),
-            child: AnimatedSwitcher(
-              child: _buildIcon(isPlaying),
-              duration: _kToggleDuration,
-            ),
+            constraints: const BoxConstraints.expand(),
             decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white,
+                shape: BoxShape.circle,
+                color: Color3.withOpacity(0.9),
+                border: Border.all(color: Colors.white, width: 3.0)),
+            child: AnimatedSwitcher(
+              duration: _kToggleDuration,
+              child: _buildIcon(isPlaying),
             ),
           ),
         ],
@@ -267,9 +273,10 @@ class Blob extends StatelessWidget {
       child: Transform.rotate(
         angle: rotation,
         child: Container(
+          padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(150),
               topRight: Radius.circular(240),
               bottomLeft: Radius.circular(220),
