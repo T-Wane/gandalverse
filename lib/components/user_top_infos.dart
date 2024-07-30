@@ -115,22 +115,21 @@ class userTopInfos extends StatelessWidget {
             const SizedBox(
               width: 5,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
+            Row(children: [
+              CustomImageView(
+                imagePath: Images.gvt,
+                fit: BoxFit.contain,
+                height: 25,
+                width: 25,
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomImageView(
-                      imagePath: Images.gvt,
-                      fit: BoxFit.contain,
-                      height: 20,
-                      width: 20,
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    const Text(
+                    Text(
                       "200K",
                       style: TextStyle(
                           fontWeight: FontWeight.w300,
@@ -138,33 +137,17 @@ class userTopInfos extends StatelessWidget {
                           fontFamily: "Aller",
                           fontSize: 12),
                     ),
-                  ],
-                ),
-                const SizedBox(height: 5),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
+                    SizedBox(height: 2),
                     Text(
-                      "Profit par heure",
+                      "Gain par clic",
                       style: TextStyle(
                           fontWeight: FontWeight.w300,
                           color: Colors.white70,
                           fontFamily: "Aller",
                           fontSize: 7),
                     ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Icon(
-                      CupertinoIcons.info_circle_fill,
-                      color: Colors.white60,
-                      size: 15,
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  ]),
+            ]),
             const Padding(
               padding: EdgeInsets.all(5.0),
               child: Icon(
@@ -256,10 +239,11 @@ class ProfilDetails extends StatelessWidget {
                 child: Text(
                   "10k",
                   style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      color: Color3,
-                      fontFamily: "Aller",
-                      fontSize: 12),
+                    fontWeight: FontWeight.w400,
+                    color: Color3,
+                    fontFamily: "Aller",
+                    fontSize: 12,
+                  ),
                 ),
               ),
               trailing: Padding(

@@ -18,9 +18,9 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
   final Map<String, String> sections = {
     "Equipe": "Equipe",
     "Partenaire": "Partenaire",
-    "Education": "Education",
-    "Tourisme": "Tourisme",
-    "Evenement": "Evenement",
+    // "Education": "Education",
+    // "Tourisme": "Tourisme",
+    // "Evenement": "Evenement",
   };
   Color Color3 = Color.fromARGB(255, 18, 40, 70);
 
@@ -32,8 +32,8 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
       extendBodyBehindAppBar: true,
       body: Column(children: [
         const userTopInfos(),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
           child: AdvancedSegment(
             inactiveStyle: const TextStyle(color: Colors.white),
             controller: _selectedSegment,
@@ -50,7 +50,7 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
                   child: GridView.builder(
                       controller: _scrollController,
                       shrinkWrap: true,
-                      padding: const EdgeInsets.only(bottom: 80),
+                      padding: const EdgeInsets.only(bottom: 100),
                       // physics: const NeverScrollableScrollPhysics(),
                       gridDelegate:
                           const SliverGridDelegateWithMaxCrossAxisExtent(

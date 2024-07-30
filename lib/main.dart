@@ -3,6 +3,7 @@
 import 'dart:collection';
 import 'dart:math';
 
+import 'package:draggable_widget/draggable_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -44,6 +45,7 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -83,17 +85,18 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Offset _offset = Offset.zero;
 
+  final dragController = DragController();
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'GandalVerse',
-        debugShowCheckedModeBanner: false,
-        theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance),
-        builder: (_, child) {
+      title: 'GandalVerse',
+      debugShowCheckedModeBanner: false,
+      theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance),
+      /* builder: (_, child) {
           return Stack(
             children: [
-              IgnorePointer(ignoring: true, child: child!),
+              child!,
               Positioned(
                 left: _offset.dx,
                 top: _offset.dy,
@@ -111,10 +114,12 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
               ),
+             
             ],
           );
-        },
-        home: MyHomePage());
+        },*/
+      home: MyHomePage(),
+    );
   }
 }
 

@@ -26,7 +26,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
         minimum: const EdgeInsets.all(5.0),
         child: Column(children: [
           const userTopInfos(),
-          Expanded(
+          Flexible(
             child: ListView(children: [
               CustomImageView(
                 imagePath: Images.gvtWithLight,
@@ -60,11 +60,43 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
                   text:
                       "Gandalverse valorise sa communauté en reversant une commission aux membres actifs. Plus vous vous engagez, plus vous gagnez ! Devenez éligible en invitant vos amis et débloquez des récompenses incroyables :"),
               _buildEligibilites,
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        'Plus de détails',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Color3,
+                          fontFamily: "Aller",
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      CircleAvatar(
+                        radius: 15,
+                        backgroundColor: Color3,
+                        child: const Icon(
+                          Icons.arrow_forward_rounded,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               AnnonceCard(
-                  title: 'Publicité',
-                  text:
-                      "Gagnez jusqu'à 20% grâce à la commission de la communauté, sur les frais de location des panneaux publicitaires dans Gandalverse",
-                  limitLine: false,
+                  title: panneauxData['title']!,
+                  text: panneauxData['content']!,
+                  limitLine: true,
                   imagePath: Images.pub,
                   backColors: [
                     Color3.withOpacity(0.2),
@@ -114,6 +146,9 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
                   press: () {},
                   textColor: Colors.black,
                   titleColor: Color3),
+              const SizedBox(
+                height: 100,
+              )
             ]),
           ),
         ]),
@@ -156,7 +191,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
           required String contenu}) =>
       Padding(
         padding: const EdgeInsets.symmetric(
-          vertical: 5,
+          vertical: 2,
           horizontal: 10,
         ),
         child: Align(
