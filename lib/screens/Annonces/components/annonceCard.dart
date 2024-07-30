@@ -11,6 +11,7 @@ class AnnonceCard extends StatelessWidget {
     required this.backColors,
     required this.imagePath,
     this.fit = BoxFit.cover,
+    this.limitLine = true,
     this.press,
   }) : super(key: key);
 
@@ -20,6 +21,7 @@ class AnnonceCard extends StatelessWidget {
   final Color titleColor, textColor;
   final List<Color> backColors;
   final BoxFit fit;
+  final bool limitLine;
 
   Color Color3 = Color.fromARGB(255, 18, 40, 70);
 
@@ -96,8 +98,9 @@ class AnnonceCard extends StatelessWidget {
                             child: Text(
                               text,
                               textAlign: TextAlign.start,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
+                              maxLines: limitLine ? 2 : null,
+                              overflow:
+                                  limitLine ? TextOverflow.ellipsis : null,
                               style: const TextStyle(
                                 color: Colors.black87,
                                 fontSize: 12,

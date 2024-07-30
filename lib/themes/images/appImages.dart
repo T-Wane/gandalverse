@@ -41,6 +41,7 @@ class Images {
 
   //coins
   static String gvt = "$ressourcePath/GVT.png";
+  static String gvtWithLight = "$ressourcePath/GVT_lightBack.png";
 
   //Black Socials icons
   static String black_telegram = "$ressourceBlack/telegram.png";

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:gandalverse/screens/revenus/data/revenus_data.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
 import '../../components/user_top_infos.dart';
@@ -27,17 +28,10 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
           const userTopInfos(),
           Expanded(
             child: ListView(children: [
-              Container(
-                margin: const EdgeInsets.all(10),
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                child: CustomImageView(
-                  imagePath: Images.gvt,
-                  fit: BoxFit.contain,
-                  height: 90,
-                  width: 150,
-                ),
+              CustomImageView(
+                imagePath: Images.gvtWithLight,
+                fit: BoxFit.contain,
+                height: 120,
               ),
               Padding(
                 padding: const EdgeInsets.all(5.0),
@@ -50,7 +44,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
                       fontSize: 25, color: Color3, fontFamily: "Aller"),
                 ),
               ),
-              Padding(
+              /*Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: AutoSizeText(
                   'Suivez les revenus générés par la publicité et découvrez comment ils sont redistribués',
@@ -61,10 +55,16 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
                       .bodyMedium!
                       .copyWith(color: Color3.withOpacity(0.7)),
                 ),
-              ),
+              ),*/
+              subTitle(
+                  text:
+                      "Gandalverse valorise sa communauté en reversant une commission aux membres actifs. Plus vous vous engagez, plus vous gagnez ! Devenez éligible en invitant vos amis et débloquez des récompenses incroyables :"),
+              _buildEligibilites,
               AnnonceCard(
                   title: 'Publicité',
-                  text: 'Profiter d\'une commission jusqu\'à 20%',
+                  text:
+                      "Gagnez jusqu'à 20% grâce à la commission de la communauté, sur les frais de location des panneaux publicitaires dans Gandalverse",
+                  limitLine: false,
                   imagePath: Images.pub,
                   backColors: [
                     Color3.withOpacity(0.2),
@@ -76,7 +76,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
                   press: () {},
                   textColor: Colors.black,
                   titleColor: Color3),
-              AnnonceCard(
+              /* AnnonceCard(
                   title: 'Panneaux',
                   text:
                       'Voir les panneaux disponibles et ceux qui sont loués avec les revenus générés',
@@ -101,7 +101,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
                   fit: BoxFit.contain,
                   press: () {},
                   textColor: Colors.black,
-                  titleColor: Color3),
+                  titleColor: Color3),*/
               AnnonceCard(
                   title: 'AirDrop',
                   text: 'Airdrop du token GVT à venir',
@@ -120,4 +120,82 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
       ),
     );
   }
+
+  //-----------------------------------------------//
+  title({required String text}) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            text,
+            textAlign: TextAlign.left,
+            style: Theme.of(context)
+                .textTheme
+                .bodyMedium!
+                .copyWith(color: Color3, fontWeight: FontWeight.w600),
+          ),
+        ),
+      );
+
+  subTitle({required String text}) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+        child: Align(
+          alignment: Alignment.center,
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                color: Color3.withOpacity(0.8), fontWeight: FontWeight.normal),
+          ),
+        ),
+      );
+
+  Padding content(
+          {required String index,
+          required String titre,
+          required String contenu}) =>
+      Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 5,
+          horizontal: 10,
+        ),
+        child: Align(
+          alignment: Alignment.centerLeft,
+          child: AutoSizeText.rich(
+            TextSpan(text: '$index ', children: [
+              TextSpan(
+                text: "$titre : ",
+                style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: Color3,
+                    fontFamily: "Aller"),
+              ),
+              TextSpan(
+                text: contenu,
+                style: TextStyle(
+                  fontWeight: FontWeight.normal,
+                  color: Color3.withOpacity(0.9),
+                ),
+              ),
+            ]),
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              color: Color3,
+              fontSize: 13,
+            ),
+            minFontSize: 12,
+          ),
+        ),
+      );
+
+  Column get _buildEligibilites => Column(
+        children: eligibilitesData
+            .map(
+              (e) => content(
+                  index: '-',
+                  titre: "Invitez 20 personnes",
+                  contenu: 'et devenez éligible pour la commission.'),
+            )
+            .toList(),
+      );
 }

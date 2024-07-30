@@ -87,28 +87,35 @@ class _MyAppState extends State<MyApp> {
         title: 'GandalVerse',
         debugShowCheckedModeBanner: false,
         theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance),
-       /* builder: (_, child) {
+        builder: (_, child) {
           return Stack(
             children: [
               child!,
               Positioned(
                 left: _offset.dx,
                 top: _offset.dy,
-                child: GestureDetector(
-                  onPanUpdate: (details) =>
-                      setState(() => _offset += details.delta),
-                  child: FloatingActionButton(
-                    onPressed: () {},
-                    backgroundColor: Colors.red,
-                    child: const Icon(Icons.add, color: Colors.white),
+                child: /**/
+                    GestureDetector(
+                  onPanUpdate: (details) {
+                    setState(() => _offset += details.delta);
+
+                    print("is clicked");
+                  },
+                  
+                  child: AbsorbPointer(
+                    absorbing: true,
+                    child: FloatingActionButton(
+                      onPressed: () {},
+                      backgroundColor: Colors.red,
+                      child: const Icon(Icons.add, color: Colors.white),
+                    ),
                   ),
                 ),
               ),
             ],
           );
-        },*/
-        home: MyHomePage() 
-        );
+        },
+        home: MyHomePage());
   }
 }
 /*

@@ -27,7 +27,7 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromARGB(255, 12, 17, 19),
       extendBody: true,
       extendBodyBehindAppBar: true,
       body: Column(children: [
