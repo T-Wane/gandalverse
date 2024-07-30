@@ -275,46 +275,57 @@ class ProfilDetails extends StatelessWidget {
               ),
             ),
           ),
-          AutoSizeText(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non tincidunt odio. Nunc id tellus lectus.',
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                  color: Color3.withOpacity(0.95),
-                  fontWeight: FontWeight.normal,
-                ),
+          const SizedBox(
+            height: 5,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: AutoSizeText(
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non tincidunt odio. Nunc id tellus lectus.',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                    color: Color3.withOpacity(0.95),
+                    fontWeight: FontWeight.normal,
+                  ),
+            ),
           ),
           const SizedBox(
             height: 5,
           ),
-          Text(
-            "Profit par heure",
-            style: TextStyle(
-                fontWeight: FontWeight.w300,
-                color: Color3,
-                fontFamily: "Aller",
-                fontSize: 12),
-          ),
-          const SizedBox(
-            height: 2,
-          ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomImageView(
-                imagePath: Images.gvt,
-                fit: BoxFit.contain,
-                height: 20,
-                width: 20,
-              ),
-              const SizedBox(width: 5),
-              AutoSizeText(
-                '20,5K',
-                maxLines: 1,
-                textAlign: TextAlign.left,
+              Text(
+                "Profit par heure",
                 style: TextStyle(
-                  fontSize: 15,
-                  color: Color3,
-                  fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.w300,
+                    color: Color3,
+                    fontFamily: "Aller",
+                    fontSize: 12),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomImageView(
+                      imagePath: Images.gvt,
+                      fit: BoxFit.contain,
+                      height: 20,
+                      width: 20,
+                    ),
+                    const SizedBox(width: 5),
+                    AutoSizeText(
+                      '20,5K',
+                      maxLines: 1,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Color3,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -337,12 +348,12 @@ class ProfilDetails extends StatelessWidget {
               ),
               child: Column(
                 children: [
-                  infoItem(
+                  /* infoItem(
                     titre: "Code de Réference",
                     data: "56884559",
                     showCopy: true,
                     dataColor: Colors.deepPurple.shade400,
-                  ),
+                  ),*/
                   infoItem(
                     titre: "Exp Total",
                     data: "200000",
@@ -373,12 +384,6 @@ class ProfilDetails extends StatelessWidget {
                     showCopy: false,
                     dataColor: Color3,
                   ),
-                  infoItem(
-                    titre: "",
-                    data: "10/10/2021",
-                    showCopy: false,
-                    dataColor: Color3,
-                  ),
                 ],
               ),
             ),
@@ -388,8 +393,8 @@ class ProfilDetails extends StatelessWidget {
             child: SizedBox(
               width: 200,
               child: DefaultButton(
-                backColor: Colors.red.shade400,
-                text: 'Supprimer le compte ',
+                backColor: Color3,
+                text: ' Détails Niveaux ',
                 elevation: 1.0,
                 radius: 5,
                 textColor: Colors.white,
