@@ -74,7 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
     };
 
     TelegramWebApp.instance.ready();
-
     check();
   }
 
