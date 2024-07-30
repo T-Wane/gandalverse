@@ -300,35 +300,28 @@ class FlyCoinAnimation extends StatefulWidget {
 
 class FlyCoinAnimationState extends State<FlyCoinAnimation>
     with TickerProviderStateMixin {
-  late AnimationController _animationController;
   final List<AnimationItem> _animationItems = [];
 
   @override
-  void initState() {
-    super.initState();
-    _animationController = AnimationController(
-      duration: const Duration(seconds: 1),
-      vsync: this,
-    );
-  }
-
-  @override
   void dispose() {
-    _animationController.dispose();
+    // Dispose all animation controllers when the widget is disposed
+    for (var item in _animationItems) {
+      item.controller.dispose();
+    }
     super.dispose();
   }
 
   void _startAnimation() {
-    final newAnimationItem = AnimationItem(
-      controller: AnimationController(
-        duration: const Duration(seconds: 1),
-        vsync: this,
-      )..forward(),
-    );
+    final controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..forward();
 
-    newAnimationItem.controller.addStatusListener((status) {
+    final newAnimationItem = AnimationItem(controller: controller);
+
+    controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        newAnimationItem.controller.dispose();
+        controller.dispose();
         setState(() {
           _animationItems.remove(newAnimationItem);
         });
@@ -361,7 +354,7 @@ class FlyCoinAnimationState extends State<FlyCoinAnimation>
             );
 
             final offsetAnimation =
-                Tween<Offset>(begin: Offset.zero, end: Offset(0, -2)).animate(
+                Tween<double>(begin: 0.0, end: 100.0).animate(
               CurvedAnimation(
                 parent: animationItem.controller,
                 curve: Curves.easeOut,
@@ -371,14 +364,24 @@ class FlyCoinAnimationState extends State<FlyCoinAnimation>
             return AnimatedBuilder(
               animation: animationItem.controller,
               builder: (context, child) {
+                final angle =
+                    (animationItem.controller.value * 2 * pi) % (2 * pi);
+                final radius = 100.0;
+                final x = radius * cos(angle);
+                final y = radius * sin(angle);
+
                 return FadeTransition(
                   opacity: opacityAnimation,
-                  child: SlideTransition(
-                    position: offsetAnimation,
+                  child: Transform.translate(
+                    offset: Offset(x, y),
                     child: Center(
                       child: Text(
                         '+1',
-                        style: TextStyle(fontSize: 50, color: Colors.black),
+                        style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontFamily: "Aller",
+                        ),
                       ),
                     ),
                   ),
