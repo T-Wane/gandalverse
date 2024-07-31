@@ -29,54 +29,55 @@ class _GandalVerseWebViewState extends State<GandalVerseWebView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(children: [
-        const userTopInfos(),
-
-        /*Container(
-                    decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(
-                              "assets/images/GverseToken_OnboardingPage.png"),
-                          fit: BoxFit.cover),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.7,
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                              colors: [
-                            Colors.transparent,
-                            Colors.transparent,
-                            Colors.transparent,
-                            Colors.black12,
-                            Colors.black26,
-                            Colors.black38,
-                            Colors.black45,
-                            Colors.black54,
-                            Colors.black87,
-                          ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter)),
-                      child: const Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          SizedBox.square(
-                            dimension: 30,
-                            child: CircularProgressIndicator(
-                              color: Colors.white,
-                              strokeWidth: 1.2,
-                            ),
-                          ),
-                        ],
+        userTopInfos(),
+        Expanded(
+          child: Stack(children: [
+            Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+                        "assets/images/GverseToken_OnboardingPage.png"),
+                    fit: BoxFit.cover),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.7,
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                  Colors.transparent,
+                  Colors.transparent,
+                  Colors.transparent,
+                  Colors.black12,
+                  Colors.black26,
+                  Colors.black38,
+                  Colors.black45,
+                  Colors.black54,
+                  Colors.black87,
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    SizedBox.square(
+                      dimension: 30,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 1.2,
                       ),
                     ),
-                  ),*/
-        Container(
-          child: PlatformWebViewWidget(
-            PlatformWebViewWidgetCreationParams(controller: widget.controller),
-          ).build(context),
+                  ],
+                ),
+              ),
+            ),
+            Positioned.fill(
+              child: PlatformWebViewWidget(
+                PlatformWebViewWidgetCreationParams(
+                    controller: widget.controller),
+              ).build(context),
+            ),
+          ]),
         ),
       ]),
     );

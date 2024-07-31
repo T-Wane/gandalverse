@@ -9,6 +9,7 @@ class CardContentBottomSheet extends StatelessWidget {
           required Widget child,
           required String image,
           bool setCircle = true,
+          Color backColor = Colors.white,
           BoxFit fit = BoxFit.cover,
           bool isDismissible = true}) =>
       showModalBottomSheet(
@@ -48,9 +49,9 @@ class CardContentBottomSheet extends StatelessWidget {
                   horizontal: 5,
                   vertical: 5,
                 ),
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
+                decoration: BoxDecoration(
+                  color: backColor,
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10),
                   ),
@@ -93,7 +94,7 @@ class CardContentBottomSheet extends StatelessWidget {
                         imagePath: image,
                         height: 100,
                         width: 100,
-                        radius: setCircle? BorderRadius.circular(50) : null,
+                        radius: setCircle ? BorderRadius.circular(50) : null,
                         fit: fit,
                       ),
                     ),

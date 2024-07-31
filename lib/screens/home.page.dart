@@ -2,13 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gandalverse/animations/coinsAnomations_test1.dart';
 import 'package:gandalverse/screens/Annonces/annonces_page.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
 import 'package:gandalverse/screens/decouvrir/decouvir_page.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
 import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
-import 'package:gandalverse/themes/images/appImages.dart';
+import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/bottomSheet_modal.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
@@ -16,6 +18,7 @@ import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 //import 'package:telegram_web_app/telegram_web_app.dart';
 //import 'package:webview_flutter/webview_flutter.dart';
 import '../components/user_top_infos.dart';
+import '../widgets/earnToTap.dart';
 import 'components/body.dart';
 import 'custom_bubble_navigation_bar/src/custom_navigation_bar_item.dart';
 import 'custom_bubble_navigation_bar/src/custome_navigation_bar.dart';
@@ -60,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
       const PlatformWebViewControllerCreationParams(),
     )..loadRequest(
         LoadRequestParams(
+          //https://gandalverse.com
           uri: Uri.parse('https://gandalverse.com'),
         ),
       );
@@ -70,7 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
     };
 
     TelegramWebApp.instance.ready();
-
     check();
   }
 
@@ -91,16 +94,35 @@ class _MyHomePageState extends State<MyHomePage> {
         key: _key,
         extendBody: true,
         backgroundColor: Colors.white,
-        // backgroundColor: telegram.backgroundColor,
-        body: Stack(children: [
-          IndexedStack(index: _currentIndex, children: [
-            GandalVerseWebView(controller: controller),
-            const DecouvrirPage(),
-            const AmisPage(),
-            const AnnoncesPage(),
-            const AllRevenusPage(),
-          ]),
+        floatingActionButton:
+            (_currentIndex == 1 || _currentIndex == 3 || _currentIndex == 4)
+                ? FloatingActionButton(
+                    backgroundColor: Colors.white,
+                    elevation: 1.5,
+                    shape: CircleBorder(),
+                    onPressed: () {
+                      TapToEarnCard.show(
+                        context,
+                        child: FlyCoinAnimation(),
+                        backColor: Color3,
+                      );
+                    },
+                    child: Icon(
+                      CupertinoIcons.rocket,
+                      color: Color3,
+                      size: 28,
+                    ),
+                  )
+                : null,
+        // backgroundColor:✨ telegram.backgroundColor,
+        body: IndexedStack(index: _currentIndex, children: [
+          GandalVerseWebView(controller: controller),
+          const DecouvrirPage(),
+          const AmisPage(),
+          const AnnoncesPage(),
+          const AllRevenusPage(),
         ]),
+
         bottomNavigationBar: _buildFloatingBarCustom(),
       ),
     );
@@ -141,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Icons.business_rounded,
           ),
           title: Text(
-            "Bureau",
+            "QG",
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontFamily: "Aller",

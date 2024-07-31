@@ -4,8 +4,9 @@ import 'package:gandalverse/screens/revenus/data/revenus_data.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
 import '../../components/user_top_infos.dart';
-import '../../themes/images/appImages.dart';
+import '../../core/themes/images/appImages.dart';
 import '../Annonces/components/annonceCard.dart';
+import 'components/plus_details_btn.dart';
 
 class AllRevenusPage extends StatefulWidget {
   const AllRevenusPage({super.key});
@@ -25,8 +26,8 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
       body: SafeArea(
         minimum: const EdgeInsets.all(5.0),
         child: Column(children: [
-          const userTopInfos(),
-          Expanded(
+          userTopInfos(),
+          Flexible(
             child: ListView(children: [
               CustomImageView(
                 imagePath: Images.gvtWithLight,
@@ -60,11 +61,11 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
                   text:
                       "Gandalverse valorise sa communauté en reversant une commission aux membres actifs. Plus vous vous engagez, plus vous gagnez ! Devenez éligible en invitant vos amis et débloquez des récompenses incroyables :"),
               _buildEligibilites,
+              plusDetailsBtn(Color3: Color3),
               AnnonceCard(
-                  title: 'Publicité',
-                  text:
-                      "Gagnez jusqu'à 20% grâce à la commission de la communauté, sur les frais de location des panneaux publicitaires dans Gandalverse",
-                  limitLine: false,
+                  title: panneauxData['title']!,
+                  text: panneauxData['content']!,
+                  limitLine: true,
                   imagePath: Images.pub,
                   backColors: [
                     Color3.withOpacity(0.2),
@@ -114,6 +115,9 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
                   press: () {},
                   textColor: Colors.black,
                   titleColor: Color3),
+              const SizedBox(
+                height: 100,
+              )
             ]),
           ),
         ]),
@@ -156,7 +160,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
           required String contenu}) =>
       Padding(
         padding: const EdgeInsets.symmetric(
-          vertical: 5,
+          vertical: 2,
           horizontal: 10,
         ),
         child: Align(
@@ -192,9 +196,10 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
         children: eligibilitesData
             .map(
               (e) => content(
-                  index: '-',
-                  titre: "Invitez 20 personnes",
-                  contenu: 'et devenez éligible pour la commission.'),
+                index: e['index'],
+                titre: e['title'],
+                contenu: e['content'],
+              ),
             )
             .toList(),
       );

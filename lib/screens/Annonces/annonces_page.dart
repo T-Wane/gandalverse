@@ -6,7 +6,7 @@ import 'package:gandalverse/components/user_top_infos.dart';
 import 'package:gandalverse/screens/Annonces/components/_build_facebook_communauty.dart';
 import 'package:gandalverse/screens/Annonces/components/_build_tiktok_communauty.dart';
 import 'package:gandalverse/screens/Annonces/components/annonceCard.dart';
-import 'package:gandalverse/themes/images/appImages.dart';
+import 'package:gandalverse/core/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 
 import '../../widgets/customImageView.dart';
@@ -36,7 +36,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
       body: SafeArea(
         minimum: const EdgeInsets.all(5.0),
         child: Column(children: [
-          const userTopInfos(),
+            userTopInfos(),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(5.0),

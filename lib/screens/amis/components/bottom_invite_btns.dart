@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,21 +15,36 @@ class bottomInviteBtns extends StatefulWidget {
 }
 
 class _bottomInviteBtnsState extends State<bottomInviteBtns>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late AnimationController _animationController;
   Color Color3 = const Color.fromARGB(255, 18, 40, 70);
+
+  late double _scale;
+  late AnimationController _controller;
 
   @override
   void initState() {
     _animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 1));
     _animationController.repeat(min: 0.6, reverse: true);
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
+      lowerBound: 0.0,
+      upperBound: 0.1,
+    )..addListener(() {
+        setState(() {});
+      });
+    _controller.repeat(reverse: true);
+
     super.initState();
   }
 
   @override
   void dispose() {
     _animationController.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -40,8 +56,9 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
         children: [
           Expanded(
             child: GestureDetector(
-              child: FadeTransition(
-                opacity: _animationController,
+              onTap: () {},
+              child: Transform.scale(
+                scale: 1 - _controller.value,
                 child: Container(
                   height: 50,
                   decoration: BoxDecoration(
@@ -50,12 +67,10 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          Colors.deepPurple.shade400,
+                          Colors.deepPurple.shade300,
                           Colors.deepPurple.shade400,
                           Colors.deepPurple.shade500,
                           Colors.deepPurple.shade600,
-                          Colors.deepPurple.shade700,
-                          Colors.deepPurple.shade700,
                         ]),
                   ),
                   child: Padding(
@@ -63,16 +78,23 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AutoSizeText(
-                          'Inviter un ami ',
-                          maxLines: 1,
-                          textAlign: TextAlign.center,
+                        DefaultTextStyle(
                           style: Theme.of(context)
                               .textTheme
-                              .bodyLarge!
+                              .bodyMedium!
                               .copyWith(
                                   color: Colors.white, fontFamily: "Aller"),
-                        ),
+                          child: AnimatedTextKit(
+                            animatedTexts: [
+                              RotateAnimatedText('Inviter un ami'),
+                              RotateAnimatedText('Gagner plus de coins'),
+                              RotateAnimatedText('Offrer à un ami du capital'),
+                            ],
+                            onTap: () {},
+                            isRepeatingAnimation: true,
+                            repeatForever: true,
+                          ),
+                        ), 
                         const Icon(
                           CupertinoIcons.person_crop_circle_badge_plus,
                           color: Colors.white70,
@@ -98,8 +120,8 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
+                      Colors.deepPurple.shade300,
                       Colors.deepPurple.shade400,
-                      Colors.deepPurple.shade500,
                       Colors.deepPurple.shade500,
                       Colors.deepPurple.shade600,
                     ]),
@@ -107,9 +129,9 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
               child: const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Icon(
-                  LineAwesomeIcons.copy,
+                  CupertinoIcons.link,
                   color: Colors.white,
-                  size: 30,
+                  size: 25,
                 ),
               ),
             ),
@@ -118,4 +140,16 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
       ),
     );
   }
+}
+
+class AnimatedTextExample {
+  final String label;
+  final Color? color;
+  final Widget child;
+
+  const AnimatedTextExample({
+    required this.label,
+    required this.color,
+    required this.child,
+  });
 }

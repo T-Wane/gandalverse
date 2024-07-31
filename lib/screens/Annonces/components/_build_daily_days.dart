@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/screens/Annonces/components/annonceCard.dart';
-import 'package:gandalverse/themes/images/appImages.dart';
+import 'package:gandalverse/core/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
@@ -66,10 +66,15 @@ class buildDailyDays extends StatelessWidget {
                           width: 80,
                           height: 60,
                           decoration: BoxDecoration(
-                              color: Color3.withOpacity(0.5),
+                              color: index == 0
+                                  ? Colors.yellow.shade300
+                                  : Color3.withOpacity(0.5),
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(
-                                  width: 1, color: Colors.purple.shade100)),
+                                  width: 1,
+                                  color: index == 0
+                                      ? Colors.yellow.shade500
+                                      : Colors.purple.shade100)),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
@@ -85,16 +90,19 @@ class buildDailyDays extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Image.asset(
-                                  Images.gvt,
+                                    Images.gvt,
                                     fit: BoxFit.contain,
-                                    height: 25,
-                                    width: 25,
+                                    height: 20,
+                                    width: 20,
                                   ),
-                                  const Text(
-                                    "200K",
+                                  const SizedBox(width: 2.0),
+                                  Text(
+                                    "${(index + 1) * 200}K",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w300,
-                                        color: Colors.white70,
+                                        color: index == 0
+                                            ? Colors.white
+                                            : Colors.white70,
                                         fontFamily: "Aller",
                                         fontSize: 11),
                                   ),
