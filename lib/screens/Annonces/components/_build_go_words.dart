@@ -135,7 +135,10 @@ class CustomWidgets {
           ),
           Text(
             title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+                color: Colors.black87),
           ),
           SizedBox(
             height: 2,
@@ -143,6 +146,7 @@ class CustomWidgets {
           TextFormField(
             maxLines: lines,
             controller: textController,
+            style: TextStyle(color: Colors.black87, fontFamily: "Aller"),
             maxLength: length,
             inputFormatters: [
               LengthLimitingTextInputFormatter(length),
