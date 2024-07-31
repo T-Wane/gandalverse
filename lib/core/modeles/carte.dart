@@ -1,4 +1,4 @@
-class Equipe {
+class Carte {
   final String nom;
   final String description;
   final List<String> competences;
@@ -8,7 +8,7 @@ class Equipe {
   final int niveau;
   bool estAchete;
 
-  Equipe({
+  Carte({
     required this.nom,
     required this.description,
     required this.competences,
@@ -20,8 +20,8 @@ class Equipe {
   });
 
   // Méthode pour créer une instance à partir d'un Map (utile pour la désérialisation JSON)
-  factory Equipe.fromJson(Map<String, dynamic> json) {
-    return Equipe(
+  factory Carte.fromJson(Map<String, dynamic> json) {
+    return Carte(
       nom: json['nom'],
       description: json['description'],
       competences: List<String>.from(json['competences']),
