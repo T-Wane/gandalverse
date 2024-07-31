@@ -58,23 +58,29 @@ class _AmisPageState extends State<AmisPage> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                child: Row(children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: AutoSizeText(
-                      'Liste de vos amis (2)',
-                      maxLines: 1,
-                      textAlign: TextAlign.left,
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Color3.withOpacity(0.7), fontFamily: "Aller"),
-                    ),
-                  ),
-                  Icon(
-                    CupertinoIcons.refresh_thick,
-                    color: Color3,
-                    size: 20,
-                  ),
-                ]),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: AutoSizeText(
+                          'Liste de vos amis (2)',
+                          maxLines: 1,
+                          textAlign: TextAlign.left,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                  color: Color3.withOpacity(0.7),
+                                  fontFamily: "Aller"),
+                        ),
+                      ),
+                      Icon(
+                        CupertinoIcons.refresh_thick,
+                        color: Color3,
+                        size: 20,
+                      ),
+                    ]),
               )
             ],
           )),

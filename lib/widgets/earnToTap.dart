@@ -200,7 +200,7 @@ class TapToEarnCard extends StatelessWidget {
             ),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               const Text(
-                "200K",
+                " +1 ",
                 style: TextStyle(
                     fontWeight: FontWeight.w300,
                     color: Colors.white70,

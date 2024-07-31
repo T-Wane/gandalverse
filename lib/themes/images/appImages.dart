@@ -24,6 +24,7 @@ class Images {
   static String scanQr = "$ressourcePath/scanQr.png";
   static String question = "$ressourcePath/question.png";
   static String word = "$ressourcePath/word.png";
+  static String group = "$ressourcePath/group.png";
 
   static String pub = "$ressourcePath/pub.png";
   static String panneaux = "$ressourcePath/panel.png";
@@ -45,7 +46,7 @@ class Images {
 
   //Black Socials icons
   static String black_telegram = "$ressourceBlack/telegram.png";
-  static String black_barcodescanner = "$ressourceBlack/barcode-scanner.png"; 
+  static String black_barcodescanner = "$ressourceBlack/barcode-scanner.png";
   static String black_youtube = "$ressourceBlack/youtube.png";
   static String black_facebook = "$ressourceBlack/facebook.png";
   static String black_tiktok = "$ressourceBlack/tiktok.png";

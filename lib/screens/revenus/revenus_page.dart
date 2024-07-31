@@ -6,6 +6,7 @@ import 'package:gandalverse/widgets/customImageView.dart';
 import '../../components/user_top_infos.dart';
 import '../../themes/images/appImages.dart';
 import '../Annonces/components/annonceCard.dart';
+import 'components/plus_details_btn.dart';
 
 class AllRevenusPage extends StatefulWidget {
   const AllRevenusPage({super.key});
@@ -60,39 +61,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
                   text:
                       "Gandalverse valorise sa communauté en reversant une commission aux membres actifs. Plus vous vous engagez, plus vous gagnez ! Devenez éligible en invitant vos amis et débloquez des récompenses incroyables :"),
               _buildEligibilites,
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Plus de détails',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Color3,
-                          fontFamily: "Aller",
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      CircleAvatar(
-                        radius: 15,
-                        backgroundColor: Color3,
-                        child: const Icon(
-                          Icons.arrow_forward_rounded,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              plusDetailsBtn(Color3: Color3),
               AnnonceCard(
                   title: panneauxData['title']!,
                   text: panneauxData['content']!,

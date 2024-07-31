@@ -3,9 +3,9 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "9931083615f733759a7ae0df46f7714b",
-"assets/AssetManifest.bin.json": "110685ba02b09cbeb188f66dea343796",
-"assets/AssetManifest.json": "4f1be675cc4458809badf8e8d5d71706",
+const RESOURCES = {"assets/AssetManifest.bin": "420ed4d1bc5319f1e644007ddf6c6926",
+"assets/AssetManifest.bin.json": "5fba679e7bae925e3c87cd795db3701a",
+"assets/AssetManifest.json": "72354deb886fde12328d98ec9a94cb99",
 "assets/assets/AssetManifest.bin": "c85bcc7489efa79fc6ad3fe57dd52e3e",
 "assets/assets/AssetManifest.bin.json": "7dba2718645bee383e32a237b5dea4a5",
 "assets/assets/AssetManifest.json": "eef43b9362dfb365aef650a403e2c9e5",
@@ -28,6 +28,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "9931083615f733759a7ae0df46f7714b
 "assets/assets/images/Gandal%2520Verse%2520v2.PNG": "f73addd836efb3ae4192d9aca13905be",
 "assets/assets/images/Gandal%2520Verse%2520v3.PNG": "5e80030b0a41545d08466e0859865fa7",
 "assets/assets/images/gift.png": "fd194b305eacd9237fff2cf2ae02126c",
+"assets/assets/images/group.png": "9d74c09183860d1119ddc8449ddacdd3",
 "assets/assets/images/GverseIconePNG.png": "b8321703e5d52f1c9b5151b0d1694f7c",
 "assets/assets/images/GverseToken_OnboardingPage.png": "820b9e0e98327dc8cc26971d46a9dfaf",
 "assets/assets/images/GVT.png": "f31dc5b89125c144a0c04646b7f4362b",
@@ -58,8 +59,8 @@ const RESOURCES = {"assets/AssetManifest.bin": "9931083615f733759a7ae0df46f7714b
 "assets/assets/NOTICES": "ec1b6da017079d55ef1687361c8af88a",
 "assets/FontManifest.json": "2a5267a8ba1e6aa47542e873e50f2700",
 "assets/fonts/MaterialIcons-Regular.otf": "e48500d9f6cd812675c0c3a4f1852aea",
-"assets/NOTICES": "2663c3d78ec42e8430de530c78829dcf",
-"assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "9075be6634516c7271f4fd4c9405ddfd",
+"assets/NOTICES": "0c9bc52822f3d74e4ffe4a760784a34f",
+"assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "d33edd74206f38e15a01524eace35d8e",
 "assets/packages/line_awesome_flutter/lib/fonts/LineAwesome.ttf": "c9f7bb62655415e80068b01558fb8d4e",
 "assets/shaders/ink_sparkle.frag": "ecc85a2e95f5e9f53123dcaf8cb9b6ce",
 "canvaskit/canvaskit.js": "c86fbd9e7b17accae76e5ad116583dc4",
@@ -78,9 +79,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "9931083615f733759a7ae0df46f7714b
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "104ca5687d91976564d934e348e4bccc",
-"/": "104ca5687d91976564d934e348e4bccc",
-"main.dart.js": "90da70adae69741238fac1e986d4b958",
+"index.html": "6bdab0e034931dc7283c56946a9d298b",
+"/": "6bdab0e034931dc7283c56946a9d298b",
+"main.dart.js": "dc46ba00624c2adbc52b0806abf1e5f1",
 "manifest.json": "9f6f1bf5b67cd2b30e68a99551f02cad",
 "version.json": "bdbf5533cd872db8379bf13ff58db6f3"};
 // The application shell files that are downloaded before a service worker can

@@ -69,9 +69,6 @@ class inviterAmiCard extends StatelessWidget {
   }
 }
 
-
-
-
 class inviterAmiWithPremiumCard extends StatelessWidget {
   const inviterAmiWithPremiumCard({
     super.key,
@@ -85,7 +82,7 @@ class inviterAmiWithPremiumCard extends StatelessWidget {
     return ElementCard(
         title: 'Inviter un ami',
         leadingWidget: CustomImageView(
-          imagePath: "assets/images/gift.png",
+          imagePath: Images.group,
           height: 60,
           width: 60,
           fit: BoxFit.contain,
