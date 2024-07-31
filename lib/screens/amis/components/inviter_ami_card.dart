@@ -19,8 +19,8 @@ class inviterAmiCard extends StatelessWidget {
         title: 'Inviter un ami',
         leadingWidget: CustomImageView(
           imagePath: "assets/images/gift.png",
-          height: 60,
-          width: 60,
+          height: 55,
+          width: 55,
           fit: BoxFit.contain,
         ),
         SubWidget: RichText(
@@ -83,36 +83,16 @@ class inviterAmiWithPremiumCard extends StatelessWidget {
         title: 'GVT Communauté',
         leadingWidget: CustomImageView(
           imagePath: Images.group,
-          height: 60,
-          width: 60,
+          height: 55,
+          width: 55,
           fit: BoxFit.contain,
         ),
-        SubWidget: RichText(
-          textAlign: TextAlign.left,
-          text: TextSpan(
-            children: [
-              WidgetSpan(
-                child: Row(
-                  children: [
-                    CustomImageView(
-                      imagePath: Images.gvt,
-                      fit: BoxFit.contain,
-                      height: 23,
-                      width: 23,
-                    ),
-                    Text(
-                      'Voir vos influenceurs ou gagner grâce à vos atistes préférés',
-                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          color: Color3.withOpacity(0.7), fontFamily: "Aller"),
-                    )
-                  ],
-                ),
-              )
-            ],
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium!
-                .copyWith(color: Color3, fontFamily: "Aller"),
+        SubWidget: Text(
+          'Voir vos influenceurs ou gagner grâce à vos atistes préférés',
+          textAlign: TextAlign.start,
+          style: TextStyle(
+            color: Color3.withOpacity(0.7),
+            fontSize: 12,
           ),
         ),
         backColors: const [

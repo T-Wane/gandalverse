@@ -94,17 +94,7 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
                             isRepeatingAnimation: true,
                             repeatForever: true,
                           ),
-                        ),
-                        /*AutoSizeText(
-                          'Inviter un ami ',
-                          maxLines: 1,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge!
-                              .copyWith(
-                                  color: Colors.white, fontFamily: "Aller"),
-                        ),*/
+                        ), 
                         const Icon(
                           CupertinoIcons.person_crop_circle_badge_plus,
                           color: Colors.white70,

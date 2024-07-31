@@ -196,11 +196,9 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
       key: ValueKey<bool>(isPlaying),
       child: IconButton(
         icon: CustomImageView(
-          imagePath: Images.vr, // Remplacez par le chemin correct
+          imagePath: Images.avatarPMU2, // Remplacez par le chemin correct
           fit: BoxFit.contain,
-          color: Colors.white,
-          height: 100,
-          width: 150,
+          width: 200,
         ),
         onPressed: widget.onPressed, // Appel de la fonction de rappel
       ),

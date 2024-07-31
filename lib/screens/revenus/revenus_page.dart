@@ -26,7 +26,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
       body: SafeArea(
         minimum: const EdgeInsets.all(5.0),
         child: Column(children: [
-          const userTopInfos(),
+          userTopInfos(),
           Flexible(
             child: ListView(children: [
               CustomImageView(

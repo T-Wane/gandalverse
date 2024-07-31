@@ -78,6 +78,7 @@ flutter:
     - assets/
     - assets/images/
     - assets/images/social_black/
+    - assets/images/avatar/
 
     
   fonts:

@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/screens/Annonces/components/annonceCard.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
@@ -9,13 +10,13 @@ import 'package:gandalverse/widgets/customImageView.dart';
 import 'go_words_game.dart';
 
 class buildGoWords extends StatelessWidget {
-  const buildGoWords({
+  buildGoWords({
     super.key,
     required this.Color3,
   });
 
   final Color Color3;
-
+  TextEditingController textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return AnnonceCard(
@@ -31,7 +32,8 @@ class buildGoWords extends StatelessWidget {
           CardContentBottomSheet.show(context,
               child: Padding(
                 padding: const EdgeInsets.all(5.0),
-                child: ListView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
                       "Go Words",
@@ -65,8 +67,11 @@ class buildGoWords extends StatelessWidget {
                         CustomImageView(
                           imagePath: Images.gvt,
                           fit: BoxFit.contain,
-                          height: 40,
-                          width: 40,
+                          height: 30,
+                          width: 30,
+                        ),
+                        const SizedBox(
+                          width: 5,
                         ),
                         AutoSizeText(
                           '205 000',
@@ -83,10 +88,12 @@ class buildGoWords extends StatelessWidget {
                     const SizedBox(
                       height: 5,
                     ),
-                    Game(
-                      word: "FLUTTER",
-                      isEasy: false,
-                    ),
+                    CustomWidgets.textField('Le Mot',
+                        textController: textController),
+                    // Game(
+                    //   word: "FLUTTER",
+                    //   isEasy: false,
+                    // ),
                     const SizedBox(
                       height: 5,
                     ),
@@ -108,5 +115,48 @@ class buildGoWords extends StatelessWidget {
         },
         textColor: Colors.black,
         titleColor: Color3);
+  }
+}
+
+class CustomWidgets {
+  static Widget textField(String title,
+      {bool isPassword = false,
+      bool isNumber = false,
+      int? length,
+      required TextEditingController textController,
+      int lines = 1}) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 2),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          SizedBox(
+            height: 10,
+          ),
+          Text(
+            title,
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+          ),
+          SizedBox(
+            height: 2,
+          ),
+          TextFormField(
+            maxLines: lines,
+            controller: textController,
+            maxLength: length,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(length),
+            ],
+            obscureText: isPassword,
+            keyboardType: isNumber ? TextInputType.number : TextInputType.text,
+            decoration: InputDecoration(
+                counterText: '',
+                border: InputBorder.none,
+                fillColor: Color(0xfff3f3f4),
+                filled: true),
+          )
+        ],
+      ),
+    );
   }
 }

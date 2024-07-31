@@ -24,6 +24,7 @@ class ElementCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsetsDirectional.symmetric(vertical: 5, horizontal: 5),
+      padding: const EdgeInsetsDirectional.all(2),
       width: MediaQuery.of(context).size.width * 0.9,
       decoration: BoxDecoration(
         gradient: LinearGradient(

@@ -163,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Icons.business_rounded,
           ),
           title: Text(
-            "Bureau",
+            "QG",
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontFamily: "Aller",

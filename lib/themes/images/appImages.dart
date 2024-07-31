@@ -3,6 +3,7 @@
 class Images {
   static String ressourcePath = "assets/images";
   static String ressourceBlack = "$ressourcePath/social_black";
+  static String ressourceAvatar = "$ressourcePath/avatar";
 
   //SOCIAL
   static String telegram = "$ressourcePath/telegram.png";
@@ -29,6 +30,7 @@ class Images {
 
   //Btn back
   static String circleBtn = "$ressourcePath/circleBtn.png";
+  static String avatarPMU2 = "$ressourceAvatar/AvatarPMU2.png";
 
   static String pub = "$ressourcePath/pub.png";
   static String panneaux = "$ressourcePath/panel.png";
