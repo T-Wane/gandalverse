@@ -5,7 +5,7 @@ import 'package:flutter/services.dart' show rootBundle;
 class EquipeService {
   Future<List<Carte>> loadEquipe() async {
     final jsonString =
-        await rootBundle.loadString('assets/json/equipeData.json');
+        await rootBundle.loadString('json/equipeData.json');
     final jsonResponse = json.decode(jsonString) as List<dynamic>;
     return jsonResponse.map((json) => Carte.fromJson(json)).toList();
   }

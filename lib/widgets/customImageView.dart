@@ -36,7 +36,7 @@ class CustomImageView extends StatelessWidget {
     this.radius,
     this.margin,
     this.border,
-    this.placeHolder = "",
+    this.placeHolder = "assets/images/placeholder.svg",
     this.Key,
   });
 

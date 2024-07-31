@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gandalverse/core/modeles/carte.dart';
 import 'package:gandalverse/core/services/equipe_service.dart';
- 
+
 class EquipeSection extends StatefulWidget {
   @override
   _EquipeSectionState createState() => _EquipeSectionState();
@@ -10,7 +10,7 @@ class EquipeSection extends StatefulWidget {
 class _EquipeSectionState extends State<EquipeSection> {
   late Future<List<Carte>> _equipeFuture;
   final EquipeService _equipeService = EquipeService();
-
+  final ScrollController _scrollController = ScrollController();
   @override
   void initState() {
     super.initState();
@@ -34,7 +34,25 @@ class _EquipeSectionState extends State<EquipeSection> {
             return Center(child: Text('Aucune donnée disponible'));
           } else {
             final equipeList = snapshot.data!;
-            return ListView.builder(
+            return Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: GridView.builder(
+                  controller: _scrollController,
+                  shrinkWrap: true,
+                  padding: const EdgeInsets.only(bottom: 100),
+                  // physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 180,
+                    mainAxisExtent: 170,
+                    crossAxisSpacing: 1,
+                    mainAxisSpacing: 1,
+                  ),
+                  itemCount: 8,
+                  itemBuilder: (BuildContext ctx, index) {
+                    return itemCard();
+                  }),
+            );
+            /* ListView.builder(
               itemCount: equipeList.length,
               itemBuilder: (context, index) {
                 final Carte = equipeList[index];
@@ -44,7 +62,7 @@ class _EquipeSectionState extends State<EquipeSection> {
                   subtitle: Text(Carte.description),
                 );
               },
-            );
+            );*/
           }
         },
       ),
