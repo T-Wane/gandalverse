@@ -27,13 +27,11 @@ class _GandalVerseWebViewState extends State<GandalVerseWebView> {
   Offset _offset = Offset.zero;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(children: [
-          const userTopInfos(),
-          Expanded(
-            child: Stack(children: [
-              /*Container(
+    return SafeArea(
+      child: Column(children: [
+        const userTopInfos(),
+
+        /*Container(
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage(
@@ -75,35 +73,12 @@ class _GandalVerseWebViewState extends State<GandalVerseWebView> {
                       ),
                     ),
                   ),*/
-              Container(
-                child: PlatformWebViewWidget(
-                  PlatformWebViewWidgetCreationParams(
-                      controller: widget.controller),
-                ).build(context),
-              ),
-              Positioned(
-                left: _offset.dx,
-                top: _offset.dy,
-                child: AbsorbPointer(
-                  absorbing: true,
-                  child: GestureDetector(
-                    onPanUpdate: (details) {
-                      setState(() => _offset += details.delta);
-
-                      print("is clicked");
-                    },
-                    child: FloatingActionButton(
-                      onPressed: () {},
-                      backgroundColor: Colors.red,
-                      child: const Icon(Icons.add, color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ]),
-          ),
-        ]),
-      ),
+        Container(
+          child: PlatformWebViewWidget(
+            PlatformWebViewWidgetCreationParams(controller: widget.controller),
+          ).build(context),
+        ),
+      ]),
     );
   }
 }
