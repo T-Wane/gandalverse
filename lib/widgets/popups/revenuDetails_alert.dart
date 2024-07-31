@@ -86,7 +86,7 @@ class RevenuDetails_PopUpState extends State<RevenuDetails_PopUp>
                       Container(
                         constraints: BoxConstraints(
                             maxHeight:
-                                MediaQuery.of(context).size.height * 0.7),
+                                MediaQuery.of(context).size.height * 0.8),
                         child: Scrollbar(
                           interactive: true,
                           trackVisibility: true,
@@ -289,7 +289,7 @@ class RevenuDetails_PopUpState extends State<RevenuDetails_PopUp>
       );
 
   subTitle({required String text, bool toBold = false}) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+        padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
         child: Align(
           alignment: Alignment.centerLeft,
           child: Text(
@@ -304,7 +304,7 @@ class RevenuDetails_PopUpState extends State<RevenuDetails_PopUp>
       );
 
   subTitle2({required String text, bool toBold = false}) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+        padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
         child: Align(
           alignment: Alignment.centerLeft,
           child: Text(
@@ -323,7 +323,7 @@ class RevenuDetails_PopUpState extends State<RevenuDetails_PopUp>
           required String contenu}) =>
       Padding(
         padding: const EdgeInsets.symmetric(
-          vertical: 5,
+          vertical: 2,
           horizontal: 10,
         ),
         child: Align(

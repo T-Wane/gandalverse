@@ -26,6 +26,10 @@ class Images {
   static String word = "$ressourcePath/word.png";
   static String group = "$ressourcePath/group.png";
 
+
+  //Btn back
+  static String circleBtn = "$ressourcePath/circleBtn.png";
+
   static String pub = "$ressourcePath/pub.png";
   static String panneaux = "$ressourcePath/panel.png";
   static String redistribuer = "$ressourcePath/redistribuer.png";

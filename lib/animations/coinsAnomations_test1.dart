@@ -122,10 +122,10 @@ class FlyCoinAnimationState extends State<FlyCoinAnimation>
                       child: Text(
                         '+1',
                         style: TextStyle(
-                          fontSize: 45,
-                          color: Colors.yellow,
-                          fontFamily: "Aller",fontWeight: FontWeight.w500
-                        ),
+                            fontSize: 45,
+                            color: Colors.yellow,
+                            fontFamily: "Aller",
+                            fontWeight: FontWeight.w500),
                       ),
                     ),
                   ),
@@ -239,20 +239,22 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
                     Colors.deepPurple.shade400,
                     Colors.deepPurple.shade500,
                     Colors.deepPurple.shade600,
-                    Colors.deepPurple.shade700,
+                    Color(0xFF512DA8),
                   ]),
               border: Border.all(color: Colors.deepPurple, width: 1.0),
             ),
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.all(8),
             child: Container(
               decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color3.withOpacity(0.9),
-                gradient: LinearGradient(
+                  shape: BoxShape.circle,
+                  color: Color3.withOpacity(0.9),
+                  image: DecorationImage(
+                      image: AssetImage(Images.circleBtn), fit: BoxFit.fill)
+                  /*gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [Colors.deepPurple.shade200, Color3]),
-              ),
+                    colors: [Colors.deepPurple.shade200, Color3]),*/
+                  ),
               child: AnimatedSwitcher(
                 duration: _kToggleDuration,
                 child: _buildIcon(isPlaying),
