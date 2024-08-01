@@ -18,7 +18,7 @@ class CarteCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         CardContentBottomSheet.show(context,
-            child: bureauCarteDetails(Color3: Color3),
+            child: bureauCarteDetails(Color3: Color3, carte: carte),
             image: "assets/images/img_back1.jpg");
       },
       child: Container(
@@ -117,8 +117,8 @@ class CarteCard extends StatelessWidget {
                   children: [
                     AutoSizeText(
                       carte.nom,
-                      maxLines: 1,
-                      textAlign: TextAlign.left,
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
                             color: Colors.white,
                             fontWeight: FontWeight.w400,
@@ -213,9 +213,11 @@ class bureauCarteDetails extends StatelessWidget {
   const bureauCarteDetails({
     super.key,
     required this.Color3,
+    required this.carte,
   });
 
   final Color Color3;
+  final Carte carte;
 
   @override
   Widget build(BuildContext context) {
@@ -225,7 +227,7 @@ class bureauCarteDetails extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            "titre de la carte",
+            carte.nom,
             maxLines: 1,
             textAlign: TextAlign.center,
             textDirection: TextDirection.ltr,
@@ -240,7 +242,15 @@ class bureauCarteDetails extends StatelessWidget {
             height: 5,
           ),
           AutoSizeText(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non tincidunt odio. Nunc id tellus lectus.',
+            carte.description,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: Color3.withOpacity(0.95),
+                  fontWeight: FontWeight.normal,
+                ),
+          ),
+          AutoSizeText(
+            "Compétences: ${carte.competences.join(" - ")}",
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.labelSmall!.copyWith(
                   color: Color3.withOpacity(0.95),
@@ -272,7 +282,7 @@ class bureauCarteDetails extends StatelessWidget {
               ),
               const SizedBox(width: 5),
               AutoSizeText(
-                '20,5K',
+                carte.formatPrix,
                 maxLines: 1,
                 textAlign: TextAlign.left,
                 style: TextStyle(
