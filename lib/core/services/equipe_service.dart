@@ -42,7 +42,7 @@ import 'package:shared_preferences/shared_preferences.dart';
   }*/
 
 class EquipeService {
-  final String assetPath = 'json/equipeData.json';
+  final String assetPath = 'assets/json/equipeData.json';
   final String storageKey = 'equipes';
 
   final _equipeController = StreamController<List<Carte>>.broadcast();

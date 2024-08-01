@@ -81424,7 +81424,7 @@ n=A.aM(o.a.i(0,"equipes"))
 s=n==null?3:4
 break
 case 3:s=5
-return A.O($.wV().U0("json/equipeData.json"),$async$oC)
+return A.O($.wV().U0("assets/json/equipeData.json"),$async$oC)
 case 5:n=b
 o.DR("String","equipes",n)
 case 4:p=J.mf(B.bM.er(n),new A.a3D(),t.NJ)
@@ -81440,7 +81440,7 @@ n=A.aM(o.a.i(0,"equipes"))
 s=n==null?4:5
 break
 case 4:s=6
-return A.O($.wV().U0("json/equipeData.json"),$async$kO)
+return A.O($.wV().U0("assets/json/equipeData.json"),$async$kO)
 case 6:n=b
 o.DR("String","equipes",n)
 case 5:p=J.mf(B.bM.er(n),new A.a3E(),t.NJ)
