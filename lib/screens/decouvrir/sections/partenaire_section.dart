@@ -1,43 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:gandalverse/core/modeles/carte.dart';
-import 'package:gandalverse/core/services/equipe_service.dart';
+import 'package:gandalverse/core/services/partenaire_service.dart';
 
 import '../components/carteCard.dart';
 
-class EquipeSection extends StatefulWidget {
+class PartenaireSection extends StatefulWidget {
   @override
-  _EquipeSectionState createState() => _EquipeSectionState();
+  _PartenaireSectionState createState() => _PartenaireSectionState();
 }
 
-class _EquipeSectionState extends State<EquipeSection> {
-  late Future<List<Carte>> _equipeFuture;
-  final EquipeService _equipeService = EquipeService();
+class _PartenaireSectionState extends State<PartenaireSection> {
+  late Future<List<Carte>> _partenaireFuture;
+  final PartenaireService _partenaireService = PartenaireService();
   final ScrollController _scrollController = ScrollController();
+  
   @override
   void initState() {
     super.initState();
-    _equipeFuture = _equipeService.loadEquipes();
+    _partenaireFuture = _partenaireService.loadPartenaires();
   }
 
   @override
-  void didUpdateWidget(covariant EquipeSection oldWidget) {
+  void didUpdateWidget(covariant PartenaireSection oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
-    _equipeFuture = _equipeService.loadEquipes();
+    _partenaireFuture = _partenaireService.loadPartenaires();
   }
 
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    _equipeFuture = _equipeService.loadEquipes();
+    _partenaireFuture = _partenaireService.loadPartenaires();
   }
 
   @override
   Widget build(BuildContext context) {
-    _equipeFuture = _equipeService.loadEquipes();
+    _partenaireFuture = _partenaireService.loadPartenaires();
     return StreamBuilder<List<Carte>>(
-      stream: _equipeService.equipeStream,
+      stream: _partenaireService.partenaireStream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
@@ -46,8 +47,8 @@ class _EquipeSectionState extends State<EquipeSection> {
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
           return Center(child: Text('Aucune donnée disponible'));
         } else {
-          final equipeList = snapshot.data!;
-         
+          final partenaireList = snapshot.data!;
+
           return Padding(
             padding: const EdgeInsets.all(5.0),
             child: GridView.builder(
@@ -61,23 +62,13 @@ class _EquipeSectionState extends State<EquipeSection> {
                   crossAxisSpacing: 1,
                   mainAxisSpacing: 1,
                 ),
-                itemCount: equipeList.length,
+                itemCount: partenaireList.length,
                 itemBuilder: (BuildContext ctx, index) {
-                  Carte carte = equipeList[index];
-                  return CarteCard(carte: carte, qgService: _equipeService);
+                  Carte carte = partenaireList[index];
+                  return CarteCard(
+                      carte: carte, qgService: _partenaireService);
                 }),
           );
-          /* ListView.builder(
-              itemCount: equipeList.length,
-              itemBuilder: (context, index) {
-                final Carte = equipeList[index];
-                return ListTile(
-                  leading: Image.asset(Carte.image),
-                  title: Text(Carte.nom),
-                  subtitle: Text(Carte.description),
-                );
-              },
-            );*/
         }
       },
     );

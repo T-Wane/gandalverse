@@ -1,7 +1,7 @@
 class Carte {
   final String nom;
   final String description;
-  final List<String> competences;
+  List<String>? competences;
   final String image;
   final double prix;
   final double tauxAugmentation;
@@ -13,7 +13,7 @@ class Carte {
   Carte({
     required this.nom,
     required this.description,
-    required this.competences,
+    this.competences,
     required this.image,
     required this.prix,
     required this.tauxAugmentation,
@@ -27,7 +27,9 @@ class Carte {
     return Carte(
       nom: json['nom'],
       description: json['description'],
-      competences: List<String>.from(json['competences']),
+      competences: json.containsKey("competences")
+          ? List<String>.from(json['competences'])
+          : null,
       image: json['image'],
       prix: json['prix'].toDouble(),
       tauxAugmentation: json['taux_augmentation'].toDouble(),

@@ -1,0 +1,46 @@
+[
+    {
+        "nom": "Pepe, le Parieur Légendaire",
+        "description": "Pepe est un vieux parieur expérimenté. Passionné par les courses de chevaux, il guide les parieurs à travers des conseils avisés et des stratégies gagnantes. Suivez Pepe pour maximiser vos chances de succès dans chaque pari.",
+        "image": "assets/images/qg_images/leParieur.jpg",
+        "prix": 1200.0,
+        "taux_augmentation": 0.8,
+        "niveau": 1,
+        "est_achete": true,
+        "force": 500.0,
+        "taux_augmentation_force": 100
+    },
+    {
+        "nom": "Analyse de Course",
+        "description": "Procédez à une analyse détaillée des courses de chevaux en examinant les statistiques clés sur les chevaux, les jockeys et les conditions de course. Utilisez ces informations pour prendre des décisions éclairées et augmenter vos chances de gagner.",
+        "image": "assets/images/qg_images/analysteDeCourse.jpg",
+        "prix": 1000.0,
+        "taux_augmentation": 0.05,
+        "niveau": 1,
+        "est_achete": true,
+        "force": 200.0,
+        "taux_augmentation_force": 15
+    },
+    {
+        "nom": "Carburant et Lubrifiants",
+        "description": "Choisissez parmi une variété de carburants et de lubrifiants de haute qualité pour optimiser les performances de votre véhicule. Profitez de diesel ou d'essence, nos produits garantissent efficacité et longévité à votre moteur.",
+        "image": "assets/images/qg_images/carburantEtLubrifiant.jpg",
+        "prix": 3800.0,
+        "taux_augmentation": 0.5,
+        "niveau": 1,
+        "est_achete": true,
+        "force": 500.0,
+        "taux_augmentation_force": 20
+    },
+    {
+        "nom": "Ça Vous Dit une Banque ?",
+        "description": "Découvrez notre première banque, AFG BANK ! Offrez à vos clients une gamme complète de services financiers, de la gestion des comptes courants et d'épargne aux solutions de prêts et cartes de crédit.",
+        "image": "assets/images/qg_images/doYouWantBank.jpg",
+        "prix": 6000.0,
+        "taux_augmentation": 0.9,
+        "niveau": 1,
+        "est_achete": true,
+        "force": 350.0,
+        "taux_augmentation_force": 5
+    }
+]

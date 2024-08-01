@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/screens/decouvrir/components/itemCard.dart';
 import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/screens/decouvrir/sections/partenaire_section.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
 import '../../components/user_top_infos.dart';
@@ -35,7 +36,6 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
       extendBody: true,
       extendBodyBehindAppBar: true,
       body: Column(children: [
-
         userTopInfos(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -65,7 +65,6 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
             ],
           ),
         ),
-        
         Container(
           padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
           child: AdvancedSegment(
@@ -82,25 +81,26 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
                 if (_selectedSegment.value == "Equipe") {
                   return EquipeSection();
                 } else {
-                  return Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: GridView.builder(
-                        controller: _scrollController,
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.only(bottom: 100),
-                        // physics: const NeverScrollableScrollPhysics(),
-                        gridDelegate:
-                            const SliverGridDelegateWithMaxCrossAxisExtent(
-                          maxCrossAxisExtent: 180,
-                          mainAxisExtent: 170,
-                          crossAxisSpacing: 1,
-                          mainAxisSpacing: 1,
-                        ),
-                        itemCount: 8,
-                        itemBuilder: (BuildContext ctx, index) {
-                          return itemCard();
-                        }),
-                  );
+                  return PartenaireSection();
+                  // return Padding(
+                  //   padding: const EdgeInsets.all(5.0),
+                  //   child: GridView.builder(
+                  //       controller: _scrollController,
+                  //       shrinkWrap: true,
+                  //       padding: const EdgeInsets.only(bottom: 100),
+                  //       // physics: const NeverScrollableScrollPhysics(),
+                  //       gridDelegate:
+                  //           const SliverGridDelegateWithMaxCrossAxisExtent(
+                  //         maxCrossAxisExtent: 180,
+                  //         mainAxisExtent: 170,
+                  //         crossAxisSpacing: 1,
+                  //         mainAxisSpacing: 1,
+                  //       ),
+                  //       itemCount: 8,
+                  //       itemBuilder: (BuildContext ctx, index) {
+                  //         return itemCard();
+                  //       }),
+                  // );
                 }
               }),
         ),

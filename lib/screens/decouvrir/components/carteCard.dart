@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:gandalverse/components/default_btn.dart';
-import 'package:gandalverse/core/modeles/carte.dart';
-import 'package:gandalverse/core/services/equipe_service.dart';
+import 'package:gandalverse/core/modeles/carte.dart'; 
+import 'package:gandalverse/core/services/service.dart';
 import 'package:gandalverse/core/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
 class CarteCard extends StatelessWidget {
-  CarteCard({super.key, required this.carte, required this.equipeService});
-  EquipeService equipeService;
+  CarteCard({super.key, required this.carte, required this.qgService});
+  QGService qgService;
   Carte carte;
   Color Color3 = Color.fromARGB(255, 18, 40, 70);
 
@@ -21,7 +21,7 @@ class CarteCard extends StatelessWidget {
       onTap: () {
         CardContentBottomSheet.show(context,
             child: bureauCarteDetails(
-                Color3: Color3, carte: carte, equipeService: equipeService),
+                Color3: Color3, carte: carte, qgService: qgService),
             image: carte.image);
       },
       child: Container(
@@ -208,13 +208,13 @@ class bureauCarteDetails extends StatefulWidget {
     super.key,
     required this.Color3,
     required this.carte,
-    required this.equipeService,
+    required this.qgService,
   });
 
   final Color Color3;
   final Carte carte;
 
-  EquipeService equipeService;
+  QGService qgService;
 
   @override
   State<bureauCarteDetails> createState() => _bureauCarteDetailsState();
@@ -251,14 +251,16 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                   fontWeight: FontWeight.normal,
                 ),
           ),
-          AutoSizeText(
-            "Compétences: ${widget.carte.competences.join(" - ")}",
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                  color: widget.Color3.withOpacity(0.95),
-                  fontWeight: FontWeight.normal,
-                ),
-          ),
+          if (widget.carte.competences != null) ...[
+            AutoSizeText(
+              "Compétences: ${widget.carte.competences?.join(" - ")}",
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                    color: widget.Color3.withOpacity(0.95),
+                    fontWeight: FontWeight.normal,
+                  ),
+            )
+          ],
           const SizedBox(
             height: 5,
           ),
@@ -332,7 +334,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
             height: 5,
           ),
           StreamBuilder<bool>(
-            stream: widget.equipeService.loadingStream,
+            stream: widget.qgService.loadingStream,
             builder: (context, snapshot) {
               if (snapshot.data == true) {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -372,7 +374,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
             },
           ),
           StreamBuilder<bool>(
-            stream: widget.equipeService.loadingStream,
+            stream: widget.qgService.loadingStream,
             builder: (context, snapshot) {
               if (snapshot.data == true) {
                 return DefaultButtonWithchild(
@@ -397,8 +399,8 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                   height: 50,
                   press: () async {
                     try {
-                      await widget.equipeService
-                          .updateEquipe(
+                      await widget.qgService
+                          .updateCarte(
                               widget.carte.nom,
                               Carte(
                                   nom: widget.carte.nom,
