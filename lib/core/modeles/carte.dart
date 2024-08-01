@@ -27,7 +27,7 @@ class Carte {
     return Carte(
       nom: json['nom'],
       description: json['description'],
-      competences: json.containsKey("competences")
+      competences: json['competences']!=null //json.containsKey("competences")
           ? List<String>.from(json['competences'])
           : null,
       image: json['image'],
