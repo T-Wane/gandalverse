@@ -260,38 +260,46 @@ class bureauCarteDetails extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          Text(
-            "Profit par heure",
-            style: TextStyle(
-                fontWeight: FontWeight.w300,
-                color: Color3,
-                fontFamily: "Aller",
-                fontSize: 12),
-          ),
-          const SizedBox(
-            height: 2,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomImageView(
-                imagePath: Images.gvt,
-                fit: BoxFit.contain,
-                height: 20,
-                width: 20,
-              ),
-              const SizedBox(width: 5),
-              AutoSizeText(
-                carte.formatPrix,
-                maxLines: 1,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Color3,
-                  fontWeight: FontWeight.normal,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Grade Apporté : ",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      color: Color3,
+                      fontFamily: "Aller",
+                      fontSize: 12),
                 ),
-              ),
-            ],
+                const SizedBox(
+                  width: 2,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomImageView(
+                      imagePath: Images.gvt,
+                      fit: BoxFit.contain,
+                      height: 20,
+                      width: 20,
+                    ),
+                    const SizedBox(width: 5),
+                    AutoSizeText(
+                      carte.formatPrix,
+                      maxLines: 1,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Color3,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           const SizedBox(
             height: 8,
