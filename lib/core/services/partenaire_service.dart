@@ -18,7 +18,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class PartenaireService implements QGService {
   final String assetPath = 'assets/json/partenaireData.json';
-  final String storageKey = 'partenaires5';
+  final String storageKey = 'partenaires6';
 
   final _partenaireController = StreamController<List<Carte>>.broadcast();
   final _loadingController = StreamController<bool>.broadcast();

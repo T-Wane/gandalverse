@@ -81632,13 +81632,13 @@ var $async$oG=A.L(function(a,b){if(a===1)return A.H(b,r)
 while(true)switch(s){case 0:s=2
 return A.M(A.nr(),$async$oG)
 case 2:o=b
-n=A.aH(o.a.i(0,"partenaires5"))
+n=A.aH(o.a.i(0,"partenaires6"))
 s=n==null?3:4
 break
 case 3:s=5
 return A.M($.oi().zx("assets/json/partenaireData.json"),$async$oG)
 case 5:n=b
-o.oS("String","partenaires5",n)
+o.oS("String","partenaires6",n)
 case 4:p=J.ir(B.b9.e4(n),new A.a9E(),t.NJ)
 q.c.C(0,A.a1(p,!0,A.k(p).h("ao.E")))
 return A.I(null,r)}})
@@ -81648,13 +81648,13 @@ var $async$nK=A.L(function(a,b){if(a===1)return A.H(b,r)
 while(true)switch(s){case 0:s=3
 return A.M(A.nr(),$async$nK)
 case 3:o=b
-n=A.aH(o.a.i(0,"partenaires5"))
+n=A.aH(o.a.i(0,"partenaires6"))
 s=n==null?4:5
 break
 case 4:s=6
 return A.M($.oi().zx("assets/json/partenaireData.json"),$async$nK)
 case 6:n=b
-o.oS("String","partenaires5",n)
+o.oS("String","partenaires6",n)
 case 5:p=J.ir(B.b9.e4(n),new A.a9F(),t.NJ)
 q=A.a1(p,!0,A.k(p).h("ao.E"))
 s=1
@@ -81696,7 +81696,7 @@ while(true)switch(s){case 0:s=2
 return A.M(A.nr(),$async$$0)
 case 2:p=b
 o=J.ir(q.b,new A.a9G(),t.a)
-p.oS("String","partenaires5",B.b9.kC(A.a1(o,!0,A.k(o).h("ao.E"))))
+p.oS("String","partenaires6",B.b9.kC(A.a1(o,!0,A.k(o).h("ao.E"))))
 o=q.a
 s=3
 return A.M(o.oG(),$async$$0)
