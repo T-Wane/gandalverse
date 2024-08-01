@@ -12,27 +12,14 @@ class PartenaireSection extends StatefulWidget {
 class _PartenaireSectionState extends State<PartenaireSection> {
   late Future<List<Carte>> _partenaireFuture;
   final PartenaireService _partenaireService = PartenaireService();
-  final ScrollController _scrollController = ScrollController();
+  final ScrollController _partenaireScrollController = ScrollController();
   
   @override
   void initState() {
     super.initState();
     _partenaireFuture = _partenaireService.loadPartenaires();
   }
-
-  @override
-  void didUpdateWidget(covariant PartenaireSection oldWidget) {
-    // TODO: implement didUpdateWidget
-    super.didUpdateWidget(oldWidget);
-    _partenaireFuture = _partenaireService.loadPartenaires();
-  }
-
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-    _partenaireFuture = _partenaireService.loadPartenaires();
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +39,7 @@ class _PartenaireSectionState extends State<PartenaireSection> {
           return Padding(
             padding: const EdgeInsets.all(5.0),
             child: GridView.builder(
-                controller: _scrollController,
+                controller: _partenaireScrollController,
                 shrinkWrap: true,
                 padding: const EdgeInsets.only(bottom: 100),
                 // physics: const NeverScrollableScrollPhysics(),

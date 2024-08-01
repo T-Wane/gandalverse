@@ -13,6 +13,8 @@ class _EquipeSectionState extends State<EquipeSection> {
   late Future<List<Carte>> _equipeFuture;
   final EquipeService _equipeService = EquipeService();
   final ScrollController _scrollController = ScrollController();
+  
+  
   @override
   void initState() {
     super.initState();
