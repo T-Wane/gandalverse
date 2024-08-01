@@ -19,6 +19,16 @@ class Carte {
     this.estAchete = false,
   });
 
+  String get formatPrix {
+    if (prix >= 1000000) {
+      return '${(prix / 1000000).toStringAsFixed(1)}M';
+    } else if (prix >= 1000) {
+      return '${(prix / 1000).toStringAsFixed(1)}K';
+    } else {
+      return prix.toStringAsFixed(2);
+    }
+  }
+
   // Méthode pour créer une instance à partir d'un Map (utile pour la désérialisation JSON)
   factory Carte.fromJson(Map<String, dynamic> json) {
     return Carte(
