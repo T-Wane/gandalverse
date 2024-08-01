@@ -6,7 +6,9 @@ class Carte {
   final double prix;
   final double tauxAugmentation;
   final int niveau;
-  bool estAchete;
+  final bool estAchete;
+  final double force; // Remplacé par force
+  final double tauxAugmentationForce; // Taux d'augmentation de la force
 
   Carte({
     required this.nom,
@@ -16,20 +18,11 @@ class Carte {
     required this.prix,
     required this.tauxAugmentation,
     required this.niveau,
-    this.estAchete = false,
+    required this.estAchete,
+    required this.force, // Initialisation du nouvel attribut
+    required this.tauxAugmentationForce, // Initialisation du taux d'augmentation de la force
   });
 
-  String get formatPrix {
-    if (prix >= 1000000) {
-      return '${(prix / 1000000).toStringAsFixed(1)}M';
-    } else if (prix >= 1000) {
-      return '${(prix / 1000).toStringAsFixed(1)}K';
-    } else {
-      return prix.toStringAsFixed(2);
-    }
-  }
-
-  // Méthode pour créer une instance à partir d'un Map (utile pour la désérialisation JSON)
   factory Carte.fromJson(Map<String, dynamic> json) {
     return Carte(
       nom: json['nom'],
@@ -40,10 +33,21 @@ class Carte {
       tauxAugmentation: json['taux_augmentation'].toDouble(),
       niveau: json['niveau'],
       estAchete: json['est_achete'],
+      force: json['force'].toDouble(), // Désérialisation de la force
+      tauxAugmentationForce: json['taux_augmentation_force'].toDouble(), // Désérialisation du taux d'augmentation de la force
     );
   }
 
-  // Méthode pour convertir une instance en Map (utile pour la sérialisation JSON)
+  String get prixFormate {
+    if (prix >= 1000000) {
+      return '${(prix / 1000000).toStringAsFixed(1)}M';
+    } else if (prix >= 1000) {
+      return '${(prix / 1000).toStringAsFixed(1)}K';
+    } else {
+      return prix.toStringAsFixed(2);
+    }
+  }
+
   Map<String, dynamic> toJson() {
     return {
       'nom': nom,
@@ -54,6 +58,8 @@ class Carte {
       'taux_augmentation': tauxAugmentation,
       'niveau': niveau,
       'est_achete': estAchete,
+      'force': force, // Sérialisation de la force
+      'taux_augmentation_force': tauxAugmentationForce, // Sérialisation du taux d'augmentation de la force
     };
   }
 }

@@ -77,7 +77,7 @@ class CarteCard extends StatelessWidget {
                             width: 5,
                           ),
                           AutoSizeText(
-                            carte.formatPrix,
+                            carte.prixFormate,
                             maxLines: 1,
                             textAlign: TextAlign.left,
                             style: const TextStyle(
@@ -287,7 +287,7 @@ class bureauCarteDetails extends StatelessWidget {
                     ),
                     const SizedBox(width: 5),
                     AutoSizeText(
-                      carte.formatPrix,
+                      carte.prixFormate,
                       maxLines: 1,
                       textAlign: TextAlign.left,
                       style: TextStyle(
