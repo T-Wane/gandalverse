@@ -27,7 +27,6 @@ class Images {
   static String word = "$ressourcePath/word.png";
   static String group = "$ressourcePath/group.png";
 
-
   //Btn back
   static String circleBtn = "$ressourcePath/circleBtn.png";
   static String avatarPMU2 = "$ressourceAvatar/AvatarPMU2.png";
@@ -45,6 +44,8 @@ class Images {
   //MENU
   //Vr
   static String vr = "$ressourcePath/GverseIconePNG.png";
+  //Logo
+  static String logo_black = "$ressourcePath/Gandal Verse v3.PNG";
 
   //coins
   static String gvt = "$ressourcePath/GVT.png";

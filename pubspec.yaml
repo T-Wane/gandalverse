@@ -77,6 +77,7 @@ flutter:
   assets:
     - assets/
     - assets/json/
+    - assets/json/equipeData.json
     - assets/images/
     - assets/images/social_black/
     - assets/images/avatar/

@@ -16,13 +16,28 @@ class _EquipeSectionState extends State<EquipeSection> {
   @override
   void initState() {
     super.initState();
-    _equipeFuture = _equipeService.loadEquipe();
+    _equipeFuture = _equipeService.loadEquipes();
+  }
+
+  @override
+  void didUpdateWidget(covariant EquipeSection oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    _equipeFuture = _equipeService.loadEquipes();
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    _equipeFuture = _equipeService.loadEquipes();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Carte>>(
-      future: _equipeFuture,
+    _equipeFuture = _equipeService.loadEquipes();
+    return StreamBuilder<List<Carte>>(
+      stream: _equipeService.equipeStream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(child: CircularProgressIndicator());
@@ -32,6 +47,7 @@ class _EquipeSectionState extends State<EquipeSection> {
           return Center(child: Text('Aucune donnée disponible'));
         } else {
           final equipeList = snapshot.data!;
+         
           return Padding(
             padding: const EdgeInsets.all(5.0),
             child: GridView.builder(
@@ -48,9 +64,7 @@ class _EquipeSectionState extends State<EquipeSection> {
                 itemCount: equipeList.length,
                 itemBuilder: (BuildContext ctx, index) {
                   Carte carte = equipeList[index];
-                  return CarteCard(
-                    carte: carte,
-                  );
+                  return CarteCard(carte: carte, equipeService: _equipeService);
                 }),
           );
           /* ListView.builder(

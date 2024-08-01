@@ -4,21 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/core/modeles/carte.dart';
+import 'package:gandalverse/core/services/equipe_service.dart';
 import 'package:gandalverse/core/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
 class CarteCard extends StatelessWidget {
-  CarteCard({super.key, required this.carte});
-
+  CarteCard({super.key, required this.carte, required this.equipeService});
+  EquipeService equipeService;
   Carte carte;
   Color Color3 = Color.fromARGB(255, 18, 40, 70);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         CardContentBottomSheet.show(context,
-            child: bureauCarteDetails(Color3: Color3, carte: carte),
+            child: bureauCarteDetails(
+                Color3: Color3, carte: carte, equipeService: equipeService),
             image: "assets/images/img_back1.jpg");
       },
       child: Container(
@@ -77,7 +80,7 @@ class CarteCard extends StatelessWidget {
                             width: 5,
                           ),
                           AutoSizeText(
-                            carte.prixFormate,
+                            carte.forceFormate,
                             maxLines: 1,
                             textAlign: TextAlign.left,
                             style: const TextStyle(
@@ -89,7 +92,7 @@ class CarteCard extends StatelessWidget {
                         ],
                       ),
                       const Text(
-                        "Profit par heure",
+                        "Grade apporté",
                         style: TextStyle(
                             fontWeight: FontWeight.w300,
                             color: Colors.white70,
@@ -112,113 +115,112 @@ class CarteCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    AutoSizeText(
-                      carte.nom,
-                      maxLines: 2,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                          ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Divider(
-                        color: Colors.white30,
-                        thickness: 0.1,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      AutoSizeText(
+                        carte.nom,
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                            ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        AutoSizeText(
-                          'Niv ${carte.niveau}',
-                          maxLines: 1,
-                          textAlign: TextAlign.left,
-                          style:
-                              Theme.of(context).textTheme.labelSmall!.copyWith(
-                                    color: Colors.white70,
-                                    fontWeight: FontWeight.w200,
-                                  ),
-                        ),
-                        const VerticalDivider(
-                          color: Colors.white54,
-                          width: 0.4,
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Divider(
+                          color: Colors.white30,
                           thickness: 0.1,
                         ),
-                        Row(
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            CustomImageView(
-                              imagePath: Images.gvt,
-                              fit: BoxFit.contain,
-                              height: 15,
-                              width: 15,
-                            ),
-                            const SizedBox(
-                              width: 3,
-                            ),
                             AutoSizeText(
-                              '20,5K',
+                              'Niv ${carte.niveau}',
                               maxLines: 1,
-                              textAlign: TextAlign.right,
+                              textAlign: TextAlign.left,
                               style: Theme.of(context)
                                   .textTheme
                                   .labelSmall!
                                   .copyWith(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white70,
+                                    fontWeight: FontWeight.w200,
                                   ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              )
-              /*GestureDetector(
-                  onTap:
-                      () /* => showDialog(
-                              barrierDismissible: true,
-                              context: context,
-                              builder: (_) => BadgeAddedAlert(),
-                            )*/
-                      {},
-                  child: Container(
-                    padding: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: Icon(
-                        Icons.shopping_bag_outlined,
-                        size: 22,
-                        color: Colors.grey.shade400,
-                      ),
-                    ),
-                  ),
-                ),*/
-              ),
+                            const VerticalDivider(
+                              color: Colors.white54,
+                              width: 0.4,
+                              thickness: 0.1,
+                            ),
+                            Row(children: [
+                              CustomImageView(
+                                imagePath: Images.gvt,
+                                fit: BoxFit.contain,
+                                height: 15,
+                                width: 15,
+                              ),
+                              const SizedBox(
+                                width: 3,
+                              ),
+                              AutoSizeText(
+                                carte.prixFormate,
+                                maxLines: 1,
+                                textAlign: TextAlign.right,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelSmall!
+                                    .copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                              ),
+                            ]),
+                          ]),
+                    ]),
+              )),
         ]),
       ),
     );
   }
 }
 
-class bureauCarteDetails extends StatelessWidget {
-  const bureauCarteDetails({
+void showCustomSnackBar(BuildContext context, String message) {
+  final overlay = Overlay.of(context);
+  final overlayEntry = OverlayEntry(
+    builder: (context) => CustomSnackBar(
+      message: message,
+    ),
+  );
+
+  // Ajouter l'overlay entry
+  overlay.insert(overlayEntry);
+
+  // Supprimer l'overlay entry après la durée du snackBar
+  Future.delayed(Duration(seconds: 2), () {
+    overlayEntry.remove();
+  });
+}
+
+class bureauCarteDetails extends StatefulWidget {
+  bureauCarteDetails({
     super.key,
     required this.Color3,
     required this.carte,
+    required this.equipeService,
   });
 
   final Color Color3;
   final Carte carte;
 
+  EquipeService equipeService;
+
+  @override
+  State<bureauCarteDetails> createState() => _bureauCarteDetailsState();
+}
+
+class _bureauCarteDetailsState extends State<bureauCarteDetails> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -227,14 +229,14 @@ class bureauCarteDetails extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            carte.nom,
+            widget.carte.nom,
             maxLines: 1,
             textAlign: TextAlign.center,
             textDirection: TextDirection.ltr,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
                 fontSize: 15,
-                color: Color3,
+                color: widget.Color3,
                 fontFamily: "Aller",
                 fontWeight: FontWeight.normal),
           ),
@@ -242,18 +244,18 @@ class bureauCarteDetails extends StatelessWidget {
             height: 5,
           ),
           AutoSizeText(
-            carte.description,
+            widget.carte.description,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                  color: Color3.withOpacity(0.95),
+                  color: widget.Color3.withOpacity(0.95),
                   fontWeight: FontWeight.normal,
                 ),
           ),
           AutoSizeText(
-            "Compétences: ${carte.competences.join(" - ")}",
+            "Compétences: ${widget.carte.competences.join(" - ")}",
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                  color: Color3.withOpacity(0.95),
+                  color: widget.Color3.withOpacity(0.95),
                   fontWeight: FontWeight.normal,
                 ),
           ),
@@ -269,7 +271,7 @@ class bureauCarteDetails extends StatelessWidget {
                   "Grade Apporté : ",
                   style: TextStyle(
                       fontWeight: FontWeight.w300,
-                      color: Color3,
+                      color: widget.Color3,
                       fontFamily: "Aller",
                       fontSize: 12),
                 ),
@@ -287,12 +289,12 @@ class bureauCarteDetails extends StatelessWidget {
                     ),
                     const SizedBox(width: 5),
                     AutoSizeText(
-                      carte.prixFormate,
+                      widget.carte.forceFormate,
                       maxLines: 1,
                       textAlign: TextAlign.left,
                       style: TextStyle(
                         fontSize: 15,
-                        color: Color3,
+                        color: widget.Color3,
                         fontWeight: FontWeight.normal,
                       ),
                     ),
@@ -315,12 +317,12 @@ class bureauCarteDetails extends StatelessWidget {
               ),
               const SizedBox(width: 5),
               AutoSizeText(
-                '205 000',
+                "${widget.carte.getPrix}",
                 maxLines: 1,
                 presetFontSizes: const [22, 20, 18, 15, 14],
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Color3,
+                  color: widget.Color3,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -329,16 +331,135 @@ class bureauCarteDetails extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          DefaultButton(
-            backColor: Colors.purple.shade400,
-            text: 'Go',
-            elevation: 1.0,
-            textColor: Colors.white,
-            fontSize: 15,
-            height: 50,
-            press: () {},
-          )
+          StreamBuilder<bool>(
+            stream: widget.equipeService.loadingStream,
+            builder: (context, snapshot) {
+              if (snapshot.data == true) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      backgroundColor: Colors.black45,
+                      behavior: SnackBarBehavior.floating,
+                      margin: EdgeInsets.only(top: 10, left: 5, right: 5),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)),
+                      content: const Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(3),
+                            child: CircularProgressIndicator(
+                              color: Colors.white70,
+                              strokeWidth: 1.5,
+                            ),
+                          ),
+                          Expanded(
+                            child: const Text(
+                              "Mise à jour de la carte en cours...",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      ),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                });
+                return SizedBox.shrink();
+              } else {
+                return SizedBox.shrink();
+              }
+            },
+          ),
+          StreamBuilder<bool>(
+            stream: widget.equipeService.loadingStream,
+            builder: (context, snapshot) {
+              if (snapshot.data == true) {
+                return DefaultButtonWithchild(
+                    backColor: Colors.purple.shade400,
+                    elevation: 1.0,
+                    height: 50,
+                    press: () {},
+                    child: const Padding(
+                      padding: EdgeInsets.all(2),
+                      child: CircularProgressIndicator(
+                        color: Colors.white70,
+                        strokeWidth: 1.5,
+                      ),
+                    ));
+              } else {
+                return DefaultButton(
+                  backColor: Colors.purple.shade400,
+                  text: 'Go',
+                  elevation: 1.0,
+                  textColor: Colors.white,
+                  fontSize: 15,
+                  height: 50,
+                  press: () async {
+                    try {
+                      await widget.equipeService
+                          .updateEquipe(
+                              widget.carte.nom,
+                              Carte(
+                                  nom: widget.carte.nom,
+                                  description: widget.carte.description,
+                                  competences: widget.carte.competences,
+                                  image: widget.carte.image,
+                                  prix: widget.carte.prix,
+                                  tauxAugmentation:
+                                      widget.carte.tauxAugmentation,
+                                  niveau: widget.carte.niveau + 1,
+                                  estAchete: widget.carte.estAchete,
+                                  force: widget.carte.force,
+                                  tauxAugmentationForce:
+                                      widget.carte.tauxAugmentationForce))
+                          .whenComplete(() {
+                        Navigator.of(context).pop();
+                      });
+                    } catch (e) {
+                      print("error: $e");
+                    }
+                  },
+                );
+              }
+            },
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class CustomSnackBar extends StatelessWidget {
+  final String message;
+  final Color backgroundColor;
+  final Duration duration;
+
+  CustomSnackBar({
+    required this.message,
+    this.backgroundColor = Colors.black45,
+    this.duration = const Duration(seconds: 2),
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      child: Align(
+        alignment: Alignment.topCenter,
+        child: Padding(
+          padding:
+              EdgeInsets.only(top: MediaQuery.of(context).padding.top + 10),
+          child: SnackBar(
+            backgroundColor: backgroundColor,
+            behavior: SnackBarBehavior.floating,
+            content: Text(
+              message,
+              style: TextStyle(color: Colors.white),
+            ),
+            duration: duration,
+          ),
+        ),
       ),
     );
   }

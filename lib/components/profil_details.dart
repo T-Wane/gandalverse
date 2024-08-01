@@ -6,6 +6,7 @@ import 'package:gandalverse/components/infoItem.dart';
 import 'package:gandalverse/core/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
+import 'package:gandalverse/widgets/popups/nieauxDetails_alert.dart';
 
 class ProfilDetails extends StatelessWidget {
   const ProfilDetails({
@@ -201,12 +202,6 @@ class ProfilDetails extends StatelessWidget {
                     showCopy: false,
                     dataColor: Color3,
                   ),
-                  infoItem(
-                    titre: "Mes panneaux",
-                    data: "2",
-                    showCopy: false,
-                    dataColor: Color3,
-                  ),
                 ],
               ),
             ),
@@ -216,17 +211,69 @@ class ProfilDetails extends StatelessWidget {
             child: SizedBox(
               width: 200,
               child: DefaultButton(
-                backColor: Color3,
-                text: ' Détails Niveaux ',
+                backColor: Color3.withOpacity(0.9),
+                text: ' Détails Niveaux >',
                 elevation: 1.0,
                 radius: 5,
                 textColor: Colors.white,
                 fontSize: 12,
+                paddingV: 5,
                 height: 40,
-                press: () {},
+                press: () {
+                  showDialog(
+                    barrierDismissible: true,
+                    context: context,
+                    builder: (_) => NiveauxDetails_PopUp(),
+                  );
+                },
               ),
             ),
-          )
+          ),
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
+            width: double.infinity,
+            height: 50,
+            decoration: BoxDecoration(
+              color: Color3.withOpacity(0.9),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+            ),
+            padding: const EdgeInsetsDirectional.symmetric(
+              horizontal: 10,
+              vertical: 8,
+            ),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5),
+                    child: AutoSizeText(
+                      "Partager GandalVerse",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 14,
+                        fontFamily: 'Aller',
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 40,
+                    width: 40,
+                    padding: const EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      border: Border.all(width: 1, color: Colors.white),
+                    ),
+                    child: Icon(
+                      Icons.share,
+                      color: Color3,
+                    ),
+                  ),
+                ]),
+          ),
         ],
       ),
     );

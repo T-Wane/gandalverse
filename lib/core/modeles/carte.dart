@@ -34,17 +34,36 @@ class Carte {
       niveau: json['niveau'],
       estAchete: json['est_achete'],
       force: json['force'].toDouble(), // Désérialisation de la force
-      tauxAugmentationForce: json['taux_augmentation_force'].toDouble(), // Désérialisation du taux d'augmentation de la force
+      tauxAugmentationForce: json['taux_augmentation_force']
+          .toDouble(), // Désérialisation du taux d'augmentation de la force
     );
   }
 
+  double increase(double value, double taux) =>
+      (niveau > 0 ? (taux * niveau * value) : value);
+
+  get getPrix => increase(prix, tauxAugmentation).toStringAsFixed(1);
+  get getForce => increase(force, tauxAugmentationForce).toStringAsFixed(1);
+
   String get prixFormate {
-    if (prix >= 1000000) {
-      return '${(prix / 1000000).toStringAsFixed(1)}M';
-    } else if (prix >= 1000) {
-      return '${(prix / 1000).toStringAsFixed(1)}K';
+    double value = increase(prix, tauxAugmentation);
+    if (value >= 1000000) {
+      return '${(value / 1000000).toStringAsFixed(1)}M';
+    } else if (value >= 1000) {
+      return '${(value / 1000).toStringAsFixed(1)}K';
     } else {
-      return prix.toStringAsFixed(2);
+      return value.toStringAsFixed(1);
+    }
+  }
+
+  String get forceFormate {
+    double value = increase(force, tauxAugmentationForce / 10);
+    if (value >= 1000000) {
+      return '${(value / 1000000).toStringAsFixed(1)}M';
+    } else if (value >= 1000) {
+      return '${(value / 1000).toStringAsFixed(1)}K';
+    } else {
+      return value.toStringAsFixed(1);
     }
   }
 
@@ -59,7 +78,8 @@ class Carte {
       'niveau': niveau,
       'est_achete': estAchete,
       'force': force, // Sérialisation de la force
-      'taux_augmentation_force': tauxAugmentationForce, // Sérialisation du taux d'augmentation de la force
+      'taux_augmentation_force':
+          tauxAugmentationForce, // Sérialisation du taux d'augmentation de la force
     };
   }
 }

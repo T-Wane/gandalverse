@@ -35,6 +35,7 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
       extendBody: true,
       extendBodyBehindAppBar: true,
       body: Column(children: [
+
         userTopInfos(),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -64,6 +65,7 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
             ],
           ),
         ),
+        
         Container(
           padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
           child: AdvancedSegment(
