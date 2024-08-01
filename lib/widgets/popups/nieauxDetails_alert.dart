@@ -101,11 +101,12 @@ class NiveauxDetails_PopUpState extends State<NiveauxDetails_PopUp>
                             children: [
                               //--------------------------------//
                               CustomImageView(
-                                imagePath: Images.logo_black,
+                                imagePath: Images.vr,
                                 fit: BoxFit.contain,
+                                color: Colors.deepPurple.shade400,
                                 height: 80,
                                 width: double.infinity,
-                                onTap: (){},
+                                onTap: () {},
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
@@ -121,15 +122,15 @@ class NiveauxDetails_PopUpState extends State<NiveauxDetails_PopUp>
                                 ),
                               ),
                               content(
-                                  index: 'Niv 1', titre: 'Œuf', coins: '25k'),
+                                  index: 'Niv 1', titre: 'Œuf', coins: '500k'),
                               content(
                                   index: 'Niv 2',
                                   titre: 'Œuf commence à éclore',
-                                  coins: '25k'),
+                                  coins: '10M'),
                               content(
                                   index: 'Niv 3',
                                   titre: 'Le petit aigle sort en fin',
-                                  coins: '25k'),
+                                  coins: '100M'),
                             ],
                           ),
                         ),
