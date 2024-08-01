@@ -66,7 +66,7 @@ class _userTopInfosState extends State<userTopInfos> {
             GestureDetector(
               onTap: () {
                 CardContentBottomSheet.show(context,
-                    child: const ProfilDetails(Color3: Color3),
+                    child:   ProfilDetails(Color3: Color3,telegram:telegram),
                     image: Images.vr,
                     fit: BoxFit.contain,
                     setCircle: false);
@@ -95,13 +95,13 @@ class _userTopInfosState extends State<userTopInfos> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Text(
-                      "UserName",
-                      //"${telegram.initData.user.username ?? ''} ${telegram.initData.user.lastname ?? ''}",
+                      // "UserName",
+                      "${telegram.initData.user.username ?? ''} ",
                       textAlign: TextAlign.left,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: "Aller",
                         fontSize: 13,
                         color: Colors.white,
@@ -119,7 +119,7 @@ class _userTopInfosState extends State<userTopInfos> {
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
-                            "GV Junior >",
+                            "Œuf >",
                             style: TextStyle(
                                 fontWeight: FontWeight.w300,
                                 color: Colors.purple.shade100,

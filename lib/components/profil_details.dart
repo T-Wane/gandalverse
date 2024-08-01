@@ -7,13 +7,11 @@ import 'package:gandalverse/core/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
 import 'package:gandalverse/widgets/popups/nieauxDetails_alert.dart';
+import 'package:telegram_web_app/telegram_web_app.dart';
 
 class ProfilDetails extends StatelessWidget {
-  const ProfilDetails({
-    super.key,
-    required this.Color3,
-  });
-
+  ProfilDetails({super.key, required this.Color3, required this.telegram});
+  TelegramWebApp telegram;
   final Color Color3;
 
   @override
@@ -26,7 +24,8 @@ class ProfilDetails extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Text(
-              "UserName",
+              // "UserName",
+              "${telegram.initData.user.username ?? ''} ",
               maxLines: 1,
               textAlign: TextAlign.center,
               textDirection: TextDirection.ltr,
@@ -41,7 +40,7 @@ class ProfilDetails extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
             child: Text(
-              "GV Junior - Niv 1",
+              "Œuf - Niv 1",
               style: TextStyle(
                   fontWeight: FontWeight.w400,
                   color: Color3.withOpacity(0.9),

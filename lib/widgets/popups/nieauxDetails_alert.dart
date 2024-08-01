@@ -104,6 +104,7 @@ class NiveauxDetails_PopUpState extends State<NiveauxDetails_PopUp>
                                 imagePath: Images.logo_black,
                                 fit: BoxFit.contain,
                                 height: 80,
+                                width: double.infinity,
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
