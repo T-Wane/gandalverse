@@ -58,7 +58,7 @@ class _PartenaireSectionState extends State<PartenaireSection> {
                 // physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 180,
-                  mainAxisExtent: 180,
+                  mainAxisExtent: 200,
                   crossAxisSpacing: 1,
                   mainAxisSpacing: 1,
                 ),
