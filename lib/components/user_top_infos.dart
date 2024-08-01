@@ -59,7 +59,7 @@ class _userTopInfosState extends State<userTopInfos> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-        height: 60,
+        height: 55,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -82,7 +82,7 @@ class _userTopInfosState extends State<userTopInfos> {
                   ),
                 ),
                 margin: const EdgeInsets.only(left: 5, right: 2),
-                padding: const EdgeInsets.all(5),
+                padding: const EdgeInsets.all(2),
                 child: const Icon(
                   CupertinoIcons.person,
                   color: Colors.white,

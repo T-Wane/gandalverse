@@ -28,6 +28,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "0f94a0f2942fe2f82dc8cd505f667b1c
 "assets/assets/images/game_money.png": "1d9a3d1a50250ca081499c2512957dd5",
 "assets/assets/images/game_puzzle_piece.png": "5b43a9fbd06f50cf9ece5d94f5a3cf50",
 "assets/assets/images/Gandal%2520Verse%2520v2.PNG": "f73addd836efb3ae4192d9aca13905be",
+"assets/assets/images/GandalVersev3.png": "5e80030b0a41545d08466e0859865fa7",
 "assets/assets/images/gift.png": "fd194b305eacd9237fff2cf2ae02126c",
 "assets/assets/images/group.png": "9d74c09183860d1119ddc8449ddacdd3",
 "assets/assets/images/GverseIconePNG.png": "b8321703e5d52f1c9b5151b0d1694f7c",
@@ -82,9 +83,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "0f94a0f2942fe2f82dc8cd505f667b1c
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "d446be072c345320acabc0165165cc9b",
-"/": "d446be072c345320acabc0165165cc9b",
-"main.dart.js": "89b4ce3549479b397d497d9f3a11c064",
+"index.html": "c5b770e00825334e6789038fcce8a3c4",
+"/": "c5b770e00825334e6789038fcce8a3c4",
+"main.dart.js": "2620818b3f106a1395fb514c5bfb9eac",
 "manifest.json": "9f6f1bf5b67cd2b30e68a99551f02cad",
 "version.json": "bdbf5533cd872db8379bf13ff58db6f3"};
 // The application shell files that are downloaded before a service worker can

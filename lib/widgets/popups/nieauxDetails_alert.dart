@@ -105,6 +105,7 @@ class NiveauxDetails_PopUpState extends State<NiveauxDetails_PopUp>
                                 fit: BoxFit.contain,
                                 height: 80,
                                 width: double.infinity,
+                                onTap: (){},
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
