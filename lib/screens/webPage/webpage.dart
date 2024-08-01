@@ -27,11 +27,8 @@ class _GandalVerseWebViewState extends State<GandalVerseWebView> {
   Offset _offset = Offset.zero;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color.fromARGB(255, 12, 17, 19),
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      body: Column(children: [
+    return SafeArea(
+      child: Column(children: [
         userTopInfos(),
         Expanded(
           child: Stack(children: [
