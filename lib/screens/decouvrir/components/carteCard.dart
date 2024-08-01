@@ -22,7 +22,7 @@ class CarteCard extends StatelessWidget {
         CardContentBottomSheet.show(context,
             child: bureauCarteDetails(
                 Color3: Color3, carte: carte, equipeService: equipeService),
-            image: "assets/images/img_back1.jpg");
+            image: carte.image);
       },
       child: Container(
         margin: const EdgeInsets.all(6),
@@ -50,8 +50,8 @@ class CarteCard extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.black87,
-                  image: const DecorationImage(
-                    image: AssetImage("assets/images/img_back1.jpg"),
+                  image: DecorationImage(
+                    image: AssetImage(carte.image),
                     fit: BoxFit.cover,
                   ),
                 ),

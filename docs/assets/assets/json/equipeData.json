@@ -1,141 +1,13 @@
 [
   {
-    "nom": "Artiste 3D",
-    "description": "Rejoins l'élite des créateurs! En tant qu'Artiste 3D, tu façonneras les avatars et les paysages de notre métavers. Laisse libre cours à ton imagination et construisons un monde époustouflant.",
-    "competences": ["Modélisation 3D", "Texturisation", "Animation"],
-    "image": "assets/images/artiste_3d.png",
-    "prix": 1200.0,
-    "taux_augmentation": 5.0,
-    "niveau": 0,
-    "est_achete": false,
-    "force": 100.0,
-    "taux_augmentation_force": 10.0
-  },
-  {
-    "nom": "Designer Graphique",
-    "description": "Deviens le magicien des pixels ! En tant que Designer Graphique, tu seras responsable de créer des éléments visuels captivants qui donneront vie à Gandalverse. Ton talent transformera notre univers en une œuvre d'art interactive.",
-    "competences": ["Adobe Photoshop", "Illustrator", "UI/UX Design"],
-    "image": "assets/images/designer_graphique.png",
-    "prix": 1500.0,
-    "taux_augmentation": 6.0,
-    "niveau": 2,
-    "est_achete": true,
-    "force": 200.0,
-    "taux_augmentation_force": 15.0
-  },
-  {
-    "nom": "Illustrateur",
-    "description": "Laisse ta créativité s'exprimer ! Comme Illustrateur, tu dessineras les objets, avatars et scènes qui feront vibrer nos utilisateurs. Chaque trait de crayon contribuera à la magie de Gandalverse.",
-    "competences": ["Dessin", "Peinture numérique", "Conception créative"],
-    "image": "assets/images/illustrateur.png",
-    "prix": 800.0,
-    "taux_augmentation": 4.0,
-    "niveau": 3,
-    "est_achete": false,
-    "force": 80.0,
-    "taux_augmentation_force": 5.0
-  },
-  {
-    "nom": "Animateur",
-    "description": "Fais bouger Gandalverse ! En tant qu'Animateur, tu donneras vie à nos personnages et objets. Tes animations rendront notre monde plus dynamique et interactif, captivant les joueurs à chaque mouvement.",
-    "competences": ["Animation 2D/3D", "Rigueur", "Créativité"],
-    "image": "assets/images/animateur.png",
-    "prix": 950.0,
-    "taux_augmentation": 5.5,
-    "niveau": 0,
-    "est_achete": true,
-    "force": 120.0,
-    "taux_augmentation_force": 12.0
-  },
-  {
-    "nom": "Développeur Front-end",
-    "description": "Deviens l'architecte de l'expérience utilisateur ! En tant que Développeur Front-end, tu créeras des interfaces intuitives et élégantes. Ton travail garantira que chaque interaction dans Gandalverse soit fluide et agréable.",
-    "competences": ["HTML", "CSS", "JavaScript", "Flutter", "React"],
-    "image": "assets/images/developpeur_frontend.png",
-    "prix": 1800.0,
-    "taux_augmentation": 7.0,
-    "niveau": 2,
-    "est_achete": false,
-    "force": 250.0,
-    "taux_augmentation_force": 20.0
-  },
-  {
-    "nom": "Développeur Back-end",
-    "description": "Prends les commandes des coulisses ! Comme Développeur Back-end, tu assureras la solidité et la fiabilité de notre infrastructure. Tu seras le gardien des serveurs et des bases de données, garantissant une expérience sans faille pour tous.",
-    "competences": ["Python", "SQL", "Sécurité des données", "Scalabilité"],
-    "image": "assets/images/developpeur_backend.png",
-    "prix": 2000.0,
-    "taux_augmentation": 8.0,
-    "niveau": 3,
-    "est_achete": true,
-    "force": 300.0,
-    "taux_augmentation_force": 25.0
-  },
-  {
-    "nom": "Ingénieur Blockchain",
-    "description": "Construit l'avenir décentralisé ! En tant qu'Ingénieur Blockchain, tu intègreras des technologies de pointe pour sécuriser et enrichir notre métavers. Tu joueras un rôle clé dans l'innovation de Gandalverse.",
-    "competences": ["Blockchain", "Smart Contracts", "Sécurité"],
-    "image": "assets/images/ingenieur_blockchain.png",
-    "prix": 2500.0,
-    "taux_augmentation": 9.0,
-    "niveau": 4,
-    "est_achete": false,
-    "force": 400.0,
-    "taux_augmentation_force": 30.0
-  },
-  {
-    "nom": "Développeur de Jeu",
-    "description": "Crée des aventures inoubliables ! Comme Développeur de Jeu, tu concevras et coderas les mécanismes de jeu qui feront vibrer nos utilisateurs. Ton talent transformera Gandalverse en un terrain de jeu immersif.",
-    "competences": ["Unity", "Unreal Engine", "C#", "Game Design"],
-    "image": "assets/images/developpeur_jeu.png",
-    "prix": 3000.0,
-    "taux_augmentation": 10.0,
-    "niveau": 5,
-    "est_achete": false,
-    "force": 500.0,
-    "taux_augmentation_force": 35.0
-  },
-  {
-    "nom": "Marketing Digital",
-    "description": "Deviens le stratège de notre succès ! En tant que Spécialiste Marketing Digital, tu élaboreras des campagnes qui attireront et engageront des millions d'utilisateurs. Ton expertise propulsera Gandalverse au sommet.",
-    "competences": ["SEO", "Content Marketing", "PPC"],
-    "image": "assets/images/marketing_digital.png",
-    "prix": 1400.0,
-    "taux_augmentation": 6.5,
-    "niveau": 2,
-    "est_achete": true,
-    "force": 180.0,
-    "taux_augmentation_force": 18.0
-  },
-  {
-    "nom": "Spécialiste des Réseaux Sociaux",
-    "description": "Fais parler de nous sur la toile ! Comme Spécialiste des Réseaux Sociaux, tu animeras nos communautés en ligne et diffuseras notre message à travers le monde. Ta créativité captivera notre audience.",
-    "competences": ["Gestion des réseaux sociaux", "Création de contenu", "Analyse des tendances"],
-    "image": "assets/images/specialiste_reseaux_sociaux.png",
-    "prix": 1100.0,
-    "taux_augmentation": 5.0,
-    "niveau": 0,
-    "est_achete": false,
-    "force": 90.0,
-    "taux_augmentation_force": 8.0
-  },
-  {
-    "nom": "Vendeurs Élites",
-    "description": "Sois notre maître de la négociation ! En tant que Vendeur Élite, tu concluras des partenariats stratégiques et trouveras des opportunités lucratives. Ton talent pour les affaires ouvrira de nouvelles portes à Gandalverse.",
-    "competences": ["Négociation", "Relation Client", "Stratégie de Vente"],
-    "image": "assets/images/vendeurs_elites.png",
-    "prix": 1600.0,
-    "taux_augmentation": 6.0,
-    "niveau": 3,
-    "est_achete": false,
-    "force": 220.0,
-    "taux_augmentation_force": 22.0
-  },
-  {
     "nom": "Responsable de la Communication",
     "description": "Deviens la voix de Gandalverse ! Comme Responsable de la Communication, tu gérerais nos relations publiques et veilleras à ce que notre image soit irréprochable. Tu seras le pont entre nous et la communauté.",
-    "competences": ["Communication", "Relations publiques", "Stratégie de marque"],
-    "image": "assets/images/responsable_communication.png",
+    "competences": [
+      "Communication",
+      "Relations publiques",
+      "Stratégie de marque"
+    ],
+    "image": "assets/images/qg_images/responsableCommunication.jpg",
     "prix": 1300.0,
     "taux_augmentation": 6.0,
     "niveau": 2,
@@ -146,8 +18,12 @@
   {
     "nom": "Chef de Projet",
     "description": "Conduis nos équipes vers la victoire ! En tant que Chef de Projet, tu coordonneras les efforts de chacun pour atteindre nos objectifs. Ton leadership et ton organisation seront cruciaux pour notre succès.",
-    "competences": ["Gestion de projet", "Leadership", "Planification stratégique"],
-    "image": "assets/images/chef_de_projet.png",
+    "competences": [
+      "Gestion de projet",
+      "Leadership",
+      "Planification stratégique"
+    ],
+    "image": "assets/images/qg_images/chefdeProjet.jpg",
     "prix": 1700.0,
     "taux_augmentation": 7.0,
     "niveau": 3,
@@ -158,8 +34,12 @@
   {
     "nom": "Support Client",
     "description": "Sois notre héros du quotidien ! Comme Support Client, tu aideras les utilisateurs à résoudre leurs problèmes et amélioreras leur expérience dans Gandalverse. Ta patience et ton efficacité feront toute la différence.",
-    "competences": ["Service client", "Résolution de problèmes", "Communication"],
-    "image": "assets/images/support_client.png",
+    "competences": [
+      "Service client",
+      "Résolution de problèmes",
+      "Communication"
+    ],
+    "image": "assets/images/qg_images/supportClient.jpg",
     "prix": 950.0,
     "taux_augmentation": 5.0,
     "niveau": 0,
@@ -170,8 +50,12 @@
   {
     "nom": "Community Manager",
     "description": "Anime notre monde virtuel ! En tant que Community Manager, tu engageras et modéreras nos utilisateurs, créant une atmosphère positive et collaborative. Ton dynamisme et ton écoute renforceront notre communauté.",
-    "competences": ["Modération", "Animation de communauté", "Écoute active"],
-    "image": "assets/images/community_manager.png",
+    "competences": [
+      "Modération",
+      "Animation de communauté",
+      "Écoute active"
+    ],
+    "image": "assets/images/qg_images/communityManager.jpg",
     "prix": 1000.0,
     "taux_augmentation": 5.5,
     "niveau": 2,
@@ -180,87 +64,19 @@
     "taux_augmentation_force": 12.0
   },
   {
-    "nom": "Gestionnaire de Partenariats",
-    "description": "Tisse des alliances puissantes ! En tant que Gestionnaire de Partenariats, tu identifieras et développeras des collaborations stratégiques. Tes compétences relationnelles permettront à Gandalverse de grandir.",
-    "competences": ["Partenariats", "Négociation", "Développement des affaires"],
-    "image": "assets/images/gestionnaire_partenariats.png",
-    "prix": 1400.0,
-    "taux_augmentation": 6.5,
-    "niveau": 2,
-    "est_achete": false,
-    "force": 190.0,
-    "taux_augmentation_force": 17.0
-  },
-  {
-    "nom": "Spécialiste des Relations Publiques",
-    "description": "Éclaire notre chemin vers la reconnaissance ! Comme Spécialiste des Relations Publiques, tu travailleras à renforcer notre image et à gérer les relations avec les médias. Ton expertise amplifiera notre influence.",
-    "competences": ["Relations publiques", "Rédaction", "Stratégie de communication"],
-    "image": "assets/images/specialiste_relations_publiques.png",
-    "prix": 1300.0,
-    "taux_augmentation": 6.0,
-    "niveau": 0,
-    "est_achete": false,
-    "force": 140.0,
-    "taux_augmentation_force": 14.0
-  },
-  {
-    "nom": "Spécialiste KYC/KYB",
-    "description": "Assure notre conformité ! En tant que Spécialiste KYC/KYB, tu veilleras à ce que nos utilisateurs et partenaires respectent les normes de sécurité et de transparence. Ton rôle est vital pour notre intégrité.",
-    "competences": ["Conformité", "Sécurité", "Analyse des risques"],
-    "image": "assets/images/specialiste_kyc_kyb.png",
-    "prix": 1100.0,
-    "taux_augmentation": 5.5,
-    "niveau": 0,
-    "est_achete": false,
-    "force": 90.0,
-    "taux_augmentation_force": 9.0
-  },
-  {
-    "nom": "Expert en Conformité",
-    "description": "Garde notre métavers en règle ! Comme Expert en Conformité, tu géreras les aspects légaux et réglementaires de Gandalverse, garantissant notre adhérence aux lois en vigueur. Ta vigilance protégera notre écosystème.",
-    "competences": ["Droit", "Conformité", "Réglementation"],
-    "image": "assets/images/expert_conformite.png",
-    "prix": 1500.0,
-    "taux_augmentation": 6.0,
-    "niveau": 2,
-    "est_achete": false,
-    "force": 200.0,
-    "taux_augmentation_force": 15.0
-  },
-  {
     "nom": "Analyste Financier",
     "description": "Gère nos trésors ! En tant qu'Analyste Financier, tu surveilleras nos finances, établiras des budgets et feras des prévisions pour assurer notre prospérité. Ta rigueur financière nous guidera vers le succès.",
-    "competences": ["Analyse financière", "Gestion budgétaire", "Prévisions économiques"],
-    "image": "assets/images/analyste_financier.png",
+    "competences": [
+      "Analyse financière",
+      "Gestion budgétaire",
+      "Prévisions économiques"
+    ],
+    "image": "assets/images/qg_images/analysteFinancier.jpg",
     "prix": 1600.0,
     "taux_augmentation": 6.5,
     "niveau": 3,
     "est_achete": true,
     "force": 220.0,
     "taux_augmentation_force": 20.0
-  },
-  {
-    "nom": "Comptable",
-    "description": "Assure la bonne gestion de nos ressources ! Comme Comptable, tu tiendras nos livres et veilleras à ce que toutes les transactions soient précises et transparentes. Ton expertise est essentielle à notre croissance.",
-    "competences": ["Comptabilité", "Gestion des finances", "Transparence"],
-    "image": "assets/images/comptable.png",
-    "prix": 900.0,
-    "taux_augmentation": 4.5,
-    "niveau": 0,
-    "est_achete": false,
-    "force": 70.0,
-    "taux_augmentation_force": 7.0
-  },
-  {
-    "nom": "Ressources Humaines",
-    "description": "Soutiens notre équipe ! En tant que Spécialiste des Ressources Humaines, tu géreras le recrutement, la formation et le bien-être de nos employés. Ton rôle est crucial pour maintenir une équipe motivée et performante.",
-    "competences": ["Recrutement", "Formation", "Gestion des talents"],
-    "image": "assets/images/ressources_humaines.png",
-    "prix": 1300.0,
-    "taux_augmentation": 6.0,
-    "niveau": 2,
-    "est_achete": false,
-    "force": 150.0,
-    "taux_augmentation_force": 15.0
   }
 ]
