@@ -72,6 +72,26 @@ class TapToEarnCard extends StatelessWidget {
 
   Widget child;
 
+  List<Map<String, dynamic>> data = [
+    {
+      'image': Images.dailyCalendar,
+      'titre': 'Daily',
+      'isChecked': true,
+      'timeRestant': '2h 30m',
+    },
+    {
+      'image': Images.word,
+      'titre': 'Go Word',
+      'isChecked': false,
+      'timeRestant': '1h 15m',
+    },
+    {
+      'image': Images.question,
+      'titre': 'Enigme',
+      'isChecked': true,
+      'timeRestant': '3h 45m',
+    }
+  ];
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
@@ -81,39 +101,86 @@ class TapToEarnCard extends StatelessWidget {
               alignment: Alignment.centerRight, child: closeIcon(context))),
       */
       Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.1),
             borderRadius: BorderRadius.circular(12)),
         child: Column(
           children: [
             Container(
-              height: 70,
+              height: 75,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  3,
-                  (index) => Expanded(
-                    child: AnimatedContainer(
-                      margin: const EdgeInsets.all(2),
-                      padding: const EdgeInsets.only(top: 2),
-                      duration: const Duration(milliseconds: 200),
-                      decoration: BoxDecoration(
-                        color: Colors.purpleAccent.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Color3.withOpacity(0.9),
-                            borderRadius: BorderRadius.circular(10)),
-                      ),
-                    ),
-                  ),
-                ),
+                children: data
+                    .map((e) => Expanded(
+                          child: AnimatedContainer(
+                            margin: const EdgeInsets.all(2),
+                            padding: const EdgeInsets.only(top: 2),
+                            duration: const Duration(milliseconds: 200),
+                            decoration: BoxDecoration(
+                              color: Colors.purpleAccent.withOpacity(0.2),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Stack(children: [
+                              Container(
+                                padding: const EdgeInsets.all(2),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    color: Color3.withOpacity(0.9),
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                        child: CustomImageView(
+                                      imagePath: e['image'],
+                                      fit: BoxFit.contain,
+                                      margin: const EdgeInsets.all(2),
+                                    )),
+                                    AutoSizeText(
+                                      e['titre'],
+                                      presetFontSizes: const [12, 11, 10, 9],
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.normal,
+                                          fontFamily: "Aller"),
+                                    ),
+                                    AutoSizeText(
+                                      e['timeRestant'],
+                                      presetFontSizes: const [10, 9],
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w200,
+                                          fontFamily: "Aller"),
+                                    ),
+                                  ],
+                                ),
+                              ), //########################//
+                              if (e["isChecked"] == true) ...[
+                                Positioned(
+                                  top: 2,
+                                  right: 2,
+                                  child: Icon(
+                                    CupertinoIcons.checkmark_seal_fill,
+                                    color: Colors.green.shade400,
+                                    size: 12,
+                                  ),
+                                )
+                              ]
+                            ]),
+                          ),
+                        ))
+                    .toList(),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
