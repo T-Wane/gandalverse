@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:gandalverse/components/default_btn.dart';
-import 'package:gandalverse/core/modeles/carte.dart'; 
+import 'package:gandalverse/core/modeles/carte.dart';
 import 'package:gandalverse/core/services/service.dart';
 import 'package:gandalverse/core/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
@@ -44,9 +44,10 @@ class CarteCard extends StatelessWidget {
           Expanded(
             child: Stack(
               children: [
-                Container( 
+                Container(
                   width: double.infinity,
-                  margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.black87,
@@ -239,7 +240,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                 fontSize: 15,
                 color: widget.Color3,
                 fontFamily: "Aller",
-                fontWeight: FontWeight.normal),
+                fontWeight: FontWeight.w500),
           ),
           const SizedBox(
             height: 5,
@@ -252,7 +253,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                   fontWeight: FontWeight.normal,
                 ),
           ),
-          if (widget.carte.competences != null || (widget.carte.competences??[]).isNotEmpty ) ...[
+          if ((widget.carte.competences ?? []).isNotEmpty) ...[
             AutoSizeText(
               "Compétences: ${widget.carte.competences?.join(" - ")}",
               textAlign: TextAlign.center,

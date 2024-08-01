@@ -25,86 +25,84 @@ class CardContentBottomSheet extends StatelessWidget {
             topStart: Radius.circular(15),
           ),
         ),
-        builder: (context) => Stack(
-          children: [
-            AnimatedContainer(
+        builder: (context) => Stack(children: [
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            margin: const EdgeInsets.only(top: 100),
+            decoration: BoxDecoration(
+                color: Colors.purpleAccent.withOpacity(0.6),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.purpleAccent.withOpacity(0.5),
+                      offset: const Offset(1, 1),
+                      blurRadius: 10,
+                      spreadRadius: 4)
+                ]),
+            child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
-              margin: const EdgeInsets.only(top: 70),
+              margin: const EdgeInsets.only(top: 2),
+              padding: const EdgeInsetsDirectional.symmetric(
+                horizontal: 5,
+                vertical: 5,
+              ),
               decoration: BoxDecoration(
-                  color: Colors.purpleAccent.withOpacity(0.6),
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Colors.purpleAccent.withOpacity(0.5),
-                        offset: const Offset(1, 1),
-                        blurRadius: 10,
-                        spreadRadius: 4)
-                  ]),
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                margin: const EdgeInsets.only(top: 2),
-                padding: const EdgeInsetsDirectional.symmetric(
-                  horizontal: 5,
-                  vertical: 5,
+                color: backColor,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
                 ),
-                decoration: BoxDecoration(
-                  color: backColor,
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                  ),
-                ),
-                child: Padding(
-                  padding: MediaQuery.of(context).viewInsets,
-                  child: CardContentBottomSheet(
-                    key: key,
-                    image: image,
-                    child: child,
-                  ),
+              ),
+              child: Padding(
+                padding: MediaQuery.of(context).viewInsets,
+                child: CardContentBottomSheet(
+                  key: key,
+                  image: image,
+                  child: child,
                 ),
               ),
             ),
-            //---------------//
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: Align(
-                alignment: Alignment.center,
+          ),
+          //---------------//
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Align(
+              alignment: Alignment.center,
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Color3.withOpacity(0.1),
+                ),
                 child: Container(
+                  padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Color3.withOpacity(0.1),
+                    color: Colors.purpleAccent.withOpacity(0.1),
                   ),
                   child: Container(
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.purpleAccent.withOpacity(0.1),
                     ),
-                    child: Container(
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.purpleAccent.withOpacity(0.1),
-                      ),
-                      child: CustomImageView(
-                        imagePath: image,
-                        height: 100,
-                        width: 100,
-                        radius: setCircle ? BorderRadius.circular(50) : null,
-                        fit: fit,
-                      ),
+                    child: CustomImageView(
+                      imagePath: image,
+                      height: 150,
+                      width: 150,
+                      radius: setCircle ? BorderRadius.circular(75) : null,
+                      fit: fit,
                     ),
                   ),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ]),
       ).then((_) => FocusScope.of(context).requestFocus(FocusNode()));
 
   static void hide(BuildContext context) => Navigator.pop(context);
@@ -119,7 +117,7 @@ class CardContentBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
       Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
           child: Align(
               alignment: Alignment.centerRight, child: closeIcon(context))),
       Padding(
