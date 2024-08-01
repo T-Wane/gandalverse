@@ -66,7 +66,7 @@ class _userTopInfosState extends State<userTopInfos> {
             GestureDetector(
               onTap: () {
                 CardContentBottomSheet.show(context,
-                    child:   ProfilDetails(Color3: Color3,telegram:telegram),
+                    child: ProfilDetails(Color3: Color3, telegram: telegram),
                     image: Images.vr,
                     fit: BoxFit.contain,
                     setCircle: false);
@@ -99,7 +99,7 @@ class _userTopInfosState extends State<userTopInfos> {
                     padding: const EdgeInsets.only(left: 10),
                     child: Text(
                       // "UserName",
-                      "${telegram.initData.user.username ?? ''} ",
+                      "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
                       textAlign: TextAlign.left,
                       style: const TextStyle(
                         fontFamily: "Aller",

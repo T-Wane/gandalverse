@@ -45,7 +45,7 @@ class Images {
   //Vr
   static String vr = "$ressourcePath/GverseIconePNG.png";
   //Logo
-  static String logo_black = "$ressourcePath/GandalVersev3.PNG";
+  static String logo_black = "$ressourcePath/GandalVersev3.png";
 
   //coins
   static String gvt = "$ressourcePath/GVT.png";

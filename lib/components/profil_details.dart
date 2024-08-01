@@ -25,7 +25,7 @@ class ProfilDetails extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Text(
               // "UserName",
-              "${telegram.initData.user.username ?? ''} ",
+              "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
               maxLines: 1,
               textAlign: TextAlign.center,
               textDirection: TextDirection.ltr,
