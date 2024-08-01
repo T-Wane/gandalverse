@@ -252,7 +252,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                   fontWeight: FontWeight.normal,
                 ),
           ),
-          if (widget.carte.competences != null) ...[
+          if (widget.carte.competences != null || (widget.carte.competences??[]).isNotEmpty ) ...[
             AutoSizeText(
               "Compétences: ${widget.carte.competences?.join(" - ")}",
               textAlign: TextAlign.center,

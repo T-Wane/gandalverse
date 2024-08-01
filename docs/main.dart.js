@@ -24900,7 +24900,7 @@ arv:function arv(a,b){this.a=a
 this.b=b},
 art:function art(a){this.a=a},
 aru:function aru(){},
-a0t(a){var s="competences",r=a.i(0,"nom"),q=a.i(0,"description"),p=a.i(0,s)!=null?A.l7(a.i(0,s),!0,t.N):null
+a0t(a){var s="competences",r=a.i(0,"nom"),q=a.i(0,"description"),p=a.aj(s)?A.l7(a.i(0,s),!0,t.N):null
 return new A.fh(r,q,p,a.i(0,"image"),J.a_4(a.i(0,"prix")),J.a_4(a.i(0,"taux_augmentation")),a.i(0,"niveau"),a.i(0,"est_achete"),J.a_4(a.i(0,"force")),J.a_4(a.i(0,"taux_augmentation_force")))},
 fh:function fh(a,b,c,d,e,f,g,h,i,j){var _=this
 _.a=a
@@ -82134,8 +82134,10 @@ r.toString
 q=o.a.c.a
 p=t.p
 q=A.a([m,B.R,A.bJ(s.b,n,12,n,n,r.dP(A.E(242,q>>>16&255,q>>>8&255,q&255),B.k),B.z)],p)
-m=o.a.d.c
-if(m!=null){m=B.b.bO(m," - ")
+if(o.a.d.c==null){A.a([],t.s)
+m=!1}else m=!0
+if(m){m=o.a.d.c
+m=m==null?n:B.b.bO(m," - ")
 s=A.U(a).p3.ax
 s.toString
 r=o.a.c.a
