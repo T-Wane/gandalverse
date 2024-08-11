@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gandalverse/core/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
 class AnnonceCard extends StatelessWidget {
@@ -7,6 +8,7 @@ class AnnonceCard extends StatelessWidget {
     required this.title,
     required this.titleColor,
     required this.text,
+    this.reward,
     required this.textColor,
     required this.backColors,
     required this.imagePath,
@@ -16,6 +18,7 @@ class AnnonceCard extends StatelessWidget {
   }) : super(key: key);
 
   final String title, text;
+  final String? reward;
   final String imagePath;
   final VoidCallback? press;
   final Color titleColor, textColor;
@@ -95,16 +98,44 @@ class AnnonceCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Expanded(
-                            child: Text(
-                              text,
-                              textAlign: TextAlign.start,
-                              maxLines: limitLine ? 2 : null,
-                              overflow:
-                                  limitLine ? TextOverflow.ellipsis : null,
-                              style: const TextStyle(
-                                color: Colors.black87,
-                                fontSize: 12,
+                            child: RichText(
+                              text: TextSpan(
+                                text: text,
+                                style: const TextStyle(
+                                  color: Colors.black87,
+                                  fontSize: 12,
+                                ),
+                                children: [
+                                  if (reward != null) ...[
+                                    const TextSpan(
+                                      text: " ",
+                                    ),
+                                    TextSpan(
+                                      text: reward,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.green,
+                                      ),
+                                    ),
+                                    WidgetSpan(
+                                      alignment: PlaceholderAlignment.middle,
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 4.0),
+                                        child: Image.asset(
+                                          Images.gvt,
+                                          height: 14,
+                                          width: 14,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ],
                               ),
+                              maxLines: limitLine ? 2 : null,
+                              overflow: limitLine
+                                  ? TextOverflow.ellipsis
+                                  : TextOverflow.clip,
                             ),
                           ),
                         ],
