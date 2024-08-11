@@ -30,7 +30,6 @@ class TapToEarnCard extends StatelessWidget {
         ),
         builder: (context) => BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 2, sigmaY: 4),
-          blendMode: BlendMode.overlay,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             decoration: BoxDecoration(
@@ -93,8 +92,8 @@ class TapToEarnCard extends StatelessWidget {
       'timeRestant': '1h 15m',
     },
     {
-      'image': Images.question,
-      'titre': 'Enigme',
+      'image': Images.scanQr,
+      'titre': 'Scan',
       'isChecked': true,
       'timeRestant': '3h 45m',
     }
@@ -139,11 +138,18 @@ class TapToEarnCard extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Expanded(
-                                        child: CustomImageView(
-                                      imagePath: e['image'],
-                                      fit: BoxFit.contain,
-                                      margin: const EdgeInsets.all(2),
-                                    )),
+                                        child: e['titre'] == 'Scan'
+                                            ? CustomImageView(
+                                                imagePath: e['image'],
+                                                fit: BoxFit.contain,
+                                                margin: const EdgeInsets.all(2),
+                                                color: Colors.white,
+                                              )
+                                            : CustomImageView(
+                                                imagePath: e['image'],
+                                                fit: BoxFit.contain,
+                                                margin: const EdgeInsets.all(2),
+                                              )),
                                     AutoSizeText(
                                       e['titre'],
                                       presetFontSizes: const [12, 11, 10, 9],

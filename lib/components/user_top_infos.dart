@@ -98,8 +98,8 @@ class _userTopInfosState extends State<userTopInfos> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Text(
-                      // "UserName",
-                      "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
+                      "UserName",
+                      //"${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
                       textAlign: TextAlign.left,
                       style: const TextStyle(
                         fontFamily: "Aller",

@@ -13,8 +13,7 @@ class _EquipeSectionState extends State<EquipeSection> {
   late Future<List<Carte>> _equipeFuture;
   final EquipeService _equipeService = EquipeService();
   final ScrollController _scrollController = ScrollController();
-  
-  
+
   @override
   void initState() {
     super.initState();
@@ -42,14 +41,14 @@ class _EquipeSectionState extends State<EquipeSection> {
       stream: _equipeService.equipeStream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Center(child: Text('Erreur : ${snapshot.error}'));
         } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return Center(child: Text('Aucune donnée disponible'));
+          return const Center(child: Text('Aucune donnée disponible'));
         } else {
           final equipeList = snapshot.data!;
-         
+
           return Padding(
             padding: const EdgeInsets.all(5.0),
             child: GridView.builder(
@@ -69,17 +68,7 @@ class _EquipeSectionState extends State<EquipeSection> {
                   return CarteCard(carte: carte, qgService: _equipeService);
                 }),
           );
-          /* ListView.builder(
-              itemCount: equipeList.length,
-              itemBuilder: (context, index) {
-                final Carte = equipeList[index];
-                return ListTile(
-                  leading: Image.asset(Carte.image),
-                  title: Text(Carte.nom),
-                  subtitle: Text(Carte.description),
-                );
-              },
-            );*/
+          
         }
       },
     );

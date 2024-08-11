@@ -49,43 +49,12 @@ class CarteCard extends StatelessWidget {
                   margin:
                       const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    color: Colors.deepPurple.shade400,
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          CustomImageView(
-                            imagePath: Images.gvt,
-                            fit: BoxFit.contain,
-                            height: 15,
-                            width: 15,
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          AutoSizeText(
-                            carte.forceFormate,
-                            maxLines: 1,
-                            textAlign: TextAlign.left,
-                            style: const TextStyle(
-                              fontSize: 8,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const Text(
-                        "Profit par heure",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            color: Colors.white70,
-                            fontFamily: "Aller",
-                            fontSize: 7),
-                      ),
-                    ],
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.black87,
+                    image: DecorationImage(
+                      image: AssetImage(carte.image),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 Positioned(
