@@ -6,13 +6,12 @@ import 'package:gandalverse/components/infoItem.dart';
 import 'package:gandalverse/core/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
+import 'package:gandalverse/widgets/popups/nieauxDetails_alert.dart';
+import 'package:telegram_web_app/telegram_web_app.dart';
 
 class ProfilDetails extends StatelessWidget {
-  const ProfilDetails({
-    super.key,
-    required this.Color3,
-  });
-
+  ProfilDetails({super.key, required this.Color3, required this.telegram});
+  TelegramWebApp telegram;
   final Color Color3;
 
   @override
@@ -25,7 +24,8 @@ class ProfilDetails extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Text(
-              "UserName",
+              // "UserName",
+              "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
               maxLines: 1,
               textAlign: TextAlign.center,
               textDirection: TextDirection.ltr,
@@ -40,7 +40,7 @@ class ProfilDetails extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
             child: Text(
-              "GV Junior - Niv 1",
+              "Œuf - Niv 1",
               style: TextStyle(
                   fontWeight: FontWeight.w400,
                   color: Color3.withOpacity(0.9),
@@ -201,12 +201,6 @@ class ProfilDetails extends StatelessWidget {
                     showCopy: false,
                     dataColor: Color3,
                   ),
-                  infoItem(
-                    titre: "Mes panneaux",
-                    data: "2",
-                    showCopy: false,
-                    dataColor: Color3,
-                  ),
                 ],
               ),
             ),
@@ -216,17 +210,69 @@ class ProfilDetails extends StatelessWidget {
             child: SizedBox(
               width: 200,
               child: DefaultButton(
-                backColor: Color3,
-                text: ' Détails Niveaux ',
+                backColor: Color3.withOpacity(0.9),
+                text: ' Détails Niveaux >',
                 elevation: 1.0,
                 radius: 5,
                 textColor: Colors.white,
                 fontSize: 12,
+                paddingV: 5,
                 height: 40,
-                press: () {},
+                press: () {
+                  showDialog(
+                    barrierDismissible: true,
+                    context: context,
+                    builder: (_) => NiveauxDetails_PopUp(),
+                  );
+                },
               ),
             ),
-          )
+          ),
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 5),
+            width: double.infinity,
+            height: 50,
+            decoration: BoxDecoration(
+              color: Color3.withOpacity(0.9),
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+            ),
+            padding: const EdgeInsetsDirectional.symmetric(
+              horizontal: 10,
+              vertical: 8,
+            ),
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 5),
+                    child: AutoSizeText(
+                      "Partager GandalVerse",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal,
+                        fontSize: 14,
+                        fontFamily: 'Aller',
+                      ),
+                    ),
+                  ),
+                  Container(
+                    height: 40,
+                    width: 40,
+                    padding: const EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      border: Border.all(width: 1, color: Colors.white),
+                    ),
+                    child: Icon(
+                      Icons.share,
+                      color: Color3,
+                    ),
+                  ),
+                ]),
+          ),
         ],
       ),
     );

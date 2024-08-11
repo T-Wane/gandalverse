@@ -59,14 +59,14 @@ class _userTopInfosState extends State<userTopInfos> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-        height: 60,
+        height: 55,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GestureDetector(
               onTap: () {
                 CardContentBottomSheet.show(context,
-                    child: const ProfilDetails(Color3: Color3),
+                    child: ProfilDetails(Color3: Color3, telegram: telegram),
                     image: Images.vr,
                     fit: BoxFit.contain,
                     setCircle: false);
@@ -82,7 +82,7 @@ class _userTopInfosState extends State<userTopInfos> {
                   ),
                 ),
                 margin: const EdgeInsets.only(left: 5, right: 2),
-                padding: const EdgeInsets.all(5),
+                padding: const EdgeInsets.all(2),
                 child: const Icon(
                   CupertinoIcons.person,
                   color: Colors.white,
@@ -95,13 +95,13 @@ class _userTopInfosState extends State<userTopInfos> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
+                  Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Text(
-                      "UserName",
-                      //"${telegram.initData.user.username ?? ''} ${telegram.initData.user.lastname ?? ''}",
+                      // "UserName",
+                      "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
                       textAlign: TextAlign.left,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontFamily: "Aller",
                         fontSize: 13,
                         color: Colors.white,
@@ -119,7 +119,7 @@ class _userTopInfosState extends State<userTopInfos> {
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
-                            "GV Junior >",
+                            "Œuf >",
                             style: TextStyle(
                                 fontWeight: FontWeight.w300,
                                 color: Colors.purple.shade100,

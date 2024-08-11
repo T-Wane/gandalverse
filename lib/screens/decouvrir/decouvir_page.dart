@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/screens/decouvrir/components/itemCard.dart';
 import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/screens/decouvrir/sections/partenaire_section.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
 import '../../components/user_top_infos.dart';
@@ -79,6 +80,9 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
               builder: (_, key, __) {
                 if (_selectedSegment.value == "Equipe") {
                   return EquipeSection();
+                }
+                if (_selectedSegment.value == "Partenaire") {
+                  return PartenaireSection();
                 } else {
                   return Padding(
                     padding: const EdgeInsets.all(5.0),
