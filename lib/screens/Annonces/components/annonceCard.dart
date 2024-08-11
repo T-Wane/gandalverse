@@ -102,9 +102,9 @@ class AnnonceCard extends StatelessWidget {
                               text: TextSpan(
                                 text: text,
                                 style: const TextStyle(
-                                  color: Colors.black87,
-                                  fontSize: 12,
-                                ),
+                                    color: Colors.black87,
+                                    fontSize: 12,
+                                    height: 1.5),
                                 children: [
                                   if (reward != null) ...[
                                     const TextSpan(
@@ -112,9 +112,9 @@ class AnnonceCard extends StatelessWidget {
                                     ),
                                     TextSpan(
                                       text: reward,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.green,
+                                        color: Colors.yellow.shade700,
                                       ),
                                     ),
                                     WidgetSpan(

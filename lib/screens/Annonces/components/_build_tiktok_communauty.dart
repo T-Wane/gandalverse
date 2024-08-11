@@ -18,7 +18,8 @@ class buildTiktokCommunauty extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnnonceCard(
         title: 'Tiktok',
-        text: 'Rejoindre notre communauté Tiktok',
+        text: 'Rejoins notre communauté Tiktok',
+        reward: " 10.000",
         imagePath: Images.black_tiktok,
         backColors: const [
           Colors.white,

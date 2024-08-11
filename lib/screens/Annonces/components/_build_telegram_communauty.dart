@@ -18,7 +18,8 @@ class buildTelegramCommunauty extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnnonceCard(
         title: 'Telegram',
-        text: 'Rejoindre notre communauté Telegram',
+        text: 'Rejoins notre communauté Telegram',
+        reward: " 10.000",
         imagePath: Images.black_telegram,
         backColors: const [
           Colors.white,

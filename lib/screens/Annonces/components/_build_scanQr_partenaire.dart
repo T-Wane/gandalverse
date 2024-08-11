@@ -24,9 +24,9 @@ class _buildScanQrPartenaireState extends State<buildScanQrPartenaire> {
   @override
   Widget build(BuildContext context) {
     return AnnonceCard(
-      
         title: 'Scanner & Gagner',
-        text: 'Scanne le QR de nos partenaires et gagne 50.000',
+        text: 'Scanne le QR de nos partenaires et gagne',
+        reward: "50.000",
         imagePath: Images.black_barcodescanner,
         backColors: const [
           Colors.white,
