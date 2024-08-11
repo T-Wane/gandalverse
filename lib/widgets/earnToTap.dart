@@ -4,12 +4,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
 
+import '../screens/Annonces/components/_build_scanQr_partenaire.dart';
 import 'bottomSheet_modal.dart';
 
-class TapToEarnCard extends StatelessWidget {
+class TapToEarnCard extends StatefulWidget {
   static void show(BuildContext context,
           {Key? key,
           required Widget child,
@@ -78,26 +80,57 @@ class TapToEarnCard extends StatelessWidget {
 
   Widget child;
 
-  List<Map<String, dynamic>> data = [
-    {
-      'image': Images.dailyCalendar,
-      'titre': 'Daily',
-      'isChecked': true,
-      'timeRestant': '2h 30m',
-    },
-    {
-      'image': Images.word,
-      'titre': 'Go Word',
-      'isChecked': false,
-      'timeRestant': '1h 15m',
-    },
-    {
-      'image': Images.scanQr,
-      'titre': 'Scan',
-      'isChecked': true,
-      'timeRestant': '3h 45m',
-    }
-  ];
+  @override
+  State<TapToEarnCard> createState() => _TapToEarnCardState();
+}
+
+class _TapToEarnCardState extends State<TapToEarnCard> {
+  List<Map<String, dynamic>> getData(BuildContext context) {
+    List<Map<String, dynamic>> data = [
+      {
+        'image': Images.dailyCalendar,
+        'titre': 'Daily',
+        'isChecked': true,
+        'timeRestant': '2h 30m',
+        'onTap': () {
+          CardContentBottomSheet.show(context,
+              child: ShowScanQrSheetContent(),
+              fit: BoxFit.contain,
+              setCircle: false,
+              image: Images.black_barcodescanner);
+        }
+      },
+      {
+        'image': Images.word,
+        'titre': 'Go Word',
+        'isChecked': false,
+        'timeRestant': '1h 15m',
+        'onTap': () {
+          CardContentBottomSheet.show(context,
+              child: ShowScanQrSheetContent(),
+              fit: BoxFit.contain,
+              setCircle: false,
+              image: Images.black_barcodescanner);
+        }
+      },
+      {
+        'image': Images.scanQr,
+        'titre': 'Scan',
+        'isChecked': true,
+        'timeRestant': '3h 45m',
+        'onTap': () {
+          CardContentBottomSheet.show(context,
+              child: const ShowScanQrSheetContent(),
+              fit: BoxFit.contain,
+              setCircle: false,
+              image: Images.black_barcodescanner);
+        }
+      }
+    ];
+
+    return data;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
@@ -117,76 +150,81 @@ class TapToEarnCard extends StatelessWidget {
               height: 75,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: data
+                children: getData(context)
                     .map((e) => Expanded(
-                          child: AnimatedContainer(
-                            margin: const EdgeInsets.all(2),
-                            padding: const EdgeInsets.only(top: 2),
-                            duration: const Duration(milliseconds: 200),
-                            decoration: BoxDecoration(
-                              color: Colors.purpleAccent.withOpacity(0.2),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Stack(children: [
-                              Container(
-                                padding: const EdgeInsets.all(2),
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    color: Color3.withOpacity(0.9),
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                        child: e['titre'] == 'Scan'
-                                            ? CustomImageView(
-                                                imagePath: e['image'],
-                                                fit: BoxFit.contain,
-                                                margin: const EdgeInsets.all(2),
-                                                color: Colors.white,
-                                              )
-                                            : CustomImageView(
-                                                imagePath: e['image'],
-                                                fit: BoxFit.contain,
-                                                margin: const EdgeInsets.all(2),
-                                              )),
-                                    AutoSizeText(
-                                      e['titre'],
-                                      presetFontSizes: const [12, 11, 10, 9],
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.normal,
-                                          fontFamily: "Aller"),
-                                    ),
-                                    AutoSizeText(
-                                      e['timeRestant'],
-                                      presetFontSizes: const [10, 9],
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.center,
-                                      style: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w200,
-                                          fontFamily: "Aller"),
-                                    ),
-                                  ],
-                                ),
-                              ), //########################//
-                              if (e["isChecked"] == true) ...[
-                                Positioned(
-                                  top: 2,
-                                  right: 2,
-                                  child: Icon(
-                                    CupertinoIcons.checkmark_seal_fill,
-                                    color: Colors.green.shade400,
-                                    size: 12,
+                          child: GestureDetector(
+                            onTap: e['onTap'] as Function()?,
+                            child: AnimatedContainer(
+                              margin: const EdgeInsets.all(2),
+                              padding: const EdgeInsets.only(top: 2),
+                              duration: const Duration(milliseconds: 200),
+                              decoration: BoxDecoration(
+                                color: Colors.purpleAccent.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Stack(children: [
+                                Container(
+                                  padding: const EdgeInsets.all(2),
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                      color: Color3.withOpacity(0.9),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                          child: e['titre'] == 'Scan'
+                                              ? CustomImageView(
+                                                  imagePath: e['image'],
+                                                  fit: BoxFit.contain,
+                                                  margin:
+                                                      const EdgeInsets.all(2),
+                                                  color: Colors.white,
+                                                )
+                                              : CustomImageView(
+                                                  imagePath: e['image'],
+                                                  fit: BoxFit.contain,
+                                                  margin:
+                                                      const EdgeInsets.all(2),
+                                                )),
+                                      AutoSizeText(
+                                        e['titre'],
+                                        presetFontSizes: const [12, 11, 10, 9],
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.normal,
+                                            fontFamily: "Aller"),
+                                      ),
+                                      AutoSizeText(
+                                        e['timeRestant'],
+                                        presetFontSizes: const [10, 9],
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w200,
+                                            fontFamily: "Aller"),
+                                      ),
+                                    ],
                                   ),
-                                )
-                              ]
-                            ]),
+                                ), //########################//
+                                if (e["isChecked"] == true) ...[
+                                  Positioned(
+                                    top: 2,
+                                    right: 2,
+                                    child: Icon(
+                                      CupertinoIcons.checkmark_seal_fill,
+                                      color: Colors.green.shade400,
+                                      size: 12,
+                                    ),
+                                  )
+                                ]
+                              ]),
+                            ),
                           ),
                         ))
                     .toList(),
@@ -223,7 +261,7 @@ class TapToEarnCard extends StatelessWidget {
           ],
         ),
       ),
-      Flexible(child: child),
+      Flexible(child: widget.child),
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
         child:

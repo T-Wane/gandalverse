@@ -69,7 +69,7 @@ class buildTwitterCommunauty extends StatelessWidget {
                           width: 40,
                         ),
                         AutoSizeText(
-                          '205 000',
+                          '10.000',
                           maxLines: 1,
                           presetFontSizes: [22, 20, 18, 15, 14],
                           textAlign: TextAlign.center,
