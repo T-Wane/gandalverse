@@ -74,6 +74,7 @@ class CardContentBottomSheet extends StatelessWidget {
             child: Align(
               alignment: Alignment.center,
               child: Container(
+                padding: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Color3.withOpacity(0.1),
@@ -91,10 +92,10 @@ class CardContentBottomSheet extends StatelessWidget {
                       color: Colors.purpleAccent.withOpacity(0.1),
                     ),
                     child: CustomImageView(
+                      height: 120,
+                      width: 120,
                       imagePath: image,
-                      height: 150,
-                      width: 150,
-                      radius: setCircle ? BorderRadius.circular(75) : null,
+                      radius: setCircle ? BorderRadius.circular(60) : null,
                       fit: fit,
                     ),
                   ),
