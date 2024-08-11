@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,46 +21,51 @@ class TapToEarnCard extends StatelessWidget {
         isDismissible: isDismissible,
         context: context,
         backgroundColor: Colors.transparent,
+        barrierColor: Colors.black54,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadiusDirectional.only(
             topEnd: Radius.circular(15),
             topStart: Radius.circular(15),
           ),
         ),
-        builder: (context) => AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          decoration: BoxDecoration(
-              color: Colors.purpleAccent.withOpacity(0.6),
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(15),
-                topRight: Radius.circular(15),
-              ),
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.purpleAccent.withOpacity(0.5),
-                    offset: const Offset(1, 1),
-                    blurRadius: 10,
-                    spreadRadius: 4)
-              ]),
+        builder: (context) => BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 2, sigmaY: 4),
+          blendMode: BlendMode.overlay,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
-            margin: const EdgeInsets.only(top: 2),
-            padding: const EdgeInsetsDirectional.symmetric(
-              horizontal: 5,
-              vertical: 5,
-            ),
             decoration: BoxDecoration(
-              color: backColor,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(15),
-                topRight: Radius.circular(15),
+                color: Colors.purpleAccent.withOpacity(0.6),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.purpleAccent.withOpacity(0.5),
+                      offset: const Offset(1, 1),
+                      blurRadius: 10,
+                      spreadRadius: 4)
+                ]),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              margin: const EdgeInsets.only(top: 2),
+              padding: const EdgeInsetsDirectional.symmetric(
+                horizontal: 5,
+                vertical: 5,
               ),
-            ),
-            child: Padding(
-              padding: MediaQuery.of(context).viewInsets,
-              child: TapToEarnCard(
-                key: key,
-                child: child,
+              decoration: BoxDecoration(
+                color: backColor,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight: Radius.circular(15),
+                ),
+              ),
+              child: Padding(
+                padding: MediaQuery.of(context).viewInsets,
+                child: TapToEarnCard(
+                  key: key,
+                  child: child,
+                ),
               ),
             ),
           ),

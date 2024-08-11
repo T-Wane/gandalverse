@@ -54,25 +54,26 @@ void main() async {
         statusBarIconBrightness: Brightness.dark),
   );
 
-   try {
-      if (TelegramWebApp.instance.isSupported) {
-        await TelegramWebApp.instance.ready();
-        Future.delayed(const Duration(seconds: 1), TelegramWebApp.instance.expand);
-      }
-    } catch (e) {
-      print("Error happened in Flutter while loading Telegram $e");
-      // add delay for 'Telegram seldom not loading' bug
-      await Future.delayed(const Duration(milliseconds: 200));
-      main();
-      return;
+  try {
+    if (TelegramWebApp.instance.isSupported) {
+      await TelegramWebApp.instance.ready();
+      Future.delayed(
+          const Duration(seconds: 1), TelegramWebApp.instance.expand);
     }
+  } catch (e) {
+    print("Error happened in Flutter while loading Telegram $e");
+    // add delay for 'Telegram seldom not loading' bug
+    await Future.delayed(const Duration(milliseconds: 200));
+    main();
+    return;
+  }
 
-    FlutterError.onError = (details) {
-      print("Flutter error happened: $details");
-    };
- 
+  FlutterError.onError = (details) {
+    print("Flutter error happened: $details");
+  };
 
-  runApp(InitializationPage()); //InitializationPage
+  runApp(MyApp() //InitializationPage()
+      ); //InitializationPage
 }
 
 class MyApp extends StatefulWidget {

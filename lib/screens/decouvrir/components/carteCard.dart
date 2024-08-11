@@ -77,7 +77,7 @@ class CarteCard extends StatelessWidget {
                             width: 5,
                           ),
                           AutoSizeText(
-                            carte.prixFormate,
+                            carte.forceFormate,
                             maxLines: 1,
                             textAlign: TextAlign.left,
                             style: const TextStyle(
@@ -112,97 +112,71 @@ class CarteCard extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    AutoSizeText(
-                      carte.nom,
-                      maxLines: 2,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                          ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Divider(
-                        color: Colors.white30,
-                        thickness: 0.1,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      AutoSizeText(
+                        carte.nom,
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400,
+                            ),
                       ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        AutoSizeText(
-                          'Niv ${carte.niveau}',
-                          maxLines: 1,
-                          textAlign: TextAlign.left,
-                          style:
-                              Theme.of(context).textTheme.labelSmall!.copyWith(
-                                    color: Colors.white70,
-                                    fontWeight: FontWeight.w200,
-                                  ),
-                        ),
-                        const VerticalDivider(
-                          color: Colors.white54,
-                          width: 0.4,
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Divider(
+                          color: Colors.white30,
                           thickness: 0.1,
                         ),
-                        Row(
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            CustomImageView(
-                              imagePath: Images.gvt,
-                              fit: BoxFit.contain,
-                              height: 15,
-                              width: 15,
-                            ),
-                            const SizedBox(
-                              width: 3,
-                            ),
                             AutoSizeText(
-                              '20,5K',
+                              'Niv ${carte.niveau}',
                               maxLines: 1,
-                              textAlign: TextAlign.right,
+                              textAlign: TextAlign.left,
                               style: Theme.of(context)
                                   .textTheme
                                   .labelSmall!
                                   .copyWith(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white70,
+                                    fontWeight: FontWeight.w200,
                                   ),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              )
-              /*GestureDetector(
-                  onTap:
-                      () /* => showDialog(
-                              barrierDismissible: true,
-                              context: context,
-                              builder: (_) => BadgeAddedAlert(),
-                            )*/
-                      {},
-                  child: Container(
-                    padding: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.3),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: Icon(
-                        Icons.shopping_bag_outlined,
-                        size: 22,
-                        color: Colors.grey.shade400,
-                      ),
-                    ),
-                  ),
-                ),*/
-              ),
+                            const VerticalDivider(
+                              color: Colors.white54,
+                              width: 0.4,
+                              thickness: 0.1,
+                            ),
+                            Row(children: [
+                              CustomImageView(
+                                imagePath: Images.gvt,
+                                fit: BoxFit.contain,
+                                height: 15,
+                                width: 15,
+                              ),
+                              const SizedBox(
+                                width: 3,
+                              ),
+                              AutoSizeText(
+                                carte.prixFormate,
+                                maxLines: 1,
+                                textAlign: TextAlign.right,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelSmall!
+                                    .copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                              ),
+                            ]),
+                          ]),
+                    ]),
+              )),
         ]),
       ),
     );
@@ -287,7 +261,7 @@ class bureauCarteDetails extends StatelessWidget {
                     ),
                     const SizedBox(width: 5),
                     AutoSizeText(
-                      carte.prixFormate,
+                      carte.forceFormate,
                       maxLines: 1,
                       textAlign: TextAlign.left,
                       style: TextStyle(
@@ -315,7 +289,7 @@ class bureauCarteDetails extends StatelessWidget {
               ),
               const SizedBox(width: 5),
               AutoSizeText(
-                '205 000',
+                carte.prixFormate,
                 maxLines: 1,
                 presetFontSizes: const [22, 20, 18, 15, 14],
                 textAlign: TextAlign.center,

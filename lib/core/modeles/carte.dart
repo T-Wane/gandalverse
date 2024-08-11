@@ -34,17 +34,28 @@ class Carte {
       niveau: json['niveau'],
       estAchete: json['est_achete'],
       force: json['force'].toDouble(), // Désérialisation de la force
-      tauxAugmentationForce: json['taux_augmentation_force'].toDouble(), // Désérialisation du taux d'augmentation de la force
+      tauxAugmentationForce: json['taux_augmentation_force']
+          .toDouble(), // Désérialisation du taux d'augmentation de la force
     );
   }
 
   String get prixFormate {
-    if (prix >= 1000000) {
+    if ((prix*(tauxAugmentation*niveau)) >= 1000000) {
       return '${(prix / 1000000).toStringAsFixed(1)}M';
     } else if (prix >= 1000) {
       return '${(prix / 1000).toStringAsFixed(1)}K';
     } else {
-      return prix.toStringAsFixed(2);
+      return prix.toStringAsFixed(1);
+    }
+  }
+
+  String get forceFormate {
+    if (force >= 1000000) {
+      return '${(force / 1000000).toStringAsFixed(1)}M';
+    } else if (force >= 1000) {
+      return '${(force / 1000).toStringAsFixed(1)}K';
+    } else {
+      return force.toStringAsFixed(0);
     }
   }
 
@@ -59,7 +70,8 @@ class Carte {
       'niveau': niveau,
       'est_achete': estAchete,
       'force': force, // Sérialisation de la force
-      'taux_augmentation_force': tauxAugmentationForce, // Sérialisation du taux d'augmentation de la force
+      'taux_augmentation_force':
+          tauxAugmentationForce, // Sérialisation du taux d'augmentation de la force
     };
   }
 }
