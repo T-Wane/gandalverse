@@ -262,10 +262,8 @@ class _TapToEarnCardState extends State<TapToEarnCard> {
           ],
         ),
       ),
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        child: Flexible(child: widget.child),
-      ),
+      Flexible(child: widget.child),
+      
       earnToTapBottomWidget(),
     ]);
   }
