@@ -6,7 +6,7 @@ A new Flutter project.
 
 -  flutter build web --web-renderer canvaskit --base-href /starbrigVerse/
 
-- copy the content off build/web and past in docs
+- copy the content of build/web and past in docs
 - git add .
 - git commit -m "update" 
 

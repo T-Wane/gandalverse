@@ -72,45 +72,43 @@ class _DecouvrirPageState extends State<DecouvrirPage> {
               ),
             ),
             Expanded(
-              child: SingleChildScrollView(
+              child: ListView(
                 controller: widget.scrollController,
-                child: Column(
-                  children: [
-                    ValueListenableBuilder<String>(
-                      valueListenable: _selectedSegment,
-                      builder: (_, key, __) {
-                        if (_selectedSegment.value == "Equipe") {
-                          return EquipeSection();
-                        }
-                        if (_selectedSegment.value == "Partenaire") {
-                          return PartenaireSection();
-                        } else {
-                          return Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child: GridView.builder(
-                              shrinkWrap: true,
-                              padding: const EdgeInsets.only(bottom: 100),
-                              physics: const NeverScrollableScrollPhysics(),
-                              gridDelegate:
-                                  const SliverGridDelegateWithMaxCrossAxisExtent(
-                                maxCrossAxisExtent: 180,
-                                mainAxisExtent: 170,
-                                crossAxisSpacing: 1,
-                                mainAxisSpacing: 1,
-                              ),
-                              itemCount: 8,
-                              itemBuilder: (BuildContext ctx, index) {
-                                return itemCard();
-                              },
+                children: [
+                  ValueListenableBuilder<String>(
+                    valueListenable: _selectedSegment,
+                    builder: (_, key, __) {
+                      if (_selectedSegment.value == "Equipe") {
+                        return EquipeSection();
+                      }
+                      if (_selectedSegment.value == "Partenaire") {
+                        return PartenaireSection();
+                      } else {
+                        return Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: GridView.builder(
+                            shrinkWrap: true,
+                            padding: const EdgeInsets.only(bottom: 100),
+                            physics: const NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                const SliverGridDelegateWithMaxCrossAxisExtent(
+                              maxCrossAxisExtent: 180,
+                              mainAxisExtent: 170,
+                              crossAxisSpacing: 1,
+                              mainAxisSpacing: 1,
                             ),
-                          );
-                        }
-                      },
-                    ),
-                    FlyCoinAnimation(), // L'animation reste après la grille
-                    earnToTapBottomWidget()
-                  ],
-                ),
+                            itemCount: 8,
+                            itemBuilder: (BuildContext ctx, index) {
+                              return itemCard();
+                            },
+                          ),
+                        );
+                      }
+                    },
+                  ),
+                  FlyCoinAnimation(), // L'animation reste après la grille
+                  earnToTapBottomWidget()
+                ],
               ),
             ),
           ],
