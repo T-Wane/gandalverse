@@ -21,10 +21,10 @@ class ProfilDetails extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          /*Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Text(
-              "UserName",
+               "UserName",
               //"${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
               maxLines: 1,
               textAlign: TextAlign.center,
@@ -36,11 +36,11 @@ class ProfilDetails extends StatelessWidget {
                   fontFamily: "Aller",
                   fontWeight: FontWeight.normal),
             ),
-          ),*/
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
             child: Text(
-              "Neo - Niv 1",
+              "Œuf - Niv 1",
               style: TextStyle(
                   fontWeight: FontWeight.w400,
                   color: Color3.withOpacity(0.9),
@@ -97,6 +97,136 @@ class ProfilDetails extends StatelessWidget {
           ),
           const SizedBox(
             height: 5,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+            child: AutoSizeText(
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non tincidunt odio. Nunc id tellus lectus.',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                    color: Color3.withOpacity(0.95),
+                    fontWeight: FontWeight.normal,
+                  ),
+            ),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Grade",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      color: Color3,
+                      fontFamily: "Aller",
+                      fontSize: 12),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomImageView(
+                        imagePath: Images.gvt,
+                        fit: BoxFit.contain,
+                        height: 20,
+                        width: 20,
+                      ),
+                      const SizedBox(width: 5),
+                      AutoSizeText(
+                        '20,5K',
+                        maxLines: 1,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Color3,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Card(
+            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+            elevation: 0.0,
+            surfaceTintColor: Colors.transparent,
+            color: Color3.withOpacity(0.2),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.symmetric(
+                horizontal: 10,
+                vertical: 10,
+              ),
+              child: Column(
+                children: [
+                  /* infoItem(
+                    titre: "Code de Réference",
+                    data: "56884559",
+                    showCopy: true,
+                    dataColor: Colors.deepPurple.shade400,
+                  ),*/
+                  infoItem(
+                    titre: "Exp Total",
+                    data: "200000",
+                    showCopy: false,
+                    dataColor: Color3,
+                  ),
+                  infoItem(
+                    titre: "Amis invités",
+                    data: "0",
+                    showCopy: false,
+                    dataColor: Color3,
+                  ),
+                  infoItem(
+                    titre: "Mes panneaux",
+                    data: "2",
+                    showCopy: false,
+                    dataColor: Color3,
+                  ),
+                  infoItem(
+                    titre: "Mes Immeubles",
+                    data: "0",
+                    showCopy: false,
+                    dataColor: Color3,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: SizedBox(
+              width: 200,
+              child: DefaultButton(
+                backColor: Color3.withOpacity(0.9),
+                text: ' Détails Niveaux >',
+                elevation: 1.0,
+                radius: 5,
+                textColor: Colors.white,
+                fontSize: 12,
+                paddingV: 5,
+                height: 40,
+                press: () {
+                  showDialog(
+                    barrierDismissible: true,
+                    context: context,
+                    builder: (_) => NiveauxDetails_PopUp(),
+                  );
+                },
+              ),
+            ),
           ),
           Container(
             margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 5),

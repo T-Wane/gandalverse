@@ -4,10 +4,12 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/screens/Annonces/components/_build_daily_days.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
 
+import '../screens/Annonces/components/_build_go_words.dart';
 import '../screens/Annonces/components/_build_scanQr_partenaire.dart';
 import 'bottomSheet_modal.dart';
 
@@ -94,10 +96,10 @@ class _TapToEarnCardState extends State<TapToEarnCard> {
         'timeRestant': '2h 30m',
         'onTap': () {
           CardContentBottomSheet.show(context,
-              child: ShowScanQrSheetContent(),
+              child: const ShowGetDailyRewardSheetContent(),
               fit: BoxFit.contain,
               setCircle: false,
-              image: Images.black_barcodescanner);
+              image: Images.dailyCalendar);
         }
       },
       {
@@ -107,10 +109,10 @@ class _TapToEarnCardState extends State<TapToEarnCard> {
         'timeRestant': '1h 15m',
         'onTap': () {
           CardContentBottomSheet.show(context,
-              child: ShowScanQrSheetContent(),
+              child: showGoWordSheetContent(),
               fit: BoxFit.contain,
               setCircle: false,
-              image: Images.black_barcodescanner);
+              image: Images.word);
         }
       },
       {
@@ -147,7 +149,7 @@ class _TapToEarnCardState extends State<TapToEarnCard> {
         child: Column(
           children: [
             Container(
-              height: 75,
+              height: 85,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: getData(context)
@@ -231,7 +233,7 @@ class _TapToEarnCardState extends State<TapToEarnCard> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -261,9 +263,12 @@ class _TapToEarnCardState extends State<TapToEarnCard> {
           ],
         ),
       ),
-      Flexible(child: widget.child),
       Padding(
-        padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Flexible(child: widget.child),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           SizedBox(

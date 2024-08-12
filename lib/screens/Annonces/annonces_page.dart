@@ -78,8 +78,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                     ),
                   ),
                 ),
-                buildGoWords(
-                  Color3: Color3,
+                buildGoWords( 
                 ),
                 AnnonceCard(
                     title: 'Enigmes',

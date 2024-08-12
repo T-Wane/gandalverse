@@ -67,9 +67,9 @@ class _userTopInfosState extends State<userTopInfos> {
               onTap: () {
                 CardContentBottomSheet.show(context,
                     child: ProfilDetails(Color3: Color3, telegram: telegram),
-                    image: Images.vr,
+                    image: Images.niveau1,
                     fit: BoxFit.contain,
-                    setCircle: false);
+                    setCircle: true);
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -119,7 +119,7 @@ class _userTopInfosState extends State<userTopInfos> {
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
                           child: Text(
-                            "Œuf >",
+                            "Neo  >",
                             style: TextStyle(
                                 fontWeight: FontWeight.w300,
                                 color: Colors.purple.shade100,

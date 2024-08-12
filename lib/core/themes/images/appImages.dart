@@ -4,6 +4,7 @@ class Images {
   static String ressourcePath = "assets/images";
   static String ressourceBlack = "$ressourcePath/social_black";
   static String ressourceAvatar = "$ressourcePath/avatar";
+  static String ressourceLevel = "$ressourcePath/levels_images";
 
   //SOCIAL
   static String telegram = "$ressourcePath/telegram.png";
@@ -58,4 +59,9 @@ class Images {
   static String black_facebook = "$ressourceBlack/facebook.png";
   static String black_tiktok = "$ressourceBlack/tiktok.png";
   static String black_twitter = "$ressourceBlack/twitter.png";
+
+  //LEVELS
+  static String niveau1 = "$ressourceLevel/Niveau1.png";
+  static String niveau2 = "$ressourceLevel/Niveau2.png";
+  static String niveau3 = "$ressourceLevel/Niveau3.png";
 }

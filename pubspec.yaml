@@ -81,6 +81,7 @@ flutter:
     - assets/images/social_black/
     - assets/images/avatar/
     - assets/images/qg_images/
+    - assets/images/levels_images/
 
     - assets/json/
     - assets/json/equipeData.json

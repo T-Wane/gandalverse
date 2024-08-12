@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gandalverse/components/default_btn.dart';
+import 'package:gandalverse/core/themes/color/themeColors.dart';
 import 'package:gandalverse/screens/Annonces/components/annonceCard.dart';
 import 'package:gandalverse/core/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
@@ -11,13 +12,10 @@ import 'go_words_game.dart';
 
 class buildGoWords extends StatelessWidget {
   buildGoWords({
-    super.key,
-    required this.Color3,
+    super.key, 
   });
-
-  final Color Color3;
-  TextEditingController textController = TextEditingController();
-  @override
+ 
+   @override
   Widget build(BuildContext context) {
     return AnnonceCard(
         title: 'Go Words',
@@ -30,91 +28,104 @@ class buildGoWords extends StatelessWidget {
         fit: BoxFit.contain,
         press: () {
           CardContentBottomSheet.show(context,
-              child: Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "Go Words",
-                      maxLines: 1,
-                      textAlign: TextAlign.center,
-                      textDirection: TextDirection.ltr,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: Color3,
-                          fontFamily: "Aller",
-                          fontWeight: FontWeight.normal),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    AutoSizeText(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non tincidunt odio. Nunc id tellus lectus.',
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                            color: Color3.withOpacity(0.95),
-                            fontWeight: FontWeight.normal,
-                          ),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        CustomImageView(
-                          imagePath: Images.gvt,
-                          fit: BoxFit.contain,
-                          height: 30,
-                          width: 30,
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        AutoSizeText(
-                          '205 000',
-                          maxLines: 1,
-                          presetFontSizes: [22, 20, 18, 15, 14],
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color3,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    CustomWidgets.textField('Le Mot',
-                        textController: textController),
-                    // Game(
-                    //   word: "FLUTTER",
-                    //   isEasy: false,
-                    // ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    DefaultButton(
-                      backColor: Colors.purple.shade400,
-                      text: 'Verifier',
-                      elevation: 1.0,
-                      textColor: Colors.white,
-                      fontSize: 15,
-                      height: 50,
-                      press: () {},
-                    )
-                  ],
-                ),
-              ),
+              child: showGoWordSheetContent( ),
               fit: BoxFit.contain,
               setCircle: false,
               image: Images.word);
         },
         textColor: Colors.black,
-        titleColor: Color3);
+        titleColor: Themecolors.Color3);
+  }
+}
+
+class showGoWordSheetContent extends StatelessWidget {
+    showGoWordSheetContent({
+    super.key, 
+  }); 
+
+ TextEditingController textController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            "Go Words",
+            maxLines: 1,
+            textAlign: TextAlign.center,
+            textDirection: TextDirection.ltr,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+                fontSize: 15,
+                color: Themecolors.Color3,
+                fontFamily: "Aller",
+                fontWeight: FontWeight.normal),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          AutoSizeText(
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non tincidunt odio. Nunc id tellus lectus.',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: Themecolors.Color3.withOpacity(0.95),
+                  fontWeight: FontWeight.normal,
+                ),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomImageView(
+                imagePath: Images.gvt,
+                fit: BoxFit.contain,
+                height: 30,
+                width: 30,
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              AutoSizeText(
+                '205 000',
+                maxLines: 1,
+                presetFontSizes: [22, 20, 18, 15, 14],
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Themecolors.Color3,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          CustomWidgets.textField('Le Mot',
+              textController: textController),
+          // Game(
+          //   word: "FLUTTER",
+          //   isEasy: false,
+          // ),
+          const SizedBox(
+            height: 5,
+          ),
+          DefaultButton(
+            backColor: Colors.purple.shade400,
+            text: 'Verifier',
+            elevation: 1.0,
+            textColor: Colors.white,
+            fontSize: 15,
+            height: 50,
+            press: () {},
+          )
+        ],
+      ),
+    );
   }
 }
 
