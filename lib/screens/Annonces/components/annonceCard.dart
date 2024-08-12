@@ -98,9 +98,7 @@ class AnnonceCard extends StatelessWidget {
                           ),
                         )
                       ],
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Row(
+                      Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -146,9 +144,7 @@ class AnnonceCard extends StatelessWidget {
                                 softWrap: true,
                               ),
                             ),
-                          ],
-                        ),
-                      ),
+                          ]),
                     ],
                   ),
                 ),
