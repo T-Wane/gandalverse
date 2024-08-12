@@ -464,12 +464,21 @@ class PlayerList extends StatelessWidget {
       itemBuilder: (context, index) {
         final player = players[index];
         return Card(
+          color: Colors.white,
+          surfaceTintColor: Colors.transparent,
           margin: const EdgeInsets.all(8.0),
           child: ListTile(
             leading: CircleAvatar(
               backgroundImage: NetworkImage(player.imageUrl),
             ),
-            title: Text(player.name),
+            title: Text(
+              player.name,
+              style: TextStyle(
+                fontSize: 14,
+                color: Themecolors.Color3,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
             subtitle: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5),
               child: Row(
@@ -482,13 +491,13 @@ class PlayerList extends StatelessWidget {
                     width: 15,
                   ),
                   const SizedBox(width: 5),
-                  const AutoSizeText(
+                  AutoSizeText(
                     '20,000',
                     maxLines: 1,
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontSize: 15,
-                      color: Color3,
+                      color: Themecolors.Color3,
                       fontWeight: FontWeight.normal,
                     ),
                   ),
@@ -498,9 +507,9 @@ class PlayerList extends StatelessWidget {
             trailing: Text(
               "${player.rank}",
               textAlign: TextAlign.right,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 15,
-                color: Color3,
+                color: Themecolors.Color3,
                 fontWeight: FontWeight.normal,
               ),
             ),
