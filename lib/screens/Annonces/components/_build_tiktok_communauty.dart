@@ -17,7 +17,7 @@ class buildTiktokCommunauty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnnonceCard(
-        title: 'Tiktok',
+        // title: 'Tiktok',
         text: 'Rejoins notre communauté Tiktok',
         reward: " 10.000",
         imagePath: Images.black_tiktok,

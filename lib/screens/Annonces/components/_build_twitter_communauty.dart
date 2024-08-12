@@ -17,7 +17,7 @@ class buildTwitterCommunauty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnnonceCard(
-        title: 'Twitter',
+        //title: 'Twitter',
         text: 'Rejoins notre communauté Twitter',
         reward: " 10.000",
         imagePath: Images.black_twitter,

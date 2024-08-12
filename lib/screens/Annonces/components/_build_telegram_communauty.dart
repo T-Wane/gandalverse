@@ -17,7 +17,7 @@ class buildTelegramCommunauty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnnonceCard(
-        title: 'Telegram',
+        // title: 'Telegram',
         text: 'Rejoins notre communauté Telegram',
         reward: " 10.000",
         imagePath: Images.black_telegram,

@@ -54,8 +54,8 @@ class _EquipeSectionState extends State<EquipeSection> {
             child: GridView.builder(
                 controller: _scrollController,
                 shrinkWrap: true,
-                padding: const EdgeInsets.only(bottom: 100),
-                // physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.only(bottom: 20),
+                //physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 180,
                   mainAxisExtent: 200,
@@ -68,7 +68,6 @@ class _EquipeSectionState extends State<EquipeSection> {
                   return CarteCard(carte: carte, qgService: _equipeService);
                 }),
           );
-          
         }
       },
     );

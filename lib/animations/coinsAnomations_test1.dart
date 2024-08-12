@@ -74,7 +74,7 @@ class FlyCoinAnimationState extends State<FlyCoinAnimation>
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 280,
       child: Stack(
         children: [
           Center(
@@ -196,7 +196,7 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
       key: ValueKey<bool>(isPlaying),
       child: IconButton(
         icon: CustomImageView(
-          imagePath: Images.avatarPMU2, // Remplacez par le chemin correct
+          imagePath: Images.aatarYaraOil, // Remplacez par le chemin correct
           fit: BoxFit.contain,
           width: 200,
         ),

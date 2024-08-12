@@ -56,6 +56,9 @@ class _MyHomePageState extends State<MyHomePage> {
   bool? isDefinedVersion;
   String? clipboardText;
 
+  final ScrollController _scrollController = ScrollController();
+  bool _isFabVisible = true;
+
   @override
   void initState() {
     super.initState();
@@ -75,12 +78,38 @@ class _MyHomePageState extends State<MyHomePage> {
 
     TelegramWebApp.instance.ready();
     check();
+    _scrollController.addListener(_scrollListener);
   }
 
   void check() async {
     await Future.delayed(const Duration(seconds: 2));
     isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
     setState(() {});
+  }
+
+  void _scrollListener() {
+    if (_scrollController.position.atEdge) {
+      bool isTop = _scrollController.position.pixels == 0;
+      if (isTop) {
+        setState(() {
+          _isFabVisible = true;
+        });
+      } else {
+        setState(() {
+          _isFabVisible = false; // Hide when at the bottom
+        });
+      }
+    } else {
+      setState(() {
+        _isFabVisible = true; // Show when scrolling
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -94,30 +123,31 @@ class _MyHomePageState extends State<MyHomePage> {
         key: _key,
         extendBody: true,
         backgroundColor: Colors.white,
-        floatingActionButton:
-            (_currentIndex == 1 || _currentIndex == 3 || _currentIndex == 4)
-                ? FloatingActionButton(
-                    backgroundColor: Colors.white,
-                    elevation: 1.5,
-                    shape: CircleBorder(),
-                    onPressed: () {
-                      TapToEarnCard.show(
-                        context,
-                        child: FlyCoinAnimation(),
-                        backColor: Color3,
-                      );
-                    },
-                    child: Icon(
-                      CupertinoIcons.rocket,
-                      color: Color3,
-                      size: 28,
-                    ),
-                  )
-                : null,
+        floatingActionButton: ((_currentIndex == 1 && _isFabVisible == true) ||
+                _currentIndex == 3 ||
+                _currentIndex == 4)
+            ? FloatingActionButton(
+                backgroundColor: Colors.white,
+                elevation: 1.5,
+                shape: const CircleBorder(),
+                onPressed: () {
+                  TapToEarnCard.show(
+                    context,
+                    child: const FlyCoinAnimation(),
+                    backColor: Color3,
+                  );
+                },
+                child: const Icon(
+                  CupertinoIcons.rocket,
+                  color: Color3,
+                  size: 28,
+                ),
+              )
+            : null,
         // backgroundColor:✨ telegram.backgroundColor,
         body: IndexedStack(index: _currentIndex, children: [
           GandalVerseWebView(controller: controller),
-          const DecouvrirPage(),
+          DecouvrirPage(scrollController: _scrollController),
           const AmisPage(),
           const AnnoncesPage(),
           const AllRevenusPage(),
