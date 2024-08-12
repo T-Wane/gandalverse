@@ -15,6 +15,7 @@ import 'package:gandalverse/widgets/bottomSheet_modal.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 //import 'package:telegram_web_app/telegram_web_app.dart';
 //import 'package:webview_flutter/webview_flutter.dart';
 import '../components/user_top_infos.dart';
@@ -112,6 +113,15 @@ class _MyHomePageState extends State<MyHomePage> {
     super.dispose();
   }
 
+  bool isFABVisible = true; // Tracks FAB visibility
+  Offset fabPosition = Offset(20, 20); // Initial position of the FAB
+
+  void toggleFABVisibility() {
+    setState(() {
+      isFABVisible = !isFABVisible; // Toggle FAB visibility
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
@@ -119,10 +129,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return MediaQuery(
       data: MediaQuery.of(context)
           .copyWith(textScaler: const TextScaler.linear(1)),
-      child: Scaffold(
+      child: /* Stack(
+        children: [*/
+          Scaffold(
         key: _key,
         extendBody: true,
         backgroundColor: Colors.white,
+
         floatingActionButton: ((_currentIndex == 1 && _isFabVisible == true) ||
                 _currentIndex == 3 ||
                 _currentIndex == 4)
@@ -155,6 +168,34 @@ class _MyHomePageState extends State<MyHomePage> {
 
         bottomNavigationBar: _buildFloatingBarCustom(),
       ),
+      // Draggable FAB
+      /*  PointerInterceptor(
+            // debug: true,
+            child: Positioned(
+              left: fabPosition.dx,
+              top: fabPosition.dy,
+              child: Draggable(
+                feedback: FloatingActionButton(
+                  onPressed: () {},
+                  child: Icon(Icons.add),
+                ),
+                child: isFABVisible
+                    ? FloatingActionButton(
+                        onPressed: toggleFABVisibility,
+                        child: Icon(Icons.add),
+                      )
+                    : Container(), // Hide FAB when isFABVisible is false
+                onDragEnd: (details) {
+                  setState(() {
+                    fabPosition =
+                        details.offset; // Update FAB position when dragged
+                  });
+                },
+              ),
+            ),
+        ),*/
+      //   ],
+      // ),
     );
   }
 

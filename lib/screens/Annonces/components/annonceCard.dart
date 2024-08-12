@@ -76,7 +76,7 @@ class AnnonceCard extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -98,52 +98,56 @@ class AnnonceCard extends StatelessWidget {
                           ),
                         )
                       ],
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Expanded(
-                            child: RichText(
-                              text: TextSpan(
-                                text: text,
-                                style: const TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 12,
-                                    height: 1.5),
-                                children: [
-                                  if (reward != null) ...[
-                                    const TextSpan(
-                                      text: " ",
-                                    ),
-                                    TextSpan(
-                                      text: reward,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.yellow.shade700,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Expanded(
+                              child: RichText(
+                                text: TextSpan(
+                                  text: text,
+                                  style: const TextStyle(
+                                      color: Colors.black87,
+                                      fontSize: 12,
+                                      height: 1.5),
+                                  children: [
+                                    if (reward != null) ...[
+                                      const TextSpan(
+                                        text: " ",
                                       ),
-                                    ),
-                                    WidgetSpan(
-                                      alignment: PlaceholderAlignment.middle,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 4.0),
-                                        child: Image.asset(
-                                          Images.gvt,
-                                          height: 14,
-                                          width: 14,
+                                      TextSpan(
+                                        text: reward,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.yellow.shade700,
                                         ),
                                       ),
-                                    ),
+                                      WidgetSpan(
+                                        alignment: PlaceholderAlignment.middle,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 4.0),
+                                          child: Image.asset(
+                                            Images.gvt,
+                                            height: 14,
+                                            width: 14,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ],
-                                ],
+                                ),
+                                maxLines: limitLine ? 2 : null,
+                                overflow: limitLine
+                                    ? TextOverflow.ellipsis
+                                    : TextOverflow.clip,
+                                softWrap: true,
                               ),
-                              maxLines: limitLine ? 2 : null,
-                              overflow: limitLine
-                                  ? TextOverflow.ellipsis
-                                  : TextOverflow.clip,
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),

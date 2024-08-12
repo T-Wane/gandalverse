@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
 import 'package:webview_flutter_web/webview_flutter_web.dart';
 
@@ -29,7 +30,10 @@ class _GandalVerseWebViewState extends State<GandalVerseWebView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(children: [
-        userTopInfos(),
+        PointerInterceptor(
+          // debug: true,
+          child: userTopInfos(),
+        ),
         Expanded(
           child: Stack(children: [
             Container(

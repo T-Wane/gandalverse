@@ -11,6 +11,7 @@ import 'package:gandalverse/core/themes/color/themeColors.dart';
 import 'package:gandalverse/core/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:telegram_web_app/telegram_web_app.dart';
 
 import 'bottomSheet_modal.dart';
@@ -22,22 +23,25 @@ class ProfilDetailsContentBottomSheet extends StatefulWidget {
           required TelegramWebApp telegram,
           bool isDismissible = true}) =>
       showModalBottomSheet(
-          enableDrag: true,
-          isScrollControlled: true,
-          isDismissible: isDismissible,
-          context: context,
-          backgroundColor: Colors.transparent,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadiusDirectional.only(
-              topEnd: Radius.circular(15),
-              topStart: Radius.circular(15),
-            ),
-          ),
-          builder: (context) => BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-              child: ProfilDetailsContentBottomSheet(
-                telegram: telegram,
-              ))).then((_) => FocusScope.of(context).requestFocus(FocusNode()));
+              enableDrag: true,
+              isScrollControlled: true,
+              isDismissible: isDismissible,
+              context: context,
+              backgroundColor: Colors.transparent,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadiusDirectional.only(
+                  topEnd: Radius.circular(15),
+                  topStart: Radius.circular(15),
+                ),
+              ),
+              builder: (context) => PointerInterceptor(
+                  // debug: true,
+                  child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+                      child: ProfilDetailsContentBottomSheet(
+                        telegram: telegram,
+                      ))))
+          .then((_) => FocusScope.of(context).requestFocus(FocusNode()));
 
   static void hide(BuildContext context) => Navigator.pop(context);
 
@@ -176,15 +180,15 @@ class _ProfilDetailsContentBottomSheetState
                                                         horizontal: 10,
                                                         vertical: 2),
                                                 child: Text(
-                                                  "${entry.value['title']} - Niv ${entry.value['index']}",
+                                                  "${entry.value['title']}",
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.w400,
+                                                          FontWeight.bold,
                                                       color: Themecolors.Color3
                                                           .withOpacity(0.9),
                                                       fontFamily: "Aller",
-                                                      fontSize: 16),
+                                                      fontSize: 17),
                                                 ),
                                               ),
                                             ),
@@ -262,7 +266,9 @@ class _ProfilDetailsContentBottomSheetState
                                         const SizedBox(
                                           height: 5,
                                         ),
-                                        Expanded(child: PlayerList())
+                                        Spacer()
+
+                                        /// Expanded(child: PlayerList())
                                       ]),
                                 ),
                               ),
