@@ -96,7 +96,9 @@ class _ProfilDetailsContentBottomSheetState
   //  entry.value['image']
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return PointerInterceptor(
+                  // debug: true,
+                  child:SizedBox(
       height: MediaQuery.of(context).size.height * 0.8,
       child: PageView(
         controller: _scrollController,
@@ -314,7 +316,7 @@ class _ProfilDetailsContentBottomSheetState
                   )
                 ]))
             .toList(),
-      ),
+      )),
     );
   }
 }
