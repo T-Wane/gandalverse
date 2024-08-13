@@ -9,6 +9,7 @@ A new Flutter project.
 - copy the content off build/web and past in docs
 - git add .
 - git commit -m "update" 
+-  flutter build web --web-renderer canvaskit --base-href /starbrigVerse/
 
 ## PUSH on master for deployment
 - git push -u origin master
