@@ -21,6 +21,7 @@ class buildDailyDays extends StatelessWidget {
         title: 'Daily',
         text: 'Récupérer votre récompense quotidienne',
         imagePath: Images.dailyCalendar,
+        isComplete: true,
         backColors: const [
           Colors.white,
           Colors.white,

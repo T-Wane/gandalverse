@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/components/infoItem.dart';
+import 'package:gandalverse/core/themes/color/themeColors.dart';
 import 'package:gandalverse/core/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
@@ -10,9 +11,8 @@ import 'package:gandalverse/widgets/popups/nieauxDetails_alert.dart';
 import 'package:telegram_web_app/telegram_web_app.dart';
 
 class ProfilDetails extends StatelessWidget {
-  ProfilDetails({super.key, required this.Color3, required this.telegram});
+  ProfilDetails({super.key, required this.telegram});
   TelegramWebApp telegram;
-  final Color Color3;
 
   @override
   Widget build(BuildContext context) {
@@ -21,39 +21,51 @@ class ProfilDetails extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          /*Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Text(
-              "UserName",
-              //"${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
-              maxLines: 1,
-              textAlign: TextAlign.center,
-              textDirection: TextDirection.ltr,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                  fontSize: 15,
-                  color: Color3,
-                  fontFamily: "Aller",
-                  fontWeight: FontWeight.normal),
-            ),
-          ),*/
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-            child: Text(
-              "Neo - Niv 1",
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: Color3.withOpacity(0.9),
-                  fontFamily: "Aller",
-                  fontSize: 12),
-            ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    CupertinoIcons.chevron_left,
+                    color: Themecolors.Color3,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                  child: Text(
+                    "Neo - Niv 1",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Themecolors.Color3.withOpacity(0.9),
+                        fontFamily: "Aller",
+                        fontSize: 16),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    CupertinoIcons.chevron_right,
+                    color: Themecolors.Color3,
+                  ),
+                ),
+              )
+            ],
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 10),
             child: LinearPercentIndicator(
               percent: 0.5,
               isRTL: false,
-              backgroundColor: Color3.withOpacity(0.2),
+              backgroundColor: Themecolors.Color3.withOpacity(0.2),
               animateFromLastPercent: true,
               restartAnimation: true,
               linearGradient: LinearGradient(
@@ -76,7 +88,7 @@ class ProfilDetails extends StatelessWidget {
                   "10k",
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
-                    color: Color3,
+                    color: Themecolors.Color3,
                     fontFamily: "Aller",
                     fontSize: 12,
                   ),
@@ -103,7 +115,7 @@ class ProfilDetails extends StatelessWidget {
             width: double.infinity,
             height: 50,
             decoration: BoxDecoration(
-              color: Color3.withOpacity(0.9),
+              color: Themecolors.Color3.withOpacity(0.9),
               borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
             padding: const EdgeInsetsDirectional.symmetric(
@@ -138,7 +150,7 @@ class ProfilDetails extends StatelessWidget {
                     ),
                     child: Icon(
                       Icons.share,
-                      color: Color3,
+                      color: Themecolors.Color3,
                     ),
                   ),
                 ]),

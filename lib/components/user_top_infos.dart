@@ -9,6 +9,7 @@ import 'package:gandalverse/core/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
+import 'package:gandalverse/widgets/profilDetails_bottomSheet.dart';
 import 'package:telegram_web_app/telegram_web_app.dart';
 
 import 'profil_details.dart';
@@ -65,11 +66,14 @@ class _userTopInfosState extends State<userTopInfos> {
           children: [
             GestureDetector(
               onTap: () {
-                CardContentBottomSheet.show(context,
-                    child: ProfilDetails(Color3: Color3, telegram: telegram),
-                    image: Images.niveau1,
-                    fit: BoxFit.contain,
-                    setCircle: true);
+                // CardContentBottomSheet.show(context,
+                //     child: ProfilDetails(telegram: telegram),
+                //     image: Images.niveau1,
+                //     fit: BoxFit.contain,
+                //     setCircle: true);
+
+                ProfilDetailsContentBottomSheet.show(context,
+                    telegram: telegram);
               },
               child: Container(
                 decoration: BoxDecoration(

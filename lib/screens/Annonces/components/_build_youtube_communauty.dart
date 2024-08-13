@@ -17,8 +17,8 @@ class buildYoutubeCommunauty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnnonceCard(
-        title: 'Youtube',
-        text: 'Abonné toi à la chaîne YouTube',
+       // title: 'Youtube',
+        text: 'Abonné toi à la chaîne YouTube \n',
         reward: "- 10.000",
         imagePath: Images.black_youtube,
         backColors: const [

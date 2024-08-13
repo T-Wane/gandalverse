@@ -5,7 +5,7 @@ import 'package:gandalverse/widgets/customImageView.dart';
 class AnnonceCard extends StatelessWidget {
   AnnonceCard({
     Key? key,
-    required this.title,
+    this.title,
     required this.titleColor,
     required this.text,
     this.reward,
@@ -14,10 +14,12 @@ class AnnonceCard extends StatelessWidget {
     required this.imagePath,
     this.fit = BoxFit.cover,
     this.limitLine = true,
+    this.isComplete = false,
     this.press,
   }) : super(key: key);
 
-  final String title, text;
+  final String? title;
+  final String text;
   final String? reward;
   final String imagePath;
   final VoidCallback? press;
@@ -25,6 +27,7 @@ class AnnonceCard extends StatelessWidget {
   final List<Color> backColors;
   final BoxFit fit;
   final bool limitLine;
+  final bool isComplete;
 
   Color Color3 = Color.fromARGB(255, 18, 40, 70);
 
@@ -73,77 +76,90 @@ class AnnonceCard extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
-                        child: Text(
-                          title,
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            fontFamily: 'Aller',
-                            color: Color3.withOpacity(0.9),
-                            fontSize: 14,
-                            fontWeight: FontWeight.normal,
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Expanded(
-                            child: RichText(
-                              text: TextSpan(
-                                text: text,
-                                style: const TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 12,
-                                    height: 1.5),
-                                children: [
-                                  if (reward != null) ...[
-                                    const TextSpan(
-                                      text: " ",
-                                    ),
-                                    TextSpan(
-                                      text: reward,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.yellow.shade700,
-                                      ),
-                                    ),
-                                    WidgetSpan(
-                                      alignment: PlaceholderAlignment.middle,
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 4.0),
-                                        child: Image.asset(
-                                          Images.gvt,
-                                          height: 14,
-                                          width: 14,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ],
-                              ),
-                              maxLines: limitLine ? 2 : null,
-                              overflow: limitLine
-                                  ? TextOverflow.ellipsis
-                                  : TextOverflow.clip,
+                      if (title != null) ...[
+                        Padding(
+                          padding:
+                              const EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
+                          child: Text(
+                            title ?? '',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              fontFamily: 'Aller',
+                              color: Color3.withOpacity(0.9),
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
                             ),
                           ),
-                        ],
-                      ),
+                        )
+                      ],
+                      Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Expanded(
+                              child: RichText(
+                                text: TextSpan(
+                                  text: text,
+                                  style: const TextStyle(
+                                      color: Colors.black87,
+                                      fontSize: 12,
+                                      height: 1.5),
+                                  children: [
+                                    if (reward != null) ...[
+                                      const TextSpan(
+                                        text: " ",
+                                      ),
+                                      TextSpan(
+                                        text: reward,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.yellow.shade700,
+                                        ),
+                                      ),
+                                      WidgetSpan(
+                                        alignment: PlaceholderAlignment.middle,
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 4.0),
+                                          child: Image.asset(
+                                            Images.gvt,
+                                            height: 14,
+                                            width: 14,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ],
+                                ),
+                                maxLines: limitLine ? 2 : null,
+                                overflow: limitLine
+                                    ? TextOverflow.ellipsis
+                                    : TextOverflow.clip,
+                                softWrap: true,
+                              ),
+                            ),
+                          ]),
                     ],
                   ),
                 ),
               ),
+              if (isComplete == true) ...[
+                CustomImageView(
+                  imagePath: Images.check,
+                  height: 20,
+                  width: 20,
+                  fit: BoxFit.cover,
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                  radius: BorderRadius.circular(10),
+                )
+              ],
             ],
           ),
         ),

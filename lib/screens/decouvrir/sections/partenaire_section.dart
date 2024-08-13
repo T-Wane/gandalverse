@@ -54,7 +54,7 @@ class _PartenaireSectionState extends State<PartenaireSection> {
             child: GridView.builder(
                 controller: _partenaireScrollController,
                 shrinkWrap: true,
-                padding: const EdgeInsets.only(bottom: 100),
+                padding: const EdgeInsets.only(bottom: 20),
                 // physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                   maxCrossAxisExtent: 180,

@@ -17,8 +17,8 @@ class buildFacebookCommunauty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnnonceCard(
-        title: 'Facebook',
-        text: 'Rejoins notre communauté Facebook',
+        // title: 'Facebook',
+        text: 'Rejoins notre communauté Facebook\n',
         reward: " 10.000",
         imagePath: Images.black_facebook,
         backColors: const [

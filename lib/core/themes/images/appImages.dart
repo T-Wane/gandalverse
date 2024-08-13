@@ -27,10 +27,12 @@ class Images {
   static String question = "$ressourcePath/question.png";
   static String word = "$ressourcePath/word.png";
   static String group = "$ressourcePath/group.png";
+  static String check = "$ressourcePath/check.png";
 
   //Btn back
   static String circleBtn = "$ressourcePath/circleBtn.png";
   static String avatarPMU2 = "$ressourceAvatar/AvatarPMU2.png";
+  static String aatarYaraOil = "$ressourceAvatar/AvatarYaraOil.png";
 
   static String pub = "$ressourcePath/pub.png";
   static String panneaux = "$ressourcePath/panel.png";
