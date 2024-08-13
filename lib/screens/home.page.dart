@@ -129,99 +129,99 @@ class _MyHomePageState extends State<MyHomePage> {
     return MediaQuery(
       data: MediaQuery.of(context)
           .copyWith(textScaler: const TextScaler.linear(1)),
-      child: Stack(
-        children: [
+      child: /* Stack(
+        children: [*/
           Scaffold(
-            key: _key,
-            extendBody: true,
-            backgroundColor: Colors.white,
+        key: _key,
+        extendBody: true,
+        backgroundColor: Colors.white,
 
-            // floatingActionButton: ((_currentIndex == 1 && _isFabVisible == true) ||
-            //         _currentIndex == 3 ||
-            //         _currentIndex == 4)
-            //     ? FloatingActionButton(
-            //         backgroundColor: Colors.white,
-            //         elevation: 1.5,
-            //         shape: const CircleBorder(),
-            //         onPressed: () {
-            //           TapToEarnCard.show(
-            //             context,
-            //             child: const FlyCoinAnimation(),
-            //             backColor: Color3,
-            //           );
-            //         },
-            //         child: const Icon(
-            //           CupertinoIcons.rocket,
-            //           color: Color3,
-            //           size: 28,
-            //         ),
-            //       )
-            //     : null,
-            // backgroundColor:✨ telegram.backgroundColor,
-            body: IndexedStack(index: _currentIndex, children: [
-              GandalVerseWebView(controller: controller),
-              DecouvrirPage(scrollController: _scrollController),
-              const AmisPage(),
-              const AnnoncesPage(),
-              const AllRevenusPage(),
-            ]),
-
-            bottomNavigationBar: _buildFloatingBarCustom(),
-          ),
-          // Draggable FAB
-          PointerInterceptor(
-            // debug: true,
-            child: Positioned(
-              left: fabPosition?.dx,
-              top: fabPosition?.dy,
-              bottom: fabPosition == null ? 50 : null,
-              right: fabPosition == null ? 5 : null,
-              child: Draggable(
-                feedback: FloatingActionButton(
-                  backgroundColor: Colors.white,
-                  elevation: 1.5,
-                  shape: const CircleBorder(),
-                  onPressed: () {
-                    TapToEarnCard.show(
-                      context,
-                      child: const FlyCoinAnimation(),
-                      backColor: Color3,
-                    );
-                  },
-                  child: const Icon(
-                    CupertinoIcons.rocket,
-                    color: Color3,
-                    size: 28,
-                  ),
-                ),
-                child: FloatingActionButton(
-                  backgroundColor: Colors.white,
-                  elevation: 1.5,
-                  shape: const CircleBorder(),
-                  onPressed: () {
-                    TapToEarnCard.show(
-                      context,
-                      child: const FlyCoinAnimation(),
-                      backColor: Color3,
-                    );
-                  },
-                  child: const Icon(
-                    CupertinoIcons.rocket,
-                    color: Color3,
-                    size: 28,
-                  ),
-                ), // Hide FAB when isFABVisible is false
-                onDragEnd: (details) {
-                  setState(() {
-                    fabPosition =
-                        details.offset; // Update FAB position when dragged
-                  });
+        floatingActionButton: ((_currentIndex == 1 && _isFabVisible == true) ||
+                _currentIndex == 3 ||
+                _currentIndex == 4)
+            ? FloatingActionButton(
+                backgroundColor: Colors.white,
+                elevation: 1.5,
+                shape: const CircleBorder(),
+                onPressed: () {
+                  TapToEarnCard.show(
+                    context,
+                    child: const FlyCoinAnimation(),
+                    backColor: Color3,
+                  );
                 },
-              ),
-            ),
-          ),
-        ],
+                child: const Icon(
+                  CupertinoIcons.rocket,
+                  color: Color3,
+                  size: 28,
+                ),
+              )
+            : null,
+        // backgroundColor:✨ telegram.backgroundColor,
+        body: IndexedStack(index: _currentIndex, children: [
+          GandalVerseWebView(controller: controller),
+          DecouvrirPage(scrollController: _scrollController),
+          const AmisPage(),
+          const AnnoncesPage(),
+          const AllRevenusPage(),
+        ]),
+
+        bottomNavigationBar: _buildFloatingBarCustom(),
       ),
+      // Draggable FAB
+      //     PointerInterceptor(
+      //       // debug: true,
+      //       child: Positioned(
+      //         left: fabPosition?.dx,
+      //         top: fabPosition?.dy,
+      //         bottom: fabPosition == null ? 50 : null,
+      //         right: fabPosition == null ? 5 : null,
+      //         child: Draggable(
+      //           feedback: FloatingActionButton(
+      //             backgroundColor: Colors.white,
+      //             elevation: 1.5,
+      //             shape: const CircleBorder(),
+      //             onPressed: () {
+      //               TapToEarnCard.show(
+      //                 context,
+      //                 child: const FlyCoinAnimation(),
+      //                 backColor: Color3,
+      //               );
+      //             },
+      //             child: const Icon(
+      //               CupertinoIcons.rocket,
+      //               color: Color3,
+      //               size: 28,
+      //             ),
+      //           ),
+      //           child: FloatingActionButton(
+      //             backgroundColor: Colors.white,
+      //             elevation: 1.5,
+      //             shape: const CircleBorder(),
+      //             onPressed: () {
+      //               TapToEarnCard.show(
+      //                 context,
+      //                 child: const FlyCoinAnimation(),
+      //                 backColor: Color3,
+      //               );
+      //             },
+      //             child: const Icon(
+      //               CupertinoIcons.rocket,
+      //               color: Color3,
+      //               size: 28,
+      //             ),
+      //           ), // Hide FAB when isFABVisible is false
+      //           onDragEnd: (details) {
+      //             setState(() {
+      //               fabPosition =
+      //                   details.offset; // Update FAB position when dragged
+      //             });
+      //           },
+      //         ),
+      //       ),
+      //     ),
+      //   ],
+      // ),
     );
   }
 
