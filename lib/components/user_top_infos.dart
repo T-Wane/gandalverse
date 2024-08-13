@@ -6,6 +6,7 @@ import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/components/infoItem.dart';
 import 'package:gandalverse/screens/home.page.dart';
 import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/screens/profil/profil_screen.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
@@ -72,8 +73,14 @@ class _userTopInfosState extends State<userTopInfos> {
                 //     fit: BoxFit.contain,
                 //     setCircle: true);
 
-                ProfilDetailsContentBottomSheet.show(context,
-                    telegram: telegram);
+                // ProfilDetailsContentBottomSheet.show(context,
+                //     telegram: telegram);
+                Navigator.push<void>(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => MonProfilScreen(),
+                  ),
+                );
               },
               child: Container(
                 decoration: BoxDecoration(

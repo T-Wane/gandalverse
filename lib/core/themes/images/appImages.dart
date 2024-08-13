@@ -28,6 +28,7 @@ class Images {
   static String word = "$ressourcePath/word.png";
   static String group = "$ressourcePath/group.png";
   static String check = "$ressourcePath/check.png";
+  static String leftArrow = "$ressourcePath/Vector.png";
 
   //Btn back
   static String circleBtn = "$ressourcePath/circleBtn.png";
