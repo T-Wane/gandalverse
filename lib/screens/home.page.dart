@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final ScrollController _scrollController = ScrollController();
   bool _isFabVisible = true;
 
-  final UserRepo _userRepo = UserRepo();
+  //final UserRepo _userRepo = UserRepo();
 
   final Map<String, dynamic> telegramUser = {
     'username': 'johndoe',
