@@ -33,6 +33,7 @@ void main() async {
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.web,
   // );
+  await Firebase.initializeApp();
   WebViewPlatform.instance = WebWebViewPlatform();
   try {
     if (TelegramWebApp.instance.isSupported) {
