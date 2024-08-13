@@ -30,9 +30,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.web,
-  );
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.web,
+  // );
   WebViewPlatform.instance = WebWebViewPlatform();
   try {
     if (TelegramWebApp.instance.isSupported) {
