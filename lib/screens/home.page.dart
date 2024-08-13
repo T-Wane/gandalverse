@@ -94,8 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void check() async {
     await Future.delayed(const Duration(seconds: 2));
     isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
-    // await _userRepo.checkAndCreateUser(
-    //     telegram.initData.queryId ?? '--', telegramUser);
+    await _userRepo.checkAndCreateUser(
+        telegram.initData.queryId ?? '--', telegramUser);
     setState(() {});
   }
 
