@@ -57,8 +57,8 @@ class _MonProfilScreenState extends State<MonProfilScreen> {
       );
     }
   }
- 
- /*  entry.value['image']*/
+
+  /*  entry.value['image']*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,7 +80,7 @@ class _MonProfilScreenState extends State<MonProfilScreen> {
                 ),
               ),
             ),
-            Expanded(
+            Flexible(
               child: PageView(
                 physics: const NeverScrollableScrollPhysics(),
                 controller: _scrollController,
@@ -89,6 +89,7 @@ class _MonProfilScreenState extends State<MonProfilScreen> {
                     .map((entry) => Column(children: [
                           Container(
                             padding: const EdgeInsets.all(5),
+                            margin: const EdgeInsets.all(5),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.purpleAccent.withOpacity(0.2),
@@ -97,12 +98,12 @@ class _MonProfilScreenState extends State<MonProfilScreen> {
                               filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
                               child: Container(
                                 padding: const EdgeInsets.all(5),
-                                margin: const EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors.purpleAccent.withOpacity(0.1),
                                 ),
                                 child: CustomImageView(
+                                  margin: const EdgeInsets.all(5),
                                   height: 180,
                                   width: 180,
                                   imagePath:

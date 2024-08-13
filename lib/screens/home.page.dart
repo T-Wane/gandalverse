@@ -114,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   bool isFABVisible = true; // Tracks FAB visibility
-  Offset fabPosition = Offset(20, 20); // Initial position of the FAB
+  Offset? fabPosition; // Initial position of the FAB
 
   void toggleFABVisibility() {
     setState(() {
@@ -129,51 +129,53 @@ class _MyHomePageState extends State<MyHomePage> {
     return MediaQuery(
       data: MediaQuery.of(context)
           .copyWith(textScaler: const TextScaler.linear(1)),
-      child: /*Stack(
-        children: [*/
+      child: Stack(
+        children: [
           Scaffold(
-        key: _key,
-        extendBody: true,
-        backgroundColor: Colors.white,
+            key: _key,
+            extendBody: true,
+            backgroundColor: Colors.white,
 
-        floatingActionButton: ((_currentIndex == 1 && _isFabVisible == true) ||
-                _currentIndex == 3 ||
-                _currentIndex == 4)
-            ? FloatingActionButton(
-                backgroundColor: Colors.white,
-                elevation: 1.5,
-                shape: const CircleBorder(),
-                onPressed: () {
-                  TapToEarnCard.show(
-                    context,
-                    child: const FlyCoinAnimation(),
-                    backColor: Color3,
-                  );
-                },
-                child: const Icon(
-                  CupertinoIcons.rocket,
-                  color: Color3,
-                  size: 28,
-                ),
-              )
-            : null,
-        // backgroundColor:✨ telegram.backgroundColor,
-        body: IndexedStack(index: _currentIndex, children: [
-          GandalVerseWebView(controller: controller),
-          DecouvrirPage(scrollController: _scrollController),
-          const AmisPage(),
-          const AnnoncesPage(),
-          const AllRevenusPage(),
-        ]),
+            // floatingActionButton: ((_currentIndex == 1 && _isFabVisible == true) ||
+            //         _currentIndex == 3 ||
+            //         _currentIndex == 4)
+            //     ? FloatingActionButton(
+            //         backgroundColor: Colors.white,
+            //         elevation: 1.5,
+            //         shape: const CircleBorder(),
+            //         onPressed: () {
+            //           TapToEarnCard.show(
+            //             context,
+            //             child: const FlyCoinAnimation(),
+            //             backColor: Color3,
+            //           );
+            //         },
+            //         child: const Icon(
+            //           CupertinoIcons.rocket,
+            //           color: Color3,
+            //           size: 28,
+            //         ),
+            //       )
+            //     : null,
+            // backgroundColor:✨ telegram.backgroundColor,
+            body: IndexedStack(index: _currentIndex, children: [
+              GandalVerseWebView(controller: controller),
+              DecouvrirPage(scrollController: _scrollController),
+              const AmisPage(),
+              const AnnoncesPage(),
+              const AllRevenusPage(),
+            ]),
 
-        bottomNavigationBar: _buildFloatingBarCustom(),
-      ),
-      // Draggable FAB
-      /*PointerInterceptor(
+            bottomNavigationBar: _buildFloatingBarCustom(),
+          ),
+          // Draggable FAB
+          PointerInterceptor(
             // debug: true,
             child: Positioned(
-              left: fabPosition.dx,
-              top: fabPosition.dy,
+              left: fabPosition?.dx,
+              top: fabPosition?.dy,
+              bottom: fabPosition == null ? 50 : null,
+              right: fabPosition == null ? 5 : null,
               child: Draggable(
                 feedback: FloatingActionButton(
                   backgroundColor: Colors.white,
@@ -219,7 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ],
-      ),*/
+      ),
     );
   }
 

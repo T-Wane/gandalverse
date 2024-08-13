@@ -30,10 +30,7 @@ class _GandalVerseWebViewState extends State<GandalVerseWebView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Column(children: [
-        PointerInterceptor(
-          // debug: true,
-          child: userTopInfos(),
-        ),
+        userTopInfos(),
         Expanded(
           child: Stack(children: [
             Container(

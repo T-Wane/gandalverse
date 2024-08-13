@@ -19,8 +19,8 @@ class BtnRoundedIconBack extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         child: CustomImageView(
           imagePath: Images.leftArrow,
-          height: 26,
-          width: 26,
+          height: 22,
+          width: 22,
           color: Themecolors.ColorWhite,
           fit: BoxFit.contain,
         ),
