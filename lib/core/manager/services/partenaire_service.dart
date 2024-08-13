@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:gandalverse/core/modeles/carte.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:gandalverse/core/services/service.dart';
+import 'package:gandalverse/core/manager/services/service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
  
 /*

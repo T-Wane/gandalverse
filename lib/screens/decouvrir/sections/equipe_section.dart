@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gandalverse/core/modeles/carte.dart';
-import 'package:gandalverse/core/services/equipe_service.dart';
+import 'package:gandalverse/core/manager/services/equipe_service.dart';
 
 import '../components/carteCard.dart';
 

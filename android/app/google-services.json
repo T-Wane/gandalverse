@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "366940087617",
+    "project_id": "gandalversego",
+    "storage_bucket": "gandalversego.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366940087617:android:b45e24505e3852470e6dc0",
+        "android_client_info": {
+          "package_name": "com.example.gandalverse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0jUm5k2B-B_Mz0xO7B-hgPIjywOYKjBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:366940087617:android:1a83db17ef751b170e6dc0",
+        "android_client_info": {
+          "package_name": "com.example.gverse_manager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0jUm5k2B-B_Mz0xO7B-hgPIjywOYKjBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

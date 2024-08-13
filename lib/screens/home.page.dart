@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gandalverse/animations/coinsAnomations_test1.dart';
+import 'package:gandalverse/core/manager/repositories/user_repo.dart';
 import 'package:gandalverse/screens/Annonces/annonces_page.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
 import 'package:gandalverse/screens/decouvrir/decouvir_page.dart';
@@ -60,6 +61,14 @@ class _MyHomePageState extends State<MyHomePage> {
   final ScrollController _scrollController = ScrollController();
   bool _isFabVisible = true;
 
+  final UserRepo _userRepo = UserRepo();
+
+  final Map<String, dynamic> telegramUser = {
+    'username': 'johndoe',
+    'first_name': 'John',
+    'last_name': 'Doe',
+  };
+
   @override
   void initState() {
     super.initState();
@@ -85,6 +94,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void check() async {
     await Future.delayed(const Duration(seconds: 2));
     isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
+    await _userRepo.checkAndCreateUser(
+        telegram.initData.queryId ?? '--', telegramUser);
     setState(() {});
   }
 

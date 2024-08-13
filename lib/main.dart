@@ -4,9 +4,11 @@ import 'dart:collection';
 import 'dart:math';
 
 import 'package:draggable_widget/draggable_widget.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gandalverse/firebase_options.dart';
 // import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:gandalverse/init.dart';
 import 'package:gandalverse/core/themes/images/appImages.dart';
@@ -24,11 +26,13 @@ import 'package:url_launcher/url_launcher.dart';
 // import 'package:flutter_telegram_web_app/flutter_telegram_web_app.dart' as tg;
 // import 'package:flutter_telegram_web_app/flutter_telegram_web_app.dart';
 
-
 // WebViewEnvironment? webViewEnvironment;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   WebViewPlatform.instance = WebWebViewPlatform();
   try {
     if (TelegramWebApp.instance.isSupported) {
