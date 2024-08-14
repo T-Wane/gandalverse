@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final ScrollController _scrollController = ScrollController();
   bool _isFabVisible = true;
 
-  //final UserRepo _userRepo = UserRepo();
+  final UserRepo _userRepo = UserRepo();
 
   final Map<String, dynamic> telegramUser = {
     'username': 'johndoe',
@@ -93,8 +93,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void check() async {
     await Future.delayed(const Duration(seconds: 2));
     isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
-    // await _userRepo.checkAndCreateUser(
-    //     telegram.initData.queryId ?? '--', telegramUser);
+    await _userRepo.checkAndCreateUser(
+        telegram.initData.queryId ?? '--', telegramUser);
     setState(() {});
   }
 
