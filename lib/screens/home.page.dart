@@ -95,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
     isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
     await _userRepo.checkAndCreateUser(
       // '--', telegramUser);
-        telegram.initData.queryId ?? '--', telegramUser);
+        "${telegram.initDataUnsafe?.user?.id ?? '--'}", telegramUser);
     setState(() {});
   }
 
