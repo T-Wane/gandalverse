@@ -27,13 +27,25 @@ import 'package:url_launcher/url_launcher.dart';
 // import 'package:flutter_telegram_web_app/flutter_telegram_web_app.dart';
 
 // WebViewEnvironment? webViewEnvironment;
- 
-void main() async {
+
+Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.web,
   // );
- // await Firebase.initializeApp();
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+        options: const FirebaseOptions(
+      apiKey: 'AIzaSyBq--4t1eJlvVRGq-BK6n4iwqzLqYXSzis',
+      appId: '1:366940087617:web:876ada4485b421a10e6dc0',
+      messagingSenderId: '366940087617',
+      projectId: 'gandalversego',
+      authDomain: 'gandalversego.firebaseapp.com',
+      storageBucket: 'gandalversego.appspot.com',
+    ));
+  } else {
+    await Firebase.initializeApp();
+  }
   WebViewPlatform.instance = WebWebViewPlatform();
   try {
     if (TelegramWebApp.instance.isSupported) {
