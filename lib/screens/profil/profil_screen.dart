@@ -10,8 +10,7 @@ import 'package:gandalverse/core/themes/color/themeColors.dart';
 import 'package:gandalverse/screens/profil/components/user_icon.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
-import 'package:gandalverse/widgets/profilDetails_bottomSheet.dart';
-import 'package:pointer_interceptor/pointer_interceptor.dart';
+import 'package:gandalverse/widgets/profilDetails_bottomSheet.dart'; 
 import 'components/infos_card.dart';
 
 class MonProfilScreen extends StatefulWidget {

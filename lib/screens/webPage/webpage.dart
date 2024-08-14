@@ -3,10 +3,9 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
 import 'package:webview_flutter_web/webview_flutter_web.dart';
-
+import 'package:pointer_interceptor_platform_interface/pointer_interceptor_platform_interface.dart';
 import '../../components/user_top_infos.dart';
 
 //import 'package:webview_flutter/webview_flutter.dart';
@@ -29,9 +28,8 @@ class _GandalVerseWebViewState extends State<GandalVerseWebView> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(children: [
-        userTopInfos(),
-        Expanded(
+      child: Stack(children: [
+        Positioned.fill(
           child: Stack(children: [
             Container(
               decoration: const BoxDecoration(
@@ -79,6 +77,20 @@ class _GandalVerseWebViewState extends State<GandalVerseWebView> {
               ).build(context),
             ),
           ]),
+        ),
+        PointerInterceptorPlatform.instance.buildWidget(
+          // debug: true,
+
+          // debug: true,
+          child: Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: PointerInterceptorPlatform.instance.buildWidget(
+              // debug: true,
+              child: userTopInfos(),
+            ),
+          ),
         ),
       ]),
     );

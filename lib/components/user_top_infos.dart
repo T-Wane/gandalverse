@@ -10,7 +10,8 @@ import 'package:gandalverse/screens/profil/profil_screen.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
-import 'package:gandalverse/widgets/profilDetails_bottomSheet.dart';
+import 'package:gandalverse/widgets/profilDetails_bottomSheet.dart'; 
+import 'package:pointer_interceptor_platform_interface/pointer_interceptor_platform_interface.dart';
 import 'package:telegram_web_app/telegram_web_app.dart';
 
 import 'profil_details.dart';
@@ -109,8 +110,8 @@ class _userTopInfosState extends State<userTopInfos> {
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Text(
-                      "UserName", 
-                     // "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
+                      "UserName",
+                      // "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
                       textAlign: TextAlign.left,
                       style: const TextStyle(
                         fontFamily: "Aller",
@@ -191,7 +192,10 @@ class _userTopInfosState extends State<userTopInfos> {
                     ),
                   ]),
             ]),
-            _setting(),
+             PointerInterceptorPlatform.instance.buildWidget(
+              // debug: true,
+              child: _setting(),
+            ),
             // const Padding(
             //   padding: EdgeInsets.all(5.0),
             //   child: Icon(
@@ -218,13 +222,24 @@ class _userTopInfosState extends State<userTopInfos> {
           itemBuilder: (context) => [
             PopupMenuItem(
                 value: 1,
-                child: _actionList(CupertinoIcons.refresh, "Rafraîchir")),
+                child: PointerInterceptorPlatform.instance.buildWidget(
+                    // debug: true,
+                    child: _actionList(CupertinoIcons.refresh, "Rafraîchir"))),
             PopupMenuItem(
-                value: 2,
+              value: 2,
+              child: PointerInterceptorPlatform.instance.buildWidget(
+                // debug: true,
                 child: _actionList(CupertinoIcons.shield_lefthalf_fill,
-                    "Politique de confidentialité")),
+                    "Politique de confidentialité"),
+              ),
+            ),
             PopupMenuItem(
-                value: 3, child: _actionList(CupertinoIcons.power, "Quitter")),
+              value: 3,
+              child: PointerInterceptorPlatform.instance.buildWidget(
+                // debug: true,
+                child: _actionList(CupertinoIcons.power, "Quitter"),
+              ),
+            ),
           ],
           offset: const Offset(0, 40),
           color: const Color.fromARGB(255, 18, 54, 96),

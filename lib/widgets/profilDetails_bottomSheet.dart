@@ -11,7 +11,7 @@ import 'package:gandalverse/core/themes/color/themeColors.dart';
 import 'package:gandalverse/core/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
-import 'package:pointer_interceptor/pointer_interceptor.dart';
+import 'package:pointer_interceptor_platform_interface/pointer_interceptor_platform_interface.dart';
 import 'package:telegram_web_app/telegram_web_app.dart';
 
 import 'bottomSheet_modal.dart';
@@ -23,25 +23,25 @@ class ProfilDetailsContentBottomSheet extends StatefulWidget {
           required TelegramWebApp telegram,
           bool isDismissible = true}) =>
       showModalBottomSheet(
-              enableDrag: true,
-              isScrollControlled: true,
-              isDismissible: isDismissible,
-              context: context,
-              backgroundColor: Colors.transparent,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadiusDirectional.only(
-                  topEnd: Radius.circular(15),
-                  topStart: Radius.circular(15),
-                ),
-              ),
-              builder: (context) => PointerInterceptor(
-                  // debug: true,
-                  child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-                      child: ProfilDetailsContentBottomSheet(
-                        telegram: telegram,
-                      ))))
-          .then((_) => FocusScope.of(context).requestFocus(FocusNode()));
+          enableDrag: true,
+          isScrollControlled: true,
+          isDismissible: isDismissible,
+          context: context,
+          backgroundColor: Colors.transparent,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadiusDirectional.only(
+              topEnd: Radius.circular(15),
+              topStart: Radius.circular(15),
+            ),
+          ),
+          builder: (context) => PointerInterceptorPlatform.instance.buildWidget(
+              // debug: true,
+              child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
+                  child: ProfilDetailsContentBottomSheet(
+                    telegram: telegram,
+                  )))).then(
+          (_) => FocusScope.of(context).requestFocus(FocusNode()));
 
   static void hide(BuildContext context) => Navigator.pop(context);
 
@@ -96,227 +96,249 @@ class _ProfilDetailsContentBottomSheetState
   //  entry.value['image']
   @override
   Widget build(BuildContext context) {
-    return PointerInterceptor(
-                  // debug: true,
-                  child:SizedBox(
-      height: MediaQuery.of(context).size.height * 0.8,
-      child: PageView(
-        controller: _scrollController,
-        scrollDirection: Axis.horizontal,
-        children: levels.entries
-            .map((entry) => Stack(children: [
-                  AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
-                    margin: const EdgeInsets.only(top: 100),
-                    decoration: BoxDecoration(
-                        color: Colors.purpleAccent.withOpacity(0.6),
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.purpleAccent.withOpacity(0.5),
-                            offset: const Offset(1, 1),
-                            blurRadius: 10,
-                            spreadRadius: 4,
-                          )
-                        ]),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      margin: const EdgeInsets.only(top: 2),
-                      padding: const EdgeInsetsDirectional.symmetric(
-                        horizontal: 5,
-                        vertical: 5,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: MediaQuery.of(context).viewInsets,
-                        child: Column(
-                            // mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 5),
-                                  child: Align(
-                                      alignment: Alignment.centerRight,
-                                      child: closeIcon(context))),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 15, vertical: 2),
-                                child: Divider(
-                                  color: Colors.grey.shade200,
-                                ),
-                              ),
-                              Flexible(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(5.0),
-                                  child: Column(
-                                      //  mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Row(
+    return PointerInterceptorPlatform.instance.buildWidget(
+      // debug: true,
+      child: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.8,
+          child: PageView(
+            controller: _scrollController,
+            scrollDirection: Axis.horizontal,
+            children: levels.entries
+                .map((entry) => Stack(children: [
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 200),
+                        margin: const EdgeInsets.only(top: 100),
+                        decoration: BoxDecoration(
+                            color: Colors.purpleAccent.withOpacity(0.6),
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.purpleAccent.withOpacity(0.5),
+                                offset: const Offset(1, 1),
+                                blurRadius: 10,
+                                spreadRadius: 4,
+                              )
+                            ]),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          margin: const EdgeInsets.only(top: 2),
+                          padding: const EdgeInsetsDirectional.symmetric(
+                            horizontal: 5,
+                            vertical: 5,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(10),
+                            ),
+                          ),
+                          child: Padding(
+                            padding: MediaQuery.of(context).viewInsets,
+                            child: Column(
+                                // mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8, vertical: 5),
+                                      child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: closeIcon(context))),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15, vertical: 2),
+                                    child: Divider(
+                                      color: Colors.grey.shade200,
+                                    ),
+                                  ),
+                                  Flexible(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: Column(
+                                          //  mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: IconButton(
-                                                onPressed: () {
-                                                  _scrollLeft();
-                                                },
-                                                icon: Icon(
-                                                  CupertinoIcons.chevron_left,
-                                                  color: Themecolors.Color3,
-                                                ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 10,
-                                                        vertical: 2),
-                                                child: Text(
-                                                  "${entry.value['title']}",
-                                                  textAlign: TextAlign.center,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Themecolors.Color3
-                                                          .withOpacity(0.9),
-                                                      fontFamily: "Aller",
-                                                      fontSize: 17),
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: IconButton(
-                                                onPressed: () {
-                                                  _scrollRight();
-                                                },
-                                                icon: Icon(
-                                                  CupertinoIcons.chevron_right,
-                                                  color: Themecolors.Color3,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        if (entry.value['title'] == "Neo") ...[
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 2, horizontal: 10),
-                                            child: LinearPercentIndicator(
-                                              percent: 0.5,
-                                              isRTL: false,
-                                              backgroundColor: Themecolors
-                                                  .Color3.withOpacity(0.2),
-                                              animateFromLastPercent: true,
-                                              restartAnimation: true,
-                                              linearGradient: LinearGradient(
-                                                  begin: Alignment.topCenter,
-                                                  end: Alignment.bottomCenter,
-                                                  colors: [
-                                                    Colors.deepPurple.shade200,
-                                                    Colors.deepPurple.shade300,
-                                                    Colors.deepPurple.shade400,
-                                                    Colors.deepPurple.shade400,
-                                                    Colors.deepPurple.shade500,
-                                                    Colors.deepPurple.shade600,
-                                                    Colors.deepPurple.shade700,
-                                                  ]),
-                                              lineHeight: 20.0,
-                                              barRadius:
-                                                  const Radius.circular(5),
-                                              leading: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 5, right: 2),
-                                                child: Text(
-                                                  "10k",
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    color: Themecolors.Color3,
-                                                    fontFamily: "Aller",
-                                                    fontSize: 12,
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: IconButton(
+                                                    onPressed: () {
+                                                      _scrollLeft();
+                                                    },
+                                                    icon: Icon(
+                                                      CupertinoIcons
+                                                          .chevron_left,
+                                                      color: Themecolors.Color3,
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                              trailing: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 5, right: 2),
-                                                child: Text(
-                                                  "${entry.value['coins_required']}",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      color: Colors
-                                                          .purple.shade400,
-                                                      fontFamily: "Aller",
-                                                      fontSize: 13),
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                        horizontal: 10,
+                                                        vertical: 2),
+                                                    child: Text(
+                                                      "${entry.value['title']}",
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Themecolors
+                                                                  .Color3
+                                                              .withOpacity(0.9),
+                                                          fontFamily: "Aller",
+                                                          fontSize: 17),
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: IconButton(
+                                                    onPressed: () {
+                                                      _scrollRight();
+                                                    },
+                                                    icon: Icon(
+                                                      CupertinoIcons
+                                                          .chevron_right,
+                                                      color: Themecolors.Color3,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
                                             ),
-                                          )
-                                        ],
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Spacer()
+                                            if (entry.value['title'] ==
+                                                "Neo") ...[
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 2,
+                                                        horizontal: 10),
+                                                child: LinearPercentIndicator(
+                                                  percent: 0.5,
+                                                  isRTL: false,
+                                                  backgroundColor: Themecolors
+                                                      .Color3.withOpacity(0.2),
+                                                  animateFromLastPercent: true,
+                                                  restartAnimation: true,
+                                                  linearGradient:
+                                                      LinearGradient(
+                                                          begin: Alignment
+                                                              .topCenter,
+                                                          end: Alignment
+                                                              .bottomCenter,
+                                                          colors: [
+                                                        Colors.deepPurple
+                                                            .shade200,
+                                                        Colors.deepPurple
+                                                            .shade300,
+                                                        Colors.deepPurple
+                                                            .shade400,
+                                                        Colors.deepPurple
+                                                            .shade400,
+                                                        Colors.deepPurple
+                                                            .shade500,
+                                                        Colors.deepPurple
+                                                            .shade600,
+                                                        Colors.deepPurple
+                                                            .shade700,
+                                                      ]),
+                                                  lineHeight: 20.0,
+                                                  barRadius:
+                                                      const Radius.circular(5),
+                                                  leading: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 5, right: 2),
+                                                    child: Text(
+                                                      "10k",
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                        color:
+                                                            Themecolors.Color3,
+                                                        fontFamily: "Aller",
+                                                        fontSize: 12,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  trailing: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 5, right: 2),
+                                                    child: Text(
+                                                      "${entry.value['coins_required']}",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: Colors
+                                                              .purple.shade400,
+                                                          fontFamily: "Aller",
+                                                          fontSize: 13),
+                                                    ),
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            Spacer()
 
-                                        /// Expanded(child: PlayerList())
-                                      ]),
-                                ),
+                                            /// Expanded(child: PlayerList())
+                                          ]),
+                                    ),
+                                  ),
+                                ]),
+                          ),
+                        ),
+                      ),
+                      //---------------//
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            padding: const EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color3.withOpacity(0.1),
+                            ),
+                            child: Container(
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.purpleAccent.withOpacity(0.1),
                               ),
-                            ]),
-                      ),
-                    ),
-                  ),
-                  //---------------//
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    child: Align(
-                      alignment: Alignment.center,
-                      child: Container(
-                        padding: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color3.withOpacity(0.1),
-                        ),
-                        child: Container(
-                          padding: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.purpleAccent.withOpacity(0.1),
-                          ),
-                          child: CustomImageView(
-                            height: 150,
-                            width: 150,
-                            imagePath: entry.value['image'], //image du niveau
-                            radius: BorderRadius.circular(75),
-                            fit: BoxFit.cover,
+                              child: CustomImageView(
+                                height: 150,
+                                width: 150,
+                                imagePath:
+                                    entry.value['image'], //image du niveau
+                                radius: BorderRadius.circular(75),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: shareGvBtn(),
-                  )
-                ]))
-            .toList(),
-      )),
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        child: shareGvBtn(),
+                      )
+                    ]))
+                .toList(),
+          )),
     );
   }
 }
