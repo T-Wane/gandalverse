@@ -15,7 +15,7 @@ import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/bottomSheet_modal.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
-import 'package:line_awesome_flutter/line_awesome_flutter.dart'; 
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 //import 'package:telegram_web_app/telegram_web_app.dart';
 //import 'package:webview_flutter/webview_flutter.dart';
 import '../components/user_top_infos.dart';
@@ -94,8 +94,13 @@ class _MyHomePageState extends State<MyHomePage> {
     await Future.delayed(const Duration(seconds: 2));
     isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
     await _userRepo.checkAndCreateUser(
-      // '--', telegramUser);
-        "${telegram.initDataUnsafe?.user?.id ?? '--'}", telegramUser);
+        // '--', telegramUser);
+        "${telegram.initDataUnsafe?.user?.id ?? '--'}",
+        {
+          'username': telegram.initData.user.username,
+          'first_name': telegram.initData.user.firstname,
+          'last_name': telegram.initData.user.lastname,
+        });
     setState(() {});
   }
 
