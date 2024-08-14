@@ -34,19 +34,15 @@
 
     <script>
       // The value below is injected by flutter build, do not touch.
-      const serviceWorkerVersion = "379079434";
+      const serviceWorkerVersion = "3798095627";
     </script>
     <!-- This script adds the flutter initialization JS code -->
     <script src="flutter.js" defer></script>
     <script src="https://telegram.org/js/telegram-web-app.js" defer></script>
-    <script
-      type="application/javascript"
-      src="/assets/packages/flutter_inappwebview_web/assets/web/web_support.js"
-      defer
-    ></script>
     <!-- <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script> -->
-   
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+    -->
   </head>
   <body>
     <script>
@@ -63,18 +59,43 @@
           },
         });
       });
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+    <!-- <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyBq--4t1eJlvVRGq-BK6n4iwqzLqYXSzis",
+        authDomain: "gandalversego.firebaseapp.com",
+        projectId: "gandalversego",
+        storageBucket: "gandalversego.appspot.com",
+        messagingSenderId: "366940087617",
+        appId: "1:366940087617:web:876ada4485b421a10e6dc0",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script> -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
     
-      // var firebase = require("firebase/app");
-      // var firebaseConfig = {
-      //   apiKey: "AIzaSyBq--4t1eJlvVRGq-BK6n4iwqzLqYXSzis",
-      //   appId: "1:366940087617:web:876ada4485b421a10e6dc0",
-      //   messagingSenderId: "366940087617",
-      //   projectId: "gandalversego",
-      //   authDomain: "gandalversego.firebaseapp.com",
-      //   storageBucket: "gandalversego.appspot.com",
-      // };
-      // firebase.initializeApp(firebaseConfig);
-      // firebase.analytics();
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBq--4t1eJlvVRGq-BK6n4iwqzLqYXSzis",
+        authDomain: "gandalversego.firebaseapp.com",
+        projectId: "gandalversego",
+        storageBucket: "gandalversego.appspot.com",
+        messagingSenderId: "366940087617",
+        appId: "1:366940087617:web:876ada4485b421a10e6dc0"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
     </script>
   </body>
 </html>
