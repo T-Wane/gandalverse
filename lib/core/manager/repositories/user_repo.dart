@@ -1,11 +1,16 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserRepo {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   // Méthode pour vérifier et créer un utilisateur
-  Future<void> checkAndCreateUser(String userId, Map<String, dynamic> userData) async {
-    final DocumentReference userRef = _firestore.collection('users').doc(userId);
+  Future<void> checkAndCreateUser(
+      String userId, Map<String, dynamic> userData) async {
+    final DocumentReference userRef =
+        _firestore.collection('users').doc(userId);
+    log("##############[ checkAndCreateUser ######################");
 
     try {
       // Vérifiez si le document utilisateur existe
@@ -21,6 +26,7 @@ class UserRepo {
       }
     } catch (e) {
       print('Error checking or creating user: $e');
+      log("####################################################");
     }
   }
 }
