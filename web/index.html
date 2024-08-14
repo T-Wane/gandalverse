@@ -64,19 +64,38 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
-    <script>
+    <!-- <script>
       const firebaseConfig = {
         apiKey: "AIzaSyBq--4t1eJlvVRGq-BK6n4iwqzLqYXSzis",
         authDomain: "gandalversego.firebaseapp.com",
         projectId: "gandalversego",
         storageBucket: "gandalversego.appspot.com",
         messagingSenderId: "366940087617",
-        appId: "1:366940087617:web:c27c66a652eac4d70e6dc0",
+        appId: "1:366940087617:web:876ada4485b421a10e6dc0",
       };
 
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
+    </script> -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBq--4t1eJlvVRGq-BK6n4iwqzLqYXSzis",
+        authDomain: "gandalversego.firebaseapp.com",
+        projectId: "gandalversego",
+        storageBucket: "gandalversego.appspot.com",
+        messagingSenderId: "366940087617",
+        appId: "1:366940087617:web:876ada4485b421a10e6dc0"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
     </script>
   </body>
 </html>
