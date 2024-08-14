@@ -27,7 +27,7 @@ import 'package:url_launcher/url_launcher.dart';
 // import 'package:flutter_telegram_web_app/flutter_telegram_web_app.dart';
 
 // WebViewEnvironment? webViewEnvironment;
-
+ 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp(
