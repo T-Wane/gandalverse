@@ -1,6 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
 class NiveauxDetails_PopUp extends StatefulWidget {

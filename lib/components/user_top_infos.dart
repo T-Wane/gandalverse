@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/components/infoItem.dart';
 import 'package:gandalverse/screens/home.page.dart';
-import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';

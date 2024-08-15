@@ -3,9 +3,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/default_btn.dart';
-import 'package:gandalverse/core/themes/color/themeColors.dart';
+import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/screens/Annonces/components/annonceCard.dart';
-import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 

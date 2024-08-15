@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/rounded_btn_back.dart';
 import 'package:gandalverse/core/data/levels.dart';
-import 'package:gandalverse/core/themes/color/themeColors.dart';
+import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/screens/profil/components/user_icon.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';

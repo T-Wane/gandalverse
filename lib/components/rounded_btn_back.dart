@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gandalverse/core/themes/color/themeColors.dart';
-import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/themes/color/themeColors.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
 class BtnRoundedIconBack extends StatelessWidget {

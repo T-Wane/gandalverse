@@ -2,7 +2,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/painter/liquid_painter.dart';
 import 'package:gandalverse/widgets/painter/radial_painter.dart';

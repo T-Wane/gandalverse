@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/animations/coinsAnomations_test1.dart';
 import 'package:gandalverse/screens/decouvrir/components/itemCard.dart';
-import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/screens/decouvrir/sections/partenaire_section.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/earnToTap.dart';

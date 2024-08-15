@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/components/infoItem.dart';
-import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
 import 'package:gandalverse/widgets/popups/nieauxDetails_alert.dart';

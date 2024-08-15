@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gandalverse/animations/coinsAnomations_test1.dart';
-import 'package:gandalverse/core/manager/repositories/user_repo.dart';
+import 'package:gandalverse/core/repositories/user_repository.dart';
 import 'package:gandalverse/screens/Annonces/annonces_page.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
 import 'package:gandalverse/screens/decouvrir/decouvir_page.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
 import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
-import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/bottomSheet_modal.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
@@ -60,13 +60,13 @@ class _MyHomePageState extends State<MyHomePage> {
   final ScrollController _scrollController = ScrollController();
   bool _isFabVisible = true;
 
-  final UserRepo _userRepo = UserRepo();
+  // final UserRepo _userRepo = UserRepo();
 
-  final Map<String, dynamic> telegramUser = {
-    'username': 'johndoe',
-    'first_name': 'John',
-    'last_name': 'Doe',
-  };
+  // final Map<String, dynamic> telegramUser = {
+  //   'username': 'johndoe',
+  //   'first_name': 'John',
+  //   'last_name': 'Doe',
+  // };
 
   @override
   void initState() {
@@ -93,14 +93,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void check() async {
     await Future.delayed(const Duration(seconds: 2));
     isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
-    await _userRepo.checkAndCreateUser(
-        // '--', telegramUser);
-        "${telegram.initDataUnsafe?.user?.id ?? '--'}",
-        {
-          'username': telegram.initData.user.username,
-          'first_name': telegram.initData.user.firstname,
-          'last_name': telegram.initData.user.lastname,
-        });
+    // await _userRepo.checkAndCreateUser(
+    //     // '--', telegramUser);
+    //     "${telegram.initDataUnsafe?.user?.id ?? '--'}",
+    //     {
+    //       'username': telegram.initData.user.username,
+    //       'first_name': telegram.initData.user.firstname,
+    //       'last_name': telegram.initData.user.lastname,
+    //     });
     setState(() {});
   }
 

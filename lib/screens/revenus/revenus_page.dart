@@ -4,7 +4,7 @@ import 'package:gandalverse/screens/revenus/data/revenus_data.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
 import '../../components/user_top_infos.dart';
-import '../../core/themes/images/appImages.dart';
+import '../../themes/images/appImages.dart';
 import '../Annonces/components/annonceCard.dart';
 import 'components/plus_details_btn.dart';
 

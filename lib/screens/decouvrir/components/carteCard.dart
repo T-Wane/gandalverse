@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/core/modeles/carte.dart';
-import 'package:gandalverse/core/manager/services/service.dart';
-import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/core/services/service.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 

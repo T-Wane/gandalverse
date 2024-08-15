@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
 class AnnonceCard extends StatelessWidget {

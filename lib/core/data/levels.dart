@@ -1,4 +1,4 @@
-import 'package:gandalverse/core/themes/images/appImages.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
 
 final Map<String, Map<String, dynamic>> levels = {
   'Neo': {
