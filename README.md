@@ -1,26 +1,57 @@
 # gandalverse
 
-A new Flutter project.
+Go GandalVerse
 
-## Getting Started
+## Technologies utilisées
 
--  flutter build web --web-renderer canvaskit --base-href /starbrigVerse/
+- **Flutter**: Framework open-source pour le développement d'applications mobiles multiplateformes. 
+- **get_it**: Service locator pour l'injection de dépendances. 
+- **build_runner**: Outil pour générer du code Dart automatiquement.
 
-- copy the content of build/web and past in docs
-- git add .
-- git commit -m "update" 
--  flutter build web --web-renderer canvaskit --base-href /starbrigVerse/
+## Deployement proccess
 
-## PUSH on master for deployment
-- git push -u origin master
+1. **Build web**
 
-This project is a starting point for a Flutter application.
+   ```bash
+   flutter build web --web-renderer canvaskit --base-href /starbrigVerse/
+   ```
 
-A few resources to get you started if this is your first Flutter project:
+2. **copy the content of build/web and past in docs**
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+    **After past the content of build/web in docs folder**
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+   ```bash
+   git add .
+   git commit -m "commit message"
+   ```
+
+3. **PUSH on master for deployment**
+
+   ```bash
+   git push -u origin master
+   ```
+
+## Lancez l'application
+
+   Lancez l'application sur une émulateur chrome ou autre :
+
+   ```bash
+   flutter run
+   ```
+
+
+
+## Génération de code
+
+   Certains packages nécessitent la génération de code Dart. Utilisez `build_runner` pour cela :
+
+   ```bash
+   flutter pub run build_runner build --delete-conflicting-outputs
+   ```
+   > **Remarque**: Assurez-vous d'exécuter cette commande chaque fois que vous apportez des modifications aux fichiers qui nécessitent une régénération automatique.
+
+## Licence
+
+Ce projet est sous licence [MIT](LICENSE).
+
+ 

@@ -58,6 +58,7 @@ dependencies:
   json_annotation: ^4.9.0
   #pointer_interceptor_platform_interface: ^0.10.0+1
   pointer_interceptor: ^0.10.1+2
+  provider: ^6.1.2
   #telegram_web_app: ^0.1.5
 
 dev_dependencies:
