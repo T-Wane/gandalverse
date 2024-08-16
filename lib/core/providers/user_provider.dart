@@ -1,36 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:gandalverse/core/modeles/fields/createUser_fields/createUser_fields.dart';
 import 'package:gandalverse/core/modeles/user_model/user_model.dart';
 import 'package:gandalverse/core/repositories/user_repository.dart';
+import 'package:gandalverse/data/telegram_client.dart';
 import 'package:injectable/injectable.dart';
 import 'package:provider/provider.dart';
+import 'package:telegram_web_app/telegram_web_app.dart';
 
 @singleton
 class UserProvider extends ChangeNotifier {
   UserRepository _userRepository;
+  TelegramClient _telegramClient;
 
   UserModel? _user;
 
   UserModel? get user => _user;
 
-  UserProvider(this._userRepository) { 
+  int get telegramUserId => _telegramClient.telegram.initData.user.id;
+
+  UserProvider(this._userRepository, this._telegramClient) {
+    fetchUserByTelegramId();
     notifyListeners();
   }
 
-  Future<void> fetchUserByTelegramId(int telegramId) async {
-    _user = await _userRepository.getUserByTelegramId(telegramId);
+  Future<void> fetchUserByTelegramId() async {
+    _user = await _userRepository
+        .getUserByTelegramId(_telegramClient.telegram.initData.user.id);
+    if (user == null) {
+      TelegramUser user = _telegramClient.telegram.initData.user;
+      createUser(
+        telegramId: _telegramClient.telegram.initData.user.id,
+        firstName: user.firstname,
+        lastName: user.lastname,
+        username: user.username,
+        photoUrl: _telegramClient.telegram.initDataUnsafe?.user?.photoUrl,
+      );
+    }
     notifyListeners();
   }
 
-  Future<void> createUser(int telegramId, String firstName, String lastName,
-      String username, String photoUrl) async {
-    await _userRepository.createUser(
-      telegramId: telegramId,
-      firstName: firstName,
-      lastName: lastName,
-      username: username,
-      photoUrl: photoUrl,
-    );
-    await fetchUserByTelegramId(telegramId);
+  Future<void> createUser(
+      {required int telegramId,
+      String? firstName,
+      String? lastName,
+      String? username,
+      String? photoUrl}) async {
+    CreateUserFields fields = CreateUserFields(
+        telegramId: telegramId,
+        firstName: firstName,
+        lastName: lastName,
+        username: username,
+        photoUrl: photoUrl);
+    await _userRepository.createUser(fields: fields);
+    await fetchUserByTelegramId();
   }
 
   Future<void> updateUser(UserModel user) async {

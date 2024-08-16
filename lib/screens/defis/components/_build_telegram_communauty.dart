@@ -1,13 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/default_btn.dart';
-import 'package:gandalverse/screens/Annonces/components/annonceCard.dart';
+import 'package:gandalverse/screens/defis/components/annonceCard.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
-class buildFacebookCommunauty extends StatelessWidget {
-  const buildFacebookCommunauty({
+class buildTelegramCommunauty extends StatelessWidget {
+  const buildTelegramCommunauty({
     super.key,
     required this.Color3,
   });
@@ -17,10 +17,10 @@ class buildFacebookCommunauty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnnonceCard(
-        // title: 'Facebook',
-        text: 'Rejoins notre communauté Facebook\n',
+        // title: 'Telegram',
+        text: 'Rejoins notre communauté \n Telegram',
         reward: " 10.000",
-        imagePath: Images.black_facebook,
+        imagePath: Images.black_telegram,
         backColors: const [
           Colors.white,
           Colors.white,
@@ -34,7 +34,7 @@ class buildFacebookCommunauty extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Communauté Facebook",
+                      "Communauté Telegram",
                       maxLines: 1,
                       textAlign: TextAlign.center,
                       textDirection: TextDirection.ltr,
@@ -69,7 +69,7 @@ class buildFacebookCommunauty extends StatelessWidget {
                           width: 40,
                         ),
                         AutoSizeText(
-                          '10.000',
+                          '205 000',
                           maxLines: 1,
                           presetFontSizes: [22, 20, 18, 15, 14],
                           textAlign: TextAlign.center,
@@ -95,7 +95,7 @@ class buildFacebookCommunauty extends StatelessWidget {
                   ],
                 ),
               ),
-              image: Images.black_facebook);
+              image: Images.black_telegram);
         },
         textColor: Colors.black,
         titleColor: Color3);

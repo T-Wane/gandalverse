@@ -1,9 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/animations/coinsAnomations_test1.dart';
-import 'package:gandalverse/screens/decouvrir/components/itemCard.dart';
+import 'package:gandalverse/screens/QG_screen/components/itemCard.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
-import 'package:gandalverse/screens/decouvrir/sections/partenaire_section.dart';
+import 'package:gandalverse/screens/QG_screen/sections/partenaire_section.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/earnToTap.dart';
 
@@ -11,14 +11,14 @@ import '../../components/user_top_infos.dart';
 import '../../widgets/tab_element.dart';
 import 'sections/equipe_section.dart';
 
-class DecouvrirPage extends StatefulWidget {
-  DecouvrirPage({super.key, required this.scrollController});
+class QGScreen extends StatefulWidget {
+  QGScreen({super.key, required this.scrollController});
   ScrollController scrollController;
   @override
-  State<DecouvrirPage> createState() => _DecouvrirPageState();
+  State<QGScreen> createState() => _QGScreenState();
 }
 
-class _DecouvrirPageState extends State<DecouvrirPage> {
+class _QGScreenState extends State<QGScreen> {
   final _selectedSegment = ValueNotifier('Equipe');
   final Map<String, String> sections = {
     "Equipe": "Equipe",

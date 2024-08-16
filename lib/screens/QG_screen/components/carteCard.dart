@@ -1,10 +1,11 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:gandalverse/components/default_btn.dart';
-import 'package:gandalverse/core/modeles/carte.dart';
-import 'package:gandalverse/core/services/service.dart';
+import 'package:gandalverse/core/modeles/carte_model/carte.dart';
+import 'package:gandalverse/core/services/QG_services/QGService.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
@@ -12,7 +13,7 @@ import 'package:gandalverse/widgets/customImageView.dart';
 class CarteCard extends StatelessWidget {
   CarteCard({super.key, required this.carte, required this.qgService});
   QGService qgService;
-  Carte carte;
+  CarteModel carte;
   Color Color3 = Color.fromARGB(255, 18, 40, 70);
 
   @override
@@ -214,7 +215,7 @@ class bureauCarteDetails extends StatefulWidget {
   });
 
   final Color Color3;
-  final Carte carte;
+  final CarteModel carte;
 
   QGService qgService;
 
@@ -253,7 +254,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                   fontWeight: FontWeight.normal,
                 ),
           ),
-          if ((widget.carte.competences ?? []).isNotEmpty) ...[
+          if ((widget.carte.competences?.toList() ?? []).isNotEmpty) ...[
             AutoSizeText(
               "Compétences: ${widget.carte.competences?.join(" - ")}",
               textAlign: TextAlign.center,
@@ -402,21 +403,24 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                   press: () async {
                     try {
                       await widget.qgService
-                          .updateCarte(
+                          .updateItem(
                               widget.carte.nom,
-                              Carte(
-                                  nom: widget.carte.nom,
-                                  description: widget.carte.description,
-                                  competences: widget.carte.competences,
-                                  image: widget.carte.image,
-                                  prix: widget.carte.prix,
-                                  tauxAugmentation:
-                                      widget.carte.tauxAugmentation,
-                                  niveau: widget.carte.niveau + 1,
-                                  estAchete: widget.carte.estAchete,
-                                  force: widget.carte.force,
-                                  tauxAugmentationForce:
-                                      widget.carte.tauxAugmentationForce))
+                              CarteModel((b) => b
+                                ..nom = widget.carte.nom
+                                ..description = widget.carte.description
+                                ..competences = BuiltList<String>.from(
+                                        widget.carte.competences?.toList() ??
+                                            [])
+                                    .toBuilder()
+                                ..image = widget.carte.image
+                                ..prix = widget.carte.prix
+                                ..tauxAugmentation =
+                                    widget.carte.tauxAugmentation
+                                ..niveau = widget.carte.niveau + 1
+                                ..estAchete = widget.carte.estAchete
+                                ..force = widget.carte.force
+                                ..tauxAugmentationForce =
+                                    widget.carte.tauxAugmentationForce))
                           .whenComplete(() {
                         Navigator.of(context).pop();
                       });

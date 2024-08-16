@@ -1,13 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/default_btn.dart';
-import 'package:gandalverse/screens/Annonces/components/annonceCard.dart';
+import 'package:gandalverse/screens/defis/components/annonceCard.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
-class buildTiktokCommunauty extends StatelessWidget {
-  const buildTiktokCommunauty({
+class buildFacebookCommunauty extends StatelessWidget {
+  const buildFacebookCommunauty({
     super.key,
     required this.Color3,
   });
@@ -17,10 +17,10 @@ class buildTiktokCommunauty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnnonceCard(
-        // title: 'Tiktok',
-        text: 'Rejoins notre communauté Tiktok\n',
+        // title: 'Facebook',
+        text: 'Rejoins notre communauté Facebook\n',
         reward: " 10.000",
-        imagePath: Images.black_tiktok,
+        imagePath: Images.black_facebook,
         backColors: const [
           Colors.white,
           Colors.white,
@@ -34,7 +34,7 @@ class buildTiktokCommunauty extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Communauté Tiktok",
+                      "Communauté Facebook",
                       maxLines: 1,
                       textAlign: TextAlign.center,
                       textDirection: TextDirection.ltr,
@@ -95,7 +95,7 @@ class buildTiktokCommunauty extends StatelessWidget {
                   ],
                 ),
               ),
-              image: Images.black_tiktok);
+              image: Images.black_facebook);
         },
         textColor: Colors.black,
         titleColor: Color3);

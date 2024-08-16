@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/components/user_top_infos.dart';
-import 'package:gandalverse/screens/Annonces/components/_build_facebook_communauty.dart';
-import 'package:gandalverse/screens/Annonces/components/_build_tiktok_communauty.dart';
-import 'package:gandalverse/screens/Annonces/components/annonceCard.dart';
+import 'package:gandalverse/screens/defis/components/_build_facebook_communauty.dart';
+import 'package:gandalverse/screens/defis/components/_build_tiktok_communauty.dart';
+import 'package:gandalverse/screens/defis/components/annonceCard.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 

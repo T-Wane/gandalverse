@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gandalverse/core/modeles/carte.dart';
-import 'package:gandalverse/core/services/partenaire_service.dart';
+import 'package:gandalverse/core/modeles/carte_model/carte.dart';
+import 'package:gandalverse/core/services/QG_services/partenaire_service.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
 
 import '../components/carteCard.dart';
 
@@ -10,34 +11,34 @@ class PartenaireSection extends StatefulWidget {
 }
 
 class _PartenaireSectionState extends State<PartenaireSection> {
-  late Future<List<Carte>> _partenaireFuture;
-  final PartenaireService _partenaireService = PartenaireService();
+  late Future<List<CarteModel>> _partenaireDataFuture;
+  PartenaireService _partenaireService = getIt<PartenaireService>();
   final ScrollController _partenaireScrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    _partenaireFuture = _partenaireService.loadPartenaires();
+    _partenaireDataFuture = _partenaireService.loadItems();
   }
 
   @override
   void didUpdateWidget(covariant PartenaireSection oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
-    _partenaireFuture = _partenaireService.loadPartenaires();
+    _partenaireDataFuture = _partenaireService.loadItems();
   }
 
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    _partenaireFuture = _partenaireService.loadPartenaires();
+    _partenaireDataFuture = _partenaireService.loadItems();
   }
 
   @override
   Widget build(BuildContext context) {
-    _partenaireFuture = _partenaireService.loadPartenaires();
-    return StreamBuilder<List<Carte>>(
+    _partenaireDataFuture = _partenaireService.loadItems();
+    return StreamBuilder<List<CarteModel>>(
       stream: _partenaireService.partenaireStream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -64,7 +65,7 @@ class _PartenaireSectionState extends State<PartenaireSection> {
                 ),
                 itemCount: partenaireList.length,
                 itemBuilder: (BuildContext ctx, index) {
-                  Carte carte = partenaireList[index];
+                  CarteModel carte = partenaireList[index];
                   return CarteCard(carte: carte, qgService: _partenaireService);
                 }),
           );

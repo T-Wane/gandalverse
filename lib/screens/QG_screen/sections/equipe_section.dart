@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gandalverse/core/modeles/carte.dart';
-import 'package:gandalverse/core/services/equipe_service.dart';
+import 'package:gandalverse/core/modeles/carte_model/carte.dart';
+import 'package:gandalverse/core/services/QG_services/equipe_service.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
 
 import '../components/carteCard.dart';
 
@@ -10,34 +11,34 @@ class EquipeSection extends StatefulWidget {
 }
 
 class _EquipeSectionState extends State<EquipeSection> {
-  late Future<List<Carte>> _equipeFuture;
-  final EquipeService _equipeService = EquipeService();
+  late Future<List<CarteModel>> _equipeDataFuture;
+  EquipeService _equipeService = getIt<EquipeService>();
   final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    _equipeFuture = _equipeService.loadEquipes();
+    _equipeDataFuture = _equipeService.loadItems();
   }
 
   @override
   void didUpdateWidget(covariant EquipeSection oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
-    _equipeFuture = _equipeService.loadEquipes();
+    _equipeDataFuture = _equipeService.loadItems();
   }
 
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    _equipeFuture = _equipeService.loadEquipes();
+    _equipeDataFuture = _equipeService.loadItems();
   }
 
   @override
   Widget build(BuildContext context) {
-    _equipeFuture = _equipeService.loadEquipes();
-    return StreamBuilder<List<Carte>>(
+  //   _equipeDataFuture = _equipeService.loadItems();
+    return StreamBuilder<List<CarteModel>>(
       stream: _equipeService.equipeStream,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -64,7 +65,7 @@ class _EquipeSectionState extends State<EquipeSection> {
                 ),
                 itemCount: equipeList.length,
                 itemBuilder: (BuildContext ctx, index) {
-                  Carte carte = equipeList[index];
+                  CarteModel carte = equipeList[index];
                   return CarteCard(carte: carte, qgService: _equipeService);
                 }),
           );

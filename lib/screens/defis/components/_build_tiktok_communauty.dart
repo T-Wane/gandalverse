@@ -1,13 +1,13 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/default_btn.dart';
-import 'package:gandalverse/screens/Annonces/components/annonceCard.dart';
+import 'package:gandalverse/screens/defis/components/annonceCard.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
-class buildTelegramCommunauty extends StatelessWidget {
-  const buildTelegramCommunauty({
+class buildTiktokCommunauty extends StatelessWidget {
+  const buildTiktokCommunauty({
     super.key,
     required this.Color3,
   });
@@ -17,10 +17,10 @@ class buildTelegramCommunauty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnnonceCard(
-        // title: 'Telegram',
-        text: 'Rejoins notre communauté \n Telegram',
+        // title: 'Tiktok',
+        text: 'Rejoins notre communauté Tiktok\n',
         reward: " 10.000",
-        imagePath: Images.black_telegram,
+        imagePath: Images.black_tiktok,
         backColors: const [
           Colors.white,
           Colors.white,
@@ -34,7 +34,7 @@ class buildTelegramCommunauty extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Communauté Telegram",
+                      "Communauté Tiktok",
                       maxLines: 1,
                       textAlign: TextAlign.center,
                       textDirection: TextDirection.ltr,
@@ -69,7 +69,7 @@ class buildTelegramCommunauty extends StatelessWidget {
                           width: 40,
                         ),
                         AutoSizeText(
-                          '205 000',
+                          '10.000',
                           maxLines: 1,
                           presetFontSizes: [22, 20, 18, 15, 14],
                           textAlign: TextAlign.center,
@@ -95,7 +95,7 @@ class buildTelegramCommunauty extends StatelessWidget {
                   ],
                 ),
               ),
-              image: Images.black_telegram);
+              image: Images.black_tiktok);
         },
         textColor: Colors.black,
         titleColor: Color3);

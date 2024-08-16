@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
@@ -28,8 +29,6 @@ class AnnonceCard extends StatelessWidget {
   final BoxFit fit;
   final bool limitLine;
   final bool isComplete;
-
-  Color Color3 = Color.fromARGB(255, 18, 40, 70);
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +90,7 @@ class AnnonceCard extends StatelessWidget {
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontFamily: 'Aller',
-                              color: Color3.withOpacity(0.9),
+                              color: Themecolors.Color3.withOpacity(0.9),
                               fontSize: 14,
                               fontWeight: FontWeight.normal,
                             ),
