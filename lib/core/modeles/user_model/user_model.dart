@@ -1,6 +1,6 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:gandalverse/core/modeles/serializers.dart';
+import 'package:gandalverse/core/modeles/serializers/serializers.dart';
 
 part 'user_model.g.dart';
 

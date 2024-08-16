@@ -1,11 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:gandalverse/core/modeles/fields/createUser_fields/createUser_fields.dart';
 import 'package:gandalverse/core/modeles/user_model/user_model.dart';
-import 'package:uuid/uuid.dart';  
-import 'package:injectable/injectable.dart'; 
- 
+import 'package:gandalverse/data/tg_storage/telegram_cloudStorage.dart';
+import 'package:uuid/uuid.dart';
+import 'package:injectable/injectable.dart';
+
 @lazySingleton
 class UserRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  TelegramCloudStorage _telegramCloudStorage;
+
+  UserRepository(this._telegramCloudStorage);
 
   Future<UserModel?> getUserByTelegramId(int telegramId) async {
     try {
@@ -26,21 +31,15 @@ class UserRepository {
     }
   }
 
-  Future<void> createUser({
-    required int telegramId,
-    required String firstName,
-    required String lastName,
-    required String username,
-    required String photoUrl,
-  }) async {
+  Future<void> createUser({required CreateUserFields fields}) async {
     final userId = Uuid().v4();
     final user = UserModel((b) => b
       ..id = userId
-      ..telegramId = telegramId
-      ..firstName = firstName
-      ..lastName = lastName
-      ..username = username
-      ..photoUrl = photoUrl
+      ..telegramId = fields.telegramId
+      ..firstName = fields.firstName
+      ..lastName = fields.lastName
+      ..username = fields.username
+      ..photoUrl = fields.photoUrl
       ..level = 1
       ..coins = 0
       ..profitPerHour = 0.0

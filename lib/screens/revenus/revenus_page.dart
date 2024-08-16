@@ -5,7 +5,7 @@ import 'package:gandalverse/widgets/customImageView.dart';
 
 import '../../components/user_top_infos.dart';
 import '../../themes/images/appImages.dart';
-import '../Annonces/components/annonceCard.dart';
+import '../defis/components/annonceCard.dart';
 import 'components/plus_details_btn.dart';
 
 class AllRevenusPage extends StatefulWidget {

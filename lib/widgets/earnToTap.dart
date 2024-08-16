@@ -3,14 +3,16 @@ import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gandalverse/core/providers/user_provider.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
-import 'package:gandalverse/screens/Annonces/components/_build_daily_days.dart';
+import 'package:gandalverse/screens/defis/components/_build_daily_days.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
 
-import '../screens/Annonces/components/_build_go_words.dart';
-import '../screens/Annonces/components/_build_scanQr_partenaire.dart';
+import '../screens/defis/components/_build_go_words.dart';
+import '../screens/defis/components/_build_scanQr_partenaire.dart';
 import 'bottomSheet_modal.dart';
 
 class TapToEarnCard extends StatefulWidget {
@@ -87,6 +89,8 @@ class TapToEarnCard extends StatefulWidget {
 }
 
 class _TapToEarnCardState extends State<TapToEarnCard> {
+  UserProvider _userProvider = getIt<UserProvider>();
+
   List<Map<String, dynamic>> getData(BuildContext context) {
     List<Map<String, dynamic>> data = [
       {
@@ -136,11 +140,6 @@ class _TapToEarnCardState extends State<TapToEarnCard> {
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-      /*Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-          child: Align(
-              alignment: Alignment.centerRight, child: closeIcon(context))),
-      */
       Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
@@ -245,12 +244,12 @@ class _TapToEarnCardState extends State<TapToEarnCard> {
                   const SizedBox(
                     width: 5,
                   ),
-                  const AutoSizeText(
-                    '100 500 000',
+                  AutoSizeText(
+                    "${_userProvider.user?.coins ?? 0}",
                     maxLines: 1,
-                    presetFontSizes: [25, 22, 20, 18, 15, 14],
+                    presetFontSizes: const [25, 22, 20, 18, 15, 14],
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontFamily: "Aller",
                       fontWeight: FontWeight.w500,
@@ -263,7 +262,6 @@ class _TapToEarnCardState extends State<TapToEarnCard> {
         ),
       ),
       Flexible(child: widget.child),
-      
       earnToTapBottomWidget(),
     ]);
   }

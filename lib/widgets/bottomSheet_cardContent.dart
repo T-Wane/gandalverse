@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:gandalverse/core/modeles/carte.dart';
+import 'package:gandalverse/core/modeles/carte_model/carte.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
 import 'bottomSheet_modal.dart';

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/profil_details.dart';
 import 'package:gandalverse/core/data/levels.dart';
-import 'package:gandalverse/core/modeles/carte.dart';
+import 'package:gandalverse/core/modeles/carte_model/carte.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';

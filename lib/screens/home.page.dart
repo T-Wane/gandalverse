@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gandalverse/animations/coinsAnomations_test1.dart';
+import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/core/repositories/user_repository.dart';
-import 'package:gandalverse/screens/Annonces/annonces_page.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
+import 'package:gandalverse/screens/defis/defis_screen.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
-import 'package:gandalverse/screens/decouvrir/decouvir_page.dart';
+import 'package:gandalverse/screens/QG_screen/QG_screen.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
 import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
@@ -45,28 +47,17 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   //final TelegramWebApp telegram = TelegramWebApp.instance;
 
+  UserProvider _userProvider = getIt<UserProvider>();
+
   int _currentIndex = 0;
-  static double fontSizeValue = 1.0;
-  bool hasBanner = true;
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   //##############################################################//
   late final PlatformWebViewController controller;
   final TelegramWebApp telegram = TelegramWebApp.instance;
 
-  bool? isDefinedVersion;
-  String? clipboardText;
-
   final ScrollController _scrollController = ScrollController();
   bool _isFabVisible = true;
-
-  // final UserRepo _userRepo = UserRepo();
-
-  // final Map<String, dynamic> telegramUser = {
-  //   'username': 'johndoe',
-  //   'first_name': 'John',
-  //   'last_name': 'Doe',
-  // };
 
   @override
   void initState() {
@@ -80,27 +71,13 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
 
-    FlutterError.onError = (details) {
-      //showSnackbar("Flutter error: $details");
-      print("Flutter error happened: $details");
-    };
-
-    TelegramWebApp.instance.ready();
     check();
     _scrollController.addListener(_scrollListener);
   }
 
   void check() async {
     await Future.delayed(const Duration(seconds: 2));
-    isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
-    // await _userRepo.checkAndCreateUser(
-    //     // '--', telegramUser);
-    //     "${telegram.initDataUnsafe?.user?.id ?? '--'}",
-    //     {
-    //       'username': telegram.initData.user.username,
-    //       'first_name': telegram.initData.user.firstname,
-    //       'last_name': telegram.initData.user.lastname,
-    //     });
+    _userProvider.fetchUserByTelegramId();
     setState(() {});
   }
 
@@ -140,8 +117,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQueryData = MediaQuery.of(context);
-    final scale = mediaQueryData.textScaleFactor;
     return MediaQuery(
       data: MediaQuery.of(context)
           .copyWith(textScaler: const TextScaler.linear(1)),
@@ -173,10 +148,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               )
             : null,
-        // backgroundColor:✨ telegram.backgroundColor,
+        // backgroundColor: telegram.backgroundColor,
         body: IndexedStack(index: _currentIndex, children: [
           GandalVerseWebView(controller: controller),
-          DecouvrirPage(scrollController: _scrollController),
+          QGScreen(scrollController: _scrollController),
           const AmisPage(),
           const AnnoncesPage(),
           const AllRevenusPage(),
@@ -333,25 +308,6 @@ class _MyHomePageState extends State<MyHomePage> {
       onTap: (int index) => setState(() {
         _currentIndex = index;
       }),
-      /* switch (index) {
-          case 1:
-            CustomBottomModalSheet.show(context,
-                child: DecouvrirPage(), titre: 'Décourir ');
-            break;
-          case 2:
-            CustomBottomModalSheet.show(context,
-                child: AmisPage(), titre: 'Mes Amis');
-            break;
-          case 3:
-            CustomBottomModalSheet.show(context,
-                child: AnnoncesPage(), titre: 'Nos Annonces');
-            break;
-          case 4:
-            CustomBottomModalSheet.show(context,
-                child: MonProfilScreen(), titre: 'Profil ');
-            break;
-        }*/
-      //},
       isFloating: false,
     );
   }
