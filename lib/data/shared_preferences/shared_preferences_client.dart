@@ -4,8 +4,8 @@ import "package:shared_preferences/shared_preferences.dart";
 class SharedPreferencesClient {
   static late SharedPreferences _instance;
 
-  static const String firstTime = "useAppForFirstTime";
-  static const String iteliyaUser = "userInfo";
+  // static const String keyName = ""; 
+  static const String userCoins_key = "go_userCoins"; 
 
   static Future<SharedPreferencesClient> init() async {
     _instance = await SharedPreferences.getInstance();
@@ -32,6 +32,14 @@ class SharedPreferencesClient {
   }
 
   double? getDoubleForKey({required String key}) => _instance.getDouble(key);
+
+  Future<void> setIntForKey(
+      {required String key, required int value}) async {
+    _instance.setInt(key, value);
+  }
+
+   int? getIntForKey({required String key}) => _instance.getInt(key);
+
 
   Future<void> deleteValueForKey({required String key}) async =>
       _instance.remove(key);

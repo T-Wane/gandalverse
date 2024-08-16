@@ -12,5 +12,9 @@ extension SharedPreferencesClientExtension on SharedPreferencesClient {
    bool isFirstTime()   {
     return  getBooleanForKey(key: SharedPreferencesClient.firstTime) ??false;
   }
+
+  Future<void> updatePoint() async {
+    return setIntForKey(key: SharedPreferencesClient.firstTime, value: true);
+  }
  
 }
