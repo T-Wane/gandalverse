@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:gandalverse/core/repositories/tabAndEarnRepository.dart';
+import 'package:gandalverse/core/services/click_manager.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
@@ -22,6 +23,7 @@ class FlyCoinAnimationState extends State<FlyCoinAnimation>
     with TickerProviderStateMixin {
   TapAndEarnRepository _earnRepository = getIt<TapAndEarnRepository>();
 
+  final ClickManager clickManager = ClickManager();
   final List<AnimationItem> _animationItems = [];
 
   late AnimationController _controller;
@@ -66,7 +68,8 @@ class FlyCoinAnimationState extends State<FlyCoinAnimation>
         controller.dispose();
         setState(() {
           _animationItems.remove(newAnimationItem);
-          _earnRepository.incrementCoins();
+
+          clickManager.onClick(_earnRepository.incrementCoins);
         });
       }
     });

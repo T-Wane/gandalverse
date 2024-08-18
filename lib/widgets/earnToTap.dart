@@ -10,6 +10,7 @@ import 'package:gandalverse/screens/defis/components/_build_daily_days.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
+import 'package:provider/provider.dart';
 
 import '../screens/defis/components/_build_go_words.dart';
 import '../screens/defis/components/_build_scanQr_partenaire.dart';
@@ -245,7 +246,7 @@ class _TapToEarnCardState extends State<TapToEarnCard> {
                     width: 5,
                   ),
                   AutoSizeText(
-                    "${_userProvider.user?.coins ?? 0}",
+                    "${context.watch<UserProvider>().user?.coins ?? 0}",
                     maxLines: 1,
                     presetFontSizes: const [25, 22, 20, 18, 15, 14],
                     textAlign: TextAlign.center,

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:gandalverse/core/modeles/fields/createUser_fields/createUser_fields.dart';
 import 'package:gandalverse/core/modeles/user_model/user_model.dart';
@@ -10,16 +12,17 @@ import 'package:telegram_web_app/telegram_web_app.dart';
 @singleton
 class UserProvider extends ChangeNotifier {
   UserRepository _userRepository;
-  TelegramClient _telegramClient;
+  //TelegramClient _telegramClient;
 
   UserModel? _user;
 
   UserModel? get user => _user;
 
-  int get telegramUserId => _telegramClient.telegram.initData.user.id;
+  int get telegramUserId =>
+      1016029253; //_telegramClient.telegram.initData.user.id;
 
   UserProvider(
-    this._telegramClient,
+    // this._telegramClient,
     this._userRepository,
   ) {
     fetchUserByTelegramId();
@@ -27,18 +30,17 @@ class UserProvider extends ChangeNotifier {
   }
 
   Future<void> fetchUserByTelegramId() async {
-    _user = await _userRepository
-        .getUserByTelegramId(_telegramClient.telegram.initData.user.id);
-    if (user == null) {
-      TelegramUser user = _telegramClient.telegram.initData.user;
-      createUser(
-        telegramId: _telegramClient.telegram.initData.user.id,
-        firstName: user.firstname,
-        lastName: user.lastname,
-        username: user.username,
-        photoUrl: _telegramClient.telegram.initDataUnsafe?.user?.photoUrl,
-      );
-    }
+    _user = await _userRepository.getUserByTelegramId(telegramUserId);
+    // if (user == null) {
+    //   TelegramUser user = _telegramClient.telegram.initData.user;
+    //   createUser(
+    //     telegramId: _telegramClient.telegram.initData.user.id,
+    //     firstName: user.firstname,
+    //     lastName: user.lastname,
+    //     username: user.username,
+    //     photoUrl: _telegramClient.telegram.initDataUnsafe?.user?.photoUrl,
+    //   );
+    // }
     notifyListeners();
   }
 
@@ -59,8 +61,14 @@ class UserProvider extends ChangeNotifier {
   }
 
   Future<void> updateUser(UserModel user) async {
-    await _userRepository.updateUser(user);
-    _user = user;
+    try {
+      await _userRepository.updateUser(user);
+
+      _user = user;
+      log("########## ${user.toString()}################");
+    } catch (e) {
+      print("#### error $e");
+    }
     notifyListeners();
   }
 
