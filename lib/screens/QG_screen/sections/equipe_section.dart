@@ -37,7 +37,7 @@ class _EquipeSectionState extends State<EquipeSection> {
 
   @override
   Widget build(BuildContext context) {
-  //   _equipeDataFuture = _equipeService.loadItems();
+    _equipeDataFuture = _equipeService.loadItems();
     return StreamBuilder<List<CarteModel>>(
       stream: _equipeService.equipeStream,
       builder: (context, snapshot) {

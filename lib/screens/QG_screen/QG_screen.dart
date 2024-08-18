@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/animations/coinsAnomations_test1.dart';
+import 'package:gandalverse/core/providers/user_provider.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/QG_screen/components/itemCard.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/screens/QG_screen/sections/partenaire_section.dart';
@@ -19,6 +21,8 @@ class QGScreen extends StatefulWidget {
 }
 
 class _QGScreenState extends State<QGScreen> {
+  UserProvider _userProvider = getIt<UserProvider>();
+
   final _selectedSegment = ValueNotifier('Equipe');
   final Map<String, String> sections = {
     "Equipe": "Equipe",
@@ -48,12 +52,12 @@ class _QGScreenState extends State<QGScreen> {
                     width: 35,
                   ),
                   const SizedBox(width: 5),
-                  const AutoSizeText(
-                    '100 500 000',
+                  AutoSizeText(
+                    "${_userProvider.user?.coins ?? 0}",
                     maxLines: 1,
                     presetFontSizes: [25, 22, 20, 18, 15, 14],
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontFamily: "Aller",
                       fontWeight: FontWeight.w500,

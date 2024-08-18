@@ -68,8 +68,8 @@ class UserRepository {
     }
   }
 
-  Future<void> updatePoints(UserModel user, int newPoints) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_pointsKey, newPoints);
-  }
+  // Future<void> updatePoints(UserModel user, int newPoints) async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   await prefs.setInt(_pointsKey, newPoints);
+  // }
 }
