@@ -15,7 +15,7 @@ class TapAndEarnRepository with ChangeNotifier {
   void incrementCoins() {
    
     if (_userProvider.user != null) {
-      _userProvider.user!.rebuild((b) => b..coins = (b.coins ?? 0) + 1);
+      _userProvider.user!.rebuild((b) => b..coins = (  _userProvider.user?.coins ?? 0) + 1);
       _userProvider
           .updateUser(_userProvider.user!); // Mise à jour de l'utilisateur
       notifyListeners(); // Notifie les listeners pour la mise à jour en temps réel
