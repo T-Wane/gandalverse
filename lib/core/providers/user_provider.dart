@@ -18,7 +18,7 @@ class UserProvider extends ChangeNotifier {
 
   int get telegramUserId => _telegramClient.telegram.initData.user.id;
 
-  UserProvider(this._userRepository, this._telegramClient) {
+  UserProvider( this._telegramClient,this._userRepository,) {
     fetchUserByTelegramId();
     notifyListeners();
   }

@@ -71,13 +71,12 @@ class _GandalVerseWebViewState extends State<GandalVerseWebView> {
                 ),
               ),
             ),
-            Positioned.fill(
-              child: PlatformWebViewWidget(
-                PlatformWebViewWidgetCreationParams(
-                    controller: widget.controller),
-              ).build(context),
-            ),
           ]),
+        ),
+        Positioned.fill(
+          child: PlatformWebViewWidget(
+            PlatformWebViewWidgetCreationParams(controller: widget.controller),
+          ).build(context),
         ),
         PointerInterceptor(
           child: Positioned(

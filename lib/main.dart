@@ -17,8 +17,8 @@ import 'package:webview_flutter_platform_interface/webview_flutter_platform_inte
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
-  getIt<FirebaseClient>().initializeApp();
-  getIt<TelegramClient>().initializeApp();
+  // await getIt<FirebaseClient>().initializeApp();
+  //await getIt<TelegramClient>().initializeApp();
   WebViewPlatform.instance = WebWebViewPlatform();
   
   SystemChrome.setPreferredOrientations([
