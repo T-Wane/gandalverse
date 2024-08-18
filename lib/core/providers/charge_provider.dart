@@ -9,7 +9,7 @@ class ChargeManager with ChangeNotifier {
   final int maxPoints = 100;
   final int increment = 1;
   final int decrement = 10;
-  final int incrementIntervalSeconds = 10;
+  final int incrementIntervalSeconds = 1;
   late Timer _timer;
 
   ChargeManager() {
@@ -70,6 +70,33 @@ class ChargeManager with ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     final currentTime = DateTime.now().millisecondsSinceEpoch;
     await prefs.setInt('last_exit_time', currentTime);
+  }
+
+
+
+   List<Color> getGradient() {
+    if (_points < maxPoints * 0.25) {
+      return  
+         [
+          Colors.red.shade200,
+          Colors.red.shade400,
+        ] ;
+    } else if (_points < maxPoints * 0.5) {
+      return  [
+          Colors.orange.shade200,
+          Colors.orange.shade400,
+        ];
+    } else if (_points < maxPoints * 0.75) {
+      return  [
+          Colors.yellow.shade200,
+          Colors.yellow.shade400,
+        ] ;
+    } else {
+      return   [
+          Colors.green.shade400,
+          Colors.green.shade600,
+        ];
+    }
   }
 
   @override

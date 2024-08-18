@@ -286,18 +286,18 @@ class earnToTapBottomWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(right: 5, bottom: 2),
+                Padding(
+                  padding: const EdgeInsets.only(right: 5, bottom: 2),
                   child: Text(
-                    "1500 Pts",
-                    style: TextStyle(
+                    "${chargeManager.points} Pts",
+                    style: const TextStyle(
                         fontWeight: FontWeight.w400,
                         color: Colors.white,
                         fontSize: 11),
                   ),
                 ),
                 LinearPercentIndicator(
-                  percent: 0.5,
+                  percent: chargeManager.points / chargeManager.maxPoints,
                   isRTL: false,
                   backgroundColor: Colors.white.withOpacity(0.2),
                   animateFromLastPercent: true,
@@ -306,7 +306,8 @@ class earnToTapBottomWidget extends StatelessWidget {
                   linearGradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
-                      colors: [
+                      colors: chargeManager.getGradient()
+                      /*[
                         Colors.deepPurple.shade200,
                         Colors.deepPurple.shade300,
                         Colors.deepPurple.shade400,
@@ -314,7 +315,7 @@ class earnToTapBottomWidget extends StatelessWidget {
                         Colors.deepPurple.shade500,
                         Colors.deepPurple.shade600,
                         Colors.deepPurple.shade700,
-                      ]),
+                      ]*/),
                   lineHeight: 15.0,
                   barRadius: const Radius.circular(5),
                 ),
