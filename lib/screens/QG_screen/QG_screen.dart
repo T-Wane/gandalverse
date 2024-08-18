@@ -8,6 +8,7 @@ import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/screens/QG_screen/sections/partenaire_section.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/earnToTap.dart';
+import 'package:provider/provider.dart';
 
 import '../../components/user_top_infos.dart';
 import '../../widgets/tab_element.dart';
@@ -53,7 +54,8 @@ class _QGScreenState extends State<QGScreen> {
                   ),
                   const SizedBox(width: 5),
                   AutoSizeText(
-                    "${_userProvider.user?.coins ?? 0}",
+                    "${context.watch<UserProvider>().user?.coins ?? 0}",
+                    //"${_userProvider.user?.coins ?? 0}",
                     maxLines: 1,
                     presetFontSizes: [25, 22, 20, 18, 15, 14],
                     textAlign: TextAlign.center,

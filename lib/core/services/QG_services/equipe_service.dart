@@ -11,7 +11,7 @@ class EquipeService extends QGService<CarteModel> {
   @override
   String get assetPath => 'assets/json/equipeData.json';
   @override
-  String get storageKey => 'equipes2';
+  String get storageKey => 'equipes3';
 
   final _equipeController = StreamController<List<CarteModel>>.broadcast();
 
