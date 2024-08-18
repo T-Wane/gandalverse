@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:flutter/services.dart';
+import 'dart:developer';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class QGService<T> {
@@ -8,12 +9,14 @@ abstract class QGService<T> {
   String get storageKey;
 
   final _loadingController = StreamController<bool>.broadcast();
-  
+
   Stream<bool> get loadingStream => _loadingController.stream;
 
   Future<List<T>> loadItems() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? jsonString = prefs.getString(storageKey);
+
+    //log("####### loadItems ${jsonString}  # #############");
 
     if (jsonString == null) {
       jsonString = await rootBundle.loadString(assetPath);
@@ -21,7 +24,15 @@ abstract class QGService<T> {
     }
 
     final List<dynamic> jsonData = json.decode(jsonString);
-    return jsonData.map((data) => fromJson(data)).toList();
+    // log("####### loadItems to list ${jsonData}  # #############");
+    try {
+      List<T> data = jsonData.map((data) => fromJson(data)).toList();
+      log("####### data loadItems to list ${jsonData}  # #############");
+      return data;
+    } catch (e) {
+      log("######[ ERROR $e ]######");
+    }
+    return [];
   }
 
   Future<void> saveItems(List<T> items) async {

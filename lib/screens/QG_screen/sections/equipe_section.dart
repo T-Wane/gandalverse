@@ -18,30 +18,35 @@ class _EquipeSectionState extends State<EquipeSection> {
   @override
   void initState() {
     super.initState();
-    _equipeDataFuture = _equipeService.loadItems();
+    _equipeService.loadInitialData();
   }
 
   @override
   void didUpdateWidget(covariant EquipeSection oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
-    _equipeDataFuture = _equipeService.loadItems();
+    _equipeService.loadInitialData();
   }
 
   @override
   void didChangeDependencies() {
     // TODO: implement didChangeDependencies
     super.didChangeDependencies();
-    _equipeDataFuture = _equipeService.loadItems();
+    _equipeService.loadInitialData();
   }
 
   @override
   Widget build(BuildContext context) {
-    _equipeDataFuture = _equipeService.loadItems();
+    // _equipeService.loadItems();
     return StreamBuilder<List<CarteModel>>(
       stream: _equipeService.equipeStream,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
+        return Center(
+            child: Text(
+          'Erreur : ${snapshot.data}',
+          style: TextStyle(color: Colors.white),
+        ));
+        /* if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Center(child: Text('Erreur : ${snapshot.error}'));
@@ -69,7 +74,7 @@ class _EquipeSectionState extends State<EquipeSection> {
                   return CarteCard(carte: carte, qgService: _equipeService);
                 }),
           );
-        }
+        }*/
       },
     );
   }

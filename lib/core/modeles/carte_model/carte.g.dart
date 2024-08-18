@@ -28,18 +28,18 @@ class _$CarteModelSerializer implements StructuredSerializer<CarteModel> {
           specifiedType: const FullType(String)),
       'prix',
       serializers.serialize(object.prix, specifiedType: const FullType(double)),
-      'tauxAugmentation',
+      'taux_augmentation',
       serializers.serialize(object.tauxAugmentation,
           specifiedType: const FullType(double)),
       'niveau',
       serializers.serialize(object.niveau, specifiedType: const FullType(int)),
-      'estAchete',
+      'est_achete',
       serializers.serialize(object.estAchete,
           specifiedType: const FullType(bool)),
       'force',
       serializers.serialize(object.force,
           specifiedType: const FullType(double)),
-      'tauxAugmentationForce',
+      'taux_augmentation_force',
       serializers.serialize(object.tauxAugmentationForce,
           specifiedType: const FullType(double)),
     ];
@@ -88,7 +88,7 @@ class _$CarteModelSerializer implements StructuredSerializer<CarteModel> {
           result.prix = serializers.deserialize(value,
               specifiedType: const FullType(double))! as double;
           break;
-        case 'tauxAugmentation':
+        case 'taux_augmentation':
           result.tauxAugmentation = serializers.deserialize(value,
               specifiedType: const FullType(double))! as double;
           break;
@@ -96,7 +96,7 @@ class _$CarteModelSerializer implements StructuredSerializer<CarteModel> {
           result.niveau = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
           break;
-        case 'estAchete':
+        case 'est_achete':
           result.estAchete = serializers.deserialize(value,
               specifiedType: const FullType(bool))! as bool;
           break;
@@ -104,7 +104,7 @@ class _$CarteModelSerializer implements StructuredSerializer<CarteModel> {
           result.force = serializers.deserialize(value,
               specifiedType: const FullType(double))! as double;
           break;
-        case 'tauxAugmentationForce':
+        case 'taux_augmentation_force':
           result.tauxAugmentationForce = serializers.deserialize(value,
               specifiedType: const FullType(double))! as double;
           break;

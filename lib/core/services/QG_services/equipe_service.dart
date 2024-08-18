@@ -5,25 +5,27 @@ import 'package:injectable/injectable.dart';
 
 import '../../modeles/carte_model/carte.dart';
 import 'QGService.dart';
- 
+
 @lazySingleton
 class EquipeService extends QGService<CarteModel> {
   @override
   String get assetPath => 'assets/json/equipeData.json';
   @override
-  String get storageKey => 'equipes3';
+  String get storageKey => 'equipes5';
 
   final _equipeController = StreamController<List<CarteModel>>.broadcast();
 
   EquipeService() {
-    _loadInitialData();
+    loadInitialData();
   }
 
   Stream<List<CarteModel>> get equipeStream => _equipeController.stream;
 
-  Future<void> _loadInitialData() async {
+  Future<void> loadInitialData() async {
     final equipes = await loadItems();
-    _equipeController.add(equipes);
+    log("####_loadInitialData ");
+    log("####_loadInitialData ${equipes.length}");
+   // _equipeController.add(equipes);
   }
 
   @override

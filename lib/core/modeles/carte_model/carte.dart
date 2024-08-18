@@ -6,7 +6,7 @@ import 'package:gandalverse/core/modeles/serializers/serializers.dart';
 part 'carte.g.dart';
 
 abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
-  String get nom;
+  /*String get nom;
   String get description;
 
   BuiltList<String>? get competences;
@@ -17,12 +17,31 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
   bool get estAchete;
   double get force;
   double get tauxAugmentationForce;
+*/
+  String get nom;
+  String get description;
+
+  BuiltList<String>? get competences;
+  String get image;
+  double get prix;
+
+  @BuiltValueField(wireName: 'taux_augmentation')
+  double get tauxAugmentation;
+
+  int get niveau;
+
+  @BuiltValueField(wireName: 'est_achete')
+  bool get estAchete;
+
+  double get force;
+
+  @BuiltValueField(wireName: 'taux_augmentation_force')
+  double get tauxAugmentationForce;
 
   CarteModel._();
   factory CarteModel([void Function(CarteModelBuilder) updates]) = _$CarteModel;
 
   static Serializer<CarteModel> get serializer => _$carteModelSerializer;
-
 
   //--------------------------------------------------------//
 
