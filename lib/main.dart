@@ -1,8 +1,9 @@
 // ignore_for_file: avoid_print
 import 'package:draggable_widget/draggable_widget.dart';
- 
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gandalverse/core/providers/charge_provider.dart';
 import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/core/repositories/tabAndEarnRepository.dart';
 import 'package:gandalverse/data/firebase_client.dart';
@@ -20,7 +21,7 @@ Future main() async {
   // await getIt<FirebaseClient>().initializeApp();
   //await getIt<TelegramClient>().initializeApp();
   WebViewPlatform.instance = WebWebViewPlatform();
-  
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -39,6 +40,7 @@ Future main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => getIt<UserProvider>()),
         ChangeNotifierProvider(create: (_) => getIt<TapAndEarnRepository>()),
+        ChangeNotifierProvider(create: (_) => getIt<ChargeManager>()),
       ],
       builder: ((context, child) =>
           MyApp()), // /*InitializationPage()*/ MyApp()

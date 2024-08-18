@@ -25,7 +25,7 @@ class EquipeService extends QGService<CarteModel> {
     final equipes = await loadItems();
     log("####_loadInitialData ");
     log("####_loadInitialData ${equipes.length}");
-   // _equipeController.add(equipes);
+    _equipeController.add(equipes);
   }
 
   @override

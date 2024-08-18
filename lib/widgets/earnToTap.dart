@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gandalverse/core/providers/charge_provider.dart';
 import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
@@ -275,80 +276,83 @@ class earnToTapBottomWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        SizedBox(
-          width: 100,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(right: 5, bottom: 2),
-                child: Text(
-                  "1500 Pts",
-                  style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white,
-                      fontSize: 11),
+    return Consumer<ChargeManager>(builder: (context, chargeManager, child) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          SizedBox(
+            width: 100,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(right: 5, bottom: 2),
+                  child: Text(
+                    "1500 Pts",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.white,
+                        fontSize: 11),
+                  ),
                 ),
-              ),
-              LinearPercentIndicator(
-                percent: 0.5,
-                isRTL: false,
-                backgroundColor: Colors.white.withOpacity(0.2),
-                animateFromLastPercent: true,
-                restartAnimation: true,
-                padding: const EdgeInsets.all(0),
-                linearGradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.deepPurple.shade200,
-                      Colors.deepPurple.shade300,
-                      Colors.deepPurple.shade400,
-                      Colors.deepPurple.shade400,
-                      Colors.deepPurple.shade500,
-                      Colors.deepPurple.shade600,
-                      Colors.deepPurple.shade700,
-                    ]),
-                lineHeight: 15.0,
-                barRadius: const Radius.circular(5),
-              ),
-            ],
-          ),
-        ),
-        Row(children: [
-          CustomImageView(
-            imagePath: Images.gvt,
-            fit: BoxFit.contain,
-            height: 25,
-            width: 25,
-          ),
-          const SizedBox(
-            width: 5,
-          ),
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text(
-              " +1 ",
-              style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  color: Colors.white70,
-                  fontFamily: "Aller",
-                  fontSize: 12),
+                LinearPercentIndicator(
+                  percent: 0.5,
+                  isRTL: false,
+                  backgroundColor: Colors.white.withOpacity(0.2),
+                  animateFromLastPercent: true,
+                  restartAnimation: true,
+                  padding: const EdgeInsets.all(0),
+                  linearGradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        Colors.deepPurple.shade200,
+                        Colors.deepPurple.shade300,
+                        Colors.deepPurple.shade400,
+                        Colors.deepPurple.shade400,
+                        Colors.deepPurple.shade500,
+                        Colors.deepPurple.shade600,
+                        Colors.deepPurple.shade700,
+                      ]),
+                  lineHeight: 15.0,
+                  barRadius: const Radius.circular(5),
+                ),
+              ],
             ),
-            const SizedBox(height: 2),
-            Text(
-              "Gain par clic",
-              style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                  color: Colors.white70,
-                  fontFamily: "Aller",
-                  fontSize: 7),
+          ),
+          Row(children: [
+            CustomImageView(
+              imagePath: Images.gvt,
+              fit: BoxFit.contain,
+              height: 25,
+              width: 25,
             ),
+            const SizedBox(
+              width: 5,
+            ),
+            Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              const Text(
+                " +1 ",
+                style: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white70,
+                    fontFamily: "Aller",
+                    fontSize: 12),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                "Gain par clic",
+                style: TextStyle(
+                    fontWeight: FontWeight.w300,
+                    color: Colors.white70,
+                    fontFamily: "Aller",
+                    fontSize: 7),
+              ),
+            ]),
           ]),
         ]),
-      ]),
-    );
+      );
+    });
   }
 }

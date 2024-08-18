@@ -25,7 +25,7 @@ class _EquipeSectionState extends State<EquipeSection> {
   void didUpdateWidget(covariant EquipeSection oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
-    _equipeService.loadInitialData();
+   _equipeService.loadInitialData();
   }
 
   @override
@@ -41,12 +41,7 @@ class _EquipeSectionState extends State<EquipeSection> {
     return StreamBuilder<List<CarteModel>>(
       stream: _equipeService.equipeStream,
       builder: (context, snapshot) {
-        return Center(
-            child: Text(
-          'Erreur : ${snapshot.data}',
-          style: TextStyle(color: Colors.white),
-        ));
-        /* if (snapshot.connectionState == ConnectionState.waiting) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         } else if (snapshot.hasError) {
           return Center(child: Text('Erreur : ${snapshot.error}'));
@@ -74,7 +69,7 @@ class _EquipeSectionState extends State<EquipeSection> {
                   return CarteCard(carte: carte, qgService: _equipeService);
                 }),
           );
-        }*/
+        }
       },
     );
   }
