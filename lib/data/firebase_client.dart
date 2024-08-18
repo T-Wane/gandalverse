@@ -20,10 +20,7 @@ class FirebaseClient {
     if (kIsWeb) {
       await Firebase.initializeApp(options: web);
     } else {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      await Firebase.initializeApp();
     }
   }
 }
