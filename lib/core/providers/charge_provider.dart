@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 
+@singleton
 class ChargeManager with ChangeNotifier {
   int _points = 0;
   final int maxPoints = 100;
@@ -18,6 +20,7 @@ class ChargeManager with ChangeNotifier {
   int get points => _points;
 
   Future<void> _loadPoints() async {
+    
     final prefs = await SharedPreferences.getInstance();
     final lastExitTime = prefs.getInt('last_exit_time');
     final savedPoints = prefs.getInt('points') ?? 0;
