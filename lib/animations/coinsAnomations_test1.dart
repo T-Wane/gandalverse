@@ -2,6 +2,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:gandalverse/core/providers/charge_provider.dart';
 import 'package:gandalverse/core/repositories/tabAndEarnRepository.dart';
 import 'package:gandalverse/core/services/click_manager.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
@@ -22,8 +23,8 @@ class FlyCoinAnimation extends StatefulWidget {
 class FlyCoinAnimationState extends State<FlyCoinAnimation>
     with TickerProviderStateMixin {
   TapAndEarnRepository _earnRepository = getIt<TapAndEarnRepository>();
-
-  final ClickManager clickManager = ClickManager();
+  ChargeManager _chargeManager = getIt<ChargeManager>();
+  final ClickManager clickManager = ClickManager(getIt<ChargeManager>());
   final List<AnimationItem> _animationItems = [];
 
   late AnimationController _controller;
@@ -56,27 +57,28 @@ class FlyCoinAnimationState extends State<FlyCoinAnimation>
   }
 
   void _startAnimation() {
-    final controller = AnimationController(
-      duration: const Duration(seconds: 2),
-      vsync: this,
-    )..forward();
+    if (_chargeManager.points > 0) {
+      final controller = AnimationController(
+        duration: const Duration(seconds: 2),
+        vsync: this,
+      )..forward();
 
-    final newAnimationItem = AnimationItem(controller: controller);
+      final newAnimationItem = AnimationItem(controller: controller);
 
-    controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        controller.dispose();
-        setState(() {
-          _animationItems.remove(newAnimationItem);
+      controller.addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
+          controller.dispose();
+          setState(() {
+            _animationItems.remove(newAnimationItem);
+            clickManager.onClick(_earnRepository.incrementCoins);
+          });
+        }
+      });
 
-          clickManager.onClick(_earnRepository.incrementCoins);
-        });
-      }
-    });
-
-    setState(() {
-      _animationItems.add(newAnimationItem);
-    });
+      setState(() {
+        _animationItems.add(newAnimationItem);
+      });
+    }
   }
 
   @override

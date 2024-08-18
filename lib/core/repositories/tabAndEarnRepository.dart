@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gandalverse/core/providers/charge_provider.dart';
 import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/core/services/click_manager.dart';
 import 'package:gandalverse/data/tg_storage/telegram_cloudStorage.dart';
@@ -9,9 +10,10 @@ import 'user_repository.dart'; // Le UserRepository doit être défini avec vos 
 @singleton
 class TapAndEarnRepository with ChangeNotifier {
   UserProvider _userProvider;
+   
   // final TelegramWebApp telegram = TelegramWebApp.instance;
 
-  TapAndEarnRepository(this._userProvider);
+  TapAndEarnRepository(this._userProvider );
 
   void incrementCoins(int coins) {
     if (_userProvider.user != null) {

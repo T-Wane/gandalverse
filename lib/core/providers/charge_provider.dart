@@ -8,7 +8,7 @@ class ChargeManager with ChangeNotifier {
   int _points = 0;
   final int maxPoints = 100;
   final int increment = 1;
-  final int decrement = 10;
+  final int decrement = 1;
   final int incrementIntervalSeconds = 1;
   late Timer _timer;
 
@@ -20,7 +20,6 @@ class ChargeManager with ChangeNotifier {
   int get points => _points;
 
   Future<void> _loadPoints() async {
-    
     final prefs = await SharedPreferences.getInstance();
     final lastExitTime = prefs.getInt('last_exit_time');
     final savedPoints = prefs.getInt('points') ?? 0;
@@ -28,7 +27,8 @@ class ChargeManager with ChangeNotifier {
     if (lastExitTime != null) {
       final currentTime = DateTime.now().millisecondsSinceEpoch;
       final elapsedTime = (currentTime - lastExitTime) ~/ 1000;
-      final additionalPoints = (elapsedTime ~/ incrementIntervalSeconds) * increment;
+      final additionalPoints =
+          (elapsedTime ~/ incrementIntervalSeconds) * increment;
       _points = savedPoints + additionalPoints;
       if (_points > maxPoints) _points = maxPoints;
     } else {
@@ -39,7 +39,8 @@ class ChargeManager with ChangeNotifier {
   }
 
   void _startTimer() {
-    _timer = Timer.periodic(Duration(seconds: incrementIntervalSeconds), (timer) {
+    _timer =
+        Timer.periodic(Duration(seconds: incrementIntervalSeconds), (timer) {
       if (_points < maxPoints) {
         _points += increment;
         if (_points > maxPoints) {
@@ -72,30 +73,27 @@ class ChargeManager with ChangeNotifier {
     await prefs.setInt('last_exit_time', currentTime);
   }
 
-
-
-   List<Color> getGradient() {
+  List<Color> getGradient() {
     if (_points < maxPoints * 0.25) {
-      return  
-         [
-          Colors.red.shade200,
-          Colors.red.shade400,
-        ] ;
+      return [
+        Colors.red.shade200,
+        Colors.red.shade400,
+      ];
     } else if (_points < maxPoints * 0.5) {
-      return  [
-          Colors.orange.shade200,
-          Colors.orange.shade400,
-        ];
+      return [
+        Colors.orange.shade200,
+        Colors.orange.shade400,
+      ];
     } else if (_points < maxPoints * 0.75) {
-      return  [
-          Colors.yellow.shade200,
-          Colors.yellow.shade400,
-        ] ;
+      return [
+        Colors.yellow.shade200,
+        Colors.yellow.shade400,
+      ];
     } else {
-      return   [
-          Colors.green.shade400,
-          Colors.green.shade600,
-        ];
+      return [
+        Colors.green.shade400,
+        Colors.green.shade600,
+      ];
     }
   }
 
