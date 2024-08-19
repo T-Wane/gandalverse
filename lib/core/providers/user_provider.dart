@@ -48,12 +48,19 @@ class UserProvider extends ChangeNotifier {
     _user = await _userRepository.getUserByTelegramId(telegramUserId);
     if (user == null) {
       TelegramUser user = telegram.initData.user;
+      // createUser(
+      //   telegramId: telegram.initData.user.id,
+      //   firstName: user.firstname,
+      //   lastName: user.lastname,
+      //   username: user.username,
+      //   photoUrl: telegram.initDataUnsafe?.user?.photoUrl,
+      // );
       createUser(
-        telegramId: telegram.initData.user.id,
-        firstName: user.firstname,
-        lastName: user.lastname,
-        username: user.username,
-        photoUrl: telegram.initDataUnsafe?.user?.photoUrl,
+        telegramId: 1016029253,
+        firstName:"joe",
+        lastName: "Testeur",
+        username: "joe@45",
+        photoUrl: null,
       );
     }
     notifyListeners();
