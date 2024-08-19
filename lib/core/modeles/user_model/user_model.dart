@@ -11,6 +11,8 @@ abstract class UserModel implements Built<UserModel, UserModelBuilder> {
   String? get lastName;
   String? get username;
   String? get photoUrl;
+  String? get parrainId;
+  List<String>? get friends;
   int get level;
   int get coins;
   double get profitPerHour;

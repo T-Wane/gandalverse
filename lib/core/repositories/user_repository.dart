@@ -72,4 +72,37 @@ class UserRepository {
   //   final prefs = await SharedPreferences.getInstance();
   //   await prefs.setInt(_pointsKey, newPoints);
   // }
+
+  Future<void> purchaseCard(String userId, String cardId) async {
+  DocumentReference userRef = _firestore.collection('users').doc(userId);
+  DocumentReference cardRef = _firestore.collection('cards').doc(cardId);
+
+  await _firestore.runTransaction((transaction) async {
+    DocumentSnapshot userDoc = await transaction.get(userRef);
+    DocumentSnapshot cardDoc = await transaction.get(cardRef);
+
+    if (!userDoc.exists || !cardDoc.exists) {
+      throw Exception("User or Card does not exist");
+    }
+
+    int userCoins = userDoc['coins'];
+    double cardPrice = cardDoc['prix'];
+
+    if (userCoins < cardPrice) {
+      throw Exception("Not enough coins");
+    }
+
+    // Update user's coins
+    transaction.update(userRef, {
+      'coins': userCoins - cardPrice,
+    });
+
+    // Add card to user's collection if not already present
+    transaction.set(userRef.collection('cards').doc(cardId), {
+      'niveau': 1,
+      'profilParHeure': cardDoc['force'] * cardDoc['tauxAugmentationForce'],
+    });
+  });
+}
+
 }
