@@ -21,7 +21,6 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
   @BuiltValueField(wireName: 'id')
   String? get carteId;
 
-  
   String get nom;
   String get description;
 
@@ -69,7 +68,7 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
       increase(force, tauxAugmentationForce).toStringAsFixed(1);
 
   String get prixFormate {
-    final adjustedPrix = prix * (tauxAugmentation * niveau);
+    final adjustedPrix = prix * (tauxAugmentation * (niveau > 0 ? niveau : 1));
     if (adjustedPrix >= 1000000) {
       return '${(adjustedPrix / 1000000).toStringAsFixed(1)}M';
     } else if (adjustedPrix >= 1000) {
