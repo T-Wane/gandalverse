@@ -51,6 +51,7 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
   }
 
   String get getPrix => increase(prix, tauxAugmentation).toStringAsFixed(1);
+  double get getPrix_inDouble => increase(prix, tauxAugmentation);
 
   String get getForce =>
       increase(force, tauxAugmentationForce).toStringAsFixed(1);

@@ -55,160 +55,158 @@ class _userTopInfosState extends State<userTopInfos> {
 
   @override
   Widget build(BuildContext context) {
-    return /* Consumer<UserProvider>(builder: (context, _userProvider, child) {
-      return */
-        Card(
-      margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      elevation: 1.2,
-      borderOnForeground: true,
-      surfaceTintColor: Color3.withOpacity(0.9),
-      color: Color3.withOpacity(0.9),
-      shadowColor: const Color.fromARGB(255, 151, 116, 211).withOpacity(0.5),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-        height: 55,
-        child: PointerInterceptor(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  // CardContentBottomSheet.show(context,
-                  //     child: ProfilDetails(telegram: telegram),
-                  //     image: Images.niveau1,
-                  //     fit: BoxFit.contain,
-                  //     setCircle: true);
+    return Consumer<UserProvider>(builder: (context, _userProvider, child) {
+      return Card(
+        margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+        elevation: 1.2,
+        borderOnForeground: true,
+        surfaceTintColor: Color3.withOpacity(0.9),
+        color: Color3.withOpacity(0.9),
+        shadowColor: const Color.fromARGB(255, 151, 116, 211).withOpacity(0.5),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+          height: 55,
+          child: PointerInterceptor(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    // CardContentBottomSheet.show(context,
+                    //     child: ProfilDetails(telegram: telegram),
+                    //     image: Images.niveau1,
+                    //     fit: BoxFit.contain,
+                    //     setCircle: true);
 
-                  // ProfilDetailsContentBottomSheet.show(context,
-                  //     telegram: telegram);
-                  Navigator.push<void>(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) => MonProfilScreen(),
+                    // ProfilDetailsContentBottomSheet.show(context,
+                    //     telegram: telegram);
+                    Navigator.push<void>(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => MonProfilScreen(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white10,
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.purple.shade100,
+                      ),
                     ),
-                  );
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white10,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.purple.shade100,
+                    margin: const EdgeInsets.only(left: 5, right: 2),
+                    padding: const EdgeInsets.all(2),
+                    child: const Icon(
+                      CupertinoIcons.person,
+                      color: Colors.white,
+                      size: 25,
                     ),
-                  ),
-                  margin: const EdgeInsets.only(left: 5, right: 2),
-                  padding: const EdgeInsets.all(2),
-                  child: const Icon(
-                    CupertinoIcons.person,
-                    color: Colors.white,
-                    size: 25,
                   ),
                 ),
-              ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Text(
-                        "UserName",
-                        // "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontFamily: "Aller",
-                          fontSize: 13,
-                          color: Colors.white,
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text(
+                          "UserName",
+                          // "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontFamily: "Aller",
+                            fontSize: 13,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 2,
-                    ),
-                    SizedBox(
-                      width: 120,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              "Neo  >",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.purple.shade100,
-                                  fontFamily: "Aller",
-                                  fontSize: 10),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          LinearPercentIndicator(
-                            percent: 0.5,
-                            backgroundColor:
-                                Colors.grey.shade200.withOpacity(0.2),
-                            progressColor: Colors.deepPurple.shade400,
-                            lineHeight: 5.0,
-                            barRadius: const Radius.circular(10),
-                          ),
-                        ],
+                      const SizedBox(
+                        height: 2,
                       ),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              Row(children: [
-                CustomImageView(
-                  imagePath: Images.gvt,
-                  fit: BoxFit.contain,
-                  height: 25,
-                  width: 25,
+                      SizedBox(
+                        width: 120,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Text(
+                                "Neo  >",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w300,
+                                    color: Colors.purple.shade100,
+                                    fontFamily: "Aller",
+                                    fontSize: 10),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            LinearPercentIndicator(
+                              percent: 0.5,
+                              backgroundColor:
+                                  Colors.grey.shade200.withOpacity(0.2),
+                              progressColor: Colors.deepPurple.shade400,
+                              lineHeight: 5.0,
+                              barRadius: const Radius.circular(10),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   width: 5,
                 ),
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        // "${_userProvider.user?.gradleFormate??0.0}",
-                        "0",
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w300,
-                            color: Colors.white70,
-                            fontFamily: "Aller",
-                            fontSize: 12),
-                      ),
-                      const SizedBox(height: 2),
-                      const Text(
-                        "Grade",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            color: Colors.white70,
-                            fontFamily: "Aller",
-                            fontSize: 7),
-                      ),
-                    ]),
-              ]),
-              PointerInterceptor(
-                // debug: true,
-                child: _setting(),
-              ),
-            ],
+                Row(children: [
+                  CustomImageView(
+                    imagePath: Images.gvt,
+                    fit: BoxFit.contain,
+                    height: 25,
+                    width: 25,
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          _userProvider.user?.gradleFormate ?? '00',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white70,
+                              fontFamily: "Aller",
+                              fontSize: 12),
+                        ),
+                        const SizedBox(height: 2),
+                        const Text(
+                          "Grade",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white70,
+                              fontFamily: "Aller",
+                              fontSize: 7),
+                        ),
+                      ]),
+                ]),
+                PointerInterceptor(
+                  // debug: true,
+                  child: _setting(),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
-    // });
+      );
+    });
   }
 
   Widget _setting() => Padding(

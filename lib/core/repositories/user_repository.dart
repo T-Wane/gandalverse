@@ -132,6 +132,9 @@ class UserRepository {
         // Si la carte n'existe pas dans la sous-collection, on la crée
         transaction.set(userCardRef, {
           'id': carte.carteId,
+          'nom': carte.nom,
+          'categorie_carte':
+              (qgService is EquipeService) ? "Equipe Card" : "Paternaire Card",
           'niveau': 1,
           'est_achete': true,
           'profilParHeure': carte.force * carte.tauxAugmentationForce,
@@ -174,16 +177,56 @@ class UserRepository {
 
   Future<void> updateCardLevel(
       QGService qgService, String userId, CarteModel carteData) async {
-    await _firestore
-        .collection('users')
-        .doc(userId)
-        .collection('cards')
-        .doc(carteData.carteId)
-        .update({
-      'niveau': carteData.niveau,
-      'profilParHeure': carteData.force * carteData.tauxAugmentationForce,
-    }).whenComplete(() async {
+    DocumentReference userRef = _firestore.collection('users').doc(userId);
+    bool isOk = false;
+
+    await _firestore.runTransaction((transaction) async {
+      // Récupération du document utilisateur
+      DocumentSnapshot userDoc = await transaction.get(userRef);
+
+      if (!userDoc.exists) {
+        log("User does not exist");
+        return;
+      }
+
+      int userCoins = userDoc['coins'];
+      double cardPrice = carteData.getPrix_inDouble;
+
+      if (userCoins < cardPrice) {
+        log("Not enough coins");
+        return;
+      }
+
+      // Référence de la sous-collection "cards" de l'utilisateur
+      DocumentReference userCardRef =
+          userRef.collection('cards').doc(carteData.carteId);
+
+      // Récupération du document de la carte dans la sous-collection de l'utilisateur
+      DocumentSnapshot userCardDoc = await transaction.get(userCardRef);
+
+      transaction.update(userCardRef, {
+        'niveau': carteData.niveau,
+        'profilParHeure': carteData.force * carteData.tauxAugmentationForce,
+      });
+      // Mise à jour des coins de l'utilisateur
+      transaction.update(userRef, {
+        'coins': userCoins - cardPrice,
+        'profitPerHour': userDoc['profitPerHour'] +
+            (carteData.force * carteData.tauxAugmentationForce)
+      });
       await qgService.updateItem(carteData.carteId!, carteData);
     });
+
+    // await _firestore
+    //     .collection('users')
+    //     .doc(userId)
+    //     .collection('cards')
+    //     .doc(carteData.carteId)
+    //     .update({
+    //   'niveau': carteData.niveau,
+    //   'profilParHeure': carteData.force * carteData.tauxAugmentationForce,
+    // }).whenComplete(() async {
+    //   await qgService.updateItem(carteData.carteId!, carteData);
+    // });
   }
 }
