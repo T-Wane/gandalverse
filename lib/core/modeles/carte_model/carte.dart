@@ -18,7 +18,10 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
   double get force;
   double get tauxAugmentationForce;
 */
-  String? get id;
+  @BuiltValueField(wireName: 'id')
+  String? get carteId;
+
+  
   String get nom;
   String get description;
 

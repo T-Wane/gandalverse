@@ -1,9 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:gandalverse/core/modeles/carte_model/carte.dart';
 import 'package:gandalverse/core/modeles/fields/createUser_fields/createUser_fields.dart';
 import 'package:gandalverse/core/modeles/user_model/user_model.dart';
 import 'package:gandalverse/core/repositories/user_repository.dart';
+import 'package:gandalverse/core/services/QG_services/QGService.dart';
 import 'package:gandalverse/data/telegram_client.dart';
 import 'package:injectable/injectable.dart';
 import 'package:provider/provider.dart';
@@ -80,5 +82,12 @@ class UserProvider extends ChangeNotifier {
     }
   }
 
-  
+  Future<void> purchaseCard(CarteModel carte, QGService qgService) async {
+    await _userRepository.purchaseCard(_user!.id, carte, qgService);
+  }
+
+  Future<void> updateCardLevel(
+      QGService qgService, CarteModel carteData) async {
+    await _userRepository.updateCardLevel(qgService, _user!.id, carteData);
+  }
 }

@@ -60,6 +60,21 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.parrainId;
+    if (value != null) {
+      result
+        ..add('parrainId')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
+    value = object.friends;
+    if (value != null) {
+      result
+        ..add('friends')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(List, const [const FullType(String)])));
+    }
     value = object.profileImage;
     if (value != null) {
       result
@@ -105,6 +120,16 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
           result.photoUrl = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'parrainId':
+          result.parrainId = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String?;
+          break;
+        case 'friends':
+          result.friends = serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(List, const [const FullType(String)]))
+              as List<String>?;
+          break;
         case 'level':
           result.level = serializers.deserialize(value,
               specifiedType: const FullType(int))! as int;
@@ -142,6 +167,10 @@ class _$UserModel extends UserModel {
   @override
   final String? photoUrl;
   @override
+  final String? parrainId;
+  @override
+  final List<String>? friends;
+  @override
   final int level;
   @override
   final int coins;
@@ -160,6 +189,8 @@ class _$UserModel extends UserModel {
       this.lastName,
       this.username,
       this.photoUrl,
+      this.parrainId,
+      this.friends,
       required this.level,
       required this.coins,
       required this.profitPerHour,
@@ -191,6 +222,8 @@ class _$UserModel extends UserModel {
         lastName == other.lastName &&
         username == other.username &&
         photoUrl == other.photoUrl &&
+        parrainId == other.parrainId &&
+        friends == other.friends &&
         level == other.level &&
         coins == other.coins &&
         profitPerHour == other.profitPerHour &&
@@ -206,6 +239,8 @@ class _$UserModel extends UserModel {
     _$hash = $jc(_$hash, lastName.hashCode);
     _$hash = $jc(_$hash, username.hashCode);
     _$hash = $jc(_$hash, photoUrl.hashCode);
+    _$hash = $jc(_$hash, parrainId.hashCode);
+    _$hash = $jc(_$hash, friends.hashCode);
     _$hash = $jc(_$hash, level.hashCode);
     _$hash = $jc(_$hash, coins.hashCode);
     _$hash = $jc(_$hash, profitPerHour.hashCode);
@@ -223,6 +258,8 @@ class _$UserModel extends UserModel {
           ..add('lastName', lastName)
           ..add('username', username)
           ..add('photoUrl', photoUrl)
+          ..add('parrainId', parrainId)
+          ..add('friends', friends)
           ..add('level', level)
           ..add('coins', coins)
           ..add('profitPerHour', profitPerHour)
@@ -258,6 +295,14 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
   String? get photoUrl => _$this._photoUrl;
   set photoUrl(String? photoUrl) => _$this._photoUrl = photoUrl;
 
+  String? _parrainId;
+  String? get parrainId => _$this._parrainId;
+  set parrainId(String? parrainId) => _$this._parrainId = parrainId;
+
+  List<String>? _friends;
+  List<String>? get friends => _$this._friends;
+  set friends(List<String>? friends) => _$this._friends = friends;
+
   int? _level;
   int? get level => _$this._level;
   set level(int? level) => _$this._level = level;
@@ -286,6 +331,8 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
       _lastName = $v.lastName;
       _username = $v.username;
       _photoUrl = $v.photoUrl;
+      _parrainId = $v.parrainId;
+      _friends = $v.friends;
       _level = $v.level;
       _coins = $v.coins;
       _profitPerHour = $v.profitPerHour;
@@ -319,6 +366,8 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
             lastName: lastName,
             username: username,
             photoUrl: photoUrl,
+            parrainId: parrainId,
+            friends: friends,
             level: BuiltValueNullFieldError.checkNotNull(
                 level, r'UserModel', 'level'),
             coins: BuiltValueNullFieldError.checkNotNull(

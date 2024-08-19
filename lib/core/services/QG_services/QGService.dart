@@ -45,9 +45,9 @@ abstract class QGService<T> {
     });
   }
 
-  Future<void> updateItem(String nom, T updatedItem) async {
+  Future<void> updateItem(String carteId, T updatedItem) async {
     final items = await loadItems();
-    final index = items.indexWhere((item) => getName(item) == nom);
+    final index = items.indexWhere((item) => getName(item) == carteId);
     if (index != -1) {
       items[index] = updatedItem;
       await saveItems(items);

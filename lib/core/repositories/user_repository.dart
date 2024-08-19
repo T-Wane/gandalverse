@@ -1,3 +1,4 @@
+import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gandalverse/core/modeles/carte_model/carte.dart';
 import 'package:gandalverse/core/modeles/fields/createUser_fields/createUser_fields.dart';
@@ -75,9 +76,11 @@ class UserRepository {
   //   await prefs.setInt(_pointsKey, newPoints);
   // }
 
-  Future<void> purchaseCard(String userId, String cardId) async {
+  Future<void> purchaseCard(
+      String userId, CarteModel carte, QGService qgService) async {
     DocumentReference userRef = _firestore.collection('users').doc(userId);
-    DocumentReference cardRef = _firestore.collection('cards').doc(cardId);
+    DocumentReference cardRef =
+        _firestore.collection('cards').doc(carte.carteId);
 
     await _firestore.runTransaction((transaction) async {
       DocumentSnapshot userDoc = await transaction.get(userRef);
@@ -100,10 +103,28 @@ class UserRepository {
       });
 
       // Add card to user's collection if not already present
-      transaction.set(userRef.collection('cards').doc(cardId), {
+      transaction.set(userRef.collection('cards').doc(carte.carteId), {
+        'id': carte.carteId,
         'niveau': 1,
+        'est_achete': true,
         'profilParHeure': cardDoc['force'] * cardDoc['tauxAugmentationForce'],
       });
+
+      qgService.updateItem(
+          carte.carteId!,
+          CarteModel((b) => b
+            ..nom = carte.nom
+            ..description = carte.description
+            ..competences =
+                BuiltList<String>.from(carte.competences?.toList() ?? [])
+                    .toBuilder()
+            ..image = carte.image
+            ..prix = carte.prix
+            ..tauxAugmentation = carte.tauxAugmentation
+            ..niveau = carte.niveau + 1
+            ..estAchete = carte.estAchete
+            ..force = carte.force
+            ..tauxAugmentationForce = carte.tauxAugmentationForce));
     });
   }
 
@@ -116,10 +137,12 @@ class UserRepository {
         .collection('users')
         .doc(userId)
         .collection('cards')
-        .doc(cardId)
+        .doc(carteData.carteId)
         .update({
-      'niveau': newLevel,
-      'profilParHeure': newProfilParHeure,
+      'niveau': carteData.niveau,
+      'profilParHeure': carteData.force * carteData.tauxAugmentationForce,
+    }).whenComplete(() async {
+      await qgService.updateItem(carteData.carteId!, carteData);
     });
   }
 }
