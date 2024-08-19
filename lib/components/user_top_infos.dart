@@ -5,6 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/components/infoItem.dart';
 import 'package:gandalverse/core/providers/user_provider.dart';
+import 'package:gandalverse/data/telegram_client.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/home.page.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
@@ -29,7 +31,7 @@ class userTopInfos extends StatefulWidget {
 }
 
 class _userTopInfosState extends State<userTopInfos> {
-  final TelegramWebApp telegram = TelegramWebApp.instance;
+  TelegramClient _telegramClient = getIt<TelegramClient>();
 
   bool? isDefinedVersion;
   String? clipboardText;
@@ -43,13 +45,14 @@ class _userTopInfosState extends State<userTopInfos> {
       print("Flutter error happened: $details");
     };
 
-    TelegramWebApp.instance.ready();
+    _telegramClient.telegram.ready();
     check();
   }
 
   void check() async {
     await Future.delayed(const Duration(seconds: 2));
-    isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
+    isDefinedVersion =
+        await _telegramClient.telegram.isVersionAtLeast('Bot API 6.1');
     setState(() {});
   }
 
@@ -112,13 +115,13 @@ class _userTopInfosState extends State<userTopInfos> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(left: 10),
                         child: Text(
-                          "UserName",
-                          // "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
+                          //  "UserName",
+                          "${_telegramClient.telegram.initData.user.firstname ?? ''} ${_telegramClient.telegram.initData.user.lastname ?? ''} ",
                           textAlign: TextAlign.left,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontFamily: "Aller",
                             fontSize: 13,
                             color: Colors.white,
