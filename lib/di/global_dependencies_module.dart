@@ -14,9 +14,9 @@ abstract class GlobalDependenciesModule {
   Future<TelegramCloudStorage> get telegramStorage =>
       TelegramCloudStorage.init();
 
-  @preResolve
-  Future<FirebaseClient> get firebaseClient => FirebaseClient.init();
+  // @preResolve
+  // Future<TelegramClient> get telegramClient => TelegramClient.init();
 
   @preResolve
-  Future<TelegramClient> get telegramClient => TelegramClient.init();
+  Future<FirebaseClient> get firebaseClient => FirebaseClient.init();
 }

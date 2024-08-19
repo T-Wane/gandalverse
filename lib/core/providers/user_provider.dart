@@ -16,7 +16,8 @@ import 'package:telegram_web_app/telegram_web_app.dart';
 @singleton
 class UserProvider extends ChangeNotifier {
   UserRepository _userRepository;
-  TelegramClient _telegramClient;
+  //TelegramClient _telegramClient;
+  static late TelegramWebApp telegram;
 
   UserModel? _user;
 
@@ -26,10 +27,11 @@ class UserProvider extends ChangeNotifier {
    // _telegramClient.telegram.initData.user.id;
 
   UserProvider(
-    this._telegramClient,
+    //this._telegramClient,
     this._userRepository,
   ) {
-    
+       telegram = TelegramWebApp.instance;
+    telegram.ready();
     fetchUserByTelegramId();
     notifyListeners();
   }
@@ -37,13 +39,13 @@ class UserProvider extends ChangeNotifier {
   Future<void> fetchUserByTelegramId() async {
     _user = await _userRepository.getUserByTelegramId(telegramUserId);
     if (user == null) {
-      TelegramUser user = _telegramClient.telegram.initData.user;
+      TelegramUser user = telegram.initData.user;
       createUser(
-        telegramId: _telegramClient.telegram.initData.user.id,
+        telegramId: telegram.initData.user.id,
         firstName: user.firstname,
         lastName: user.lastname,
         username: user.username,
-        photoUrl: _telegramClient.telegram.initDataUnsafe?.user?.photoUrl,
+        photoUrl:  telegram.initDataUnsafe?.user?.photoUrl,
       );
     }
     notifyListeners();
