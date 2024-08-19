@@ -6,6 +6,8 @@ import 'package:gandalverse/core/modeles/fields/createUser_fields/createUser_fie
 import 'package:gandalverse/core/modeles/user_model/user_model.dart';
 import 'package:gandalverse/core/repositories/user_repository.dart';
 import 'package:gandalverse/core/services/QG_services/QGService.dart';
+import 'package:gandalverse/core/services/QG_services/equipe_service.dart';
+import 'package:gandalverse/core/services/QG_services/partenaire_service.dart';
 import 'package:gandalverse/data/telegram_client.dart';
 import 'package:injectable/injectable.dart';
 import 'package:provider/provider.dart';
@@ -14,17 +16,18 @@ import 'package:telegram_web_app/telegram_web_app.dart';
 @singleton
 class UserProvider extends ChangeNotifier {
   UserRepository _userRepository;
-  //TelegramClient _telegramClient;
+  TelegramClient _telegramClient;
 
   UserModel? _user;
 
   UserModel? get user => _user;
 
   int get telegramUserId =>
-      1016029253; //_telegramClient.telegram.initData.user.id;
+     // 1016029253 
+      _telegramClient.telegram.initData.user.id;
 
   UserProvider(
-    // this._telegramClient,
+     this._telegramClient,
     this._userRepository,
   ) {
     fetchUserByTelegramId();
@@ -33,16 +36,16 @@ class UserProvider extends ChangeNotifier {
 
   Future<void> fetchUserByTelegramId() async {
     _user = await _userRepository.getUserByTelegramId(telegramUserId);
-    // if (user == null) {
-    //   TelegramUser user = _telegramClient.telegram.initData.user;
-    //   createUser(
-    //     telegramId: _telegramClient.telegram.initData.user.id,
-    //     firstName: user.firstname,
-    //     lastName: user.lastname,
-    //     username: user.username,
-    //     photoUrl: _telegramClient.telegram.initDataUnsafe?.user?.photoUrl,
-    //   );
-    // }
+    if (user == null) {
+      TelegramUser user = _telegramClient.telegram.initData.user;
+      createUser(
+        telegramId: _telegramClient.telegram.initData.user.id,
+        firstName: user.firstname,
+        lastName: user.lastname,
+        username: user.username,
+        photoUrl: _telegramClient.telegram.initDataUnsafe?.user?.photoUrl,
+      );
+    }
     notifyListeners();
   }
 
@@ -84,16 +87,40 @@ class UserProvider extends ChangeNotifier {
 
   Future<void> purchaseCard(CarteModel carte, QGService qgService) async {
     await _userRepository.purchaseCard(_user!.id, carte, qgService);
+    await reloadServiceData(qgService);
     await fetchUserByTelegramId();
   }
 
   Future<void> updateCardLevel(
       QGService qgService, CarteModel carteData) async {
-    if (carteData.estAchete == false) {
-      await _userRepository.purchaseCard(_user!.id, carteData, qgService);
-    } else {
-      await _userRepository.updateCardLevel(qgService, _user!.id, carteData);
+    try {
+      if (carteData.estAchete == false) {
+        await _userRepository.purchaseCard(_user!.id, carteData, qgService);
+      } else {
+        await _userRepository.updateCardLevel(qgService, _user!.id, carteData);
+      }
+    } catch (e) {
+      print("Error $e");
     }
+    await reloadServiceData(qgService);
     await fetchUserByTelegramId();
+  }
+
+  Future<void> reloadServiceData(QGService qgService) async {
+    // switch (qgService) {
+    //   case EquipeService _:
+    //     await qgService.loadInitialData();
+    //     break;
+    //   case PartenaireService _:
+    //     await qgService.loadInitialData();
+    //     break;
+    // }
+  }
+
+  Future<List<Map<String, dynamic>>> loadUserPurchasedCards() async {
+    if (_user == null) await fetchUserByTelegramId();
+    return _userRepository.loadUserPurchasedCards(
+      _user?.id ?? '',
+    );
   }
 }

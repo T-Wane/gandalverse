@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/components/infoItem.dart';
+import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/screens/home.page.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
@@ -12,6 +13,7 @@ import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
 import 'package:gandalverse/widgets/profilDetails_bottomSheet.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
+import 'package:provider/provider.dart';
 
 import 'package:telegram_web_app/telegram_web_app.dart';
 
@@ -53,164 +55,158 @@ class _userTopInfosState extends State<userTopInfos> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-      elevation: 1.2,
-      borderOnForeground: true,
-      surfaceTintColor: Color3.withOpacity(0.9),
-      color: Color3.withOpacity(0.9),
-      shadowColor: const Color.fromARGB(255, 151, 116, 211).withOpacity(0.5),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-        height: 55,
-        child: PointerInterceptor(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  // CardContentBottomSheet.show(context,
-                  //     child: ProfilDetails(telegram: telegram),
-                  //     image: Images.niveau1,
-                  //     fit: BoxFit.contain,
-                  //     setCircle: true);
+    return Consumer<UserProvider>(builder: (context, _userProvider, child) {
+      return Card(
+        margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+        elevation: 1.2,
+        borderOnForeground: true,
+        surfaceTintColor: Color3.withOpacity(0.9),
+        color: Color3.withOpacity(0.9),
+        shadowColor: const Color.fromARGB(255, 151, 116, 211).withOpacity(0.5),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+          height: 55,
+          child: PointerInterceptor(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    // CardContentBottomSheet.show(context,
+                    //     child: ProfilDetails(telegram: telegram),
+                    //     image: Images.niveau1,
+                    //     fit: BoxFit.contain,
+                    //     setCircle: true);
 
-                  // ProfilDetailsContentBottomSheet.show(context,
-                  //     telegram: telegram);
-                  Navigator.push<void>(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) => MonProfilScreen(),
+                    // ProfilDetailsContentBottomSheet.show(context,
+                    //     telegram: telegram);
+                    Navigator.push<void>(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => MonProfilScreen(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white10,
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        width: 1,
+                        color: Colors.purple.shade100,
+                      ),
                     ),
-                  );
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white10,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      width: 1,
-                      color: Colors.purple.shade100,
+                    margin: const EdgeInsets.only(left: 5, right: 2),
+                    padding: const EdgeInsets.all(2),
+                    child: const Icon(
+                      CupertinoIcons.person,
+                      color: Colors.white,
+                      size: 25,
                     ),
-                  ),
-                  margin: const EdgeInsets.only(left: 5, right: 2),
-                  padding: const EdgeInsets.all(2),
-                  child: const Icon(
-                    CupertinoIcons.person,
-                    color: Colors.white,
-                    size: 25,
                   ),
                 ),
-              ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Text(
-                        "UserName",
-                        // "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(
-                          fontFamily: "Aller",
-                          fontSize: 13,
-                          color: Colors.white,
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text(
+                          "UserName",
+                          // "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontFamily: "Aller",
+                            fontSize: 13,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 2,
-                    ),
-                    SizedBox(
-                      width: 120,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              "Neo  >",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  color: Colors.purple.shade100,
-                                  fontFamily: "Aller",
-                                  fontSize: 10),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          LinearPercentIndicator(
-                            percent: 0.5,
-                            backgroundColor:
-                                Colors.grey.shade200.withOpacity(0.2),
-                            progressColor: Colors.deepPurple.shade400,
-                            lineHeight: 5.0,
-                            barRadius: const Radius.circular(10),
-                          ),
-                        ],
+                      const SizedBox(
+                        height: 2,
                       ),
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              Row(children: [
-                CustomImageView(
-                  imagePath: Images.gvt,
-                  fit: BoxFit.contain,
-                  height: 25,
-                  width: 25,
+                      SizedBox(
+                        width: 120,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10),
+                              child: Text(
+                                "Neo  >",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w300,
+                                    color: Colors.purple.shade100,
+                                    fontFamily: "Aller",
+                                    fontSize: 10),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            LinearPercentIndicator(
+                              percent: 0.5,
+                              backgroundColor:
+                                  Colors.grey.shade200.withOpacity(0.2),
+                              progressColor: Colors.deepPurple.shade400,
+                              lineHeight: 5.0,
+                              barRadius: const Radius.circular(10),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   width: 5,
                 ),
-                const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "200K",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            color: Colors.white70,
-                            fontFamily: "Aller",
-                            fontSize: 12),
-                      ),
-                      SizedBox(height: 2),
-                      Text(
-                        "Grade",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w300,
-                            color: Colors.white70,
-                            fontFamily: "Aller",
-                            fontSize: 7),
-                      ),
-                    ]),
-              ]),
-              PointerInterceptor(
-                // debug: true,
-                child: _setting(),
-              ),
-              // const Padding(
-              //   padding: EdgeInsets.all(5.0),
-              //   child: Icon(
-              //     Icons.settings,
-              //     color: Colors.white,
-              //     size: 20,
-              //   ),
-              // ),
-            ],
+                Row(children: [
+                  CustomImageView(
+                    imagePath: Images.gvt,
+                    fit: BoxFit.contain,
+                    height: 25,
+                    width: 25,
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "${_userProvider.user?.gradleFormate}",
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white70,
+                              fontFamily: "Aller",
+                              fontSize: 12),
+                        ),
+                        const SizedBox(height: 2),
+                        const Text(
+                          "Grade",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white70,
+                              fontFamily: "Aller",
+                              fontSize: 7),
+                        ),
+                      ]),
+                ]),
+                PointerInterceptor(
+                  // debug: true,
+                  child: _setting(),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   Widget _setting() => Padding(

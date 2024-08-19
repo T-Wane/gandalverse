@@ -1,5 +1,6 @@
 [
   {
+    "id": "d4a9f848-8b93-46b7-9c4d-0f6fa16e28f5",
     "nom": "Responsable de la Communication",
     "description": "Deviens la voix de Gandalverse ! Comme Responsable de la Communication, tu gérerais nos relations publiques et veilleras à ce que notre image soit irréprochable. Tu seras le pont entre nous et la communauté.",
     "competences": [
@@ -10,12 +11,13 @@
     "image": "assets/images/qg_images/responsableCommunication.jpg",
     "prix": 1300.0,
     "taux_augmentation": 6.0,
-    "niveau": 2,
-    "est_achete": true,
+    "niveau": 0,
+    "est_achete": false,
     "force": 150.0,
     "taux_augmentation_force": 15.0
   },
   {
+    "id": "e8c8d679-2b94-4e4d-88f4-759e01772ef1",
     "nom": "Chef de Projet",
     "description": "Conduis nos équipes vers la victoire ! En tant que Chef de Projet, tu coordonneras les efforts de chacun pour atteindre nos objectifs. Ton leadership et ton organisation seront cruciaux pour notre succès.",
     "competences": [
@@ -26,12 +28,13 @@
     "image": "assets/images/qg_images/chefdeProjet.jpg",
     "prix": 1700.0,
     "taux_augmentation": 7.0,
-    "niveau": 3,
+    "niveau": 0,
     "est_achete": false,
     "force": 250.0,
     "taux_augmentation_force": 20.0
   },
   {
+    "id": "0f782cd8-63d3-453e-9233-03742d923f64",
     "nom": "Support Client",
     "description": "Sois notre héros du quotidien ! Comme Support Client, tu aideras les utilisateurs à résoudre leurs problèmes et amélioreras leur expérience dans Gandalverse. Ta patience et ton efficacité feront toute la différence.",
     "competences": [
@@ -43,11 +46,12 @@
     "prix": 950.0,
     "taux_augmentation": 5.0,
     "niveau": 0,
-    "est_achete": true,
+    "est_achete": false,
     "force": 80.0,
     "taux_augmentation_force": 8.0
   },
   {
+    "id": "5c1bcb89-1f7c-4cbf-97f8-15a5c39163ff",
     "nom": "Community Manager",
     "description": "Anime notre monde virtuel ! En tant que Community Manager, tu engageras et modéreras nos utilisateurs, créant une atmosphère positive et collaborative. Ton dynamisme et ton écoute renforceront notre communauté.",
     "competences": [
@@ -58,12 +62,13 @@
     "image": "assets/images/qg_images/communityManager.jpg",
     "prix": 1000.0,
     "taux_augmentation": 5.5,
-    "niveau": 2,
+    "niveau": 0,
     "est_achete": false,
     "force": 110.0,
     "taux_augmentation_force": 12.0
   },
   {
+    "id": "d9cfe019-5288-46b1-ae8c-6efb3a8e9d8c",
     "nom": "Analyste Financier",
     "description": "Gère nos trésors ! En tant qu'Analyste Financier, tu surveilleras nos finances, établiras des budgets et feras des prévisions pour assurer notre prospérité. Ta rigueur financière nous guidera vers le succès.",
     "competences": [
@@ -74,8 +79,8 @@
     "image": "assets/images/qg_images/analysteFinancier.jpg",
     "prix": 1600.0,
     "taux_augmentation": 6.5,
-    "niveau": 3,
-    "est_achete": true,
+    "niveau": 0,
+    "est_achete": false,
     "force": 220.0,
     "taux_augmentation_force": 20.0
   }

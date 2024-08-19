@@ -178,7 +178,9 @@ class CarteCard extends StatelessWidget {
                                     .textTheme
                                     .labelSmall!
                                     .copyWith(
-                                      color: Colors.white,
+                                      color: carte.estAchete
+                                          ? Colors.white
+                                          : Colors.white70,
                                       fontWeight: FontWeight.w400,
                                     ),
                               ),
@@ -250,6 +252,15 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
           ),
           const SizedBox(
             height: 5,
+          ),
+          AutoSizeText(
+            widget.carte.carteId ?? '--',
+            maxLines: 1,
+            textAlign: TextAlign.right,
+            style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: Colors.red,
+                  fontWeight: FontWeight.w400,
+                ),
           ),
           AutoSizeText(
             widget.carte.description,
@@ -341,46 +352,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
           const SizedBox(
             height: 5,
           ),
-          StreamBuilder<bool>(
-            stream: widget.qgService.loadingStream,
-            builder: (context, snapshot) {
-              if (snapshot.data == true) {
-                WidgetsBinding.instance.addPostFrameCallback((_) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      backgroundColor: Colors.black45,
-                      behavior: SnackBarBehavior.floating,
-                      margin: EdgeInsets.only(top: 10, left: 5, right: 5),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      content: const Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(3),
-                            child: CircularProgressIndicator(
-                              color: Colors.white70,
-                              strokeWidth: 1.5,
-                            ),
-                          ),
-                          Expanded(
-                            child: const Text(
-                              "Mise à jour de la carte en cours...",
-                              textAlign: TextAlign.left,
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ],
-                      ),
-                      duration: Duration(seconds: 2),
-                    ),
-                  );
-                });
-                return SizedBox.shrink();
-              } else {
-                return SizedBox.shrink();
-              }
-            },
-          ),
+          
           StreamBuilder<bool>(
             stream: widget.qgService.loadingStream,
             builder: (context, snapshot) {
@@ -406,33 +378,33 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                   fontSize: 15,
                   height: 50,
                   press: () async {
-                    try {
-                      _userProvider
-                          .updateCardLevel(
-                              widget.qgService,
-                              CarteModel((b) => b
-                                ..nom = widget.carte.nom
-                                ..description = widget.carte.description
-                                ..competences = BuiltList<String>.from(
-                                        widget.carte.competences?.toList() ??
-                                            [])
-                                    .toBuilder()
-                                ..image = widget.carte.image
-                                ..prix = widget.carte.prix
-                                ..tauxAugmentation =
-                                    widget.carte.tauxAugmentation
-                                ..niveau = widget.carte.niveau + 1
-                                ..estAchete = widget.carte.estAchete
-                                ..force = widget.carte.force
-                                ..tauxAugmentationForce =
-                                    widget.carte.tauxAugmentationForce))
-                          .whenComplete(() {
-                        Navigator.of(context).pop();
-                      });
-                      /*  await widget.qgService
+                    await _userProvider
+                        .updateCardLevel(
+                            widget.qgService,
+                            CarteModel((b) => b
+                              ..carteId = widget.carte.carteId
+                              ..nom = widget.carte.nom
+                              ..description = widget.carte.description
+                              ..competences = BuiltList<String>.from(
+                                      widget.carte.competences?.toList() ?? [])
+                                  .toBuilder()
+                              ..image = widget.carte.image
+                              ..prix = widget.carte.prix
+                              ..tauxAugmentation = widget.carte.tauxAugmentation
+                              ..niveau = widget.carte.niveau + 1
+                              ..estAchete = widget.carte.estAchete
+                              ..force = widget.carte.force
+                              ..tauxAugmentationForce =
+                                  widget.carte.tauxAugmentationForce))
+                        .whenComplete(() {
+                      Navigator.of(context).pop();
+                      setState(() {});
+                    });
+                    /* await widget.qgService
                           .updateItem(
                               widget.carte.nom,
                               CarteModel((b) => b
+                                ..carteId = widget.carte.carteId
                                 ..nom = widget.carte.nom
                                 ..description = widget.carte.description
                                 ..competences = BuiltList<String>.from(
@@ -451,9 +423,6 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                           .whenComplete(() {
                         Navigator.of(context).pop();
                       });*/
-                    } catch (e) {
-                      print("error: $e");
-                    }
                   },
                 );
               }

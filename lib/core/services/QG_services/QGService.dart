@@ -27,12 +27,13 @@ abstract class QGService<T> {
     // log("####### loadItems to list ${jsonData}  # #############");
     try {
       List<T> data = jsonData.map((data) => fromJson(data)).toList();
-      log("####### data loadItems to list ${jsonData}  # #############");
+      // log("####### data loadItems to list ${jsonData}  # #############");
       return data;
-    } catch (e) {
-      log("######[ ERROR $e ]######");
+    } catch (e, stacktrace) {
+      log("######[ ERROR in loadItems $e ]######");
+      log("######[ STACKTRACE $stacktrace ]######");
+      return [];
     }
-    return [];
   }
 
   Future<void> saveItems(List<T> items) async {
@@ -41,13 +42,20 @@ abstract class QGService<T> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       final jsonData = items.map((item) => toJson(item)).toList();
       prefs.setString(storageKey, json.encode(jsonData));
+
       _loadingController.add(false);
     });
   }
 
+  Future<void> saveItems2(List<T> items) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final jsonData = items.map((item) => toJson(item)).toList();
+    prefs.setString(storageKey, json.encode(jsonData));
+  }
+
   Future<void> updateItem(String carteId, T updatedItem) async {
     final items = await loadItems();
-    final index = items.indexWhere((item) => getName(item) == carteId);
+    final index = items.indexWhere((item) => getCarteId(item) == carteId);
     if (index != -1) {
       items[index] = updatedItem;
       await saveItems(items);
@@ -56,5 +64,5 @@ abstract class QGService<T> {
 
   T fromJson(Map<String, dynamic> json);
   Map<String, dynamic> toJson(T item);
-  String getName(T item);
+  String? getCarteId(T item);
 }

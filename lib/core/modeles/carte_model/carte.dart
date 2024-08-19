@@ -6,18 +6,6 @@ import 'package:gandalverse/core/modeles/serializers/serializers.dart';
 part 'carte.g.dart';
 
 abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
-  /*String get nom;
-  String get description;
-
-  BuiltList<String>? get competences;
-  String get image;
-  double get prix;
-  double get tauxAugmentation;
-  int get niveau;
-  bool get estAchete;
-  double get force;
-  double get tauxAugmentationForce;
-*/
   @BuiltValueField(wireName: 'id')
   String? get carteId;
 
@@ -68,7 +56,7 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
       increase(force, tauxAugmentationForce).toStringAsFixed(1);
 
   String get prixFormate {
-    final adjustedPrix = prix * (tauxAugmentation * (niveau > 0 ? niveau : 1));
+    final adjustedPrix = prix * (niveau > 0 ? (tauxAugmentation * niveau) : 1);
     if (adjustedPrix >= 1000000) {
       return '${(adjustedPrix / 1000000).toStringAsFixed(1)}M';
     } else if (adjustedPrix >= 1000) {

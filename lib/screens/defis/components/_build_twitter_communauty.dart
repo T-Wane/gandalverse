@@ -18,7 +18,7 @@ class buildTwitterCommunauty extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnnonceCard(
         //title: 'Twitter',
-        text: 'Rejoins notre communauté Twitter\n',
+        text: 'Rejoins notre communauté X\n',
         reward: " 10.000",
         imagePath: Images.black_twitter,
         backColors: const [
@@ -34,7 +34,7 @@ class buildTwitterCommunauty extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Communauté Twitter",
+                      "Communauté X",
                       maxLines: 1,
                       textAlign: TextAlign.center,
                       textDirection: TextDirection.ltr,

@@ -24,10 +24,21 @@ abstract class UserModel implements Built<UserModel, UserModelBuilder> {
   static Serializer<UserModel> get serializer => _$userModelSerializer;
 
   Map<String, dynamic> toJson() {
-    return serializers.serializeWith(UserModel.serializer, this) as Map<String, dynamic>;
+    return serializers.serializeWith(UserModel.serializer, this)
+        as Map<String, dynamic>;
   }
 
   static UserModel fromJson(Map<String, dynamic> json) {
     return serializers.deserializeWith(UserModel.serializer, json)!;
+  }
+
+  String get gradleFormate {
+    if (profitPerHour >= 1000000) {
+      return '${(profitPerHour / 1000000).toStringAsFixed(1)}M';
+    } else if (profitPerHour >= 1000) {
+      return '${(profitPerHour / 1000).toStringAsFixed(1)}K';
+    } else {
+      return profitPerHour.toStringAsFixed(1);
+    }
   }
 }
