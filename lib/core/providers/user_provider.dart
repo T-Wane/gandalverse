@@ -16,30 +16,23 @@ import 'package:telegram_web_app/telegram_web_app.dart';
 @singleton
 class UserProvider extends ChangeNotifier {
   UserRepository _userRepository;
-  //TelegramClient _telegramClient;
-  late TelegramWebApp telegram;
+  TelegramClient _telegramClient;
+  //late TelegramWebApp telegram;
 
   UserModel? _user;
 
-  UserModel? get user {
-    if (_user == null) {
-      telegram = TelegramWebApp.instance;
-      telegram.ready();
-      fetchUserByTelegramId();
-      notifyListeners();
-    }
-    return _user;
-  }
+  UserModel? get user => _user;
+  
 
-  int get telegramUserId => 1016029253;
-  // _telegramClient.telegram.initData.user.id;
+  int get telegramUserId => //1016029253;
+  _telegramClient.telegram.initData.user.id;
 
   UserProvider(
-    //this._telegramClient,
+     this._telegramClient,
     this._userRepository,
   ) {
-    telegram = TelegramWebApp.instance;
-    telegram.ready();
+    // telegram = TelegramWebApp.instance;
+    // telegram.ready();
     fetchUserByTelegramId();
     notifyListeners();
   }
@@ -47,21 +40,21 @@ class UserProvider extends ChangeNotifier {
   Future<void> fetchUserByTelegramId() async {
     _user = await _userRepository.getUserByTelegramId(telegramUserId);
     if (user == null) {
-      TelegramUser user = telegram.initData.user;
-      // createUser(
-      //   telegramId: telegram.initData.user.id,
-      //   firstName: user.firstname,
-      //   lastName: user.lastname,
-      //   username: user.username,
-      //   photoUrl: telegram.initDataUnsafe?.user?.photoUrl,
-      // );
+      TelegramUser user = _telegramClient.telegram.initData.user;
       createUser(
-        telegramId: 1016029253,
-        firstName:"joe",
-        lastName: "Testeur",
-        username: "joe@45",
-        photoUrl: null,
+        telegramId: _telegramClient.telegram.initData.user.id,
+        firstName: user.firstname,
+        lastName: user.lastname,
+        username: user.username,
+        photoUrl: _telegramClient.telegram.initDataUnsafe?.user?.photoUrl,
       );
+      // createUser(
+      //   telegramId: 1016029253,
+      //   firstName:"joe",
+      //   lastName: "Testeur",
+      //   username: "joe@45",
+      //   photoUrl: null,
+      // );
     }
     notifyListeners();
   }

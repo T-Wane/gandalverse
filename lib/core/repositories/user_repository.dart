@@ -32,7 +32,7 @@ class UserRepository {
       }
       return null;
     } catch (e) {
-      print('Error getting user: $e');
+      log('Error getting user: $e');
       return null;
     }
   }
@@ -69,7 +69,6 @@ class UserRepository {
       ..photoUrl = fields.photoUrl
       ..level = 1
       ..coins = 0
-      ..friends = []
       ..profitPerHour = 0.0
       ..profileImage = '');
 

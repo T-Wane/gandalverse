@@ -31,7 +31,7 @@ class _PartenaireSectionState extends State<PartenaireSection> {
 
   @override
   Widget build(BuildContext context) {
-    _partenaireService.loadInitialData();
+   // _partenaireService.loadInitialData();
     return Stack(children: [
       StreamBuilder<List<CarteModel>>(
         stream: _partenaireService.partenaireStream,
