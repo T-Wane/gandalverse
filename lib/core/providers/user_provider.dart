@@ -17,20 +17,28 @@ import 'package:telegram_web_app/telegram_web_app.dart';
 class UserProvider extends ChangeNotifier {
   UserRepository _userRepository;
   //TelegramClient _telegramClient;
-  static late TelegramWebApp telegram;
+  late TelegramWebApp telegram;
 
   UserModel? _user;
 
-  UserModel? get user => _user;
+  UserModel? get user {
+    if (_user == null) {
+      telegram = TelegramWebApp.instance;
+      telegram.ready();
+      fetchUserByTelegramId();
+      notifyListeners();
+    }
+    return _user;
+  }
 
-  int get telegramUserId =>1016029253;
-   // _telegramClient.telegram.initData.user.id;
+  int get telegramUserId => 1016029253;
+  // _telegramClient.telegram.initData.user.id;
 
   UserProvider(
     //this._telegramClient,
     this._userRepository,
   ) {
-       telegram = TelegramWebApp.instance;
+    telegram = TelegramWebApp.instance;
     telegram.ready();
     fetchUserByTelegramId();
     notifyListeners();
@@ -45,7 +53,7 @@ class UserProvider extends ChangeNotifier {
         firstName: user.firstname,
         lastName: user.lastname,
         username: user.username,
-        photoUrl:  telegram.initDataUnsafe?.user?.photoUrl,
+        photoUrl: telegram.initDataUnsafe?.user?.photoUrl,
       );
     }
     notifyListeners();

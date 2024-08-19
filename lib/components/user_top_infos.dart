@@ -5,8 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/components/infoItem.dart';
 import 'package:gandalverse/core/providers/user_provider.dart';
-import 'package:gandalverse/data/telegram_client.dart';
-import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/home.page.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
@@ -31,7 +29,7 @@ class userTopInfos extends StatefulWidget {
 }
 
 class _userTopInfosState extends State<userTopInfos> {
-  TelegramClient _telegramClient = getIt<TelegramClient>();
+  final TelegramWebApp telegram = TelegramWebApp.instance;
 
   bool? isDefinedVersion;
   String? clipboardText;
@@ -45,14 +43,13 @@ class _userTopInfosState extends State<userTopInfos> {
       print("Flutter error happened: $details");
     };
 
-    _telegramClient.telegram.ready();
+    TelegramWebApp.instance.ready();
     check();
   }
 
   void check() async {
     await Future.delayed(const Duration(seconds: 2));
-    isDefinedVersion =
-        await _telegramClient.telegram.isVersionAtLeast('Bot API 6.1');
+    isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
     setState(() {});
   }
 
@@ -115,13 +112,13 @@ class _userTopInfosState extends State<userTopInfos> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
+                        Padding(
                         padding: EdgeInsets.only(left: 10),
                         child: Text(
-                          //  "UserName",
-                          "${_telegramClient.telegram.initData.user.firstname ?? ''} ${_telegramClient.telegram.initData.user.lastname ?? ''} ",
+                           //  "UserName",
+                        "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
                           textAlign: TextAlign.left,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontFamily: "Aller",
                             fontSize: 13,
                             color: Colors.white,
@@ -182,7 +179,7 @@ class _userTopInfosState extends State<userTopInfos> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "${_userProvider.user?.gradleFormate}",
+                          "${_userProvider.user?.gradleFormate??0.0}",
                           style: const TextStyle(
                               fontWeight: FontWeight.w300,
                               color: Colors.white70,
