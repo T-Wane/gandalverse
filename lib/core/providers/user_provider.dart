@@ -89,7 +89,11 @@ class UserProvider extends ChangeNotifier {
 
   Future<void> updateCardLevel(
       QGService qgService, CarteModel carteData) async {
-    await _userRepository.updateCardLevel(qgService, _user!.id, carteData);
+    if (carteData.estAchete == false) {
+      await _userRepository.purchaseCard(_user!.id, carteData, qgService);
+    } else {
+      await _userRepository.updateCardLevel(qgService, _user!.id, carteData);
+    }
     await fetchUserByTelegramId();
   }
 }

@@ -102,8 +102,6 @@ class UserRepository {
         'coins': userCoins - cardPrice,
       });
 
-    
-
       // Add card to user's collection if not already present
       transaction.set(userRef.collection('cards').doc(carte.carteId), {
         'id': carte.carteId,
@@ -131,10 +129,7 @@ class UserRepository {
   }
 
   Future<void> updateCardLevel(
-      QGService qgService, String userId, CarteModel carteData
-      // String cardId, int newLevel,
-      //   double newProfilParHeure
-      ) async {
+      QGService qgService, String userId, CarteModel carteData) async {
     await _firestore
         .collection('users')
         .doc(userId)
