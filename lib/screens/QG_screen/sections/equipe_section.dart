@@ -25,7 +25,7 @@ class _EquipeSectionState extends State<EquipeSection> {
   void didUpdateWidget(covariant EquipeSection oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
-   _equipeService.loadInitialData();
+    _equipeService.loadInitialData();
   }
 
   @override
@@ -37,7 +37,7 @@ class _EquipeSectionState extends State<EquipeSection> {
 
   @override
   Widget build(BuildContext context) {
-    // _equipeService.loadItems();
+    _equipeService.loadInitialData();
     return StreamBuilder<List<CarteModel>>(
       stream: _equipeService.equipeStream,
       builder: (context, snapshot) {

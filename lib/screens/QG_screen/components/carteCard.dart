@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/core/modeles/carte_model/carte.dart';
+import 'package:gandalverse/core/repositories/user_repository.dart';
 import 'package:gandalverse/core/services/QG_services/QGService.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
@@ -224,6 +226,8 @@ class bureauCarteDetails extends StatefulWidget {
 }
 
 class _bureauCarteDetailsState extends State<bureauCarteDetails> {
+  UserRepository _userRepository = getIt<UserRepository>();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -402,7 +406,24 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                   height: 50,
                   press: () async {
                     try {
-                      await widget.qgService
+                      _userRepository.updateCardLevel(
+                          widget.qgService,
+                          userId,
+                          CarteModel((b) => b
+                            ..nom = widget.carte.nom
+                            ..description = widget.carte.description
+                            ..competences = BuiltList<String>.from(
+                                    widget.carte.competences?.toList() ?? [])
+                                .toBuilder()
+                            ..image = widget.carte.image
+                            ..prix = widget.carte.prix
+                            ..tauxAugmentation = widget.carte.tauxAugmentation
+                            ..niveau = widget.carte.niveau + 1
+                            ..estAchete = widget.carte.estAchete
+                            ..force = widget.carte.force
+                            ..tauxAugmentationForce =
+                                widget.carte.tauxAugmentationForce));
+                      /*  await widget.qgService
                           .updateItem(
                               widget.carte.nom,
                               CarteModel((b) => b
@@ -423,7 +444,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                                     widget.carte.tauxAugmentationForce))
                           .whenComplete(() {
                         Navigator.of(context).pop();
-                      });
+                      });*/
                     } catch (e) {
                       print("error: $e");
                     }

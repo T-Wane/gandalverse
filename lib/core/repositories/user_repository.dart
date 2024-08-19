@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:gandalverse/core/modeles/carte_model/carte.dart';
 import 'package:gandalverse/core/modeles/fields/createUser_fields/createUser_fields.dart';
 import 'package:gandalverse/core/modeles/user_model/user_model.dart';
+import 'package:gandalverse/core/services/QG_services/QGService.dart';
 import 'package:gandalverse/data/tg_storage/telegram_cloudStorage.dart';
 import 'package:uuid/uuid.dart';
 import 'package:injectable/injectable.dart';
@@ -74,35 +76,50 @@ class UserRepository {
   // }
 
   Future<void> purchaseCard(String userId, String cardId) async {
-  DocumentReference userRef = _firestore.collection('users').doc(userId);
-  DocumentReference cardRef = _firestore.collection('cards').doc(cardId);
+    DocumentReference userRef = _firestore.collection('users').doc(userId);
+    DocumentReference cardRef = _firestore.collection('cards').doc(cardId);
 
-  await _firestore.runTransaction((transaction) async {
-    DocumentSnapshot userDoc = await transaction.get(userRef);
-    DocumentSnapshot cardDoc = await transaction.get(cardRef);
+    await _firestore.runTransaction((transaction) async {
+      DocumentSnapshot userDoc = await transaction.get(userRef);
+      DocumentSnapshot cardDoc = await transaction.get(cardRef);
 
-    if (!userDoc.exists || !cardDoc.exists) {
-      throw Exception("User or Card does not exist");
-    }
+      if (!userDoc.exists || !cardDoc.exists) {
+        throw Exception("User or Card does not exist");
+      }
 
-    int userCoins = userDoc['coins'];
-    double cardPrice = cardDoc['prix'];
+      int userCoins = userDoc['coins'];
+      double cardPrice = cardDoc['prix'];
 
-    if (userCoins < cardPrice) {
-      throw Exception("Not enough coins");
-    }
+      if (userCoins < cardPrice) {
+        throw Exception("Not enough coins");
+      }
 
-    // Update user's coins
-    transaction.update(userRef, {
-      'coins': userCoins - cardPrice,
+      // Update user's coins
+      transaction.update(userRef, {
+        'coins': userCoins - cardPrice,
+      });
+
+      // Add card to user's collection if not already present
+      transaction.set(userRef.collection('cards').doc(cardId), {
+        'niveau': 1,
+        'profilParHeure': cardDoc['force'] * cardDoc['tauxAugmentationForce'],
+      });
     });
+  }
 
-    // Add card to user's collection if not already present
-    transaction.set(userRef.collection('cards').doc(cardId), {
-      'niveau': 1,
-      'profilParHeure': cardDoc['force'] * cardDoc['tauxAugmentationForce'],
+  Future<void> updateCardLevel(
+      QGService qgService, String userId, CarteModel carteData
+      // String cardId, int newLevel,
+      //   double newProfilParHeure
+      ) async {
+    await _firestore
+        .collection('users')
+        .doc(userId)
+        .collection('cards')
+        .doc(cardId)
+        .update({
+      'niveau': newLevel,
+      'profilParHeure': newProfilParHeure,
     });
-  });
-}
-
+  }
 }

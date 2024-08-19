@@ -18,6 +18,7 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
   double get force;
   double get tauxAugmentationForce;
 */
+  String? get id;
   String get nom;
   String get description;
 
