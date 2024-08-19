@@ -44,7 +44,7 @@ class _$CarteModelSerializer implements StructuredSerializer<CarteModel> {
           specifiedType: const FullType(double)),
     ];
     Object? value;
-    value = object.id;
+    value = object.carteId;
     if (value != null) {
       result
         ..add('id')
@@ -74,7 +74,7 @@ class _$CarteModelSerializer implements StructuredSerializer<CarteModel> {
       final Object? value = iterator.current;
       switch (key) {
         case 'id':
-          result.id = serializers.deserialize(value,
+          result.carteId = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
         case 'nom':
@@ -128,7 +128,7 @@ class _$CarteModelSerializer implements StructuredSerializer<CarteModel> {
 
 class _$CarteModel extends CarteModel {
   @override
-  final String? id;
+  final String? carteId;
   @override
   final String nom;
   @override
@@ -154,7 +154,7 @@ class _$CarteModel extends CarteModel {
       (new CarteModelBuilder()..update(updates))._build();
 
   _$CarteModel._(
-      {this.id,
+      {this.carteId,
       required this.nom,
       required this.description,
       this.competences,
@@ -192,7 +192,7 @@ class _$CarteModel extends CarteModel {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is CarteModel &&
-        id == other.id &&
+        carteId == other.carteId &&
         nom == other.nom &&
         description == other.description &&
         competences == other.competences &&
@@ -208,7 +208,7 @@ class _$CarteModel extends CarteModel {
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, carteId.hashCode);
     _$hash = $jc(_$hash, nom.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jc(_$hash, competences.hashCode);
@@ -226,7 +226,7 @@ class _$CarteModel extends CarteModel {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'CarteModel')
-          ..add('id', id)
+          ..add('carteId', carteId)
           ..add('nom', nom)
           ..add('description', description)
           ..add('competences', competences)
@@ -244,9 +244,9 @@ class _$CarteModel extends CarteModel {
 class CarteModelBuilder implements Builder<CarteModel, CarteModelBuilder> {
   _$CarteModel? _$v;
 
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
+  String? _carteId;
+  String? get carteId => _$this._carteId;
+  set carteId(String? carteId) => _$this._carteId = carteId;
 
   String? _nom;
   String? get nom => _$this._nom;
@@ -297,7 +297,7 @@ class CarteModelBuilder implements Builder<CarteModel, CarteModelBuilder> {
   CarteModelBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _id = $v.id;
+      _carteId = $v.carteId;
       _nom = $v.nom;
       _description = $v.description;
       _competences = $v.competences?.toBuilder();
@@ -332,7 +332,7 @@ class CarteModelBuilder implements Builder<CarteModel, CarteModelBuilder> {
     try {
       _$result = _$v ??
           new _$CarteModel._(
-              id: id,
+              carteId: carteId,
               nom: BuiltValueNullFieldError.checkNotNull(
                   nom, r'CarteModel', 'nom'),
               description: BuiltValueNullFieldError.checkNotNull(

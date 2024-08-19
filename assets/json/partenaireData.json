@@ -7,8 +7,8 @@
       "competences": [],
       "prix": 1200.0,
       "taux_augmentation": 0.8,
-      "niveau": 1,
-      "est_achete": true,
+      "niveau": 0,
+      "est_achete": false,
       "force": 500.0,
       "taux_augmentation_force": 100
     },
@@ -20,8 +20,8 @@
       "competences": [],
       "prix": 1000.0,
       "taux_augmentation": 0.05,
-      "niveau": 1,
-      "est_achete": true,
+      "niveau": 0,
+      "est_achete": false,
       "force": 200.0,
       "taux_augmentation_force": 15
     },
@@ -33,8 +33,8 @@
       "competences": [],
       "prix": 3800.0,
       "taux_augmentation": 0.5,
-      "niveau": 1,
-      "est_achete": true,
+      "niveau": 0,
+      "est_achete": false,
       "force": 500.0,
       "taux_augmentation_force": 20
     },
@@ -46,8 +46,8 @@
       "competences": [],
       "prix": 6000.0,
       "taux_augmentation": 0.9,
-      "niveau": 1,
-      "est_achete": true,
+      "niveau": 0,
+      "est_achete": false,
       "force": 350.0,
       "taux_augmentation_force": 5
     }

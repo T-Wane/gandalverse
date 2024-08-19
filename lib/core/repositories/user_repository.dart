@@ -102,6 +102,8 @@ class UserRepository {
         'coins': userCoins - cardPrice,
       });
 
+    
+
       // Add card to user's collection if not already present
       transaction.set(userRef.collection('cards').doc(carte.carteId), {
         'id': carte.carteId,

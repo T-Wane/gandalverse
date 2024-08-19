@@ -11,8 +11,8 @@
     "image": "assets/images/qg_images/responsableCommunication.jpg",
     "prix": 1300.0,
     "taux_augmentation": 6.0,
-    "niveau": 2,
-    "est_achete": true,
+    "niveau": 0,
+    "est_achete": false,
     "force": 150.0,
     "taux_augmentation_force": 15.0
   },
@@ -28,7 +28,7 @@
     "image": "assets/images/qg_images/chefdeProjet.jpg",
     "prix": 1700.0,
     "taux_augmentation": 7.0,
-    "niveau": 3,
+    "niveau": 0,
     "est_achete": false,
     "force": 250.0,
     "taux_augmentation_force": 20.0
@@ -46,7 +46,7 @@
     "prix": 950.0,
     "taux_augmentation": 5.0,
     "niveau": 0,
-    "est_achete": true,
+    "est_achete": false,
     "force": 80.0,
     "taux_augmentation_force": 8.0
   },
@@ -62,7 +62,7 @@
     "image": "assets/images/qg_images/communityManager.jpg",
     "prix": 1000.0,
     "taux_augmentation": 5.5,
-    "niveau": 2,
+    "niveau": 0,
     "est_achete": false,
     "force": 110.0,
     "taux_augmentation_force": 12.0
@@ -79,8 +79,8 @@
     "image": "assets/images/qg_images/analysteFinancier.jpg",
     "prix": 1600.0,
     "taux_augmentation": 6.5,
-    "niveau": 3,
-    "est_achete": true,
+    "niveau": 0,
+    "est_achete": false,
     "force": 220.0,
     "taux_augmentation_force": 20.0
   }
