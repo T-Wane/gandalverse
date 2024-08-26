@@ -15,7 +15,7 @@ class MapButton extends StatelessWidget {
   final bool isRight;
   Gradient? gradient;
 
-    MapButton(
+  MapButton(
       {Key? key,
       required this.currentSearchPercent,
       required this.currentExplorePercent,
@@ -27,14 +27,7 @@ class MapButton extends StatelessWidget {
       this.iconColor,
       this.isRight = true,
       this.gradient})
-      : assert(currentExplorePercent != null),
-        assert(currentExplorePercent != null),
-        assert(bottom != null),
-        assert(offsetX != null),
-        assert(width != null),
-        assert(height != null),
-        assert(icon != null),
-        super(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

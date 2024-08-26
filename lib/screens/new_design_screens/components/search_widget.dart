@@ -1,7 +1,6 @@
- 
-
 import 'package:flutter/material.dart';
 import 'package:gandalverse/screens/new_design_screens/helper/ui_helper.dart';
+import 'package:pointer_interceptor/pointer_interceptor.dart';
 
 class SearchWidget extends StatelessWidget {
   final double currentExplorePercent;
@@ -19,47 +18,52 @@ class SearchWidget extends StatelessWidget {
   const SearchWidget(
       {Key? key,
       required this.currentExplorePercent,
-     required this.currentSearchPercent,
-     required this.animateSearch,
-     required this.isSearchOpen,
-     required this.onHorizontalDragUpdate,
-     required this.onPanDown})
+      required this.currentSearchPercent,
+      required this.animateSearch,
+      required this.isSearchOpen,
+      required this.onHorizontalDragUpdate,
+      required this.onPanDown})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      bottom: realH(53),
-      right: realW((68.0 - 320) - (68.0 * currentExplorePercent) + (347 - 68.0) * currentSearchPercent),
-      child: GestureDetector(
-        onTap: () {
-          animateSearch(!isSearchOpen);
-        },
-        onPanDown: (_) => onPanDown,
-        onHorizontalDragUpdate: onHorizontalDragUpdate,
-        onHorizontalDragEnd: (_) {
-          _dispatchSearchOffset();
-        },
-        child: Container(
-          width: realW(320),
-          height: realH(71),
-          alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(left: realW(17)),
-          child: Opacity(
-            opacity: 1.0 - currentSearchPercent,
-            child: Icon(
-              Icons.search,
-              size: realW(34),
+    return   Positioned(
+        bottom: realH(53),
+        right: realW((68.0 - 320) -
+            (68.0 * currentExplorePercent) +
+            (347 - 68.0) * currentSearchPercent),
+        child: GestureDetector(
+          onTap: () {
+            animateSearch(!isSearchOpen);
+          },
+          onPanDown: (_) => onPanDown,
+          onHorizontalDragUpdate: onHorizontalDragUpdate,
+          onHorizontalDragEnd: (_) {
+            _dispatchSearchOffset();
+          },
+          child: Container(
+            width: realW(320),
+            height: realH(71),
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: realW(17)),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(realW(36))),
+                boxShadow: [
+                  BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.3),
+                      blurRadius: realW(36)),
+                ]),
+            child: Opacity(
+              opacity: 1.0 - currentSearchPercent,
+              child: Icon(
+                Icons.search,
+                size: realW(34),
+              ),
             ),
           ),
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.all(Radius.circular(realW(36))),
-              boxShadow: [
-                BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.3), blurRadius: realW(36)),
-              ]),
         ),
-      ),
+       
     );
   }
 

@@ -8,6 +8,7 @@ import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/core/repositories/tabAndEarnRepository.dart';
 import 'package:gandalverse/data/firebase_client.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
+import 'package:gandalverse/screens/new_design_screens/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:telegram_web_app/telegram_web_app.dart';
 import 'package:webview_flutter_web/webview_flutter_web.dart';
@@ -65,7 +66,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'GandalVerse',
       debugShowCheckedModeBanner: false,
-      theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance),
+     // theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance),
       /* builder: (_, child) {
           return Stack(
             children: [
@@ -91,7 +92,8 @@ class _MyAppState extends State<MyApp> {
             ],
           );
         },*/
-      home: MyHomePage(),
+      home: GoogleMapPage()
+      //MyHomePage(),
     );
   }
 }

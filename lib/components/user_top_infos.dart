@@ -29,7 +29,7 @@ class userTopInfos extends StatefulWidget {
 }
 
 class _userTopInfosState extends State<userTopInfos> {
-  final TelegramWebApp telegram = TelegramWebApp.instance;
+  //final TelegramWebApp telegram = TelegramWebApp.instance;
 
   bool? isDefinedVersion;
   String? clipboardText;
@@ -43,13 +43,13 @@ class _userTopInfosState extends State<userTopInfos> {
       print("Flutter error happened: $details");
     };
 
-    TelegramWebApp.instance.ready();
+    //TelegramWebApp.instance.ready();
     check();
   }
 
   void check() async {
     await Future.delayed(const Duration(seconds: 2));
-    isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
+   // isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
     setState(() {});
   }
 
