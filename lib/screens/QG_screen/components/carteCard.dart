@@ -12,6 +12,7 @@ import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
+import 'package:provider/provider.dart';
 
 class CarteCard extends StatelessWidget {
   CarteCard({super.key, required this.carte, required this.qgService});
@@ -21,14 +22,13 @@ class CarteCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        CardContentBottomSheet.show(context,
-            child: bureauCarteDetails(
-                Color3: Color3, carte: carte, qgService: qgService),
-            image: carte.image);
-      },
-      child: Container(
+    return GestureDetector(onTap: () {
+      CardContentBottomSheet.show(context,
+          child: bureauCarteDetails(
+              Color3: Color3, carte: carte, qgService: qgService),
+          image: carte.image);
+    }, child: Consumer<UserProvider>(builder: (context, _userProvider, child) {
+      return Container(
         margin: const EdgeInsets.all(6),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -161,11 +161,17 @@ class CarteCard extends StatelessWidget {
                               thickness: 0.1,
                             ),
                             Row(children: [
-                              CustomImageView(
-                                imagePath: Images.gvt,
-                                fit: BoxFit.contain,
-                                height: 15,
-                                width: 15,
+                              Opacity(
+                                opacity: (_userProvider.user?.coins ?? 0) >
+                                        carte.getPrix_inDouble
+                                    ? 1
+                                    : 0.7,
+                                child: CustomImageView(
+                                  imagePath: Images.gvt,
+                                  fit: BoxFit.contain,
+                                  height: 15,
+                                  width: 15,
+                                ),
                               ),
                               const SizedBox(
                                 width: 3,
@@ -189,8 +195,8 @@ class CarteCard extends StatelessWidget {
                     ]),
               )),
         ]),
-      ),
-    );
+      );
+    }));
   }
 }
 
@@ -233,176 +239,154 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(5.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            widget.carte.nom,
-            maxLines: 1,
-            textAlign: TextAlign.center,
-            textDirection: TextDirection.ltr,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-                fontSize: 15,
-                color: widget.Color3,
-                fontFamily: "Aller",
-                fontWeight: FontWeight.w500),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          AutoSizeText(
-            widget.carte.carteId ?? '--',
-            maxLines: 1,
-            textAlign: TextAlign.right,
-            style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                  color: Colors.red,
-                  fontWeight: FontWeight.w400,
-                ),
-          ),
-          AutoSizeText(
-            widget.carte.description,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                  color: widget.Color3.withOpacity(0.95),
-                  fontWeight: FontWeight.normal,
-                ),
-          ),
-          if ((widget.carte.competences?.toList() ?? []).isNotEmpty) ...[
+    return Consumer<UserProvider>(builder: (context, _userProvider, child) {
+      return Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              widget.carte.nom,
+              maxLines: 1,
+              textAlign: TextAlign.center,
+              textDirection: TextDirection.ltr,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                  fontSize: 15,
+                  color: widget.Color3,
+                  fontFamily: "Aller",
+                  fontWeight: FontWeight.w500),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
             AutoSizeText(
-              "Compétences: ${widget.carte.competences?.join(" - ")}",
+              widget.carte.carteId ?? '--',
+              maxLines: 1,
+              textAlign: TextAlign.right,
+              style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                    color: Colors.red,
+                    fontWeight: FontWeight.w400,
+                  ),
+            ),
+            AutoSizeText(
+              widget.carte.description,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.labelSmall!.copyWith(
                     color: widget.Color3.withOpacity(0.95),
                     fontWeight: FontWeight.normal,
                   ),
-            )
-          ],
-          const SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            child: Row(
+            ),
+            if ((widget.carte.competences?.toList() ?? []).isNotEmpty) ...[
+              AutoSizeText(
+                "Compétences: ${widget.carte.competences?.join(" - ")}",
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                      color: widget.Color3.withOpacity(0.95),
+                      fontWeight: FontWeight.normal,
+                    ),
+              )
+            ],
+            const SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Grade Apporté : ",
+                    style: TextStyle(
+                        fontWeight: FontWeight.w300,
+                        color: widget.Color3,
+                        fontFamily: "Aller",
+                        fontSize: 12),
+                  ),
+                  const SizedBox(
+                    width: 2,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomImageView(
+                        imagePath: Images.gvt,
+                        fit: BoxFit.contain,
+                        height: 20,
+                        width: 20,
+                      ),
+                      const SizedBox(width: 5),
+                      AutoSizeText(
+                        widget.carte.forceFormate,
+                        maxLines: 1,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: widget.Color3,
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  "Grade Apporté : ",
+                CustomImageView(
+                  imagePath: Images.gvt,
+                  fit: BoxFit.contain,
+                  height: 30,
+                  width: 30,
+                ),
+                const SizedBox(width: 5),
+                AutoSizeText(
+                  "${widget.carte.getPrix}",
+                  maxLines: 1,
+                  presetFontSizes: const [22, 20, 18, 15, 14],
+                  textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      color: widget.Color3,
-                      fontFamily: "Aller",
-                      fontSize: 12),
-                ),
-                const SizedBox(
-                  width: 2,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomImageView(
-                      imagePath: Images.gvt,
-                      fit: BoxFit.contain,
-                      height: 20,
-                      width: 20,
-                    ),
-                    const SizedBox(width: 5),
-                    AutoSizeText(
-                      widget.carte.forceFormate,
-                      maxLines: 1,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: widget.Color3,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    ),
-                  ],
+                    color: widget.Color3,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomImageView(
-                imagePath: Images.gvt,
-                fit: BoxFit.contain,
-                height: 30,
-                width: 30,
-              ),
-              const SizedBox(width: 5),
-              AutoSizeText(
-                "${widget.carte.getPrix}",
-                maxLines: 1,
-                presetFontSizes: const [22, 20, 18, 15, 14],
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: widget.Color3,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          
-          StreamBuilder<bool>(
-            stream: widget.qgService.loadingStream,
-            builder: (context, snapshot) {
-              if (snapshot.data == true) {
-                return DefaultButtonWithchild(
+            const SizedBox(
+              height: 5,
+            ),
+            StreamBuilder<bool>(
+              stream: widget.qgService.loadingStream,
+              builder: (context, snapshot) {
+                if (snapshot.data == true) {
+                  return DefaultButtonWithchild(
+                      backColor: Colors.purple.shade400,
+                      elevation: 1.0,
+                      height: 50,
+                      press: () {},
+                      child: const Padding(
+                        padding: EdgeInsets.all(2),
+                        child: CircularProgressIndicator(
+                          color: Colors.white70,
+                          strokeWidth: 1.5,
+                        ),
+                      ));
+                } else {
+                  return DefaultButton(
                     backColor: Colors.purple.shade400,
+                    text: 'Go',
                     elevation: 1.0,
+                    textColor: Colors.white,
+                    fontSize: 15,
                     height: 50,
-                    press: () {},
-                    child: const Padding(
-                      padding: EdgeInsets.all(2),
-                      child: CircularProgressIndicator(
-                        color: Colors.white70,
-                        strokeWidth: 1.5,
-                      ),
-                    ));
-              } else {
-                return DefaultButton(
-                  backColor: Colors.purple.shade400,
-                  text: 'Go',
-                  elevation: 1.0,
-                  textColor: Colors.white,
-                  fontSize: 15,
-                  height: 50,
-                  press: () async {
-                    await _userProvider
-                        .updateCardLevel(
-                            widget.qgService,
-                            CarteModel((b) => b
-                              ..carteId = widget.carte.carteId
-                              ..nom = widget.carte.nom
-                              ..description = widget.carte.description
-                              ..competences = BuiltList<String>.from(
-                                      widget.carte.competences?.toList() ?? [])
-                                  .toBuilder()
-                              ..image = widget.carte.image
-                              ..prix = widget.carte.prix
-                              ..tauxAugmentation = widget.carte.tauxAugmentation
-                              ..niveau = widget.carte.niveau + 1
-                              ..estAchete = widget.carte.estAchete
-                              ..force = widget.carte.force
-                              ..tauxAugmentationForce =
-                                  widget.carte.tauxAugmentationForce))
-                        .whenComplete(() {
-                      Navigator.of(context).pop();
-                      setState(() {});
-                    });
-                    /* await widget.qgService
-                          .updateItem(
-                              widget.carte.nom,
+                    press: () async {
+                      await _userProvider
+                          .updateCardLevel(
+                              widget.qgService,
                               CarteModel((b) => b
                                 ..carteId = widget.carte.carteId
                                 ..nom = widget.carte.nom
@@ -422,15 +406,17 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                                     widget.carte.tauxAugmentationForce))
                           .whenComplete(() {
                         Navigator.of(context).pop();
-                      });*/
-                  },
-                );
-              }
-            },
-          ),
-        ],
-      ),
-    );
+                        setState(() {});
+                      });
+                    },
+                  );
+                }
+              },
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
 
