@@ -32,17 +32,17 @@ class SearchWidget extends StatelessWidget {
       right: realW((68.0 - 320) -
           (68.0 * currentExplorePercent) +
           (347 - 68.0) * currentSearchPercent),
-      child: PointerInterceptor(
-        debug: true,
-        child: GestureDetector(
-          onTap: () {
-            animateSearch(!isSearchOpen);
-          },
-          onPanDown: (_) => onPanDown,
-          onHorizontalDragUpdate: onHorizontalDragUpdate,
-          onHorizontalDragEnd: (_) {
-            _dispatchSearchOffset();
-          },
+      child: GestureDetector(
+        onTap: () {
+          animateSearch(!isSearchOpen);
+        },
+        onPanDown: (_) => onPanDown,
+        onHorizontalDragUpdate: onHorizontalDragUpdate,
+        onHorizontalDragEnd: (_) {
+          _dispatchSearchOffset();
+        },
+        child: PointerInterceptor(
+          debug: false,
           child: Container(
             width: realW(320),
             height: realH(71),

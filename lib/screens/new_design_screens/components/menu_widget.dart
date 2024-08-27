@@ -68,7 +68,7 @@ class MenuWidget extends StatelessWidget {
                                     left: realW(10),
                                     bottom: realH(27),
                                     child: Image.asset(
-                                      "avatar.png",
+                                      "assets/images/new/avatar.png",
                                       width: realH(120),
                                       height: realH(120),
                                     ),
@@ -77,7 +77,7 @@ class MenuWidget extends StatelessWidget {
                                     left: realW(60),
                                     bottom: realH(18),
                                     child: Image.asset(
-                                      "lable.png",
+                                      "assets/images/new/lable.png",
                                       width: realH(72),
                                       height: realH(72),
                                     ),
@@ -93,7 +93,7 @@ class MenuWidget extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Text(
-                                            "implemented by ditclear",
+                                            "User name",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: realW(18)),
@@ -105,8 +105,7 @@ class MenuWidget extends StatelessWidget {
                                               fit: BoxFit.scaleDown,
                                               child: Text.rich(
                                                 TextSpan(
-                                                  text:
-                                                      "https://github.com/ditclear",
+                                                  text: "#tag",
                                                   style: TextStyle(
                                                       fontSize: realW(16),
                                                       decoration: TextDecoration
@@ -114,20 +113,6 @@ class MenuWidget extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
-                                          ),
-                                          Row(
-                                            children: <Widget>[
-                                              Text(
-                                                "公众号：ditclear",
-                                                style: TextStyle(
-                                                    fontSize: realW(14)),
-                                              ),
-                                              Icon(
-                                                Icons.arrow_right,
-                                                color: Colors.white,
-                                                size: realH(30),
-                                              )
-                                            ],
                                           ),
                                         ],
                                       ),

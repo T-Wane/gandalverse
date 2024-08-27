@@ -29,7 +29,7 @@ class ExploreContentWidget extends StatelessWidget {
                         offset: Offset(screenWidth / 3 * (1 - currentExplorePercent),
                             screenWidth / 3 / 2 * (1 - currentExplorePercent)),
                         child: Image.asset(
-                          "icon_1.png",
+                          "assets/images/new/icon_1.png",
                           width: realH(133),
                           height: realH(133),
                         ),
@@ -37,7 +37,7 @@ class ExploreContentWidget extends StatelessWidget {
                     ),
                     Expanded(
                       child: Image.asset(
-                        "icon_2.png",
+                        "assets/images/new/icon_2.png",
                         width: realH(133),
                         height: realH(133),
                       ),
@@ -47,7 +47,7 @@ class ExploreContentWidget extends StatelessWidget {
                         offset: Offset(-screenWidth / 3 * (1 - currentExplorePercent),
                             screenWidth / 3 / 2 * (1 - currentExplorePercent)),
                         child: Image.asset(
-                          "icon_3.png",
+                          "assets/images/new/icon_3.png",
                           width: realH(133),
                           height: realH(133),
                         ),
@@ -98,7 +98,7 @@ class ExploreContentWidget extends StatelessWidget {
                           Stack(
                             children: <Widget>[
                               Image.asset(
-                                "dj.png",
+                                "assets/images/new/dj.png",
                               ),
                               Positioned(
                                   bottom: realH(26),
@@ -114,10 +114,10 @@ class ExploreContentWidget extends StatelessWidget {
                             child: Row(
                               children: <Widget>[
                                 Expanded(
-                                  child: Image.asset("banner_4.png"),
+                                  child: Image.asset("assets/images/new/banner_4.png"),
                                 ),
                                 Expanded(
-                                  child: Image.asset("banner_5.png"),
+                                  child: Image.asset("assets/images/new/banner_5.png"),
                                 ),
                               ],
                             ),
@@ -147,7 +147,7 @@ class ExploreContentWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Image.asset(
-            "banner_${index % 3 + 1}.png",
+            "assets/images/new/banner_${index % 3 + 1}.png",
             width: realH(127),
             height: realH(127),
           ),
