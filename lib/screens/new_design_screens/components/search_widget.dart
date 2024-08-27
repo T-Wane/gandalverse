@@ -27,11 +27,13 @@ class SearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   Positioned(
-        bottom: realH(53),
-        right: realW((68.0 - 320) -
-            (68.0 * currentExplorePercent) +
-            (347 - 68.0) * currentSearchPercent),
+    return Positioned(
+      bottom: realH(53),
+      right: realW((68.0 - 320) -
+          (68.0 * currentExplorePercent) +
+          (347 - 68.0) * currentSearchPercent),
+      child: PointerInterceptor(
+        debug: true,
         child: GestureDetector(
           onTap: () {
             animateSearch(!isSearchOpen);
@@ -63,7 +65,7 @@ class SearchWidget extends StatelessWidget {
             ),
           ),
         ),
-       
+      ),
     );
   }
 

@@ -153,6 +153,8 @@ class _GoogleMapState extends State<GoogleMapPage>
     animationControllerMenu.forward();
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
@@ -165,18 +167,18 @@ class _GoogleMapState extends State<GoogleMapPage>
     }
 
     return Scaffold(
+      key: _scaffoldKey,
       body: Container(
         width: screenWidth,
         height: screenHeight,
         child: Stack(
           children: <Widget>[
-            Container(
-              width: screenWidth,
-              height: screenHeight,
+            Positioned.fill(
               child: PlatformWebViewWidget(
                 PlatformWebViewWidgetCreationParams(controller: controller),
               ).build(context),
             ),
+
             // Align(
             //     alignment: Alignment.bottomCenter,
             //     child: Container(
@@ -193,15 +195,18 @@ class _GoogleMapState extends State<GoogleMapPage>
             //   left: 10,
             //   width: 50,
             //   height: 50,
-            //   child: GestureDetector(
-            //     onTap: () {
-            //       animateMenu(true);
-            //     },
-            //     child: Container(
-            //       decoration: const BoxDecoration(
-            //           shape: BoxShape.circle, color: Colors.white),
-            //       height: 50,
-            //       width: 50,
+            //   child: PointerInterceptor(
+            //     debug: true,
+            //     child: GestureDetector(
+            //       onTap: () {
+            //         animateMenu(true);
+            //       },
+            //       child: Container(
+            //         decoration: const BoxDecoration(
+            //             shape: BoxShape.circle, color: Colors.white),
+            //         height: 50,
+            //         width: 50,
+            //       ),
             //     ),
             //   ),
             // ),
@@ -213,109 +218,78 @@ class _GoogleMapState extends State<GoogleMapPage>
             //   height: screenHeight,
             //   fit: BoxFit.cover,
             // ),
-            //explore
-            //  PointerInterceptorPlatform.instance.buildWidget(
-            // debug: true,
-            //child:
-            // Align(
-            //   alignment: Alignment.bottomCenter,
-            //   //
-            //   child: Positioned(
-            //     bottom: 50,
-            //     left: 10,
-            //     width: 50,
-            //     height: 50,
-            //     child: PointerInterceptor(
-            //       debug: true,
-            //       child: GestureDetector(
-            //         onTap: () {
-            //           print("###################");
-            //           animateExplore(!isExploreOpen);
-            //         },
-            //         child: ExploreWidget(
-            //           currentExplorePercent: currentExplorePercent,
-            //           currentSearchPercent: currentSearchPercent,
-            //           animateExplore: animateExplore,
-            //           isExploreOpen: isExploreOpen,
-            //           onVerticalDragUpdate: onExploreVerticalUpdate,
-            //           onPanDown: () => animationControllerExplore.stop(),
+            //  explore
+
+            // //blur
+            // offsetSearch != 0
+            //     ? BackdropFilter(
+            //         filter: ImageFilter.blur(
+            //             sigmaX: 10 * currentSearchPercent,
+            //             sigmaY: 10 * currentSearchPercent),
+            //         child: Container(
+            //           color:
+            //               Colors.white.withOpacity(0.1 * currentSearchPercent),
+            //           width: screenWidth,
+            //           height: screenHeight,
             //         ),
+            //       )
+            //     : const Padding(
+            //         padding: const EdgeInsets.all(0),
             //       ),
-            //     ),
-            //   ),
-            // ),
-            //),
-            /*
-            //blur
-            offsetSearch != 0
-                ? BackdropFilter(
-                    filter: ImageFilter.blur(
-                        sigmaX: 10 * currentSearchPercent,
-                        sigmaY: 10 * currentSearchPercent),
-                    child: Container(
-                      color: Colors.white
-                          .withOpacity(0.1 * currentSearchPercent),
-                      width: screenWidth,
-                      height: screenHeight,
-                    ),
-                  )
-                : const Padding(
-                    padding: const EdgeInsets.all(0),
-                  ),
             //explore content
             ExploreContentWidget(
               currentExplorePercent: currentExplorePercent,
             ),
-      
-            //recent search
-            RecentSearchWidget(
-              currentSearchPercent: currentSearchPercent,
-            ),
-      
-            //search menu background
-            offsetSearch != 0
-                ? Positioned(
-                    bottom: realH(88),
-                    left: realW((standardWidth - 320) / 2),
-                    width: realW(320),
-                    height: realH(135 * currentSearchPercent),
-                    child: Opacity(
-                      opacity: currentSearchPercent,
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(realW(33)),
-                                topRight: Radius.circular(realW(33)))),
-                      ),
-                    ),
-                  )
-                : const Padding(
-                    padding: const EdgeInsets.all(0),
-                  ),
-      
-            //search menu
-            SearchMenuWidget(
-              currentSearchPercent: currentSearchPercent,
-            ),
-      
-            //search
-            SearchWidget(
-              currentSearchPercent: currentSearchPercent,
-              currentExplorePercent: currentExplorePercent,
-              isSearchOpen: isSearchOpen,
-              animateSearch: animateSearch,
-              onHorizontalDragUpdate: onSearchHorizontalDragUpdate,
-              onPanDown: () => animationControllerSearch.stop(),
-            ),
-      
-            //search back
-            SearchBackWidget(
-              currentSearchPercent: currentSearchPercent,
-              animateSearch: animateSearch,
-            ),
-      
-            //layer button
+
+            // //recent search
+            // RecentSearchWidget(
+            //   currentSearchPercent: currentSearchPercent,
+            // ),
+
+            // //search menu background
+            // offsetSearch != 0
+            //     ? Positioned(
+            //         bottom: realH(88),
+            //         left: realW((standardWidth - 320) / 2),
+            //         width: realW(320),
+            //         height: realH(135 * currentSearchPercent),
+            //         child: Opacity(
+            //           opacity: currentSearchPercent,
+            //           child: DecoratedBox(
+            //             decoration: BoxDecoration(
+            //                 color: Colors.white,
+            //                 borderRadius: BorderRadius.only(
+            //                     topLeft: Radius.circular(realW(33)),
+            //                     topRight: Radius.circular(realW(33)))),
+            //           ),
+            //         ),
+            //       )
+            //     : const Padding(
+            //         padding: const EdgeInsets.all(0),
+            //       ),
+
+            // //search menu
+            // SearchMenuWidget(
+            //   currentSearchPercent: currentSearchPercent,
+            // ),
+
+            // //search
+            // SearchWidget(
+            //   currentSearchPercent: currentSearchPercent,
+            //   currentExplorePercent: currentExplorePercent,
+            //   isSearchOpen: isSearchOpen,
+            //   animateSearch: animateSearch,
+            //   onHorizontalDragUpdate: onSearchHorizontalDragUpdate,
+            //   onPanDown: () => animationControllerSearch.stop(),
+            // ),
+
+            // //search back
+            // SearchBackWidget(
+            //   currentSearchPercent: currentSearchPercent,
+            //   animateSearch: animateSearch,
+            // ),
+
+            // //layer button
             // MapButton(
             //   currentExplorePercent: currentExplorePercent,
             //   currentSearchPercent: currentSearchPercent,
@@ -326,8 +300,8 @@ class _GoogleMapState extends State<GoogleMapPage>
             //   isRight: false,
             //   icon: Icons.layers,
             // ),
-      
-            //directions button
+
+            // //directions button
             // MapButton(
             //   currentSearchPercent: currentSearchPercent,
             //   currentExplorePercent: currentExplorePercent,
@@ -342,8 +316,8 @@ class _GoogleMapState extends State<GoogleMapPage>
             //     Color(0xFF1270E3),
             //   ]),
             // ),
-      
-            //my_location button
+
+            // //my_location button
             // MapButton(
             //   currentSearchPercent: currentSearchPercent,
             //   currentExplorePercent: currentExplorePercent,
@@ -354,55 +328,71 @@ class _GoogleMapState extends State<GoogleMapPage>
             //   icon: Icons.my_location,
             //   iconColor: Colors.blue,
             // ),
-      
-            //menu button
-            Positioned(
-              bottom: realH(53),
-              left:
-                  realW(-71 * (currentExplorePercent + currentSearchPercent)),
-              child: GestureDetector(
-                onTap: () {
-                  animateMenu(true);
-                },
-                child: Opacity(
-                  opacity: 1 - (currentSearchPercent + currentExplorePercent),
+
+            // //menu button
+            // Positioned(
+            //   bottom: realH(53),
+            //   left: realW(-71 * (currentExplorePercent + currentSearchPercent)),
+            //   child: TapRegionSurface(
+            //     child: GestureDetector(
+            //       onTap: () {
+            //         animateMenu(true);
+            //       },
+            //       child: Opacity(
+            //         opacity: 1 - (currentSearchPercent + currentExplorePercent),
+            //         child: Container(
+            //           width: realW(71),
+            //           height: realH(71),
+            //           alignment: Alignment.centerLeft,
+            //           padding: EdgeInsets.only(left: realW(17)),
+            //           child: Icon(
+            //             Icons.menu,
+            //             size: realW(34),
+            //           ),
+            //           decoration: BoxDecoration(
+            //               color: Colors.white,
+            //               borderRadius: BorderRadius.only(
+            //                   bottomRight: Radius.circular(realW(36)),
+            //                   topRight: Radius.circular(realW(36))),
+            //               boxShadow: [
+            //                 BoxShadow(
+            //                     color: Color.fromRGBO(0, 0, 0, 0.3),
+            //                     blurRadius: realW(36)),
+            //               ]),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+
+            // //menu
+            MenuWidget(
+                currentMenuPercent: currentMenuPercent,
+                animateMenu: animateMenu),
+
+            Align(
+              alignment: Alignment.topCenter,
+              child: PointerInterceptor(
+                debug: true,
+                child: userTopInfos(),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: PointerInterceptor(
+                debug: true,
+                child: GestureDetector(
+                  onTap: () {
+                    animateExplore(!isExploreOpen);
+                  },
                   child: Container(
-                    width: realW(71),
-                    height: realH(71),
-                    alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.only(left: realW(17)),
-                    child: Icon(
-                      Icons.menu,
-                      size: realW(34),
-                    ),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(realW(36)),
-                            topRight: Radius.circular(realW(36))),
-                        boxShadow: [
-                          BoxShadow(
-                              color: Color.fromRGBO(0, 0, 0, 0.3),
-                              blurRadius: realW(36)),
-                        ]),
+                    width: 150,
+                    height: 50,
+                    color: Colors.white,
                   ),
                 ),
               ),
             ),
-      */
-            //menu
-            PointerInterceptorPlatform.instance.buildWidget(
-              child: MenuWidget(
-                  currentMenuPercent: currentMenuPercent,
-                  animateMenu: animateMenu),
-            ),
-
-            /*  Align(
-              alignment: Alignment.topCenter,
-              child: PointerInterceptor(
-                child: userTopInfos(),
-              ),
-            ),*/
           ],
         ),
       ),
