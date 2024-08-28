@@ -15,8 +15,8 @@ import '../../widgets/tab_element.dart';
 import 'sections/equipe_section.dart';
 
 class QGScreen extends StatefulWidget {
-  QGScreen({super.key, required this.scrollController});
-  ScrollController scrollController;
+  QGScreen({super.key, this.scrollController});
+  ScrollController? scrollController;
   @override
   State<QGScreen> createState() => _QGScreenState();
 }
@@ -30,6 +30,43 @@ class _QGScreenState extends State<QGScreen> {
     "Partenaire": "Partenaire",
   };
   Color Color3 = const Color.fromARGB(255, 18, 40, 70);
+
+  final ScrollController _scrollController = ScrollController();
+  bool _isFabVisible = true;
+
+  void _scrollListener() {
+    if (_scrollController.position.atEdge) {
+      bool isTop = _scrollController.position.pixels == 0;
+      if (isTop) {
+        setState(() {
+          _isFabVisible = true;
+        });
+      } else {
+        setState(() {
+          _isFabVisible = false; // Hide when at the bottom
+        });
+      }
+    } else {
+      setState(() {
+        _isFabVisible = true; // Show when scrolling
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  bool isFABVisible = true; // Tracks FAB visibility
+  Offset? fabPosition; // Initial position of the FAB
+
+  void toggleFABVisibility() {
+    setState(() {
+      isFABVisible = !isFABVisible; // Toggle FAB visibility
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +116,7 @@ class _QGScreenState extends State<QGScreen> {
             ),
             Expanded(
               child: ListView(
-                controller: widget.scrollController,
+                controller: _scrollController,
                 children: [
                   ValueListenableBuilder<String>(
                     valueListenable: _selectedSegment,

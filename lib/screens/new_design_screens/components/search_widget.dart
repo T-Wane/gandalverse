@@ -59,7 +59,7 @@ class SearchWidget extends StatelessWidget {
             child: Opacity(
               opacity: 1.0 - currentSearchPercent,
               child: Icon(
-                Icons.search,
+                Icons.business_rounded,
                 size: realW(34),
               ),
             ),

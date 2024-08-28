@@ -22,9 +22,8 @@ class UserProvider extends ChangeNotifier {
   UserModel? _user;
 
   UserModel? get user => _user;
-  
 
-  int get telegramUserId =>  1016029253;
+  int get telegramUserId => 1016029253;
   //_telegramClient.telegram.initData.user.id;
 
   UserProvider(
@@ -50,7 +49,7 @@ class UserProvider extends ChangeNotifier {
       // );
       createUser(
         telegramId: 1016029253,
-        firstName:"joe",
+        firstName: "joe",
         lastName: "Testeur",
         username: "joe@45",
         photoUrl: null,
@@ -77,7 +76,8 @@ class UserProvider extends ChangeNotifier {
 
   Future<void> updateUser(UserModel user) async {
     try {
-      await _userRepository.updateUser(user);
+      //need
+      // await _userRepository.updateUser(user);
 
       _user = user;
       log("########## ${user.toString()}################");

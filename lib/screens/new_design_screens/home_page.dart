@@ -12,7 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/user_top_infos.dart';
+import 'package:gandalverse/screens/QG_screen/QG_screen.dart';
+import 'package:gandalverse/screens/amis/amis_page.dart';
+import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
 import 'components/components.dart';
@@ -156,13 +160,13 @@ class _GoogleMapState extends State<GoogleMapPage>
         height: screenHeight,
         child: Stack(
           children: <Widget>[
-            // Container(
-            //   width: screenWidth,
-            //   height: screenHeight,
-            //   child: PlatformWebViewWidget(
-            //     PlatformWebViewWidgetCreationParams(controller: controller),
-            //   ).build(context),
-            // ),
+            Container(
+              width: screenWidth,
+              height: screenHeight,
+              child: PlatformWebViewWidget(
+                PlatformWebViewWidgetCreationParams(controller: controller),
+              ).build(context),
+            ),
 
             Align(
               alignment: Alignment.topCenter,
@@ -257,29 +261,27 @@ class _GoogleMapState extends State<GoogleMapPage>
                     padding: const EdgeInsets.all(0),
                   ),
             //search menu
-            SearchMenuWidget(
-              currentSearchPercent: currentSearchPercent,
-            ),
-            //search
-            SearchWidget(
-              currentSearchPercent: currentSearchPercent,
-              currentExplorePercent: currentExplorePercent,
-              isSearchOpen: isSearchOpen,
-              animateSearch: animateSearch,
-              onHorizontalDragUpdate: onSearchHorizontalDragUpdate,
-              onPanDown: () => animationControllerSearch?.stop(),
-            ),
-            //search back
-            SearchBackWidget(
-              currentSearchPercent: currentSearchPercent,
-              animateSearch: animateSearch,
-            ),
+            // SearchMenuWidget(
+            //   currentSearchPercent: currentSearchPercent,
+            // ),
+            // //search
+            // SearchWidget(
+            //   currentSearchPercent: currentSearchPercent,
+            //   currentExplorePercent: currentExplorePercent,
+            //   isSearchOpen: isSearchOpen,
+            //   animateSearch: animateSearch,
+            //   onHorizontalDragUpdate: onSearchHorizontalDragUpdate,
+            //   onPanDown: () => animationControllerSearch?.stop(),
+            // ),
+            // //search back
+            // SearchBackWidget(
+            //   currentSearchPercent: currentSearchPercent,
+            //   animateSearch: animateSearch,
+            // ),
             //layer button
             MapButton(
-              currentExplorePercent: currentExplorePercent,
-              currentSearchPercent: currentSearchPercent,
               bottom: 243,
-              offsetX: -71,
+              offsetX: 0,
               width: 71,
               height: 71,
               isRight: false,
@@ -287,29 +289,59 @@ class _GoogleMapState extends State<GoogleMapPage>
             ),
             //directions button
             MapButton(
-              currentSearchPercent: currentSearchPercent,
-              currentExplorePercent: currentExplorePercent,
               bottom: 243,
-              offsetX: -68,
+              offsetX: 0,
               width: 68,
               height: 71,
-              icon: Icons.directions,
+              image: Images.gvt,
+              icon: null,
+              //icon: Icons.directions,
               iconColor: Colors.white,
               gradient: const LinearGradient(colors: [
                 Color(0xFF59C2FF),
                 Color(0xFF1270E3),
               ]),
+              press: () {
+                Navigator.push<void>(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => const AllRevenusPage(),
+                  ),
+                );
+              },
             ),
             //my_location button
             MapButton(
-              currentSearchPercent: currentSearchPercent,
-              currentExplorePercent: currentExplorePercent,
               bottom: 148,
-              offsetX: -68,
+              offsetX: 0,
               width: 68,
               height: 71,
-              icon: Icons.my_location,
+              icon: Icons.group_rounded,
               iconColor: Colors.blue,
+              press: () {
+                Navigator.push<void>(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => const AmisPage(),
+                  ),
+                );
+              },
+            ),
+            //layer button
+            MapButton(
+              bottom: 53,
+              offsetX: 0,
+              width: 65,
+              height: 71,
+              icon: Icons.business_rounded,
+              press: () {
+                Navigator.push<void>(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) => QGScreen(),
+                  ),
+                );
+              },
             ),
             //menu button
             Positioned(

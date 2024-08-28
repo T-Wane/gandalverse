@@ -4,7 +4,7 @@ import 'package:gandalverse/core/providers/charge_provider.dart';
 
 class ClickManager {
   int _clickCount = 0;
-  final Duration _updateInterval = Duration(milliseconds: 100);
+  final Duration _updateInterval = Duration(milliseconds: 5);
   Timer? _timer;
   ChargeManager _chargeManager;
   ClickManager(this._chargeManager);
