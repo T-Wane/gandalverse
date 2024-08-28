@@ -2,7 +2,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gandalverse/components/rounded_btn_back.dart';
 import 'package:gandalverse/screens/amis/components/elementCard.dart';
+import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -26,6 +28,18 @@ class _AmisPageState extends State<AmisPage> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: BtnRoundedIconBack(
+                couleur: Themecolors.Color3,
+                onpress: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ),
+          ),
           Flexible(
               child: Column(
             children: [

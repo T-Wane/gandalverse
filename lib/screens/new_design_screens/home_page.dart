@@ -390,13 +390,15 @@ class _GoogleMapState extends State<GoogleMapPage>
             //explore content
             Visibility(
               visible: showExplorerContent,
-              child: ExploreContentWidget(close: () {
-                setState(() {
-                  showExplorerContent = false;
-                });
-              }
-                  // currentExplorePercent: currentExplorePercent,
-                  ),
+              child: PointerInterceptor(
+                debug: false,
+                child: ExploreContentWidget(close: () {
+                  setState(() {
+                    showExplorerContent = false;
+                  });
+                }),
+                // currentExplorePercent: currentExplorePercent,
+              ),
             ),
           ],
         ),

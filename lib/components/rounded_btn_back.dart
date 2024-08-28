@@ -5,7 +5,11 @@ import 'package:gandalverse/widgets/customImageView.dart';
 
 class BtnRoundedIconBack extends StatelessWidget {
   final Function? onpress;
-  const BtnRoundedIconBack({super.key, required this.onpress});
+  Color couleur;
+  BtnRoundedIconBack(
+      {super.key,
+      required this.onpress,
+      this.couleur = Colors.white});
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +18,14 @@ class BtnRoundedIconBack extends StatelessWidget {
       onTap: onpress as void Function()?,
       child: Container(
         decoration: BoxDecoration(
-            color: Themecolors.ColorWhite.withOpacity(0.3),
+            color: couleur.withOpacity(0.3),
             shape: BoxShape.circle),
         padding: const EdgeInsets.all(12),
         child: CustomImageView(
           imagePath: Images.leftArrow,
           height: 22,
           width: 22,
-          color: Themecolors.ColorWhite,
+          color:couleur,
           fit: BoxFit.contain,
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/animations/coinsAnomations_test1.dart';
+import 'package:gandalverse/components/rounded_btn_back.dart';
 import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/QG_screen/components/itemCard.dart';
@@ -77,6 +78,17 @@ class _QGScreenState extends State<QGScreen> {
       body: SafeArea(
         child: Column(
           children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(5.0),
+                child: BtnRoundedIconBack(
+                  onpress: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+            ),
             userTopInfos(), // Toujours en haut
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
