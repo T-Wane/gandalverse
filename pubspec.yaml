@@ -97,6 +97,8 @@ flutter:
     - assets/images/social_black/
     - assets/images/avatar/
     - assets/images/new/
+    - assets/images/categories_icons/
+    - assets/images/categories_images/
     - assets/images/qg_images/
     - assets/images/levels_images/
 

@@ -182,7 +182,13 @@ class _GoogleMapState extends State<GoogleMapPage>
                 PlatformWebViewWidgetCreationParams(controller: controller),
               ).build(context),
             ),
-
+            Align(
+              alignment: Alignment.topCenter,
+              child: PointerInterceptor(
+                debug: false,
+                child: userTopInfos(),
+              ),
+            ),
             // Align(
             //     alignment: Alignment.bottomCenter,
             //     child: Container(
@@ -268,7 +274,7 @@ class _GoogleMapState extends State<GoogleMapPage>
                     ),
                   )
                 : const Padding(
-                    padding: const EdgeInsets.all(0),
+                    padding:   EdgeInsets.all(0),
                   ),
             //search menu
             SearchMenuWidget(
@@ -369,13 +375,6 @@ class _GoogleMapState extends State<GoogleMapPage>
             MenuWidget(
                 currentMenuPercent: currentMenuPercent,
                 animateMenu: animateMenu),
-            Align(
-              alignment: Alignment.topCenter,
-              child: PointerInterceptor(
-                debug: false,
-                child: userTopInfos(),
-              ),
-            ),
           ],
         ),
       ),

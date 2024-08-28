@@ -4,7 +4,7 @@ import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
-import '../helper/ui_helper.dart';
+import '../../helper/ui_helper.dart';
 
 class ExploreWidget extends StatelessWidget {
   final double currentSearchPercent;

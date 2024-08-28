@@ -12,6 +12,7 @@ import 'package:gandalverse/screens/new_design_screens/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:telegram_web_app/telegram_web_app.dart';
 import 'package:webview_flutter_web/webview_flutter_web.dart';
+import 'core/services/explorer_service/explorer_service.dart';
 import 'data/telegram_client.dart';
 import 'screens/home.page.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
@@ -42,6 +43,7 @@ Future main() async {
         ChangeNotifierProvider(create: (_) => getIt<UserProvider>()),
         ChangeNotifierProvider(create: (_) => getIt<TapAndEarnRepository>()),
         ChangeNotifierProvider(create: (_) => getIt<ChargeManager>()),
+        ChangeNotifierProvider(create: (_) => getIt<ExplorerService>()),
       ],
       builder: ((context, child) =>
           MyApp()), // /*InitializationPage()*/ MyApp()
@@ -64,10 +66,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'GandalVerse',
-      debugShowCheckedModeBanner: false,
-     // theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance),
-      /* builder: (_, child) {
+        title: 'GandalVerse',
+        debugShowCheckedModeBanner: false,
+        // theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance),
+        /* builder: (_, child) {
           return Stack(
             children: [
               child!,
@@ -92,8 +94,8 @@ class _MyAppState extends State<MyApp> {
             ],
           );
         },*/
-      home: GoogleMapPage()
-      //MyHomePage(),
-    );
+        home: GoogleMapPage()
+        //MyHomePage(),
+        );
   }
 }
