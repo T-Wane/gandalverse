@@ -49,7 +49,7 @@ class _userTopInfosState extends State<userTopInfos> {
 
   void check() async {
     await Future.delayed(const Duration(seconds: 2));
-   // isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
+    // isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
     setState(() {});
   }
 
@@ -65,8 +65,8 @@ class _userTopInfosState extends State<userTopInfos> {
         shadowColor: const Color.fromARGB(255, 151, 116, 211).withOpacity(0.5),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-          height: 55,
+          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+          height: 50,
           child: PointerInterceptor(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -126,7 +126,7 @@ class _userTopInfosState extends State<userTopInfos> {
                         ),
                       ),
                       const SizedBox(
-                        height: 2,
+                        height: 1,
                       ),
                       SizedBox(
                         width: 120,
@@ -145,7 +145,7 @@ class _userTopInfosState extends State<userTopInfos> {
                               ),
                             ),
                             const SizedBox(
-                              height: 2,
+                              height: 1,
                             ),
                             LinearPercentIndicator(
                               percent: 0.5,

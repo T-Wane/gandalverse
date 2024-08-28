@@ -1,25 +1,25 @@
 [
     {
       "titre": "Concert de Jazz",
-      "image": "https://example.com/image1.jpg",
+      "image": "assets/images/new/dj.png",
       "description": "Un concert de jazz captivant avec des artistes renommés.",
       "id": "ev1"
     },
     {
       "titre": "Exposition d'Art Moderne",
-      "image": "https://example.com/image2.jpg",
+      "image": "assets/images/new/dj.png",
       "description": "Découvrez les œuvres d'artistes modernes dans une exposition fascinante.",
       "id": "ev2"
     },
     {
       "titre": "Conférence sur l'IA",
-      "image": "https://example.com/image3.jpg",
+      "image": "assets/images/new/dj.png",
       "description": "Une conférence enrichissante sur les dernières avancées en intelligence artificielle.",
       "id": "ev3"
     },
     {
       "titre": "Festival de Musique Électronique",
-      "image": "https://example.com/image4.jpg",
+      "image": "assets/images/new/dj.png",
       "description": "Un festival vibrant avec des DJ internationaux et des performances spectaculaires.",
       "id": "ev4"
     }

@@ -41,8 +41,7 @@ class _GoogleMapState extends State<GoogleMapPage>
   late Animation<double> animationR;
 
   /// get currentOffset percent
-  double get currentExplorePercent =>
-      max(0.0, min(1.0, offsetExplore / (760.0 - 122.0)));
+  double get currentExplorePercent => max(0.0, min(0.9, 0.1));
   double get currentSearchPercent =>
       max(0.0, min(1.0, offsetSearch / (347 - 68.0)));
   double get currentMenuPercent => max(0.0, min(1.0, offsetMenu / 358));
@@ -78,33 +77,13 @@ class _GoogleMapState extends State<GoogleMapPage>
   }
 
   /// animate Explore
-  ///
-  /// if [open] is true , make Explore open
-  /// else make Explore close
   void animateExplore(bool open) {
-    animationControllerExplore = AnimationController(
-        duration: Duration(
-            milliseconds: 1 +
-                (800 *
-                        (isExploreOpen
-                            ? currentExplorePercent
-                            : (1 - currentExplorePercent)))
-                    .toInt()),
-        vsync: this);
-    curve =
-        CurvedAnimation(parent: animationControllerExplore, curve: Curves.ease);
-    animation = Tween(begin: offsetExplore, end: open ? 760.0 - 122 : 0.0)
-        .animate(curve)
-      ..addListener(() {
-        setState(() {
-          offsetExplore = animation.value;
-        });
-      })
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          isExploreOpen = open;
-        }
-      });
+    setState(() {
+      showExplorerContent = true;
+    });
+
+    animationControllerExplore = AnimationController(vsync: this);
+
     animationControllerExplore.forward();
   }
 
@@ -157,6 +136,8 @@ class _GoogleMapState extends State<GoogleMapPage>
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  bool showExplorerContent = false;
+
   @override
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
@@ -175,13 +156,14 @@ class _GoogleMapState extends State<GoogleMapPage>
         height: screenHeight,
         child: Stack(
           children: <Widget>[
-            Container(
-              width: screenWidth,
-              height: screenHeight,
-              child: PlatformWebViewWidget(
-                PlatformWebViewWidgetCreationParams(controller: controller),
-              ).build(context),
-            ),
+            // Container(
+            //   width: screenWidth,
+            //   height: screenHeight,
+            //   child: PlatformWebViewWidget(
+            //     PlatformWebViewWidgetCreationParams(controller: controller),
+            //   ).build(context),
+            // ),
+
             Align(
               alignment: Alignment.topCenter,
               child: PointerInterceptor(
@@ -189,6 +171,7 @@ class _GoogleMapState extends State<GoogleMapPage>
                 child: userTopInfos(),
               ),
             ),
+
             // Align(
             //     alignment: Alignment.bottomCenter,
             //     child: Container(
@@ -247,10 +230,7 @@ class _GoogleMapState extends State<GoogleMapPage>
                 : const Padding(
                     padding: const EdgeInsets.all(0),
                   ),
-            //explore content
-            ExploreContentWidget(
-              currentExplorePercent: currentExplorePercent,
-            ),
+
             //recent search
             RecentSearchWidget(
               currentSearchPercent: currentSearchPercent,
@@ -274,7 +254,7 @@ class _GoogleMapState extends State<GoogleMapPage>
                     ),
                   )
                 : const Padding(
-                    padding:   EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                   ),
             //search menu
             SearchMenuWidget(
@@ -375,6 +355,17 @@ class _GoogleMapState extends State<GoogleMapPage>
             MenuWidget(
                 currentMenuPercent: currentMenuPercent,
                 animateMenu: animateMenu),
+            //explore content
+            Visibility(
+              visible: showExplorerContent,
+              child: ExploreContentWidget(close: () {
+                setState(() {
+                  showExplorerContent = false;
+                });
+              }
+                  // currentExplorePercent: currentExplorePercent,
+                  ),
+            ),
           ],
         ),
       ),

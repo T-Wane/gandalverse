@@ -31,10 +31,9 @@ class ExploreWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: realH(-122 * currentSearchPercent),
-      left: (screenWidth -
-              realW(159 + (standardWidth - 159) * currentExplorePercent)) /
-          2,
+      bottom: realH(0),
+      left: 0,
+      right: 0,
       child: GestureDetector(
         onTap: () {
           animateExplore(!isExploreOpen);
@@ -51,12 +50,12 @@ class ExploreWidget extends StatelessWidget {
         },
         onPanDown: (_) => onPanDown(),
         child: Opacity(
-          opacity: 1 - currentSearchPercent,
+          opacity: 1,
           child: PointerInterceptor(
             child: Container(
               alignment: Alignment.bottomCenter,
-              width: realW(159 + (standardWidth - 159) * currentExplorePercent),
-              height: realH(122 + (766 - 122) * currentExplorePercent),
+              width: realW(159),
+              height: realH(122),
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.topLeft,
@@ -68,10 +67,9 @@ class ExploreWidget extends StatelessWidget {
                         Colors.deepPurple,
                       ]),
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(
-                          realW(80 + (50 - 80) * currentExplorePercent)),
-                      topRight: Radius.circular(
-                          realW(80 + (50 - 80) * currentExplorePercent)))),
+                    topLeft: Radius.circular(80),
+                    topRight: Radius.circular(80),
+                  )),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

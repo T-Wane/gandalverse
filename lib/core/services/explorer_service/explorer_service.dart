@@ -51,6 +51,7 @@ class ExplorerService with ChangeNotifier {
     Map<CategorieType, List<CategorieModel>> categoriesParType = {};
 
     for (var categorie in categories) {
+      print("${categorie.categorieType?.name ?? '------------'}");
       if (!categoriesParType.containsKey(categorie.categorieType)) {
         if (categorie.categorieType != null) {
           categoriesParType[categorie.categorieType!] = [];

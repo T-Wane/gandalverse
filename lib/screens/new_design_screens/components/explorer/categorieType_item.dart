@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/core/modeles/explorer/categorie/categorie.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
@@ -9,8 +10,10 @@ class CategorieTypeItem extends StatelessWidget {
       {super.key,
       required this.couleur,
       required this.onPress,
-      required this.type});
+      required this.type,
+      required this.isSelected});
 
+  bool isSelected;
   CategorieType? type;
   Color couleur;
   final Function? onPress;
@@ -20,35 +23,34 @@ class CategorieTypeItem extends StatelessWidget {
     return InkWell(
       onTap: onPress as void Function()?,
       child: Container(
-        width: 150,
-        height: 150,
+        width: 100,
+        height: 100,
         margin: const EdgeInsets.all(5),
         padding: const EdgeInsets.all(5),
         decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-                color: Colors.blueAccent.withOpacity(0.2),
-                offset: Offset(0, 1),
-                spreadRadius: 0.2),
-          ],
-          color: couleur.withOpacity(0.4),
+          border: isSelected
+              ? Border.all(width: 1.0, color: Colors.deepPurple)
+              : null,
+          color: couleur.withOpacity(0.1),
           borderRadius: BorderRadius.circular(15),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Expanded(
+            Flexible(
               flex: 3,
               child: Padding(
-                padding: const EdgeInsets.all(5),
+                padding: const EdgeInsets.all(2),
                 child: CustomImageView(
                   imagePath: type?.imageAsset ?? Images.badge,
-                  height: 50,
-                  width: 50,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
-            Expanded(
+            const SizedBox(
+              height: 2,
+            ),
+            Flexible(
               flex: 1,
               child: Padding(
                 padding: const EdgeInsets.all(2),
