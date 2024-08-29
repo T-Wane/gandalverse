@@ -22,6 +22,7 @@ class FlyCoinAnimation extends StatefulWidget {
 
 class FlyCoinAnimationState extends State<FlyCoinAnimation>
     with TickerProviderStateMixin {
+      
   TapAndEarnRepository _earnRepository = getIt<TapAndEarnRepository>();
   ChargeManager _chargeManager = getIt<ChargeManager>();
   final ClickManager clickManager = ClickManager(getIt<ChargeManager>());

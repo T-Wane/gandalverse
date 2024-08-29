@@ -80,6 +80,8 @@ class _EventsSectionState extends State<EventsSection> {
                       CustomImageView(
                         imagePath: evenement.image!,
                         fit: BoxFit.cover,
+                        height: double.infinity,
+                        width: double.infinity,
                         radius: BorderRadius.circular(10),
                       ),
                       Container(
@@ -100,7 +102,7 @@ class _EventsSectionState extends State<EventsSection> {
                         bottom: realH(10),
                         left: realW(10),
                         child: Text(
-                          "Marshmello Live in Concert",
+                          "Festival Acoustik Bamako",
                           style: TextStyle(
                               color: Colors.white, fontSize: realW(14)),
                         ),
