@@ -105,7 +105,7 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
                               RotateAnimatedText('Offrer à un ami du capital'),
                             ],
                             onTap: () {
-                              shareViaTelegram("https://t.me/starbrig_bot/start", 'test share url');
+                              shareViaTelegram("https://t.me/starbrig_bot/BrigVerseTest/telegram", 'test share url');
                             },
                             isRepeatingAnimation: true,
                             repeatForever: true,

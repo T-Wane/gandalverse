@@ -87275,7 +87275,7 @@ A.ayk.prototype={
 $0(){},
 $S:0}
 A.ayj.prototype={
-$0(){this.a.rE("https://t.me/starbrig_bot/start","test share url")},
+$0(){this.a.rE("https://t.me/starbrig_bot/BrigVerseTest/telegram","test share url")},
 $S:0}
 A.KV.prototype={
 bj(){this.cq()
