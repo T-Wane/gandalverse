@@ -90,3 +90,21 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
+class TelegramWebAppPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final Uri uri = Uri.base; // Accède à l'URI complète
+    final String? tgWebAppData = uri.queryParameters['tgWebAppData'];
+
+    if (tgWebAppData != null) {
+      // Traitement des données tgWebAppData
+      // ...
+    }
+
+    return Scaffold(
+      appBar: AppBar(title: Text('Telegram Web App')),
+      body: Center(child: Text('Contenu de la webapp Telegram $tgWebAppData')),
+    );
+  }
+}

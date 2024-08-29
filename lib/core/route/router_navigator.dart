@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gandalverse/init.dart';
+import 'package:gandalverse/main.dart';
 import 'package:gandalverse/screens/QG_screen/QG_screen.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
 import 'package:gandalverse/screens/new_design_screens/home_page.dart';
@@ -15,6 +16,11 @@ class RootNavigator {
       name: welcome_view,
       path: '/',
       builder: (context, state) => InitializationPage(),
+    ),
+    GoRoute(
+      name: "telegram",
+      path: '/telegram',
+      builder: (context, state) => TelegramWebAppPage(),
     ),
     // Route pour l'écran de walkthrough
     // GoRoute(
