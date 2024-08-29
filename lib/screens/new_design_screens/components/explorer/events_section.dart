@@ -99,12 +99,15 @@ class _EventsSectionState extends State<EventsSection> {
                                 begin: Alignment.topCenter)),
                       ),
                       Positioned(
-                        bottom: realH(10),
-                        left: realW(10),
-                        child: Text(
-                          "Festival Acoustik Bamako",
-                          style: TextStyle(
-                              color: Colors.white, fontSize: realW(14)),
+                        bottom: realH(0),
+                        left: realW(0),
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Text(
+                            "Festival Acoustik Bamako",
+                            style: TextStyle(
+                                color: Colors.white, fontSize: realW(14)),
+                          ),
                         ),
                       )
                     ]),

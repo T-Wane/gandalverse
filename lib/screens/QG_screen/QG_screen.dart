@@ -9,6 +9,7 @@ import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/screens/QG_screen/sections/partenaire_section.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/earnToTap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../components/user_top_infos.dart';
@@ -84,7 +85,8 @@ class _QGScreenState extends State<QGScreen> {
                 padding: const EdgeInsets.all(5.0),
                 child: BtnRoundedIconBack(
                   onpress: () {
-                    Navigator.of(context).pop();
+                    // Navigator.of(context).pop();
+                    context.pop();
                   },
                 ),
               ),

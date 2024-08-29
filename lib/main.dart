@@ -9,9 +9,11 @@ import 'package:gandalverse/core/repositories/tabAndEarnRepository.dart';
 import 'package:gandalverse/data/firebase_client.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/new_design_screens/home_page.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:telegram_web_app/telegram_web_app.dart';
 import 'package:webview_flutter_web/webview_flutter_web.dart';
+import 'core/route/router_navigator.dart';
 import 'core/services/explorer_service/explorer_service.dart';
 import 'data/telegram_client.dart';
 import 'screens/home.page.dart';
@@ -59,43 +61,32 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Offset _offset = Offset.zero;
+  late final GoRouter _rootNavigator;
 
-  final dragController = DragController();
+  @override
+  void initState() {
+    super.initState();
+    _rootNavigator = RootNavigator().makeRoutes;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MediaQuery(
+      data: MediaQuery.of(context)
+          .copyWith(textScaler: const TextScaler.linear(1)),
+      child: MaterialApp.router(
+        routerConfig: _rootNavigator,
         title: 'GandalVerse',
         debugShowCheckedModeBanner: false,
         // theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance),
-        /* builder: (_, child) {
-          return Stack(
-            children: [
-              child!,
-              Positioned(
-                left: _offset.dx,
-                top: _offset.dy,
-                child: /**/
-                    GestureDetector(
-                  onPanUpdate: (details) {
-                    setState(() => _offset += details.delta);
-                    print("is clicked");
-                  },
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    color: Colors.red,
-                    child: const Icon(Icons.add, color: Colors.white),
-                  ),
-                ),
-              ),
-             
-            ],
-          );
-        },*/
-        home: GoogleMapPage()
+
         //MyHomePage(),
-        );
+      ),
+    );
   }
 }

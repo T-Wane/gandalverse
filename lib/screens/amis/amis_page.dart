@@ -6,6 +6,7 @@ import 'package:gandalverse/components/rounded_btn_back.dart';
 import 'package:gandalverse/screens/amis/components/elementCard.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
+import 'package:go_router/go_router.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 import 'components/bottom_invite_btns.dart';
@@ -35,7 +36,8 @@ class _AmisPageState extends State<AmisPage> {
               child: BtnRoundedIconBack(
                 couleur: Themecolors.Color3,
                 onpress: () {
-                  Navigator.of(context).pop();
+                  //Navigator.of(context).pop();
+                  context.pop();
                 },
               ),
             ),

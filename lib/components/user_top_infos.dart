@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/components/infoItem.dart';
 import 'package:gandalverse/core/providers/user_provider.dart';
+import 'package:gandalverse/core/route/route_name.dart';
 import 'package:gandalverse/screens/home.page.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
@@ -12,6 +13,7 @@ import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
 import 'package:gandalverse/widgets/profilDetails_bottomSheet.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:provider/provider.dart';
 
@@ -81,12 +83,7 @@ class _userTopInfosState extends State<userTopInfos> {
 
                     // ProfilDetailsContentBottomSheet.show(context,
                     //     telegram: telegram);
-                    Navigator.push<void>(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => MonProfilScreen(),
-                      ),
-                    );
+                    context.pushNamed(profil_view);
                   },
                   child: Container(
                     decoration: BoxDecoration(

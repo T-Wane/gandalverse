@@ -12,11 +12,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/user_top_infos.dart';
+import 'package:gandalverse/core/route/route_name.dart';
 import 'package:gandalverse/screens/QG_screen/QG_screen.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
 import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
 import 'components/components.dart';
@@ -25,8 +27,8 @@ import 'helper/ui_helper.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
 import 'package:webview_flutter_web/webview_flutter_web.dart';
 
-class GoogleMapPage extends StatefulWidget {
-  GoogleMapPage();
+class HomeVrScreen extends StatefulWidget {
+  HomeVrScreen();
 
   @override
   State<StatefulWidget> createState() {
@@ -34,7 +36,7 @@ class GoogleMapPage extends StatefulWidget {
   }
 }
 
-class _GoogleMapState extends State<GoogleMapPage>
+class _GoogleMapState extends State<HomeVrScreen>
     with TickerProviderStateMixin {
   late AnimationController animationControllerExplore;
   late AnimationController animationControllerSearch;
@@ -302,12 +304,7 @@ class _GoogleMapState extends State<GoogleMapPage>
                 Color(0xFF1270E3),
               ]),
               press: () {
-                Navigator.push<void>(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => const AllRevenusPage(),
-                  ),
-                );
+                context.pushNamed(revenu_view);
               },
             ),
             //my_location button
@@ -319,12 +316,7 @@ class _GoogleMapState extends State<GoogleMapPage>
               icon: Icons.group_rounded,
               iconColor: Colors.blue,
               press: () {
-                Navigator.push<void>(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => const AmisPage(),
-                  ),
-                );
+                context.pushNamed(amis_view);
               },
             ),
             //layer button
@@ -335,12 +327,7 @@ class _GoogleMapState extends State<GoogleMapPage>
               height: 71,
               icon: Icons.business_rounded,
               press: () {
-                Navigator.push<void>(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => QGScreen(),
-                  ),
-                );
+                context.pushNamed(qg_view);
               },
             ),
             MapButton(
