@@ -20,6 +20,10 @@ class RootNavigator {
         builder: (context, state) => const InitializationPage(),
       ),
       GoRoute(
+              name: '/',
+              path: '/:tgWebAppData',
+              builder: (BuildContext context, GoRouterState state)  => const InitializationPage()),
+      GoRoute(
         name: "telegram",
         path: '/telegram',
         builder: (context, state) {
