@@ -59,11 +59,11 @@ class RootNavigator {
         ],
       ),
     ], // redirect to the login page if the user is not logged in
-    redirect: (BuildContext context, GoRouterState state) {
-      // if the user is not logged in, they need to login
+    // redirect: (BuildContext context, GoRouterState state) {
+    //   // if the user is not logged in, they need to login
 
-      return '/';
-    },
+    //   return '/';
+    // },
   );
   // Routes pour l'application livreur
 }
