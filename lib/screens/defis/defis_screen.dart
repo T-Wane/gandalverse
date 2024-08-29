@@ -36,7 +36,9 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
       body: SafeArea(
         minimum: const EdgeInsets.all(5.0),
         child: Column(children: [
-          userTopInfos(),
+          userTopInfos(
+            showBackArrow: true,
+          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(5.0),

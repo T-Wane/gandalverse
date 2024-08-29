@@ -17,6 +17,7 @@ import 'package:gandalverse/screens/QG_screen/QG_screen.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
 import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
+import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
@@ -291,7 +292,7 @@ class _GoogleMapState extends State<HomeVrScreen>
             ),
             //directions button
             MapButton(
-              bottom: 243,
+              bottom: 267,
               offsetX: 0,
               width: 68,
               height: 71,
@@ -307,6 +308,18 @@ class _GoogleMapState extends State<HomeVrScreen>
                 context.pushNamed(revenu_view);
               },
             ),
+            MapButton(
+              bottom: 243,
+              offsetX: 0,
+              width: 68,
+              height: 71, 
+              icon: CupertinoIcons.flame,
+              //icon: Icons.directions,
+              iconColor: Themecolors.Color3,
+              press: () {
+                context.pushNamed(defi_view);
+              },
+            ),
             //my_location button
             MapButton(
               bottom: 148,
@@ -314,7 +327,7 @@ class _GoogleMapState extends State<HomeVrScreen>
               width: 68,
               height: 71,
               icon: Icons.group_rounded,
-              iconColor: Colors.blue,
+              iconColor: Themecolors.Color3,
               press: () {
                 context.pushNamed(amis_view);
               },

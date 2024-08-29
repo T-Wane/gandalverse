@@ -3,6 +3,7 @@ import 'package:gandalverse/init.dart';
 import 'package:gandalverse/main.dart';
 import 'package:gandalverse/screens/QG_screen/QG_screen.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
+import 'package:gandalverse/screens/defis/defis_screen.dart';
 import 'package:gandalverse/screens/new_design_screens/home_page.dart';
 import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:go_router/go_router.dart';
@@ -62,11 +63,16 @@ class RootNavigator {
               path: 'qg',
               builder: (context, state) => QGScreen(),
             ),
+             GoRoute(
+              name: defi_view,
+              path: 'defi',
+              builder: (context, state) => AnnoncesPage(),
+            ),
           ],
         ),
       ],
-      errorBuilder: (_, GoRouterState state) =>
-          InitializationPage() // redirect to the login page if the user is not logged in
+      // errorBuilder: (_, GoRouterState state) =>
+      //     InitializationPage() // redirect to the login page if the user is not logged in
       // redirect: (BuildContext context, GoRouterState state) {
       //   // if the user is not logged in, they need to login
 
