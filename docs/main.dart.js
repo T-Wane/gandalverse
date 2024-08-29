@@ -87266,7 +87266,7 @@ A.ayi.prototype={
 $0(){},
 $S:0}
 A.ayh.prototype={
-$0(){this.a.rD("https://t.me/starbrig_bot","test share url")},
+$0(){this.a.rD("https://t.me/starbrig_bot/start","test share url")},
 $S:0}
 A.KU.prototype={
 bj(){this.cq()
