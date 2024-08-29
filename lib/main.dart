@@ -18,6 +18,46 @@ import 'core/services/explorer_service/explorer_service.dart';
 import 'data/telegram_client.dart';
 import 'screens/home.page.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
+import 'dart:html';
+import 'dart:convert'; // Pour JSON parsing
+import 'package:flutter/material.dart';
+
+void extractLaunchParameters() {
+  // Extraction des paramètres de hash
+  String hash = window.location.hash;
+  if (hash.startsWith('#')) {
+    hash = hash.substring(1); // Supprimer le #
+  }
+
+  Uri hashUri = Uri.parse('?$hash');
+  String? tgWebAppData = hashUri.queryParameters['tgWebAppData'];
+  String? tgWebAppVersion = hashUri.queryParameters['tgWebAppVersion'];
+  String? tgWebAppThemeParams = hashUri.queryParameters['tgWebAppThemeParams'];
+
+  print('tgWebAppData: $tgWebAppData');
+  print('tgWebAppVersion: $tgWebAppVersion');
+  print('tgWebAppThemeParams: $tgWebAppThemeParams');
+
+  if (tgWebAppThemeParams != null) {
+    try {
+      Map<String, dynamic> theme = jsonDecode(tgWebAppThemeParams);
+      print('Theme: $theme');
+    } catch (e) {
+      print('Error parsing tgWebAppThemeParams: $e');
+    }
+  }
+
+  // Extraction des paramètres de query
+  Uri uri = Uri.parse(window.location.href);
+  String? startParam = uri.queryParameters['startapp'];
+  print('startapp: $startParam');
+
+  // Sauvegarde dans le local storage si nécessaire
+  window.localStorage['tgWebAppData'] = tgWebAppData ?? '';
+  window.localStorage['tgWebAppVersion'] = tgWebAppVersion ?? '';
+  window.localStorage['tgWebAppThemeParams'] = tgWebAppThemeParams ?? '';
+  window.localStorage['startapp'] = startParam ?? '';
+}
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +78,7 @@ Future main() async {
         statusBarBrightness: Brightness.light,
         statusBarIconBrightness: Brightness.dark),
   );
+  extractLaunchParameters(); // Appel pour extraire les paramètres
 
   runApp(
     MultiProvider(
@@ -90,8 +131,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-
 
 class TelegramWebAppPage extends StatelessWidget {
   final Map<String, String> queryParams;
