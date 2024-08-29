@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:gandalverse/screens/new_design_screens/home_page.dart';
 import '../main.dart';
 
 class InitializationPage extends StatefulWidget {
@@ -29,7 +30,7 @@ class _InitializationPageState extends State<InitializationPage> {
         future: Init.initialize(),
         builder: (context, snapshot) {
            if (snapshot.connectionState == ConnectionState.done) {
-            return   MyApp();
+            return   HomeVrScreen();
           } else { 
             return const SplashScreen();
           }
