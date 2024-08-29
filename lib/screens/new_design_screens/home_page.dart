@@ -292,7 +292,7 @@ class _GoogleMapState extends State<HomeVrScreen>
             ),
             //directions button
             MapButton(
-              bottom: 267,
+              bottom: 314,
               offsetX: 0,
               width: 68,
               height: 71,
@@ -309,7 +309,7 @@ class _GoogleMapState extends State<HomeVrScreen>
               },
             ),
             MapButton(
-              bottom: 243,
+              bottom: 227,
               offsetX: 0,
               width: 68,
               height: 71, 
@@ -322,7 +322,7 @@ class _GoogleMapState extends State<HomeVrScreen>
             ),
             //my_location button
             MapButton(
-              bottom: 148,
+              bottom: 140,
               offsetX: 0,
               width: 68,
               height: 71,
