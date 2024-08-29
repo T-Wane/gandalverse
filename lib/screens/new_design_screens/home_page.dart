@@ -343,8 +343,26 @@ class _GoogleMapState extends State<GoogleMapPage>
                 );
               },
             ),
+            MapButton(
+              bottom: 53,
+              offsetX: 0,
+              width: 65,
+              height: 71,
+              isRight: false,
+              image: Images.scanQr,
+              icon: null,
+              press: () {
+                // Navigator.push<void>(
+                //   context,
+                //   MaterialPageRoute<void>(
+                //     builder: (BuildContext context) => QGScreen(),
+                //   ),
+                // );
+              },
+            ),
+
             //menu button
-            Positioned(
+            /* Positioned(
               bottom: realH(53),
               left: realW(-71 * (currentExplorePercent + currentSearchPercent)),
               child: GestureDetector(
@@ -377,16 +395,16 @@ class _GoogleMapState extends State<GoogleMapPage>
                   ),
                 ),
               ),
-            ),
+            ),*/
             //menu
-            MenuWidget(
-                currentMenuPercent: currentMenuPercent,
-                animateMenu: animateMenu),
+            // MenuWidget(
+            //     currentMenuPercent: currentMenuPercent,
+            //     animateMenu: animateMenu),
 
-            // //menu
-            MenuWidget(
-                currentMenuPercent: currentMenuPercent,
-                animateMenu: animateMenu),
+            // // //menu
+            // MenuWidget(
+            //     currentMenuPercent: currentMenuPercent,
+            //     animateMenu: animateMenu),
             //explore content
             Visibility(
               visible: showExplorerContent,

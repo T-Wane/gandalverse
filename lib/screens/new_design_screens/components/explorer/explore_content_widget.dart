@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:gandalverse/components/rounded_btn_back.dart';
 import 'package:gandalverse/core/services/explorer_service/explorer_service.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/new_design_screens/components/explorer/categories_section.dart';
@@ -56,9 +57,9 @@ class _ExploreContentWidgetState extends State<ExploreContentWidget> {
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
-        initialChildSize: 0.8,
+        initialChildSize: 0.9,
         minChildSize: 0.0,
-        maxChildSize: 0.8,
+        maxChildSize: 0.9,
         shouldCloseOnMinExtent: true,
         snap: true,
         controller: _controller,
@@ -70,14 +71,14 @@ class _ExploreContentWidgetState extends State<ExploreContentWidget> {
               duration: const Duration(milliseconds: 200),
               margin: const EdgeInsets.only(top: 20),
               decoration: BoxDecoration(
-                  color: Colors.purpleAccent.withOpacity(0.6),
+                  color: Colors.purpleAccent.withOpacity(0.5),
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
                   ),
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.purpleAccent.withOpacity(0.5),
+                        color: Colors.purpleAccent.withOpacity(0.4),
                         offset: const Offset(1, 1),
                         blurRadius: 10,
                         spreadRadius: 4)
@@ -97,6 +98,18 @@ class _ExploreContentWidgetState extends State<ExploreContentWidget> {
                   ),
                 ),
                 child: ListView(controller: scrollController, children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: BtnRoundedIconBack(
+                        onpress: () {
+                          widget.close.call();
+                          // Navigator.of(context).pop();
+                        },
+                      ),
+                    ),
+                  ),
                   ListView(
                       physics: const BouncingScrollPhysics(),
                       shrinkWrap: true,

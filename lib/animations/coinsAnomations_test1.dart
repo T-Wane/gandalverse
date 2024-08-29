@@ -174,30 +174,30 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
   late bool isPlaying;
 
   // rotation and scale animations
-  late AnimationController _rotationController;
-  late AnimationController _scaleController;
+  // late AnimationController _rotationController;
+  // late AnimationController _scaleController;
   double _rotation = 0;
   double _scale = 0.85;
 
   Color Color3 = Color.fromARGB(255, 18, 40, 70);
 
-  bool get _showWaves => !_scaleController.isDismissed;
+ // bool get _showWaves => !_scaleController.isDismissed;
 
-  void _updateRotation() => _rotation = _rotationController.value * 2 * pi;
-  void _updateScale() => _scale = (_scaleController.value * 0.2) + 0.85;
+  // void _updateRotation() => _rotation = _rotationController.value * 2 * pi;
+  // void _updateScale() => _scale = (_scaleController.value * 0.2) + 0.85;
 
   @override
   void initState() {
     isPlaying = widget.initialIsPlaying;
-    _rotationController =
-        AnimationController(vsync: this, duration: _kRotationDuration)
-          ..addListener(() => setState(_updateRotation))
-          ..repeat();
+    // _rotationController =
+    //     AnimationController(vsync: this, duration: _kRotationDuration)
+    //       ..addListener(() => setState(_updateRotation))
+    //       ..repeat();
 
-    _scaleController =
-        AnimationController(vsync: this, duration: _kToggleDuration)
-          ..addListener(() => setState(_updateScale));
-    _scaleController.forward();
+    // _scaleController =
+    //     AnimationController(vsync: this, duration: _kToggleDuration)
+    //       ..addListener(() => setState(_updateScale));
+    // _scaleController.forward();
     super.initState();
   }
 
@@ -222,16 +222,16 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          if (_showWaves) ...[
-            Blob(
-                color: Colors.deepPurple.shade400.withOpacity(0.5),
-                scale: _scale * 0.91,
-                rotation: _rotation),
-            Blob(
-                color: Colors.purple.shade400.withOpacity(0.5),
-                scale: _scale * 0.92,
-                rotation: _rotation * 2),
-          ],
+          // if (_showWaves) ...[
+          //   Blob(
+          //       color: Colors.deepPurple.shade400.withOpacity(0.5),
+          //       scale: _scale * 0.91,
+          //       rotation: _rotation),
+          //   Blob(
+          //       color: Colors.purple.shade400.withOpacity(0.5),
+          //       scale: _scale * 0.92,
+          //       rotation: _rotation * 2),
+          // ],
           Container(
             constraints: const BoxConstraints.expand(),
             decoration: BoxDecoration(
@@ -276,8 +276,8 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _scaleController.dispose();
-    _rotationController.dispose();
+    // _scaleController.dispose();
+    // _rotationController.dispose();
     super.dispose();
   }
 }
