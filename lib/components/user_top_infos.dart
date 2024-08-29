@@ -22,9 +22,10 @@ import 'package:telegram_web_app/telegram_web_app.dart';
 import 'profil_details.dart';
 
 class userTopInfos extends StatefulWidget {
-  userTopInfos({
-    super.key,
-  });
+  userTopInfos({super.key, this.goBack, this.showBackArrow = false});
+
+  VoidCallback? goBack;
+  bool showBackArrow;
 
   @override
   State<userTopInfos> createState() => _userTopInfosState();
@@ -73,91 +74,115 @@ class _userTopInfosState extends State<userTopInfos> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    // CardContentBottomSheet.show(context,
-                    //     child: ProfilDetails(telegram: telegram),
-                    //     image: Images.niveau1,
-                    //     fit: BoxFit.contain,
-                    //     setCircle: true);
-
-                    // ProfilDetailsContentBottomSheet.show(context,
-                    //     telegram: telegram);
-                    context.pushNamed(profil_view);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white10,
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.purple.shade100,
+                if (widget.showBackArrow) ...[
+                  GestureDetector(
+                    onTap: () {
+                      context.pop();
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white10,
+                        shape: BoxShape.circle,
+                        borderRadius: BorderRadius.circular(10),
+                       
+                      ),
+                      margin: const EdgeInsets.only(left: 5, right: 2),
+                      padding: const EdgeInsets.all(2),
+                      child: const Icon(
+                        CupertinoIcons.arrow_left,
+                        color: Colors.white,
+                        size: 25,
                       ),
                     ),
-                    margin: const EdgeInsets.only(left: 5, right: 2),
-                    padding: const EdgeInsets.all(2),
-                    child: const Icon(
-                      CupertinoIcons.person,
-                      color: Colors.white,
-                      size: 25,
+                  ),
+                  const Spacer(),
+                ] else ...[
+                  GestureDetector(
+                    onTap: () {
+                      // CardContentBottomSheet.show(context,
+                      //     child: ProfilDetails(telegram: telegram),
+                      //     image: Images.niveau1,
+                      //     fit: BoxFit.contain,
+                      //     setCircle: true);
+
+                      // ProfilDetailsContentBottomSheet.show(context,
+                      //     telegram: telegram);
+                      context.pushNamed(profil_view);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white10,
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          width: 1,
+                          color: Colors.purple.shade100,
+                        ),
+                      ),
+                      margin: const EdgeInsets.only(left: 5, right: 2),
+                      padding: const EdgeInsets.all(2),
+                      child: const Icon(
+                        CupertinoIcons.person,
+                        color: Colors.white,
+                        size: 25,
+                      ),
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          "UserName",
-                          // "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: "Aller",
-                            fontSize: 13,
-                            color: Colors.white,
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Text(
+                            "UserName",
+                            // "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontFamily: "Aller",
+                              fontSize: 13,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 1,
-                      ),
-                      SizedBox(
-                        width: 120,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Text(
-                                "Neo  >",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w300,
-                                    color: Colors.purple.shade100,
-                                    fontFamily: "Aller",
-                                    fontSize: 10),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 1,
-                            ),
-                            LinearPercentIndicator(
-                              percent: 0.5,
-                              backgroundColor:
-                                  Colors.grey.shade200.withOpacity(0.2),
-                              progressColor: Colors.deepPurple.shade400,
-                              lineHeight: 5.0,
-                              barRadius: const Radius.circular(10),
-                            ),
-                          ],
+                        const SizedBox(
+                          height: 1,
                         ),
-                      )
-                    ],
+                        SizedBox(
+                          width: 120,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text(
+                                  "Neo  >",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.purple.shade100,
+                                      fontFamily: "Aller",
+                                      fontSize: 10),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 1,
+                              ),
+                              LinearPercentIndicator(
+                                percent: 0.5,
+                                backgroundColor:
+                                    Colors.grey.shade200.withOpacity(0.2),
+                                progressColor: Colors.deepPurple.shade400,
+                                lineHeight: 5.0,
+                                barRadius: const Radius.circular(10),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
+                ],
                 const SizedBox(
                   width: 5,
                 ),

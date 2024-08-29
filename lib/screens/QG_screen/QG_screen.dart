@@ -79,19 +79,19 @@ class _QGScreenState extends State<QGScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: BtnRoundedIconBack(
-                  onpress: () {
-                    // Navigator.of(context).pop();
-                    context.pop();
-                  },
-                ),
-              ),
-            ),
-            userTopInfos(), // Toujours en haut
+            // Align(
+            //   alignment: Alignment.centerLeft,
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(5.0),
+            //     child: BtnRoundedIconBack(
+            //       onpress: () {
+            //         // Navigator.of(context).pop();
+            //         context.pop();
+            //       },
+            //     ),
+            //   ),
+            // ),
+            userTopInfos(showBackArrow: true,), // Toujours en haut
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: Row(

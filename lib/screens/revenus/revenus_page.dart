@@ -28,19 +28,21 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
       body: SafeArea(
         minimum: const EdgeInsets.all(5.0),
         child: Column(children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: BtnRoundedIconBack(
-                couleur: Themecolors.Color3,
-                onpress: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ),
+          // Align(
+          //   alignment: Alignment.centerLeft,
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(5.0),
+          //     child: BtnRoundedIconBack(
+          //       couleur: Themecolors.Color3,
+          //       onpress: () {
+          //         Navigator.of(context).pop();
+          //       },
+          //     ),
+          //   ),
+          // ),
+          userTopInfos(
+            showBackArrow: true,
           ),
-          userTopInfos(),
           Flexible(
             child: ListView(children: [
               CustomImageView(
