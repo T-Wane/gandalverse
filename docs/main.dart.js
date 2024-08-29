@@ -87275,7 +87275,7 @@ A.ayk.prototype={
 $0(){},
 $S:0}
 A.ayj.prototype={
-$0(){this.a.rE("https://t.me/starbrig_bot/BrigVerseTest/telegram","test share url")},
+$0(){this.a.rE("https://t.me/starbrig_bot/GoGv","Plongez dans Gandalverse \ud83c\udf0d\nConstruisez votre monde dans le premier m\xe9tavers pour le prochain milliard d'Africains. Gagnez des jetons, montez en grade, et signez des partenariats pour des commissions. Invitez des amis, augmentez votre influence et remportez des panneaux publicitaires ou des immeubles. Rejoignez-nous et fa\xe7onnez l'avenir d\xe8s\xa0aujourd'hui\xa0!")},
 $S:0}
 A.KV.prototype={
 bj(){this.cq()

@@ -105,7 +105,9 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
                               RotateAnimatedText('Offrer à un ami du capital'),
                             ],
                             onTap: () {
-                              shareViaTelegram("https://t.me/starbrig_bot/BrigVerseTest/telegram", 'test share url');
+                              shareViaTelegram(
+                                  "https://t.me/starbrig_bot/GoGv",
+                                  "Plongez dans Gandalverse 🌍\nConstruisez votre monde dans le premier métavers pour le prochain milliard d'Africains. Gagnez des jetons, montez en grade, et signez des partenariats pour des commissions. Invitez des amis, augmentez votre influence et remportez des panneaux publicitaires ou des immeubles. Rejoignez-nous et façonnez l'avenir dès aujourd'hui !");
                             },
                             isRepeatingAnimation: true,
                             repeatForever: true,
