@@ -91,20 +91,35 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
+
+
 class TelegramWebAppPage extends StatelessWidget {
+  final Map<String, String> queryParams;
+
+  TelegramWebAppPage({required this.queryParams});
+
   @override
   Widget build(BuildContext context) {
-    final Uri uri = Uri.base; // Accède à l'URI complète
-    final String? tgWebAppData = uri.queryParameters['tgWebAppData'];
+    // Accéder aux paramètres
+    String userData = queryParams['tgWebAppData'] ?? 'No data';
+    String themeParams = queryParams['tgWebAppThemeParams'] ?? 'No theme data';
 
-    if (tgWebAppData != null) {
-      // Traitement des données tgWebAppData
-      // ...
-    }
+    // Décodage des données
+    String decodedUserData = Uri.decodeComponent(userData);
+    String decodedThemeParams = Uri.decodeComponent(themeParams);
 
     return Scaffold(
       appBar: AppBar(title: Text('Telegram Web App')),
-      body: Center(child: Text('Contenu de la webapp Telegram $tgWebAppData')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('User Data: $decodedUserData'),
+            SizedBox(height: 10),
+            Text('Theme Params: $decodedThemeParams'),
+          ],
+        ),
+      ),
     );
   }
 }

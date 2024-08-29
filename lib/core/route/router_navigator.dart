@@ -15,12 +15,16 @@ class RootNavigator {
     GoRoute(
       name: welcome_view,
       path: '/',
-      builder: (context, state) => InitializationPage(),
+      builder: (context, state) => const InitializationPage(),
     ),
     GoRoute(
       name: "telegram",
       path: '/telegram',
-      builder: (context, state) => TelegramWebAppPage(),
+      builder: (context, state) {
+        // Extraire les paramètres de l'URL
+        final queryParams = state.extra as Map<String, String>;
+        return TelegramWebAppPage(queryParams: queryParams);
+      },
     ),
     // Route pour l'écran de walkthrough
     // GoRoute(
