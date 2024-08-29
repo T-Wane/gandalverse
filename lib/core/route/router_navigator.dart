@@ -55,7 +55,8 @@ class RootNavigator {
           builder: (context, state) => QGScreen(),
         ),
       ],
-    )
+
+    ), 
   ]);
   // Routes pour l'application livreur
 }
