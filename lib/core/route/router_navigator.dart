@@ -165,7 +165,7 @@ class NotFoundPage extends StatelessWidget {
           ),
           SizedBox(height: 16),
           Text(
-            'Path: path',
+            'Path: $path',
             style: TextStyle(fontSize: 16),
           ),
           SizedBox(height: 16),
