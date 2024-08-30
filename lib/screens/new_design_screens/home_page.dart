@@ -261,7 +261,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                     ),
                   )
                 : const Padding(
-                    padding: const EdgeInsets.all(0),
+                    padding: EdgeInsets.all(0),
                   ),
             //search menu
             // SearchMenuWidget(
@@ -288,7 +288,7 @@ class _GoogleMapState extends State<HomeVrScreen>
               width: 71,
               height: 71,
               isRight: false,
-              icon: Icons.school,
+              icon: Icons.school_rounded,
               iconColor: Themecolors.Color3,
             ),
             //directions button
