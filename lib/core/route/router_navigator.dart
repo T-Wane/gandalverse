@@ -153,8 +153,7 @@ class NotFoundPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Page Not Found'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: ListView( 
         children: [
           Text(
             '404 - Page Not Found',
