@@ -331,16 +331,16 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                 ],
               ),
             ),
-              //  AutoSizeText(
-              //     "local coins ${widget.carte.getPrix}",
-              //     maxLines: 1,
-              //     presetFontSizes: const [22, 20, 18, 15, 14],
-              //     textAlign: TextAlign.center,
-              //     style: TextStyle(
-              //       color: widget.Color3,
-              //       fontWeight: FontWeight.bold,
-              //     ),
-              //   ),
+            //  AutoSizeText(
+            //     "local coins ${widget.carte.getPrix}",
+            //     maxLines: 1,
+            //     presetFontSizes: const [22, 20, 18, 15, 14],
+            //     textAlign: TextAlign.center,
+            //     style: TextStyle(
+            //       color: widget.Color3,
+            //       fontWeight: FontWeight.bold,
+            //     ),
+            //   ),
             const SizedBox(
               height: 8,
             ),
@@ -393,7 +393,10 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                               : Colors.grey.shade200,
                       text: 'Go',
                       elevation: 1.0,
-                      textColor: Colors.white,
+                      textColor:
+                          (_userProvider.user?.coins ?? 0) >= widget.carte.prix
+                              ? Colors.white
+                              : Colors.grey.shade500,
                       fontSize: 15,
                       height: 50,
                       press: () async {
