@@ -70,7 +70,7 @@ class RootNavigator {
     ],
   );
 }*/
- 
+
 class RootNavigator {
   final GoRouter makeRoutes = GoRouter(
     initialLocation: "/",
@@ -135,7 +135,7 @@ class RootNavigator {
       final queryParams = state.pathParameters;
       return NotFoundPage(
         path: state,
-       parameters: queryParams,
+        parameters: queryParams,
       );
     },
   );
@@ -143,12 +143,9 @@ class RootNavigator {
 
 class NotFoundPage extends StatelessWidget {
   final GoRouterState path;
- final dynamic parameters;
+  final dynamic parameters;
 
-  NotFoundPage({Key? key,
-   required this.path, 
-   required this.parameters
-    });
+  NotFoundPage({Key? key, required this.path, required this.parameters});
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +162,7 @@ class NotFoundPage extends StatelessWidget {
           ),
           SizedBox(height: 16),
           Text(
-            'Path: ${path.toString()}',
+            " \n * Path name: ${path.name} \n * Path  : ${path.uri.path}  \n * uri  : ${path.uri.toString()}   \n * fullPath  : ${path.fullPath}  \n * matchedLocation  : ${path.matchedLocation}  ",
             style: TextStyle(fontSize: 16),
           ),
           SizedBox(height: 16),
