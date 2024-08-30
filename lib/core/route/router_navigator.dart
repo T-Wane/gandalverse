@@ -161,7 +161,7 @@ class NotFoundPage extends StatelessWidget {
           ),
           SizedBox(height: 16),
           Text(
-            " \n * Path name: ${path.name} \n * Path  : ${path.uri.path}  \n * uri  : ${path.uri.toString()}   \n * fullPath  : ${path.fullPath}  \n * matchedLocation  : ${path.matchedLocation}  ",
+            "  \n *  pageKey: ${path.pageKey.value}  \n * Path: ${path.path}  \n * Path name: ${path.name} \n * Path  : ${path.uri.path}  \n * uri  : ${path.uri.toString()}   \n * fullPath  : ${path.fullPath}  \n * matchedLocation  : ${path.matchedLocation}  ",
             style: TextStyle(fontSize: 16),
           ),
           SizedBox(height: 16),
