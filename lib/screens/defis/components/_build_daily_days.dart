@@ -9,7 +9,7 @@ import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
-class buildDailyDays extends StatelessWidget {
+class buildDailyDays extends StatefulWidget {
   const buildDailyDays({
     super.key,
     required this.Color3,
@@ -18,12 +18,33 @@ class buildDailyDays extends StatelessWidget {
   final Color Color3;
 
   @override
+  State<buildDailyDays> createState() => _buildDailyDaysState();
+}
+
+class _buildDailyDaysState extends State<buildDailyDays> {
+  bool isClaimed = false;
+
+  final DailyRewardManager dailyManager = getIt<DailyRewardManager>();
+
+  @override
+  void initState() {
+    super.initState();
+    updateDailyReward();
+  }
+
+  // Fonction pour mettre à jour la récompense quotidienne
+  Future<void> updateDailyReward() async {
+    isClaimed = await dailyManager.isRewardClaimed();
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnnonceCard(
         title: 'Daily',
         text: 'Récupérer votre récompense quotidienne',
         imagePath: Images.dailyCalendar,
-        isComplete: true,
+        isComplete: isClaimed,
         backColors: const [
           Colors.white,
           Colors.white,
@@ -37,7 +58,7 @@ class buildDailyDays extends StatelessWidget {
               image: Images.dailyCalendar);
         },
         textColor: Colors.black,
-        titleColor: Color3);
+        titleColor: widget.Color3);
   }
 }
 
