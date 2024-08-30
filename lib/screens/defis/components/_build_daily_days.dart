@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/default_btn.dart';
+import 'package:gandalverse/core/repositories/dailyRewardRepository.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/screens/defis/components/annonceCard.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
@@ -39,10 +41,50 @@ class buildDailyDays extends StatelessWidget {
   }
 }
 
-class ShowGetDailyRewardSheetContent extends StatelessWidget {
+class ShowGetDailyRewardSheetContent extends StatefulWidget {
   const ShowGetDailyRewardSheetContent({
     super.key,
   });
+
+  @override
+  State<ShowGetDailyRewardSheetContent> createState() =>
+      _ShowGetDailyRewardSheetContentState();
+}
+
+class _ShowGetDailyRewardSheetContentState
+    extends State<ShowGetDailyRewardSheetContent> {
+  int currentDay = 1;
+
+  int coinsReward = 0;
+
+  bool isClaimed = false;
+
+  final DailyRewardManager dailyManager = getIt<DailyRewardManager>();
+
+  @override
+  void initState() {
+    super.initState();
+    updateDailyReward();
+  }
+
+  // Fonction pour mettre à jour la récompense quotidienne
+  Future<void> updateDailyReward() async {
+    currentDay = await dailyManager.getCurrentDay();
+    coinsReward = await dailyManager.getRewardForToday();
+    isClaimed = await dailyManager.isRewardClaimed();
+    setState(() {});
+  }
+
+  void claimReward() async {
+    await dailyManager.claimReward();
+    updateDailyReward();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content:
+            Text('Vous avez reçu $coinsReward coins pour le jour $currentDay!'),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,35 +105,32 @@ class ShowGetDailyRewardSheetContent extends StatelessWidget {
                 fontFamily: "Aller",
                 fontWeight: FontWeight.normal),
           ),
-          const SizedBox(
-            height: 5,
-          ),
-          AutoSizeText(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                  color: Themecolors.Color3.withOpacity(0.95),
-                  fontWeight: FontWeight.normal,
-                ),
-          ),
-          const SizedBox(
-            height: 5,
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: AutoSizeText(
+              'Récupérer votre récompence journalière',
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                    color: Themecolors.Color3.withOpacity(0.95),
+                    fontWeight: FontWeight.normal,
+                  ),
+            ),
           ),
           Wrap(
             spacing: 5.0,
             runSpacing: 5.0,
-            children: List.generate(7, (index) {
+            children: List.generate(dailyManager.dailyCoins.length, (index) {
               return Container(
                 width: 80,
                 height: 60,
                 decoration: BoxDecoration(
-                    color: index == 0
+                    color: (index == (currentDay - 1) && !isClaimed)
                         ? Colors.yellow.shade300
                         : Themecolors.Color3.withOpacity(0.5),
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
                         width: 1,
-                        color: index == 0
+                        color: (index == (currentDay - 1) && !isClaimed)
                             ? Colors.yellow.shade500
                             : Colors.purple.shade100)),
                 child: Column(
@@ -102,7 +141,7 @@ class ShowGetDailyRewardSheetContent extends StatelessWidget {
                       child: Text(
                         "Jour ${index + 1}",
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: Colors.white),
                       ),
                     ),
                     Row(
@@ -116,7 +155,7 @@ class ShowGetDailyRewardSheetContent extends StatelessWidget {
                         ),
                         const SizedBox(width: 2.0),
                         Text(
-                          "${(index + 1) * 200}K",
+                          "${dailyManager.dailyCoins[index]}",
                           style: TextStyle(
                               fontWeight: FontWeight.w300,
                               color: index == 0 ? Colors.white : Colors.white70,
@@ -134,13 +173,16 @@ class ShowGetDailyRewardSheetContent extends StatelessWidget {
             height: 5,
           ),
           DefaultButton(
-            backColor: Colors.purple.shade400,
+            backColor:
+                isClaimed ? Colors.grey.shade300 : Colors.purple.shade400,
             text: 'Reclammer',
             elevation: 1.0,
-            textColor: Colors.white,
+            textColor: isClaimed ? Colors.grey.shade600 : Colors.white,
             fontSize: 15,
             height: 50,
-            press: () {},
+            press: () {
+              claimReward();
+            },
           )
         ],
       ),
