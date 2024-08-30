@@ -121,7 +121,10 @@ class _MyAppState extends State<MyApp> {
       data: MediaQuery.of(context)
           .copyWith(textScaler: const TextScaler.linear(1)),
       child: MaterialApp.router(
-        routerConfig: _rootNavigator,
+        // routerConfig: _rootNavigator,
+        routerDelegate: RootNavigator().makeRoutes.routerDelegate,
+        routeInformationParser:
+            RootNavigator().makeRoutes.routeInformationParser,
         title: 'GandalVerse',
         debugShowCheckedModeBanner: false,
         // theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance),

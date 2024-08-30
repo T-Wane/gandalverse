@@ -26,8 +26,8 @@ class RootNavigator {
         builder: (BuildContext context, GoRouterState state) {
           final tgWebAppData = state.pathParameters['tgWebAppData'];
           return InitializationPage(
-           // tgWebAppData: tgWebAppData, // Passer les paramètres ici si nécessaire
-          );
+              // tgWebAppData: tgWebAppData, // Passer les paramètres ici si nécessaire
+              );
         },
       ),
       GoRoute(
@@ -67,6 +67,52 @@ class RootNavigator {
           ),
         ],
       ),
-    ],
+    ], // Route de rattrapage pour les routes inconnues
+    errorBuilder: (context, state) {
+      debugPrint('Navigated to unknown route: ${state.uri.toString()}');
+      // Extraire les paramètres de l'URL
+      final queryParams = state.uri.queryParameters;
+      return NotFoundPage(
+        path: state.uri.toString(),
+        parameters: queryParams,
+      );
+    },
   );
+}
+
+class NotFoundPage extends StatelessWidget {
+  final String path;
+  final Map<String, String> parameters;
+
+  NotFoundPage({required this.path, required this.parameters});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Page Not Found'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              '404 - Page Not Found',
+              style: TextStyle(fontSize: 24),
+            ),
+            SizedBox(height: 16),
+            Text(
+              'Path: $path',
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 16),
+            Text(
+              'Parameters: $parameters',
+              style: TextStyle(fontSize: 16),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
