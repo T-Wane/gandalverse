@@ -43,24 +43,27 @@ class SearchWidget extends StatelessWidget {
           onHorizontalDragEnd: (_) {
             _dispatchSearchOffset();
           },
-          child: Container(
-            width: realW(320),
-            height: realH(71),
-            alignment: Alignment.centerLeft,
-            padding: EdgeInsets.only(left: realW(17)),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(realW(36))),
-                boxShadow: [
-                  BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.3),
-                      blurRadius: realW(36)),
-                ]),
-            child: Opacity(
-              opacity: 1.0 - currentSearchPercent,
-              child: Icon(
-                Icons.search,
-                size: realW(34),
+          child: PointerInterceptor(
+            debug: false,
+            child: Container(
+              width: realW(320),
+              height: realH(71),
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: realW(17)),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(realW(36))),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.3),
+                        blurRadius: realW(36)),
+                  ]),
+              child: Opacity(
+                opacity: 1.0 - currentSearchPercent,
+                child: Icon(
+                  Icons.search,
+                  size: realW(34),
+                ),
               ),
             ),
           ),
