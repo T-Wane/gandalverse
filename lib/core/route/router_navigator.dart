@@ -71,10 +71,10 @@ class RootNavigator {
     errorBuilder: (context, state) {
       // debugPrint('Navigated to unknown route: ${state.uri.toString()}');
       // Extraire les paramètres de l'URL
-      final queryParams = state.pathParameters;
+     /// final queryParams = state.pathParameters;
       return NotFoundPage(
         // path: state.uri.toString(),
-        parameters: queryParams,
+       // parameters: queryParams,
       );
     },
   );
@@ -82,11 +82,12 @@ class RootNavigator {
 
 class NotFoundPage extends StatelessWidget {
   // final String path;
-  final dynamic parameters;
+ // final dynamic parameters;
 
-  NotFoundPage({
+  NotFoundPage({Key? key
    // required this.path, 
-    required this.parameters});
+   // required this.parameters
+    });
 
   @override
   Widget build(BuildContext context) {
@@ -107,10 +108,10 @@ class NotFoundPage extends StatelessWidget {
             style: TextStyle(fontSize: 16),
           ),
           SizedBox(height: 16),
-          Text(
-            'Parameters: $parameters',
-            style: TextStyle(fontSize: 16),
-          ),
+          // Text(
+          //   'Parameters: $parameters',
+          //   style: TextStyle(fontSize: 16),
+          // ),
         ],
       ),
     );
