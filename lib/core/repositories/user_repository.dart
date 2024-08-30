@@ -108,12 +108,12 @@ class UserRepository {
     _telegramCloudStorage.setItem(userPointIsSaveKey, status);
   }
 
-  Future<int> get getPoints async {
+  Future<int>   getPoints() async {
     int userPoint = await _telegramCloudStorage.getItem(userPointKey);
     return userPoint;
   }
 
-  Future<bool> get userPointIsSaved async {
+  Future<bool>  userPointIsSaved() async {
     bool isSaved = await _telegramCloudStorage.getItem(userPointIsSaveKey);
     return isSaved;
   }

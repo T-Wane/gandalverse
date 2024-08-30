@@ -75,7 +75,7 @@ class ShowScanQrSheetContent extends StatelessWidget {
             height: 5,
           ),
           AutoSizeText(
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non tincidunt odio. Nunc id tellus lectus.',
+            'Scanne le QR de nos partenaires et gagne une belle recompense',
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.labelSmall!.copyWith(
                   color: Themecolors.Color3.withOpacity(0.95),

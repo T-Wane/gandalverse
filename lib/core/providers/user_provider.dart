@@ -20,8 +20,10 @@ class UserProvider extends ChangeNotifier {
   //late TelegramWebApp telegram;
 
   UserModel? _user;
+  int _localPoint = 0;
 
   UserModel? get user => _user;
+  int get localPoint => _localPoint;
 
   int get telegramUserId => //1016029253;
       _telegramClient.telegram.initData.user.id;
@@ -60,11 +62,12 @@ class UserProvider extends ChangeNotifier {
       // );
     } else {
       //Mettre à jour les points/coins de l'user en local
-      bool localpointIsSaved = await _userRepository.userPointIsSaved;
+      bool localpointIsSaved = await _userRepository.userPointIsSaved();
       if (localpointIsSaved == true) {
         await updateUserPointLocal(_user!);
       } else {
-        int localPoints = await _userRepository.getPoints;
+        int localPoints = await _userRepository.getPoints();
+        _localPoint = localPoints;
         _user =
             await _userRepository.syncUserCoins(localPoints, _user?.id ?? '');
       }
@@ -152,7 +155,7 @@ class UserProvider extends ChangeNotifier {
   Future<void> updateUserPointLocal(UserModel user) async {
     try {
       //need
-     await _userRepository.updatePoints(user.coins);
+      await _userRepository.updatePoints(user.coins);
       _user = user;
     } catch (e) {
       print("#### error $e");

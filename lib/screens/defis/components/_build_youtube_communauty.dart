@@ -49,7 +49,7 @@ class buildYoutubeCommunauty extends StatelessWidget {
                       height: 5,
                     ),
                     AutoSizeText(
-                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non tincidunt odio. Nunc id tellus lectus.',
+                      'Abonné toi à notre chaîne YouTube',
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
                             color: Color3.withOpacity(0.95),
