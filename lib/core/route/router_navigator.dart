@@ -73,14 +73,9 @@ class RootNavigator {
 
 class RootNavigator {
   final GoRouter makeRoutes = GoRouter(
-    initialLocation: "",
+    initialLocation: "/",
     routes: [
-      // Route pour l'écran d'initialisation
-       GoRoute(
-        name: welcome_view,
-        path: '',
-        builder: (context, state) => const InitializationPage(),
-      ),
+      // Route pour l'écran d'initialisation 
       GoRoute(
         name: welcome_view,
         path: '/',
@@ -135,12 +130,13 @@ class RootNavigator {
       ),
     ], // Route de rattrapage pour les routes inconnues
     errorBuilder: (context, state) {
-      // debugPrint('Navigated to unknown route: ${state.uri.toString()}');
-      // Extraire les paramètres de l'URL
-      final queryParams = state.pathParameters;
-      return NotFoundPage(
-        path: state,
-        parameters: queryParams,
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        context.go('/');
+      });
+      // Retourner un widget vide temporaire, car la redirection sera effectuée
+      return Scaffold(
+        body: Center(
+            child: CircularProgressIndicator()), // Indicateur de chargement
       );
     },
   );
@@ -158,7 +154,7 @@ class NotFoundPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Page Not Found'),
       ),
-      body: ListView( 
+      body: ListView(
         children: [
           Text(
             '404 - Page Not Found',
