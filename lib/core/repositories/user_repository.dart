@@ -124,7 +124,7 @@ class UserRepository {
     // bool isSaved = await _telegramCloudStorage.getItem(userPointIsSaveKey);
     final prefs = await SharedPreferences.getInstance();
     bool? isSaved = prefs.getBool(userPointIsSaveKey);
-    return isSaved ?? false;
+    return isSaved ?? true;
   }
 
   //------------------------------//

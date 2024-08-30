@@ -105,7 +105,7 @@ class _QGScreenState extends State<QGScreen> {
                   ),
                   const SizedBox(width: 5),
                   AutoSizeText(
-                    "${context.watch<UserProvider>().user?.coins ?? 0} - ${context.watch<UserProvider>().localPoint}",
+                    "${context.watch<UserProvider>().user?.coins ?? 0}",
                     //"${_userProvider.user?.coins ?? 0}",
                     maxLines: 1,
                     presetFontSizes: [25, 22, 20, 18, 15, 14],
