@@ -73,9 +73,14 @@ class RootNavigator {
 
 class RootNavigator {
   final GoRouter makeRoutes = GoRouter(
-    initialLocation: "/",
+    initialLocation: "",
     routes: [
       // Route pour l'écran d'initialisation
+       GoRoute(
+        name: welcome_view,
+        path: '',
+        builder: (context, state) => const InitializationPage(),
+      ),
       GoRoute(
         name: welcome_view,
         path: '/',
