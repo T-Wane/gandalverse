@@ -147,7 +147,9 @@ class _ShowGetDailyRewardSheetContentState
                 decoration: BoxDecoration(
                     color: (index == (currentDay - 1) && !isClaimed)
                         ? Colors.yellow.shade300
-                        : Themecolors.Color3.withOpacity(0.5),
+                        : (index < (currentDay - 1))
+                            ? Colors.green.shade300
+                            : Themecolors.Color3.withOpacity(0.5),
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
                         width: 1,
