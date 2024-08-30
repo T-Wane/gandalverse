@@ -32,7 +32,7 @@ class userTopInfos extends StatefulWidget {
 }
 
 class _userTopInfosState extends State<userTopInfos> {
-  //final TelegramWebApp telegram = TelegramWebApp.instance;
+  final TelegramWebApp telegram = TelegramWebApp.instance;
 
   bool? isDefinedVersion;
   String? clipboardText;
@@ -84,7 +84,6 @@ class _userTopInfosState extends State<userTopInfos> {
                         color: Colors.white10,
                         shape: BoxShape.circle,
                         borderRadius: BorderRadius.circular(10),
-                       
                       ),
                       margin: const EdgeInsets.only(left: 5, right: 2),
                       padding: const EdgeInsets.all(2),
@@ -133,13 +132,13 @@ class _userTopInfosState extends State<userTopInfos> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Padding(
+                        Padding(
                           padding: EdgeInsets.only(left: 10),
                           child: Text(
-                            "UserName",
-                            // "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
+                            //  "UserName",
+                            "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
                             textAlign: TextAlign.left,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontFamily: "Aller",
                               fontSize: 13,
                               color: Colors.white,

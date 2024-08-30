@@ -60,8 +60,10 @@ extension GetItInjectableX on _i1.GetIt {
     gh.singleton<_i8.ExplorerService>(() => _i8.ExplorerService());
     gh.lazySingleton<_i9.UserRepository>(
         () => _i9.UserRepository(gh<_i4.TelegramCloudStorage>()));
-    gh.singleton<_i10.UserProvider>(
-        () => _i10.UserProvider(gh<_i9.UserRepository>()));
+    gh.singleton<_i10.UserProvider>(() => _i10.UserProvider(
+          gh<_i5.TelegramClient>(),
+          gh<_i9.UserRepository>(),
+        ));
     gh.singleton<_i11.TapAndEarnRepository>(
         () => _i11.TapAndEarnRepository(gh<_i10.UserProvider>()));
     gh.lazySingleton<_i12.EquipeService>(

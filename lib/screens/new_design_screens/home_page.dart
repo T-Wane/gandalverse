@@ -288,7 +288,8 @@ class _GoogleMapState extends State<HomeVrScreen>
               width: 71,
               height: 71,
               isRight: false,
-              icon: Icons.layers,
+              icon: Icons.school,
+              iconColor: Themecolors.Color3,
             ),
             //directions button
             MapButton(
@@ -312,7 +313,7 @@ class _GoogleMapState extends State<HomeVrScreen>
               bottom: 227,
               offsetX: 0,
               width: 68,
-              height: 71, 
+              height: 71,
               icon: CupertinoIcons.flame,
               //icon: Icons.directions,
               iconColor: Themecolors.Color3,
@@ -339,6 +340,7 @@ class _GoogleMapState extends State<HomeVrScreen>
               width: 65,
               height: 71,
               icon: Icons.business_rounded,
+              iconColor: Themecolors.Color3,
               press: () {
                 context.pushNamed(qg_view);
               },
@@ -350,6 +352,7 @@ class _GoogleMapState extends State<HomeVrScreen>
               height: 71,
               isRight: false,
               image: Images.scanQr,
+              iconColor: Themecolors.Color3,
               icon: null,
               press: () {
                 // Navigator.push<void>(

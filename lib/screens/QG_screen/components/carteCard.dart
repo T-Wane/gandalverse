@@ -260,15 +260,15 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
             const SizedBox(
               height: 5,
             ),
-            AutoSizeText(
-              widget.carte.carteId ?? '--',
-              maxLines: 1,
-              textAlign: TextAlign.right,
-              style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                    color: Colors.red,
-                    fontWeight: FontWeight.w400,
-                  ),
-            ),
+            // AutoSizeText(
+            //   widget.carte.carteId ?? '--',
+            //   maxLines: 1,
+            //   textAlign: TextAlign.right,
+            //   style: Theme.of(context).textTheme.labelSmall!.copyWith(
+            //         color: Colors.red,
+            //         fontWeight: FontWeight.w400,
+            //       ),
+            // ),
             AutoSizeText(
               widget.carte.description,
               textAlign: TextAlign.center,
@@ -377,39 +377,45 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                       ));
                 } else {
                   return DefaultButton(
-                    backColor: Colors.purple.shade400,
-                    text: 'Go',
-                    elevation: 1.0,
-                    textColor: Colors.white,
-                    fontSize: 15,
-                    height: 50,
-                    press: () async {
-                      await _userProvider
-                          .updateCardLevel(
-                              widget.qgService,
-                              CarteModel((b) => b
-                                ..carteId = widget.carte.carteId
-                                ..nom = widget.carte.nom
-                                ..description = widget.carte.description
-                                ..competences = BuiltList<String>.from(
-                                        widget.carte.competences?.toList() ??
-                                            [])
-                                    .toBuilder()
-                                ..image = widget.carte.image
-                                ..prix = widget.carte.prix
-                                ..tauxAugmentation =
-                                    widget.carte.tauxAugmentation
-                                ..niveau = widget.carte.niveau + 1
-                                ..estAchete = widget.carte.estAchete
-                                ..force = widget.carte.force
-                                ..tauxAugmentationForce =
-                                    widget.carte.tauxAugmentationForce))
-                          .whenComplete(() {
-                        Navigator.of(context).pop();
-                        setState(() {});
+                      backColor:
+                          (_userProvider.user?.coins ?? 0) >= widget.carte.prix
+                              ? Colors.purple.shade400
+                              : Colors.grey.shade200,
+                      text: 'Go',
+                      elevation: 1.0,
+                      textColor: Colors.white,
+                      fontSize: 15,
+                      height: 50,
+                      press: () async {
+                        if ((_userProvider.user?.coins ?? 0) >=
+                            widget.carte.prix) {
+                          await _userProvider
+                              .updateCardLevel(
+                                  widget.qgService,
+                                  CarteModel((b) => b
+                                    ..carteId = widget.carte.carteId
+                                    ..nom = widget.carte.nom
+                                    ..description = widget.carte.description
+                                    ..competences = BuiltList<String>.from(
+                                            widget.carte.competences
+                                                    ?.toList() ??
+                                                [])
+                                        .toBuilder()
+                                    ..image = widget.carte.image
+                                    ..prix = widget.carte.prix
+                                    ..tauxAugmentation =
+                                        widget.carte.tauxAugmentation
+                                    ..niveau = widget.carte.niveau + 1
+                                    ..estAchete = widget.carte.estAchete
+                                    ..force = widget.carte.force
+                                    ..tauxAugmentationForce =
+                                        widget.carte.tauxAugmentationForce))
+                              .whenComplete(() {
+                            Navigator.of(context).pop();
+                            setState(() {});
+                          });
+                        }
                       });
-                    },
-                  );
                 }
               },
             ),
