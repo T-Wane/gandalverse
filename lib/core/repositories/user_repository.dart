@@ -100,22 +100,31 @@ class UserRepository {
 
   //-----------------------------------------//
   Future<void> updatePoints(int newPoints) async {
-   await  _telegramCloudStorage.setItem(userPointKey, newPoints);
-    await _telegramCloudStorage.setItem(userPointIsSaveKey, false);
+    //  await  _telegramCloudStorage.setItem(userPointKey, newPoints);
+    //   await _telegramCloudStorage.setItem(userPointIsSaveKey, false);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setInt(userPointKey, newPoints);
+    await prefs.setBool(userPointIsSaveKey, false);
   }
 
   Future<void> setPointsSaved(bool status) async {
-    _telegramCloudStorage.setItem(userPointIsSaveKey, status);
+    // _telegramCloudStorage.setItem(userPointIsSaveKey, status);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(userPointIsSaveKey, status);
   }
 
-  Future<int>   getPoints() async {
-    int userPoint = await _telegramCloudStorage.getItem(userPointKey);
-    return userPoint;
+  Future<int> getPoints() async {
+    // int userPoint = await _telegramCloudStorage.getItem(userPointKey);
+    final prefs = await SharedPreferences.getInstance();
+    int? userPoint = prefs.getInt(userPointKey);
+    return userPoint ?? 0;
   }
 
-  Future<bool>  userPointIsSaved() async {
-    bool isSaved = await _telegramCloudStorage.getItem(userPointIsSaveKey);
-    return isSaved;
+  Future<bool> userPointIsSaved() async {
+    // bool isSaved = await _telegramCloudStorage.getItem(userPointIsSaveKey);
+    final prefs = await SharedPreferences.getInstance();
+    bool? isSaved = prefs.getBool(userPointIsSaveKey);
+    return isSaved ?? false;
   }
 
   //------------------------------//
