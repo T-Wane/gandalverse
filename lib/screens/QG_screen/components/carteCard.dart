@@ -235,7 +235,7 @@ class bureauCarteDetails extends StatefulWidget {
 }
 
 class _bureauCarteDetailsState extends State<bureauCarteDetails> {
-  UserProvider _userProvider = getIt<UserProvider>();
+  //UserProvider _userProvider = getIt<UserProvider>();
 
   @override
   Widget build(BuildContext context) {
@@ -331,6 +331,16 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                 ],
               ),
             ),
+              //  AutoSizeText(
+              //     "local coins ${widget.carte.getPrix}",
+              //     maxLines: 1,
+              //     presetFontSizes: const [22, 20, 18, 15, 14],
+              //     textAlign: TextAlign.center,
+              //     style: TextStyle(
+              //       color: widget.Color3,
+              //       fontWeight: FontWeight.bold,
+              //     ),
+              //   ),
             const SizedBox(
               height: 8,
             ),

@@ -152,7 +152,7 @@ class UserProvider extends ChangeNotifier {
   Future<void> updateUserPointLocal(UserModel user) async {
     try {
       //need
-      _userRepository.updatePoints(user.coins);
+     await _userRepository.updatePoints(user.coins);
       _user = user;
     } catch (e) {
       print("#### error $e");

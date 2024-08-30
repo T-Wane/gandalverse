@@ -100,8 +100,8 @@ class UserRepository {
 
   //-----------------------------------------//
   Future<void> updatePoints(int newPoints) async {
-    _telegramCloudStorage.setItem(userPointKey, newPoints);
-    _telegramCloudStorage.setItem(userPointIsSaveKey, false);
+   await  _telegramCloudStorage.setItem(userPointKey, newPoints);
+    await _telegramCloudStorage.setItem(userPointIsSaveKey, false);
   }
 
   Future<void> setPointsSaved(bool status) async {
