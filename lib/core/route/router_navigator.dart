@@ -71,7 +71,7 @@ class RootNavigator {
     errorBuilder: (context, state) {
       // debugPrint('Navigated to unknown route: ${state.uri.toString()}');
       // Extraire les paramètres de l'URL
-      final queryParams = state.uri.queryParameters;
+      final queryParams = state.pathParameters;
       return NotFoundPage(
         path: state.uri.toString(),
         parameters: queryParams,
@@ -82,7 +82,7 @@ class RootNavigator {
 
 class NotFoundPage extends StatelessWidget {
   final String path;
-  final Map<String, String> parameters;
+  final dynamic parameters;
 
   NotFoundPage({required this.path, required this.parameters});
 
