@@ -69,7 +69,7 @@ class RootNavigator {
       ),
     ], // Route de rattrapage pour les routes inconnues
     errorBuilder: (context, state) {
-      debugPrint('Navigated to unknown route: ${state.uri.toString()}');
+      // debugPrint('Navigated to unknown route: ${state.uri.toString()}');
       // Extraire les paramètres de l'URL
       final queryParams = state.uri.queryParameters;
       return NotFoundPage(
@@ -92,26 +92,24 @@ class NotFoundPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Page Not Found'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              '404 - Page Not Found',
-              style: TextStyle(fontSize: 24),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'Path: $path',
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'Parameters: $parameters',
-              style: TextStyle(fontSize: 16),
-            ),
-          ],
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            '404 - Page Not Found',
+            style: TextStyle(fontSize: 24),
+          ),
+          SizedBox(height: 16),
+          Text(
+            'Path: $path',
+            style: TextStyle(fontSize: 16),
+          ),
+          SizedBox(height: 16),
+          Text(
+            'Parameters: $parameters',
+            style: TextStyle(fontSize: 16),
+          ),
+        ],
       ),
     );
   }
