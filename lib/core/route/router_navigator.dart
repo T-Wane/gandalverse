@@ -9,7 +9,7 @@ import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:go_router/go_router.dart';
 
 import 'route_name.dart';
-
+/*
 class RootNavigator {
   final GoRouter makeRoutes = GoRouter(
     initialLocation: "/",
@@ -69,21 +69,8 @@ class RootNavigator {
       ),
     ],
   );
-}
-
-/*
-import 'package:flutter/material.dart';
-import 'package:gandalverse/init.dart';
-import 'package:gandalverse/main.dart';
-import 'package:gandalverse/screens/QG_screen/QG_screen.dart';
-import 'package:gandalverse/screens/amis/amis_page.dart';
-import 'package:gandalverse/screens/defis/defis_screen.dart';
-import 'package:gandalverse/screens/new_design_screens/home_page.dart';
-import 'package:gandalverse/screens/revenus/revenus_page.dart';
-import 'package:go_router/go_router.dart';
-
-import 'route_name.dart';
-
+}*/
+ 
 class RootNavigator {
   final GoRouter makeRoutes = GoRouter(
     initialLocation: "/",
@@ -142,25 +129,25 @@ class RootNavigator {
         ],
       ),
     ], // Route de rattrapage pour les routes inconnues
-    // errorBuilder: (context, state) {
-    //   // debugPrint('Navigated to unknown route: ${state.uri.toString()}');
-    //   // Extraire les paramètres de l'URL
-    //  /// final queryParams = state.pathParameters;
-    //   return NotFoundPage(
-    //     // path: state.uri.toString(),
-    //    // parameters: queryParams,
-    //   );
-    // },
+    errorBuilder: (context, state) {
+      // debugPrint('Navigated to unknown route: ${state.uri.toString()}');
+      // Extraire les paramètres de l'URL
+      final queryParams = state.pathParameters;
+      return NotFoundPage(
+        path: state.uri.toString(),
+       parameters: queryParams,
+      );
+    },
   );
 }
 
 class NotFoundPage extends StatelessWidget {
-  // final String path;
- // final dynamic parameters;
+  final String path;
+ final dynamic parameters;
 
-  NotFoundPage({Key? key
-   // required this.path, 
-   // required this.parameters
+  NotFoundPage({Key? key,
+   required this.path, 
+   required this.parameters
     });
 
   @override
@@ -182,13 +169,12 @@ class NotFoundPage extends StatelessWidget {
             style: TextStyle(fontSize: 16),
           ),
           SizedBox(height: 16),
-          // Text(
-          //   'Parameters: $parameters',
-          //   style: TextStyle(fontSize: 16),
-          // ),
+          Text(
+            'Parameters: $parameters',
+            style: TextStyle(fontSize: 16),
+          ),
         ],
       ),
     );
   }
 }
-*/
