@@ -15,6 +15,8 @@ class TelegramClient {
     try {
       if (TelegramWebApp.instance.isSupported) {
         await TelegramWebApp.instance.ready();
+        await TelegramWebApp.instance.disableVerticalSwipes();
+        await TelegramWebApp.instance.expand(); 
         Future.delayed(
           const Duration(seconds: 1),
           TelegramWebApp.instance.expand,

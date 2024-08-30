@@ -7,10 +7,19 @@ import 'dart:ui';
 // import 'package:flutter_web/services.dart';
 // import 'package:flutter_web_ui/ui.dart';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/user_top_infos.dart';
+import 'package:gandalverse/core/route/route_name.dart';
+import 'package:gandalverse/screens/QG_screen/QG_screen.dart';
+import 'package:gandalverse/screens/amis/amis_page.dart';
+import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
+import 'package:gandalverse/themes/color/themeColors.dart';
+import 'package:gandalverse/themes/images/appImages.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
 import 'components/components.dart';
@@ -19,8 +28,8 @@ import 'helper/ui_helper.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
 import 'package:webview_flutter_web/webview_flutter_web.dart';
 
-class GoogleMapPage extends StatefulWidget {
-  GoogleMapPage();
+class HomeVrScreen extends StatefulWidget {
+  HomeVrScreen();
 
   @override
   State<StatefulWidget> createState() {
@@ -28,7 +37,7 @@ class GoogleMapPage extends StatefulWidget {
   }
 }
 
-class _GoogleMapState extends State<GoogleMapPage>
+class _GoogleMapState extends State<HomeVrScreen>
     with TickerProviderStateMixin {
   late AnimationController animationControllerExplore;
   late AnimationController animationControllerSearch;
@@ -39,8 +48,7 @@ class _GoogleMapState extends State<GoogleMapPage>
   late Animation<double> animationR;
 
   /// get currentOffset percent
-  double get currentExplorePercent =>
-      max(0.0, min(1.0, offsetExplore / (760.0 - 122.0)));
+  double get currentExplorePercent => max(0.0, min(0.9, 0.1));
   double get currentSearchPercent =>
       max(0.0, min(1.0, offsetSearch / (347 - 68.0)));
   double get currentMenuPercent => max(0.0, min(1.0, offsetMenu / 358));
@@ -76,33 +84,13 @@ class _GoogleMapState extends State<GoogleMapPage>
   }
 
   /// animate Explore
-  ///
-  /// if [open] is true , make Explore open
-  /// else make Explore close
   void animateExplore(bool open) {
-    animationControllerExplore = AnimationController(
-        duration: Duration(
-            milliseconds: 1 +
-                (800 *
-                        (isExploreOpen
-                            ? currentExplorePercent
-                            : (1 - currentExplorePercent)))
-                    .toInt()),
-        vsync: this);
-    curve =
-        CurvedAnimation(parent: animationControllerExplore, curve: Curves.ease);
-    animation = Tween(begin: offsetExplore, end: open ? 760.0 - 122 : 0.0)
-        .animate(curve)
-      ..addListener(() {
-        setState(() {
-          offsetExplore = animation.value;
-        });
-      })
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          isExploreOpen = open;
-        }
-      });
+    setState(() {
+      showExplorerContent = true;
+    });
+
+    animationControllerExplore = AnimationController(vsync: this);
+
     animationControllerExplore.forward();
   }
 
@@ -155,6 +143,8 @@ class _GoogleMapState extends State<GoogleMapPage>
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
+  bool showExplorerContent = false;
+
   @override
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
@@ -173,35 +163,62 @@ class _GoogleMapState extends State<GoogleMapPage>
         height: screenHeight,
         child: Stack(
           children: <Widget>[
-            PointerInterceptor(
-              debug: true,
-              child: Container(
-                width: screenWidth,
-                height: screenHeight,
-                child: PlatformWebViewWidget(
-                  PlatformWebViewWidgetCreationParams(controller: controller),
-                ).build(context),
+            Container(
+              width: screenWidth,
+              height: screenHeight,
+              child: PlatformWebViewWidget(
+                PlatformWebViewWidgetCreationParams(controller: controller),
+              ).build(context),
+            ),
+
+            Align(
+              alignment: Alignment.topCenter,
+              child: PointerInterceptor(
+                debug: false,
+                child: userTopInfos(),
               ),
             ),
 
-            //  explore
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: PointerInterceptor(
-                debug: false,
-                child: Container(
-                  height: realH(122 * 1),
-                  width: realW(159 + (standardWidth - 159)),
-                  child: ExploreWidget(
-                    currentExplorePercent: currentExplorePercent,
-                    currentSearchPercent: currentSearchPercent,
-                    animateExplore: animateExplore,
-                    isExploreOpen: isExploreOpen,
-                    onVerticalDragUpdate: onExploreVerticalUpdate,
-                    onPanDown: () => animationControllerExplore.stop(),
-                  ),
-                ),
-              ),
+            // Align(
+            //     alignment: Alignment.bottomCenter,
+            //     child: Container(
+            //       width: double.infinity,
+            //       height: MediaQuery.of(context).size.height * 0.7,
+            //       child: PointerInterceptor(
+            //         debug: true,
+            //         child: const SizedBox.shrink(),
+            //       ),
+            //     )),
+
+            // Positioned(
+            //   bottom: 50,
+            //   left: 10,
+            //   width: 50,
+            //   height: 50,
+            //   child: PointerInterceptor(
+            //     debug: true,
+            //     child: GestureDetector(
+            //       onTap: () {
+            //         animateMenu(true);
+            //       },
+            //       child: Container(
+            //         decoration: const BoxDecoration(
+            //             shape: BoxShape.circle, color: Colors.white),
+            //         height: 50,
+            //         width: 50,
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            //explore
+
+            ExploreWidget(
+              currentExplorePercent: currentExplorePercent,
+              currentSearchPercent: currentSearchPercent,
+              animateExplore: animateExplore,
+              isExploreOpen: isExploreOpen,
+              onVerticalDragUpdate: onExploreVerticalUpdate,
+              onPanDown: () => animationControllerExplore?.stop(),
             ),
 
             //blur
@@ -220,16 +237,11 @@ class _GoogleMapState extends State<GoogleMapPage>
                 : const Padding(
                     padding: const EdgeInsets.all(0),
                   ),
-            //explore content
-            ExploreContentWidget(
-              currentExplorePercent: currentExplorePercent,
-            ),
 
             //recent search
             RecentSearchWidget(
               currentSearchPercent: currentSearchPercent,
             ),
-
             //search menu background
             offsetSearch != 0
                 ? Positioned(
@@ -249,80 +261,118 @@ class _GoogleMapState extends State<GoogleMapPage>
                     ),
                   )
                 : const Padding(
-                    padding: const EdgeInsets.all(0),
+                    padding: EdgeInsets.all(0),
                   ),
-
             //search menu
-            SearchMenuWidget(
-              currentSearchPercent: currentSearchPercent,
-            ),
-
-            //search
-            SearchWidget(
-              currentSearchPercent: currentSearchPercent,
-              currentExplorePercent: currentExplorePercent,
-              isSearchOpen: isSearchOpen,
-              animateSearch: animateSearch,
-              onHorizontalDragUpdate: onSearchHorizontalDragUpdate,
-              onPanDown: () => animationControllerSearch.stop(),
-            ),
-
-            //search back
-            SearchBackWidget(
-              currentSearchPercent: currentSearchPercent,
-              animateSearch: animateSearch,
-            ),
-
+            // SearchMenuWidget(
+            //   currentSearchPercent: currentSearchPercent,
+            // ),
+            // //search
+            // SearchWidget(
+            //   currentSearchPercent: currentSearchPercent,
+            //   currentExplorePercent: currentExplorePercent,
+            //   isSearchOpen: isSearchOpen,
+            //   animateSearch: animateSearch,
+            //   onHorizontalDragUpdate: onSearchHorizontalDragUpdate,
+            //   onPanDown: () => animationControllerSearch?.stop(),
+            // ),
+            // //search back
+            // SearchBackWidget(
+            //   currentSearchPercent: currentSearchPercent,
+            //   animateSearch: animateSearch,
+            // ),
             //layer button
             MapButton(
-              currentExplorePercent: currentExplorePercent,
-              currentSearchPercent: currentSearchPercent,
               bottom: 243,
-              offsetX: -71,
+              offsetX: 0,
               width: 71,
               height: 71,
               isRight: false,
-              icon: Icons.layers,
+              icon: Icons.school_rounded,
+              iconColor: Themecolors.Color3,
             ),
-
             //directions button
             MapButton(
-              currentSearchPercent: currentSearchPercent,
-              currentExplorePercent: currentExplorePercent,
-              bottom: 243,
-              offsetX: -68,
+              bottom: 314,
+              offsetX: 0,
               width: 68,
               height: 71,
-              icon: Icons.directions,
+              image: Images.gvt,
+              icon: null,
+              //icon: Icons.directions,
               iconColor: Colors.white,
               gradient: const LinearGradient(colors: [
                 Color(0xFF59C2FF),
                 Color(0xFF1270E3),
               ]),
+              press: () {
+                context.pushNamed(revenu_view);
+              },
             ),
-
-            //my_location button
             MapButton(
-              currentSearchPercent: currentSearchPercent,
-              currentExplorePercent: currentExplorePercent,
-              bottom: 148,
-              offsetX: -68,
+              bottom: 227,
+              offsetX: 0,
               width: 68,
               height: 71,
-              icon: Icons.my_location,
-              iconColor: Colors.blue,
+              icon: CupertinoIcons.flame,
+              //icon: Icons.directions,
+              iconColor: Themecolors.Color3,
+              press: () {
+                context.pushNamed(defi_view);
+              },
+            ),
+            //my_location button
+            MapButton(
+              bottom: 140,
+              offsetX: 0,
+              width: 68,
+              height: 71,
+              icon: Icons.group_rounded,
+              iconColor: Themecolors.Color3,
+              press: () {
+                context.pushNamed(amis_view);
+              },
+            ),
+            //layer button
+            MapButton(
+              bottom: 53,
+              offsetX: 0,
+              width: 65,
+              height: 71,
+              icon: Icons.business_rounded,
+              iconColor: Themecolors.Color3,
+              press: () {
+                context.pushNamed(qg_view);
+              },
+            ),
+            MapButton(
+              bottom: 53,
+              offsetX: 0,
+              width: 65,
+              height: 71,
+              isRight: false,
+              image: Images.scanQr,
+              iconColor: Themecolors.Color3,
+              icon: null,
+              press: () {
+                // Navigator.push<void>(
+                //   context,
+                //   MaterialPageRoute<void>(
+                //     builder: (BuildContext context) => QGScreen(),
+                //   ),
+                // );
+              },
             ),
 
             //menu button
-            Positioned(
+            /* Positioned(
               bottom: realH(53),
               left: realW(-71 * (currentExplorePercent + currentSearchPercent)),
-              child: PointerInterceptor(
-                debug: false,
-                child: GestureDetector(
-                  onTap: () {
-                    animateMenu(true);
-                  },
+              child: GestureDetector(
+                onTap: () {
+                  animateMenu(true);
+                },
+                child: PointerInterceptor(
                   child: Opacity(
                     opacity: 1 - (currentSearchPercent + currentExplorePercent),
                     child: Container(
@@ -330,10 +380,6 @@ class _GoogleMapState extends State<GoogleMapPage>
                       height: realH(71),
                       alignment: Alignment.centerLeft,
                       padding: EdgeInsets.only(left: realW(17)),
-                      child: Icon(
-                        Icons.menu,
-                        size: realW(34),
-                      ),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.only(
@@ -344,22 +390,35 @@ class _GoogleMapState extends State<GoogleMapPage>
                                 color: Color.fromRGBO(0, 0, 0, 0.3),
                                 blurRadius: realW(36)),
                           ]),
+                      child: Icon(
+                        Icons.menu,
+                        size: realW(34),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
+            ),*/
+            //menu
+            // MenuWidget(
+            //     currentMenuPercent: currentMenuPercent,
+            //     animateMenu: animateMenu),
 
-            // //menu
-            MenuWidget(
-                currentMenuPercent: currentMenuPercent,
-                animateMenu: animateMenu),
-
-            Align(
-              alignment: Alignment.topCenter,
+            // // //menu
+            // MenuWidget(
+            //     currentMenuPercent: currentMenuPercent,
+            //     animateMenu: animateMenu),
+            //explore content
+            Visibility(
+              visible: showExplorerContent,
               child: PointerInterceptor(
-                debug: true,
-                child: userTopInfos(),
+                debug: false,
+                child: ExploreContentWidget(close: () {
+                  setState(() {
+                    showExplorerContent = false;
+                  });
+                }),
+                // currentExplorePercent: currentExplorePercent,
               ),
             ),
           ],

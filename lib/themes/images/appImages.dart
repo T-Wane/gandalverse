@@ -5,6 +5,7 @@ class Images {
   static String ressourceBlack = "$ressourcePath/social_black";
   static String ressourceAvatar = "$ressourcePath/avatar";
   static String ressourceLevel = "$ressourcePath/levels_images";
+  static String ressourceCategoriesIcons = "$ressourcePath/categories_icons";
 
   //SOCIAL
   static String telegram = "$ressourcePath/telegram.png";
@@ -62,6 +63,19 @@ class Images {
   static String black_facebook = "$ressourceBlack/facebook.png";
   static String black_tiktok = "$ressourceBlack/tiktok.png";
   static String black_twitter = "$ressourceBlack/twitter.png";
+
+  //CATEGRORIES
+  static String badge = "$ressourceCategoriesIcons/badge.png";
+  static String bank = "$ressourceCategoriesIcons/bank.png";
+  static String consumer = "$ressourceCategoriesIcons/consumer.png";
+  static String luck = "$ressourceCategoriesIcons/luck.png";
+  static String luggage_cart = "$ressourceCategoriesIcons/luggage-cart.png";
+  static String photo_camera = "$ressourceCategoriesIcons/photo-camera.png";
+  static String restaurant = "$ressourceCategoriesIcons/restaurant.png";
+  static String ring_bell = "$ressourceCategoriesIcons/ring-bell.png";
+  static String shopping_bag = "$ressourceCategoriesIcons/shopping-bag.png";
+  static String ticket_box = "$ressourceCategoriesIcons/ticket-box.png";
+  static String tickets = "$ressourceCategoriesIcons/tickets.png";
 
   //LEVELS
   static String niveau1 = "$ressourceLevel/Niveau1.png";

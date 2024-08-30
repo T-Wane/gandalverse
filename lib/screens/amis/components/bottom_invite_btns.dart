@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class bottomInviteBtns extends StatefulWidget {
   const bottomInviteBtns({
@@ -48,6 +49,19 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
     super.dispose();
   }
 
+  void shareViaTelegram(String url, String text) async {
+    final encodedUrl = Uri.encodeComponent(url);
+    final encodedText = Uri.encodeComponent(text);
+    final telegramUrl =
+        'https://t.me/share/url?url=$encodedUrl&text=$encodedText';
+
+    if (await canLaunch(telegramUrl)) {
+      await launch(telegramUrl);
+    } else {
+      throw 'Could not launch $telegramUrl';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -90,16 +104,20 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
                               RotateAnimatedText('Gagner plus de coins'),
                               RotateAnimatedText('Offrer à un ami du capital'),
                             ],
-                            onTap: () {},
+                            onTap: () {
+                              shareViaTelegram(
+                                  "https://t.me/starbrig_bot/GoGv/telegram",
+                                  "Plongez dans Gandalverse 🌍\nConstruisez votre monde dans le premier métavers pour le prochain milliard d'Africains. Gagnez des jetons, montez en grade, et signez des partenariats pour des commissions. Invitez des amis, augmentez votre influence et remportez des panneaux publicitaires ou des immeubles. Rejoignez-nous et façonnez l'avenir dès aujourd'hui !");
+                            },
                             isRepeatingAnimation: true,
                             repeatForever: true,
                           ),
-                        ), 
-                        const Icon(
-                          CupertinoIcons.person_crop_circle_badge_plus,
-                          color: Colors.white70,
-                          size: 20,
                         ),
+                        // const Icon(
+                        //   CupertinoIcons.person_crop_circle_badge_plus,
+                        //   color: Colors.white70,
+                        //   size: 20,
+                        // ),
                       ],
                     ),
                   ),

@@ -8,6 +8,9 @@ part of 'serializers.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CarteModel.serializer)
+      ..add(CategorieModel.serializer)
+      ..add(CategorieType.serializer)
+      ..add(EvenementModel.serializer)
       ..add(UserModel.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),

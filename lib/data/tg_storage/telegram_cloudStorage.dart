@@ -5,7 +5,7 @@ class TelegramCloudStorage {
   static late TelegramWebApp telegram;
 
   static Future<TelegramCloudStorage> init() async {
-    telegram = TelegramWebApp.instance;
+    telegram = TelegramWebApp.instance; 
     telegram.ready();
     return TelegramCloudStorage();
   }

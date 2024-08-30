@@ -36,7 +36,9 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
       body: SafeArea(
         minimum: const EdgeInsets.all(5.0),
         child: Column(children: [
-          userTopInfos(),
+          userTopInfos(
+            showBackArrow: true,
+          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(5.0),
@@ -81,18 +83,19 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                       ),
                     ),
                     buildGoWords(),
-                    AnnonceCard(
-                        title: 'Enigmes',
-                        text: 'Gagner en résolvant l\'énigme du jour',
-                        imagePath: Images.question,
-                        backColors: const [
-                          Colors.white,
-                          Colors.white,
-                        ],
-                        fit: BoxFit.contain,
-                        press: () {},
-                        textColor: Colors.black,
-                        titleColor: Color3),
+                    buildScanQrPartenaire(Color3: Color3),
+                    // AnnonceCard(
+                    //     title: 'Enigmes',
+                    //     text: 'Gagner en résolvant l\'énigme du jour',
+                    //     imagePath: Images.question,
+                    //     backColors: const [
+                    //       Colors.white,
+                    //       Colors.white,
+                    //     ],
+                    //     fit: BoxFit.contain,
+                    //     press: () {},
+                    //     textColor: Colors.black,
+                    //     titleColor: Color3),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Align(
@@ -110,7 +113,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                         ),
                       ),
                     ),
-                    buildScanQrPartenaire(Color3: Color3),
+
                     buildTelegramCommunauty(Color3: Color3),
                     buildYoutubeCommunauty(Color3: Color3),
                     buildFacebookCommunauty(

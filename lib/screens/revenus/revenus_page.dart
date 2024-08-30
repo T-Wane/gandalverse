@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:gandalverse/components/rounded_btn_back.dart';
 import 'package:gandalverse/screens/revenus/data/revenus_data.dart';
+import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
 import '../../components/user_top_infos.dart';
@@ -26,7 +28,21 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
       body: SafeArea(
         minimum: const EdgeInsets.all(5.0),
         child: Column(children: [
-          userTopInfos(),
+          // Align(
+          //   alignment: Alignment.centerLeft,
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(5.0),
+          //     child: BtnRoundedIconBack(
+          //       couleur: Themecolors.Color3,
+          //       onpress: () {
+          //         Navigator.of(context).pop();
+          //       },
+          //     ),
+          //   ),
+          // ),
+          userTopInfos(
+            showBackArrow: true,
+          ),
           Flexible(
             child: ListView(children: [
               CustomImageView(

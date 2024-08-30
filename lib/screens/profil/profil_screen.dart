@@ -10,7 +10,8 @@ import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/screens/profil/components/user_icon.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
-import 'package:gandalverse/widgets/profilDetails_bottomSheet.dart'; 
+import 'package:gandalverse/widgets/profilDetails_bottomSheet.dart';
+import 'package:go_router/go_router.dart';
 import 'components/infos_card.dart';
 
 class MonProfilScreen extends StatefulWidget {
@@ -74,7 +75,8 @@ class _MonProfilScreenState extends State<MonProfilScreen> {
                 padding: const EdgeInsets.all(5.0),
                 child: BtnRoundedIconBack(
                   onpress: () {
-                    Navigator.of(context).pop();
+                    //Navigator.of(context).pop();
+                    context.pop();
                   },
                 ),
               ),

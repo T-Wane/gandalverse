@@ -8,6 +8,7 @@ import 'package:gandalverse/core/modeles/user_model/user_model.dart';
 import 'package:gandalverse/core/services/QG_services/QGService.dart';
 import 'package:gandalverse/core/services/QG_services/equipe_service.dart';
 import 'package:gandalverse/data/tg_storage/telegram_cloudStorage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 import 'package:injectable/injectable.dart';
 
@@ -15,6 +16,8 @@ import 'package:injectable/injectable.dart';
 class UserRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   TelegramCloudStorage _telegramCloudStorage;
+  String userPointKey = "ggv_user_point";
+  String userPointIsSaveKey = "ggv_user_pointIsSaved";
 
   UserRepository(this._telegramCloudStorage);
 
@@ -68,8 +71,8 @@ class UserRepository {
       ..username = fields.username
       ..photoUrl = fields.photoUrl
       ..level = 1
-      ..coins = 0
-      ..profitPerHour = 0.0
+      ..coins = 2500
+      ..profitPerHour = 5.0
       ..profileImage = '');
 
     try {
@@ -95,10 +98,27 @@ class UserRepository {
     }
   }
 
-  // Future<void> updatePoints(UserModel user, int newPoints) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   await prefs.setInt(_pointsKey, newPoints);
-  // }
+  //-----------------------------------------//
+  Future<void> updatePoints(int newPoints) async {
+   await  _telegramCloudStorage.setItem(userPointKey, newPoints);
+    await _telegramCloudStorage.setItem(userPointIsSaveKey, false);
+  }
+
+  Future<void> setPointsSaved(bool status) async {
+    _telegramCloudStorage.setItem(userPointIsSaveKey, status);
+  }
+
+  Future<int> get getPoints async {
+    int userPoint = await _telegramCloudStorage.getItem(userPointKey);
+    return userPoint;
+  }
+
+  Future<bool> get userPointIsSaved async {
+    bool isSaved = await _telegramCloudStorage.getItem(userPointIsSaveKey);
+    return isSaved;
+  }
+
+  //------------------------------//
   Future<void> purchaseCard(
       String userId, CarteModel carte, QGService qgService) async {
     DocumentReference userRef = _firestore.collection('users').doc(userId);
@@ -228,5 +248,26 @@ class UserRepository {
     // }).whenComplete(() async {
     //   await qgService.updateItem(carteData.carteId!, carteData);
     // });
+  }
+
+  Future<UserModel?> syncUserCoins(int localCoins, String _userId) async {
+    DocumentReference userRef = _firestore.collection('users').doc(_userId);
+
+    await _firestore.runTransaction((transaction) async {
+      // Récupération du document utilisateur
+      DocumentSnapshot userDoc = await transaction.get(userRef);
+
+      if (!userDoc.exists) {
+        log("User does not exist");
+        return null;
+      }
+
+      // Mise à jour des coins de l'utilisateur
+      transaction.update(userRef, {'coins': localCoins});
+      setPointsSaved(true);
+      UserModel user =
+          UserModel.fromJson(userDoc.data() as Map<String, dynamic>);
+      return user;
+    });
   }
 }

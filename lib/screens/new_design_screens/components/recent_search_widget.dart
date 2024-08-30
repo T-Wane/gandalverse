@@ -20,7 +20,7 @@ class RecentSearchWidget extends StatelessWidget {
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Image.asset(
-                  "recent.png",
+                  "assets/images/new/recent.png",
                   fit: BoxFit.contain,
                 ),
               ),

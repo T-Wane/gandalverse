@@ -16,19 +16,18 @@ import 'package:telegram_web_app/telegram_web_app.dart';
 @singleton
 class UserProvider extends ChangeNotifier {
   UserRepository _userRepository;
-  //TelegramClient _telegramClient;
+  TelegramClient _telegramClient;
   //late TelegramWebApp telegram;
 
   UserModel? _user;
 
   UserModel? get user => _user;
-  
 
-  int get telegramUserId =>  1016029253;
-  //_telegramClient.telegram.initData.user.id;
+  int get telegramUserId => //1016029253;
+      _telegramClient.telegram.initData.user.id;
 
   UserProvider(
-    // this._telegramClient,
+    this._telegramClient,
     this._userRepository,
   ) {
     // telegram = TelegramWebApp.instance;
@@ -37,24 +36,38 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Recuperer les données de l'user en se basant sur son IdTelegram
+  ///
+  /// Profiter pour mettre à jour les coins de l'user en local
   Future<void> fetchUserByTelegramId() async {
     _user = await _userRepository.getUserByTelegramId(telegramUserId);
-    if (user == null) {
-      // TelegramUser user = _telegramClient.telegram.initData.user;
-      // createUser(
-      //   telegramId: _telegramClient.telegram.initData.user.id,
-      //   firstName: user.firstname,
-      //   lastName: user.lastname,
-      //   username: user.username,
-      //   photoUrl: _telegramClient.telegram.initDataUnsafe?.user?.photoUrl,
-      // );
+
+    if (_user == null) {
+      TelegramUser user = _telegramClient.telegram.initData.user;
       createUser(
-        telegramId: 1016029253,
-        firstName:"joe",
-        lastName: "Testeur",
-        username: "joe@45",
-        photoUrl: null,
+        telegramId: _telegramClient.telegram.initData.user.id,
+        firstName: user.firstname,
+        lastName: user.lastname,
+        username: user.username,
+        photoUrl: _telegramClient.telegram.initDataUnsafe?.user?.photoUrl,
       );
+      // createUser(
+      //   telegramId: 1016029253,
+      //   firstName: "joe",
+      //   lastName: "Testeur",
+      //   username: "joe@45",
+      //   photoUrl: null,
+      // );
+    } else {
+      //Mettre à jour les points/coins de l'user en local
+      bool localpointIsSaved = await _userRepository.userPointIsSaved;
+      if (localpointIsSaved == true) {
+        await updateUserPointLocal(_user!);
+      } else {
+        int localPoints = await _userRepository.getPoints;
+        _user =
+            await _userRepository.syncUserCoins(localPoints, _user?.id ?? '');
+      }
     }
     notifyListeners();
   }
@@ -77,6 +90,7 @@ class UserProvider extends ChangeNotifier {
 
   Future<void> updateUser(UserModel user) async {
     try {
+      //need
       await _userRepository.updateUser(user);
 
       _user = user;
@@ -132,5 +146,17 @@ class UserProvider extends ChangeNotifier {
     return _userRepository.loadUserPurchasedCards(
       _user?.id ?? '',
     );
+  }
+
+  //To update loacaly user point
+  Future<void> updateUserPointLocal(UserModel user) async {
+    try {
+      //need
+     await _userRepository.updatePoints(user.coins);
+      _user = user;
+    } catch (e) {
+      print("#### error $e");
+    }
+    notifyListeners();
   }
 }

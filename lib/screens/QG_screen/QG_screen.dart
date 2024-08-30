@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/animations/coinsAnomations_test1.dart';
+import 'package:gandalverse/components/rounded_btn_back.dart';
 import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/QG_screen/components/itemCard.dart';
@@ -8,6 +9,7 @@ import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/screens/QG_screen/sections/partenaire_section.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/earnToTap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../components/user_top_infos.dart';
@@ -15,8 +17,8 @@ import '../../widgets/tab_element.dart';
 import 'sections/equipe_section.dart';
 
 class QGScreen extends StatefulWidget {
-  QGScreen({super.key, required this.scrollController});
-  ScrollController scrollController;
+  QGScreen({super.key, this.scrollController});
+  ScrollController? scrollController;
   @override
   State<QGScreen> createState() => _QGScreenState();
 }
@@ -31,6 +33,43 @@ class _QGScreenState extends State<QGScreen> {
   };
   Color Color3 = const Color.fromARGB(255, 18, 40, 70);
 
+  final ScrollController _scrollController = ScrollController();
+  bool _isFabVisible = true;
+
+  void _scrollListener() {
+    if (_scrollController.position.atEdge) {
+      bool isTop = _scrollController.position.pixels == 0;
+      if (isTop) {
+        setState(() {
+          _isFabVisible = true;
+        });
+      } else {
+        setState(() {
+          _isFabVisible = false; // Hide when at the bottom
+        });
+      }
+    } else {
+      setState(() {
+        _isFabVisible = true; // Show when scrolling
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  bool isFABVisible = true; // Tracks FAB visibility
+  Offset? fabPosition; // Initial position of the FAB
+
+  void toggleFABVisibility() {
+    setState(() {
+      isFABVisible = !isFABVisible; // Toggle FAB visibility
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +79,19 @@ class _QGScreenState extends State<QGScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            userTopInfos(), // Toujours en haut
+            // Align(
+            //   alignment: Alignment.centerLeft,
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(5.0),
+            //     child: BtnRoundedIconBack(
+            //       onpress: () {
+            //         // Navigator.of(context).pop();
+            //         context.pop();
+            //       },
+            //     ),
+            //   ),
+            // ),
+            userTopInfos(showBackArrow: true,), // Toujours en haut
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: Row(
@@ -79,7 +130,7 @@ class _QGScreenState extends State<QGScreen> {
             ),
             Expanded(
               child: ListView(
-                controller: widget.scrollController,
+                controller: _scrollController,
                 children: [
                   ValueListenableBuilder<String>(
                     valueListenable: _selectedSegment,

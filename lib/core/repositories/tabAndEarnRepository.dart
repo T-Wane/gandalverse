@@ -19,7 +19,8 @@ class TapAndEarnRepository with ChangeNotifier {
     if (_userProvider.user != null) {
       final updatedUser = _userProvider.user!.rebuild(
           (b) => b..coins = ((_userProvider.user?.coins ?? 0) + coins));
-      _userProvider.updateUser(updatedUser); // Mise à jour de l'utilisateur
+      //_userProvider.updateUser(updatedUser); // Mise à jour de l'utilisateur
+      _userProvider.updateUserPointLocal(updatedUser); // Mise à jour de l'utilisateur
       notifyListeners(); // Notifie les listeners pour la mise à jour en temps réel
     }
   }

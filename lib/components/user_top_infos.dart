@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/components/infoItem.dart';
 import 'package:gandalverse/core/providers/user_provider.dart';
+import 'package:gandalverse/core/route/route_name.dart';
 import 'package:gandalverse/screens/home.page.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
@@ -12,6 +13,7 @@ import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
 import 'package:gandalverse/widgets/profilDetails_bottomSheet.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:provider/provider.dart';
 
@@ -20,16 +22,17 @@ import 'package:telegram_web_app/telegram_web_app.dart';
 import 'profil_details.dart';
 
 class userTopInfos extends StatefulWidget {
-  userTopInfos({
-    super.key,
-  });
+  userTopInfos({super.key, this.goBack, this.showBackArrow = false});
+
+  VoidCallback? goBack;
+  bool showBackArrow;
 
   @override
   State<userTopInfos> createState() => _userTopInfosState();
 }
 
 class _userTopInfosState extends State<userTopInfos> {
-  //final TelegramWebApp telegram = TelegramWebApp.instance;
+  final TelegramWebApp telegram = TelegramWebApp.instance;
 
   bool? isDefinedVersion;
   String? clipboardText;
@@ -49,7 +52,7 @@ class _userTopInfosState extends State<userTopInfos> {
 
   void check() async {
     await Future.delayed(const Duration(seconds: 2));
-   // isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
+    // isDefinedVersion = await telegram.isVersionAtLeast('Bot API 6.1');
     setState(() {});
   }
 
@@ -65,102 +68,120 @@ class _userTopInfosState extends State<userTopInfos> {
         shadowColor: const Color.fromARGB(255, 151, 116, 211).withOpacity(0.5),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-          height: 55,
+          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+          height: 50,
           child: PointerInterceptor(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    // CardContentBottomSheet.show(context,
-                    //     child: ProfilDetails(telegram: telegram),
-                    //     image: Images.niveau1,
-                    //     fit: BoxFit.contain,
-                    //     setCircle: true);
-
-                    // ProfilDetailsContentBottomSheet.show(context,
-                    //     telegram: telegram);
-                    Navigator.push<void>(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => MonProfilScreen(),
+                if (widget.showBackArrow) ...[
+                  GestureDetector(
+                    onTap: () {
+                      context.pop();
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white10,
+                        shape: BoxShape.circle,
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white10,
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(
-                        width: 1,
-                        color: Colors.purple.shade100,
+                      margin: const EdgeInsets.only(left: 5, right: 2),
+                      padding: const EdgeInsets.all(2),
+                      child: const Icon(
+                        CupertinoIcons.arrow_left,
+                        color: Colors.white,
+                        size: 25,
                       ),
-                    ),
-                    margin: const EdgeInsets.only(left: 5, right: 2),
-                    padding: const EdgeInsets.all(2),
-                    child: const Icon(
-                      CupertinoIcons.person,
-                      color: Colors.white,
-                      size: 25,
                     ),
                   ),
-                ),
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          "UserName",
-                          // "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontFamily: "Aller",
-                            fontSize: 13,
-                            color: Colors.white,
+                  const Spacer(),
+                ] else ...[
+                  GestureDetector(
+                    onTap: () {
+                      // CardContentBottomSheet.show(context,
+                      //     child: ProfilDetails(telegram: telegram),
+                      //     image: Images.niveau1,
+                      //     fit: BoxFit.contain,
+                      //     setCircle: true);
+
+                      // ProfilDetailsContentBottomSheet.show(context,
+                      //     telegram: telegram);
+                      context.pushNamed(profil_view);
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white10,
+                        shape: BoxShape.rectangle,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          width: 1,
+                          color: Colors.purple.shade100,
+                        ),
+                      ),
+                      margin: const EdgeInsets.only(left: 5, right: 2),
+                      padding: const EdgeInsets.all(2),
+                      child: const Icon(
+                        CupertinoIcons.person,
+                        color: Colors.white,
+                        size: 25,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Text(
+                            //  "UserName",
+                            "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(
+                              fontFamily: "Aller",
+                              fontSize: 13,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 2,
-                      ),
-                      SizedBox(
-                        width: 120,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Text(
-                                "Neo  >",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w300,
-                                    color: Colors.purple.shade100,
-                                    fontFamily: "Aller",
-                                    fontSize: 10),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 2,
-                            ),
-                            LinearPercentIndicator(
-                              percent: 0.5,
-                              backgroundColor:
-                                  Colors.grey.shade200.withOpacity(0.2),
-                              progressColor: Colors.deepPurple.shade400,
-                              lineHeight: 5.0,
-                              barRadius: const Radius.circular(10),
-                            ),
-                          ],
+                        const SizedBox(
+                          height: 1,
                         ),
-                      )
-                    ],
+                        SizedBox(
+                          width: 120,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text(
+                                  "Neo  >",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w300,
+                                      color: Colors.purple.shade100,
+                                      fontFamily: "Aller",
+                                      fontSize: 10),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 1,
+                              ),
+                              LinearPercentIndicator(
+                                percent: 0.5,
+                                backgroundColor:
+                                    Colors.grey.shade200.withOpacity(0.2),
+                                progressColor: Colors.deepPurple.shade400,
+                                lineHeight: 5.0,
+                                barRadius: const Radius.circular(10),
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
+                ],
                 const SizedBox(
                   width: 5,
                 ),

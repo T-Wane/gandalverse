@@ -1,0 +1,61 @@
+[
+    {
+        "titre": "Yara Oil",
+        "image": "assets/images/categories_images/yara_oil.jpg",
+        "description": "Les meilleurs restaurants",
+        "id": "1",
+        "categorieType": "top20"
+    },
+    {
+        "titre": "AFG Bank Mali",
+        "image": "assets/images/categories_images/afg.jpg",
+        "description": "Les meilleurs restaurants",
+        "id": "2",
+        "categorieType": "top20"
+    },{
+        "titre": "PMU Mali",
+        "image": "assets/images/categories_images/pmu.jpg",
+        "description": "Les meilleurs restaurants",
+        "id": "3",
+        "categorieType": "top20"
+    },{
+        "titre": "Muso Kunda",
+        "image": "assets/images/categories_images/musso_kunda.jpg",
+        "description": "Les meilleurs restaurants",
+        "id": "4",
+        "categorieType": "top20"
+    },
+
+
+
+
+
+    {
+        "titre": "Banque ABC",
+        "image": "banque_abc.jpg",
+        "description": "Banque de confiance",
+        "id": "2",
+        "categorieType": "banques"
+    },
+    {
+        "titre": "Guichet XYZ",
+        "image": "guichet_xyz.jpg",
+        "description": "Guichet rapide",
+        "id": "3",
+        "categorieType": "guichets"
+    },
+    {
+        "titre": "Hotel Paradis",
+        "image": "hotel_paradis.jpg",
+        "description": "Un séjour de rêve",
+        "id": "4",
+        "categorieType": "hotels"
+    },
+    {
+        "titre": "Magasin Mode",
+        "image": "magasin_mode.jpg",
+        "description": "Le meilleur shopping",
+        "id": "5",
+        "categorieType": "shopping"
+    }
+]
