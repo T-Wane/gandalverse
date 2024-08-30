@@ -134,7 +134,7 @@ class RootNavigator {
       // Extraire les paramètres de l'URL
       final queryParams = state.pathParameters;
       return NotFoundPage(
-        path: state.uri.toString(),
+        path: state,
        parameters: queryParams,
       );
     },
@@ -142,7 +142,7 @@ class RootNavigator {
 }
 
 class NotFoundPage extends StatelessWidget {
-  final String path;
+  final GoRouterState path;
  final dynamic parameters;
 
   NotFoundPage({Key? key,
@@ -165,7 +165,7 @@ class NotFoundPage extends StatelessWidget {
           ),
           SizedBox(height: 16),
           Text(
-            'Path: $path',
+            'Path: ${path.toString()}',
             style: TextStyle(fontSize: 16),
           ),
           SizedBox(height: 16),
