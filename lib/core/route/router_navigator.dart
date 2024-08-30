@@ -68,15 +68,15 @@ class RootNavigator {
         ],
       ),
     ], // Route de rattrapage pour les routes inconnues
-    errorBuilder: (context, state) {
-      // debugPrint('Navigated to unknown route: ${state.uri.toString()}');
-      // Extraire les paramètres de l'URL
-     /// final queryParams = state.pathParameters;
-      return NotFoundPage(
-        // path: state.uri.toString(),
-       // parameters: queryParams,
-      );
-    },
+    // errorBuilder: (context, state) {
+    //   // debugPrint('Navigated to unknown route: ${state.uri.toString()}');
+    //   // Extraire les paramètres de l'URL
+    //  /// final queryParams = state.pathParameters;
+    //   return NotFoundPage(
+    //     // path: state.uri.toString(),
+    //    // parameters: queryParams,
+    //   );
+    // },
   );
 }
 
