@@ -31,6 +31,7 @@ class Images {
   static String check = "$ressourcePath/check.png";
   static String leftArrow = "$ressourcePath/Vector.png";
   static String soon = "$ressourcePath/soon.png";
+  static String education = "$ressourcePath/education.png";
 
   //Btn back
   static String circleBtn = "$ressourcePath/circleBtn.png";

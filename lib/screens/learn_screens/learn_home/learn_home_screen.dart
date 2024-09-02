@@ -36,9 +36,9 @@ class LearnHomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomImageView(
-                imagePath: Images.soon,
-                height: realH(200),
-                width: realW(200),
+                imagePath: Images.education,
+                height: realH(250),
+                width: realW(250),
                 fit: BoxFit.contain,
                 margin: const EdgeInsets.all(10),
               ),
@@ -48,10 +48,10 @@ class LearnHomeScreen extends StatelessWidget {
                   'Bientôt disponible',
                   maxLines: 1,
                   textAlign: TextAlign.left,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium!
-                      .copyWith(color: Themecolors.Color3, fontFamily: "Aller"),
+                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                      color: Themecolors.Color3,
+                      fontFamily: "Aller",
+                      fontWeight: FontWeight.w400),
                 ),
               ),
             ],

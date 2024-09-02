@@ -444,7 +444,8 @@ class _GoogleMapState extends State<HomeVrScreen>
           //https://gandalverse.com
           uri: Uri.parse('https://gandalverse.com'),
         ),
-      );
+      )
+    ;
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   }
