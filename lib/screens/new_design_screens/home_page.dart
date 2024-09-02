@@ -13,6 +13,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/user_top_infos.dart';
 import 'package:gandalverse/core/route/route_name.dart';
+import 'package:gandalverse/data/telegram_client.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/QG_screen/QG_screen.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
 import 'package:gandalverse/screens/revenus/revenus_page.dart';
@@ -357,6 +359,7 @@ class _GoogleMapState extends State<HomeVrScreen>
               iconColor: Themecolors.Color3,
               icon: null,
               press: () {
+                _showScanQrPopup();
                 // Navigator.push<void>(
                 //   context,
                 //   MaterialPageRoute<void>(
@@ -426,6 +429,25 @@ class _GoogleMapState extends State<HomeVrScreen>
           ],
         ),
       ),
+    );
+  }
+
+//##############################################################//
+  TelegramClient _telegramClient = getIt<TelegramClient>();
+
+  Future<void> _showScanQrPopup() async {
+    // Appelle la méthode showScanQrPopup
+    await _telegramClient.telegram.showScanQrPopup(
+      'Scanner QR code partenaire',
+      (String qrText) {
+        // Fonction de rappel appelée lorsque le QR code est scanné
+        // Traite le texte du QR code ici
+
+        print('QR Code scanned: $qrText');
+
+        // Retourne true pour fermer le popup, false pour le laisser ouvert
+        return true;
+      },
     );
   }
 
