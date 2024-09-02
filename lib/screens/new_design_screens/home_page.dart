@@ -149,12 +149,12 @@ class _GoogleMapState extends State<HomeVrScreen>
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
     screenHeight = MediaQuery.of(context).size.height;
-    if (screenWidth > standardWidth) {
-      screenWidth = standardWidth;
-    }
-    if (screenHeight > standardHeight) {
-      screenHeight = standardHeight;
-    }
+    // if (screenWidth > standardWidth) {
+    //   screenWidth = standardWidth;
+    // }
+    // if (screenHeight > standardHeight) {
+    //   screenHeight = standardHeight;
+    // }
 
     return Scaffold(
       key: _scaffoldKey,
