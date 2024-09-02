@@ -84,10 +84,10 @@ class buildFacebookCommunauty extends StatelessWidget {
                       height: 5,
                     ),
                     DefaultButton(
-                      backColor: Colors.purple.shade400,
+                      backColor: Colors.grey.shade300, // Colors.purple.shade400,
                       text: 'Rejoindre',
                       elevation: 1.0,
-                      textColor: Colors.white,
+                      textColor: Colors.grey.shade800,
                       fontSize: 15,
                       height: 50,
                       press: () {},
