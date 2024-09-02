@@ -48,12 +48,12 @@ class Init {
 
   static _registerServices() async {
     print("debut chargement service");
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
   }
 
   static _loadSettings() async {
     print("debut chargement setting");
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     print("debut chargement");
     print("fin chargement setting");
   }

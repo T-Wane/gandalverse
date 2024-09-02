@@ -7775,7 +7775,7 @@ _.c=null},
 atd:function atd(){},
 ate:function ate(){},
 M8:function M8(){},
-aHv(a){return new A.G8(a,B.aV,null,B.cz)},
+aHv(a){return new A.G8(a,B.aV,null,B.dz)},
 G8:function G8(a,b,c,d){var _=this
 _.as=_.Q=_.z=_.y=$
 _.a=a
@@ -26999,7 +26999,7 @@ s=12
 return A.p(Telegram.WebApp.expand(),$async$yZ)
 case 12:m=$.hN
 if(m==null)m=$.hN=new A.jZ()
-A.ky(B.dy,m.gap4(m),t.H)
+A.ky(B.cz,m.gap4(m),t.H)
 m=$.hN
 if(m==null)m=$.hN=new A.jZ()
 q=m
@@ -30266,7 +30266,7 @@ r=$.aJz
 if(r==null)A.aJy(s)
 else r.$1(s)}if(!$.a6T().ga1(0)){$.aIO=!0
 $.a67=0
-A.cm(B.dy,A.b9b())
+A.cm(B.cz,A.b9b())
 if($.aD2==null)$.aD2=new A.aT(new A.aj($.an,t.b),t.gR)}else{$.aKc().le(0)
 q=$.aD2
 if(q!=null)q.h0(0)
@@ -34418,7 +34418,7 @@ A.ky(a,null,s).bb(new A.ah6(r,this,c,b),s)
 return new A.ah7(r)},
 aj_(a,b,c){var s,r,q,p=this
 if(!p.b)return
-s=p.S5(B.cz,new A.ah8(c,a,b),new A.ah9(p,a))
+s=p.S5(B.dz,new A.ah8(c,a,b),new A.ah9(p,a))
 r=p.r
 q=r.D(0,a)
 if(q!=null)q.$0()
@@ -35448,7 +35448,7 @@ p=q.i(0,r)
 if(p!=null)p.aM(0)
 if(a.type==="keydown")p=a.ctrlKey||a.shiftKey||a.altKey||a.metaKey
 else p=!1
-if(p)q.n(0,r,A.cm(B.cz,new A.akT(m,r,s)))
+if(p)q.n(0,r,A.cm(B.dz,new A.akT(m,r,s)))
 else q.D(0,r)}o=A.q(a,l,["Shift"])?1:0
 if(A.q(a,l,["Alt"])||A.q(a,l,["AltGraph"]))o|=2
 if(A.q(a,l,["Control"]))o|=4
@@ -45469,7 +45469,7 @@ s.a.toString},
 a6v(a){var s=this
 if(a===B.W){s.air()
 s.a.toString
-s.x=A.cm(B.dy,s.gaf2())}},
+s.x=A.cm(B.cz,s.gaf2())}},
 afE(){var s=this.a
 s.r.$0()}}
 A.atd.prototype={
@@ -54977,7 +54977,7 @@ m=c.gm(c)
 l=t.m
 k=t.gD
 q.CW=new A.aF(l.a(o),new A.pc(0,m>>>24&255),k.h("aF<au.T>"))
-m=A.bN(h,B.dy,0,h,1,h,p)
+m=A.bN(h,B.cz,0,h,1,h,p)
 m.b1()
 o=m.bQ$
 o.b=!0
@@ -55071,7 +55071,7 @@ $0(){var s=this.a.gq(0)
 return new A.H(0,0,0+s.a,0+s.b)},
 $S:163}
 A.axp.prototype={
-VH(a,b,c,d,e,f,g,h,i,j,k,a0){var s,r,q=null,p=i==null?A.b5q(k,d,j,h):i,o=new A.DK(h,B.aE,p,A.b5l(k,d,j),!d,a0,c,f,e,k,g),n=e.A,m=A.bN(q,B.dy,0,q,1,q,n),l=e.gdG()
+VH(a,b,c,d,e,f,g,h,i,j,k,a0){var s,r,q=null,p=i==null?A.b5q(k,d,j,h):i,o=new A.DK(h,B.aE,p,A.b5l(k,d,j),!d,a0,c,f,e,k,g),n=e.A,m=A.bN(q,B.cz,0,q,1,q,n),l=e.gdG()
 m.b1()
 s=m.bQ$
 s.b=!0
@@ -55669,7 +55669,7 @@ A.Xj.prototype={
 al(){var s,r=this,q=null
 r.aB()
 r.e=A.bN(q,B.Jz,0,q,1,r.a.w?1:0,r)
-s=A.bN(q,B.dz,0,q,1,q,r)
+s=A.bN(q,B.dy,0,q,1,q,r)
 r.d=s
 r.f=A.cw(B.aN,s,new A.oY(B.aN))
 s=r.a.c
@@ -55722,7 +55722,7 @@ A.Jt.prototype={
 gmo(){return this.a.w!=null||!1},
 al(){var s,r=this
 r.aB()
-r.d=A.bN(null,B.dz,0,null,1,null,r)
+r.d=A.bN(null,B.dy,0,null,1,null,r)
 if(r.gmo()){r.f=r.u3()
 r.d.sm(0,1)}else r.a.toString
 s=r.d
@@ -56352,7 +56352,7 @@ if(r!==B.oI)if(r!==B.oG){if(s.y)s=s.r&&!0
 else s=!0
 q=s}else q=!1
 else q=!0
-s=A.bN(o,B.dz,0,o,1,q?1:0,p)
+s=A.bN(o,B.dy,0,o,1,q?1:0,p)
 p.d!==$&&A.bp()
 p.d=s
 s.b1()
@@ -56362,7 +56362,7 @@ r.a.push(p.gFB())
 s=A.cw(B.aN,s,new A.oY(B.aN))
 p.e!==$&&A.bp()
 p.e=s
-s=A.bN(o,B.dz,0,o,1,o,p)
+s=A.bN(o,B.dy,0,o,1,o,p)
 p.f!==$&&A.bp()
 p.f=s},
 bp(){this.da()
@@ -58183,7 +58183,7 @@ o.ch.iY(0,p)},
 ahR(){var s,r=this.c
 r.toString
 s=A.y4(r)
-if(s!=null&&s.f.length!==0)s.iJ(0,B.IK,B.dy)},
+if(s!=null&&s.f.length!==0)s.iJ(0,B.IK,B.cz)},
 gq6(){this.a.toString
 return!0},
 al(){var s,r=this,q=null
@@ -82631,10 +82631,10 @@ o===$&&A.b()
 o.c_(0)
 p.z=null}o=p.b
 o===$&&A.b()
-o.e=B.dz
+o.e=B.dy
 if(p.a!==B.i4){o.iY(0,0)
 p.a=B.i4}else{o=o.r
-if(!(o!=null&&o.a!=null))p.ar()}p.c=A.cm(B.dz,new A.awI(p))},
+if(!(o!=null&&o.a!=null))p.ar()}p.c=A.cm(B.dy,new A.awI(p))},
 Ex(a){var s=this
 if(a!==B.W)return
 switch(s.a.a){case 1:s.o3(B.ek)
@@ -82699,7 +82699,7 @@ a.oy(new A.l(s/2*(0.5+r),o-p),p,m)
 a.cE(0)},
 k(a){return"_GlowController(color: "+this.ax.k(0)+", axis: "+this.ay.b+")"}}
 A.awI.prototype={
-$0(){return this.a.o3(B.cz)},
+$0(){return this.a.o3(B.dz)},
 $S:0}
 A.ZB.prototype={
 Rg(a,b,c,d,e){var s
@@ -89677,7 +89677,7 @@ p.c=n
 o=n}if(o.a>0){o.b=o.c=o.d=o.e=null
 o.a=0}q.nL()}this.a44()},
 aiY(){var s,r,q,p=this
-if(p.e.a>0){s=A.bN(null,B.cz,0,null,1,null,p)
+if(p.e.a>0){s=A.bN(null,B.dz,0,null,1,null,p)
 s.bK(0)
 r=new A.vx(s)
 s.b1()
@@ -89787,7 +89787,7 @@ this.Aw(0)},
 Aw(a){var s=0,r=A.w(t.H),q=this
 var $async$Aw=A.x(function(b,c){if(b===1)return A.t(c,r)
 while(true)switch(s){case 0:s=2
-return A.p(A.ky(B.cz,null,t.z),$async$Aw)
+return A.p(A.ky(B.dz,null,t.z),$async$Aw)
 case 2:q.a6(new A.aDM())
 return A.u(null,r)}})
 return A.v($async$Aw,r)},
@@ -102314,7 +102314,7 @@ B.Ju=new A.CH(null,null,null)
 B.x=new A.aX(0)
 B.Jv=new A.aX(1000)
 B.bc=new A.aX(1e5)
-B.dy=new A.aX(1e6)
+B.cz=new A.aX(1e6)
 B.Jw=new A.aX(12e4)
 B.Jx=new A.aX(12e5)
 B.jb=new A.aX(125e3)
@@ -102323,10 +102323,10 @@ B.Jz=new A.aX(15e3)
 B.ej=new A.aX(15e4)
 B.JA=new A.aX(15e5)
 B.JB=new A.aX(16667)
-B.dz=new A.aX(167e3)
+B.dy=new A.aX(167e3)
 B.JC=new A.aX(18e4)
 B.N=new A.aX(2e5)
-B.cz=new A.aX(2e6)
+B.dz=new A.aX(2e6)
 B.JD=new A.aX(225e3)
 B.ce=new A.aX(25e4)
 B.JE=new A.aX(2961926e3)
