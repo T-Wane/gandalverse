@@ -36,7 +36,7 @@
 
     <script>
       // The value below is injected by flutter build, do not touch.
-      const serviceWorkerVersion = "1902923489";
+      const serviceWorkerVersion = "2907890042";
     </script>
     <!-- This script adds the flutter initialization JS code -->
     <script src="flutter.js" defer></script>
@@ -45,9 +45,103 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
     -->
-  </head>
-  <body>
-    <script>
+
+  <!-- CSS Styles -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: url('./assets/GverseToken_OnboardingPage') no-repeat center center;
+      background-size: cover;
+    }
+
+    .progress-bar {
+      width: 100vw;
+      position: absolute;
+      top: 0;
+      background-color: #f3f3f3;
+      border-radius: 4px;
+    }
+
+    .progress-bar-fill {
+      height: 5px;
+      background-color: #46494b;
+      border-radius: 4px;
+      animation: progress 5s ease-in-out forwards;
+    }
+
+    @keyframes progress {
+      0% {
+        width: 50%;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+
+    .circular-progress-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      bottom: 20px; /* Adjust position as needed */
+      width: 100vw;
+    }
+
+    .circular-progress {
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #46494b;
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="loading_indicator" class="container">
+    <!-- Progress Bar on Top -->
+    <div class="progress-bar">
+      <div class="progress-bar-fill"></div>
+    </div>
+
+    <!-- Circular Progress Indicator at the Bottom -->
+    <div class="circular-progress-container">
+      <div class="circular-progress"></div>
+    </div>
+  </div>
+
+  <script src="flutter_bootstrap.js" async></script>
+
+  <!-- Script to remove Splash Screen after 10 seconds -->
+  <script>
+    window.onload = function() {
+      setTimeout(() => {
+        var loadingIndicator = document.getElementById('loading_indicator');
+        if (loadingIndicator) loadingIndicator.remove();
+      }, 10000); // Adjust the delay as needed
+    }
+  </script>
+    <script defer>
       window.addEventListener("load", function (ev) {
         // Download main.dart.js
         _flutter.loader.loadEntrypoint({
@@ -80,7 +174,7 @@
       firebase.initializeApp(firebaseConfig);
       firebase.analytics();
     </script> -->
-    <script type="module">
+    <script type="module" defer>
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
       // TODO: Add SDKs for Firebase products that you want to use

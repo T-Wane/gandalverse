@@ -23,40 +23,41 @@ import 'dart:convert'; // Pour JSON parsing
 import 'package:flutter/material.dart';
 
 void extractLaunchParameters() {
-  // Extraction des paramètres de hash
-  String hash = window.location.hash;
-  if (hash.startsWith('#')) {
-    hash = hash.substring(1); // Supprimer le #
-  }
+ // let startParam = window.Telegram.WebApp.initDataUnsafe.start_param
+  // // Extraction des paramètres de hash
+  // String hash = window.location.hash;
+  // if (hash.startsWith('#')) {
+  //   hash = hash.substring(1); // Supprimer le #
+  // }
 
-  Uri hashUri = Uri.parse('?$hash');
-  String? tgWebAppData = hashUri.queryParameters['tgWebAppData'];
-  String? tgWebAppVersion = hashUri.queryParameters['tgWebAppVersion'];
-  String? tgWebAppThemeParams = hashUri.queryParameters['tgWebAppThemeParams'];
+  // Uri hashUri = Uri.parse('?$hash');
+  // String? tgWebAppData = hashUri.queryParameters['tgWebAppData'];
+  // String? tgWebAppVersion = hashUri.queryParameters['tgWebAppVersion'];
+  // String? tgWebAppThemeParams = hashUri.queryParameters['tgWebAppThemeParams'];
 
-  print('tgWebAppData: $tgWebAppData');
-  print('tgWebAppVersion: $tgWebAppVersion');
-  print('tgWebAppThemeParams: $tgWebAppThemeParams');
+  // print('tgWebAppData: $tgWebAppData');
+  // print('tgWebAppVersion: $tgWebAppVersion');
+  // print('tgWebAppThemeParams: $tgWebAppThemeParams');
 
-  if (tgWebAppThemeParams != null) {
-    try {
-      Map<String, dynamic> theme = jsonDecode(tgWebAppThemeParams);
-      print('Theme: $theme');
-    } catch (e) {
-      print('Error parsing tgWebAppThemeParams: $e');
-    }
-  }
+  // if (tgWebAppThemeParams != null) {
+  //   try {
+  //     Map<String, dynamic> theme = jsonDecode(tgWebAppThemeParams);
+  //     print('Theme: $theme');
+  //   } catch (e) {
+  //     print('Error parsing tgWebAppThemeParams: $e');
+  //   }
+  // }
 
-  // Extraction des paramètres de query
-  Uri uri = Uri.parse(window.location.href);
-  String? startParam = uri.queryParameters['startapp'];
-  print('startapp: $startParam');
+  // // Extraction des paramètres de query
+  // Uri uri = Uri.parse(window.location.href);
+  // String? startParam = uri.queryParameters['startapp'];
+  // print('startapp: $startParam');
 
-  // Sauvegarde dans le local storage si nécessaire
-  window.localStorage['tgWebAppData'] = tgWebAppData ?? '';
-  window.localStorage['tgWebAppVersion'] = tgWebAppVersion ?? '';
-  window.localStorage['tgWebAppThemeParams'] = tgWebAppThemeParams ?? '';
-  window.localStorage['startapp'] = startParam ?? '';
+  // // Sauvegarde dans le local storage si nécessaire
+  // window.localStorage['tgWebAppData'] = tgWebAppData ?? '';
+  // window.localStorage['tgWebAppVersion'] = tgWebAppVersion ?? '';
+  // window.localStorage['tgWebAppThemeParams'] = tgWebAppThemeParams ?? '';
+  // window.localStorage['startapp'] = startParam ?? '';
 }
 
 Future main() async {
