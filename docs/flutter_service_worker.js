@@ -3,9 +3,9 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "9e2c9c65a0694e121db37c4e8e8515e9",
-"assets/AssetManifest.bin.json": "e04969433fdb805f84ac6a28fdc3be77",
-"assets/AssetManifest.json": "01aaa0f76efc9c64c76c00ffc6b6abec",
+const RESOURCES = {"assets/AssetManifest.bin": "9f58986150544fe8ed67a08796101204",
+"assets/AssetManifest.bin.json": "b732987886cea0ae38907eac49625217",
+"assets/AssetManifest.json": "43644575940ea590ec48fa6936e2379a",
 "assets/assets/AssetManifest.bin": "c85bcc7489efa79fc6ad3fe57dd52e3e",
 "assets/assets/AssetManifest.bin.json": "7dba2718645bee383e32a237b5dea4a5",
 "assets/assets/AssetManifest.json": "eef43b9362dfb365aef650a403e2c9e5",
@@ -99,6 +99,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "9e2c9c65a0694e121db37c4e8e8515e9
 "assets/assets/images/social_black/tiktok.png": "c28071fcea9742f039d0ae44468caf22",
 "assets/assets/images/social_black/twitter.png": "6352d995b0c2a0f882503daa1d99a2e7",
 "assets/assets/images/social_black/youtube.png": "4aa43a7d58e9899c0d0bcbf516285e02",
+"assets/assets/images/soon.png": "2a3a489e4836cde82133f466b551a05c",
 "assets/assets/images/telegram.png": "0b010ffa480ee2e2c422c187811d4ed9",
 "assets/assets/images/tiktok.png": "af0831a3b70b49c307fa20ded7de25cd",
 "assets/assets/images/twitter.png": "33249779c69d217384d439be743e8da9",
@@ -137,9 +138,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "9e2c9c65a0694e121db37c4e8e8515e9
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "cb086a4cbb3dd644ab33be4d637593dc",
-"/": "cb086a4cbb3dd644ab33be4d637593dc",
-"main.dart.js": "eb562ea688ff533bdce08ba55c1b8052",
+"index.html": "450caf5e9722afb60ade4d6a366051bf",
+"/": "450caf5e9722afb60ade4d6a366051bf",
+"main.dart.js": "09b02361cde98b490189e7926d625c32",
 "manifest.json": "9f6f1bf5b67cd2b30e68a99551f02cad",
 "version.json": "bdbf5533cd872db8379bf13ff58db6f3"};
 // The application shell files that are downloaded before a service worker can

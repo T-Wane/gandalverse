@@ -290,6 +290,7 @@ class _GoogleMapState extends State<HomeVrScreen>
               isRight: false,
               icon: Icons.school_rounded,
               iconColor: Themecolors.Color3,
+              press: () => context.pushNamed(learn_home_view),
             ),
             //directions button
             MapButton(

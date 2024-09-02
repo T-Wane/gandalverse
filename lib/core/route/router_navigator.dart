@@ -4,6 +4,7 @@ import 'package:gandalverse/main.dart';
 import 'package:gandalverse/screens/QG_screen/QG_screen.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
 import 'package:gandalverse/screens/defis/defis_screen.dart';
+import 'package:gandalverse/screens/learn_screens/learn_home/learn_home_screen.dart';
 import 'package:gandalverse/screens/new_design_screens/home_page.dart';
 import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:go_router/go_router.dart';
@@ -75,7 +76,7 @@ class RootNavigator {
   final GoRouter makeRoutes = GoRouter(
     initialLocation: "/",
     routes: [
-      // Route pour l'écran d'initialisation 
+      // Route pour l'écran d'initialisation
       GoRoute(
         name: welcome_view,
         path: '/',
@@ -125,6 +126,11 @@ class RootNavigator {
             name: defi_view,
             path: 'defi',
             builder: (context, state) => AnnoncesPage(),
+          ),
+          GoRoute(
+            name: learn_home_view,
+            path: 'learn_home',
+            builder: (context, state) => LearnHomeScreen(),
           ),
         ],
       ),
