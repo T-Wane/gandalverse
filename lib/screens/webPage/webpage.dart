@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gandalverse/screens/new_design_screens/helper/ui_helper.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
 import 'package:webview_flutter_web/webview_flutter_web.dart';
@@ -81,6 +82,52 @@ class _GandalVerseWebViewState extends State<GandalVerseWebView> {
           ),
         ),
       ]),
+    );
+  }
+}
+
+//import 'package:webview_flutter/webview_flutter.dart';
+class VerseWebView extends StatefulWidget {
+  VerseWebView({
+    super.key,
+  });
+
+  @override
+  _VerseWebViewState createState() => _VerseWebViewState();
+}
+
+class _VerseWebViewState extends State<VerseWebView> {
+  late PlatformWebViewController _webViewController;
+
+  @override
+  void initState() {
+    super.initState();
+    _webViewController = PlatformWebViewController(
+      const PlatformWebViewControllerCreationParams(),
+    )..loadRequest(
+        LoadRequestParams(
+          uri: Uri.parse('https://gandalverse.com'),
+        ),
+      );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  Offset _offset = Offset.zero;
+  @override
+  Widget build(BuildContext context) {
+    screenWidth = MediaQuery.of(context).size.width;
+    screenHeight = MediaQuery.of(context).size.height;
+
+    return Container(
+      width: screenWidth,
+      height: screenHeight,
+      child: PlatformWebViewWidget(
+        PlatformWebViewWidgetCreationParams(controller: _webViewController),
+      ).build(context),
     );
   }
 }

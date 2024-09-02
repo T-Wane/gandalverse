@@ -163,13 +163,14 @@ class _GoogleMapState extends State<HomeVrScreen>
         height: screenHeight,
         child: Stack(
           children: <Widget>[
-            Container(
-              width: screenWidth,
-              height: screenHeight,
-              child: PlatformWebViewWidget(
-                PlatformWebViewWidgetCreationParams(controller: controller),
-              ).build(context),
-            ),
+            VerseWebView(),
+            // Container(
+            //   width: screenWidth,
+            //   height: screenHeight,
+            //   child: PlatformWebViewWidget(
+            //     PlatformWebViewWidgetCreationParams(controller: controller),
+            //   ).build(context),
+            // ),
 
             Align(
               alignment: Alignment.topCenter,
@@ -444,8 +445,7 @@ class _GoogleMapState extends State<HomeVrScreen>
           //https://gandalverse.com
           uri: Uri.parse('https://gandalverse.com'),
         ),
-      )
-    ;
+      );
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   }
