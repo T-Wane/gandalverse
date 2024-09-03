@@ -10,13 +10,14 @@ class CreateUserFields {
   String? lastName;
   String? username;
   String? photoUrl;
+  String? parrainId; 
 
   CreateUserFields(
       {this.telegramId,
       this.firstName,
       this.lastName,
       this.username,
-      this.photoUrl});
+      this.photoUrl, this.parrainId});
 
   Map<String, dynamic> toJson() => _$CreateUserFieldsToJson(this);
   String toJsonEncode() => jsonEncode(_$CreateUserFieldsToJson(this));

@@ -40,6 +40,27 @@ class UserRepository {
     }
   }
 
+  Future<List<UserModel>> getUserFriends(int telegramId) async {
+    try {
+      final querySnapshot = await _firestore
+          .collection('users')
+          .where('parrainId', isEqualTo: telegramId)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        // Mappez chaque document à un objet UserModel
+        final users = querySnapshot.docs.map((doc) {
+          return UserModel.fromJson(doc.data());
+        }).toList();
+        return users;
+      }
+      return []; // Retourne une liste vide si aucun utilisateur n'est trouvé
+    } catch (e) {
+      log('Error getting user friends: $e');
+      return []; // Retourne une liste vide en cas d'erreur
+    }
+  }
+
   Future<List<Map<String, dynamic>>> loadUserPurchasedCards(
       String userId) async {
     try {

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:gandalverse/core/modeles/carte_model/carte.dart';
 import 'package:gandalverse/core/modeles/fields/createUser_fields/createUser_fields.dart';
 import 'package:gandalverse/core/modeles/user_model/user_model.dart';
+import 'package:gandalverse/core/repositories/startparam/start_param.dart';
+import 'package:gandalverse/core/repositories/startparam/start_param_parsing.dart';
 import 'package:gandalverse/core/repositories/user_repository.dart';
 import 'package:gandalverse/core/services/QG_services/QGService.dart';
 import 'package:gandalverse/core/services/QG_services/equipe_service.dart';
@@ -18,6 +20,7 @@ class UserProvider extends ChangeNotifier {
   UserRepository _userRepository;
   TelegramClient _telegramClient;
   //late TelegramWebApp telegram;
+  List<UserModel> friends = [];
 
   UserModel? _user;
   int _localPoint = 0;
@@ -46,11 +49,14 @@ class UserProvider extends ChangeNotifier {
 
     if (_user == null) {
       TelegramUser user = _telegramClient.telegram.initData.user;
+      String? startParam = _telegramClient.telegram.initDataUnsafe?.startParam;
+      StartParam parsedParam = (startParam ?? '').parseStartParam();
       createUser(
         telegramId: _telegramClient.telegram.initData.user.id,
         firstName: user.firstname,
         lastName: user.lastname,
         username: user.username,
+        parrainId: getParrainId(parsedParam),
         photoUrl: _telegramClient.telegram.initDataUnsafe?.user?.photoUrl,
       );
       // createUser(
@@ -80,15 +86,26 @@ class UserProvider extends ChangeNotifier {
       String? firstName,
       String? lastName,
       String? username,
+      String? parrainId,
       String? photoUrl}) async {
     CreateUserFields fields = CreateUserFields(
         telegramId: telegramId,
         firstName: firstName,
         lastName: lastName,
         username: username,
+        parrainId: parrainId,
         photoUrl: photoUrl);
     await _userRepository.createUser(fields: fields);
     await fetchUserByTelegramId();
+  }
+
+  String getParrainId(StartParam param) {
+    switch (param) {
+      case Referral _:
+        return param.parrainId;
+      default:
+        return 'bySystem';
+    }
   }
 
   Future<void> updateUser(UserModel user) async {
@@ -161,5 +178,22 @@ class UserProvider extends ChangeNotifier {
       print("#### error $e");
     }
     notifyListeners();
+  }
+
+  ///GET USER FRIENDS
+  ///use user telegramId to get his friends
+  Future<List<UserModel>> getMyFirends({bool refresh = true}) async {
+    if (_user == null) return [];
+    if (friends.isNotEmpty && !refresh) return friends;
+    try {
+      List<UserModel> friendsList =
+          await _userRepository.getUserFriends(_user!.telegramId);
+      friends = friendsList;
+      notifyListeners();
+      return friends;
+    } catch (e) {
+      print("# getMyFirends => error $e");
+      return [];
+    }
   }
 }
