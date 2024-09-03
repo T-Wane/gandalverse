@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:gandalverse/main.dart';
 import 'package:telegram_web_app/telegram_web_app.dart';
 
@@ -17,6 +19,8 @@ class TelegramClient {
         await TelegramWebApp.instance.ready();
         await TelegramWebApp.instance.disableVerticalSwipes();
         await TelegramWebApp.instance.expand(); 
+        String? startParam =  TelegramWebApp.instance.initDataUnsafe?.startParam; 
+     
         Future.delayed(
           const Duration(seconds: 1),
           TelegramWebApp.instance.expand,

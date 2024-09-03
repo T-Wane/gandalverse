@@ -36,7 +36,7 @@
 
     <script>
       // The value below is injected by flutter build, do not touch.
-      const serviceWorkerVersion = "2781578380";
+      const serviceWorkerVersion = "2331269970";
     </script>
     <!-- This script adds the flutter initialization JS code -->
     <script src="flutter.js" defer></script>
@@ -148,6 +148,11 @@
   </script>
     <script defer>
       window.addEventListener("load", function (ev) {
+          // Récupère les paramètres d'initialisation de l'application Telegram
+        const startParam = window.Telegram.WebApp.initDataUnsafe.start_param;
+        
+        // Utilisez startParam pour gérer la logique de parrainage ou autre
+        console.log('Paramètre de démarrage :', startParam);
         // Download main.dart.js
         _flutter.loader.loadEntrypoint({
           serviceWorker: {
@@ -159,6 +164,8 @@
             });
           },
         });
+ 
+
       });
     </script>
 
