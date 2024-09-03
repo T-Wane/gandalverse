@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/user_top_infos.dart';
+import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/core/route/route_name.dart';
 import 'package:gandalverse/data/telegram_client.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
@@ -434,6 +435,7 @@ class _GoogleMapState extends State<HomeVrScreen>
 
 //##############################################################//
   TelegramClient _telegramClient = getIt<TelegramClient>();
+  UserProvider _userProvider = getIt<UserProvider>();
 
   Future<void> _showScanQrPopup() async {
     // Appelle la méthode showScanQrPopup
@@ -460,6 +462,9 @@ class _GoogleMapState extends State<HomeVrScreen>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      _userProvider.fetchUserByTelegramId();
+    });
     controller = PlatformWebViewController(
       const PlatformWebViewControllerCreationParams(),
     )..loadRequest(

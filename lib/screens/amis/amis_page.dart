@@ -48,67 +48,68 @@ class _AmisPageState extends State<AmisPage> {
               ),
             ),
             Flexible(
-                child: Column(children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: AutoSizeText(
-                  'Invitez des amis!',
-                  maxLines: 1,
-                  textAlign: TextAlign.left,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium!
-                      .copyWith(color: Color3, fontFamily: "Aller"),
+              child: Column(children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: AutoSizeText(
+                    'Invitez des amis!',
+                    maxLines: 1,
+                    textAlign: TextAlign.left,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headlineMedium!
+                        .copyWith(color: Color3, fontFamily: "Aller"),
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: AutoSizeText(
-                  'Recevez des bonus exceptionnelles',
-                  maxLines: 1,
-                  textAlign: TextAlign.left,
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Color3.withOpacity(0.7), fontFamily: "Aller"),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: AutoSizeText(
+                    'Recevez des bonus exceptionnelles',
+                    maxLines: 1,
+                    textAlign: TextAlign.left,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: Color3.withOpacity(0.7), fontFamily: "Aller"),
+                  ),
                 ),
-              ),
-              inviterAmiCard(Color3: Color3),
-              inviterAmiWithPremiumCard(
-                Color3: Color3,
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: AutoSizeText(
-                          'Liste de vos amis (${_userProvider.friends.length})',
-                          maxLines: 1,
-                          textAlign: TextAlign.left,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(
-                                  color: Color3.withOpacity(0.7),
-                                  fontFamily: "Aller"),
+                inviterAmiCard(Color3: Color3),
+                inviterAmiWithPremiumCard(
+                  Color3: Color3,
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: AutoSizeText(
+                            'Liste de vos amis (${_userProvider.friends.length})',
+                            maxLines: 1,
+                            textAlign: TextAlign.left,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(
+                                    color: Color3.withOpacity(0.7),
+                                    fontFamily: "Aller"),
+                          ),
                         ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          setState(() {});
-                        },
-                        icon: Icon(
-                          CupertinoIcons.refresh_thick,
-                          color: Color3,
-                          size: 20,
+                        IconButton(
+                          onPressed: () {
+                            setState(() {});
+                          },
+                          icon: Icon(
+                            CupertinoIcons.refresh_thick,
+                            color: Color3,
+                            size: 20,
+                          ),
                         ),
-                      ),
-                    ]),
-              ),
-              Flexible(child: _buildFirendsList(_userProvider))
-            ]),),
+                      ]),
+                ),
+                Flexible(child: _buildFirendsList(_userProvider))
+              ]),
+            ),
             const bottomInviteBtns(),
           ]),
         );
@@ -131,11 +132,11 @@ class _AmisPageState extends State<AmisPage> {
               width: double.infinity,
               padding: const EdgeInsets.all(8.0),
               margin: const EdgeInsets.all(5),
-              child: const Center(
+              child: Center(
                 child: Text(
-                  'No firend found',
+                  'No friend found',
                   textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Themecolors.Color3),
                 ),
               ),
             );

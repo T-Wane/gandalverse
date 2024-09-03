@@ -183,11 +183,14 @@ class UserProvider extends ChangeNotifier {
   ///GET USER FRIENDS
   ///use user telegramId to get his friends
   Future<List<UserModel>> getMyFirends({bool refresh = true}) async {
-    if (_user == null) return [];
+    if (_user == null) {
+      fetchUserByTelegramId();
+      return [];
+    }
     if (friends.isNotEmpty && !refresh) return friends;
     try {
       List<UserModel> friendsList =
-          await _userRepository.getUserFriends(_user!.telegramId);
+          await _userRepository.getUserFriends(telegramUserId);
       friends = friendsList;
       notifyListeners();
       return friends;
