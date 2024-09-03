@@ -18,8 +18,9 @@ class TelegramClient {
       if (TelegramWebApp.instance.isSupported) {
         await TelegramWebApp.instance.ready();
         await TelegramWebApp.instance.disableVerticalSwipes();
-        await TelegramWebApp.instance.expand();
+        await TelegramWebApp.instance.expand(); 
         String? startParam = TelegramWebApp.instance.initDataUnsafe?.startParam;
+       // String? startParam = TelegramWebApp.instance.initDataUnsafe?.startParam;
         print("startParam $startParam");
         Future.delayed(
           const Duration(seconds: 1),
