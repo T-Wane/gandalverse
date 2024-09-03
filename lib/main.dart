@@ -18,7 +18,7 @@ import 'core/services/explorer_service/explorer_service.dart';
 import 'data/telegram_client.dart';
 import 'screens/home.page.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
-import 'dart:html';
+import 'dart:html' as html;
 import 'dart:convert'; // Pour JSON parsing
 import 'package:flutter/material.dart';
 
