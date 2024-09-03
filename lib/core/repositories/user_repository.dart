@@ -50,13 +50,14 @@ class UserRepository {
       if (querySnapshot.docs.isNotEmpty) {
         // Mappez chaque document à un objet UserModel
         final users = querySnapshot.docs.map((doc) {
+          print('getUserFriends =>: $doc');
           return UserModel.fromJson(doc.data());
         }).toList();
         return users;
       }
       return []; // Retourne une liste vide si aucun utilisateur n'est trouvé
     } catch (e) {
-      log('Error getting user friends: $e');
+      print('Error getting user friends: $e');
       return []; // Retourne une liste vide en cas d'erreur
     }
   }
