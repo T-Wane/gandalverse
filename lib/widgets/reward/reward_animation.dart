@@ -43,8 +43,6 @@ class _RewardAnimationState extends State<RewardAnimation>
       child: Material(
         color: Colors.transparent,
         child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
           margin: const EdgeInsets.all(8.0),
           decoration: ShapeDecoration(
             color: Colors.black12,

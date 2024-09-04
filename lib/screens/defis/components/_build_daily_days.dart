@@ -94,16 +94,17 @@ class _ShowGetDailyRewardSheetContentState
     currentDay = await dailyManager.getCurrentDay();
     coinsReward = await dailyManager.getRewardForToday();
     isClaimed = await dailyManager.isRewardClaimed();
-    RewardAnimation.show(context);
-    Future.delayed(const Duration(seconds: 3), () {
-      RewardAnimation.hide(context);
-    });
+   
     setState(() {});
   }
 
   void claimReward() async {
     await dailyManager.claimReward();
-    updateDailyReward();
+    updateDailyReward(); 
+    RewardAnimation.show(context);
+    Future.delayed(const Duration(seconds: 3), () {
+      RewardAnimation.hide(context);
+    });
   }
 
   @override

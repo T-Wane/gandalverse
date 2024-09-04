@@ -72,7 +72,7 @@ class _AmiItemCardState extends State<AmiItemCard> {
                     ),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       AutoSizeText(
                         '${widget.friend.coins}',
@@ -91,8 +91,8 @@ class _AmiItemCardState extends State<AmiItemCard> {
                       CustomImageView(
                         imagePath: Images.coin_dollar,
                         fit: BoxFit.contain,
-                        height: 25,
-                        width: 25,
+                        height: 18,
+                        width: 18,
                       ),
                     ],
                   ),
