@@ -47,6 +47,7 @@ class UserRepository {
           .where('parrainId', isEqualTo: telegramId)
           .get();
 
+      print('getUserFriends => querySnapshot : ${querySnapshot.docs.length}');
       if (querySnapshot.docs.isNotEmpty) {
         // Mappez chaque document à un objet UserModel
         final users = querySnapshot.docs.map((doc) {
