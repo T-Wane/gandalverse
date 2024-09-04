@@ -44,7 +44,7 @@ class UserRepository {
     try {
       final querySnapshot = await _firestore
           .collection('users')
-          .where('parrainId', isEqualTo: telegramId)
+          .where('parrainId', isEqualTo: '$telegramId')
           .get();
 
       print('getUserFriends => querySnapshot : ${querySnapshot.docs.length}');

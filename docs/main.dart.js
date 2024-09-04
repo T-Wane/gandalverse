@@ -90711,7 +90711,7 @@ var $async$xH=A.x(function(b,c){if(b===1){o=c
 s=p}while(true)switch(s){case 0:p=4
 j=n.a
 s=7
-return A.p(A.v4(j,j.gfq().h_("users")).a_3(0,"parrainId",a).pk(0),$async$xH)
+return A.p(A.v4(j,j.gfq().h_("users")).a_3(0,"parrainId",""+a).pk(0),$async$xH)
 case 7:m=c
 A.e7("getUserFriends => querySnapshot : "+m.gn_().length)
 if(m.gn_().length!==0){j=m.gn_()
