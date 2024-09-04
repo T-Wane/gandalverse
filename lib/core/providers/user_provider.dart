@@ -199,4 +199,9 @@ class UserProvider extends ChangeNotifier {
       return []; // Retourne une liste vide en cas d'erreur
     }
   }
+
+  // Méthode pour rafraîchir les amis dans UserProvider
+  Future<void> refreshFriends() async {
+    await getMyFirends(refresh: true);
+  }
 }

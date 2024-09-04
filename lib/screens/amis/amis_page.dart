@@ -15,7 +15,6 @@ import 'package:provider/provider.dart';
 import 'components/ami_item_card.dart';
 import 'components/bottom_invite_btns.dart';
 import 'components/inviter_ami_card.dart';
-
 class AmisPage extends StatefulWidget {
   const AmisPage({super.key});
 
@@ -41,7 +40,6 @@ class _AmisPageState extends State<AmisPage> {
                 child: BtnRoundedIconBack(
                   couleur: Themecolors.Color3,
                   onpress: () {
-                    //Navigator.of(context).pop();
                     context.pop();
                   },
                 ),
@@ -96,8 +94,8 @@ class _AmisPageState extends State<AmisPage> {
                           ),
                         ),
                         IconButton(
-                          onPressed: () {
-                            setState(() {});
+                          onPressed: () async {
+                            await _userProvider.refreshFriends();
                           },
                           icon: Icon(
                             CupertinoIcons.refresh_thick,
@@ -118,24 +116,21 @@ class _AmisPageState extends State<AmisPage> {
   }
 
   Widget _buildFirendsList(UserProvider _userProvider) {
+    final futureFriends = _userProvider.getMyFirends(refresh: false); // Utilisation d'un futur stable
+
     return FutureBuilder<List<UserModel>>(
-      future: _userProvider.getMyFirends(refresh: true),
+      future: futureFriends,
       builder: (BuildContext context, AsyncSnapshot<List<UserModel>> snapshot) {
-        // Afficher le loader pendant que les données se chargent
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         }
 
-        // Afficher un message d'erreur s'il y a une erreur
         if (snapshot.hasError) {
           print('Snapshot error: ${snapshot.error}');
           return Center(child: Text('Error: ${snapshot.error}'));
         }
 
-        // Afficher un message si aucune donnée n'est disponible
-        if (!snapshot.hasData ||
-            snapshot.data == null ||
-            snapshot.data!.isEmpty) {
+        if (!snapshot.hasData || snapshot.data == null || snapshot.data!.isEmpty) {
           return Container(
             height: 150,
             width: double.infinity,
@@ -151,7 +146,6 @@ class _AmisPageState extends State<AmisPage> {
           );
         }
 
-        // Afficher la liste des amis si les données sont disponibles
         List<UserModel> dataList = snapshot.data!;
         return Container(
           width: double.infinity,
