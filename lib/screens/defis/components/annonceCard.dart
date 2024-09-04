@@ -127,7 +127,7 @@ class AnnonceCard extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(left: 4.0),
                                           child: Image.asset(
-                                            Images.gvt,
+                                            Images.coin_dollar,
                                             height: 14,
                                             width: 14,
                                           ),

@@ -514,7 +514,7 @@ class PlayerList extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   CustomImageView(
-                    imagePath: Images.gvt,
+                    imagePath: Images.coin_dollar,
                     fit: BoxFit.contain,
                     height: 15,
                     width: 15,

@@ -89,7 +89,7 @@ class ShowScanQrSheetContent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomImageView(
-                imagePath: Images.gvt,
+                imagePath: Images.coin_dollar,
                 fit: BoxFit.contain,
                 height: 40,
                 width: 40,

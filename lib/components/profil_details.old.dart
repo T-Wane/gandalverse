@@ -131,7 +131,7 @@ class ProfilDetails extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomImageView(
-                        imagePath: Images.gvt,
+                        imagePath: Images.coin_dollar,
                         fit: BoxFit.contain,
                         height: 20,
                         width: 20,

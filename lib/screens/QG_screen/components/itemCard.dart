@@ -67,7 +67,7 @@ class itemCard extends StatelessWidget {
                       Row(
                         children: [
                           CustomImageView(
-                            imagePath: Images.gvt,
+                            imagePath: Images.coin_dollar,
                             fit: BoxFit.contain,
                             height: 15,
                             width: 15,
@@ -163,7 +163,7 @@ class itemCard extends StatelessWidget {
                         Row(
                           children: [
                             CustomImageView(
-                              imagePath: Images.gvt,
+                              imagePath: Images.coin_dollar,
                               fit: BoxFit.contain,
                               height: 15,
                               width: 15,
@@ -276,7 +276,7 @@ class bureauCarteDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomImageView(
-                imagePath: Images.gvt,
+                imagePath: Images.coin_dollar,
                 fit: BoxFit.contain,
                 height: 20,
                 width: 20,
@@ -301,7 +301,7 @@ class bureauCarteDetails extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomImageView(
-                imagePath: Images.gvt,
+                imagePath: Images.coin_dollar,
                 fit: BoxFit.contain,
                 height: 30,
                 width: 30,

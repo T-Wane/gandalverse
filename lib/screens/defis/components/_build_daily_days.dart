@@ -8,6 +8,7 @@ import 'package:gandalverse/screens/defis/components/annonceCard.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
+import 'package:gandalverse/widgets/reward/reward_animation.dart';
 
 class buildDailyDays extends StatefulWidget {
   const buildDailyDays({
@@ -93,18 +94,16 @@ class _ShowGetDailyRewardSheetContentState
     currentDay = await dailyManager.getCurrentDay();
     coinsReward = await dailyManager.getRewardForToday();
     isClaimed = await dailyManager.isRewardClaimed();
+    RewardAnimation.show(context);
+    Future.delayed(const Duration(seconds: 3), () {
+      RewardAnimation.hide(context);
+    });
     setState(() {});
   }
 
   void claimReward() async {
     await dailyManager.claimReward();
     updateDailyReward();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content:
-            Text('Vous avez reçu $coinsReward coins pour le jour $currentDay!'),
-      ),
-    );
   }
 
   @override
@@ -171,7 +170,7 @@ class _ShowGetDailyRewardSheetContentState
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          Images.gvt,
+                          Images.coin_dollar,
                           fit: BoxFit.contain,
                           height: 20,
                           width: 20,

@@ -187,7 +187,7 @@ class _userTopInfosState extends State<userTopInfos> {
                 ),
                 Row(children: [
                   CustomImageView(
-                    imagePath: Images.gvt,
+                    imagePath: Images.coin_dollar,
                     fit: BoxFit.contain,
                     height: 25,
                     width: 25,

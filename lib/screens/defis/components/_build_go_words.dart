@@ -82,7 +82,7 @@ class showGoWordSheetContent extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomImageView(
-                imagePath: Images.gvt,
+                imagePath: Images.coin_dollar,
                 fit: BoxFit.contain,
                 height: 30,
                 width: 30,

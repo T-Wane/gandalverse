@@ -71,18 +71,30 @@ class _AmiItemCardState extends State<AmiItemCard> {
                       fontFamily: 'Aller',
                     ),
                   ),
-                  AutoSizeText(
-                    '${widget.friend.profitPerHour} Grade(s)',
-                    minFontSize: 10,
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontSize: 11,
-                      color: Themecolors.Color3.withOpacity(0.8),
-                      fontWeight: FontWeight.w400,
-                      fontFamily: 'Aller',
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AutoSizeText(
+                        '${widget.friend.coins}',
+                        minFontSize: 10,
+                        textAlign: TextAlign.start,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontStyle: FontStyle.italic,
+                          fontSize: 11,
+                          color: Themecolors.Color3.withOpacity(0.8),
+                          fontWeight: FontWeight.w400,
+                          fontFamily: 'Aller',
+                        ),
+                      ),
+                      const SizedBox(width: 5),
+                      CustomImageView(
+                        imagePath: Images.coin_dollar,
+                        fit: BoxFit.contain,
+                        height: 25,
+                        width: 25,
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -93,7 +105,7 @@ class _AmiItemCardState extends State<AmiItemCard> {
                   borderRadius: BorderRadius.circular(8)),
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: Text(
-                "Niv: ${widget.friend.profitPerHour}",
+                "Niv: ${widget.friend.level}",
                 style: TextStyle(
                     fontSize: 10,
                     fontFamily: "Aller",

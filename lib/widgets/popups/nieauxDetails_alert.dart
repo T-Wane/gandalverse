@@ -228,7 +228,7 @@ class NiveauxDetails_PopUpState extends State<NiveauxDetails_PopUp>
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     CustomImageView(
-                      imagePath: Images.gvt,
+                      imagePath: Images.coin_dollar,
                       fit: BoxFit.contain,
                       height: 20,
                       width: 20,

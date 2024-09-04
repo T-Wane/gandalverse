@@ -238,7 +238,7 @@ class _TapToEarnCardState extends State<TapToEarnCard> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomImageView(
-                    imagePath: Images.gvt,
+                    imagePath: Images.coin_dollar,
                     fit: BoxFit.contain,
                     height: 35,
                     width: 35,
@@ -324,7 +324,7 @@ class earnToTapBottomWidget extends StatelessWidget {
           ),
           Row(children: [
             CustomImageView(
-              imagePath: Images.gvt,
+              imagePath: Images.coin_dollar,
               fit: BoxFit.contain,
               height: 25,
               width: 25,

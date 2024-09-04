@@ -2,6 +2,7 @@
 
 class Images {
   static String ressourcePath = "assets/images";
+  static String ressourceJson = "assets/json";
   static String ressourceBlack = "$ressourcePath/social_black";
   static String ressourceAvatar = "$ressourcePath/avatar";
   static String ressourceLevel = "$ressourcePath/levels_images";
@@ -21,6 +22,7 @@ class Images {
   static String gift = "$ressourcePath/gift.png";
   static String dailyCalendar = "$ressourcePath/availability.png";
   static String coin = "$ressourcePath/coin.png";
+  static String coin_dollar = "$ressourcePath/coin_dollar.png";
   static String coins = "$ressourcePath/coins.jpg";
   static String parchment = "$ressourcePath/parchment.png";
   static String bag_coin = "$ressourcePath/bag_coin.png";
@@ -83,4 +85,10 @@ class Images {
   static String niveau1 = "$ressourceLevel/Niveau1.png";
   static String niveau2 = "$ressourceLevel/Niveau2.png";
   static String niveau3 = "$ressourceLevel/Niveau3.png";
+
+
+  //ANIMATION LOTTIE
+  static String reward = "$ressourceJson/reward.json";
+
 }
+

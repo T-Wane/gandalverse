@@ -37,7 +37,7 @@ class inviterAmiCard extends StatelessWidget {
                   child: Row(
                     children: [
                       CustomImageView(
-                        imagePath: Images.gvt,
+                        imagePath: Images.coin_dollar,
                         fit: BoxFit.contain,
                         height: 23,
                         width: 23,
