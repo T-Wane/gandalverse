@@ -184,8 +184,7 @@ class UserProvider extends ChangeNotifier {
   ///use user telegramId to get his friends
   Future<List<UserModel>> getMyFirends({bool refresh = true}) async {
     if (_user == null) {
-      fetchUserByTelegramId();
-      return [];
+      await fetchUserByTelegramId();
     }
     if (friends.isNotEmpty && !refresh) return friends;
     try {
@@ -193,10 +192,10 @@ class UserProvider extends ChangeNotifier {
           await _userRepository.getUserFriends(telegramUserId);
       friends = friendsList;
       notifyListeners();
-      return friends;
+      return friendsList;
     } catch (e) {
       print("# getMyFirends => error $e");
-      return [];
+      return []; // Retourne une liste vide en cas d'erreur
     }
   }
 }

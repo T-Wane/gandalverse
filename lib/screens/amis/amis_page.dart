@@ -119,45 +119,55 @@ class _AmisPageState extends State<AmisPage> {
 
   Widget _buildFirendsList(UserProvider _userProvider) {
     return FutureBuilder<List<UserModel>>(
-        future: _userProvider.getMyFirends(),
-        builder:
-            (BuildContext context, AsyncSnapshot<List<UserModel>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Container(
-              height: 150,
-              width: double.infinity,
-              padding: const EdgeInsets.all(8.0),
-              margin: const EdgeInsets.all(5),
-              child: Center(
-                child: Text(
-                  'No friend found',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Themecolors.Color3),
-                ),
+      future: _userProvider.getMyFirends(refresh: true),
+      builder: (BuildContext context, AsyncSnapshot<List<UserModel>> snapshot) {
+        // Afficher le loader pendant que les données se chargent
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        // Afficher un message d'erreur s'il y a une erreur
+        if (snapshot.hasError) {
+          print('Snapshot error: ${snapshot.error}');
+          return Center(child: Text('Error: ${snapshot.error}'));
+        }
+
+        // Afficher un message si aucune donnée n'est disponible
+        if (!snapshot.hasData ||
+            snapshot.data == null ||
+            snapshot.data!.isEmpty) {
+          return Container(
+            height: 150,
+            width: double.infinity,
+            padding: const EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(5),
+            child: Center(
+              child: Text(
+                'No friends found',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Themecolors.Color3),
               ),
-            );
-          } else {
-            List<UserModel> dataList = snapshot.data!;
-            return Container(
-              width: double.infinity,
-              margin: const EdgeInsets.all(5),
-              child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  itemCount: dataList.length,
-                  itemBuilder: (context, index) {
-                    UserModel friend = dataList[index];
-                    return AmiItemCard(
-                      friend: friend,
-                    );
-                  }),
-            );
-          }
-        });
+            ),
+          );
+        }
+
+        // Afficher la liste des amis si les données sont disponibles
+        List<UserModel> dataList = snapshot.data!;
+        return Container(
+          width: double.infinity,
+          margin: const EdgeInsets.all(5),
+          child: ListView.builder(
+            physics: const BouncingScrollPhysics(),
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            itemCount: dataList.length,
+            itemBuilder: (context, index) {
+              UserModel friend = dataList[index];
+              return AmiItemCard(friend: friend);
+            },
+          ),
+        );
+      },
+    );
   }
 }
