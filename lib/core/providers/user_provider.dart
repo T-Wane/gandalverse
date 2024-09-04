@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:gandalverse/core/functions/shareLink.dart';
 import 'package:gandalverse/core/modeles/carte_model/carte.dart';
 import 'package:gandalverse/core/modeles/fields/createUser_fields/createUser_fields.dart';
 import 'package:gandalverse/core/modeles/user_model/user_model.dart';
@@ -94,6 +95,7 @@ class UserProvider extends ChangeNotifier {
         lastName: lastName,
         username: username,
         parrainId: parrainId,
+        initialCoin: parrainId != null ? 7500 : 2500,
         photoUrl: photoUrl);
     await _userRepository.createUser(fields: fields);
     await fetchUserByTelegramId();
@@ -203,5 +205,12 @@ class UserProvider extends ChangeNotifier {
   // Méthode pour rafraîchir les amis dans UserProvider
   Future<void> refreshFriends() async {
     await getMyFirends(refresh: true);
+  }
+
+  ///INVITER AMI
+  void inviterAmi() {
+    shareViaTelegram(
+        "https://t.me/starbrig_bot/GoGv?startapp=gogverseId$telegramUserId",
+        "Plongez dans Gandalverse 🌍\nConstruisez votre monde dans le premier métavers pour le prochain milliard d'Africains. Gagnez des jetons, montez en grade, et signez des partenariats pour des commissions. Invitez des amis, augmentez votre influence et remportez des panneaux publicitaires ou des immeubles. Rejoignez-nous et façonnez l'avenir dès aujourd'hui !");
   }
 }

@@ -142,7 +142,7 @@ class _AmisPageState extends State<AmisPage> {
             margin: const EdgeInsets.all(5),
             child: Center(
               child: Text(
-                'No friends found',
+                'Votre liste d\'amis est vide pour le moment. Invitez des amis et ensemble et profiter des bonus exclusifs !',
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Themecolors.Color3),
               ),

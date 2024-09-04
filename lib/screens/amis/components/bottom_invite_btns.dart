@@ -2,6 +2,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/data/telegram_client.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
@@ -20,6 +21,7 @@ class bottomInviteBtns extends StatefulWidget {
 class _bottomInviteBtnsState extends State<bottomInviteBtns>
     with TickerProviderStateMixin {
   TelegramClient _telegramClient = getIt<TelegramClient>();
+  UserProvider _userProvider = getIt<UserProvider>();
   late AnimationController _animationController;
   Color Color3 = const Color.fromARGB(255, 18, 40, 70);
 
@@ -50,19 +52,6 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
     _animationController.dispose();
     _controller.dispose();
     super.dispose();
-  }
-
-  void shareViaTelegram(String url, String text) async {
-    final encodedUrl = Uri.encodeComponent(url);
-    final encodedText = Uri.encodeComponent(text);
-    final telegramUrl =
-        'https://t.me/share/url?url=$encodedUrl&text=$encodedText';
-//_telegramClient.telegram.showScanQrPopup(infoTitle)
-    if (await canLaunch(telegramUrl)) {
-      await launch(telegramUrl);
-    } else {
-      throw 'Could not launch $telegramUrl';
-    }
   }
 
   @override
@@ -108,8 +97,7 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
                               RotateAnimatedText('Offrer à un ami du capital'),
                             ],
                             onTap: () {
-                              shareViaTelegram("https://t.me/starbrig_bot/GoGv?startapp=gogverseId${_telegramClient.telegram.initData.user.id}",
-                                  "Plongez dans Gandalverse 🌍\nConstruisez votre monde dans le premier métavers pour le prochain milliard d'Africains. Gagnez des jetons, montez en grade, et signez des partenariats pour des commissions. Invitez des amis, augmentez votre influence et remportez des panneaux publicitaires ou des immeubles. Rejoignez-nous et façonnez l'avenir dès aujourd'hui !");
+                              _userProvider.inviterAmi();
                             },
                             isRepeatingAnimation: true,
                             repeatForever: true,

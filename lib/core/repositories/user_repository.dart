@@ -94,7 +94,7 @@ class UserRepository {
       ..username = fields.username
       ..photoUrl = fields.photoUrl
       ..level = 1
-      ..coins = 2500
+      ..coins = fields.initialCoin
       ..profitPerHour = 5.0
       ..profileImage = '');
 
