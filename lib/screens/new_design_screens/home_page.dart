@@ -434,23 +434,23 @@ class _GoogleMapState extends State<HomeVrScreen>
   }
 
 //##############################################################//
-  TelegramClient _telegramClient = getIt<TelegramClient>();
+  // -à decommenter TelegramClient _telegramClient = getIt<TelegramClient>();
   UserProvider _userProvider = getIt<UserProvider>();
 
   Future<void> _showScanQrPopup() async {
-    // Appelle la méthode showScanQrPopup
-    await _telegramClient.telegram.showScanQrPopup(
-      'Scanner QR code partenaire',
-      (String qrText) {
-        // Fonction de rappel appelée lorsque le QR code est scanné
-        // Traite le texte du QR code ici
+    // // Appelle la méthode showScanQrPopup
+    // await _telegramClient.telegram.showScanQrPopup(
+    //   'Scanner QR code partenaire',
+    //   (String qrText) {
+    //     // Fonction de rappel appelée lorsque le QR code est scanné
+    //     // Traite le texte du QR code ici
 
-        print('QR Code scanned: $qrText');
+    //     print('QR Code scanned: $qrText');
 
-        // Retourne true pour fermer le popup, false pour le laisser ouvert
-        return true;
-      },
-    );
+    //     // Retourne true pour fermer le popup, false pour le laisser ouvert
+    //     return true;
+    //   },
+    // );
   }
 
 //##############################################################//
