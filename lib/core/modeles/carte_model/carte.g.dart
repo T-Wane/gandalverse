@@ -42,6 +42,9 @@ class _$CarteModelSerializer implements StructuredSerializer<CarteModel> {
       'taux_augmentation_force',
       serializers.serialize(object.tauxAugmentationForce,
           specifiedType: const FullType(double)),
+      'valeur_contrainte',
+      serializers.serialize(object.valeurContrainte,
+          specifiedType: const FullType(Object)),
     ];
     Object? value;
     value = object.carteId;
@@ -58,6 +61,13 @@ class _$CarteModelSerializer implements StructuredSerializer<CarteModel> {
         ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
+    }
+    value = object.contrainteType;
+    if (value != null) {
+      result
+        ..add('contrainte_type')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(ContrainteType)));
     }
     return result;
   }
@@ -119,6 +129,14 @@ class _$CarteModelSerializer implements StructuredSerializer<CarteModel> {
           result.tauxAugmentationForce = serializers.deserialize(value,
               specifiedType: const FullType(double))! as double;
           break;
+        case 'contrainte_type':
+          result.contrainteType = serializers.deserialize(value,
+              specifiedType: const FullType(ContrainteType)) as ContrainteType?;
+          break;
+        case 'valeur_contrainte':
+          result.valeurContrainte = serializers.deserialize(value,
+              specifiedType: const FullType(Object));
+          break;
       }
     }
 
@@ -149,6 +167,10 @@ class _$CarteModel extends CarteModel {
   final double force;
   @override
   final double tauxAugmentationForce;
+  @override
+  final ContrainteType? contrainteType;
+  @override
+  final Object valeurContrainte;
 
   factory _$CarteModel([void Function(CarteModelBuilder)? updates]) =>
       (new CarteModelBuilder()..update(updates))._build();
@@ -164,7 +186,9 @@ class _$CarteModel extends CarteModel {
       required this.niveau,
       required this.estAchete,
       required this.force,
-      required this.tauxAugmentationForce})
+      required this.tauxAugmentationForce,
+      this.contrainteType,
+      required this.valeurContrainte})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(nom, r'CarteModel', 'nom');
     BuiltValueNullFieldError.checkNotNull(
@@ -179,6 +203,8 @@ class _$CarteModel extends CarteModel {
     BuiltValueNullFieldError.checkNotNull(force, r'CarteModel', 'force');
     BuiltValueNullFieldError.checkNotNull(
         tauxAugmentationForce, r'CarteModel', 'tauxAugmentationForce');
+    BuiltValueNullFieldError.checkNotNull(
+        valeurContrainte, r'CarteModel', 'valeurContrainte');
   }
 
   @override
@@ -202,7 +228,9 @@ class _$CarteModel extends CarteModel {
         niveau == other.niveau &&
         estAchete == other.estAchete &&
         force == other.force &&
-        tauxAugmentationForce == other.tauxAugmentationForce;
+        tauxAugmentationForce == other.tauxAugmentationForce &&
+        contrainteType == other.contrainteType &&
+        valeurContrainte == other.valeurContrainte;
   }
 
   @override
@@ -219,6 +247,8 @@ class _$CarteModel extends CarteModel {
     _$hash = $jc(_$hash, estAchete.hashCode);
     _$hash = $jc(_$hash, force.hashCode);
     _$hash = $jc(_$hash, tauxAugmentationForce.hashCode);
+    _$hash = $jc(_$hash, contrainteType.hashCode);
+    _$hash = $jc(_$hash, valeurContrainte.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -236,7 +266,9 @@ class _$CarteModel extends CarteModel {
           ..add('niveau', niveau)
           ..add('estAchete', estAchete)
           ..add('force', force)
-          ..add('tauxAugmentationForce', tauxAugmentationForce))
+          ..add('tauxAugmentationForce', tauxAugmentationForce)
+          ..add('contrainteType', contrainteType)
+          ..add('valeurContrainte', valeurContrainte))
         .toString();
   }
 }
@@ -292,6 +324,16 @@ class CarteModelBuilder implements Builder<CarteModel, CarteModelBuilder> {
   set tauxAugmentationForce(double? tauxAugmentationForce) =>
       _$this._tauxAugmentationForce = tauxAugmentationForce;
 
+  ContrainteType? _contrainteType;
+  ContrainteType? get contrainteType => _$this._contrainteType;
+  set contrainteType(ContrainteType? contrainteType) =>
+      _$this._contrainteType = contrainteType;
+
+  Object? _valeurContrainte;
+  Object? get valeurContrainte => _$this._valeurContrainte;
+  set valeurContrainte(Object? valeurContrainte) =>
+      _$this._valeurContrainte = valeurContrainte;
+
   CarteModelBuilder();
 
   CarteModelBuilder get _$this {
@@ -308,6 +350,8 @@ class CarteModelBuilder implements Builder<CarteModel, CarteModelBuilder> {
       _estAchete = $v.estAchete;
       _force = $v.force;
       _tauxAugmentationForce = $v.tauxAugmentationForce;
+      _contrainteType = $v.contrainteType;
+      _valeurContrainte = $v.valeurContrainte;
       _$v = null;
     }
     return this;
@@ -351,9 +395,10 @@ class CarteModelBuilder implements Builder<CarteModel, CarteModelBuilder> {
               force: BuiltValueNullFieldError.checkNotNull(
                   force, r'CarteModel', 'force'),
               tauxAugmentationForce: BuiltValueNullFieldError.checkNotNull(
-                  tauxAugmentationForce,
-                  r'CarteModel',
-                  'tauxAugmentationForce'));
+                  tauxAugmentationForce, r'CarteModel', 'tauxAugmentationForce'),
+              contrainteType: contrainteType,
+              valeurContrainte: BuiltValueNullFieldError.checkNotNull(
+                  valeurContrainte, r'CarteModel', 'valeurContrainte'));
     } catch (_) {
       late String _$failedField;
       try {

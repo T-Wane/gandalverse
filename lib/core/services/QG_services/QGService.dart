@@ -62,6 +62,9 @@ abstract class QGService<T> {
     }
   }
 
+
+  
+
   T fromJson(Map<String, dynamic> json);
   Map<String, dynamic> toJson(T item);
   String? getCarteId(T item);

@@ -14,7 +14,9 @@
     "niveau": 0,
     "est_achete": false,
     "force": 150.0,
-    "taux_augmentation_force": 15.0
+    "taux_augmentation_force": 15.0,
+    "contrainte_type": "niveauRequis",
+    "valeur_contrainte": 5
   },
   {
     "id": "e8c8d679-2b94-4e4d-88f4-759e01772ef1",
@@ -31,7 +33,9 @@
     "niveau": 0,
     "est_achete": false,
     "force": 250.0,
-    "taux_augmentation_force": 20.0
+    "taux_augmentation_force": 20.0,
+    "contrainte_type": "carteRequise",
+    "valeur_contrainte": "d4a9f848-8b93-46b7-9c4d-0f6fa16e28f5"
   },
   {
     "id": "0f782cd8-63d3-453e-9233-03742d923f64",
@@ -48,7 +52,9 @@
     "niveau": 0,
     "est_achete": false,
     "force": 80.0,
-    "taux_augmentation_force": 8.0
+    "taux_augmentation_force": 8.0,
+    "contrainte_type": "profitRequis",
+    "valeur_contrainte": 1000.0
   },
   {
     "id": "5c1bcb89-1f7c-4cbf-97f8-15a5c39163ff",
@@ -65,7 +71,9 @@
     "niveau": 0,
     "est_achete": false,
     "force": 110.0,
-    "taux_augmentation_force": 12.0
+    "taux_augmentation_force": 12.0,
+    "contrainte_type": "codeRequis",
+    "valeur_contrainte": "CODE1234"
   },
   {
     "id": "d9cfe019-5288-46b1-ae8c-6efb3a8e9d8c",
@@ -82,6 +90,8 @@
     "niveau": 0,
     "est_achete": false,
     "force": 220.0,
-    "taux_augmentation_force": 20.0
+    "taux_augmentation_force": 20.0,
+    "contrainte_type": "amisRequis",
+    "valeur_contrainte": 10
   }
 ]

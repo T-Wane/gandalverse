@@ -15,103 +15,115 @@ import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:provider/provider.dart';
 
 class CarteCard extends StatelessWidget {
-  CarteCard({super.key, required this.carte, required this.qgService});
+  CarteCard(
+      {super.key,
+      required this.carte,
+      required this.qgService,
+      required this.isUnlocked,
+      this.contrainteMessage});
+
   QGService qgService;
   CarteModel carte;
+  bool isUnlocked;
+  String? contrainteMessage;
+
+
   Color Color3 = Color.fromARGB(255, 18, 40, 70);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(onTap: () {
-      CardContentBottomSheet.show(context,
-          child: bureauCarteDetails(
-              Color3: Color3, carte: carte, qgService: qgService),
-          image: carte.image);
-    }, child: Consumer<UserProvider>(builder: (context, _userProvider, child) {
-      return Container(
-        margin: const EdgeInsets.all(6),
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color.fromARGB(207, 18, 40, 70),
-              Color.fromARGB(219, 18, 40, 70),
-              Color.fromARGB(234, 18, 40, 70),
-            ],
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(15),
-          ),
-        ),
-        child: Column(children: [
-          Expanded(
-            child: Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.black87,
-                    image: DecorationImage(
-                      image: AssetImage(carte.image),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Positioned(
-                  bottom: 1,
-                  right: 1,
-                  child: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.deepPurple.shade400,
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            CustomImageView(
-                              imagePath: Images.coin_dollar,
-                              fit: BoxFit.contain,
-                              height: 15,
-                              width: 15,
-                            ),
-                            const SizedBox(
-                              width: 5,
-                            ),
-                            AutoSizeText(
-                              carte.forceFormate,
-                              maxLines: 1,
-                              textAlign: TextAlign.left,
-                              style: const TextStyle(
-                                fontSize: 8,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Text(
-                          "Grade apporté",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white70,
-                              fontFamily: "Aller",
-                              fontSize: 7),
-                        ),
-                      ],
-                    ),
-                  ),
-                )
+    return GestureDetector(
+      onTap: () {
+        CardContentBottomSheet.show(context,
+            child: bureauCarteDetails(
+                Color3: Color3, carte: carte, qgService: qgService),
+            image: carte.image);
+      },
+      child: Consumer<UserProvider>(builder: (context, _userProvider, child) {
+        return Container(
+          margin: const EdgeInsets.all(6),
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color.fromARGB(207, 18, 40, 70),
+                Color.fromARGB(219, 18, 40, 70),
+                Color.fromARGB(234, 18, 40, 70),
               ],
             ),
+            borderRadius: BorderRadius.all(
+              Radius.circular(15),
+            ),
           ),
-          Container(
+          child: Column(children: [
+            Expanded(
+              child: Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.black87,
+                      image: DecorationImage(
+                        image: AssetImage(carte.image),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 1,
+                    right: 1,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 5, vertical: 1),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Colors.deepPurple.shade400,
+                      ),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              CustomImageView(
+                                imagePath: Images.coin_dollar,
+                                fit: BoxFit.contain,
+                                height: 15,
+                                width: 15,
+                              ),
+                              const SizedBox(
+                                width: 5,
+                              ),
+                              AutoSizeText(
+                                carte.forceFormate,
+                                maxLines: 1,
+                                textAlign: TextAlign.left,
+                                style: const TextStyle(
+                                  fontSize: 8,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const Text(
+                            "Grade apporté",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white70,
+                                fontFamily: "Aller",
+                                fontSize: 7),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Container(
               margin: const EdgeInsets.only(top: 0),
               width: double.infinity,
               padding: const EdgeInsetsDirectional.symmetric(
@@ -140,6 +152,10 @@ class CarteCard extends StatelessWidget {
                           thickness: 0.1,
                         ),
                       ),
+                       if (!isUnlocked) ...[
+            Text(contrainteMessage ?? 'Verrouillé'),
+            Icon(Icons.lock),
+          ] else...[
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
@@ -191,12 +207,14 @@ class CarteCard extends StatelessWidget {
                                     ),
                               ),
                             ]),
-                          ]),
+                          ]),]
                     ]),
-              )),
-        ]),
-      );
-    }));
+              ),
+            ),
+          ]),
+        );
+      }),
+    );
   }
 }
 

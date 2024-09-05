@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gandalverse/core/functions/shareLink.dart';
 import 'package:gandalverse/core/modeles/carte_model/carte.dart';
 import 'package:gandalverse/core/modeles/fields/createUser_fields/createUser_fields.dart';
+import 'package:gandalverse/core/modeles/purchasedCard/user_purchase_card.dart';
 import 'package:gandalverse/core/modeles/user_model/user_model.dart';
 import 'package:gandalverse/core/repositories/startparam/start_param.dart';
 import 'package:gandalverse/core/repositories/startparam/start_param_parsing.dart';
@@ -22,6 +23,7 @@ class UserProvider extends ChangeNotifier {
   TelegramClient _telegramClient;
   //late TelegramWebApp telegram;
   List<UserModel> friends = [];
+  List<UserPurchaseCard> userPurchasedCards = [];
 
   UserModel? _user;
   int _localPoint = 0;
@@ -69,6 +71,7 @@ class UserProvider extends ChangeNotifier {
       // );
     } else {
       //Mettre à jour les points/coins de l'user en local
+      await loadUserPurchasedCards();
       bool localpointIsSaved = await _userRepository.userPointIsSaved();
       if (localpointIsSaved == true) {
         await updateUserPointLocal(_user!);
@@ -165,9 +168,28 @@ class UserProvider extends ChangeNotifier {
 
   Future<List<Map<String, dynamic>>> loadUserPurchasedCards() async {
     if (_user == null) await fetchUserByTelegramId();
-    return _userRepository.loadUserPurchasedCards(
+    List<Map<String, dynamic>> cards =
+        await _userRepository.loadUserPurchasedCards(
       _user?.id ?? '',
     );
+    userPurchasedCards =
+        cards.map((e) => UserPurchaseCard.fromJson(e)).toList();
+    notifyListeners();
+    return cards;
+  }
+
+  // Future<List<String>> getPurchaseCardsIds() async {
+  //   if (userPurchasedCards.isEmpty) await loadUserPurchasedCards();
+  //   return userPurchasedCards.map((e) => e.id).toList();
+  // }
+  List<String> getPurchaseCardsIds() {
+    if (userPurchasedCards.isEmpty) loadUserPurchasedCards();
+    return userPurchasedCards.map((e) => e.id).toList();
+  }
+
+  List<Map<String, int>> getPurchaseCardsLevelAndId() {
+    if (userPurchasedCards.isEmpty) loadUserPurchasedCards();
+    return userPurchasedCards.map((e) => {e.id: e.niveau}).toList();
   }
 
   //To update loacaly user point

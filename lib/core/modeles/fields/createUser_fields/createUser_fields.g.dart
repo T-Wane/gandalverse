@@ -14,6 +14,7 @@ CreateUserFields _$CreateUserFieldsFromJson(Map<String, dynamic> json) =>
       username: json['username'] as String?,
       photoUrl: json['photoUrl'] as String?,
       parrainId: json['parrainId'] as String?,
+      initialCoin: (json['initialCoin'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$CreateUserFieldsToJson(CreateUserFields instance) =>
@@ -24,4 +25,5 @@ Map<String, dynamic> _$CreateUserFieldsToJson(CreateUserFields instance) =>
       'username': instance.username,
       'photoUrl': instance.photoUrl,
       'parrainId': instance.parrainId,
+      'initialCoin': instance.initialCoin,
     };

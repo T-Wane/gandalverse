@@ -92,15 +92,7 @@ class RootNavigator {
               );
         },
       ),
-      GoRoute(
-        name: "telegram",
-        path: '/telegram',
-        builder: (context, state) {
-          // Extraire les paramètres de l'URL
-          final queryParams = state.extra as Map<String, String>;
-          return TelegramWebAppPage(queryParams: queryParams);
-        },
-      ),
+
       // Autres routes...
       GoRoute(
         name: home_view,

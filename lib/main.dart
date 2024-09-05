@@ -22,44 +22,7 @@ import 'dart:html' as html;
 import 'dart:convert'; // Pour JSON parsing
 import 'package:flutter/material.dart';
 
-void extractLaunchParameters() {
- // let startParam = window.Telegram.WebApp.initDataUnsafe.start_param
-  // // Extraction des paramètres de hash
-  // String hash = window.location.hash;
-  // if (hash.startsWith('#')) {
-  //   hash = hash.substring(1); // Supprimer le #
-  // }
-
-  // Uri hashUri = Uri.parse('?$hash');
-  // String? tgWebAppData = hashUri.queryParameters['tgWebAppData'];
-  // String? tgWebAppVersion = hashUri.queryParameters['tgWebAppVersion'];
-  // String? tgWebAppThemeParams = hashUri.queryParameters['tgWebAppThemeParams'];
-
-  // print('tgWebAppData: $tgWebAppData');
-  // print('tgWebAppVersion: $tgWebAppVersion');
-  // print('tgWebAppThemeParams: $tgWebAppThemeParams');
-
-  // if (tgWebAppThemeParams != null) {
-  //   try {
-  //     Map<String, dynamic> theme = jsonDecode(tgWebAppThemeParams);
-  //     print('Theme: $theme');
-  //   } catch (e) {
-  //     print('Error parsing tgWebAppThemeParams: $e');
-  //   }
-  // }
-
-  // // Extraction des paramètres de query
-  // Uri uri = Uri.parse(window.location.href);
-  // String? startParam = uri.queryParameters['startapp'];
-  // print('startapp: $startParam');
-
-  // // Sauvegarde dans le local storage si nécessaire
-  // window.localStorage['tgWebAppData'] = tgWebAppData ?? '';
-  // window.localStorage['tgWebAppVersion'] = tgWebAppVersion ?? '';
-  // window.localStorage['tgWebAppThemeParams'] = tgWebAppThemeParams ?? '';
-  // window.localStorage['startapp'] = startParam ?? '';
-}
-
+ 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
@@ -78,8 +41,7 @@ Future main() async {
         systemNavigationBarIconBrightness: Brightness.dark,
         statusBarBrightness: Brightness.light,
         statusBarIconBrightness: Brightness.dark),
-  );
-  extractLaunchParameters(); // Appel pour extraire les paramètres
+  ); 
 
   runApp(
     MultiProvider(
@@ -135,34 +97,4 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-class TelegramWebAppPage extends StatelessWidget {
-  final Map<String, String> queryParams;
-
-  TelegramWebAppPage({required this.queryParams});
-
-  @override
-  Widget build(BuildContext context) {
-    // Accéder aux paramètres
-    String userData = queryParams['tgWebAppData'] ?? 'No data';
-    String themeParams = queryParams['tgWebAppThemeParams'] ?? 'No theme data';
-
-    // Décodage des données
-    String decodedUserData = Uri.decodeComponent(userData);
-    String decodedThemeParams = Uri.decodeComponent(themeParams);
-
-    return Scaffold(
-      appBar: AppBar(title: Text('Telegram Web App')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('User Data: $decodedUserData'),
-            SizedBox(height: 10),
-            Text('Theme Params: $decodedThemeParams'),
-          ],
-        ),
-      ),
-    );
-  }
-}
+ 

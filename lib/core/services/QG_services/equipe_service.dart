@@ -19,7 +19,7 @@ class EquipeService extends QGService<CarteModel> {
   @override
   String get assetPath => 'assets/json/equipeData.json';
   @override
-  String get storageKey => 'equipes5';
+  String get storageKey => 'equipes';
 
   final _equipeController = StreamController<List<CarteModel>>.broadcast();
 
@@ -63,7 +63,9 @@ class EquipeService extends QGService<CarteModel> {
           ..niveau = purchasedCard['niveau']
           ..estAchete = purchasedCard['est_achete']
           ..force = _card.force
-          ..tauxAugmentationForce = _card.tauxAugmentationForce);
+          ..tauxAugmentationForce = _card.tauxAugmentationForce
+          ..contrainteType = _card.contrainteType
+          ..valeurContrainte = _card.valeurContrainte);
       }
     }
 

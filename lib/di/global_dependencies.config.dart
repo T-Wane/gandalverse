@@ -11,9 +11,9 @@
 import 'package:gandalverse/core/providers/charge_provider.dart' as _i7;
 import 'package:gandalverse/core/providers/user_provider.dart' as _i10;
 import 'package:gandalverse/core/repositories/dailyRewardRepository.dart'
-    as _i12;
-import 'package:gandalverse/core/repositories/tabAndEarnRepository.dart'
     as _i11;
+import 'package:gandalverse/core/repositories/tabAndEarnRepository.dart'
+    as _i12;
 import 'package:gandalverse/core/repositories/user_repository.dart' as _i9;
 import 'package:gandalverse/core/services/explorer_service/explorer_service.dart'
     as _i8;
@@ -66,10 +66,10 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i5.TelegramClient>(),
           gh<_i9.UserRepository>(),
         ));
-    gh.singleton<_i11.TapAndEarnRepository>(
-        () => _i11.TapAndEarnRepository(gh<_i10.UserProvider>()));
-    gh.singleton<_i12.DailyRewardManager>(
-        () => _i12.DailyRewardManager(gh<_i10.UserProvider>()));
+    gh.singleton<_i11.DailyRewardManager>(
+        () => _i11.DailyRewardManager(gh<_i10.UserProvider>()));
+    gh.singleton<_i12.TapAndEarnRepository>(
+        () => _i12.TapAndEarnRepository(gh<_i10.UserProvider>()));
     gh.lazySingleton<_i13.EquipeService>(
         () => _i13.EquipeService(gh<_i10.UserProvider>()));
     gh.lazySingleton<_i14.PartenaireService>(

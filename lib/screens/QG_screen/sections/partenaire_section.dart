@@ -62,7 +62,10 @@ class _PartenaireSectionState extends State<PartenaireSection> {
                   itemBuilder: (BuildContext ctx, index) {
                     CarteModel carte = partenaireList[index];
                     return CarteCard(
-                        carte: carte, qgService: _partenaireService);
+                      carte: carte,
+                      qgService: _partenaireService,
+                      isUnlocked: true,
+                    );
                   }),
             );
           }
