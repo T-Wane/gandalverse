@@ -41,11 +41,15 @@ class _RewardAnimationState extends State<RewardAnimation>
     return WillPopScope(
       onWillPop: () async => true,
       child: Material(
-        color: Colors.transparent,
+        color: Colors.black.withOpacity(0.1),
         child: Container(
+          constraints: BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width * 0.8,
+            maxHeight: MediaQuery.of(context).size.height * 0.8,
+          ),
           margin: const EdgeInsets.all(8.0),
           decoration: ShapeDecoration(
-            color: Colors.black12,
+            color: Colors.transparent,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0)),
           ),
@@ -54,6 +58,7 @@ class _RewardAnimationState extends State<RewardAnimation>
             child: Lottie.asset(
               Images.reward,
               controller: _controller,
+              fit: BoxFit.contain,
               onLoaded: (composition) {
                 _controller
                   ..duration = composition.duration
