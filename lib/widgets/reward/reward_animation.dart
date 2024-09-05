@@ -53,18 +53,17 @@ class _RewardAnimationState extends State<RewardAnimation>
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0)),
           ),
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: Lottie.asset(
-              Images.reward,
-              controller: _controller,
-              fit: BoxFit.contain,
-              onLoaded: (composition) {
-                _controller
-                  ..duration = composition.duration
-                  ..forward();
-              },
-            ),
+          child: Lottie.asset(
+            Images.reward,
+            width: MediaQuery.of(context).size.width * 0.8,
+            height: MediaQuery.of(context).size.height * 0.8,
+            controller: _controller,
+            fit: BoxFit.contain,
+            onLoaded: (composition) {
+              _controller
+                ..duration = composition.duration
+                ..forward();
+            },
           ),
         ),
       ),
