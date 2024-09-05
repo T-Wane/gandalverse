@@ -71,7 +71,7 @@ class UserProvider extends ChangeNotifier {
       // );
     } else {
       //Mettre à jour les points/coins de l'user en local
-      await loadUserPurchasedCards();
+   
       bool localpointIsSaved = await _userRepository.userPointIsSaved();
       if (localpointIsSaved == true) {
         await updateUserPointLocal(_user!);
@@ -81,7 +81,8 @@ class UserProvider extends ChangeNotifier {
         _user =
             await _userRepository.syncUserCoins(localPoints, _user?.id ?? '');
       }
-    }
+    }   
+    await loadUserPurchasedCards();
     notifyListeners();
   }
 
@@ -183,12 +184,12 @@ class UserProvider extends ChangeNotifier {
   //   return userPurchasedCards.map((e) => e.id).toList();
   // }
   List<String> getPurchaseCardsIds() {
-    if (userPurchasedCards.isEmpty) loadUserPurchasedCards();
+   // if (userPurchasedCards.isEmpty) loadUserPurchasedCards();
     return userPurchasedCards.map((e) => e.id).toList();
   }
 
   List<Map<String, int>> getPurchaseCardsLevelAndId() {
-    if (userPurchasedCards.isEmpty) loadUserPurchasedCards();
+   // if (userPurchasedCards.isEmpty) loadUserPurchasedCards();
     return userPurchasedCards.map((e) => {e.id: e.niveau}).toList();
   }
 
