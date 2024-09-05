@@ -11,7 +11,7 @@ class PartenaireService extends QGService<CarteModel> {
   @override
   String get assetPath => 'assets/json/partenaireData.json';
   @override
-  String get storageKey => 'partenaires';
+  String get storageKey => 'partenaires6';
 
   final _partenaireController = StreamController<List<CarteModel>>.broadcast();
   UserProvider _userProvider;

@@ -167,7 +167,7 @@ class _GoogleMapState extends State<HomeVrScreen>
         child: Stack(
           children: <Widget>[
             //A decommenter
-            //VerseWebView(),
+            VerseWebView(),
 
             // Container(
             //   width: screenWidth,
@@ -178,13 +178,13 @@ class _GoogleMapState extends State<HomeVrScreen>
             // ),
 
             //A decommenter
-            // Align(
-            //   alignment: Alignment.topCenter,
-            //   child: PointerInterceptor(
-            //     debug: false,
-            //     child: userTopInfos(),
-            //   ),
-            // ),
+            Align(
+              alignment: Alignment.topCenter,
+              child: PointerInterceptor(
+                debug: false,
+                child: userTopInfos(),
+              ),
+            ),
 
             // Align(
             //     alignment: Alignment.bottomCenter,
