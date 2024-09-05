@@ -166,7 +166,9 @@ class _GoogleMapState extends State<HomeVrScreen>
         height: screenHeight,
         child: Stack(
           children: <Widget>[
-            VerseWebView(),
+            //A decommenter
+            //VerseWebView(),
+
             // Container(
             //   width: screenWidth,
             //   height: screenHeight,
@@ -175,13 +177,14 @@ class _GoogleMapState extends State<HomeVrScreen>
             //   ).build(context),
             // ),
 
-            Align(
-              alignment: Alignment.topCenter,
-              child: PointerInterceptor(
-                debug: false,
-                child: userTopInfos(),
-              ),
-            ),
+            //A decommenter
+            // Align(
+            //   alignment: Alignment.topCenter,
+            //   child: PointerInterceptor(
+            //     debug: false,
+            //     child: userTopInfos(),
+            //   ),
+            // ),
 
             // Align(
             //     alignment: Alignment.bottomCenter,
@@ -434,23 +437,23 @@ class _GoogleMapState extends State<HomeVrScreen>
   }
 
 //##############################################################//
-  // -à decommenter TelegramClient _telegramClient = getIt<TelegramClient>();
+  TelegramClient _telegramClient = getIt<TelegramClient>();
   UserProvider _userProvider = getIt<UserProvider>();
 
   Future<void> _showScanQrPopup() async {
-    // // Appelle la méthode showScanQrPopup
-    // await _telegramClient.telegram.showScanQrPopup(
-    //   'Scanner QR code partenaire',
-    //   (String qrText) {
-    //     // Fonction de rappel appelée lorsque le QR code est scanné
-    //     // Traite le texte du QR code ici
+    // Appelle la méthode showScanQrPopup
+    await _telegramClient.telegram.showScanQrPopup(
+      'Scanner QR code partenaire',
+      (String qrText) {
+        // Fonction de rappel appelée lorsque le QR code est scanné
+        // Traite le texte du QR code ici
 
-    //     print('QR Code scanned: $qrText');
+        print('QR Code scanned: $qrText');
 
-    //     // Retourne true pour fermer le popup, false pour le laisser ouvert
-    //     return true;
-    //   },
-    // );
+        // Retourne true pour fermer le popup, false pour le laisser ouvert
+        return true;
+      },
+    );
   }
 
 //##############################################################//

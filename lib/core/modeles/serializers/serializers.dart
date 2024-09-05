@@ -9,6 +9,6 @@ import '../explorer/evenement/evenement.dart';
 
 part 'serializers.g.dart'; // Le fichier généré par build_runner
 
-@SerializersFor([UserModel, CarteModel, CategorieModel, EvenementModel])
+@SerializersFor([UserModel, ContrainteType,CarteModel, CategorieModel, EvenementModel])
 final Serializers serializers =
     (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();

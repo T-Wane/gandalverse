@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:built_value/built_value.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
@@ -5,14 +7,22 @@ import 'package:gandalverse/core/modeles/serializers/serializers.dart';
 
 part 'carte.g.dart';
 
-// Enum pour les types de contrainte
-enum ContrainteType {
-  niveauRequis,
-  carteRequise,
-  niveauCarteRequise,
-  profitRequis,
-  codeRequis,
-  amisRequis,
+// Définir une énumération ou une classe pour ContrainteType
+class ContrainteType extends EnumClass {
+  static const ContrainteType niveauRequis = _$niveauRequis;
+  static const ContrainteType carteRequise = _$carteRequise;
+  static const ContrainteType niveauCarteRequise = _$niveauCarteRequise;
+  static const ContrainteType profitRequis = _$profitRequis;
+  static const ContrainteType codeRequis = _$codeRequis;
+  static const ContrainteType amisRequis = _$amisRequis;
+
+  const ContrainteType._(String name) : super(name);
+
+  static BuiltSet<ContrainteType> get values => _$values;
+  static ContrainteType valueOf(String name) => _$valueOf(name);
+
+  static Serializer<ContrainteType> get serializer =>
+      _$contrainteTypeSerializer;
 }
 
 abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
@@ -43,7 +53,7 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
   ContrainteType? get contrainteType;
 
   @BuiltValueField(wireName: 'valeur_contrainte')
-  Object get valeurContrainte;
+  String? get valeurContrainte;
 
   CarteModel._();
   factory CarteModel([void Function(CarteModelBuilder) updates]) = _$CarteModel;
@@ -51,7 +61,6 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
   static Serializer<CarteModel> get serializer => _$carteModelSerializer;
 
   //--------------------------------------------------------//
-
 
   Map<String, dynamic> toJson() {
     return serializers.serializeWith(CarteModel.serializer, this)
@@ -107,13 +116,15 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
   }) {
     switch (contrainteType) {
       case ContrainteType.niveauRequis:
-        if (niveauUtilisateur < (valeurContrainte as int)) {
-          return 'Niveau requis: ${valeurContrainte as int}';
+        if (niveauUtilisateur < int.parse(valeurContrainte ?? '0')) {
+          return 'Niveau $valeurContrainte requis';
         }
         break;
       case ContrainteType.carteRequise:
-        if (!cartesPossedees.contains(valeurContrainte as String)) {
-          return 'Carte requise: ${valeurContrainte as String}';
+        String? carteName = valeurContrainte!.split(',')[0];
+        String? carteId = valeurContrainte!.split(',')[1];
+        if (!cartesPossedees.contains(carteId)) {
+          return " $carteName requise:";
         }
         break;
       case ContrainteType.niveauCarteRequise:
@@ -125,18 +136,19 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
         }
         break;
       case ContrainteType.profitRequis:
-        if (profitParHeure < (valeurContrainte as double)) {
-          return 'Profit requis: ${valeurContrainte as double}';
+        if (profitParHeure < double.parse(valeurContrainte ?? '0')) {
+          return '$valeurContrainte Grade requis';
         }
         break;
       case ContrainteType.codeRequis:
         if (codeSaisi != valeurContrainte as String) {
-          return 'Code requis: ${valeurContrainte as String}';
+          //: ${valeurContrainte as String}
+          return 'Code Requis';
         }
         break;
       case ContrainteType.amisRequis:
-        if (nombreAmis < (valeurContrainte as int)) {
-          return 'Nombre d\'amis requis: ${valeurContrainte as int}';
+        if (nombreAmis < int.parse(valeurContrainte ?? '0')) {
+          return 'Inviter $valeurContrainte amis';
         }
         break;
       default:
