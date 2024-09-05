@@ -53,9 +53,12 @@ class _EquipeSectionState extends State<EquipeSection> {
 
                 final niveauUtilisateur = _userProvider.user?.level;
                 final cartesPossedees =
-                    BuiltList<String>(_userProvider.getPurchaseCardsIds());
+                    BuiltList<String>(
+                     // _userProvider.getPurchaseCardsIds()
+                      );
                 final niveauxCartesPossedees = BuiltMap<String, int>(
-                    _userProvider.getPurchaseCardsLevelAndId());
+                    //_userProvider.getPurchaseCardsLevelAndId()
+                    );
                 final profitParHeure = _userProvider.user?.profitPerHour;
                 final codeSaisi = '';
                 final nombreAmis = _userProvider.user?.friends?.length ?? 0;
