@@ -26,6 +26,7 @@ class mapView_customer extends StatelessWidget {
       mapType: MapType.terrain,
       myLocationEnabled: true,
       compassEnabled: true,
+      
       onTap: onTap,
       onMapCreated: (GoogleMapController controller) {
         if (!_controller.isCompleted) {

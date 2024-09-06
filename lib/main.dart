@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_print
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gandalverse/core/providers/charge_provider.dart';
@@ -31,7 +33,7 @@ Future main() async {
     // Force Hybrid Composition mode.
     mapsImplementation.useAndroidViewSurface = true;
   }
- // await initializeMapRenderer();
+  await initializeMapRenderer();
 
 
   SystemChrome.setPreferredOrientations([
@@ -102,3 +104,29 @@ class _MyAppState extends State<MyApp> {
   }
 }
  
+ 
+Completer<AndroidMapRenderer?>? _initializedRendererCompleter;
+
+/// Initializes map renderer to the `latest` renderer type.
+///
+/// The renderer must be requested before creating GoogleMap instances,
+/// as the renderer can be initialized only once per application context.
+Future<AndroidMapRenderer?> initializeMapRenderer() async {
+  if (_initializedRendererCompleter != null) {
+    return _initializedRendererCompleter!.future;
+  }
+
+  final Completer<AndroidMapRenderer?> completer =
+      Completer<AndroidMapRenderer?>();
+  _initializedRendererCompleter = completer;
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final GoogleMapsFlutterPlatform platform = GoogleMapsFlutterPlatform.instance;
+  unawaited((platform as GoogleMapsFlutterAndroid)
+      .initializeWithRenderer(AndroidMapRenderer.latest)
+      .then((AndroidMapRenderer initializedRenderer) =>
+          completer.complete(initializedRenderer)));
+
+  return completer.future;
+}
