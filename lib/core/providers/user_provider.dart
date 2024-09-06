@@ -20,7 +20,7 @@ import 'package:telegram_web_app/telegram_web_app.dart';
 @singleton
 class UserProvider extends ChangeNotifier {
   UserRepository _userRepository;
-  TelegramClient _telegramClient;
+   TelegramClient _telegramClient;
   //late TelegramWebApp telegram;
   List<UserModel> friends = [];
   List<UserPurchaseCard> userPurchasedCards = [];
@@ -32,10 +32,10 @@ class UserProvider extends ChangeNotifier {
   int get localPoint => _localPoint;
 
   int get telegramUserId => //1016029253;
-      _telegramClient.telegram.initData.user.id;
+    _telegramClient.telegram.initData.user.id;
 
   UserProvider(
-    this._telegramClient,
+   this._telegramClient,
     this._userRepository,
   ) {
     // telegram = TelegramWebApp.instance;
@@ -67,11 +67,12 @@ class UserProvider extends ChangeNotifier {
       //   firstName: "joe",
       //   lastName: "Testeur",
       //   username: "joe@45",
+      //   parrainId: "bySystem",
       //   photoUrl: null,
       // );
     } else {
       //Mettre à jour les points/coins de l'user en local
-      await loadUserPurchasedCards();
+
       bool localpointIsSaved = await _userRepository.userPointIsSaved();
       if (localpointIsSaved == true) {
         await updateUserPointLocal(_user!);
@@ -82,6 +83,7 @@ class UserProvider extends ChangeNotifier {
             await _userRepository.syncUserCoins(localPoints, _user?.id ?? '');
       }
     }
+    await loadUserPurchasedCards();
     notifyListeners();
   }
 
@@ -134,11 +136,11 @@ class UserProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> purchaseCard(CarteModel carte, QGService qgService) async {
-    await _userRepository.purchaseCard(_user!.id, carte, qgService);
-    await reloadServiceData(qgService);
-    await fetchUserByTelegramId();
-  }
+  // Future<void> purchaseCard(CarteModel carte, QGService qgService) async {
+  //   await _userRepository.purchaseCard(_user!.id, carte, qgService);
+  //   await reloadServiceData(qgService);
+  //   await fetchUserByTelegramId();
+  // }
 
   Future<void> updateCardLevel(
       QGService qgService, CarteModel carteData) async {
@@ -183,13 +185,20 @@ class UserProvider extends ChangeNotifier {
   //   return userPurchasedCards.map((e) => e.id).toList();
   // }
   List<String> getPurchaseCardsIds() {
-    if (userPurchasedCards.isEmpty) loadUserPurchasedCards();
+   // if (userPurchasedCards.isEmpty) loadUserPurchasedCards();
     return userPurchasedCards.map((e) => e.id).toList();
   }
 
-  List<Map<String, int>> getPurchaseCardsLevelAndId() {
-    if (userPurchasedCards.isEmpty) loadUserPurchasedCards();
-    return userPurchasedCards.map((e) => {e.id: e.niveau}).toList();
+  // List<Map<String, int>> getPurchaseCardsLevelAndId() {
+  //  if (userPurchasedCards.isEmpty) loadUserPurchasedCards();
+  //   return userPurchasedCards.map((e) => {e.id: e.niveau}).toList();
+  // }
+  Map<String, int> getPurchaseCardsLevelAndId() {
+    //if (userPurchasedCards.isEmpty) loadUserPurchasedCards();
+    return userPurchasedCards.fold<Map<String, int>>({}, (map, e) {
+      map[e.id] = e.niveau;
+      return map;
+    });
   }
 
   //To update loacaly user point

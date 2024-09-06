@@ -10,6 +10,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CarteModel.serializer)
       ..add(CategorieModel.serializer)
       ..add(CategorieType.serializer)
+      ..add(ContrainteType.serializer)
       ..add(EvenementModel.serializer)
       ..add(UserModel.serializer)
       ..addBuilderFactory(

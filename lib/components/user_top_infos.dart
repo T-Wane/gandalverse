@@ -83,7 +83,8 @@ class _userTopInfosState extends State<userTopInfos> {
                       decoration: BoxDecoration(
                         color: Colors.white10,
                         shape: BoxShape.circle,
-                        borderRadius: BorderRadius.circular(10),
+                        //Erreur mise en commentaire
+                       // borderRadius: BorderRadius.circular(10),
                       ),
                       margin: const EdgeInsets.only(left: 5, right: 2),
                       padding: const EdgeInsets.all(2),

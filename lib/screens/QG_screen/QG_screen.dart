@@ -91,7 +91,9 @@ class _QGScreenState extends State<QGScreen> {
             //     ),
             //   ),
             // ),
-            userTopInfos(showBackArrow: true,), // Toujours en haut
+            userTopInfos(
+              showBackArrow: true,
+            ), // Toujours en haut
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: Row(

@@ -27,7 +27,6 @@ class CarteCard extends StatelessWidget {
   bool isUnlocked;
   String? contrainteMessage;
 
-
   Color Color3 = Color.fromARGB(255, 18, 40, 70);
 
   @override
@@ -152,62 +151,72 @@ class CarteCard extends StatelessWidget {
                           thickness: 0.1,
                         ),
                       ),
-                       if (!isUnlocked) ...[
-            Text(contrainteMessage ?? 'Verrouillé'),
-            Icon(Icons.lock),
-          ] else...[
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            AutoSizeText(
-                              'Niv ${carte.niveau}',
-                              maxLines: 1,
-                              textAlign: TextAlign.left,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelSmall!
-                                  .copyWith(
+                      if (!isUnlocked) ...[
+                        Text(
+                          contrainteMessage ?? 'Verrouillé',
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          style:
+                              Theme.of(context).textTheme.labelSmall!.copyWith(
                                     color: Colors.white70,
                                     fontWeight: FontWeight.w200,
                                   ),
-                            ),
-                            const VerticalDivider(
-                              color: Colors.white54,
-                              width: 0.4,
-                              thickness: 0.1,
-                            ),
-                            Row(children: [
-                              Opacity(
-                                opacity: (_userProvider.user?.coins ?? 0) >
-                                        carte.getPrix_inDouble
-                                    ? 1
-                                    : 0.7,
-                                child: CustomImageView(
-                                  imagePath: Images.coin_dollar,
-                                  fit: BoxFit.contain,
-                                  height: 15,
-                                  width: 15,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 3,
-                              ),
+                        ),
+                        Icon(Icons.lock),
+                      ] else ...[
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
                               AutoSizeText(
-                                carte.prixFormate,
+                                'Niv ${carte.niveau}',
                                 maxLines: 1,
-                                textAlign: TextAlign.right,
+                                textAlign: TextAlign.left,
                                 style: Theme.of(context)
                                     .textTheme
                                     .labelSmall!
                                     .copyWith(
-                                      color: carte.estAchete
-                                          ? Colors.white
-                                          : Colors.white70,
-                                      fontWeight: FontWeight.w400,
+                                      color: Colors.white70,
+                                      fontWeight: FontWeight.w200,
                                     ),
                               ),
+                              const VerticalDivider(
+                                color: Colors.white54,
+                                width: 0.4,
+                                thickness: 0.1,
+                              ),
+                              Row(children: [
+                                Opacity(
+                                  opacity: (_userProvider.user?.coins ?? 0) >
+                                          carte.getPrix_inDouble
+                                      ? 1
+                                      : 0.7,
+                                  child: CustomImageView(
+                                    imagePath: Images.coin_dollar,
+                                    fit: BoxFit.contain,
+                                    height: 15,
+                                    width: 15,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 3,
+                                ),
+                                AutoSizeText(
+                                  carte.prixFormate,
+                                  maxLines: 1,
+                                  textAlign: TextAlign.right,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelSmall!
+                                      .copyWith(
+                                        color: carte.estAchete
+                                            ? Colors.white
+                                            : Colors.white70,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                ),
+                              ]),
                             ]),
-                          ]),]
+                      ]
                     ]),
               ),
             ),

@@ -6,7 +6,64 @@ part of 'carte.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const ContrainteType _$niveauRequis = const ContrainteType._('niveauRequis');
+const ContrainteType _$carteRequise = const ContrainteType._('carteRequise');
+const ContrainteType _$niveauCarteRequise =
+    const ContrainteType._('niveauCarteRequise');
+const ContrainteType _$profitRequis = const ContrainteType._('profitRequis');
+const ContrainteType _$codeRequis = const ContrainteType._('codeRequis');
+const ContrainteType _$amisRequis = const ContrainteType._('amisRequis');
+
+ContrainteType _$valueOf(String name) {
+  switch (name) {
+    case 'niveauRequis':
+      return _$niveauRequis;
+    case 'carteRequise':
+      return _$carteRequise;
+    case 'niveauCarteRequise':
+      return _$niveauCarteRequise;
+    case 'profitRequis':
+      return _$profitRequis;
+    case 'codeRequis':
+      return _$codeRequis;
+    case 'amisRequis':
+      return _$amisRequis;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<ContrainteType> _$values =
+    new BuiltSet<ContrainteType>(const <ContrainteType>[
+  _$niveauRequis,
+  _$carteRequise,
+  _$niveauCarteRequise,
+  _$profitRequis,
+  _$codeRequis,
+  _$amisRequis,
+]);
+
+Serializer<ContrainteType> _$contrainteTypeSerializer =
+    new _$ContrainteTypeSerializer();
 Serializer<CarteModel> _$carteModelSerializer = new _$CarteModelSerializer();
+
+class _$ContrainteTypeSerializer
+    implements PrimitiveSerializer<ContrainteType> {
+  @override
+  final Iterable<Type> types = const <Type>[ContrainteType];
+  @override
+  final String wireName = 'ContrainteType';
+
+  @override
+  Object serialize(Serializers serializers, ContrainteType object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.name;
+
+  @override
+  ContrainteType deserialize(Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      ContrainteType.valueOf(serialized as String);
+}
 
 class _$CarteModelSerializer implements StructuredSerializer<CarteModel> {
   @override
@@ -42,9 +99,6 @@ class _$CarteModelSerializer implements StructuredSerializer<CarteModel> {
       'taux_augmentation_force',
       serializers.serialize(object.tauxAugmentationForce,
           specifiedType: const FullType(double)),
-      'valeur_contrainte',
-      serializers.serialize(object.valeurContrainte,
-          specifiedType: const FullType(Object)),
     ];
     Object? value;
     value = object.carteId;
@@ -68,6 +122,13 @@ class _$CarteModelSerializer implements StructuredSerializer<CarteModel> {
         ..add('contrainte_type')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(ContrainteType)));
+    }
+    value = object.valeurContrainte;
+    if (value != null) {
+      result
+        ..add('valeur_contrainte')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
     return result;
   }
@@ -135,7 +196,7 @@ class _$CarteModelSerializer implements StructuredSerializer<CarteModel> {
           break;
         case 'valeur_contrainte':
           result.valeurContrainte = serializers.deserialize(value,
-              specifiedType: const FullType(Object));
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -170,7 +231,7 @@ class _$CarteModel extends CarteModel {
   @override
   final ContrainteType? contrainteType;
   @override
-  final Object valeurContrainte;
+  final String? valeurContrainte;
 
   factory _$CarteModel([void Function(CarteModelBuilder)? updates]) =>
       (new CarteModelBuilder()..update(updates))._build();
@@ -188,7 +249,7 @@ class _$CarteModel extends CarteModel {
       required this.force,
       required this.tauxAugmentationForce,
       this.contrainteType,
-      required this.valeurContrainte})
+      this.valeurContrainte})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(nom, r'CarteModel', 'nom');
     BuiltValueNullFieldError.checkNotNull(
@@ -203,8 +264,6 @@ class _$CarteModel extends CarteModel {
     BuiltValueNullFieldError.checkNotNull(force, r'CarteModel', 'force');
     BuiltValueNullFieldError.checkNotNull(
         tauxAugmentationForce, r'CarteModel', 'tauxAugmentationForce');
-    BuiltValueNullFieldError.checkNotNull(
-        valeurContrainte, r'CarteModel', 'valeurContrainte');
   }
 
   @override
@@ -329,9 +388,9 @@ class CarteModelBuilder implements Builder<CarteModel, CarteModelBuilder> {
   set contrainteType(ContrainteType? contrainteType) =>
       _$this._contrainteType = contrainteType;
 
-  Object? _valeurContrainte;
-  Object? get valeurContrainte => _$this._valeurContrainte;
-  set valeurContrainte(Object? valeurContrainte) =>
+  String? _valeurContrainte;
+  String? get valeurContrainte => _$this._valeurContrainte;
+  set valeurContrainte(String? valeurContrainte) =>
       _$this._valeurContrainte = valeurContrainte;
 
   CarteModelBuilder();
@@ -395,10 +454,11 @@ class CarteModelBuilder implements Builder<CarteModel, CarteModelBuilder> {
               force: BuiltValueNullFieldError.checkNotNull(
                   force, r'CarteModel', 'force'),
               tauxAugmentationForce: BuiltValueNullFieldError.checkNotNull(
-                  tauxAugmentationForce, r'CarteModel', 'tauxAugmentationForce'),
+                  tauxAugmentationForce,
+                  r'CarteModel',
+                  'tauxAugmentationForce'),
               contrainteType: contrainteType,
-              valeurContrainte: BuiltValueNullFieldError.checkNotNull(
-                  valeurContrainte, r'CarteModel', 'valeurContrainte'));
+              valeurContrainte: valeurContrainte);
     } catch (_) {
       late String _$failedField;
       try {
