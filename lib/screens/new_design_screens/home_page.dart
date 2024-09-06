@@ -290,9 +290,9 @@ class _GoogleMapState extends State<HomeVrScreen>
             // ),
             //layer button
             MapButton(
-              bottom: 243,
+              bottom: 314,
               offsetX: 0,
-              width: 71,
+              width: 68,
               height: 71,
               isRight: false,
               icon: Icons.school_rounded,
@@ -329,6 +329,19 @@ class _GoogleMapState extends State<HomeVrScreen>
                 context.pushNamed(defi_view);
               },
             ),
+            MapButton(
+              bottom: 140,
+              offsetX: 0,
+              width: 65,
+              height: 71,
+              isRight: false,
+              image: Images.logo_bnda,
+              iconColor: Themecolors.ColorWhite,
+              icon: null,
+              press: () {
+                context.pushNamed(bnda_view);
+              },
+            ),
             //my_location button
             MapButton(
               bottom: 140,
@@ -353,6 +366,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                 context.pushNamed(qg_view);
               },
             ),
+
             MapButton(
               bottom: 53,
               offsetX: 0,

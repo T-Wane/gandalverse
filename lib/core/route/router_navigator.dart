@@ -3,6 +3,7 @@ import 'package:gandalverse/init.dart';
 import 'package:gandalverse/main.dart';
 import 'package:gandalverse/screens/QG_screen/QG_screen.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
+import 'package:gandalverse/screens/bnda/agances_map_screen.dart';
 import 'package:gandalverse/screens/defis/defis_screen.dart';
 import 'package:gandalverse/screens/learn_screens/learn_home/learn_home_screen.dart';
 import 'package:gandalverse/screens/new_design_screens/home_page.dart';
@@ -123,6 +124,11 @@ class RootNavigator {
             name: learn_home_view,
             path: 'learn_home',
             builder: (context, state) => LearnHomeScreen(),
+          ),
+          GoRoute(
+            name: bnda_view,
+            path: 'bnda_home',
+            builder: (context, state) => BndaAgenceMapScreen(),
           ),
         ],
       ),

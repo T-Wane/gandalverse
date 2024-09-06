@@ -55,6 +55,8 @@ class Images {
   static String vr = "$ressourcePath/GverseIconePNG.png";
   //Logo
   static String logo_black = "$ressourcePath/GandalVersev3.png";
+  //BNDA
+  static String logo_bnda = "$ressourcePath/Logo-bnda-2.png";
 
   //coins
   static String gvt = "$ressourcePath/GVT.png";
@@ -86,9 +88,6 @@ class Images {
   static String niveau2 = "$ressourceLevel/Niveau2.png";
   static String niveau3 = "$ressourceLevel/Niveau3.png";
 
-
   //ANIMATION LOTTIE
   static String reward = "$ressourceJson/reward.json";
-
 }
-

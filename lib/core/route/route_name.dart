@@ -6,3 +6,5 @@ const String defi_view = "defi_view";
 const String qg_view = "qg_view";
 const String profil_view = "profil_view";
 const String learn_home_view = "learn_home_view";
+const String bnda_view = "bnda_view";
+

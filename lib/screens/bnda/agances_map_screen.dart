@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:math'; 
+import 'dart:math';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,13 +7,14 @@ import 'package:gandalverse/components/rounded_btn_back.dart';
 import 'package:gandalverse/screens/bnda/components/actions_sheet.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:go_router/go_router.dart'; 
+import 'package:go_router/go_router.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import 'components/agence_item.dart'; 
+import 'components/agence_item.dart';
 import 'components/driver_details.dart';
-import 'components/agences_list_sheet.dart'; 
-import 'components/map_view_customer.dart'; 
+import 'components/agences_list_sheet.dart';
+import 'components/map_view_customer.dart';
+import 'data/agences_list.dart';
 
 class BndaAgenceMapScreen extends StatefulWidget {
   const BndaAgenceMapScreen({Key? key}) : super(key: key);
@@ -144,14 +145,17 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
   //   });
   // }
 
-  // annulerPlacePin() {
-  //   setState(() {
-  //     pinIsPlaced = false;
-  //     findDriver = false;
-  //     _markers.removeWhere(
-  //         (element) => element.infoWindow.title == "Position choisie");
-  //   });
-  // }
+  annulerProche() {
+    setState(() {
+      nearbyAngences = false;
+    });
+  }
+
+  annulerAlll() {
+    setState(() {
+      findAllAgences = false;
+    });
+  }
 
   TrouverAllAgences() {
     setState(() {
@@ -208,13 +212,22 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
               ),
             ),
           ),
-          // Visibility(
-          //   visible: findDriver,
-          //   child: driverListSheet(
-          //     close: annulerPlacePin,
-          //   ),
-          // ),
-
+          Visibility(
+            visible: nearbyAngences,
+            child: AgencesListSheet(
+              title: "Agences Proche de vous",
+              agences: bndaAgences,
+              close: annulerProche,
+            ),
+          ),
+          Visibility(
+            visible: findAllAgences,
+            child: AgencesListSheet(
+              title: "Agences Proche de vous",
+              agences: bndaAgences,
+              close: annulerAlll,
+            ),
+          ),
           // Visibility(
           //   visible: pinIsPlaced,
           //   child: doYouWantDriver(
@@ -252,4 +265,3 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
     );
   }
 }
- 

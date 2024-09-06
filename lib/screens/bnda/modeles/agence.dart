@@ -11,6 +11,7 @@ class Agence {
   String? adresse;
   String? email;
   String? phone;
+  String? fax;
   double? long;
   double? lat;
 
@@ -22,6 +23,7 @@ class Agence {
       this.adresse,
       this.email,
       this.phone,
+      this.fax,
       this.long,
       this.lat});
 

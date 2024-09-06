@@ -62,7 +62,9 @@ class _bottomInviteBtnsState extends State<bottomInviteBtns>
         children: [
           Expanded(
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                _userProvider.inviterAmi();
+              },
               child: Transform.scale(
                 scale: 1 - _controller.value,
                 child: Container(
