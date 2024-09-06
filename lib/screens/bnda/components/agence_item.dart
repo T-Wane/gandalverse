@@ -155,6 +155,7 @@ class AgenceItem extends StatelessWidget {
             },
             icon: const Icon(
               CupertinoIcons.info,
+              size: 20,
               color: Themecolors.greyDeep,
             ),
           ),

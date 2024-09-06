@@ -190,22 +190,6 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
     return Scaffold(
       key: _key,
       backgroundColor: Colors.white,
-      // appBar: AppBar(
-      //   surfaceTintColor: ThemeColors.white,
-      //   backgroundColor: ThemeColors.white,
-      //   elevation: 0.2,
-      //   automaticallyImplyLeading: false,
-      //   centerTitle: true,
-      //   leadingWidth: 100,
-      //   leading: CustomImageView(
-      //     imagePath: Images.logo_paysage,
-      //     fit: BoxFit.contain,
-      //     margin: const EdgeInsets.symmetric(horizontal: 5),
-      //   ),
-      //   actions: [
-
-      //   ],
-      // ),
       body: SafeArea(
         child: Stack(children: [
           mapView_customer(
@@ -228,40 +212,19 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
           Visibility(
             visible: nearbyAngences,
             child: AgencesListSheet(
-              title: "Agences Proche de vous",
-              agences: bndaAgences,
-              close: annulerProche,
-              zoomOnAgence:zoomOnAgence
-            ),
+                title: "Agences Proche de vous",
+                agences: bndaAgences,
+                close: annulerProche,
+                zoomOnAgence: zoomOnAgence),
           ),
           Visibility(
             visible: findAllAgences,
             child: AgencesListSheet(
-              title: "Agences Proche de vous",
-              agences: bndaAgences,
-              close: annulerAlll,
-              zoomOnAgence:zoomOnAgence
-            ),
+                title: "Toutes nos Agences",
+                agences: bndaAgences,
+                close: annulerAlll,
+                zoomOnAgence: zoomOnAgence),
           ),
-          // Visibility(
-          //   visible: pinIsPlaced,
-          //   child: doYouWantDriver(
-          //       annulerPlacePin: annulerPlacePin,
-          //       TrouverChauffeur: TrouverChauffeur),
-          // ),
-
-          // Visibility(
-          //   visible: showTaxiDetails,
-          //   child: driverDetails(
-          //       driverName: taxiSelectedName,
-          //       close: () {
-          //         setState(() {
-          //           showTaxiDetails = !showTaxiDetails;
-          //           taxiSelectedName = "";
-          //         });
-          //       }),
-          // ),
-
           Visibility(
               visible: !nearbyAngences && !findAllAgences && !showAgenceDetails,
               child: Positioned(
@@ -273,8 +236,6 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
                   setNearByAgences: TrouverNearByAgences,
                 ),
               ))
-
-          //driverListSheet(),
         ]),
       ),
     );

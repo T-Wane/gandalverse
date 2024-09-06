@@ -46,7 +46,7 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyB9ZC3OSuP98aMGevgsmAbZv4BqkrJLgCM"/>
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyB1bOgxhKr9Ef4uGyo7RL_4QyNSsKRuA3k"/>
         <meta-data android:name="com.google.maps.flutter.MAP_MODE" android:value="hybrid"/>
     </application>
     <!-- Required to query activities that can process text, see:
