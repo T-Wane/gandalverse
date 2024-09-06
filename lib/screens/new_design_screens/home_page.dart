@@ -335,7 +335,7 @@ class _GoogleMapState extends State<HomeVrScreen>
               width: 65,
               height: 71,
               isRight: false,
-              image: Images.logo_bnda,
+              image: Images.logo_BDM,
               iconColor: Themecolors.ColorWhite,
               icon: null,
               press: () {

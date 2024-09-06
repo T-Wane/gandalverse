@@ -18,8 +18,8 @@ class AgencesListSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
-      initialChildSize: 0.2,
-      minChildSize: 0.2,
+      initialChildSize: 0.6,
+      minChildSize: 0.5,
       maxChildSize: 0.6,
       builder: (BuildContext context, ScrollController scrollController) {
         return Container(

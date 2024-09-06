@@ -7,6 +7,7 @@ import 'package:gandalverse/screens/profil/components/infoLigne.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
+import 'package:gandalverse/widgets/customImageView.dart';
 
 class AgenceItem extends StatelessWidget {
   AgenceItem({super.key, required this.index, required this.agence});
@@ -34,15 +35,11 @@ class AgenceItem extends StatelessWidget {
                         fontFamily: "Aller",
                         fontWeight: FontWeight.normal),
                   ),
-                  // StarRating(
-                  //   rating: 3.5,
-                  //   toCenter: true,
-                  // ),
                   const SizedBox(
                     height: 5,
                   ),
                   AutoSizeText(
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+                    agence.information ?? '--',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.labelSmall!.copyWith(
                           color: Themecolors.greyDeep.withOpacity(0.95),
@@ -52,7 +49,7 @@ class AgenceItem extends StatelessWidget {
                   detailsLigne(
                     paddingV: 2,
                     titre: "Adresse",
-                    data: agence.adresse??'--',
+                    data: agence.adresse ?? '--',
                     nLigne: 1,
                     dataColor: Themecolors.greyDeep,
                   ),
@@ -112,13 +109,14 @@ class AgenceItem extends StatelessWidget {
               const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
           leading: CircleAvatar(
             backgroundColor: Themecolors.Color3,
-            child: Icon(
-              CupertinoIcons.person,
-              color: Themecolors.ColorWhite,
+            child: CustomImageView(
+              imagePath: Images.ticket_box,
+              fit: BoxFit.contain,
+              height: 30,
             ),
           ),
           title: Text(
-            "Agence $index",
+            agence.designation ?? "",
             style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
@@ -129,31 +127,18 @@ class AgenceItem extends StatelessWidget {
             children: [
               detailsLigne(
                 paddingV: 2,
-                titre: "Telephone",
-                data: agence.phone??'--',
+                titre: "Tèl:",
+                data: agence.phone ?? '--',
                 nLigne: 1,
                 dataColor: Themecolors.greyDeep,
               ),
               detailsLigne(
                 paddingV: 2,
-                titre: "Type voiture",
-                data: 'Climée',
+                titre: "Adresse",
+                data: agence.adresse ?? '--',
                 nLigne: 1,
                 dataColor: Themecolors.greyDeep,
               ),
-              detailsLigne(
-                paddingV: 2,
-                titre: "Distance",
-                data: '2 Km',
-                nLigne: 1,
-                dataColor: Themecolors.greyDeep,
-              ),
-              // Align(
-              //   alignment: Alignment.centerRight,
-              //   child: StarRating(
-              //     rating: 3.5,
-              //   ),
-              // )
             ],
           ),
         ),

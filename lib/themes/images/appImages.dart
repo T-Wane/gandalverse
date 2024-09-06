@@ -56,7 +56,8 @@ class Images {
   //Logo
   static String logo_black = "$ressourcePath/GandalVersev3.png";
   //BNDA
-  static String logo_bnda = "$ressourcePath/Logo-bnda-2.png";
+  static String logo_bnda = "$ressourcePath/Logo-bnda-2.png"; 
+  static String logo_BDM = "$ressourcePath/logo_BDM.jpg";
 
   //coins
   static String gvt = "$ressourcePath/GVT.png";

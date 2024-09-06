@@ -3,9 +3,9 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "84e0620cbb910f5ba93cff35ffed90af",
-"assets/AssetManifest.bin.json": "a426818114ea95ddf47c4d5b0023ef8a",
-"assets/AssetManifest.json": "993bd17a9a6a11d83a6422f68e051a70",
+const RESOURCES = {"assets/AssetManifest.bin": "4fae72015b05efe621d3f8551b68ff82",
+"assets/AssetManifest.bin.json": "0ccc7b4caccdd87a290e42380406e639",
+"assets/AssetManifest.json": "f612a13b288ac9f12b57386643939d6c",
 "assets/assets/AssetManifest.bin": "c85bcc7489efa79fc6ad3fe57dd52e3e",
 "assets/assets/AssetManifest.bin.json": "7dba2718645bee383e32a237b5dea4a5",
 "assets/assets/AssetManifest.json": "eef43b9362dfb365aef650a403e2c9e5",
@@ -61,6 +61,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "84e0620cbb910f5ba93cff35ffed90af
 "assets/assets/images/levels_images/Niveau2.png": "21da0e41bafaf8ce84b2552a15836d9b",
 "assets/assets/images/levels_images/Niveau3.png": "b8456aea25df7d8c0a28460f2e6587aa",
 "assets/assets/images/Logo-bnda-2.png": "bf57f59a7465352dfea8a6eeb0c91408",
+"assets/assets/images/logo_BDM.jpg": "d6de779272af07c820de63ca68909e03",
 "assets/assets/images/mission.png": "1e7c203db003068fb636c828e3caebd0",
 "assets/assets/images/new/arrow.png": "3d387150f4d28ae54a35100b7072eab6",
 "assets/assets/images/new/avatar.png": "f2f7e71c45dfaa00ef500cb42b502775",
@@ -122,7 +123,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "84e0620cbb910f5ba93cff35ffed90af
 "assets/fonts/MaterialIcons-Regular.otf": "243e14a18187262e747433417be95439",
 "assets/GverseToken_OnboardingPage.png": "820b9e0e98327dc8cc26971d46a9dfaf",
 "assets/NOTICES": "3b42c98244840cdc8735b5690e458aaf",
-"assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "1a536cb162fec3dcc165fe0a2b6bd3c6",
+"assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "e19765428b1a8ec1326fd9afc24a4eb3",
 "assets/packages/flutter_inappwebview/assets/t_rex_runner/t-rex.css": "5a8d0222407e388155d7d1395a75d5b9",
 "assets/packages/flutter_inappwebview/assets/t_rex_runner/t-rex.html": "16911fcc170c8af1c5457940bd0bf055",
 "assets/packages/line_awesome_flutter/lib/fonts/LineAwesome.ttf": "c9f7bb62655415e80068b01558fb8d4e",
@@ -143,9 +144,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "84e0620cbb910f5ba93cff35ffed90af
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "20ad23b3a19c7ff7111dd7c486b33529",
-"/": "20ad23b3a19c7ff7111dd7c486b33529",
-"main.dart.js": "0dd801dce1492ce067a545c5355028b3",
+"index.html": "e6903e35c19e04acbb6ebe32a59947c9",
+"/": "e6903e35c19e04acbb6ebe32a59947c9",
+"main.dart.js": "419820ba1286bccb64d9678f1269923f",
 "manifest.json": "9f6f1bf5b67cd2b30e68a99551f02cad",
 "version.json": "bdbf5533cd872db8379bf13ff58db6f3"};
 // The application shell files that are downloaded before a service worker can
