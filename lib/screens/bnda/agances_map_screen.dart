@@ -193,10 +193,11 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
       body: SafeArea(
         child: Stack(children: [
           mapView_customer(
-              initialPosition: _initialPosition,
-              markers: _markers,
-              controller: _controller,
-              onTap: (LatLng position) {}),
+              // initialPosition: _initialPosition,
+              // markers: _markers,
+              // controller: _controller,
+              // onTap: (LatLng position) {}
+              ),
           Align(
             alignment: Alignment.topLeft,
             child: Padding(
