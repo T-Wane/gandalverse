@@ -9,11 +9,13 @@ class AgencesListSheet extends StatelessWidget {
       {super.key,
       required this.close,
       required this.agences,
-      required this.title});
+      required this.title,
+      required this.zoomOnAgence});
 
   VoidCallback close;
   List<Agence> agences;
   String title;
+  Future<void> Function(Agence agence) zoomOnAgence;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +81,7 @@ class AgencesListSheet extends StatelessWidget {
                   itemCount: agences.length, // Example item count
                   itemBuilder: (BuildContext context, int index) {
                     Agence _agence = agences[index];
-                    return AgenceItem(index: index, agence: _agence);
+                    return AgenceItem(index: index, agence: _agence,zoomOn:zoomOnAgence);
                   },
                 ),
               ),

@@ -10,93 +10,19 @@ import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
 class AgenceItem extends StatelessWidget {
-  AgenceItem({super.key, required this.index, required this.agence});
+  AgenceItem(
+      {super.key,
+      required this.index,
+      required this.agence,
+      required this.zoomOn});
   int index;
   Agence agence;
+  Future<void> Function(Agence agence) zoomOn;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        CardContentBottomSheet.show(context,
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    agence.designation ?? '--',
-                    maxLines: 1,
-                    textAlign: TextAlign.center,
-                    textDirection: TextDirection.ltr,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                        fontSize: 15,
-                        color: Themecolors.greyDeep,
-                        fontFamily: "Aller",
-                        fontWeight: FontWeight.normal),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  AutoSizeText(
-                    agence.information ?? '--',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                          color: Themecolors.greyDeep.withOpacity(0.95),
-                          fontWeight: FontWeight.normal,
-                        ),
-                  ),
-                  detailsLigne(
-                    paddingV: 2,
-                    titre: "Adresse",
-                    data: agence.adresse ?? '--',
-                    nLigne: 1,
-                    dataColor: Themecolors.greyDeep,
-                  ),
-                  detailsLigne(
-                    paddingV: 2,
-                    titre: "Distance",
-                    data: '2 Km',
-                    nLigne: 1,
-                    dataColor: Themecolors.greyDeep,
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    " Tel : +223 xx-xx-xx-xx",
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(
-                        fontSize: 13,
-                        color: Themecolors.greyDeep,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    "Ouvert : OUI",
-                    textAlign: TextAlign.left,
-                    style: const TextStyle(
-                        fontSize: 15,
-                        color: Themecolors.greyDeep,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  DefaultButton(
-                    backColor: Themecolors.Color3,
-                    text: 'Contacter',
-                    elevation: 1.0,
-                    textColor: Colors.white,
-                    fontSize: 15,
-                    height: 40,
-                    press: () {},
-                  )
-                ],
-              ),
-            ),
-            fit: BoxFit.contain,
-            setCircle: false,
-            image: Images.ticket_box);
+      onTap: () async {
+        await zoomOn(agence);
       },
       child: Card(
         elevation: 1.0,
@@ -112,7 +38,7 @@ class AgenceItem extends StatelessWidget {
             child: CustomImageView(
               imagePath: Images.ticket_box,
               fit: BoxFit.contain,
-              height: 30,
+              height: 40,
             ),
           ),
           title: Text(
@@ -140,6 +66,97 @@ class AgenceItem extends StatelessWidget {
                 dataColor: Themecolors.greyDeep,
               ),
             ],
+          ),
+          trailing: IconButton(
+            onPressed: () {
+              CardContentBottomSheet.show(context,
+                  child: Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          agence.designation ?? '--',
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          textDirection: TextDirection.ltr,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                              fontSize: 15,
+                              color: Themecolors.greyDeep,
+                              fontFamily: "Aller",
+                              fontWeight: FontWeight.normal),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        AutoSizeText(
+                          agence.information ?? '--',
+                          textAlign: TextAlign.center,
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelSmall!
+                              .copyWith(
+                                color: Themecolors.greyDeep.withOpacity(0.95),
+                                fontWeight: FontWeight.normal,
+                              ),
+                        ),
+                        detailsLigne(
+                          paddingV: 2,
+                          titre: "Adresse",
+                          data: agence.adresse ?? '--',
+                          nLigne: 1,
+                          dataColor: Themecolors.greyDeep,
+                        ),
+                        detailsLigne(
+                          paddingV: 2,
+                          titre: "Distance",
+                          data: '2 Km',
+                          nLigne: 1,
+                          dataColor: Themecolors.greyDeep,
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          " Tel : +223 xx-xx-xx-xx",
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                              fontSize: 13,
+                              color: Themecolors.greyDeep,
+                              fontWeight: FontWeight.w500),
+                        ),
+                        Text(
+                          "Ouvert : OUI",
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(
+                              fontSize: 15,
+                              color: Themecolors.greyDeep,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        DefaultButton(
+                          backColor: Themecolors.Color3,
+                          text: 'Contacter',
+                          elevation: 1.0,
+                          textColor: Colors.white,
+                          fontSize: 15,
+                          height: 40,
+                          press: () {},
+                        )
+                      ],
+                    ),
+                  ),
+                  fit: BoxFit.contain,
+                  setCircle: false,
+                  image: Images.ticket_box);
+            },
+            icon: const Icon(
+              CupertinoIcons.info,
+              color: Themecolors.greyDeep,
+            ),
           ),
         ),
       ),

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/rounded_btn_back.dart';
 import 'package:gandalverse/screens/bnda/components/actions_sheet.dart';
+import 'package:gandalverse/screens/bnda/modeles/agence.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
@@ -115,6 +116,18 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
     }
   }*/
 
+  Future<void> zoomOnAgence(Agence agence) async {
+    if (agence.lat != null && agence.long != null) {
+      CameraPosition cameraPosition = CameraPosition(
+        target: LatLng(agence.lat!, agence.long!),
+        zoom: 14.4746,
+      );
+
+      final GoogleMapController controller = await _controller.future;
+      controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -218,6 +231,7 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
               title: "Agences Proche de vous",
               agences: bndaAgences,
               close: annulerProche,
+              zoomOnAgence:zoomOnAgence
             ),
           ),
           Visibility(
@@ -226,6 +240,7 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
               title: "Agences Proche de vous",
               agences: bndaAgences,
               close: annulerAlll,
+              zoomOnAgence:zoomOnAgence
             ),
           ),
           // Visibility(

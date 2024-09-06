@@ -95,7 +95,7 @@ class _ActionsSheetState extends State<ActionsSheet> {
           ),
           Container(
               margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 2),
-              height: 150,
+              height: 120,
               child: Row(
                   children: _getData()
                       .map((Map<String, dynamic> item) => Expanded(

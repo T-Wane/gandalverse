@@ -1,26 +1,21 @@
 // ignore_for_file: avoid_print
-import 'package:draggable_widget/draggable_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gandalverse/core/providers/charge_provider.dart';
 import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/core/repositories/tabAndEarnRepository.dart';
-import 'package:gandalverse/data/firebase_client.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
-import 'package:gandalverse/screens/new_design_screens/home_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:telegram_web_app/telegram_web_app.dart';
 import 'package:webview_flutter_web/webview_flutter_web.dart';
 import 'core/route/router_navigator.dart';
 import 'core/services/explorer_service/explorer_service.dart';
-import 'data/telegram_client.dart';
-import 'screens/home.page.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
-import 'dart:html' as html;
-import 'dart:convert'; // Pour JSON parsing
-import 'package:flutter/material.dart';
+// Pour JSON parsing 
+
+import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
+import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
 
  
 Future main() async {
@@ -29,6 +24,15 @@ Future main() async {
   // await getIt<FirebaseClient>().initializeApp();
   //await getIt<TelegramClient>().initializeApp();
   WebViewPlatform.instance = WebWebViewPlatform();
+    // Require Hybrid Composition mode on Android.
+  final GoogleMapsFlutterPlatform mapsImplementation =
+      GoogleMapsFlutterPlatform.instance;
+  if (mapsImplementation is GoogleMapsFlutterAndroid) {
+    // Force Hybrid Composition mode.
+    mapsImplementation.useAndroidViewSurface = true;
+  }
+ // await initializeMapRenderer();
+
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
