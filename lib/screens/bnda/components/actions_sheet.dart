@@ -95,91 +95,94 @@ class _ActionsSheetState extends State<ActionsSheet> {
           ),
           Container(
               margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 2),
-              height: 180,
+              height: 150,
               child: Row(
                   children: _getData()
-                      .map((Map<String, dynamic> item) => InkWell(
-                            onTap: () {
-                              if (item['titre'] == "Agences Proches") {
-                                setState(() {
-                                  widget.setNearByAgences();
-                                });
-                              } else if (item['titre'] ==
-                                  "Toutes les Agences") {
-                                setState(() {
-                                  widget.setAllAgences();
-                                });
-                              } else {}
-                            },
-                            child: Card(
-                              surfaceTintColor: Colors.white,
-                              color: Colors.white,
-                              elevation: 0.5,
-                              shadowColor: Themecolors.Color3.withOpacity(0.5),
-                              shape: RoundedRectangleBorder(
-                                side: BorderSide(
-                                    color:
-                                        Themecolors.greyDeep.withOpacity(0.2),
-                                    width: 1.2),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              //color: Colors.transparent,playstore
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Flexible(
-                                    flex: 5,
-                                    fit: FlexFit.tight,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Themecolors.greyDeep
-                                            .withOpacity(0.04),
-                                        border: Border.all(
-                                          color: Colors.white,
-                                          width: 2,
+                      .map((Map<String, dynamic> item) => Expanded(
+                            child: InkWell(
+                              onTap: () {
+                                if (item['titre'] == "Agences Proches") {
+                                  setState(() {
+                                    widget.setNearByAgences();
+                                  });
+                                } else if (item['titre'] ==
+                                    "Toutes les Agences") {
+                                  setState(() {
+                                    widget.setAllAgences();
+                                  });
+                                } else {}
+                              },
+                              child: Card(
+                                surfaceTintColor: Colors.white,
+                                color: Colors.white,
+                                elevation: 0.5,
+                                shadowColor:
+                                    Themecolors.Color3.withOpacity(0.5),
+                                shape: RoundedRectangleBorder(
+                                  side: BorderSide(
+                                      color:
+                                          Themecolors.greyDeep.withOpacity(0.2),
+                                      width: 1.2),
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                                //color: Colors.transparent,playstore
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Flexible(
+                                      flex: 5,
+                                      fit: FlexFit.tight,
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Themecolors.greyDeep
+                                              .withOpacity(0.04),
+                                          border: Border.all(
+                                            color: Colors.white,
+                                            width: 2,
+                                          ),
+                                          shape: BoxShape.circle,
                                         ),
-                                        shape: BoxShape.circle,
+                                        padding: const EdgeInsets.all(10),
+                                        child: Icon(item['icon']),
                                       ),
-                                      padding: const EdgeInsets.all(10),
-                                      child: Icon(item['icon']),
                                     ),
-                                  ),
-                                  Flexible(
-                                    flex: 3,
-                                    fit: FlexFit.tight,
-                                    child: Container(
-                                      decoration: const BoxDecoration(
-                                        color: Colors.transparent,
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 2, horizontal: 2),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            AutoSizeText(
-                                              item['titre'],
-                                              presetFontSizes: const [
-                                                12,
-                                                11,
-                                                10
-                                              ],
-                                              maxLines: 2,
-                                              textAlign: TextAlign.center,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: const TextStyle(
-                                                color: Themecolors.greyDeep,
-                                                fontWeight: FontWeight.w500,
-                                                fontFamily: 'Poppins',
+                                    Flexible(
+                                      flex: 3,
+                                      fit: FlexFit.tight,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          color: Colors.transparent,
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 2, horizontal: 2),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              AutoSizeText(
+                                                item['titre'],
+                                                presetFontSizes: const [
+                                                  12,
+                                                  11,
+                                                  10
+                                                ],
+                                                maxLines: 2,
+                                                textAlign: TextAlign.center,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                  color: Themecolors.greyDeep,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontFamily: 'Poppins',
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ))
