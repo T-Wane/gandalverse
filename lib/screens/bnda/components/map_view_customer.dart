@@ -30,7 +30,7 @@ class _mapView_customerState extends State<mapView_customer> {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
       scaleToDevicePixelRatio: true,
-      googleApiKey: "<REPLACE-WITH-GOOGLE-API-KEY>",
+      googleApiKey: "AIzaSyB1bOgxhKr9Ef4uGyo7RL_4QyNSsKRuA3k",
       visible: const [
         GeocodedLocation.address('Santa Monica Pier'),
       ],

@@ -97886,7 +97886,7 @@ o=A.b0(a,p,o).w
 s=$.b0N()
 r=A.a([B.a7Y,new A.Qk(B.Sh,200,p,A.H(204,76,175,80),A.H(102,76,175,80),p,!1),B.a7Z],t.m1)
 q=t.PN
-return new A.Xt(A.a([new A.DI(B.Uu,"X",A.a([new A.wp("Santa Monica Pier"),A.tZ(34.012849,-118.501478)],q)),new A.R8("https://goo.gl/1oTJ9Y",B.Ga,A.a([A.tZ(34.012343,-118.482998)],t.Gp)),new A.DI(B.Uv,"W",A.a([A.tZ(34.006618,-118.500901)],q))],t.CI),s,r,B.RO,14,n.a.a,o.a.b,"<REPLACE-WITH-GOOGLE-API-KEY>",!0,p)}}
+return new A.Xt(A.a([new A.DI(B.Uu,"X",A.a([new A.wp("Santa Monica Pier"),A.tZ(34.012849,-118.501478)],q)),new A.R8("https://goo.gl/1oTJ9Y",B.Ga,A.a([A.tZ(34.012343,-118.482998)],t.Gp)),new A.DI(B.Uv,"W",A.a([A.tZ(34.006618,-118.500901)],q))],t.CI),s,r,B.RO,14,n.a.a,o.a.b,"AIzaSyB1bOgxhKr9Ef4uGyo7RL_4QyNSsKRuA3k",!0,p)}}
 A.wr.prototype={
 ew(){var s=this
 return A.aw(["id",s.a,"image",s.b,"designation",s.c,"information",s.d,"adresse",s.e,"email",s.f,"phone",s.r,"fax",s.w,"long",s.x,"lat",s.y],t.N,t.z)}}
