@@ -36,7 +36,7 @@
 
     <script>
       // The value below is injected by flutter build, do not touch.
-      const serviceWorkerVersion = "323027730";
+      const serviceWorkerVersion = "2470884235";
     </script>
     <!-- This script adds the flutter initialization JS code -->
     <script src="flutter.js" defer></script>
@@ -67,8 +67,10 @@
       /* background-size: cover; */
       /* object-fit: contain; 
       overflow: hidden; */
-      background-size: 100% auto; /* L'image s'adapte à la largeur, et garde les proportions en hauteur */
-      overflow: hidden; /* Pour éviter tout débordement */
+      /* background-size: 100% auto;  L'image s'adapte à la largeur, et garde les proportions en hauteur */
+      /*overflow: hidden; Pour éviter tout débordement */
+      background-size: 100% 100%; /* Étend l'image à toute la largeur et hauteur de l'écran */
+      overflow: hidden; /* Empêche le débordement */
     }
 
     .progress-bar {

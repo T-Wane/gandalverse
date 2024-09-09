@@ -67,8 +67,10 @@
       /* background-size: cover; */
       /* object-fit: contain; 
       overflow: hidden; */
-      background-size: 100% auto; /* L'image s'adapte à la largeur, et garde les proportions en hauteur */
-      overflow: hidden; /* Pour éviter tout débordement */
+      /* background-size: 100% auto;  L'image s'adapte à la largeur, et garde les proportions en hauteur */
+      /*overflow: hidden; Pour éviter tout débordement */
+      background-size: 100% 100%; /* Étend l'image à toute la largeur et hauteur de l'écran */
+      overflow: hidden; /* Empêche le débordement */
     }
 
     .progress-bar {
