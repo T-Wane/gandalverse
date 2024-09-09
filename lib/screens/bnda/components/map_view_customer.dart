@@ -109,24 +109,24 @@ class _mapView_customerState extends State<mapView_customer> {
     return MapLayout(
         controller: controller,
         builder: (context, transformer) {
-          final markerPositions = markers.map(transformer.toOffset).toList();
+          // final markerPositions = markers.map(transformer.toOffset).toList();
 
-          final markerWidgets = markerPositions.map(
-            (pos) => _buildMarkerWidget(pos, Colors.red),
-          );
+          // final markerWidgets = markerPositions.map(
+          //   (pos) => _buildMarkerWidget(pos, Colors.red),
+          // );
 
-          final homeLocation = transformer
-              .toOffset(const LatLng(Angle.degree(35.68), Angle.degree(51.42)));
+          // final homeLocation = transformer
+          //     .toOffset(const LatLng(Angle.degree(35.68), Angle.degree(51.42)));
 
-          final homeMarkerWidget =
-              _buildMarkerWidget(homeLocation, Colors.black, Icons.home);
+          // final homeMarkerWidget =
+          //     _buildMarkerWidget(homeLocation, Colors.black, Icons.home);
 
-          final centerLocation = Offset(
-              transformer.constraints.biggest.width / 2,
-              transformer.constraints.biggest.height / 2);
+          // final centerLocation = Offset(
+          //     transformer.constraints.biggest.width / 2,
+          //     transformer.constraints.biggest.height / 2);
 
-          final centerMarkerWidget =
-              _buildMarkerWidget(centerLocation, Colors.purple);
+          // final centerMarkerWidget =
+          //     _buildMarkerWidget(centerLocation, Colors.purple);
 
           return GestureDetector(
             behavior: HitTestBehavior.opaque,
@@ -169,9 +169,9 @@ class _mapView_customerState extends State<mapView_customer> {
                       );
                     },
                   ),
-                  homeMarkerWidget,
-                  ...markerWidgets,
-                  centerMarkerWidget,
+                  // homeMarkerWidget,
+                  // ...markerWidgets,
+                  // centerMarkerWidget,
                 ],
               ),
             ),
