@@ -206,8 +206,8 @@ class _userTopInfosState extends State<userTopInfos> {
                       padding: const EdgeInsets.all(5),
                       child: Icon(
                         widget.showVisibleEye
-                            ? CupertinoIcons.eye
-                            : CupertinoIcons.eye_slash,
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
                         color: Colors.white,
                         size: 20,
                       ),
@@ -215,7 +215,7 @@ class _userTopInfosState extends State<userTopInfos> {
                   ),
                 ],
                 const SizedBox(
-                  width: 2,
+                  width: 5,
                 ),
                 Row(children: [
                   CustomImageView(
