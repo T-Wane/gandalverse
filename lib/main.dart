@@ -27,13 +27,13 @@ Future main() async {
   //await getIt<TelegramClient>().initializeApp();
   WebViewPlatform.instance = WebWebViewPlatform();
     // Require Hybrid Composition mode on Android.
-  final GoogleMapsFlutterPlatform mapsImplementation =
-      GoogleMapsFlutterPlatform.instance;
-  if (mapsImplementation is GoogleMapsFlutterAndroid) {
-    // Force Hybrid Composition mode.
-    mapsImplementation.useAndroidViewSurface = true;
-  }
-  await initializeMapRenderer();
+  // final GoogleMapsFlutterPlatform mapsImplementation =
+  //     GoogleMapsFlutterPlatform.instance;
+  // if (mapsImplementation is GoogleMapsFlutterAndroid) {
+  //   // Force Hybrid Composition mode.
+  //   mapsImplementation.useAndroidViewSurface = true;
+  // }
+  // await initializeMapRenderer();
 
 
   SystemChrome.setPreferredOrientations([
