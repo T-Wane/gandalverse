@@ -10,7 +10,8 @@ import 'package:map/map.dart';
 
 class mapView_customer extends StatefulWidget {
   mapView_customer({
-    super.key,
+   
+    required this.userLocation,
     // required CameraPosition initialPosition,
     // required List<Marker> markers,
     // required Completer<GoogleMapController> controller,
@@ -23,6 +24,8 @@ class mapView_customer extends StatefulWidget {
   final CameraPosition _initialPosition;
   final List<Marker> _markers;
   final Completer<GoogleMapController> _controller;*/
+
+  LatLng userLocation;
 
   @override
   State<mapView_customer> createState() => _mapView_customerState();

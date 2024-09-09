@@ -9,7 +9,7 @@ import 'package:gandalverse/screens/bnda/modeles/agence.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:latlng/latlng.dart';
 
 import 'components/agence_item.dart';
 import 'components/driver_details.dart';
@@ -24,16 +24,10 @@ class BndaAgenceMapScreen extends StatefulWidget {
 }
 
 class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
-  Completer<GoogleMapController> _controller = Completer();
+  LatLng userLocation = LatLng(Angle.degree(0.0), Angle.degree(0.0));
 
-  static final CameraPosition _initialPosition = const CameraPosition(
-    target: LatLng(0.0, 0.0),
-    zoom: 16,
-    bearing: 30,
-  );
-
-  List<Marker> _markers = [];
-  BitmapDescriptor? _taxiIcon;
+  // List<Marker> _markers = [];
+  // BitmapDescriptor? _taxiIcon;
 
   // void _loadTaxiIcon() async {
   //   final BitmapDescriptor taxiIcon = await BitmapDescriptor.fromAssetImage(
@@ -58,6 +52,8 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
     Position position = await getUserCurrentLocation();
 
     setState(() {
+      userLocation = LatLng(
+          Angle.degree(position.latitude), Angle.degree(position.longitude));
       // _markers.add(
       //   Marker(
       //     markerId: MarkerId('currentLocation'),
@@ -69,30 +65,28 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
       // );
     });
 
-    CameraPosition cameraPosition = CameraPosition(
-      target: LatLng(position.latitude, position.longitude),
-      zoom: 14.4746,
-    );
+    // CameraPosition cameraPosition = CameraPosition(
+    //   target: LatLng(position.latitude, position.longitude),
+    //   zoom: 14.4746,
+    // );
 
-    final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+    // final GoogleMapController controller = await _controller.future;
+    // controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
     // Adding markers in a 5km radius around the user's location
     //addMarkersAround(position);
   }
 
-   
-
   Future<void> zoomOnAgence(Agence agence) async {
-    if (agence.lat != null && agence.long != null) {
-      CameraPosition cameraPosition = CameraPosition(
-        target: LatLng(agence.lat!, agence.long!),
-        zoom: 14.4746,
-      );
+    // if (agence.lat != null && agence.long != null) {
+    //   CameraPosition cameraPosition = CameraPosition(
+    //     target: LatLng(agence.lat!, agence.long!),
+    //     zoom: 14.4746,
+    //   );
 
-      final GoogleMapController controller = await _controller.future;
-      controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
-    }
+    //   final GoogleMapController controller = await _controller.future;
+    //   controller.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+    // }
   }
 
   @override
@@ -105,7 +99,6 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
   bool findAllAgences = false;
   bool nearbyAngences = false;
   bool showAgenceDetails = false;
-   
 
   annulerProche() {
     setState(() {
@@ -142,11 +135,12 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
       body: SafeArea(
         child: Stack(children: [
           mapView_customer(
-              // initialPosition: _initialPosition,
-              // markers: _markers,
-              // controller: _controller,
-              // onTap: (LatLng position) {}
-              ),
+            userLocation: userLocation,
+            // initialPosition: _initialPosition,
+            // markers: _markers,
+            // controller: _controller,
+            // onTap: (LatLng position) {}
+          ),
           Align(
             alignment: Alignment.topLeft,
             child: Padding(
