@@ -124,7 +124,7 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
         String? carteName = valeurContrainte!.split(',')[0];
         String? carteId = valeurContrainte!.split(',')[1];
         if (!cartesPossedees.contains(carteId)) {
-          return " $carteName requise:";
+          return " $carteName Niv1";
         }
         break;
       case ContrainteType.niveauCarteRequise:
