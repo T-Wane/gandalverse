@@ -195,7 +195,7 @@ class _userTopInfosState extends State<userTopInfos> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        // widget.showVisibleEye = !widget.showVisibleEye;
+                        widget.showVisibleEye = !widget.showVisibleEye;
 
                         widget.changeVisibility?.call();
                       });

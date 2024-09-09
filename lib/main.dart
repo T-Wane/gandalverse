@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gandalverse/core/providers/charge_provider.dart';
 import 'package:gandalverse/core/providers/user_provider.dart';
+import 'package:gandalverse/core/repositories/social_link_repo/social_linkRespository.dart';
 import 'package:gandalverse/core/repositories/tabAndEarnRepository.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:go_router/go_router.dart';
@@ -14,19 +15,18 @@ import 'package:webview_flutter_web/webview_flutter_web.dart';
 import 'core/route/router_navigator.dart';
 import 'core/services/explorer_service/explorer_service.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
-// Pour JSON parsing 
+// Pour JSON parsing
 
 import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
 
- 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
   // await getIt<FirebaseClient>().initializeApp();
   //await getIt<TelegramClient>().initializeApp();
   WebViewPlatform.instance = WebWebViewPlatform();
-    // Require Hybrid Composition mode on Android.
+  // Require Hybrid Composition mode on Android.
   // final GoogleMapsFlutterPlatform mapsImplementation =
   //     GoogleMapsFlutterPlatform.instance;
   // if (mapsImplementation is GoogleMapsFlutterAndroid) {
@@ -34,7 +34,6 @@ Future main() async {
   //   mapsImplementation.useAndroidViewSurface = true;
   // }
   // await initializeMapRenderer();
-
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -47,7 +46,7 @@ Future main() async {
         systemNavigationBarIconBrightness: Brightness.dark,
         statusBarBrightness: Brightness.light,
         statusBarIconBrightness: Brightness.dark),
-  ); 
+  );
 
   runApp(
     MultiProvider(
@@ -56,6 +55,7 @@ Future main() async {
         ChangeNotifierProvider(create: (_) => getIt<TapAndEarnRepository>()),
         ChangeNotifierProvider(create: (_) => getIt<ChargeManager>()),
         ChangeNotifierProvider(create: (_) => getIt<ExplorerService>()),
+        ChangeNotifierProvider(create: (_) => getIt<SocialLinkService>()),
       ],
       builder: ((context, child) =>
           MyApp()), // /*InitializationPage()*/ MyApp()
@@ -90,7 +90,7 @@ class _MyAppState extends State<MyApp> {
       data: MediaQuery.of(context)
           .copyWith(textScaler: const TextScaler.linear(1)),
       child: MaterialApp.router(
-       routerConfig: _rootNavigator,
+        routerConfig: _rootNavigator,
         // routerDelegate: RootNavigator().makeRoutes.routerDelegate,
         // routeInformationParser:
         //     RootNavigator().makeRoutes.routeInformationParser,
@@ -103,8 +103,7 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
- 
- 
+
 Completer<AndroidMapRenderer?>? _initializedRendererCompleter;
 
 /// Initializes map renderer to the `latest` renderer type.

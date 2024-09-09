@@ -1,0 +1,55 @@
+{
+    "socialMedia": [
+      {
+        "id": "youtube",
+        "title": "Communauté YouTube",
+        "description": "Abonne-toi à notre chaîne YouTube pour obtenir des récompenses !",
+        "subscriptionLink": "https://www.youtube.com/channel/your_channel_id?sub_confirmation=1",
+        "image": "assets/images/social_black/youtube.png",
+        "reward": "10.000",
+        "isSubscribed": false, 
+        "isVisible": true 
+      },
+      {
+        "id": "telegram",
+        "title": "Communauté Telegram",
+        "description": "Rejoins notre communauté Telegram pour obtenir des récompenses !",
+        "subscriptionLink": "https://t.me/starbrig_bot",
+        "image": "assets/images/social_black/telegram.png",
+        "reward": "10.000",
+        "isSubscribed": false, 
+        "isVisible": true  
+      },
+      {
+        "id": "x",
+        "title": "Communauté X",
+        "description": "Suivez-nous sur X pour obtenir des récompenses !",
+        "subscriptionLink": "https://x.com/gandalverse",
+        "image": "assets/images/social_black/facebook.png",
+        "reward": "10.000",
+        "isSubscribed": false, 
+        "isVisible": true 
+      },
+      {
+        "id": "facebook",
+        "title": "Communauté Facebook",
+        "description": "Rejoins notre communauté Facebook pour obtenir des récompenses !",
+        "subscriptionLink": "https://www.facebook.com/gandalverse",
+        "image": "assets/images/social_black/twitter.png",
+        "reward": "10.000",
+        "isSubscribed": false, 
+        "isVisible": true 
+      },
+      {
+        "id": "tiktok",
+        "title": "Communauté TikTok",
+        "description": "Suivez-nous sur TikTok pour obtenir des récompenses !",
+        "subscriptionLink": "http://tiktok.com/@gandalverse",
+        "image": "assets/images/social_black/twitter.png",
+        "reward": "10.000",
+        "isSubscribed": false, 
+        "isVisible": true 
+      }
+    ]
+  }
+  
