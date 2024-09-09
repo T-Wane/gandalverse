@@ -10,6 +10,7 @@ import 'package:gandalverse/screens/new_design_screens/home_page.dart';
 import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../screens/bnda/map_markers.dart';
 import 'route_name.dart';
 /*
 class RootNavigator {
@@ -128,7 +129,7 @@ class RootNavigator {
           GoRoute(
             name: bnda_view,
             path: 'bnda_home',
-            builder: (context, state) => BndaAgenceMapScreen(),
+            builder: (context, state) => MarkersPage(), //BndaAgenceMapScreen(),
           ),
         ],
       ),
