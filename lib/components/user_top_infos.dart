@@ -193,21 +193,26 @@ class _userTopInfosState extends State<userTopInfos> {
                 ),
                 if (widget.showVisibleEye) ...[
                   GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          widget.showVisibleEye = !widget.showVisibleEye;
-                        });
-                      },
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            shape: BoxShape.circle, color: Colors.white10),
-                        padding: const EdgeInsets.all(5),
-                        child: const Icon(
-                          CupertinoIcons.gear,
-                          color: Colors.white,
-                          size: 20,
-                        ),
-                      )),
+                    onTap: () {
+                      setState(() {
+                        // widget.showVisibleEye = !widget.showVisibleEye;
+
+                        widget.changeVisibility?.call();
+                      });
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle, color: Colors.white10),
+                      padding: const EdgeInsets.all(5),
+                      child: Icon(
+                        widget.showVisibleEye
+                            ? CupertinoIcons.eye
+                            : CupertinoIcons.eye_slash,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
+                  ),
                 ],
                 const SizedBox(
                   width: 2,

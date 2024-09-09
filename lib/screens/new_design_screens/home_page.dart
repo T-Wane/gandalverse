@@ -193,7 +193,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                 alignment: Alignment.topCenter,
                 child: PointerInterceptor(
                   debug: false,
-                  child: userTopInfos(),
+                  child: userTopInfos(showVisibleEye: true, changeVisibility: changeVisibility,),
                 ),
               ),
 

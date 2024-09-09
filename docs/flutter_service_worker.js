@@ -124,7 +124,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "4fae72015b05efe621d3f8551b68ff82
 "assets/GverseToken_OnboardingPage.png": "820b9e0e98327dc8cc26971d46a9dfaf",
 "assets/GverseToken_OnboardingPage2.png": "8128e5bbeed2bdd3b9de842f9fed4ea1",
 "assets/NOTICES": "aea2f00d071200339f72e6f4741ae01f",
-"assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "c4dc2c0e87feea6a008bc589ed32b2fe",
+"assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "498be2cd24e9a4160f2a399ddb9ac6e2",
 "assets/packages/flutter_inappwebview/assets/t_rex_runner/t-rex.css": "5a8d0222407e388155d7d1395a75d5b9",
 "assets/packages/flutter_inappwebview/assets/t_rex_runner/t-rex.html": "16911fcc170c8af1c5457940bd0bf055",
 "assets/packages/line_awesome_flutter/lib/fonts/LineAwesome.ttf": "c9f7bb62655415e80068b01558fb8d4e",
@@ -145,9 +145,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "4fae72015b05efe621d3f8551b68ff82
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "365d4ce5549485880bd56d60d8a07729",
-"/": "365d4ce5549485880bd56d60d8a07729",
-"main.dart.js": "86c6c9924e1536e9338c86a3ceeeee79",
+"index.html": "7d5336f49939b401a880534fbe39d744",
+"/": "7d5336f49939b401a880534fbe39d744",
+"main.dart.js": "08ecb23d9874a2b29fbde79f9c013d2b",
 "manifest.json": "9f6f1bf5b67cd2b30e68a99551f02cad",
 "version.json": "bdbf5533cd872db8379bf13ff58db6f3"};
 // The application shell files that are downloaded before a service worker can
