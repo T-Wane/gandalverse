@@ -129,7 +129,7 @@ class RootNavigator {
           GoRoute(
             name: bnda_view,
             path: 'bnda_home',
-            builder: (context, state) => MarkersPage(), //BndaAgenceMapScreen(),
+            builder: (context, state) => BndaAgenceMapScreen(),
           ),
         ],
       ),

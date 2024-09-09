@@ -81,40 +81,7 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
     //addMarkersAround(position);
   }
 
-  /*void addMarkersAround(Position center) {
-    final Random random = Random();
-    const double radius = 2000; // 5 km
-
-    for (int i = 0; i < 10; i++) {
-      final double angle = random.nextDouble() * 2 * pi;
-      final double distance = random.nextDouble() * radius;
-
-      // Calculate new coordinates
-      final double dx = distance * cos(angle) / 111320;
-      final double dy = distance * sin(angle) / 111320;
-
-      final double newLat = center.latitude + dy;
-      final double newLng = center.longitude + dx;
-
-      setState(() {
-        _markers.add(
-          Marker(
-              markerId: MarkerId('taxi_$i'),
-              position: LatLng(newLat, newLng),
-              icon: _taxiIcon ?? BitmapDescriptor.defaultMarker,
-              infoWindow: InfoWindow(
-                title: 'Taxi $i',
-              ),
-              onTap: () {
-                setState(() {
-                  showTaxiDetails = true;
-                  taxiSelectedName = "Chauffeur $i";
-                });
-              }),
-        );
-      });
-    }
-  }*/
+   
 
   Future<void> zoomOnAgence(Agence agence) async {
     if (agence.lat != null && agence.long != null) {
@@ -138,25 +105,7 @@ class _HomePageFroAllState extends State<BndaAgenceMapScreen> {
   bool findAllAgences = false;
   bool nearbyAngences = false;
   bool showAgenceDetails = false;
-  // void _onTap(LatLng position) {
-  //   setState(() {
-  //     _markers.removeWhere(
-  //         (element) => element.infoWindow.title == "Position choisie");
-  //     // Efface les anciens marqueurs si vous souhaitez en avoir un seul à la fois
-  //     _markers.add(
-  //       Marker(
-  //         markerId: MarkerId(position.toString()),
-  //         position: position,
-  //         infoWindow: InfoWindow(
-  //           title: 'Position choisie',
-  //           snippet: '${position.latitude}, ${position.longitude}',
-  //         ),
-  //         icon: BitmapDescriptor.defaultMarker,
-  //       ),
-  //     );
-  //     pinIsPlaced = true;
-  //   });
-  // }
+   
 
   annulerProche() {
     setState(() {

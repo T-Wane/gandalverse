@@ -1,7 +1,12 @@
 import 'dart:async';
+import 'dart:math';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-// import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_static_maps_controller/google_static_maps_controller.dart';
+import 'package:gandalverse/screens/bnda/utils/tile_servers.dart';
+import 'package:gandalverse/screens/bnda/utils/utils.dart';
+import 'package:latlng/latlng.dart';
+import 'package:map/map.dart';
 
 class mapView_customer extends StatefulWidget {
   mapView_customer({
@@ -24,262 +29,153 @@ class mapView_customer extends StatefulWidget {
 }
 
 class _mapView_customerState extends State<mapView_customer> {
+  final controller = MapController(
+    location: const LatLng(Angle.degree(35.68), Angle.degree(51.41)),
+  );
+
+  final markers = [
+    const LatLng(Angle.degree(35.674), Angle.degree(51.41)),
+    const LatLng(Angle.degree(35.678), Angle.degree(51.41)),
+    const LatLng(Angle.degree(35.682), Angle.degree(51.41)),
+    const LatLng(Angle.degree(35.686), Angle.degree(51.41)),
+  ];
+
+  void _gotoDefault() {
+    controller.center = const LatLng(Angle.degree(35.68), Angle.degree(51.41));
+    setState(() {});
+  }
+
+  void _onDoubleTap(MapTransformer transformer, Offset position) {
+    const delta = 0.5;
+    final zoom = clamp(controller.zoom + delta, 2, 18);
+
+    transformer.setZoomInPlace(zoom, position);
+    setState(() {});
+  }
+
+  Offset? _dragStart;
+  double _scaleStart = 1.0;
+  void _onScaleStart(ScaleStartDetails details) {
+    _dragStart = details.focalPoint;
+    _scaleStart = 1.0;
+  }
+
+  void _onScaleUpdate(ScaleUpdateDetails details, MapTransformer transformer) {
+    final scaleDiff = details.scale - _scaleStart;
+    _scaleStart = details.scale;
+
+    if (scaleDiff > 0) {
+      controller.zoom += 0.02;
+      setState(() {});
+    } else if (scaleDiff < 0) {
+      controller.zoom -= 0.02;
+      setState(() {});
+    } else {
+      final now = details.focalPoint;
+      final diff = now - _dragStart!;
+      _dragStart = now;
+      transformer.drag(diff.dx, diff.dy);
+      setState(() {});
+    }
+  }
+
+  Widget _buildMarkerWidget(Offset pos, Color color,
+      [IconData icon = Icons.location_on]) {
+    return Positioned(
+      left: pos.dx - 24,
+      top: pos.dy - 24,
+      width: 48,
+      height: 48,
+      child: GestureDetector(
+        child: Icon(
+          icon,
+          color: color,
+          size: 48,
+        ),
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (context) => const AlertDialog(
+              content: Text('You have clicked a marker!'),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return StaticMap(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      scaleToDevicePixelRatio: true,
-      googleApiKey: "AIzaSyDKZJ7vxBvNxyJk5JwtZmhzBcxkRiSYS5g",
-      visible: const [
-        GeocodedLocation.address('Santa Monica Pier'),
-      ],
-      styles: retroMapStyle,
-      paths: <Path>[
-        const Path(
-          color: Colors.blue,
-          // encoded: true,
-          points: [
-            GeocodedLocation.address('Santa Monica Pier'),
-            Location(34.011395, -118.494961),
-            Location(34.011921, -118.493360),
-            Location(34.012471, -118.491884),
-            Location(34.012710, -118.489420),
-            Location(34.014294, -118.486595),
-            Location(34.016630, -118.482920),
-            Location(34.018899, -118.480087),
-            Location(34.021314, -118.477136),
-            Location(34.022769, -118.474901),
-          ],
-        ),
-        Path.circle(
-          center: const Location(34.005641, -118.490229),
-          color: Colors.green.withOpacity(0.8),
-          fillColor: Colors.green.withOpacity(0.4),
-          radius: 200, // meters
-        ),
-        const Path(
-          encoded: true,
-          points: [
-            Location(34.016839, -118.488240),
-            Location(34.019498, -118.491439),
-            Location(34.024106, -118.485734),
-            Location(34.021486, -118.482682),
-            Location(34.016839, -118.488240),
-          ],
-          fillColor: Colors.black45,
-          color: Colors.black,
-        )
-      ],
-      zoom: 14,
-      markers: <Marker>[
-        Marker(
-          color: Colors.amber,
-          label: "X",
-          locations: [
-            GeocodedLocation.address("Santa Monica Pier"),
-            GeocodedLocation.latLng(34.012849, -118.501478),
-          ],
-        ),
-        Marker.custom(
-          anchor: MarkerAnchor.center,
-          icon: "https://goo.gl/1oTJ9Y",
-          locations: [
-            Location(34.012343, -118.482998),
-          ],
-        ),
-        Marker(
-          locations: [
-            Location(34.006618, -118.500901),
-          ],
-          color: Colors.cyan,
-          label: "W",
-        )
-      ],
-    );
+    return MapLayout(
+        controller: controller,
+        builder: (context, transformer) {
+          final markerPositions = markers.map(transformer.toOffset).toList();
 
-    //
-    // GoogleMap(
-    //     initialCameraPosition: widget._initialPosition,
-    //     markers: Set<Marker>.of(widget._markers),
-    //     mapType: MapType.terrain,
-    //     myLocationEnabled: true,
-    //     compassEnabled: true,
-    //     onTap: widget.onTap,
-    //     onMapCreated: (GoogleMapController controller) {
-    //       if (!widget._controller.isCompleted) {
-    //         widget._controller.complete(controller);
-    //       }
-    //     },
-    //   );
-    // }
+          final markerWidgets = markerPositions.map(
+            (pos) => _buildMarkerWidget(pos, Colors.red),
+          );
+
+          final homeLocation = transformer
+              .toOffset(const LatLng(Angle.degree(35.68), Angle.degree(51.42)));
+
+          final homeMarkerWidget =
+              _buildMarkerWidget(homeLocation, Colors.black, Icons.home);
+
+          final centerLocation = Offset(
+              transformer.constraints.biggest.width / 2,
+              transformer.constraints.biggest.height / 2);
+
+          final centerMarkerWidget =
+              _buildMarkerWidget(centerLocation, Colors.purple);
+
+          return GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onDoubleTapDown: (details) => _onDoubleTap(
+              transformer,
+              details.localPosition,
+            ),
+            onScaleStart: _onScaleStart,
+            onScaleUpdate: (details) => _onScaleUpdate(details, transformer),
+            child: Listener(
+              behavior: HitTestBehavior.opaque,
+              onPointerSignal: (event) {
+                if (event is PointerScrollEvent) {
+                  final delta = event.scrollDelta.dy / -1000.0;
+                  final zoom = clamp(controller.zoom + delta, 2, 18);
+
+                  transformer.setZoomInPlace(zoom, event.localPosition);
+                  setState(() {});
+                }
+              },
+              child: Stack(
+                children: [
+                  TileLayer(
+                    builder: (context, x, y, z) {
+                      final tilesInZoom = pow(2.0, z).floor();
+
+                      while (x < 0) {
+                        x += tilesInZoom;
+                      }
+                      while (y < 0) {
+                        y += tilesInZoom;
+                      }
+
+                      x %= tilesInZoom;
+                      y %= tilesInZoom;
+
+                      return CachedNetworkImage(
+                        imageUrl: google(z, x, y),
+                        fit: BoxFit.cover,
+                      );
+                    },
+                  ),
+                  homeMarkerWidget,
+                  ...markerWidgets,
+                  centerMarkerWidget,
+                ],
+              ),
+            ),
+          );
+        });
   }
 }
-
-final retroMapStyle = [
-  const MapStyle(
-    element: StyleElement.geometry,
-    rules: [
-      StyleRule.color(Color(0xffebe3cd)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.labels.text,
-    rules: const [
-      StyleRule.color(Color(0xFF523735)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.labels.text.stroke,
-    rules: const [
-      StyleRule.color(Color(0xFFf5f1e6)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.geometry.stroke,
-    feature: StyleFeature.administrative,
-    rules: const [
-      StyleRule.color(Color(0xFFc9b2a6)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.geometry.stroke,
-    feature: StyleFeature.administrative.landParcel,
-    rules: const [
-      StyleRule.color(Color(0xFFdcd2be)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.labels.text.fill,
-    feature: StyleFeature.administrative.landParcel,
-    rules: const [
-      StyleRule.color(Color(0xFFae9e90)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.geometry,
-    feature: StyleFeature.landscape.natural,
-    rules: const [
-      StyleRule.color(Color(0xFFdfd2ae)),
-    ],
-  ),
-  const MapStyle(
-    element: StyleElement.geometry,
-    feature: StyleFeature.poi,
-    rules: [
-      StyleRule.color(Color(0xFFdfd2ae)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.labels.text.fill,
-    feature: StyleFeature.poi,
-    rules: const [
-      StyleRule.color(Color(0xFF93817c)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.geometry.fill,
-    feature: StyleFeature.poi.park,
-    rules: const [
-      StyleRule.color(Color(0xFFa5b076)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.labels.text.fill,
-    feature: StyleFeature.poi.park,
-    rules: const [
-      StyleRule.color(Color(0xFF447530)),
-    ],
-  ),
-  const MapStyle(
-    element: StyleElement.geometry,
-    feature: StyleFeature.road,
-    rules: [
-      StyleRule.color(Color(0xFFf5f1e6)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.geometry,
-    feature: StyleFeature.road.arterial,
-    rules: const [
-      StyleRule.color(Color(0xFFfdfcf8)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.geometry,
-    feature: StyleFeature.road.highway,
-    rules: const [
-      StyleRule.color(Color(0xFFf8c967)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.geometry.stroke,
-    feature: StyleFeature.road.highway,
-    rules: const [
-      StyleRule.color(Color(0xFFe9bc62)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.geometry,
-    feature: StyleFeature.road.highway.controlledAccess,
-    rules: const [
-      StyleRule.color(Color(0xFFe98d58)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.geometry.stroke,
-    feature: StyleFeature.road.highway.controlledAccess,
-    rules: const [
-      StyleRule.color(Color(0xFFdb8555)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.labels.text.fill,
-    feature: StyleFeature.road.local,
-    rules: const [
-      StyleRule.color(Color(0xFF806b63)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.geometry,
-    feature: StyleFeature.transit.line,
-    rules: const [
-      StyleRule.color(Color(0xFFdfd2ae)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.labels.text.fill,
-    feature: StyleFeature.transit.line,
-    rules: const [
-      StyleRule.color(Color(0xFF8f7d77)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.labels.text.stroke,
-    feature: StyleFeature.transit.line,
-    rules: const [
-      StyleRule.color(Color(0xFFebe3cd)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.geometry,
-    feature: StyleFeature.transit.station,
-    rules: const [
-      StyleRule.color(Color(0xFFdfd2ae)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.geometry.fill,
-    feature: StyleFeature.water,
-    rules: const [
-      StyleRule.color(Color(0xFFb9d3c2)),
-    ],
-  ),
-  MapStyle(
-    element: StyleElement.labels.text.fill,
-    feature: StyleFeature.water,
-    rules: const [
-      StyleRule.color(Color(0xFF92998d)),
-    ],
-  ),
-];
