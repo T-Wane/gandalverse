@@ -427,7 +427,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                 height: 5,
               ),
             ],
-            if (widget.isUnlocked) ...[
+            if (!widget.isUnlocked) ...[
               DefaultButton(
                   backColor: Colors.grey.shade200,
                   text: 'Go',
