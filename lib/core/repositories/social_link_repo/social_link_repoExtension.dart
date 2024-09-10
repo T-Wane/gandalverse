@@ -53,14 +53,12 @@ extension SocialLinkExtension<T> on SocialLinkService {
         //   orElse: () => null,
         // );
         T? localItem;
-
-        try {
-          localItem = localData.firstWhere(
-            (localItem) => isSameItem(localItem, jsonItem),
-          );
-        } catch (e) {
-          // Si aucun élément n'est trouvé, on capture l'exception et on laisse `localItem` comme `null`
-          localItem = null;
+// Parcourir la liste `localData` pour trouver un élément qui correspond
+        for (T item in localData) {
+          if (isSameItem(item, jsonItem)) {
+            localItem = item;
+            break; // On sort de la boucle dès qu'on trouve une correspondance
+          }
         }
 
         if (localItem == null) {
