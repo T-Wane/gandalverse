@@ -22,10 +22,17 @@ import 'package:telegram_web_app/telegram_web_app.dart';
 import 'profil_details.dart';
 
 class userTopInfos extends StatefulWidget {
-  userTopInfos({super.key, this.goBack, this.showBackArrow = false});
+  userTopInfos(
+      {super.key,
+      this.goBack,
+      this.changeVisibility,
+      this.showBackArrow = false,
+      this.showVisibleEye = false});
 
   VoidCallback? goBack;
   bool showBackArrow;
+  bool showVisibleEye;
+  VoidCallback? changeVisibility;
 
   @override
   State<userTopInfos> createState() => _userTopInfosState();
@@ -80,11 +87,9 @@ class _userTopInfosState extends State<userTopInfos> {
                       context.pop();
                     },
                     child: Container(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white10,
                         shape: BoxShape.circle,
-                        //Erreur mise en commentaire
-                       // borderRadius: BorderRadius.circular(10),
                       ),
                       margin: const EdgeInsets.only(left: 5, right: 2),
                       padding: const EdgeInsets.all(2),
@@ -180,6 +185,32 @@ class _userTopInfosState extends State<userTopInfos> {
                           ),
                         )
                       ],
+                    ),
+                  ),
+                ],
+                const SizedBox(
+                  width: 2,
+                ),
+                if (widget.showVisibleEye) ...[
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        widget.showVisibleEye = !widget.showVisibleEye;
+
+                        widget.changeVisibility?.call();
+                      });
+                    },
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle, color: Colors.white10),
+                      padding: const EdgeInsets.all(5),
+                      child: Icon(
+                        widget.showVisibleEye
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                        color: Colors.white,
+                        size: 20,
+                      ),
                     ),
                   ),
                 ],

@@ -148,6 +148,15 @@ class _GoogleMapState extends State<HomeVrScreen>
 
   bool showExplorerContent = false;
 
+  bool showAllbtns = true;
+
+  /// Switches the visibility of the buttons on the map screen.
+  void changeVisibility() {
+    setState(() {
+      showAllbtns = !showAllbtns;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     screenWidth = MediaQuery.of(context).size.width;
@@ -161,290 +170,316 @@ class _GoogleMapState extends State<HomeVrScreen>
 
     return Scaffold(
       key: _scaffoldKey,
-      body: Container(
-        width: screenWidth,
-        height: screenHeight,
-        child: Stack(
-          children: <Widget>[
-            //A decommenter
-            VerseWebView(),
+      body: GestureDetector(
+        onDoubleTap: changeVisibility,
+        child: Container(
+          width: screenWidth,
+          height: screenHeight,
+          child: Stack(
+            children: <Widget>[
+              //A decommenter
+              VerseWebView(),
 
-            // Container(
-            //   width: screenWidth,
-            //   height: screenHeight,
-            //   child: PlatformWebViewWidget(
-            //     PlatformWebViewWidgetCreationParams(controller: controller),
-            //   ).build(context),
-            // ),
+              // Container(
+              //   width: screenWidth,
+              //   height: screenHeight,
+              //   child: PlatformWebViewWidget(
+              //     PlatformWebViewWidgetCreationParams(controller: controller),
+              //   ).build(context),
+              // ),
 
-            //A decommenter
-            Align(
-              alignment: Alignment.topCenter,
-              child: PointerInterceptor(
-                debug: false,
-                child: userTopInfos(),
+              //A decommenter
+              Align(
+                alignment: Alignment.topCenter,
+                child: PointerInterceptor(
+                  debug: false,
+                  child: userTopInfos(showVisibleEye: true, changeVisibility: changeVisibility,),
+                ),
               ),
-            ),
 
-            // Align(
-            //     alignment: Alignment.bottomCenter,
-            //     child: Container(
-            //       width: double.infinity,
-            //       height: MediaQuery.of(context).size.height * 0.7,
-            //       child: PointerInterceptor(
-            //         debug: true,
-            //         child: const SizedBox.shrink(),
-            //       ),
-            //     )),
+              // Align(
+              //     alignment: Alignment.bottomCenter,
+              //     child: Container(
+              //       width: double.infinity,
+              //       height: MediaQuery.of(context).size.height * 0.7,
+              //       child: PointerInterceptor(
+              //         debug: true,
+              //         child: const SizedBox.shrink(),
+              //       ),
+              //     )),
 
-            // Positioned(
-            //   bottom: 50,
-            //   left: 10,
-            //   width: 50,
-            //   height: 50,
-            //   child: PointerInterceptor(
-            //     debug: true,
-            //     child: GestureDetector(
-            //       onTap: () {
-            //         animateMenu(true);
-            //       },
-            //       child: Container(
-            //         decoration: const BoxDecoration(
-            //             shape: BoxShape.circle, color: Colors.white),
-            //         height: 50,
-            //         width: 50,
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            //explore
+              // Positioned(
+              //   bottom: 50,
+              //   left: 10,
+              //   width: 50,
+              //   height: 50,
+              //   child: PointerInterceptor(
+              //     debug: true,
+              //     child: GestureDetector(
+              //       onTap: () {
+              //         animateMenu(true);
+              //       },
+              //       child: Container(
+              //         decoration: const BoxDecoration(
+              //             shape: BoxShape.circle, color: Colors.white),
+              //         height: 50,
+              //         width: 50,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              //explore
 
-            ExploreWidget(
-              currentExplorePercent: currentExplorePercent,
-              currentSearchPercent: currentSearchPercent,
-              animateExplore: animateExplore,
-              isExploreOpen: isExploreOpen,
-              onVerticalDragUpdate: onExploreVerticalUpdate,
-              onPanDown: () => animationControllerExplore?.stop(),
-            ),
+              Visibility(
+                visible: showAllbtns,
+                child: ExploreWidget(
+                  currentExplorePercent: currentExplorePercent,
+                  currentSearchPercent: currentSearchPercent,
+                  animateExplore: animateExplore,
+                  isExploreOpen: isExploreOpen,
+                  onVerticalDragUpdate: onExploreVerticalUpdate,
+                  onPanDown: () => animationControllerExplore?.stop(),
+                ),
+              ),
 
-            //blur
-            offsetSearch != 0
-                ? BackdropFilter(
-                    filter: ImageFilter.blur(
-                        sigmaX: 10 * currentSearchPercent,
-                        sigmaY: 10 * currentSearchPercent),
-                    child: Container(
-                      color:
-                          Colors.white.withOpacity(0.1 * currentSearchPercent),
-                      width: screenWidth,
-                      height: screenHeight,
+              //blur
+              offsetSearch != 0
+                  ? BackdropFilter(
+                      filter: ImageFilter.blur(
+                          sigmaX: 10 * currentSearchPercent,
+                          sigmaY: 10 * currentSearchPercent),
+                      child: Container(
+                        color: Colors.white
+                            .withOpacity(0.1 * currentSearchPercent),
+                        width: screenWidth,
+                        height: screenHeight,
+                      ),
+                    )
+                  : const Padding(
+                      padding: const EdgeInsets.all(0),
                     ),
-                  )
-                : const Padding(
-                    padding: const EdgeInsets.all(0),
-                  ),
 
-            //recent search
-            RecentSearchWidget(
-              currentSearchPercent: currentSearchPercent,
-            ),
-            //search menu background
-            offsetSearch != 0
-                ? Positioned(
-                    bottom: realH(88),
-                    left: realW((standardWidth - 320) / 2),
-                    width: realW(320),
-                    height: realH(135 * currentSearchPercent),
+              //recent search
+              RecentSearchWidget(
+                currentSearchPercent: currentSearchPercent,
+              ),
+              //search menu background
+              offsetSearch != 0
+                  ? Positioned(
+                      bottom: realH(88),
+                      left: realW((standardWidth - 320) / 2),
+                      width: realW(320),
+                      height: realH(135 * currentSearchPercent),
+                      child: Opacity(
+                        opacity: currentSearchPercent,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(realW(33)),
+                                  topRight: Radius.circular(realW(33)))),
+                        ),
+                      ),
+                    )
+                  : const Padding(
+                      padding: EdgeInsets.all(0),
+                    ),
+              //search menu
+              // SearchMenuWidget(
+              //   currentSearchPercent: currentSearchPercent,
+              // ),
+              // //search
+              // SearchWidget(
+              //   currentSearchPercent: currentSearchPercent,
+              //   currentExplorePercent: currentExplorePercent,
+              //   isSearchOpen: isSearchOpen,
+              //   animateSearch: animateSearch,
+              //   onHorizontalDragUpdate: onSearchHorizontalDragUpdate,
+              //   onPanDown: () => animationControllerSearch?.stop(),
+              // ),
+              // //search back
+              // SearchBackWidget(
+              //   currentSearchPercent: currentSearchPercent,
+              //   animateSearch: animateSearch,
+              // ),
+              //layer button
+              Visibility(
+                visible: showAllbtns,
+                child: MapButton(
+                  bottom: 314,
+                  offsetX: 0,
+                  width: 68,
+                  height: 71,
+                  isRight: false,
+                  icon: Icons.school_rounded,
+                  iconColor: Themecolors.Color3,
+                  press: () => context.pushNamed(learn_home_view),
+                ),
+              ),
+              //directions button
+              Visibility(
+                visible: showAllbtns,
+                child: MapButton(
+                  bottom: 314,
+                  offsetX: 0,
+                  width: 68,
+                  height: 71,
+                  image: Images.gvt,
+                  icon: null,
+                  //icon: Icons.directions,
+                  iconColor: Colors.white,
+                  gradient: const LinearGradient(colors: [
+                    Color(0xFF59C2FF),
+                    Color(0xFF1270E3),
+                  ]),
+                  press: () {
+                    context.pushNamed(revenu_view);
+                  },
+                ),
+              ),
+              Visibility(
+                visible: showAllbtns,
+                child: MapButton(
+                  bottom: 227,
+                  offsetX: 0,
+                  width: 68,
+                  height: 71,
+                  icon: CupertinoIcons.flame,
+                  //icon: Icons.directions,
+                  iconColor: Themecolors.Color3,
+                  press: () {
+                    context.pushNamed(defi_view);
+                  },
+                ),
+              ),
+              Visibility(
+                visible: showAllbtns,
+                child: MapButton(
+                  bottom: 140,
+                  offsetX: 0,
+                  width: 65,
+                  height: 71,
+                  isRight: false,
+                  image: Images.logo_BDM,
+                  iconColor: Themecolors.ColorWhite,
+                  icon: null,
+                  press: () {
+                    context.pushNamed(bnda_view);
+                  },
+                ),
+              ),
+              //my_location button
+              Visibility(
+                visible: showAllbtns,
+                child: MapButton(
+                  bottom: 140,
+                  offsetX: 0,
+                  width: 68,
+                  height: 71,
+                  icon: Icons.group_rounded,
+                  iconColor: Themecolors.Color3,
+                  press: () {
+                    context.pushNamed(amis_view);
+                  },
+                ),
+              ),
+              //layer button
+              Visibility(
+                visible: showAllbtns,
+                child: MapButton(
+                  bottom: 53,
+                  offsetX: 0,
+                  width: 65,
+                  height: 71,
+                  icon: Icons.business_rounded,
+                  iconColor: Themecolors.Color3,
+                  press: () {
+                    context.pushNamed(qg_view);
+                  },
+                ),
+              ),
+              Visibility(
+                visible: showAllbtns,
+                child: MapButton(
+                  bottom: 53,
+                  offsetX: 0,
+                  width: 65,
+                  height: 71,
+                  isRight: false,
+                  image: Images.scanQr,
+                  iconColor: Themecolors.Color3,
+                  icon: null,
+                  press: () {
+                    _showScanQrPopup();
+                    // Navigator.push<void>(
+                    //   context,
+                    //   MaterialPageRoute<void>(
+                    //     builder: (BuildContext context) => QGScreen(),
+                    //   ),
+                    // );
+                  },
+                ),
+              ),
+
+              //menu button
+              /* Positioned(
+                bottom: realH(53),
+                left: realW(-71 * (currentExplorePercent + currentSearchPercent)),
+                child: GestureDetector(
+                  onTap: () {
+                    animateMenu(true);
+                  },
+                  child: PointerInterceptor(
                     child: Opacity(
-                      opacity: currentSearchPercent,
-                      child: DecoratedBox(
+                      opacity: 1 - (currentSearchPercent + currentExplorePercent),
+                      child: Container(
+                        width: realW(71),
+                        height: realH(71),
+                        alignment: Alignment.centerLeft,
+                        padding: EdgeInsets.only(left: realW(17)),
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(realW(33)),
-                                topRight: Radius.circular(realW(33)))),
-                      ),
-                    ),
-                  )
-                : const Padding(
-                    padding: EdgeInsets.all(0),
-                  ),
-            //search menu
-            // SearchMenuWidget(
-            //   currentSearchPercent: currentSearchPercent,
-            // ),
-            // //search
-            // SearchWidget(
-            //   currentSearchPercent: currentSearchPercent,
-            //   currentExplorePercent: currentExplorePercent,
-            //   isSearchOpen: isSearchOpen,
-            //   animateSearch: animateSearch,
-            //   onHorizontalDragUpdate: onSearchHorizontalDragUpdate,
-            //   onPanDown: () => animationControllerSearch?.stop(),
-            // ),
-            // //search back
-            // SearchBackWidget(
-            //   currentSearchPercent: currentSearchPercent,
-            //   animateSearch: animateSearch,
-            // ),
-            //layer button
-            MapButton(
-              bottom: 314,
-              offsetX: 0,
-              width: 68,
-              height: 71,
-              isRight: false,
-              icon: Icons.school_rounded,
-              iconColor: Themecolors.Color3,
-              press: () => context.pushNamed(learn_home_view),
-            ),
-            //directions button
-            MapButton(
-              bottom: 314,
-              offsetX: 0,
-              width: 68,
-              height: 71,
-              image: Images.gvt,
-              icon: null,
-              //icon: Icons.directions,
-              iconColor: Colors.white,
-              gradient: const LinearGradient(colors: [
-                Color(0xFF59C2FF),
-                Color(0xFF1270E3),
-              ]),
-              press: () {
-                context.pushNamed(revenu_view);
-              },
-            ),
-            MapButton(
-              bottom: 227,
-              offsetX: 0,
-              width: 68,
-              height: 71,
-              icon: CupertinoIcons.flame,
-              //icon: Icons.directions,
-              iconColor: Themecolors.Color3,
-              press: () {
-                context.pushNamed(defi_view);
-              },
-            ),
-            MapButton(
-              bottom: 140,
-              offsetX: 0,
-              width: 65,
-              height: 71,
-              isRight: false,
-              image: Images.logo_BDM,
-              iconColor: Themecolors.ColorWhite,
-              icon: null,
-              press: () {
-                context.pushNamed(bnda_view);
-              },
-            ),
-            //my_location button
-            MapButton(
-              bottom: 140,
-              offsetX: 0,
-              width: 68,
-              height: 71,
-              icon: Icons.group_rounded,
-              iconColor: Themecolors.Color3,
-              press: () {
-                context.pushNamed(amis_view);
-              },
-            ),
-            //layer button
-            MapButton(
-              bottom: 53,
-              offsetX: 0,
-              width: 65,
-              height: 71,
-              icon: Icons.business_rounded,
-              iconColor: Themecolors.Color3,
-              press: () {
-                context.pushNamed(qg_view);
-              },
-            ),
-
-            MapButton(
-              bottom: 53,
-              offsetX: 0,
-              width: 65,
-              height: 71,
-              isRight: false,
-              image: Images.scanQr,
-              iconColor: Themecolors.Color3,
-              icon: null,
-              press: () {
-                _showScanQrPopup();
-                // Navigator.push<void>(
-                //   context,
-                //   MaterialPageRoute<void>(
-                //     builder: (BuildContext context) => QGScreen(),
-                //   ),
-                // );
-              },
-            ),
-
-            //menu button
-            /* Positioned(
-              bottom: realH(53),
-              left: realW(-71 * (currentExplorePercent + currentSearchPercent)),
-              child: GestureDetector(
-                onTap: () {
-                  animateMenu(true);
-                },
-                child: PointerInterceptor(
-                  child: Opacity(
-                    opacity: 1 - (currentSearchPercent + currentExplorePercent),
-                    child: Container(
-                      width: realW(71),
-                      height: realH(71),
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.only(left: realW(17)),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(realW(36)),
-                              topRight: Radius.circular(realW(36))),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color.fromRGBO(0, 0, 0, 0.3),
-                                blurRadius: realW(36)),
-                          ]),
-                      child: Icon(
-                        Icons.menu,
-                        size: realW(34),
+                                bottomRight: Radius.circular(realW(36)),
+                                topRight: Radius.circular(realW(36))),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.3),
+                                  blurRadius: realW(36)),
+                            ]),
+                        child: Icon(
+                          Icons.menu,
+                          size: realW(34),
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ),*/
-            //menu
-            // MenuWidget(
-            //     currentMenuPercent: currentMenuPercent,
-            //     animateMenu: animateMenu),
+              ),*/
+              //menu
+              // MenuWidget(
+              //     currentMenuPercent: currentMenuPercent,
+              //     animateMenu: animateMenu),
 
-            // // //menu
-            // MenuWidget(
-            //     currentMenuPercent: currentMenuPercent,
-            //     animateMenu: animateMenu),
-            //explore content
-            Visibility(
-              visible: showExplorerContent,
-              child: PointerInterceptor(
-                debug: false,
-                child: ExploreContentWidget(close: () {
-                  setState(() {
-                    showExplorerContent = false;
-                  });
-                }),
-                // currentExplorePercent: currentExplorePercent,
+              // // //menu
+              // MenuWidget(
+              //     currentMenuPercent: currentMenuPercent,
+              //     animateMenu: animateMenu),
+              //explore content
+              Visibility(
+                visible: showExplorerContent,
+                child: PointerInterceptor(
+                  debug: false,
+                  child: ExploreContentWidget(close: () {
+                    setState(() {
+                      showExplorerContent = false;
+                    });
+                  }),
+                  // currentExplorePercent: currentExplorePercent,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

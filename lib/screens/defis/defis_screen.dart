@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/components/user_top_infos.dart';
+import 'package:gandalverse/core/modeles/social_link/social_link.dart';
+import 'package:gandalverse/core/repositories/social_link_repo/social_linkRespository.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
+import 'package:gandalverse/screens/defis/components/_build_communauty_card.dart';
 import 'package:gandalverse/screens/defis/components/_build_facebook_communauty.dart';
 import 'package:gandalverse/screens/defis/components/_build_tiktok_communauty.dart';
 import 'package:gandalverse/screens/defis/components/annonceCard.dart';
@@ -113,7 +117,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                         ),
                       ),
                     ),
-
+/*
                     buildTelegramCommunauty(Color3: Color3),
                     buildYoutubeCommunauty(Color3: Color3),
                     buildFacebookCommunauty(
@@ -124,7 +128,34 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                     ),
                     buildTwitterCommunauty(
                       Color3: Color3,
-                    ),
+                    ),*/
+
+                    FutureBuilder<List<SocialLinkModel>>(
+                        future: getIt<SocialLinkService>().getSocialLinks(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          } else if (snapshot.hasError) {
+                            return Center(
+                                child: Text('Erreur : ${snapshot.error}'));
+                          } else if (!snapshot.hasData ||
+                              snapshot.data!.isEmpty) {
+                            return const Center(
+                                child: Text('Aucune donnée disponible'));
+                          } else {
+                            List<SocialLinkModel> socialLinkData =
+                                snapshot.data!;
+                            return ListView.builder(
+                                itemBuilder: (context, index) {
+                              SocialLinkModel socialItem =
+                                  socialLinkData[index];
+                              return buildCommunautyCard(
+                                  socialLinkModel: socialItem);
+                            });
+                          }
+                        })
                   ]),
             ),
           ),

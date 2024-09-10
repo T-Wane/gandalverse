@@ -131,12 +131,68 @@
 //   return completer.future;
 // }
 import 'package:flutter/material.dart';
-import 'package:google_static_maps_controller/google_static_maps_controller.dart';
+import 'package:flutter/services.dart';
+import 'package:gandalverse/core/providers/charge_provider.dart';
+import 'package:gandalverse/core/providers/user_provider.dart';
+import 'package:gandalverse/core/repositories/social_link_repo/social_linkRespository.dart';
+import 'package:gandalverse/core/repositories/tabAndEarnRepository.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:webview_flutter_web/webview_flutter_web.dart';
+import 'core/route/router_navigator.dart';
+import 'core/services/explorer_service/explorer_service.dart';
+import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
+// Pour JSON parsing
 
-void main() => runApp(const MyApp());
+import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
+import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
+  // await getIt<FirebaseClient>().initializeApp();
+  //await getIt<TelegramClient>().initializeApp();
+  WebViewPlatform.instance = WebWebViewPlatform();
+  // Require Hybrid Composition mode on Android.
+  // final GoogleMapsFlutterPlatform mapsImplementation =
+  //     GoogleMapsFlutterPlatform.instance;
+  // if (mapsImplementation is GoogleMapsFlutterAndroid) {
+  //   // Force Hybrid Composition mode.
+  //   mapsImplementation.useAndroidViewSurface = true;
+  // }
+  // await initializeMapRenderer();
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.light,
+        statusBarIconBrightness: Brightness.dark),
+  );
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => getIt<UserProvider>()),
+        ChangeNotifierProvider(create: (_) => getIt<TapAndEarnRepository>()),
+        ChangeNotifierProvider(create: (_) => getIt<ChargeManager>()),
+        ChangeNotifierProvider(create: (_) => getIt<ExplorerService>()),
+        ChangeNotifierProvider(create: (_) => getIt<SocialLinkService>()),
+      ],
+      builder: ((context, child) =>
+          MyApp()), // /*InitializationPage()*/ MyApp()
+    ),
+  );
+}
+
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -323,78 +379,46 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: StaticMap(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        scaleToDevicePixelRatio: true,
-        googleApiKey: "AIzaSyDKZJ7vxBvNxyJk5JwtZmhzBcxkRiSYS5g",
-        visible: const [
-          GeocodedLocation.address('Santa Monica Pier'),
-        ],
-        styles: retroMapStyle,
-        paths: <Path>[
-          const Path(
-            color: Colors.blue,
-            // encoded: true,
-            points: [
-              GeocodedLocation.address('Santa Monica Pier'),
-              Location(34.011395, -118.494961),
-              Location(34.011921, -118.493360),
-              Location(34.012471, -118.491884),
-              Location(34.012710, -118.489420),
-              Location(34.014294, -118.486595),
-              Location(34.016630, -118.482920),
-              Location(34.018899, -118.480087),
-              Location(34.021314, -118.477136),
-              Location(34.022769, -118.474901),
-            ],
-          ),
-          Path.circle(
-            center: const Location(34.005641, -118.490229),
-            color: Colors.green.withOpacity(0.8),
-            fillColor: Colors.green.withOpacity(0.4),
-            radius: 200, // meters
-          ),
-          const Path(
-            encoded: true,
-            points: [
-              Location(34.016839, -118.488240),
-              Location(34.019498, -118.491439),
-              Location(34.024106, -118.485734),
-              Location(34.021486, -118.482682),
-              Location(34.016839, -118.488240),
-            ],
-            fillColor: Colors.black45,
-            color: Colors.black,
-          )
-        ],
-        zoom: 14,
-        markers: const <Marker>[
-          Marker(
-            color: Colors.amber,
-            label: "X",
-            locations: [
-              GeocodedLocation.address("Santa Monica Pier"),
-              GeocodedLocation.latLng(34.012849, -118.501478),
-            ],
-          ),
-          Marker.custom(
-            anchor: MarkerAnchor.center,
-            icon: "https://goo.gl/1oTJ9Y",
-            locations: [
-              Location(34.012343, -118.482998),
-            ],
-          ),
-          Marker(
-            locations: [
-              Location(34.006618, -118.500901),
-            ],
-            color: Colors.cyan,
-            label: "W",
-          )
-        ],
+    return MediaQuery(
+      data: MediaQuery.of(context)
+          .copyWith(textScaler: const TextScaler.linear(1)),
+      child: MaterialApp.router(
+        routerConfig: _rootNavigator,
+        // routerDelegate: RootNavigator().makeRoutes.routerDelegate,
+        // routeInformationParser:
+        //     RootNavigator().makeRoutes.routeInformationParser,
+        title: 'GandalVerse',
+        debugShowCheckedModeBanner: false,
+        // theme: TelegramThemeUtil.getTheme(TelegramWebApp.instance),
+
+        //MyHomePage(),
       ),
     );
   }
+}
+
+Completer<AndroidMapRenderer?>? _initializedRendererCompleter;
+
+/// Initializes map renderer to the `latest` renderer type.
+///
+/// The renderer must be requested before creating GoogleMap instances,
+/// as the renderer can be initialized only once per application context.
+Future<AndroidMapRenderer?> initializeMapRenderer() async {
+  if (_initializedRendererCompleter != null) {
+    return _initializedRendererCompleter!.future;
+  }
+
+  final Completer<AndroidMapRenderer?> completer =
+      Completer<AndroidMapRenderer?>();
+  _initializedRendererCompleter = completer;
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final GoogleMapsFlutterPlatform platform = GoogleMapsFlutterPlatform.instance;
+  unawaited((platform as GoogleMapsFlutterAndroid)
+      .initializeWithRenderer(AndroidMapRenderer.latest)
+      .then((AndroidMapRenderer initializedRenderer) =>
+          completer.complete(initializedRenderer)));
+
+  return completer.future;
 }

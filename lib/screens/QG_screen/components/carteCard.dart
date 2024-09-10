@@ -9,6 +9,7 @@ import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/core/repositories/user_repository.dart';
 import 'package:gandalverse/core/services/QG_services/QGService.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
+import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
@@ -154,7 +155,7 @@ class CarteCard extends StatelessWidget {
                       if (!isUnlocked) ...[
                         Text(
                           contrainteMessage ?? 'Verrouillé',
-                          maxLines: 1,
+                          maxLines: 2,
                           textAlign: TextAlign.center,
                           style:
                               Theme.of(context).textTheme.labelSmall!.copyWith(
@@ -162,7 +163,10 @@ class CarteCard extends StatelessWidget {
                                     fontWeight: FontWeight.w200,
                                   ),
                         ),
-                        Icon(Icons.lock),
+                        Icon(
+                          Icons.lock,
+                          color: Themecolors.ColorWhite,
+                        ),
                       ] else ...[
                         Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
