@@ -79,6 +79,12 @@ class EquipeService extends QGService<CarteModel> {
     _equipeController.add(equipes);
   }
 
+// Comparer deux produits par leur ID
+  @override
+  bool isSameLink(CarteModel carteModel, CarteModel carteJson) {
+    return carteModel.carteId == carteJson.carteId;
+  }
+
   @override
   CarteModel fromJson(Map<String, dynamic> json) => CarteModel.fromJson(json);
 

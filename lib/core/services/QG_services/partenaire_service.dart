@@ -83,4 +83,9 @@ class PartenaireService extends QGService<CarteModel> {
 
   @override
   String? getCarteId(CarteModel item) => item.carteId;
+
+   @override
+  bool isSameLink(CarteModel carteModel, CarteModel carteJson) {
+    return carteModel.carteId == carteJson.carteId;
+  }
 }

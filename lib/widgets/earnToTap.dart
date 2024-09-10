@@ -128,7 +128,7 @@ class _TapToEarnCardState extends State<TapToEarnCard> {
         'timeRestant': '3h 45m',
         'onTap': () {
           CardContentBottomSheet.show(context,
-              child: const ShowScanQrSheetContent(),
+              child:   ShowScanQrSheetContent(),
               fit: BoxFit.contain,
               setCircle: false,
               image: Images.black_barcodescanner);
