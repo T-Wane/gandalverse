@@ -43,7 +43,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
           userTopInfos(
             showBackArrow: true,
           ),
-          Expanded(
+          Flexible(
             child: Padding(
               padding: const EdgeInsets.all(5.0),
               child: ListView(
@@ -149,7 +149,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                               List<SocialLinkModel> socialLinkData =
                                   snapshot.data!;
                               return ListView.builder(
-                                  physics: const BouncingScrollPhysics(),
+                                  physics: NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   itemCount: socialLinkData.length,
                                   scrollDirection: Axis.vertical,

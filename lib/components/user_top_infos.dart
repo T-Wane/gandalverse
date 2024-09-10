@@ -135,58 +135,57 @@ class _userTopInfosState extends State<userTopInfos> {
                   ),
                   Expanded(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: Text(
-                            //  "UserName",
-                            "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
-                            textAlign: TextAlign.left,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontFamily: "Aller",
-                              fontSize: 13,
-                              color: Colors.white,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Text(
+                              //  "UserName",
+                              "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
+                              textAlign: TextAlign.left,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontFamily: "Aller",
+                                fontSize: 13,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 1,
-                        ),
-                        SizedBox(
-                          width: 120,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Text(
-                                  "Neo  >",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w300,
-                                      color: Colors.purple.shade100,
-                                      fontFamily: "Aller",
-                                      fontSize: 10),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 1,
-                              ),
-                              LinearPercentIndicator(
-                                percent: 0.5,
-                                backgroundColor:
-                                    Colors.grey.shade200.withOpacity(0.2),
-                                progressColor: Colors.deepPurple.shade400,
-                                lineHeight: 5.0,
-                                barRadius: const Radius.circular(10),
-                              ),
-                            ],
+                          const SizedBox(
+                            height: 1,
                           ),
-                        )
-                      ],
-                    ),
+                          SizedBox(
+                            width: 120,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    "Neo  >",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w300,
+                                        color: Colors.purple.shade100,
+                                        fontFamily: "Aller",
+                                        fontSize: 10),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 1,
+                                ),
+                                LinearPercentIndicator(
+                                  percent: 0.5,
+                                  backgroundColor:
+                                      Colors.grey.shade200.withOpacity(0.2),
+                                  progressColor: Colors.deepPurple.shade400,
+                                  lineHeight: 5.0,
+                                  barRadius: const Radius.circular(10),
+                                ),
+                              ],
+                            ),
+                          )
+                        ]),
                   ),
                 ],
                 const SizedBox(
@@ -196,7 +195,7 @@ class _userTopInfosState extends State<userTopInfos> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        widget.showVisibleEye = !widget.showVisibleEye; 
+                        widget.showVisibleEye = !widget.showVisibleEye;
                         widget.changeVisibility?.call();
                       });
                     },

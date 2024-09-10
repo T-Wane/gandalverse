@@ -30,90 +30,91 @@ class _AmisPageState extends State<AmisPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        extendBody: true,
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          child: Column(children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(5.0),
-                child: BtnRoundedIconBack(
-                  couleur: Themecolors.Color3,
-                  onpress: () {
-                    context.pop();
-                  },
-                ),
+      extendBody: true,
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Column(children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: BtnRoundedIconBack(
+                couleur: Themecolors.Color3,
+                onpress: () {
+                  context.pop();
+                },
               ),
             ),
-            Flexible(
-              child: Column(children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: AutoSizeText(
-                    'Invitez des amis!',
-                    maxLines: 1,
-                    textAlign: TextAlign.left,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineMedium!
-                        .copyWith(color: Color3, fontFamily: "Aller"),
-                  ),
+          ),
+          Flexible(
+            child: Column(children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: AutoSizeText(
+                  'Invitez des amis!',
+                  maxLines: 1,
+                  textAlign: TextAlign.left,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineMedium!
+                      .copyWith(color: Color3, fontFamily: "Aller"),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: AutoSizeText(
-                    'Recevez des bonus exceptionnelles',
-                    maxLines: 1,
-                    textAlign: TextAlign.left,
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Color3.withOpacity(0.7), fontFamily: "Aller"),
-                  ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: AutoSizeText(
+                  'Recevez des bonus exceptionnelles',
+                  maxLines: 1,
+                  textAlign: TextAlign.left,
+                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                      color: Color3.withOpacity(0.7), fontFamily: "Aller"),
                 ),
-                inviterAmiCard(Color3: Color3),
-                inviterAmiWithPremiumCard(
-                  Color3: Color3,
-                ),
-                Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-                    child: Consumer<UserProvider>(
-                        builder: (context, _userProvider, child) {
-                      return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: AutoSizeText(
-                                'Liste de vos amis (${_userProvider.friends.length})',
-                                maxLines: 1,
-                                textAlign: TextAlign.left,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                        color: Color3.withOpacity(0.7),
-                                        fontFamily: "Aller"),
-                              ),
+              ),
+              inviterAmiCard(Color3: Color3),
+              inviterAmiWithPremiumCard(
+                Color3: Color3,
+              ),
+              Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                  child: Consumer<UserProvider>(
+                      builder: (context, _userProvider, child) {
+                    return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: AutoSizeText(
+                              'Liste de vos amis (${_userProvider.friends.length})',
+                              maxLines: 1,
+                              textAlign: TextAlign.left,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(
+                                      color: Color3.withOpacity(0.7),
+                                      fontFamily: "Aller"),
                             ),
-                            IconButton(
-                              onPressed: () async {
-                                await _userProvider.refreshFriends();
-                              },
-                              icon: Icon(
-                                CupertinoIcons.refresh_thick,
-                                color: Color3,
-                                size: 20,
-                              ),
+                          ),
+                          IconButton(
+                            onPressed: () async {
+                              await _userProvider.refreshFriends();
+                            },
+                            icon: Icon(
+                              CupertinoIcons.refresh_thick,
+                              color: Color3,
+                              size: 20,
                             ),
-                          ]);
-                    })),
-                Flexible(child: _buildFirendsList())
-              ]),
-            ),
-            const bottomInviteBtns(),
-          ]),
-        ));
+                          ),
+                        ]);
+                  })),
+              Flexible(child: _buildFirendsList())
+            ]),
+          ),
+          const bottomInviteBtns(),
+        ]),
+      ),
+    );
   }
 
   Widget _buildFirendsList() {
