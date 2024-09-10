@@ -130,32 +130,37 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                       Color3: Color3,
                     ),*/
 
-                    FutureBuilder<List<SocialLinkModel>>(
-                        future: getIt<SocialLinkService>().getSocialLinks(),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const Center(
-                                child: CircularProgressIndicator());
-                          } else if (snapshot.hasError) {
-                            return Center(
-                                child: Text('Erreur : ${snapshot.error}'));
-                          } else if (!snapshot.hasData ||
-                              snapshot.data!.isEmpty) {
-                            return const Center(
-                                child: Text('Aucune donnée disponible'));
-                          } else {
-                            List<SocialLinkModel> socialLinkData =
-                                snapshot.data!;
-                            return ListView.builder(
-                                itemBuilder: (context, index) {
-                              SocialLinkModel socialItem =
-                                  socialLinkData[index];
-                              return buildCommunautyCard(
-                                  socialLinkModel: socialItem);
-                            });
-                          }
-                        })
+                    Flexible(
+                      child: FutureBuilder<List<SocialLinkModel>>(
+                          future: getIt<SocialLinkService>().getSocialLinks(),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const Center(
+                                  child: CircularProgressIndicator());
+                            } else if (snapshot.hasError) {
+                              return Center(
+                                  child: Text('Erreur : ${snapshot.error}'));
+                            } else if (!snapshot.hasData ||
+                                snapshot.data!.isEmpty) {
+                              return const Center(
+                                  child: Text('Aucune donnée disponible'));
+                            } else {
+                              List<SocialLinkModel> socialLinkData =
+                                  snapshot.data!;
+                              return ListView.builder(
+                                  physics: const BouncingScrollPhysics(),
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemBuilder: (context, index) {
+                                    SocialLinkModel socialItem =
+                                        socialLinkData[index];
+                                    return buildCommunautyCard(
+                                        socialLinkModel: socialItem);
+                                  });
+                            }
+                          }),
+                    )
                   ]),
             ),
           ),
