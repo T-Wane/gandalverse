@@ -27614,8 +27614,8 @@ _.k4$=_.k3$=0
 _.ok$=!1},
 avo:function avo(){},
 avp:function avp(){},
-avm:function avm(){},
-avn:function avn(){},
+avm:function avm(a){this.a=a},
+avn:function avn(a){this.a=a},
 a75:function a75(){},
 Al(a,b,c,d,e,f,g,h){return A.bcS(a,b,c,d,e,f,g,h,h.h("C<0>"))},
 bcS(a9,b0,b1,b2,b3,b4,b5,b6,b7){var s=0,r=A.u(b7),q,p=2,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6,a7,a8
@@ -98273,7 +98273,7 @@ zO(){var s=0,r=A.u(t.pw),q,p=this,o,n
 var $async$zO=A.p(function(a,b){if(a===1)return A.q(b,r)
 while(true)switch(s){case 0:o=t.lm
 s=3
-return A.o(A.Al(p,new A.avm(),new A.avn(),"socialLinksDataKey3","assets/json/socialLinksData.json",p.gyv(),t.z,o),$async$zO)
+return A.o(A.Al(p,new A.avm(p),new A.avn(p),"socialLinksDataKey3","assets/json/socialLinksData.json",p.gyv(),t.z,o),$async$zO)
 case 3:n=b
 p.ao()
 A.cR("getSocialLinks => data "+J.bG(n))
