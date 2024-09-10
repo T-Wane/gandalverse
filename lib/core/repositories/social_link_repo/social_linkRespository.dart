@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:gandalverse/core/modeles/social_link/social_link.dart';
@@ -7,6 +8,7 @@ import 'package:gandalverse/core/services/explorer_service/explorer_service_exte
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 @singleton
 class SocialLinkService with ChangeNotifier {
@@ -20,29 +22,14 @@ class SocialLinkService with ChangeNotifier {
   }
 
   void loadSocialLinks() async {
-    final data = await loadAndMergeItems(
-        (json) => SocialLinkModel.fromJson(
-            json), // Fonction de transformation JSON -> Product
-        (socilaLink) => socilaLink.toJson(),
-        socialLinksSaveKey,
-        socialLinksJsonPath,
-        isSameLink);
+    final data = await loadAndMergeItems();
     socialLinksData = List<SocialLinkModel>.from(data);
     notifyListeners();
   }
 
   Future<List<SocialLinkModel>> getSocialLinks() async {
     //   if (socialLinksData.isNotEmpty) return socialLinksData;
-    final data = await loadAndMergeItems(
-        // (json) => SocialLinkModel.fromJson(
-        //     json), // Fonction de transformation JSON -> Product
-        // (socilaLink) => socilaLink.toJson(),
-
-        (json) => fromJson(json), // Fonction de transformation JSON -> Product
-        (item) => toJson(item),
-        socialLinksSaveKey,
-        socialLinksJsonPath,
-        isSameLink);
+    final data = await loadAndMergeItems();
     notifyListeners();
 
     print("getSocialLinks => data ${data.length}");
@@ -92,5 +79,81 @@ class SocialLinkService with ChangeNotifier {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  /// Fonction pour charger, comparer et fusionner les données JSON avec les données locales
+  Future<List<SocialLinkModel>> loadAndMergeItems() async {
+    try {
+      // 1. Récupérer les SharedPreferences
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+
+      // 2. Charger les données locales de l'utilisateur
+      String? localJsonString = prefs.getString(socialLinksSaveKey);
+      List<SocialLinkModel> localData = [];
+
+      if (localJsonString != null) {
+        final List<dynamic> localJsonData = json.decode(localJsonString);
+        localData = localJsonData
+            .map((item) => fromJson(item as Map<String, dynamic>))
+            .toList();
+      }
+      print("localData => $localData ${localData.length}");
+      // 3. Charger les données depuis le fichier JSON (données administratives)
+      String jsonString = await rootBundle.loadString(socialLinksJsonPath);
+      print("jsonAdminData jsonString => $jsonString");
+      final List<dynamic> jsonData = json.decode(jsonString);
+      List<SocialLinkModel> jsonAdminData = jsonData
+          .map((item) => fromJson(item as Map<String, dynamic>))
+          .toList();
+
+      print("jsonAdminData => $jsonAdminData \n ${jsonAdminData.length}");
+      // 4. Fusionner les données locales avec les données JSON
+      // On fusionne en remplaçant les données locales si elles existent, sinon en les ajoutant
+      List<SocialLinkModel> mergedData = localData;
+
+      for (SocialLinkModel jsonItem in jsonAdminData) {
+        // Vérifier si l'élément du JSON existe déjà dans les données locales
+        SocialLinkModel? localItem;
+// Parcourir la liste `localData` pour trouver un élément qui correspond
+        for (SocialLinkModel item in localData) {
+          if (isSameLink(item, jsonItem)) {
+            localItem = item;
+            break; // On sort de la boucle dès qu'on trouve une correspondance
+          }
+        }
+
+        if (localItem == null) {
+          // Si l'élément JSON n'existe pas dans les données locales, on l'ajoute
+          mergedData.add(jsonItem);
+        } else {
+          // Si l'élément JSON existe dans les données locales, on garde l'élément local (on pourrait le mettre à jour selon certaines conditions)
+          // mergedData.add(localItem); // L'élément local reste inchangé dans ce cas
+          print("L'élément local reste inchangé dans ce cas");
+        }
+      }
+
+      // 5. Sauvegarder les données fusionnées localement
+      List<Map<String, dynamic>> jsonSocialLinkModeloSave =
+          mergedData.map((item) => toJson(item)).toList();
+      await prefs.setString(
+          socialLinksSaveKey, json.encode(jsonSocialLinkModeloSave));
+
+      return mergedData;
+    } catch (e, stacktrace) {
+      // 6. Gestion des erreurs et affichage du stacktrace
+      print("######[ ERROR in loadAndMergeItems: $e ]######");
+      log("######[ ERROR in loadAndMergeItems: $e ]######");
+      log("######[ SSocialLinkModelACKSocialLinkModelRACE: $stacktrace ]######");
+      return []; // Retourner une liste vide en cas d'erreur
+    }
+  }
+
+  Future<List<SocialLinkModel>> loadItems(
+      SocialLinkModel Function(Map<String, dynamic>) fromJson,
+      String storageKey,
+      String assetPath) async {
+    List<SocialLinkModel> data = await loadAndMergeItems();
+
+    return data;
   }
 }
