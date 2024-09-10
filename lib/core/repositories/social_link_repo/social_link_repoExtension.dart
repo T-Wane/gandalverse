@@ -32,7 +32,7 @@ extension SocialLinkExtension<T> on SocialLinkService {
             .map((item) => fromJson(item as Map<String, dynamic>))
             .toList();
       }
-
+      print("localData => $localData ${localData.length}");
       // 3. Charger les données depuis le fichier JSON (données administratives)
       String jsonString = await rootBundle.loadString(assetPath);
       final List<dynamic> jsonData = json.decode(jsonString);
@@ -40,6 +40,7 @@ extension SocialLinkExtension<T> on SocialLinkService {
           .map((item) => fromJson(item as Map<String, dynamic>))
           .toList();
 
+       print("jsonAdminData => $jsonString \n ${jsonAdminData.length}");
       // 4. Fusionner les données locales avec les données JSON
       // On fusionne en remplaçant les données locales si elles existent, sinon en les ajoutant
       List<T> mergedData = [...localData];
@@ -72,8 +73,6 @@ extension SocialLinkExtension<T> on SocialLinkService {
       return []; // Retourner une liste vide en cas d'erreur
     }
   }
-
-  
 }
 //   Future<List<T>> loadItems(T Function(Map<String, dynamic>) fromJson,
 //       String storageKey, String assetPath) async {
