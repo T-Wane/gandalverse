@@ -68,7 +68,7 @@ class buildCommunautyCard extends StatelessWidget {
                           width: 40,
                         ),
                         AutoSizeText(
-                          socialLinkModel.reward,
+                          "${socialLinkModel.reward}",
                           maxLines: 1,
                           presetFontSizes: [22, 20, 18, 15, 14],
                           textAlign: TextAlign.center,

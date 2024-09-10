@@ -50,7 +50,7 @@ class SocialLinkService with ChangeNotifier {
   ///
   /// Emits a notification to listeners when the update is complete.
   Future<void> updateSocialLink(String id,
-      {bool? isSubscribed, String? reward}) async {
+      {bool? isSubscribed, double? reward}) async {
     final index = socialLinksData.indexWhere((link) => link.id == id);
     if (index == -1) return;
 

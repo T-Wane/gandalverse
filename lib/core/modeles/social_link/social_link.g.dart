@@ -6,60 +6,8 @@ part of 'social_link.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-const SocialLinkType _$facebook = const SocialLinkType._('facebook');
-const SocialLinkType _$twitter = const SocialLinkType._('twitter');
-const SocialLinkType _$instagram = const SocialLinkType._('instagram');
-const SocialLinkType _$linkedin = const SocialLinkType._('linkedin');
-const SocialLinkType _$youtube = const SocialLinkType._('youtube');
-
-SocialLinkType _$valueOf(String name) {
-  switch (name) {
-    case 'facebook':
-      return _$facebook;
-    case 'twitter':
-      return _$twitter;
-    case 'instagram':
-      return _$instagram;
-    case 'linkedin':
-      return _$linkedin;
-    case 'youtube':
-      return _$youtube;
-    default:
-      throw new ArgumentError(name);
-  }
-}
-
-final BuiltSet<SocialLinkType> _$values =
-    new BuiltSet<SocialLinkType>(const <SocialLinkType>[
-  _$facebook,
-  _$twitter,
-  _$instagram,
-  _$linkedin,
-  _$youtube,
-]);
-
-Serializer<SocialLinkType> _$socialLinkTypeSerializer =
-    new _$SocialLinkTypeSerializer();
 Serializer<SocialLinkModel> _$socialLinkModelSerializer =
     new _$SocialLinkModelSerializer();
-
-class _$SocialLinkTypeSerializer
-    implements PrimitiveSerializer<SocialLinkType> {
-  @override
-  final Iterable<Type> types = const <Type>[SocialLinkType];
-  @override
-  final String wireName = 'SocialLinkType';
-
-  @override
-  Object serialize(Serializers serializers, SocialLinkType object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      object.name;
-
-  @override
-  SocialLinkType deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      SocialLinkType.valueOf(serialized as String);
-}
 
 class _$SocialLinkModelSerializer
     implements StructuredSerializer<SocialLinkModel> {
@@ -72,9 +20,8 @@ class _$SocialLinkModelSerializer
   Iterable<Object?> serialize(Serializers serializers, SocialLinkModel object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'link_type',
-      serializers.serialize(object.linkType,
-          specifiedType: const FullType(SocialLinkType)),
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(String)),
       'title',
       serializers.serialize(object.title,
           specifiedType: const FullType(String)),
@@ -89,7 +36,7 @@ class _$SocialLinkModelSerializer
           specifiedType: const FullType(String)),
       'reward',
       serializers.serialize(object.reward,
-          specifiedType: const FullType(String)),
+          specifiedType: const FullType(double)),
       'isSubscribed',
       serializers.serialize(object.isSubscribed,
           specifiedType: const FullType(bool)),
@@ -97,14 +44,7 @@ class _$SocialLinkModelSerializer
       serializers.serialize(object.isVisible,
           specifiedType: const FullType(bool)),
     ];
-    Object? value;
-    value = object.id;
-    if (value != null) {
-      result
-        ..add('id')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
-    }
+
     return result;
   }
 
@@ -122,11 +62,7 @@ class _$SocialLinkModelSerializer
       switch (key) {
         case 'id':
           result.id = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
-          break;
-        case 'link_type':
-          result.linkType = serializers.deserialize(value,
-              specifiedType: const FullType(SocialLinkType))! as SocialLinkType;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'title':
           result.title = serializers.deserialize(value,
@@ -146,7 +82,7 @@ class _$SocialLinkModelSerializer
           break;
         case 'reward':
           result.reward = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+              specifiedType: const FullType(double))! as double;
           break;
         case 'isSubscribed':
           result.isSubscribed = serializers.deserialize(value,
@@ -165,9 +101,7 @@ class _$SocialLinkModelSerializer
 
 class _$SocialLinkModel extends SocialLinkModel {
   @override
-  final String? id;
-  @override
-  final SocialLinkType linkType;
+  final String id;
   @override
   final String title;
   @override
@@ -177,7 +111,7 @@ class _$SocialLinkModel extends SocialLinkModel {
   @override
   final String image;
   @override
-  final String reward;
+  final double reward;
   @override
   final bool isSubscribed;
   @override
@@ -187,8 +121,7 @@ class _$SocialLinkModel extends SocialLinkModel {
       (new SocialLinkModelBuilder()..update(updates))._build();
 
   _$SocialLinkModel._(
-      {this.id,
-      required this.linkType,
+      {required this.id,
       required this.title,
       required this.description,
       required this.subscriptionLink,
@@ -197,8 +130,7 @@ class _$SocialLinkModel extends SocialLinkModel {
       required this.isSubscribed,
       required this.isVisible})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        linkType, r'SocialLinkModel', 'linkType');
+    BuiltValueNullFieldError.checkNotNull(id, r'SocialLinkModel', 'id');
     BuiltValueNullFieldError.checkNotNull(title, r'SocialLinkModel', 'title');
     BuiltValueNullFieldError.checkNotNull(
         description, r'SocialLinkModel', 'description');
@@ -225,7 +157,6 @@ class _$SocialLinkModel extends SocialLinkModel {
     if (identical(other, this)) return true;
     return other is SocialLinkModel &&
         id == other.id &&
-        linkType == other.linkType &&
         title == other.title &&
         description == other.description &&
         subscriptionLink == other.subscriptionLink &&
@@ -239,7 +170,6 @@ class _$SocialLinkModel extends SocialLinkModel {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, linkType.hashCode);
     _$hash = $jc(_$hash, title.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jc(_$hash, subscriptionLink.hashCode);
@@ -255,7 +185,6 @@ class _$SocialLinkModel extends SocialLinkModel {
   String toString() {
     return (newBuiltValueToStringHelper(r'SocialLinkModel')
           ..add('id', id)
-          ..add('linkType', linkType)
           ..add('title', title)
           ..add('description', description)
           ..add('subscriptionLink', subscriptionLink)
@@ -275,10 +204,6 @@ class SocialLinkModelBuilder
   String? get id => _$this._id;
   set id(String? id) => _$this._id = id;
 
-  SocialLinkType? _linkType;
-  SocialLinkType? get linkType => _$this._linkType;
-  set linkType(SocialLinkType? linkType) => _$this._linkType = linkType;
-
   String? _title;
   String? get title => _$this._title;
   set title(String? title) => _$this._title = title;
@@ -296,9 +221,9 @@ class SocialLinkModelBuilder
   String? get image => _$this._image;
   set image(String? image) => _$this._image = image;
 
-  String? _reward;
-  String? get reward => _$this._reward;
-  set reward(String? reward) => _$this._reward = reward;
+  double? _reward;
+  double? get reward => _$this._reward;
+  set reward(double? reward) => _$this._reward = reward;
 
   bool? _isSubscribed;
   bool? get isSubscribed => _$this._isSubscribed;
@@ -314,7 +239,6 @@ class SocialLinkModelBuilder
     final $v = _$v;
     if ($v != null) {
       _id = $v.id;
-      _linkType = $v.linkType;
       _title = $v.title;
       _description = $v.description;
       _subscriptionLink = $v.subscriptionLink;
@@ -344,9 +268,8 @@ class SocialLinkModelBuilder
   _$SocialLinkModel _build() {
     final _$result = _$v ??
         new _$SocialLinkModel._(
-            id: id,
-            linkType: BuiltValueNullFieldError.checkNotNull(
-                linkType, r'SocialLinkModel', 'linkType'),
+            id: BuiltValueNullFieldError.checkNotNull(
+                id, r'SocialLinkModel', 'id'),
             title: BuiltValueNullFieldError.checkNotNull(
                 title, r'SocialLinkModel', 'title'),
             description: BuiltValueNullFieldError.checkNotNull(
