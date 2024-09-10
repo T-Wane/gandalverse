@@ -33,14 +33,15 @@ extension SocialLinkExtension<T> on SocialLinkService {
             .toList();
       }
       print("localData => $localData ${localData.length}");
-      // 3. Charger les données depuis le fichier JSON (données administratives)
-      String jsonString = await rootBundle.loadString(assetPath);
+      // 3. Charger les données depuis le fichier JSON (données administratives) 
+      String jsonString = await rootBundle.loadString(assetPath); 
+       print("jsonAdminData jsonString => $jsonString");
       final List<dynamic> jsonData = json.decode(jsonString);
       List<T> jsonAdminData = jsonData
           .map((item) => fromJson(item as Map<String, dynamic>))
           .toList();
 
-       print("jsonAdminData => $jsonString \n ${jsonAdminData.length}");
+       print("jsonAdminData => $jsonAdminData \n ${jsonAdminData.length}");
       // 4. Fusionner les données locales avec les données JSON
       // On fusionne en remplaçant les données locales si elles existent, sinon en les ajoutant
       List<T> mergedData = [...localData];
@@ -57,6 +58,7 @@ extension SocialLinkExtension<T> on SocialLinkService {
         } else {
           // Si l'élément JSON existe dans les données locales, on garde l'élément local (on pourrait le mettre à jour selon certaines conditions)
           // mergedData.add(localItem); // L'élément local reste inchangé dans ce cas
+          print("L'élément local reste inchangé dans ce cas");
         }
       }
 
@@ -68,6 +70,7 @@ extension SocialLinkExtension<T> on SocialLinkService {
       return mergedData;
     } catch (e, stacktrace) {
       // 6. Gestion des erreurs et affichage du stacktrace
+      print("######[ ERROR in loadAndMergeItems: $e ]######");
       log("######[ ERROR in loadAndMergeItems: $e ]######");
       log("######[ STACKTRACE: $stacktrace ]######");
       return []; // Retourner une liste vide en cas d'erreur
