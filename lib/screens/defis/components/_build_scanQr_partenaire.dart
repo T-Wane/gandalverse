@@ -51,7 +51,7 @@ class _buildScanQrPartenaireState extends State<buildScanQrPartenaire> {
 }
 
 class ShowScanQrSheetContent extends StatelessWidget {
-  const ShowScanQrSheetContent({
+    ShowScanQrSheetContent({
     super.key,
   });
 
