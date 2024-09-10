@@ -292,6 +292,15 @@ class UserRepository {
         return;
       }
 
+      bool localpointIsSaved = await userPointIsSaved();
+      if (!localpointIsSaved == true) {
+        int localCoins = await getPoints();
+        await setPointsSaved(true);
+        transaction.update(userRef, {'coins': localCoins});
+        setPointsSaved(true);
+        await syncUserCoins(localCoins, userId);
+      }
+
       int userCoins = userDoc['coins'];
       double cardPrice = carteData.getPrix_inDouble;
 

@@ -156,7 +156,7 @@ class UserProvider extends ChangeNotifier {
     if (userCoins >= nextLevel['coins_required']) {
       await Future.wait([
         _userRepository.updateUserLevel(_user!.id),
-          fetchUserByTelegramId()
+        fetchUserByTelegramId()
       ]);
     }
   }
@@ -178,6 +178,8 @@ class UserProvider extends ChangeNotifier {
   Future<void> updateCardLevel(
       QGService qgService, CarteModel carteData) async {
     try {
+      
+      print("carteData ${carteData.toJson()}");
       if (carteData.estAchete == false) {
         await _userRepository.purchaseCard(_user!.id, carteData, qgService);
       } else {

@@ -496,7 +496,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                                       ..valeurContrainte =
                                           widget.carte.valeurContrainte))
                                 .whenComplete(() {
-                              Navigator.of(context).pop();
+                              //Navigator.of(context).pop();
                               setState(() {});
                             });
                           }
