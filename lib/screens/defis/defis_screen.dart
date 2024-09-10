@@ -39,84 +39,83 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
       backgroundColor: Colors.white,
       body: SafeArea(
         minimum: const EdgeInsets.all(5.0),
-        child: Column(children: [
+        child: ListView(children: [
           userTopInfos(
             showBackArrow: true,
           ),
-          Flexible(
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Column(
-                  // padding: const EdgeInsets.only(bottom: 50),
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Récompense",
-                          textAlign: TextAlign.left,
-                          textDirection: TextDirection.ltr,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Color3,
-                              fontFamily: "Aller",
-                              fontWeight: FontWeight.normal),
-                        ),
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Column(
+                // padding: const EdgeInsets.only(bottom: 50),
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Récompense",
+                        textAlign: TextAlign.left,
+                        textDirection: TextDirection.ltr,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Color3,
+                            fontFamily: "Aller",
+                            fontWeight: FontWeight.normal),
                       ),
                     ),
-                    buildDailyDays(
-                      Color3: Color3,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Défi du jour",
-                          textAlign: TextAlign.left,
-                          textDirection: TextDirection.ltr,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Color3,
-                              fontFamily: "Aller",
-                              fontWeight: FontWeight.normal),
-                        ),
+                  ),
+                  buildDailyDays(
+                    Color3: Color3,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Défi du jour",
+                        textAlign: TextAlign.left,
+                        textDirection: TextDirection.ltr,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Color3,
+                            fontFamily: "Aller",
+                            fontWeight: FontWeight.normal),
                       ),
                     ),
-                    buildGoWords(),
-                    buildScanQrPartenaire(Color3: Color3),
-                    // AnnonceCard(
-                    //     title: 'Enigmes',
-                    //     text: 'Gagner en résolvant l\'énigme du jour',
-                    //     imagePath: Images.question,
-                    //     backColors: const [
-                    //       Colors.white,
-                    //       Colors.white,
-                    //     ],
-                    //     fit: BoxFit.contain,
-                    //     press: () {},
-                    //     textColor: Colors.black,
-                    //     titleColor: Color3),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          "Tâches",
-                          textAlign: TextAlign.left,
-                          textDirection: TextDirection.ltr,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                              fontSize: 15,
-                              color: Color3,
-                              fontFamily: "Aller",
-                              fontWeight: FontWeight.normal),
-                        ),
+                  ),
+                  buildGoWords(),
+                  buildScanQrPartenaire(Color3: Color3),
+                  // AnnonceCard(
+                  //     title: 'Enigmes',
+                  //     text: 'Gagner en résolvant l\'énigme du jour',
+                  //     imagePath: Images.question,
+                  //     backColors: const [
+                  //       Colors.white,
+                  //       Colors.white,
+                  //     ],
+                  //     fit: BoxFit.contain,
+                  //     press: () {},
+                  //     textColor: Colors.black,
+                  //     titleColor: Color3),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Tâches",
+                        textAlign: TextAlign.left,
+                        textDirection: TextDirection.ltr,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Color3,
+                            fontFamily: "Aller",
+                            fontWeight: FontWeight.normal),
                       ),
                     ),
+                  ),
 /*
                     buildTelegramCommunauty(Color3: Color3),
                     buildYoutubeCommunauty(Color3: Color3),
@@ -130,43 +129,36 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                       Color3: Color3,
                     ),*/
 
-                     FutureBuilder<List<SocialLinkModel>>(
-                          future: getIt<SocialLinkService>().getSocialLinks(),
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return const Center(
-                                  child: CircularProgressIndicator());
-                            } else if (snapshot.hasError) {
-                              return Center(
-                                  child: Text('Erreur : ${snapshot.error}'));
-                            } else if (!snapshot.hasData ||
-                                snapshot.data!.isEmpty) {
-                              return const Center(
-                                  child: Text('Aucune donnée disponible'));
-                            } else {
-                              List<SocialLinkModel> socialLinkData =
-                                  snapshot.data!;
-                              return Container(
-                                width: double.infinity,
-                                margin: const EdgeInsets.all(5),
-                                child: ListView.builder(
-                                    physics: const BouncingScrollPhysics(),
-                                    shrinkWrap: true,
-                                    itemCount: socialLinkData.length,
-                                    scrollDirection: Axis.vertical,
-                                    itemBuilder: (context, index) {
-                                      SocialLinkModel socialItem =
-                                          socialLinkData[index];
-                                      return buildCommunautyCard(
-                                          socialLinkModel: socialItem);
-                                    }),
-                              );
-                            }
-                          }),
-                   
-                  ]),
-            ),
+                  FutureBuilder<List<SocialLinkModel>>(
+                      future: getIt<SocialLinkService>().getSocialLinks(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        } else if (snapshot.hasError) {
+                          return Center(
+                              child: Text('Erreur : ${snapshot.error}'));
+                        } else if (!snapshot.hasData ||
+                            snapshot.data!.isEmpty) {
+                          return const Center(
+                              child: Text('Aucune donnée disponible'));
+                        } else {
+                          List<SocialLinkModel> socialLinkData = snapshot.data!;
+                          return ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              shrinkWrap: true,
+                              itemCount: socialLinkData.length,
+                              scrollDirection: Axis.vertical,
+                              itemBuilder: (context, index) {
+                                SocialLinkModel socialItem =
+                                    socialLinkData[index];
+                                return buildCommunautyCard(
+                                    socialLinkModel: socialItem);
+                              });
+                        }
+                      }),
+                ]),
           ),
         ]),
       ),
