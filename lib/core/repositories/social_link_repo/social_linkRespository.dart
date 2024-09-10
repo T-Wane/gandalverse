@@ -11,7 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 @singleton
 class SocialLinkService with ChangeNotifier {
   String socialLinksJsonPath = "assets/json/socialLinksData.json";
-  String socialLinksSaveKey = "socialLinksDataKey";
+  String socialLinksSaveKey = "socialLinksDataKey0";
 
   List<SocialLinkModel> socialLinksData = [];
 
@@ -20,17 +20,32 @@ class SocialLinkService with ChangeNotifier {
   }
 
   void loadSocialLinks() async {
-    final data = await loadItems((json) => SocialLinkModel.fromJson(json),
-        socialLinksSaveKey, socialLinksJsonPath);
+    final data = await loadAndMergeItems(
+        (json) => SocialLinkModel.fromJson(
+            json), // Fonction de transformation JSON -> Product
+        (socilaLink) => socilaLink.toJson(),
+        socialLinksSaveKey,
+        socialLinksJsonPath,
+        isSameLink);
     socialLinksData = List<SocialLinkModel>.from(data);
     notifyListeners();
   }
 
   Future<List<SocialLinkModel>> getSocialLinks() async {
     if (socialLinksData.isNotEmpty) return socialLinksData;
-    final data = await loadItems((json) => SocialLinkModel.fromJson(json),
-        socialLinksSaveKey, socialLinksJsonPath);
+    final data = await loadAndMergeItems(
+        (json) => SocialLinkModel.fromJson(
+            json), // Fonction de transformation JSON -> Product
+        (socilaLink) => socilaLink.toJson(),
+        socialLinksSaveKey,
+        socialLinksJsonPath,
+        isSameLink);
     return List<SocialLinkModel>.from(data);
+  }
+
+  // Comparer deux produits par leur ID
+  bool isSameLink(SocialLinkModel locallink, SocialLinkModel jsonlink) {
+    return locallink.id == jsonlink.id;
   }
 
   /// Update a social link in the list, and save it to the user's preferences.
