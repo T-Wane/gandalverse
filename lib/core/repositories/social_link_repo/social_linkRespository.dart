@@ -11,7 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 @singleton
 class SocialLinkService with ChangeNotifier {
   String socialLinksJsonPath = "assets/json/socialLinksData.json";
-  String socialLinksSaveKey = "socialLinksDataKey0";
+  String socialLinksSaveKey = "socialLinksDataKey2";
 
   List<SocialLinkModel> socialLinksData = [];
 
@@ -32,7 +32,7 @@ class SocialLinkService with ChangeNotifier {
   }
 
   Future<List<SocialLinkModel>> getSocialLinks() async {
-    if (socialLinksData.isNotEmpty) return socialLinksData;
+    //   if (socialLinksData.isNotEmpty) return socialLinksData;
     final data = await loadAndMergeItems(
         (json) => SocialLinkModel.fromJson(
             json), // Fonction de transformation JSON -> Product
@@ -40,6 +40,9 @@ class SocialLinkService with ChangeNotifier {
         socialLinksSaveKey,
         socialLinksJsonPath,
         isSameLink);
+    notifyListeners();
+
+    print("getSocialLinks => data ${data.length}");
     return List<SocialLinkModel>.from(data);
   }
 
