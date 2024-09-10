@@ -7,6 +7,9 @@ import 'dart:developer';
 import 'package:flutter/services.dart' show rootBundle;
 
 extension SocialLinkExtension<T> on SocialLinkService {
+
+ 
+
   /// Fonction pour charger, comparer et fusionner les données JSON avec les données locales
   Future<List<T>> loadAndMergeItems<T>(
     T Function(Map<String, dynamic>)

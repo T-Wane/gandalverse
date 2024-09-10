@@ -11,7 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 @singleton
 class SocialLinkService with ChangeNotifier {
   String socialLinksJsonPath = "assets/json/socialLinksData.json";
-  String socialLinksSaveKey = "socialLinksDataKey2";
+  String socialLinksSaveKey = "socialLinksDataKey3";
 
   List<SocialLinkModel> socialLinksData = [];
 
@@ -34,9 +34,12 @@ class SocialLinkService with ChangeNotifier {
   Future<List<SocialLinkModel>> getSocialLinks() async {
     //   if (socialLinksData.isNotEmpty) return socialLinksData;
     final data = await loadAndMergeItems(
-        (json) => SocialLinkModel.fromJson(
-            json), // Fonction de transformation JSON -> Product
-        (socilaLink) => socilaLink.toJson(),
+        // (json) => SocialLinkModel.fromJson(
+        //     json), // Fonction de transformation JSON -> Product
+        // (socilaLink) => socilaLink.toJson(),
+
+        (json) => fromJson(json), // Fonction de transformation JSON -> Product
+        (item) => toJson(item),
         socialLinksSaveKey,
         socialLinksJsonPath,
         isSameLink);
@@ -45,6 +48,13 @@ class SocialLinkService with ChangeNotifier {
     print("getSocialLinks => data ${data.length}");
     return List<SocialLinkModel>.from(data);
   }
+
+  @override
+  SocialLinkModel fromJson(Map<String, dynamic> json) =>
+      SocialLinkModel.fromJson(json);
+
+  @override
+  Map<String, dynamic> toJson(SocialLinkModel item) => item.toJson();
 
   // Comparer deux produits par leur ID
   bool isSameLink(SocialLinkModel locallink, SocialLinkModel jsonlink) {

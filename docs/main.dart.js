@@ -98264,7 +98264,7 @@ var $async$Em=A.p(function(a,b){if(a===1)return A.q(b,r)
 while(true)switch(s){case 0:p=t.lm
 o=A
 s=2
-return A.o(A.Al(q,new A.avo(),new A.avp(),"socialLinksDataKey2","assets/json/socialLinksData.json",q.gyv(),t.z,p),$async$Em)
+return A.o(A.Al(q,new A.avo(),new A.avp(),"socialLinksDataKey3","assets/json/socialLinksData.json",q.gyv(),t.z,p),$async$Em)
 case 2:q.c=o.cX(b,!0,p)
 q.ao()
 return A.r(null,r)}})
@@ -98273,7 +98273,7 @@ zO(){var s=0,r=A.u(t.pw),q,p=this,o,n
 var $async$zO=A.p(function(a,b){if(a===1)return A.q(b,r)
 while(true)switch(s){case 0:o=t.lm
 s=3
-return A.o(A.Al(p,new A.avm(),new A.avn(),"socialLinksDataKey2","assets/json/socialLinksData.json",p.gyv(),t.z,o),$async$zO)
+return A.o(A.Al(p,new A.avm(),new A.avn(),"socialLinksDataKey3","assets/json/socialLinksData.json",p.gyv(),t.z,o),$async$zO)
 case 3:n=b
 p.ao()
 A.cR("getSocialLinks => data "+J.bG(n))
