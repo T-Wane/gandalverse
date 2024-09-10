@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:gandalverse/core/data/levels.dart';
 import 'package:gandalverse/core/modeles/carte_model/carte.dart';
 import 'package:gandalverse/core/modeles/fields/createUser_fields/createUser_fields.dart';
 import 'package:gandalverse/core/modeles/user_model/user_model.dart';
@@ -122,6 +123,55 @@ class UserRepository {
     }
   }
 
+
+  /// Mise à jour du niveau de l'utilisateur en fonction de son nombre de pièces
+  ///
+  /// On utilise une transaction pour s'assurer que si plusieurs
+  /// appels sont faits en même temps, cela ne provoque pas de
+  /// problèmes de synchronisation.
+  ///
+  /// On récupère le document de l'utilisateur, puis on met à jour
+  /// son niveau en fonction de son nombre de pièces. Si le niveau
+  /// est mis à jour, on enregistre le changement dans le document
+  /// de l'utilisateur.
+  ///
+  /// Si l'utilisateur n'existe pas, on annule la transaction.
+  ///
+  /// Si une erreur survient, on l'enregistre dans les logs.
+
+  Future<void> updateUserLevel(String userId) async {
+    try {
+      final userRef = _firestore.collection('users').doc(userId);
+
+      await _firestore.runTransaction((transaction) async {
+        final userDoc = await transaction.get(userRef);
+        if (!userDoc.exists) {
+          log("User does not exist");
+          return;
+        }
+
+
+        final userData = userDoc.data() as Map<String, dynamic>;
+        final currentLevelIndex = userData['level'];
+        final userCoins = userData['coins'];
+
+        final nextLevel = levels.values
+            .where((level) => level['index'] > currentLevelIndex)
+            .reduce((current, next) => current['index'] < next['index'] ? current : next);
+
+        if (userCoins >= nextLevel['coins_required']) {
+          final newLevelIndex = nextLevel['index'];
+          transaction.update(userRef, {
+            'level': newLevelIndex,
+          });
+          log('User level updated to $newLevelIndex');
+        }
+      });
+    } catch (e) {
+      log('Error updating user level: $e');
+    }
+  }
+
   //-----------------------------------------//
   Future<void> updatePoints(int newPoints) async {
     //  await  _telegramCloudStorage.setItem(userPointKey, newPoints);
@@ -216,7 +266,9 @@ class UserRepository {
               ..niveau = 1
               ..estAchete = true
               ..force = carte.force
-              ..tauxAugmentationForce = carte.tauxAugmentationForce, ));
+              ..tauxAugmentationForce = carte.tauxAugmentationForce
+              ..contrainteType = carte.contrainteType
+          ..valeurContrainte = carte.valeurContrainte ));
 
         isOk = true; // Indique que la transaction a réussi
       } else {

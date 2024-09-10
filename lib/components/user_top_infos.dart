@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/components/infoItem.dart';
+import 'package:gandalverse/core/data/levels.dart';
 import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/core/route/route_name.dart';
 import 'package:gandalverse/screens/home.page.dart';
@@ -163,7 +164,7 @@ class _userTopInfosState extends State<userTopInfos> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
-                                    "Neo  >",
+                                  "${_userProvider.getUserLevelDetails()?['title']??'Neo'}",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w300,
                                         color: Colors.purple.shade100,
@@ -174,14 +175,15 @@ class _userTopInfosState extends State<userTopInfos> {
                                 const SizedBox(
                                   height: 1,
                                 ),
-                                LinearPercentIndicator(
-                                  percent: 0.5,
-                                  backgroundColor:
-                                      Colors.grey.shade200.withOpacity(0.2),
-                                  progressColor: Colors.deepPurple.shade400,
-                                  lineHeight: 5.0,
-                                  barRadius: const Radius.circular(10),
-                                ),
+                                UserLevelProgress(userLevelIndex: _userProvider.user?.level??1, userCoins: _userProvider.user?.coins??0)
+                                // LinearPercentIndicator(
+                                //   percent: 0.5,
+                                //   backgroundColor:
+                                //       Colors.grey.shade200.withOpacity(0.2),
+                                //   progressColor: Colors.deepPurple.shade400,
+                                //   lineHeight: 5.0,
+                                //   barRadius: const Radius.circular(10),
+                                // ),
                               ],
                             ),
                           )
@@ -321,6 +323,49 @@ class _userTopInfosState extends State<userTopInfos> {
               fontSize: 15, fontFamily: 'Aller', color: Colors.white),
         )
       ],
+    );
+  }
+}
+
+
+class UserLevelProgress extends StatelessWidget {
+  final int userLevelIndex; // Niveau actuel de l'utilisateur
+  final int userCoins; // Coins de l'utilisateur
+
+  UserLevelProgress({required this.userLevelIndex, required this.userCoins});
+
+  @override
+  Widget build(BuildContext context) {
+    final currentLevelDetails = levels.values
+        .firstWhere((level) => level['index'] == userLevelIndex, orElse: () => {});
+    
+    if (currentLevelDetails.isEmpty) {
+      return SizedBox.shrink(); // Retourne une taille nulle si le niveau actuel n'est pas trouvé
+    }
+
+    final currentLevelCoinsRequired = currentLevelDetails['coins_required'] as int;
+
+    Map<String, dynamic> nextLevelDetails = {};
+    for (final level in levels.values) {
+      if (level['index'] == userLevelIndex + 1) {
+        nextLevelDetails = level;
+        break;
+      }
+    }
+
+    final nextLevelCoinsRequired = nextLevelDetails.isNotEmpty
+        ? nextLevelDetails['coins_required'] as int
+        : currentLevelCoinsRequired;
+
+    final progress = (userCoins - currentLevelCoinsRequired).clamp(0, nextLevelCoinsRequired) /
+        (nextLevelCoinsRequired - currentLevelCoinsRequired);
+
+    return LinearPercentIndicator(
+      percent: progress,
+      backgroundColor: Colors.grey.shade200.withOpacity(0.2),
+      progressColor: Colors.deepPurple.shade400,
+      lineHeight: 5.0,
+      barRadius: const Radius.circular(10),
     );
   }
 }

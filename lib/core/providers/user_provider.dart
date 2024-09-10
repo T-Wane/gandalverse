@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:gandalverse/core/data/levels.dart';
 import 'package:gandalverse/core/functions/shareLink.dart';
 import 'package:gandalverse/core/modeles/carte_model/carte.dart';
 import 'package:gandalverse/core/modeles/fields/createUser_fields/createUser_fields.dart';
@@ -20,7 +21,7 @@ import 'package:telegram_web_app/telegram_web_app.dart';
 @singleton
 class UserProvider extends ChangeNotifier {
   UserRepository _userRepository;
-   TelegramClient _telegramClient;
+  TelegramClient _telegramClient;
   //late TelegramWebApp telegram;
   List<UserModel> friends = [];
   List<UserPurchaseCard> userPurchasedCards = [];
@@ -32,10 +33,10 @@ class UserProvider extends ChangeNotifier {
   int get localPoint => _localPoint;
 
   int get telegramUserId => //1016029253;
-    _telegramClient.telegram.initData.user.id;
+      _telegramClient.telegram.initData.user.id;
 
   UserProvider(
-   this._telegramClient,
+    this._telegramClient,
     this._userRepository,
   ) {
     // telegram = TelegramWebApp.instance;
@@ -128,6 +129,38 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Map<String, dynamic>? getUserLevelDetails() {
+    int userLevelIndex = _user?.level ?? 1;
+    // Parcourir tous les niveaux pour trouver celui correspondant
+    for (final entry in levels.entries) {
+      if (entry.value['index'] == userLevelIndex) {
+        return entry.value;
+      }
+    }
+
+    print("Level not found");
+    return null;
+  }
+
+  Future<void> updateUserLevel() async {
+    // Mise à jour du niveau de l'utilisateur en fonction des pièces
+
+    final currentLevelIndex = _user?.level ?? 1;
+    final userCoins = _user?.coins ?? 0;
+
+    final nextLevel = levels.values
+        .where((level) => level['index'] > currentLevelIndex)
+        .reduce((current, next) =>
+            current['index'] < next['index'] ? current : next);
+
+    if (userCoins >= nextLevel['coins_required']) {
+      await Future.wait([
+        _userRepository.updateUserLevel(_user!.id),
+        fetchUserByTelegramId()
+      ]);
+    }
+  }
+
   Future<void> deleteUser() async {
     if (_user != null) {
       await _userRepository.deleteUser(_user!.id);
@@ -185,7 +218,7 @@ class UserProvider extends ChangeNotifier {
   //   return userPurchasedCards.map((e) => e.id).toList();
   // }
   List<String> getPurchaseCardsIds() {
-   // if (userPurchasedCards.isEmpty) loadUserPurchasedCards();
+    // if (userPurchasedCards.isEmpty) loadUserPurchasedCards();
     return userPurchasedCards.map((e) => e.id).toList();
   }
 
@@ -206,6 +239,7 @@ class UserProvider extends ChangeNotifier {
     try {
       //need
       await _userRepository.updatePoints(user.coins);
+      await updateUserLevel();
       _user = user;
     } catch (e) {
       print("#### error $e");
