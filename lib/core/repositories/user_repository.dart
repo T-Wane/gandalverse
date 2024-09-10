@@ -216,7 +216,7 @@ class UserRepository {
               ..niveau = 1
               ..estAchete = true
               ..force = carte.force
-              ..tauxAugmentationForce = carte.tauxAugmentationForce));
+              ..tauxAugmentationForce = carte.tauxAugmentationForce, ));
 
         isOk = true; // Indique que la transaction a réussi
       } else {

@@ -146,7 +146,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                         } else {
                           List<SocialLinkModel> socialLinkData = snapshot.data!;
                           return ListView.builder(
-                              physics: const BouncingScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               itemCount: socialLinkData.length,
                               scrollDirection: Axis.vertical,
