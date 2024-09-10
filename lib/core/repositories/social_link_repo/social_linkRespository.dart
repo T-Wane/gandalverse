@@ -36,11 +36,9 @@ class SocialLinkService with ChangeNotifier {
     return List<SocialLinkModel>.from(data);
   }
 
-  @override
   SocialLinkModel fromJson(Map<String, dynamic> json) =>
       SocialLinkModel.fromJson(json);
 
-  @override
   Map<String, dynamic> toJson(SocialLinkModel item) => item.toJson();
 
   // Comparer deux produits par leur ID
