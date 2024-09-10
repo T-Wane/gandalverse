@@ -33,6 +33,11 @@ class SocialLinkService with ChangeNotifier {
     return List<SocialLinkModel>.from(data);
   }
 
+  /// Update a social link in the list, and save it to the user's preferences.
+  ///
+  /// If [isSubscribed] or [reward] are not provided, the existing values will be used.
+  ///
+  /// Emits a notification to listeners when the update is complete.
   Future<void> updateSocialLink(String id,
       {bool? isSubscribed, String? reward}) async {
     final index = socialLinksData.indexWhere((link) => link.id == id);

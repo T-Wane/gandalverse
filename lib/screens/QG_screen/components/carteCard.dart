@@ -36,7 +36,11 @@ class CarteCard extends StatelessWidget {
       onTap: () {
         CardContentBottomSheet.show(context,
             child: bureauCarteDetails(
-                Color3: Color3, carte: carte, qgService: qgService),
+                Color3: Color3,
+                carte: carte,
+                qgService: qgService,
+                isUnlocked: isUnlocked,
+                contrainteMessage: contrainteMessage),
             image: carte.image);
       },
       child: Consumer<UserProvider>(builder: (context, _userProvider, child) {
@@ -254,12 +258,17 @@ class bureauCarteDetails extends StatefulWidget {
     required this.Color3,
     required this.carte,
     required this.qgService,
+    required this.isUnlocked,
+    this.contrainteMessage,
   });
 
   final Color Color3;
   final CarteModel carte;
 
   QGService qgService;
+
+  bool isUnlocked;
+  String? contrainteMessage;
 
   @override
   State<bureauCarteDetails> createState() => _bureauCarteDetailsState();
@@ -400,69 +409,98 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
             const SizedBox(
               height: 5,
             ),
-            StreamBuilder<bool>(
-              stream: widget.qgService.loadingStream,
-              builder: (context, snapshot) {
-                if (snapshot.data == true) {
-                  return DefaultButtonWithchild(
-                      backColor: Colors.purple.shade400,
-                      elevation: 1.0,
-                      height: 50,
-                      press: () {},
-                      child: const Padding(
-                        padding: EdgeInsets.all(2),
-                        child: CircularProgressIndicator(
-                          color: Colors.white70,
-                          strokeWidth: 1.5,
-                        ),
-                      ));
-                } else {
-                  return DefaultButton(
-                      backColor:
-                          (_userProvider.user?.coins ?? 0) >= widget.carte.prix
-                              ? Colors.purple.shade400
-                              : Colors.grey.shade200,
-                      text: 'Go',
-                      elevation: 1.0,
-                      textColor:
-                          (_userProvider.user?.coins ?? 0) >= widget.carte.prix
-                              ? Colors.white
-                              : Colors.grey.shade500,
-                      fontSize: 15,
-                      height: 50,
-                      press: () async {
-                        if ((_userProvider.user?.coins ?? 0) >=
-                            widget.carte.prix) {
-                          await _userProvider
-                              .updateCardLevel(
-                                  widget.qgService,
-                                  CarteModel((b) => b
-                                    ..carteId = widget.carte.carteId
-                                    ..nom = widget.carte.nom
-                                    ..description = widget.carte.description
-                                    ..competences = BuiltList<String>.from(
-                                            widget.carte.competences
-                                                    ?.toList() ??
-                                                [])
-                                        .toBuilder()
-                                    ..image = widget.carte.image
-                                    ..prix = widget.carte.prix
-                                    ..tauxAugmentation =
-                                        widget.carte.tauxAugmentation
-                                    ..niveau = widget.carte.niveau + 1
-                                    ..estAchete = widget.carte.estAchete
-                                    ..force = widget.carte.force
-                                    ..tauxAugmentationForce =
-                                        widget.carte.tauxAugmentationForce))
-                              .whenComplete(() {
-                            Navigator.of(context).pop();
-                            setState(() {});
-                          });
-                        }
-                      });
-                }
-              },
-            ),
+            if (widget.contrainteMessage != null) ...[
+              Text(
+                widget.contrainteMessage ?? 'Verrouillée',
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                textDirection: TextDirection.ltr,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: widget.Color3,
+                  fontFamily: "Aller",
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+            ],
+            if (widget.isUnlocked) ...[
+              DefaultButton(
+                  backColor: Colors.grey.shade200,
+                  text: 'Go',
+                  elevation: 1.0,
+                  textColor: Colors.grey.shade500,
+                  fontSize: 15,
+                  height: 50,
+                  press: () async {})
+            ] else ...[
+              StreamBuilder<bool>(
+                stream: widget.qgService.loadingStream,
+                builder: (context, snapshot) {
+                  if (snapshot.data == true) {
+                    return DefaultButtonWithchild(
+                        backColor: Colors.purple.shade400,
+                        elevation: 1.0,
+                        height: 50,
+                        press: () {},
+                        child: const Padding(
+                          padding: EdgeInsets.all(2),
+                          child: CircularProgressIndicator(
+                            color: Colors.white70,
+                            strokeWidth: 1.5,
+                          ),
+                        ));
+                  } else {
+                    return DefaultButton(
+                        backColor: (_userProvider.user?.coins ?? 0) >=
+                                widget.carte.prix
+                            ? Colors.purple.shade400
+                            : Colors.grey.shade200,
+                        text: 'Go',
+                        elevation: 1.0,
+                        textColor: (_userProvider.user?.coins ?? 0) >=
+                                widget.carte.prix
+                            ? Colors.white
+                            : Colors.grey.shade500,
+                        fontSize: 15,
+                        height: 50,
+                        press: () async {
+                          if ((_userProvider.user?.coins ?? 0) >=
+                              widget.carte.prix) {
+                            await _userProvider
+                                .updateCardLevel(
+                                    widget.qgService,
+                                    CarteModel((b) => b
+                                      ..carteId = widget.carte.carteId
+                                      ..nom = widget.carte.nom
+                                      ..description = widget.carte.description
+                                      ..competences = BuiltList<String>.from(
+                                              widget.carte.competences
+                                                      ?.toList() ??
+                                                  [])
+                                          .toBuilder()
+                                      ..image = widget.carte.image
+                                      ..prix = widget.carte.prix
+                                      ..tauxAugmentation =
+                                          widget.carte.tauxAugmentation
+                                      ..niveau = widget.carte.niveau + 1
+                                      ..estAchete = widget.carte.estAchete
+                                      ..force = widget.carte.force
+                                      ..tauxAugmentationForce =
+                                          widget.carte.tauxAugmentationForce))
+                                .whenComplete(() {
+                              Navigator.of(context).pop();
+                              setState(() {});
+                            });
+                          }
+                        });
+                  }
+                },
+              ),
+            ]
           ],
         ),
       );
