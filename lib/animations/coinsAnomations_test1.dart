@@ -22,7 +22,6 @@ class FlyCoinAnimation extends StatefulWidget {
 
 class FlyCoinAnimationState extends State<FlyCoinAnimation>
     with TickerProviderStateMixin {
-      
   TapAndEarnRepository _earnRepository = getIt<TapAndEarnRepository>();
   ChargeManager _chargeManager = getIt<ChargeManager>();
   final ClickManager clickManager = ClickManager(getIt<ChargeManager>());
@@ -59,6 +58,9 @@ class FlyCoinAnimationState extends State<FlyCoinAnimation>
 
   void _startAnimation() {
     if (_chargeManager.points > 0) {
+      setState(() {
+        clickManager.onClick(_earnRepository.incrementCoins);
+      });
       final controller = AnimationController(
         duration: const Duration(seconds: 2),
         vsync: this,
@@ -70,7 +72,6 @@ class FlyCoinAnimationState extends State<FlyCoinAnimation>
         if (status == AnimationStatus.completed) {
           controller.dispose();
           setState(() {
-            _animationItems.remove(newAnimationItem);
             clickManager.onClick(_earnRepository.incrementCoins);
           });
         }
@@ -182,7 +183,7 @@ class _PlayButtonState extends State<PlayButton> with TickerProviderStateMixin {
 
   Color Color3 = Color.fromARGB(255, 18, 40, 70);
 
- // bool get _showWaves => !_scaleController.isDismissed;
+  // bool get _showWaves => !_scaleController.isDismissed;
 
   // void _updateRotation() => _rotation = _rotationController.value * 2 * pi;
   // void _updateScale() => _scale = (_scaleController.value * 0.2) + 0.85;

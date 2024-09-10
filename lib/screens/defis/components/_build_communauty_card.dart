@@ -83,15 +83,20 @@ class buildCommunautyCard extends StatelessWidget {
                       height: 5,
                     ),
                     DefaultButton(
-                      backColor:
-                           Colors.purple.shade400,
+                      backColor: socialLinkModel.subscriptionLink.trim() == ''
+                          ? Colors.grey.shade300
+                          : Colors.purple.shade400,
                       text: 'Rejoindre',
                       elevation: 1.0,
-                      textColor: Colors.grey.shade800,
+                      textColor: socialLinkModel.subscriptionLink.trim() == ''
+                          ? Colors.grey.shade800
+                          : Colors.white,
                       fontSize: 15,
                       height: 50,
                       press: () {
-                        socialLinkModel.openLink();
+                        if (socialLinkModel.subscriptionLink.trim() == '') {
+                          socialLinkModel.openLink();
+                        }
                       },
                     )
                   ],

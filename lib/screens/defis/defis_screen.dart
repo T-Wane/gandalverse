@@ -130,8 +130,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                       Color3: Color3,
                     ),*/
 
-                    Flexible(
-                      child: FutureBuilder<List<SocialLinkModel>>(
+                     FutureBuilder<List<SocialLinkModel>>(
                           future: getIt<SocialLinkService>().getSocialLinks(),
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
@@ -165,7 +164,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                               );
                             }
                           }),
-                    )
+                   
                   ]),
             ),
           ),

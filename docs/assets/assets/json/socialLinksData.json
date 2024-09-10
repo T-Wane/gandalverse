@@ -24,7 +24,7 @@
     "title": "Communauté X",
     "description": "Suivez-nous sur X pour obtenir des récompenses !",
     "subscriptionLink": "https://x.com/gandalverse",
-    "image": "assets/images/social_black/facebook.png",
+    "image": "assets/images/social_black/twitter.png",
     "reward": 10000.0,
     "isSubscribed": false,
     "isVisible": true
@@ -34,7 +34,7 @@
     "title": "Communauté Facebook",
     "description": "Rejoins notre communauté Facebook pour obtenir des récompenses !",
     "subscriptionLink": "https://www.facebook.com/gandalverse",
-    "image": "assets/images/social_black/twitter.png",
+    "image": "assets/images/social_black/facebook.png",
     "reward": 10000.0,
     "isSubscribed": false,
     "isVisible": true
@@ -44,7 +44,7 @@
     "title": "Communauté TikTok",
     "description": "Suivez-nous sur TikTok pour obtenir des récompenses !",
     "subscriptionLink": "http://tiktok.com/@gandalverse",
-    "image": "assets/images/social_black/twitter.png",
+    "image": "tiktok",
     "reward": 10000.0,
     "isSubscribed": false,
     "isVisible": true
