@@ -19,7 +19,7 @@ class buildCommunautyCard extends StatelessWidget {
         // title: 'Facebook',
         text: socialLinkModel.description,
         reward: "${socialLinkModel.reward}",
-        imagePath: Images.black_facebook,
+        imagePath: socialLinkModel.image,
         backColors: const [
           Colors.white,
           Colors.white,
@@ -84,7 +84,7 @@ class buildCommunautyCard extends StatelessWidget {
                     ),
                     DefaultButton(
                       backColor:
-                          Colors.grey.shade300, // Colors.purple.shade400,
+                           Colors.purple.shade400,
                       text: 'Rejoindre',
                       elevation: 1.0,
                       textColor: Colors.grey.shade800,

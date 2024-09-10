@@ -149,19 +149,20 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                               List<SocialLinkModel> socialLinkData =
                                   snapshot.data!;
                               return Container(
-                                  width: double.infinity,
-                                  margin: const EdgeInsets.all(5),
-                                  child: ListView.builder(
-                                      physics: NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      itemCount: socialLinkData.length,
-                                      scrollDirection: Axis.vertical,
-                                      itemBuilder: (context, index) {
-                                        SocialLinkModel socialItem =
-                                            socialLinkData[index];
-                                        return buildCommunautyCard(
-                                            socialLinkModel: socialItem);
-                                      }));
+                                width: double.infinity,
+                                margin: const EdgeInsets.all(5),
+                                child: ListView.builder(
+                                    physics: const BouncingScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: socialLinkData.length,
+                                    scrollDirection: Axis.vertical,
+                                    itemBuilder: (context, index) {
+                                      SocialLinkModel socialItem =
+                                          socialLinkData[index];
+                                      return buildCommunautyCard(
+                                          socialLinkModel: socialItem);
+                                    }),
+                              );
                             }
                           }),
                     )
