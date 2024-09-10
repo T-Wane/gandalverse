@@ -117,7 +117,8 @@ flutter:
     - assets/json/equipeData.json
     - assets/json/partenaireData.json
     - assets/json/categorieData.json
-    - assets/json/eventsData.json
+    - assets/json/eventsData.json 
+    - assets/json/socialLinksData.json
     
   fonts:
     - family: Aller
