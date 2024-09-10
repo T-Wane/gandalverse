@@ -13,9 +13,9 @@ class ClickManager {
     _chargeManager.decrementPoints();
     // Démarre ou redémarre le timer pour gérer les clics
   _timer?.cancel();
-    _timer = Timer(_updateInterval, () {
+   // _timer = Timer(_updateInterval, () {
       updateUserCoins(_clickCount);
       _clickCount = 0; // Réinitialiser le compteur après la mise à jour
-    });
+   // });
   }
 }

@@ -46,8 +46,8 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
           Flexible(
             child: Padding(
               padding: const EdgeInsets.all(5.0),
-              child: ListView(
-                  padding: const EdgeInsets.only(bottom: 50),
+              child: Column(
+                  // padding: const EdgeInsets.only(bottom: 50),
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -148,17 +148,20 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                             } else {
                               List<SocialLinkModel> socialLinkData =
                                   snapshot.data!;
-                              return ListView.builder(
-                                  physics: NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemCount: socialLinkData.length,
-                                  scrollDirection: Axis.vertical,
-                                  itemBuilder: (context, index) {
-                                    SocialLinkModel socialItem =
-                                        socialLinkData[index];
-                                    return buildCommunautyCard(
-                                        socialLinkModel: socialItem);
-                                  });
+                              return Container(
+                                  width: double.infinity,
+                                  margin: const EdgeInsets.all(5),
+                                  child: ListView.builder(
+                                      physics: NeverScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount: socialLinkData.length,
+                                      scrollDirection: Axis.vertical,
+                                      itemBuilder: (context, index) {
+                                        SocialLinkModel socialItem =
+                                            socialLinkData[index];
+                                        return buildCommunautyCard(
+                                            socialLinkModel: socialItem);
+                                      }));
                             }
                           }),
                     )
