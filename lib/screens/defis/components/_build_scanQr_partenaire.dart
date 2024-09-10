@@ -3,6 +3,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/default_btn.dart';
+import 'package:gandalverse/core/providers/user_provider.dart';
+import 'package:gandalverse/data/telegram_client.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/screens/defis/components/annonceCard.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
@@ -117,56 +120,77 @@ class ShowScanQrSheetContent extends StatelessWidget {
             fontSize: 15,
             height: 50,
             press: () async {
-              await Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => AiBarcodeScanner(
-                    onDispose: () {
-                      /// This is called when the barcode scanner is disposed.
-                      /// You can write your own logic here.
-                      debugPrint("Barcode scanner disposed!");
-                    },
-                    hideGalleryButton: true,
-                    hideSheetDragHandler: true,
-                    hideSheetTitle: true,
-                    controller: MobileScannerController(
-                      detectionSpeed: DetectionSpeed.noDuplicates,
-                    ),
-                    onDetect: (BarcodeCapture capture) {
-                      /// The row string scanned barcode value
-                      final String? scannedValue =
-                          capture.barcodes.first.rawValue;
-                      debugPrint("Barcode scanned: $scannedValue");
+              _showScanQrPopup();
+              // await Navigator.of(context).push(
+              //   MaterialPageRoute(
+              //     builder: (context) => AiBarcodeScanner(
+              //       onDispose: () {
+              //         /// This is called when the barcode scanner is disposed.
+              //         /// You can write your own logic here.
+              //         debugPrint("Barcode scanner disposed!");
+              //       },
+              //       hideGalleryButton: true,
+              //       hideSheetDragHandler: true,
+              //       hideSheetTitle: true,
+              //       controller: MobileScannerController(
+              //         detectionSpeed: DetectionSpeed.noDuplicates,
+              //       ),
+              //       onDetect: (BarcodeCapture capture) {
+              //         /// The row string scanned barcode value
+              //         final String? scannedValue =
+              //             capture.barcodes.first.rawValue;
+              //         debugPrint("Barcode scanned: $scannedValue");
 
-                      /// The `Uint8List` image is only available if `returnImage` is set to `true`.
-                      final Uint8List? image = capture.image;
-                      debugPrint("Barcode image: $image");
+              //         /// The `Uint8List` image is only available if `returnImage` is set to `true`.
+              //         final Uint8List? image = capture.image;
+              //         debugPrint("Barcode image: $image");
 
-                      /// row data of the barcode
-                      final Object? raw = capture.raw;
-                      debugPrint("Barcode raw: $raw");
+              //         /// row data of the barcode
+              //         final Object? raw = capture.raw;
+              //         debugPrint("Barcode raw: $raw");
 
-                      /// List of scanned barcodes if any
-                      final List<Barcode> barcodes = capture.barcodes;
-                      debugPrint("Barcode list: $barcodes");
-                    },
-                    validator: (value) {
-                      if (value.barcodes.isEmpty) {
-                        return false;
-                      }
-                      if (!(value.barcodes.first.rawValue
-                              ?.contains('flutter.dev') ??
-                          false)) {
-                        return false;
-                      }
-                      return true;
-                    },
-                  ),
-                ),
-              );
+              //         /// List of scanned barcodes if any
+              //         final List<Barcode> barcodes = capture.barcodes;
+              //         debugPrint("Barcode list: $barcodes");
+              //       },
+              //       validator: (value) {
+              //         if (value.barcodes.isEmpty) {
+              //           return false;
+              //         }
+              //         if (!(value.barcodes.first.rawValue
+              //                 ?.contains('flutter.dev') ??
+              //             false)) {
+              //           return false;
+              //         }
+              //         return true;
+              //       },
+              //     ),
+              //   ),
+              // );
             },
           )
         ],
       ),
+    );
+  }
+
+//##############################################################//
+  TelegramClient _telegramClient = getIt<TelegramClient>();
+  UserProvider _userProvider = getIt<UserProvider>();
+
+  Future<void> _showScanQrPopup() async {
+    // Appelle la méthode showScanQrPopup
+    await _telegramClient.telegram.showScanQrPopup(
+      'Scanner QR code partenaire',
+      (String qrText) {
+        // Fonction de rappel appelée lorsque le QR code est scanné
+        // Traite le texte du QR code ici
+
+        print('QR Code scanned: $qrText');
+
+        // Retourne true pour fermer le popup, false pour le laisser ouvert
+        return true;
+      },
     );
   }
 }

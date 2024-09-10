@@ -33,18 +33,18 @@ extension SocialLinkExtension<T> on SocialLinkService {
             .toList();
       }
       print("localData => $localData ${localData.length}");
-      // 3. Charger les données depuis le fichier JSON (données administratives) 
-      String jsonString = await rootBundle.loadString(assetPath); 
-       print("jsonAdminData jsonString => $jsonString");
+      // 3. Charger les données depuis le fichier JSON (données administratives)
+      String jsonString = await rootBundle.loadString(assetPath);
+      print("jsonAdminData jsonString => $jsonString");
       final List<dynamic> jsonData = json.decode(jsonString);
       List<T> jsonAdminData = jsonData
           .map((item) => fromJson(item as Map<String, dynamic>))
           .toList();
 
-       print("jsonAdminData => $jsonAdminData \n ${jsonAdminData.length}");
+      print("jsonAdminData => $jsonAdminData \n ${jsonAdminData.length}");
       // 4. Fusionner les données locales avec les données JSON
       // On fusionne en remplaçant les données locales si elles existent, sinon en les ajoutant
-      List<T> mergedData = [...localData];
+      List<T> mergedData = localData;
 
       for (T jsonItem in jsonAdminData) {
         // Vérifier si l'élément du JSON existe déjà dans les données locales
