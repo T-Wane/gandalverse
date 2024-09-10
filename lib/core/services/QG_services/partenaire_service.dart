@@ -11,7 +11,7 @@ class PartenaireService extends QGService<CarteModel> {
   @override
   String get assetPath => 'assets/json/partenaireData.json';
   @override
-  String get storageKey => 'partenaires6';
+  String get storageKey => 'partenaires_key';
 
   final _partenaireController = StreamController<List<CarteModel>>.broadcast();
   UserProvider _userProvider;
@@ -60,7 +60,9 @@ class PartenaireService extends QGService<CarteModel> {
           ..niveau = purchasedCard['niveau']
           ..estAchete = purchasedCard['est_achete']
           ..force = _card.force
-          ..tauxAugmentationForce = _card.tauxAugmentationForce);
+          ..tauxAugmentationForce = _card.tauxAugmentationForce
+          ..contrainteType = _card.contrainteType
+          ..valeurContrainte = _card.valeurContrainte);
       }
     }
 

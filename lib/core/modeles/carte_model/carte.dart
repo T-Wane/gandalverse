@@ -117,7 +117,7 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
     switch (contrainteType) {
       case ContrainteType.niveauRequis:
         if (niveauUtilisateur < int.parse(valeurContrainte ?? '0')) {
-          return 'Niveau $valeurContrainte requis';
+          return 'Niv.$valeurContrainte requis';
         }
         break;
       case ContrainteType.carteRequise:
@@ -177,7 +177,7 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
         String? carteLevel = valeurContrainte!.split(',')[2];
         return cartesPossedees.contains(carteId as String) &&
             niveauxCartesPossedees[carteId]! >=
-                (int.tryParse(carteLevel ?? '0') ?? 0);
+                (int.parse(carteLevel ?? '0') ?? 0);
       case ContrainteType.niveauCarteRequise:
         final carteRequiseId = valeurContrainte as String;
         return niveauxCartesPossedees.containsKey(carteRequiseId) &&

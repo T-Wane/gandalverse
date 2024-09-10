@@ -58,21 +58,21 @@ class FlyCoinAnimationState extends State<FlyCoinAnimation>
 
   void _startAnimation() {
     if (_chargeManager.points > 0) {
-      setState(() {
-        clickManager.onClick(_earnRepository.incrementCoins);
-      });
       final controller = AnimationController(
         duration: const Duration(seconds: 2),
         vsync: this,
       )..forward();
-
+      setState(() {
+        clickManager.onClick(_earnRepository.incrementCoins);
+      });
       final newAnimationItem = AnimationItem(controller: controller);
 
       controller.addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           controller.dispose();
           setState(() {
-            clickManager.onClick(_earnRepository.incrementCoins);
+            _animationItems.remove(newAnimationItem);
+            //  clickManager.onClick(_earnRepository.incrementCoins);
           });
         }
       });
