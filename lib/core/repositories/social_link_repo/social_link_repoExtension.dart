@@ -48,9 +48,20 @@ extension SocialLinkExtension<T> on SocialLinkService {
 
       for (T jsonItem in jsonAdminData) {
         // Vérifier si l'élément du JSON existe déjà dans les données locales
-        T? localItem = localData.firstWhere(
-          (localItem) => isSameItem(localItem, jsonItem),
-        );
+        // T? localItem = localData.firstWhere(
+        //   (localItem) => isSameItem(localItem, jsonItem),
+        //   orElse: () => null,
+        // );
+        T? localItem;
+
+        try {
+          localItem = localData.firstWhere(
+            (localItem) => isSameItem(localItem, jsonItem),
+          );
+        } catch (e) {
+          // Si aucun élément n'est trouvé, on capture l'exception et on laisse `localItem` comme `null`
+          localItem = null;
+        }
 
         if (localItem == null) {
           // Si l'élément JSON n'existe pas dans les données locales, on l'ajoute
