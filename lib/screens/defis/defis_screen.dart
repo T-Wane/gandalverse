@@ -151,6 +151,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                               return ListView.builder(
                                   physics: const BouncingScrollPhysics(),
                                   shrinkWrap: true,
+                                  itemCount: socialLinkData.length,
                                   scrollDirection: Axis.vertical,
                                   itemBuilder: (context, index) {
                                     SocialLinkModel socialItem =

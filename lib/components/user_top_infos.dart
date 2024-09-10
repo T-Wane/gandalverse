@@ -144,6 +144,7 @@ class _userTopInfosState extends State<userTopInfos> {
                             //  "UserName",
                             "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
                             textAlign: TextAlign.left,
+                            overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
                               fontFamily: "Aller",
                               fontSize: 13,
@@ -195,8 +196,7 @@ class _userTopInfosState extends State<userTopInfos> {
                   GestureDetector(
                     onTap: () {
                       setState(() {
-                        widget.showVisibleEye = !widget.showVisibleEye;
-
+                        widget.showVisibleEye = !widget.showVisibleEye; 
                         widget.changeVisibility?.call();
                       });
                     },
