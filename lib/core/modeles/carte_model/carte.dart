@@ -123,8 +123,9 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
       case ContrainteType.carteRequise:
         String? carteName = valeurContrainte!.split(',')[0];
         String? carteId = valeurContrainte!.split(',')[1];
+        String? carteLevel = valeurContrainte!.split(',')[2];
         if (!cartesPossedees.contains(carteId)) {
-          return " $carteName Niv1";
+          return " $carteName Niv$carteLevel";
         }
         break;
       case ContrainteType.niveauCarteRequise:
@@ -171,12 +172,16 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
       case ContrainteType.niveauRequis:
         return niveauUtilisateur >= (valeurContrainte as int);
       case ContrainteType.carteRequise:
-        return cartesPossedees.contains(valeurContrainte as String);
+        String? carteName = valeurContrainte!.split(',')[0];
+        String? carteId = valeurContrainte!.split(',')[1];
+        String? carteLevel = valeurContrainte!.split(',')[2];
+        return cartesPossedees.contains(carteId as String) &&
+            niveauxCartesPossedees[carteId]! >=
+                (int.tryParse(carteLevel ?? '0') ?? 0);
       case ContrainteType.niveauCarteRequise:
         final carteRequiseId = valeurContrainte as String;
         return niveauxCartesPossedees.containsKey(carteRequiseId) &&
-            niveauxCartesPossedees[carteRequiseId]! >=
-                1; // Ajustez selon les besoins
+            niveauxCartesPossedees[carteRequiseId]! >= 1;
       case ContrainteType.profitRequis:
         return profitParHeure >= (valeurContrainte as double);
       case ContrainteType.codeRequis:
