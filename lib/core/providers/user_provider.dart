@@ -156,7 +156,7 @@ class UserProvider extends ChangeNotifier {
     if (userCoins >= nextLevel['coins_required']) {
       await Future.wait([
         _userRepository.updateUserLevel(_user!.id),
-        fetchUserByTelegramId()
+          fetchUserByTelegramId()
       ]);
     }
   }
