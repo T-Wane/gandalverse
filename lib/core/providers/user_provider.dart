@@ -241,7 +241,7 @@ class UserProvider extends ChangeNotifier {
   ///INVITER AMI
   void inviterAmi() {
     shareViaTelegram(
-        "https://t.me/starbrig_bot/GoGv?startapp=gogverseId$telegramUserId",
+        "https://t.me/gandalverse_bot/start?startapp=gogverseId$telegramUserId",
         "Plongez dans Gandalverse 🌍\nConstruisez votre monde dans le premier métavers pour le prochain milliard d'Africains. Gagnez des jetons, montez en grade, et signez des partenariats pour des commissions. Invitez des amis, augmentez votre influence et remportez des panneaux publicitaires ou des immeubles. Rejoignez-nous et façonnez l'avenir dès aujourd'hui !");
   }
 }
