@@ -364,7 +364,7 @@ class _UserLevelProgressState extends State<UserLevelProgress> {
 
     final progress = (widget.userCoins - currentLevelCoinsRequired).clamp(0, nextLevelCoinsRequired) /
         (nextLevelCoinsRequired - currentLevelCoinsRequired);
-        print("widget.userCoins : $widget.userCoins");
+        print("widget.userCoins : ${widget.userCoins}");
         print("currentLevelCoinsRequired : $currentLevelCoinsRequired");
         print("calim ${(widget.userCoins - currentLevelCoinsRequired).clamp(0, nextLevelCoinsRequired)} / ${(nextLevelCoinsRequired - currentLevelCoinsRequired)}");
     print("progress : $progress");

@@ -97237,7 +97237,7 @@ if(J.e(n.i(0,"index"),k.a.c+1)){r=n
 break}}m=r.gbR(r)?A.bw(r.i(0,j)):s
 q=m-s
 l=B.e.en(k.a.d-s,0,m)/q
-A.ce("widget.userCoins : "+k.a.j(0)+".userCoins")
+A.ce("widget.userCoins : "+k.a.d)
 A.ce("currentLevelCoinsRequired : "+s)
 A.ce("calim "+A.h(B.e.en(k.a.d-s,0,m))+" / "+q)
 A.ce("progress : "+A.h(l))
