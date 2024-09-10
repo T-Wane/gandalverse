@@ -78,7 +78,6 @@ class UserRepository {
             dynamic>; //CarteModel.fromJson(doc as Map<String, dynamic>);
       }).toList();
 
-     
       return cards;
     } catch (e) {
       log("Erreur lors du chargement des cartes : $e");
@@ -123,7 +122,6 @@ class UserRepository {
     }
   }
 
-
   /// Mise à jour du niveau de l'utilisateur en fonction de son nombre de pièces
   ///
   /// On utilise une transaction pour s'assurer que si plusieurs
@@ -150,14 +148,14 @@ class UserRepository {
           return;
         }
 
-
         final userData = userDoc.data() as Map<String, dynamic>;
         final currentLevelIndex = userData['level'];
         final userCoins = userData['coins'];
 
         final nextLevel = levels.values
             .where((level) => level['index'] > currentLevelIndex)
-            .reduce((current, next) => current['index'] < next['index'] ? current : next);
+            .reduce((current, next) =>
+                current['index'] < next['index'] ? current : next);
 
         if (userCoins >= nextLevel['coins_required']) {
           final newLevelIndex = nextLevel['index'];
@@ -268,7 +266,7 @@ class UserRepository {
               ..force = carte.force
               ..tauxAugmentationForce = carte.tauxAugmentationForce
               ..contrainteType = carte.contrainteType
-          ..valeurContrainte = carte.valeurContrainte ));
+              ..valeurContrainte = carte.valeurContrainte));
 
         isOk = true; // Indique que la transaction a réussi
       } else {
@@ -309,6 +307,67 @@ class UserRepository {
       // Récupération du document de la carte dans la sous-collection de l'utilisateur
       DocumentSnapshot userCardDoc = await transaction.get(userCardRef);
 
+      // Calcul de la nouvelle force et du profit par heure après la mise à jour du niveau
+      double newForce = carteData.getForce_double;
+      double newProfit =
+          carteData.getForce_double * carteData.tauxAugmentationForce;
+
+      // Mise à jour du niveau de la carte et du profil de la carte
+      transaction.update(userCardRef, {
+        'niveau': carteData.niveau,
+        'profilParHeure':
+            newProfit, // Mise à jour du profit avec la nouvelle force
+        //'force': newForce, // Mise à jour de la force locale
+      });
+
+      // Mise à jour des coins et du profit par heure de l'utilisateur
+      transaction.update(userRef, {
+        'coins': userCoins - cardPrice,
+        'profitPerHour':
+            userDoc['profitPerHour'] + newProfit, // Ajustement du profit
+      });
+
+      // Mise à jour des données de la carte dans le service local
+      await qgService.updateItem(carteData.carteId!, carteData);
+    });
+
+    // Si la transaction est réussie, nous mettons à jour la carte en local
+    if (isOk) {
+      // Optionnel : Mettez à jour les données en mémoire locale si nécessaire
+    }
+  }
+
+/*
+
+  Future<void> updateCardLevel(
+      QGService qgService, String userId, CarteModel carteData) async {
+    DocumentReference userRef = _firestore.collection('users').doc(userId);
+    bool isOk = false;
+
+    await _firestore.runTransaction((transaction) async {
+      // Récupération du document utilisateur
+      DocumentSnapshot userDoc = await transaction.get(userRef);
+
+      if (!userDoc.exists) {
+        log("User does not exist");
+        return;
+      }
+
+      int userCoins = userDoc['coins'];
+      double cardPrice = carteData.getPrix_inDouble;
+
+      if (userCoins < cardPrice) {
+        log("Not enough coins");
+        return;
+      }
+
+      // Référence de la sous-collection "cards" de l'utilisateur
+      DocumentReference userCardRef =
+          userRef.collection('cards').doc(carteData.carteId);
+
+      // Récupération du document de la carte dans la sous-collection de l'utilisateur
+      DocumentSnapshot userCardDoc = await transaction.get(userCardRef);
+
       transaction.update(userCardRef, {
         'niveau': carteData.niveau,
         'profilParHeure': carteData.force * carteData.tauxAugmentationForce,
@@ -317,7 +376,7 @@ class UserRepository {
       transaction.update(userRef, {
         'coins': userCoins - cardPrice,
         'profitPerHour': userDoc['profitPerHour'] +
-            (carteData.force * carteData.tauxAugmentationForce)
+            (carteData.getForce_double)
       });
       await qgService.updateItem(carteData.carteId!, carteData);
     });
@@ -334,6 +393,7 @@ class UserRepository {
     //   await qgService.updateItem(carteData.carteId!, carteData);
     // });
   }
+*/
 
   Future<UserModel?> syncUserCoins(int localCoins, String _userId) async {
     DocumentReference userRef = _firestore.collection('users').doc(_userId);

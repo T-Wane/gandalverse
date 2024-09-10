@@ -82,6 +82,8 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
   String get getForce =>
       increase(force, tauxAugmentationForce).toStringAsFixed(1);
 
+  double get getForce_double => increase(force, tauxAugmentationForce);
+
   String get prixFormate {
     final adjustedPrix = prix * (niveau > 0 ? (tauxAugmentation * niveau) : 1);
     if (adjustedPrix >= 1000000) {

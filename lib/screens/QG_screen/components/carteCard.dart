@@ -490,7 +490,11 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                                       ..estAchete = widget.carte.estAchete
                                       ..force = widget.carte.force
                                       ..tauxAugmentationForce =
-                                          widget.carte.tauxAugmentationForce))
+                                          widget.carte.tauxAugmentationForce
+                                      ..contrainteType =
+                                          widget.carte.contrainteType
+                                      ..valeurContrainte =
+                                          widget.carte.valeurContrainte))
                                 .whenComplete(() {
                               Navigator.of(context).pop();
                               setState(() {});
