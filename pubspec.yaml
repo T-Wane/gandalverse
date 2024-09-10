@@ -119,7 +119,7 @@ flutter:
     - assets/json/categorieData.json
     - assets/json/eventsData.json 
     - assets/json/socialLinksData.json
-    
+
   fonts:
     - family: Aller
       fonts:
