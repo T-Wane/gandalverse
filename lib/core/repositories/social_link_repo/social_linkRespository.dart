@@ -2,9 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:gandalverse/core/modeles/social_link/social_link.dart';
-import 'package:gandalverse/core/repositories/social_link_repo/social_link_repoExtension.dart';
-import 'package:gandalverse/core/services/explorer_service/explorer_service_extension.dart';
+import 'package:gandalverse/core/modeles/social_link/social_link.dart'; 
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -13,7 +11,7 @@ import 'package:flutter/services.dart' show rootBundle;
 @singleton
 class SocialLinkService with ChangeNotifier {
   String socialLinksJsonPath = "assets/json/socialLinksData.json";
-  String socialLinksSaveKey = "socialLinksDataKey3";
+  String socialLinksSaveKey = "socialLinksDataKey4";
 
   List<SocialLinkModel> socialLinksData = [];
 
@@ -100,6 +98,7 @@ class SocialLinkService with ChangeNotifier {
       String jsonString = await rootBundle.loadString(socialLinksJsonPath);
       print("jsonAdminData jsonString => $jsonString");
       final List<dynamic> jsonData = json.decode(jsonString);
+        print("jsonAdminData  List<dynamic> jsonData => $jsonData");
       List<SocialLinkModel> jsonAdminData = jsonData
           .map((item) => fromJson(item as Map<String, dynamic>))
           .toList();
