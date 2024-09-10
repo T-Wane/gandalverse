@@ -164,7 +164,7 @@ class _userTopInfosState extends State<userTopInfos> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
-                                  "${_userProvider.getUserLevelDetails()?['title']??'---'}",
+                                    "${_userProvider.getUserLevelDetails()?['title'] ?? '---'}",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w300,
                                         color: Colors.purple.shade100,
@@ -175,7 +175,10 @@ class _userTopInfosState extends State<userTopInfos> {
                                 const SizedBox(
                                   height: 1,
                                 ),
-                                UserLevelProgress(userLevelIndex: _userProvider.user?.level??1, userCoins: _userProvider.user?.coins??0)
+                                UserLevelProgress(
+                                    userLevelIndex:
+                                        _userProvider.user?.level ?? 1,
+                                    userCoins: _userProvider.user?.coins ?? 0)
                                 // LinearPercentIndicator(
                                 //   percent: 0.5,
                                 //   backgroundColor:
@@ -327,7 +330,6 @@ class _userTopInfosState extends State<userTopInfos> {
   }
 }
 
-
 class UserLevelProgress extends StatefulWidget {
   final int userLevelIndex; // Niveau actuel de l'utilisateur
   final int userCoins; // Coins de l'utilisateur
@@ -341,15 +343,20 @@ class UserLevelProgress extends StatefulWidget {
 class _UserLevelProgressState extends State<UserLevelProgress> {
   @override
   Widget build(BuildContext context) {
-    final currentLevelDetails = levels.values
-        .firstWhere((level) => level['index'] == widget.userLevelIndex, orElse: () => {});
-    
+    // Récupérer les détails du niveau actuel
+    final currentLevelDetails = levels.values.firstWhere(
+      (level) => level['index'] == (widget.userLevelIndex + 1),
+      orElse: () => {},
+    );
+
     if (currentLevelDetails.isEmpty) {
-      return SizedBox.shrink(); // Retourne une taille nulle si le niveau actuel n'est pas trouvé
+      return SizedBox.shrink(); // Si le niveau actuel n'est pas trouvé
     }
 
-    final currentLevelCoinsRequired = currentLevelDetails['coins_required'] as int;
+    final currentLevelCoinsRequired =
+        currentLevelDetails['coins_required'] as int;
 
+    // Récupérer les détails du niveau suivant
     Map<String, dynamic> nextLevelDetails = {};
     for (final level in levels.values) {
       if (level['index'] == widget.userLevelIndex + 1) {
@@ -358,18 +365,44 @@ class _UserLevelProgressState extends State<UserLevelProgress> {
       }
     }
 
+    // Si aucun niveau suivant, le nextLevelCoinsRequired est égal aux pièces requises pour le niveau actuel
     final nextLevelCoinsRequired = nextLevelDetails.isNotEmpty
         ? nextLevelDetails['coins_required'] as int
         : currentLevelCoinsRequired;
 
-    final progress = (widget.userCoins - currentLevelCoinsRequired).clamp(0, nextLevelCoinsRequired) /
+    // Si les coins de l'utilisateur sont inférieurs aux coins requis du niveau actuel
+    // Calculer la progression entre 0 et le currentLevelCoinsRequired
+    if (widget.userCoins < currentLevelCoinsRequired) {
+      final progress = widget.userCoins / currentLevelCoinsRequired;
+
+      print("widget.userCoins : ${widget.userCoins}");
+      print("currentLevelCoinsRequired : $currentLevelCoinsRequired");
+      print("progress : $progress");
+
+      return LinearPercentIndicator(
+        percent: progress.clamp(0.0, 1.0),
+        backgroundColor: Colors.grey.shade200.withOpacity(0.2),
+        progressColor: Colors.deepPurple.shade400,
+        lineHeight: 5.0,
+        barRadius: const Radius.circular(10),
+      );
+    }
+
+    // Si l'utilisateur a plus de coins que le minimum requis pour le niveau actuel
+    final progress = (widget.userCoins - currentLevelCoinsRequired) /
         (nextLevelCoinsRequired - currentLevelCoinsRequired);
-        print("widget.userCoins : ${widget.userCoins}");
-        print("currentLevelCoinsRequired : $currentLevelCoinsRequired");
-        print("calim ${(widget.userCoins - currentLevelCoinsRequired).clamp(0, nextLevelCoinsRequired)} / ${(nextLevelCoinsRequired - currentLevelCoinsRequired)}");
+
+    // Clamp la progression entre 0 et 1
+    final clampedProgress = progress.clamp(0.0, 1.0);
+
+    print("widget.userCoins : ${widget.userCoins}");
+    print("currentLevelCoinsRequired : $currentLevelCoinsRequired");
+    print("nextLevelCoinsRequired : $nextLevelCoinsRequired");
     print("progress : $progress");
+    print("clampedProgress : $clampedProgress");
+
     return LinearPercentIndicator(
-      percent: progress,
+      percent: clampedProgress,
       backgroundColor: Colors.grey.shade200.withOpacity(0.2),
       progressColor: Colors.deepPurple.shade400,
       lineHeight: 5.0,
