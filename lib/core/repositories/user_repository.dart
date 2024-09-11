@@ -22,24 +22,55 @@ class UserRepository {
 
   UserRepository(this._telegramCloudStorage);
 
-  Future<UserModel?> getUserByTelegramId(int telegramId) async {
-    try {
-      final querySnapshot = await _firestore
-          .collection('users')
-          .where('telegramId', isEqualTo: telegramId)
-          .get();
-
-      if (querySnapshot.docs.isNotEmpty) {
-        final doc = querySnapshot.docs.first.data();
-        final user = UserModel.fromJson(doc as Map<String, dynamic>);
-        return user;
-      }
-      return null;
-    } catch (e) {
-      log('Error getting user: $e');
-      return null;
-    }
+  /// Enregistre un utilisateur dans la base de données distante
+  ///
+  /// Le document est créé avec l'id de l'utilisateur
+  ///
+  /// Les données de l'utilisateur sont stockées dans un objet JSON
+  ///
+  /// La méthode est asynchrone
+  Future<void> saveUser(UserModel user) async {
+    await _firestore.collection('users').doc(user.id).set(user.toJson());
   }
+
+  Future<UserModel?> getUserByTelegramId(int telegramId) async {
+  try {
+    // Récupération des documents avec le même telegramId
+    final querySnapshot = await _firestore
+        .collection('users')
+        .where('telegramId', isEqualTo: telegramId)
+        .get();
+
+    // Vérifie si la requête renvoie des résultats
+    if (querySnapshot.docs.isNotEmpty) {
+      // Si plusieurs documents sont trouvés, on supprime les doublons
+      if (querySnapshot.docs.length > 1) {
+        // Trie les documents par date d'ajout si nécessaire (peut dépendre de ton modèle)
+        List<QueryDocumentSnapshot> docs = querySnapshot.docs;
+
+        // Conserve le premier document
+        QueryDocumentSnapshot firstDoc = docs.first;
+
+        // Supprime les autres documents en trop
+        for (int i = 1; i < docs.length; i++) {
+          await _firestore.collection('users').doc(docs[i].id).delete();
+        }
+
+        log('Doublons supprimés, seul le premier document est conservé.');
+      }
+
+      // Récupère le premier document restant
+      final doc = querySnapshot.docs.first.data();
+      final user = UserModel.fromJson(doc as Map<String, dynamic>);
+      return user;
+    }
+    return null;
+  } catch (e) {
+    log('Error getting user: $e');
+    return null;
+  }
+}
+
 
   Future<List<UserModel>> getUserFriends(int telegramId) async {
     try {
