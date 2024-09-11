@@ -93,17 +93,17 @@ class SocialLinkService with ChangeNotifier {
             .map((item) => fromJson(item as Map<String, dynamic>))
             .toList();
       }
-      print("localData => $localData ${localData.length}");
+      //print("localData => $localData ${localData.length}");
       // 3. Charger les données depuis le fichier JSON (données administratives)
       String jsonString = await rootBundle.loadString(socialLinksJsonPath);
-      print("jsonAdminData jsonString => $jsonString");
+      //print("jsonAdminData jsonString => $jsonString");
       final List<dynamic> jsonData = json.decode(jsonString);
-        print("jsonAdminData  List<dynamic> jsonData => $jsonData");
+      //  print("jsonAdminData  List<dynamic> jsonData => $jsonData");
       List<SocialLinkModel> jsonAdminData = jsonData
           .map((item) => fromJson(item as Map<String, dynamic>))
           .toList();
 
-      print("jsonAdminData => $jsonAdminData \n ${jsonAdminData.length}");
+      //print("jsonAdminData => $jsonAdminData \n ${jsonAdminData.length}");
       // 4. Fusionner les données locales avec les données JSON
       // On fusionne en remplaçant les données locales si elles existent, sinon en les ajoutant
       List<SocialLinkModel> mergedData = localData;
