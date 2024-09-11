@@ -211,6 +211,7 @@ class UserProvider extends ChangeNotifier {
     );
     userPurchasedCards =
         cards.map((e) => UserPurchaseCard.fromJson(e)).toList();
+        print("loadUserPurchasedCards purchased cards ${userPurchasedCards.map((e) => e.toJson())}");
     notifyListeners();
     return cards;
   }

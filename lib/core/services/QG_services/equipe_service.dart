@@ -68,7 +68,7 @@ class EquipeService extends QGService<CarteModel> {
           ..valeurContrainte = _card.valeurContrainte);
       }
     }
-
+log("############ after merge with purchasedCards baseCards :${baseCards.map((e) => e.toJson())}");
     await saveItems2(baseCards);
   }
 
