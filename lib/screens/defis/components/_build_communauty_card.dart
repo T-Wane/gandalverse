@@ -140,9 +140,9 @@ class _buildCommunautyCardState extends State<buildCommunautyCard>
                       fontSize: 15,
                       height: 50,
                       press: () async {
-                        if (widget.socialLinkModel.subscriptionLink.trim() ==
+                        if (widget.socialLinkModel.subscriptionLink.trim() !=
                                 '' ||
-                            widget.socialLinkModel.isSubscribed) {
+                            !widget.socialLinkModel.isSubscribed) {
                           _linkService.openLinkAndUpdateStatus(
                               widget.socialLinkModel.id,
                               widget.socialLinkModel

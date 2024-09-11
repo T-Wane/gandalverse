@@ -175,22 +175,29 @@ class SocialLinkService with ChangeNotifier {
     }
   }
 
-  
   // Dans SocialLinkModel ou SocialLinkService
-Future<void> openLinkAndUpdateStatus(String id, String url) async {
-  try {
-    if (await canLaunch(url)) {
-      // Ouvre le lien
-      await launch(url);
+  Future<void> openLinkAndUpdateStatus(String id, String url) async {
+    try {
+      if (await canLaunch(url)) {
+        // Ouvre le lien
+        await launch(url);
 
-      // Mettre à jour le statut après la visite
-      await setSubscriptionStatus(id, true);
-      print('Le lien a été visité et le statut a été mis à jour.');
-    } else {
-      throw 'Impossible d’ouvrir $url';
+        // Mettre à jour le statut après la visite
+        await setSubscriptionStatus(id, true);
+        print('Le lien a été visité et le statut a été mis à jour.');
+      } else {
+        throw 'Impossible d’ouvrir $url';
+      }
+    } catch (e) {
+      print('Erreur lors de l’ouverture du lien: $e');
     }
-  } catch (e) {
-    print('Erreur lors de l’ouverture du lien: $e');
   }
-}
+
+  //  Future<void> openLink(String id, String url) async {
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Impossible d’ouvrir $url';
+  //   }
+  // }
 }
