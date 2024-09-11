@@ -164,4 +164,5 @@ abstract class SocialLinkModel
       throw 'Impossible d’ouvrir $subscriptionLink';
     }
   }
+
 }

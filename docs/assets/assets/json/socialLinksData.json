@@ -44,7 +44,7 @@
     "title": "Communauté TikTok",
     "description": "Suivez-nous sur TikTok pour obtenir des récompenses !",
     "subscriptionLink": "http://tiktok.com/@gandalverse",
-    "image": "tiktok",
+    "image": "assets/images/social_black/tiktok.png",
     "reward": 10000.0,
     "isSubscribed": false,
     "isVisible": true
