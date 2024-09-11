@@ -14,6 +14,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(EvenementModel.serializer)
       ..add(SocialLinkModel.serializer)
       ..add(UserModel.serializer)
+      ..add(UserPurchaseCard.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>()))

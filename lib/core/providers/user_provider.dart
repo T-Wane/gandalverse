@@ -73,7 +73,7 @@ class UserProvider extends ChangeNotifier {
       // );
     } else {
       //Mettre à jour les points/coins de l'user en local
-
+      await loadUserPurchasedCards();
       bool localpointIsSaved = await _userRepository.userPointIsSaved();
       if (localpointIsSaved == true) {
         await updateUserPointLocal(_user!);
@@ -84,7 +84,7 @@ class UserProvider extends ChangeNotifier {
             await _userRepository.syncUserCoins(localPoints, _user?.id ?? '');
       }
     }
-    await loadUserPurchasedCards();
+
     notifyListeners();
   }
 
@@ -105,6 +105,7 @@ class UserProvider extends ChangeNotifier {
         photoUrl: photoUrl);
     await _userRepository.createUser(fields: fields);
     await fetchUserByTelegramId();
+    await loadUserPurchasedCards();
   }
 
   String getParrainId(StartParam param) {
@@ -178,7 +179,6 @@ class UserProvider extends ChangeNotifier {
   Future<void> updateCardLevel(
       QGService qgService, CarteModel carteData) async {
     try {
-      
       print("carteData ${carteData.toJson()}");
       if (carteData.estAchete == false) {
         await _userRepository.purchaseCard(_user!.id, carteData, qgService);
@@ -211,6 +211,8 @@ class UserProvider extends ChangeNotifier {
     );
     userPurchasedCards =
         cards.map((e) => UserPurchaseCard.fromJson(e)).toList();
+    print(
+        "loadUserPurchasedCards purchased cards ${userPurchasedCards.map((e) => e.toJson())}");
     notifyListeners();
     return cards;
   }

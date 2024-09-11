@@ -2,24 +2,64 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/core/modeles/social_link/social_link.dart';
+import 'package:gandalverse/core/repositories/social_link_repo/social_linkRespository.dart';
+import 'package:gandalverse/data/telegram_client.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/defis/components/annonceCard.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
+import 'package:gandalverse/widgets/reward/reward_animation.dart';
 
-class buildCommunautyCard extends StatelessWidget {
+class buildCommunautyCard extends StatefulWidget {
   buildCommunautyCard({super.key, required this.socialLinkModel});
 
   SocialLinkModel socialLinkModel;
 
   @override
+  State<buildCommunautyCard> createState() => _buildCommunautyCardState();
+}
+
+class _buildCommunautyCardState extends State<buildCommunautyCard>
+    with WidgetsBindingObserver {
+  TelegramClient _telegramClient = getIt<TelegramClient>();
+
+  SocialLinkService _linkService = getIt<SocialLinkService>();
+  bool _showAnimation = false; // Variable pour déclencher l'animation
+
+  @override
+  void initState() {
+    super.initState();
+    // Observer le cycle de vie de l'application
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    // Ne pas oublier de retirer l'observer pour éviter les fuites de mémoire
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      // Lorsque l'application revient au premier plan
+      RewardAnimation.show(context);
+      Future.delayed(const Duration(seconds: 3), () {
+        RewardAnimation.hide(context);
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return AnnonceCard(
         // title: 'Facebook',
-        text: socialLinkModel.description,
-        reward: "${socialLinkModel.reward}",
-        imagePath: socialLinkModel.image,
+        text: widget.socialLinkModel.description,
+        reward: "${widget.socialLinkModel.reward}",
+        imagePath: widget.socialLinkModel.image,
         backColors: const [
           Colors.white,
           Colors.white,
@@ -33,7 +73,7 @@ class buildCommunautyCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      socialLinkModel.title,
+                      widget.socialLinkModel.title,
                       maxLines: 1,
                       textAlign: TextAlign.center,
                       textDirection: TextDirection.ltr,
@@ -48,7 +88,7 @@ class buildCommunautyCard extends StatelessWidget {
                       height: 5,
                     ),
                     AutoSizeText(
-                      socialLinkModel.description,
+                      widget.socialLinkModel.description,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
                             color: Themecolors.Color3.withOpacity(0.95),
@@ -68,7 +108,7 @@ class buildCommunautyCard extends StatelessWidget {
                           width: 40,
                         ),
                         AutoSizeText(
-                          "${socialLinkModel.reward}",
+                          "${widget.socialLinkModel.reward}",
                           maxLines: 1,
                           presetFontSizes: [22, 20, 18, 15, 14],
                           textAlign: TextAlign.center,
@@ -83,26 +123,39 @@ class buildCommunautyCard extends StatelessWidget {
                       height: 5,
                     ),
                     DefaultButton(
-                      backColor: socialLinkModel.subscriptionLink.trim() == ''
-                          ? Colors.grey.shade300
-                          : Colors.purple.shade400,
+                      backColor:
+                          widget.socialLinkModel.subscriptionLink.trim() ==
+                                      '' ||
+                                  widget.socialLinkModel.isSubscribed
+                              ? Colors.grey.shade300
+                              : Colors.purple.shade400,
                       text: 'Rejoindre',
                       elevation: 1.0,
-                      textColor: socialLinkModel.subscriptionLink.trim() == ''
-                          ? Colors.grey.shade800
-                          : Colors.white,
+                      textColor:
+                          widget.socialLinkModel.subscriptionLink.trim() ==
+                                      '' ||
+                                  widget.socialLinkModel.isSubscribed
+                              ? Colors.grey.shade800
+                              : Colors.white,
                       fontSize: 15,
                       height: 50,
-                      press: () {
-                        if (socialLinkModel.subscriptionLink.trim() == '') {
-                          socialLinkModel.openLink();
+                      press: () async {
+                        if (widget.socialLinkModel.subscriptionLink.trim() ==
+                                '' ||
+                            widget.socialLinkModel.isSubscribed) {
+                          _linkService.openLinkAndUpdateStatus(
+                              widget.socialLinkModel.id,
+                              widget.socialLinkModel
+                                  .subscriptionLink); // socialLinkModel.openLink().whenComplete(() async =>
+                          //     await _linkService.setSubscriptionStatus(
+                          //         socialLinkModel.id, true));
                         }
                       },
                     )
                   ],
                 ),
               ),
-              image: socialLinkModel.image);
+              image: widget.socialLinkModel.image);
         },
         textColor: Colors.black,
         titleColor: Themecolors.Color3);

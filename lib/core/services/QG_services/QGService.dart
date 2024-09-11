@@ -69,16 +69,16 @@ abstract class QGService<T> {
             .map((item) => fromJson(item as Map<String, dynamic>))
             .toList();
       }
-      print("localData => $localData ${localData.length}");
+    //  print("localData => $localData ${localData.length}");
       // 3. Charger les données depuis le fichier JSON (données administratives)
       String jsonString = await rootBundle.loadString(assetPath);
-      print("jsonAdminData jsonString => $jsonString");
+     // print("jsonAdminData jsonString => $jsonString");
       final List<dynamic> jsonData = json.decode(jsonString);
       List<T> jsonAdminData = jsonData
           .map((item) => fromJson(item as Map<String, dynamic>))
           .toList();
 
-      print("jsonAdminData => $jsonAdminData \n ${jsonAdminData.length}");
+    //  print("jsonAdminData => $jsonAdminData \n ${jsonAdminData.length}");
       // 4. Fusionner les données locales avec les données JSON
       // On fusionne en remplaçant les données locales si elles existent, sinon en les ajoutant
       List<T> mergedData = localData;
@@ -112,8 +112,7 @@ abstract class QGService<T> {
       return mergedData;
     } catch (e, stacktrace) {
       // 6. Gestion des erreurs et affichage du stacktrace
-      print("######[ ERROR in loadAndMergeItems: $e ]######");
-      log("######[ ERROR in loadAndMergeItems: $e ]######");
+      print("######[ ERROR in loadAndMergeItems: $e ]######"); 
       log("######[ STACKTRACE: $stacktrace ]######");
       return []; // Retourner une liste vide en cas d'erreur
     }

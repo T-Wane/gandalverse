@@ -95,13 +95,14 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
     }
   }
 
-  String get forceFormate {
-    if (force >= 1000000) {
-      return '${(force / 1000000).toStringAsFixed(1)}M';
-    } else if (force >= 1000) {
-      return '${(force / 1000).toStringAsFixed(1)}K';
+  String get forceFormate { 
+     final adjustedForce = force * (niveau > 0 ? (tauxAugmentationForce * niveau) : 1); 
+    if (adjustedForce >= 1000000) {
+      return '${(adjustedForce / 1000000).toStringAsFixed(1)}M';
+    } else if (adjustedForce >= 1000) {
+      return '${(adjustedForce / 1000).toStringAsFixed(1)}K';
     } else {
-      return force.toStringAsFixed(0);
+      return adjustedForce.toStringAsFixed(0);
     }
   }
 

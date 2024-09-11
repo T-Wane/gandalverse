@@ -45,7 +45,7 @@ class _RewardAnimationState extends State<RewardAnimation>
     return WillPopScope(
       onWillPop: () async => true,
       child: Material(
-        color: Colors.black.withOpacity(0.1),
+        color: Colors.black12.withOpacity(0.1),
         child: Center(
           child: Container(
             constraints: BoxConstraints(

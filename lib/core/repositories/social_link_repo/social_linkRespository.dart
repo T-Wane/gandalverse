@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:gandalverse/core/modeles/social_link/social_link.dart'; 
+import 'package:gandalverse/core/modeles/social_link/social_link.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -93,17 +93,17 @@ class SocialLinkService with ChangeNotifier {
             .map((item) => fromJson(item as Map<String, dynamic>))
             .toList();
       }
-      print("localData => $localData ${localData.length}");
+      //print("localData => $localData ${localData.length}");
       // 3. Charger les données depuis le fichier JSON (données administratives)
       String jsonString = await rootBundle.loadString(socialLinksJsonPath);
-      print("jsonAdminData jsonString => $jsonString");
+      //print("jsonAdminData jsonString => $jsonString");
       final List<dynamic> jsonData = json.decode(jsonString);
-        print("jsonAdminData  List<dynamic> jsonData => $jsonData");
+      //  print("jsonAdminData  List<dynamic> jsonData => $jsonData");
       List<SocialLinkModel> jsonAdminData = jsonData
           .map((item) => fromJson(item as Map<String, dynamic>))
           .toList();
 
-      print("jsonAdminData => $jsonAdminData \n ${jsonAdminData.length}");
+      //print("jsonAdminData => $jsonAdminData \n ${jsonAdminData.length}");
       // 4. Fusionner les données locales avec les données JSON
       // On fusionne en remplaçant les données locales si elles existent, sinon en les ajoutant
       List<SocialLinkModel> mergedData = localData;
@@ -153,4 +153,44 @@ class SocialLinkService with ChangeNotifier {
 
     return data;
   }
+
+  Future<void> setSubscriptionStatus(String id, bool isSubscribed) async {
+    // Rechercher le lien par son id
+    final index = socialLinksData.indexWhere((link) => link.id == id);
+
+    if (index != -1) {
+      // Mettre à jour le champ isSubscribed
+      final updatedLink =
+          socialLinksData[index].rebuild((b) => b..isSubscribed = isSubscribed);
+
+      socialLinksData[index] = updatedLink;
+
+      // Sauvegarder la mise à jour dans les SharedPreferences
+      final prefs = await SharedPreferences.getInstance();
+      final jsonString =
+          json.encode(socialLinksData.map((link) => link.toJson()).toList());
+      await prefs.setString(socialLinksSaveKey, jsonString);
+
+      notifyListeners();
+    }
+  }
+
+  
+  // Dans SocialLinkModel ou SocialLinkService
+Future<void> openLinkAndUpdateStatus(String id, String url) async {
+  try {
+    if (await canLaunch(url)) {
+      // Ouvre le lien
+      await launch(url);
+
+      // Mettre à jour le statut après la visite
+      await setSubscriptionStatus(id, true);
+      print('Le lien a été visité et le statut a été mis à jour.');
+    } else {
+      throw 'Impossible d’ouvrir $url';
+    }
+  } catch (e) {
+    print('Erreur lors de l’ouverture du lien: $e');
+  }
+}
 }
