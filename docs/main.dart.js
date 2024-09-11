@@ -97275,7 +97275,9 @@ s=this.f*r
 if(s>=1e6)return B.d.af(s/1e6,1)+"M"
 else if(s>=1000)return B.d.af(s/1000,1)+"K"
 else return B.d.af(s,1)},
-ga_R(){var s=this.y
+ga_R(){var s,r=this.w
+r=r>0?this.z*r:1
+s=this.y*r
 if(s>=1e6)return B.d.af(s/1e6,1)+"M"
 else if(s>=1000)return B.d.af(s/1000,1)+"K"
 else return B.d.af(s,0)},
