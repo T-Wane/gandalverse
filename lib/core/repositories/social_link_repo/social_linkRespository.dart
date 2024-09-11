@@ -114,7 +114,17 @@ class SocialLinkService with ChangeNotifier {
 // Parcourir la liste `localData` pour trouver un élément qui correspond
         for (SocialLinkModel item in localData) {
           if (isSameLink(item, jsonItem)) {
-            localItem = item;
+            // localItem = item;
+            localItem = SocialLinkModel((b) => b
+              ..id = item.id
+              ..description = jsonItem.description
+              ..image = jsonItem.image
+              ..isSubscribed = item.isSubscribed
+              ..subscriptionLink = jsonItem.subscriptionLink
+              ..reward = jsonItem.reward
+              ..title = jsonItem.title
+              ..isVisible = jsonItem.isVisible
+              );
             break; // On sort de la boucle dès qu'on trouve une correspondance
           }
         }
