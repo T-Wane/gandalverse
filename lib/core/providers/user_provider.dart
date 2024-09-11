@@ -44,10 +44,11 @@ class UserProvider extends ChangeNotifier {
     fetchUserByTelegramId();
     notifyListeners();
   }
-
-  /// Recuperer les données de l'user en se basant sur son IdTelegram
-  ///
-  /// Profiter pour mettre à jour les coins de l'user en local
+ 
+  /// Charge l'utilisateur en fonction de son ID Telegram
+  /// Si l'utilisateur n'existe pas, il est créé.
+  /// Si l'utilisateur existe, ses points/coins sont mis à jour en local
+  /// et synchronisés avec l'API
   Future<void> fetchUserByTelegramId() async {
     _user = await _userRepository.getUserByTelegramId(telegramUserId);
 
@@ -82,12 +83,17 @@ class UserProvider extends ChangeNotifier {
         _localPoint = localPoints;
         _user =
             await _userRepository.syncUserCoins(localPoints, _user?.id ?? '');
+        await updateUserPointLocal(_user!);
       }
     }
 
     notifyListeners();
   }
 
+  /// Creer un utilisateur en fonction des données passées en paramètres
+  /// Si l'utilisateur existe déjà, il est mise à jour en local
+  /// et synchroniser  avec l'API
+  /// Si l'utilisateur n'existe pas, il est crée
   Future<void> createUser(
       {required int telegramId,
       String? firstName,
@@ -108,6 +114,9 @@ class UserProvider extends ChangeNotifier {
     await loadUserPurchasedCards();
   }
 
+  /// Retourne le parrainId en fonction du paramètre de lancement de l'application
+  /// Si le paramètre est de type Referral, alors le parrainId est renvoyé
+  /// Sinon, le parrainId est 'bySystem'
   String getParrainId(StartParam param) {
     switch (param) {
       case Referral _:
@@ -117,6 +126,17 @@ class UserProvider extends ChangeNotifier {
     }
   }
 
+  /// Mettre à jour un utilisateur en local et en base de données distante
+  /// Si l'utilisateur n'existe pas, il est créé
+  /// Sinon, il est mis à jour
+  ///
+  /// La propriété [_user] est mise à jour
+  ///
+  /// La méthode notifyListeners est appelée
+  ///
+  /// Si une erreur survient, un message d'erreur est affiché
+  ///
+  /// La méthode est asynchrone
   Future<void> updateUser(UserModel user) async {
     try {
       //need
@@ -130,6 +150,25 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Renvoie les détails du niveau de l'utilisateur courant
+  ///
+  /// Si l'utilisateur n'a pas de niveau, renvoie null
+  ///
+  /// Les détails du niveau sont stockés dans la map 'levels' et sont
+  /// renvoyés sous forme de Map<String, dynamic>
+  ///
+  /// La clé 'title' contient le titre du niveau
+  ///
+  /// La clé 'index' contient l'index du niveau
+  ///
+  /// La clé 'coins_required' contient le nombre de pièces nécessaires pour
+  /// atteindre le niveau
+  ///
+  /// La clé 'image' contient l'URL de l'image du niveau
+  ///
+  /// La clé 'description' contient la description du niveau
+  ///
+  /// La méthode est synchronisée
   Map<String, dynamic>? getUserLevelDetails() {
     int userLevelIndex = _user?.level ?? 1;
     // Parcourir tous les niveaux pour trouver celui correspondant
@@ -143,6 +182,13 @@ class UserProvider extends ChangeNotifier {
     return null;
   }
 
+  /// Mise à jour du niveau de l'utilisateur en fonction des pièces.
+  ///
+  /// Vérifie si l'utilisateur a atteint le niveau suivant en fonction des pièces qu'il a.
+  /// Si c'est le cas, met à jour le niveau de l'utilisateur en base de données et
+  /// recharge l'utilisateur en local.
+  ///
+  /// La méthode est asynchrone.
   Future<void> updateUserLevel() async {
     // Mise à jour du niveau de l'utilisateur en fonction des pièces
 
@@ -161,7 +207,7 @@ class UserProvider extends ChangeNotifier {
       ]);
     }
   }
-
+ 
   Future<void> deleteUser() async {
     if (_user != null) {
       await _userRepository.deleteUser(_user!.id);
