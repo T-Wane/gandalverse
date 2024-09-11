@@ -92,7 +92,7 @@ class CarteCard extends StatelessWidget {
                           Row(
                             children: [
                               CustomImageView(
-                                imagePath: Images.coin_dollar,
+                                imagePath: Images.coin_dollar_update,
                                 fit: BoxFit.contain,
                                 height: 15,
                                 width: 15,
@@ -350,7 +350,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomImageView(
-                        imagePath: Images.coin_dollar,
+                        imagePath: Images.coin_dollar_update,
                         fit: BoxFit.contain,
                         height: 20,
                         width: 20,
