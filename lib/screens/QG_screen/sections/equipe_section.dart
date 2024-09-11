@@ -101,9 +101,9 @@ class _EquipeSectionState extends State<EquipeSection> {
               }
             },
           ),
-          CardUpdateWidget(
-            service: _equipeService,
-          )
+          // CardUpdateWidget(
+          //   service: _equipeService,
+          // )
         ],
       );
     });

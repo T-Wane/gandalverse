@@ -98,9 +98,9 @@ class _PartenaireSectionState extends State<PartenaireSection> {
             }
           },
         ),
-        CardUpdateWidget(
-          service: _partenaireService,
-        )
+        // CardUpdateWidget(
+        //   service: _partenaireService,
+        // )
       ]);
     });
   }

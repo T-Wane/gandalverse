@@ -8,6 +8,7 @@ import 'package:gandalverse/core/data/levels.dart';
 import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/core/route/route_name.dart';
 import 'package:gandalverse/screens/home.page.dart';
+import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
@@ -231,28 +232,40 @@ class _userTopInfosState extends State<userTopInfos> {
                   const SizedBox(
                     width: 5,
                   ),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          _userProvider.user?.gradleFormate ?? '00',
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white70,
-                              fontFamily: "Aller",
-                              fontSize: 12),
-                        ),
-                        const SizedBox(height: 2),
-                        const Text(
-                          "Grade",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              color: Colors.white70,
-                              fontFamily: "Aller",
-                              fontSize: 7),
-                        ),
-                      ]),
+                  Tooltip(
+                    message: "${_userProvider.user?.profitPerHour ?? '00'}",
+                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.only(top: 80, left: 50),
+                    decoration: BoxDecoration(
+                        color: Themecolors.Color3,
+                        borderRadius: BorderRadius.circular(15)),
+                    textStyle: const TextStyle(
+                        fontSize: 10,
+                        fontStyle: FontStyle.italic,
+                        color: Colors.white),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            _userProvider.user?.gradleFormate ?? '00',
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white70,
+                                fontFamily: "Aller",
+                                fontSize: 12),
+                          ),
+                          const SizedBox(height: 2),
+                          const Text(
+                            "Grade",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white70,
+                                fontFamily: "Aller",
+                                fontSize: 7),
+                          ),
+                        ]),
+                  ),
                 ]),
                 PointerInterceptor(
                   // debug: true,
