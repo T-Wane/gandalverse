@@ -23,6 +23,7 @@ class Images {
   static String dailyCalendar = "$ressourcePath/availability.png";
   static String coin = "$ressourcePath/coin.png";
   static String coin_dollar = "$ressourcePath/coin_dollar.png";
+  static String up_arrow = "$ressourcePath/up-arrow.png";
   static String coin_dollar_update = "$ressourcePath/coin_dollar_update.png"; 
   static String coins = "$ressourcePath/coins.jpg";
   static String parchment = "$ressourcePath/parchment.png";

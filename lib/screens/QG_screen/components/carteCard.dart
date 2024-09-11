@@ -92,7 +92,7 @@ class CarteCard extends StatelessWidget {
                           Row(
                             children: [
                               CustomImageView(
-                                imagePath: Images.coin_dollar_update,
+                                imagePath: Images.coin_dollar,
                                 fit: BoxFit.contain,
                                 height: 15,
                                 width: 15,
@@ -349,11 +349,27 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CustomImageView(
-                        imagePath: Images.coin_dollar_update,
-                        fit: BoxFit.contain,
-                        height: 20,
-                        width: 20,
+                      SizedBox.square(
+                        dimension: 20,
+                        child: Stack(
+                          children: [
+                            CustomImageView(
+                              imagePath: Images.coin_dollar,
+                              fit: BoxFit.contain,
+                              height: 20,
+                              width: 20,
+                            ),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: CustomImageView(
+                                imagePath: Images.up_arrow,
+                                fit: BoxFit.contain,
+                                height: 5,
+                                width: 5,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       const SizedBox(width: 5),
                       AutoSizeText(
@@ -387,11 +403,27 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomImageView(
-                  imagePath: Images.coin_dollar,
-                  fit: BoxFit.contain,
-                  height: 30,
-                  width: 30,
+                SizedBox.square(
+                  dimension: 30,
+                  child: Stack(
+                    children: [
+                      CustomImageView(
+                        imagePath: Images.coin_dollar,
+                        fit: BoxFit.contain,
+                        height: 30,
+                        width: 30,
+                      ),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: CustomImageView(
+                          imagePath: Images.up_arrow,
+                          fit: BoxFit.contain,
+                          height: 8,
+                          width: 8,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(width: 5),
                 AutoSizeText(

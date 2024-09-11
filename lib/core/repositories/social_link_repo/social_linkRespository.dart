@@ -109,33 +109,35 @@ class SocialLinkService with ChangeNotifier {
       List<SocialLinkModel> mergedData = localData;
 
       for (SocialLinkModel jsonItem in jsonAdminData) {
-        // Vérifier si l'élément du JSON existe déjà dans les données locales
-        SocialLinkModel? localItem;
-// Parcourir la liste `localData` pour trouver un élément qui correspond
-        for (SocialLinkModel item in localData) {
-          if (isSameLink(item, jsonItem)) {
-            // localItem = item;
-            localItem = SocialLinkModel((b) => b
-              ..id = item.id
-              ..description = jsonItem.description
-              ..image = jsonItem.image
-              ..isSubscribed = item.isSubscribed
-              ..subscriptionLink = jsonItem.subscriptionLink
-              ..reward = jsonItem.reward
-              ..title = jsonItem.title
-              ..isVisible = jsonItem.isVisible
-              );
-            break; // On sort de la boucle dès qu'on trouve une correspondance
-          }
-        }
+        // Chercher l'élément correspondant dans `localData`
+        int indexToUpdate =
+            localData.indexWhere((item) => isSameLink(item, jsonItem));
 
-        if (localItem == null) {
-          // Si l'élément JSON n'existe pas dans les données locales, on l'ajoute
-          mergedData.add(jsonItem);
+        if (indexToUpdate != -1) {
+          // Si l'élément existe, on le met à jour
+          mergedData[indexToUpdate] = SocialLinkModel((b) => b
+            ..id = localData[indexToUpdate].id // Conserver l'ID existant
+            ..description = jsonItem.description
+            ..image = jsonItem.image
+            ..isSubscribed = localData[indexToUpdate]
+                .isSubscribed // Conserver le statut d'abonnement
+            ..subscriptionLink = jsonItem.subscriptionLink
+            ..reward = jsonItem.reward
+            ..title = jsonItem.title
+            ..isVisible = jsonItem.isVisible);
+          log("Mise à jour de l'élément à l'index $indexToUpdate");
         } else {
-          // Si l'élément JSON existe dans les données locales, on garde l'élément local (on pourrait le mettre à jour selon certaines conditions)
-          // mergedData.add(localItem); // L'élément local reste inchangé dans ce cas
-          print("L'élément local reste inchangé dans ce cas");
+          // Si l'élément n'existe pas, on l'ajoute
+          mergedData.add(SocialLinkModel((b) => b
+            ..id = jsonItem.id // Utiliser l'ID du nouvel élément
+            ..description = jsonItem.description
+            ..image = jsonItem.image
+            ..isSubscribed = jsonItem.isSubscribed
+            ..subscriptionLink = jsonItem.subscriptionLink
+            ..reward = jsonItem.reward
+            ..title = jsonItem.title
+            ..isVisible = jsonItem.isVisible));
+          log("Ajout d'un nouvel élément : ${jsonItem.title}");
         }
       }
 
