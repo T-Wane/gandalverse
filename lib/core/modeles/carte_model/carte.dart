@@ -72,20 +72,34 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
   }
 
   //--------------------------------------------------------//
-  double increase(double value, double taux) {
-    return (niveau > 0 ? (taux * niveau * value) : value);
+  //--------------------------------------------------------//
+
+  /// Calcule l'augmentation basée sur le niveau et le taux
+  double _calculateAugmentation(double baseValue, double taux) {
+    return niveau > 0 ? baseValue * (1 + taux * niveau) : baseValue;
   }
 
-  String get getPrix => increase(prix, tauxAugmentation).toStringAsFixed(1);
-  double get getPrix_inDouble => increase(prix, tauxAugmentation);
+  /// Prix réel de la carte après augmentation
+  double get prixReel => _calculateAugmentation(prix, tauxAugmentation);
 
-  String get getForce =>
-      increase(force, tauxAugmentationForce).toStringAsFixed(1);
+  /// Force réelle après augmentation
+  double get forceReelle =>
+      _calculateAugmentation(force, tauxAugmentationForce);
 
-  double get getForce_double => increase(force, tauxAugmentationForce);
+  //--------------------------------------------------------//
+  // Nouveaux getters pour récupérer les valeurs sous forme de String
 
+  /// Prix réel formaté en `String`
+  String get getPrixReel => prixReel.toStringAsFixed(1);
+
+  /// Force réelle formatée en `String`
+  String get getForceReel => forceReelle.toStringAsFixed(1);
+
+  //--------------------------------------------------------//
+
+  /// Prix formaté en K ou M si nécessaire
   String get prixFormate {
-    final adjustedPrix = prix * (niveau > 0 ? (tauxAugmentation * niveau) : 1);
+    final adjustedPrix = prixReel;
     if (adjustedPrix >= 1000000) {
       return '${(adjustedPrix / 1000000).toStringAsFixed(1)}M';
     } else if (adjustedPrix >= 1000) {
@@ -95,8 +109,9 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
     }
   }
 
-  String get forceFormate { 
-     final adjustedForce = force * (niveau > 0 ? (tauxAugmentationForce * niveau) : 1); 
+  /// Force formatée en K ou M si nécessaire
+  String get forceFormate {
+    final adjustedForce = forceReelle;
     if (adjustedForce >= 1000000) {
       return '${(adjustedForce / 1000000).toStringAsFixed(1)}M';
     } else if (adjustedForce >= 1000) {
@@ -105,6 +120,8 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
       return adjustedForce.toStringAsFixed(0);
     }
   }
+
+  //--------------------------------------------------------//
 
   //--------------------------------------------------------//
   //--------------------------------------------------------//

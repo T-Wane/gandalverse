@@ -195,7 +195,7 @@ class CarteCard extends StatelessWidget {
                               Row(children: [
                                 Opacity(
                                   opacity: (_userProvider.user?.coins ?? 0) >
-                                          carte.getPrix_inDouble
+                                          carte.prixReel
                                       ? 1
                                       : 0.7,
                                   child: CustomImageView(
@@ -395,7 +395,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                 ),
                 const SizedBox(width: 5),
                 AutoSizeText(
-                  "${widget.carte.getPrix}",
+                  "${widget.carte.prixReel}",
                   maxLines: 1,
                   presetFontSizes: const [22, 20, 18, 15, 14],
                   textAlign: TextAlign.center,
@@ -486,7 +486,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                                       ..prix = widget.carte.prix
                                       ..tauxAugmentation =
                                           widget.carte.tauxAugmentation
-                                      ..niveau = widget.carte.niveau + 1
+                                      ..niveau = widget.carte.niveau
                                       ..estAchete = widget.carte.estAchete
                                       ..force = widget.carte.force
                                       ..tauxAugmentationForce =

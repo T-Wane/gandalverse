@@ -267,7 +267,7 @@ class UserRepository {
           'nom': carte.nom,
           'categorie_carte':
               (qgService is EquipeService) ? "Equipe Card" : "Paternaire Card",
-          'niveau': 1,
+          'niveau': 0,
           'est_achete': true,
           'profilParHeure': carte.force * carte.tauxAugmentationForce,
         });
@@ -333,7 +333,7 @@ class UserRepository {
       }
 
       int userCoins = userDoc['coins'];
-      double cardPrice = carteData.getPrix_inDouble;
+      double cardPrice = carteData.prixReel;
 
       if (userCoins < cardPrice) {
         log("Not enough coins");
@@ -348,9 +348,9 @@ class UserRepository {
       DocumentSnapshot userCardDoc = await transaction.get(userCardRef);
 
       // Calcul de la nouvelle force et du profit par heure après la mise à jour du niveau
-      double newForce = carteData.getForce_double;
+      double newForce = carteData.forceReelle;
       double newProfit =
-          carteData.getForce_double * carteData.tauxAugmentationForce;
+          carteData.forceReelle * carteData.tauxAugmentationForce;
 
       // Mise à jour du niveau de la carte et du profil de la carte
       transaction.update(userCardRef, {
