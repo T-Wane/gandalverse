@@ -16,6 +16,8 @@ class EquipeService extends QGService<CarteModel> {
     synchronizeCards();
   }
 
+  List<Map<String, dynamic>>? purchasedCards;
+
   @override
   String get assetPath => 'assets/json/equipeData.json';
   @override
@@ -26,8 +28,8 @@ class EquipeService extends QGService<CarteModel> {
   Stream<List<CarteModel>> get equipeStream => _equipeController.stream;
 
   Future<void> synchronizeCards() async {
-    final purchasedCards = await _userProvider.loadUserPurchasedCards();
-    await updateBaseCardsWithPurchased(purchasedCards);
+    purchasedCards = await _userProvider.loadUserPurchasedCards();
+    await updateBaseCardsWithPurchased(purchasedCards??[]);
 
     // Notify subscribers about the updated cards
     final equipes = await loadBaseCards();
@@ -68,11 +70,12 @@ class EquipeService extends QGService<CarteModel> {
           ..valeurContrainte = _card.valeurContrainte);
       }
     }
-log("############ after merge with purchasedCards baseCards :${baseCards.map((e) => e.toJson())}");
+    log("############ after merge with purchasedCards baseCards :${baseCards.map((e) => e.toJson())}");
     await saveItems2(baseCards);
   }
 
   Future<void> loadInitialData() async {
+    if(purchasedCards==null) await synchronizeCards();
     final equipes = await loadItems();
     // log("####_loadInitialData ");
     // log("####_loadInitialData ${equipes.length}");
