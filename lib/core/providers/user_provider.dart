@@ -239,14 +239,14 @@ class UserProvider extends ChangeNotifier {
   }
 
   Future<void> reloadServiceData(QGService qgService) async {
-    // switch (qgService) {
-    //   case EquipeService _:
-    //     await qgService.loadInitialData();
-    //     break;
-    //   case PartenaireService _:
-    //     await qgService.loadInitialData();
-    //     break;
-    // }
+    switch (qgService) {
+      case EquipeService _:
+        await qgService.loadInitialData();
+        break;
+      case PartenaireService _:
+        await qgService.loadInitialData();
+        break;
+    }
   }
 
   Future<List<Map<String, dynamic>>> loadUserPurchasedCards() async {

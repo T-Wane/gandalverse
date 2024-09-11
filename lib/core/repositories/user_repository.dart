@@ -34,43 +34,42 @@ class UserRepository {
   }
 
   Future<UserModel?> getUserByTelegramId(int telegramId) async {
-  try {
-    // Récupération des documents avec le même telegramId
-    final querySnapshot = await _firestore
-        .collection('users')
-        .where('telegramId', isEqualTo: telegramId)
-        .get();
+    try {
+      // Récupération des documents avec le même telegramId
+      final querySnapshot = await _firestore
+          .collection('users')
+          .where('telegramId', isEqualTo: telegramId)
+          .get();
 
-    // Vérifie si la requête renvoie des résultats
-    if (querySnapshot.docs.isNotEmpty) {
-      // Si plusieurs documents sont trouvés, on supprime les doublons
-      if (querySnapshot.docs.length > 1) {
-        // Trie les documents par date d'ajout si nécessaire (peut dépendre de ton modèle)
-        List<QueryDocumentSnapshot> docs = querySnapshot.docs;
+      // Vérifie si la requête renvoie des résultats
+      if (querySnapshot.docs.isNotEmpty) {
+        // Si plusieurs documents sont trouvés, on supprime les doublons
+        if (querySnapshot.docs.length > 1) {
+          // Trie les documents par date d'ajout si nécessaire (peut dépendre de ton modèle)
+          List<QueryDocumentSnapshot> docs = querySnapshot.docs;
 
-        // Conserve le premier document
-        QueryDocumentSnapshot firstDoc = docs.first;
+          // Conserve le premier document
+          QueryDocumentSnapshot firstDoc = docs.first;
 
-        // Supprime les autres documents en trop
-        for (int i = 1; i < docs.length; i++) {
-          await _firestore.collection('users').doc(docs[i].id).delete();
+          // Supprime les autres documents en trop
+          for (int i = 1; i < docs.length; i++) {
+            await _firestore.collection('users').doc(docs[i].id).delete();
+          }
+
+          log('Doublons supprimés, seul le premier document est conservé.');
         }
 
-        log('Doublons supprimés, seul le premier document est conservé.');
+        // Récupère le premier document restant
+        final doc = querySnapshot.docs.first.data();
+        final user = UserModel.fromJson(doc as Map<String, dynamic>);
+        return user;
       }
-
-      // Récupère le premier document restant
-      final doc = querySnapshot.docs.first.data();
-      final user = UserModel.fromJson(doc as Map<String, dynamic>);
-      return user;
+      return null;
+    } catch (e) {
+      log('Error getting user: $e');
+      return null;
     }
-    return null;
-  } catch (e) {
-    log('Error getting user: $e');
-    return null;
   }
-}
-
 
   Future<List<UserModel>> getUserFriends(int telegramId) async {
     try {
@@ -236,6 +235,13 @@ class UserRepository {
     DocumentReference userRef = _firestore.collection('users').doc(userId);
     bool isOk = false;
 
+    bool localpointIsSaved = await userPointIsSaved();
+    if (!localpointIsSaved == true) {
+      int localPoints = await getPoints();
+      await setPointsSaved(true);
+      await syncUserCoins(localPoints, userId);
+    }
+
     await _firestore.runTransaction((transaction) async {
       // Récupération du document utilisateur
       DocumentSnapshot userDoc = await transaction.get(userRef);
@@ -279,6 +285,9 @@ class UserRepository {
               (carte.force * carte.tauxAugmentationForce)
         });
 
+        // Mise à jour du niveau de l'utilisateur en local
+        //ici
+
         //if (qgService is EquipeService) {
         await qgService.updateItem(
             carte.carteId!,
@@ -306,13 +315,34 @@ class UserRepository {
     });
 
     // Si la transaction a réussi, on met à jour le service local
-    if (isOk) {}
+    if (isOk) {
+      // Récupérer les nouvelles données de l'utilisateur après la transaction
+      DocumentSnapshot updatedUserDoc =
+          await _firestore.collection('users').doc(userId).get();
+
+      if (updatedUserDoc.exists) {
+        // Accéder aux nouvelles données de l'utilisateur
+        int updatedCoins = updatedUserDoc['coins'];
+        double updatedProfitPerHour = updatedUserDoc['profitPerHour'];
+        await updatePoints(updatedCoins);
+        await setPointsSaved(true);
+      } else {
+        log("Failed to retrieve updated user data.");
+      }
+    }
   }
 
   Future<void> updateCardLevel(
       QGService qgService, String userId, CarteModel carteData) async {
     DocumentReference userRef = _firestore.collection('users').doc(userId);
     bool isOk = false;
+
+    bool localpointIsSaved = await userPointIsSaved();
+    if (!localpointIsSaved == true) {
+      int localPoints = await getPoints();
+      await setPointsSaved(true);
+      await syncUserCoins(localPoints, userId);
+    }
 
     await _firestore.runTransaction((transaction) async {
       // Récupération du document utilisateur
@@ -321,15 +351,6 @@ class UserRepository {
       if (!userDoc.exists) {
         log("User does not exist");
         return;
-      }
-
-      bool localpointIsSaved = await userPointIsSaved();
-      if (!localpointIsSaved == true) {
-        int localCoins = await getPoints();
-        await setPointsSaved(true);
-        transaction.update(userRef, {'coins': localCoins});
-        setPointsSaved(true);
-        await syncUserCoins(localCoins, userId);
       }
 
       int userCoins = userDoc['coins'];
@@ -366,14 +387,26 @@ class UserRepository {
         'profitPerHour':
             userDoc['profitPerHour'] + newProfit, // Ajustement du profit
       });
-
+      isOk = true;
       // Mise à jour des données de la carte dans le service local
       await qgService.updateItem(carteData.carteId!, carteData);
     });
 
     // Si la transaction est réussie, nous mettons à jour la carte en local
     if (isOk) {
-      // Optionnel : Mettez à jour les données en mémoire locale si nécessaire
+      // Récupérer les nouvelles données de l'utilisateur après la transaction
+      DocumentSnapshot updatedUserDoc =
+          await _firestore.collection('users').doc(userId).get();
+
+      if (updatedUserDoc.exists) {
+        // Accéder aux nouvelles données de l'utilisateur
+        int updatedCoins = updatedUserDoc['coins'];
+        double updatedProfitPerHour = updatedUserDoc['profitPerHour'];
+        await updatePoints(updatedCoins);
+        await setPointsSaved(true);
+      } else {
+        log("Failed to retrieve updated user data.");
+      }
     }
   }
 
