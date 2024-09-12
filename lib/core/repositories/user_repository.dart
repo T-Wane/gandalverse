@@ -116,9 +116,9 @@ class UserRepository {
   }
 
   Future<void> createUser({required CreateUserFields fields}) async {
-    final userId = Uuid().v4();
+   // final userId = Uuid().v4();
     final user = UserModel((b) => b
-      ..id = userId
+      ..id = '${fields.telegramId}'
       ..telegramId = fields.telegramId
       ..firstName = fields.firstName
       ..lastName = fields.lastName
@@ -130,7 +130,7 @@ class UserRepository {
       ..profileImage = '');
 
     try {
-      await _firestore.collection('users').doc(userId).set(user.toJson());
+      await _firestore.collection('users').doc("${fields.telegramId}").set(user.toJson());
     } catch (e) {
       print('Error creating user: $e');
     }
@@ -468,37 +468,9 @@ class UserRepository {
   }
 */
 
-  Future<UserModel?> syncUserCoins(int localCoins, String _userTelegramId) async {
-   // DocumentReference userRef = _firestore.collection('users').doc(_userId);
-    final querySnapshot = await _firestore
-          .collection('users')
-          .where('telegramId', isEqualTo: _userTelegramId)
-          .get();
+  Future<UserModel?> syncUserCoins(int localCoins, String _userId) async {
+    DocumentReference userRef = _firestore.collection('users').doc(_userId);
 
- if (querySnapshot.docs.isNotEmpty) {
-        // Si plusieurs documents sont trouvés, on supprime les doublons
-        if (querySnapshot.docs.length > 1) {
-          // Trie les documents par date d'ajout si nécessaire (peut dépendre de ton modèle)
-          List<QueryDocumentSnapshot> docs = querySnapshot.docs;
-
-          // Conserve le premier document
-          QueryDocumentSnapshot firstDoc = docs.first;
-
-          // Supprime les autres documents en trop
-          for (int i = 1; i < docs.length; i++) {
-            await _firestore.collection('users').doc(docs[i].id).delete();
-          }
-
-          log('Doublons supprimés, seul le premier document est conservé.');
-        }
-
-        // Récupère le premier document restant
-        final doc = querySnapshot.docs.first.data();
-        final user = UserModel.fromJson(doc as Map<String, dynamic>);
-        return user;
-      }
-
-      
     await _firestore.runTransaction((transaction) async {
       // Récupération du document utilisateur
       DocumentSnapshot userDoc = await transaction.get(userRef);

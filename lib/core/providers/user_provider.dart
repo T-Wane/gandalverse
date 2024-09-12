@@ -84,7 +84,9 @@ class UserProvider extends ChangeNotifier {
         _localPoint = localPoints;
        UserModel? user_sync = 
             await _userRepository.syncUserCoins(localPoints, _user?.id ?? '');
-      if(user_sync!=null)
+      if(user_sync!=null){
+        _user = user_sync;
+      }
         await updateUserPointLocal(_user!);
       }
     }
