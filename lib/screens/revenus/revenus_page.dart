@@ -18,6 +18,9 @@ import 'components/plus_details_btn.dart';
 class ContactRequestedEvent extends TelegramEvent {
   ContactRequestedEvent(Function eventHandler)
       : super(TelegramEventType.contactRequested, eventHandler);
+
+ 
+
 }
 
 class AllRevenusPage extends StatefulWidget {
@@ -26,6 +29,8 @@ class AllRevenusPage extends StatefulWidget {
   @override
   State<AllRevenusPage> createState() => _AllRevenusPageState();
 }
+
+
 
 class _AllRevenusPageState extends State<AllRevenusPage> {
   Color Color3 = const Color.fromARGB(255, 18, 40, 70);
@@ -49,7 +54,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
     _telegramClient.telegram.onEvent(
         ContactRequestedEvent(onEvent)); // Configurez l'écoute des événements
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      requestContact();
+    //  requestContact();
     });
   }
 
