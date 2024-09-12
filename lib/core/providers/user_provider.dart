@@ -44,7 +44,7 @@ class UserProvider extends ChangeNotifier {
     fetchUserByTelegramId();
     notifyListeners();
   }
- 
+
   /// Charge l'utilisateur en fonction de son ID Telegram
   /// Si l'utilisateur n'existe pas, il est créé.
   /// Si l'utilisateur existe, ses points/coins sont mis à jour en local
@@ -56,7 +56,7 @@ class UserProvider extends ChangeNotifier {
       TelegramUser user = _telegramClient.telegram.initData.user;
       String? startParam = _telegramClient.telegram.initDataUnsafe?.startParam;
       StartParam parsedParam = (startParam ?? '').parseStartParam();
-      createUser(
+      await createUser(
         telegramId: _telegramClient.telegram.initData.user.id,
         firstName: user.firstname,
         lastName: user.lastname,
@@ -82,7 +82,7 @@ class UserProvider extends ChangeNotifier {
         int localPoints = await _userRepository.getPoints();
         _localPoint = localPoints;
         _user =
-            await _userRepository.syncUserCoins(localPoints, _user?.id ?? '');
+            await _userRepository.syncUserCoins(localPoints, _user?.id ?? '')??_user;
         await updateUserPointLocal(_user!);
       }
     }
@@ -207,7 +207,7 @@ class UserProvider extends ChangeNotifier {
       ]);
     }
   }
- 
+
   Future<void> deleteUser() async {
     if (_user != null) {
       await _userRepository.deleteUser(_user!.id);
