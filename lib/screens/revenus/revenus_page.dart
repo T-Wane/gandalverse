@@ -38,21 +38,31 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    /*WidgetsBinding.instance.addPostFrameCallback((_) {
       // _telegramClient.telegram.requestContact();
-      // _telegramClient.telegram.onEvent(ContactRequestedEvent(onEvent));
-      requestContact();
+       _telegramClient.telegram.onEvent(ContactRequestedEvent(onEvent));
+       
     });
+  }*/
+
+  // Fonction pour gérer les événements Telegram 
+    _telegramClient.telegram.onEvent(ContactRequestedEvent(onEvent)); // Configurez l'écoute des événements
   }
 
-  // Fonction pour gérer les événements Telegram
+  // Méthode pour gérer les événements
   void onEvent(TelegramEvent event) {
     print('Event received: ${event.eventType}');
     print('Event received: ${event.eventType.eventName}');
-    _telegramClient.telegram.switchInlineQuery(
-      event.eventType.eventName,
-    );
-    event.eventHandler(event); // Appelle le gestionnaire de l'événement
+
+    // Traitez l'événement ici
+    if (event.eventType == TelegramEventType.contactRequested) {
+      // Traitement pour les contacts demandés
+      final contact = event.eventHandler as Map<String, dynamic>;
+      final phoneNumber = contact['phone_number'];
+      final firstName = contact['first_name'];
+      final lastName = contact['last_name'];
+      print('Contact reçu: $phoneNumber, $firstName $lastName');
+    }
   }
 
   void requestContact() {
@@ -61,18 +71,13 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
       message: 'Veuillez partager votre contact avec nous.',
       buttons: [
         PopupButton.defaultType('share_contact', 'Partager le contact'),
-        PopupButton.cancel('Annuler'),
+        PopupButton.cancel( 'Annuler'),
       ],
       callback: (String id) {
-        // Gérer le bouton pressé
         if (id == 'share_contact') {
-          // L'utilisateur a choisi de partager le contact
           print('L\'utilisateur a choisi de partager le contact');
           _telegramClient.telegram.requestContact();
-          _telegramClient.telegram.onEvent(ContactRequestedEvent(onEvent));
-          // Vous pouvez maintenant gérer le partage de contact
         } else if (id == 'cancel') {
-          // L'utilisateur a annulé
           print('L\'utilisateur a annulé');
         }
       },
