@@ -7,11 +7,18 @@ import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/revenus/data/revenus_data.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
+import 'package:telegram_web_app/telegram_web_app.dart';
 
 import '../../components/user_top_infos.dart';
 import '../../themes/images/appImages.dart';
 import '../defis/components/annonceCard.dart';
 import 'components/plus_details_btn.dart';
+
+// Classe concrète pour l'événement "contactRequested"
+class ContactRequestedEvent extends TelegramEvent {
+  ContactRequestedEvent(Function eventHandler)
+      : super(TelegramEventType.contactRequested, eventHandler);
+}
 
 class AllRevenusPage extends StatefulWidget {
   const AllRevenusPage({super.key});
@@ -32,9 +39,41 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
     // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _telegramClient.telegram.requestContact();
-      // _telegramClient.telegram.switchInlineQuery(query: '');
+      // _telegramClient.telegram.requestContact();
+      // _telegramClient.telegram.onEvent(ContactRequestedEvent(onEvent));
+      requestContact();
     });
+  }
+
+  // Fonction pour gérer les événements Telegram
+  void onEvent(TelegramEvent event) {
+    print('Event received: ${event.eventType.eventName}');
+    _telegramClient.telegram.switchInlineQuery(
+      event.eventType.eventName,
+    );
+    event.eventHandler(event); // Appelle le gestionnaire de l'événement
+  }
+
+  void requestContact() {
+    _telegramClient.telegram.showPopup(
+      title: 'Partager votre contact',
+      message: 'Veuillez partager votre contact avec nous.',
+      buttons: [
+        PopupButton.defaultType('share_contact', 'Partager le contact'),
+        PopupButton.cancel('Annuler'),
+      ],
+      callback: (String id) {
+        // Gérer le bouton pressé
+        if (id == 'share_contact') {
+          // L'utilisateur a choisi de partager le contact
+          print('L\'utilisateur a choisi de partager le contact');
+          // Vous pouvez maintenant gérer le partage de contact
+        } else if (id == 'cancel') {
+          // L'utilisateur a annulé
+          print('L\'utilisateur a annulé');
+        }
+      },
+    );
   }
 
   @override
