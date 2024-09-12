@@ -1,6 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/rounded_btn_back.dart';
+import 'package:gandalverse/core/providers/user_provider.dart';
+import 'package:gandalverse/data/telegram_client.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/revenus/data/revenus_data.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
@@ -19,6 +22,19 @@ class AllRevenusPage extends StatefulWidget {
 
 class _AllRevenusPageState extends State<AllRevenusPage> {
   Color Color3 = const Color.fromARGB(255, 18, 40, 70);
+
+  TelegramClient _telegramClient = getIt<TelegramClient>();
+
+  UserProvider _userProvider = getIt<UserProvider>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _telegramClient.telegram.requestContact();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
