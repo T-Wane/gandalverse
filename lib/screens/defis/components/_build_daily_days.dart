@@ -7,6 +7,7 @@ import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/screens/defis/components/annonceCard.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
+import 'package:gandalverse/widgets/countTime/countTimer.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/reward/reward_animation.dart';
 
@@ -94,13 +95,13 @@ class _ShowGetDailyRewardSheetContentState
     currentDay = await dailyManager.getCurrentDay();
     coinsReward = await dailyManager.getRewardForToday();
     isClaimed = await dailyManager.isRewardClaimed();
-   
+
     setState(() {});
   }
 
   void claimReward() async {
     await dailyManager.claimReward();
-    updateDailyReward(); 
+    updateDailyReward();
     RewardAnimation.show(context);
     Future.delayed(const Duration(seconds: 3), () {
       RewardAnimation.hide(context);
@@ -195,18 +196,23 @@ class _ShowGetDailyRewardSheetContentState
           const SizedBox(
             height: 5,
           ),
-          DefaultButton(
-            backColor:
-                isClaimed ? Colors.grey.shade300 : Colors.purple.shade400,
-            text: 'Reclammer',
-            elevation: 1.0,
-            textColor: isClaimed ? Colors.grey.shade600 : Colors.white,
-            fontSize: 15,
-            height: 50,
-            press: () {
-              claimReward();
-            },
-          )
+          if (isClaimed) ...[
+            CountdownTimer(
+              rewardManager: getIt<DailyRewardManager>(),
+            )
+          ] else ...[
+            DefaultButton(
+              backColor: Colors.purple.shade400,
+              text: 'Reclammer',
+              elevation: 1.0,
+              textColor: Colors.white,
+              fontSize: 15,
+              height: 50,
+              press: () {
+                claimReward();
+              },
+            )
+          ]
         ],
       ),
     );
