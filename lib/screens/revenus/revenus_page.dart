@@ -47,6 +47,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
 
   // Fonction pour gérer les événements Telegram
   void onEvent(TelegramEvent event) {
+    print('Event received: ${event.eventType}');
     print('Event received: ${event.eventType.eventName}');
     _telegramClient.telegram.switchInlineQuery(
       event.eventType.eventName,
@@ -67,6 +68,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
         if (id == 'share_contact') {
           // L'utilisateur a choisi de partager le contact
           print('L\'utilisateur a choisi de partager le contact');
+          _telegramClient.telegram.onEvent(ContactRequestedEvent(onEvent));
           // Vous pouvez maintenant gérer le partage de contact
         } else if (id == 'cancel') {
           // L'utilisateur a annulé
@@ -178,7 +180,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
               AnnonceCard(
                   title: 'AirDrop',
                   text: 'Airdrop du token GVT à venir',
-                  imagePath: Images.coin,
+                  imagePath: Images.gvtWithLight,
                   backColors: const [
                     Colors.white,
                     Colors.white,
