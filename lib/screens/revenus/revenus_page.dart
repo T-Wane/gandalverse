@@ -45,8 +45,12 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
     });
   }*/
 
-  // Fonction pour gérer les événements Telegram 
-    _telegramClient.telegram.onEvent(ContactRequestedEvent(onEvent)); // Configurez l'écoute des événements
+    // Fonction pour gérer les événements Telegram
+    _telegramClient.telegram.onEvent(
+        ContactRequestedEvent(onEvent)); // Configurez l'écoute des événements
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      requestContact();
+    });
   }
 
   // Méthode pour gérer les événements
@@ -71,7 +75,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
       message: 'Veuillez partager votre contact avec nous.',
       buttons: [
         PopupButton.defaultType('share_contact', 'Partager le contact'),
-        PopupButton.cancel( 'Annuler'),
+        PopupButton.cancel('Annuler'),
       ],
       callback: (String id) {
         if (id == 'share_contact') {
