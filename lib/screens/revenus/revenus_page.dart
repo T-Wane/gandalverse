@@ -33,6 +33,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _telegramClient.telegram.requestContact();
+      // _telegramClient.telegram.switchInlineQuery(query: '');
     });
   }
 

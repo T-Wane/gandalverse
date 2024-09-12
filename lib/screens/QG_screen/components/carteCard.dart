@@ -364,8 +364,8 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                               child: CustomImageView(
                                 imagePath: Images.up_arrow,
                                 fit: BoxFit.contain,
-                                height: 5,
-                                width: 5,
+                                height: 15,
+                                width: 10,
                               ),
                             ),
                           ],
@@ -403,27 +403,11 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox.square(
-                  dimension: 30,
-                  child: Stack(
-                    children: [
-                      CustomImageView(
-                        imagePath: Images.coin_dollar,
-                        fit: BoxFit.contain,
-                        height: 30,
-                        width: 30,
-                      ),
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: CustomImageView(
-                          imagePath: Images.up_arrow,
-                          fit: BoxFit.contain,
-                          height: 8,
-                          width: 8,
-                        ),
-                      ),
-                    ],
-                  ),
+                CustomImageView(
+                  imagePath: Images.coin_dollar,
+                  fit: BoxFit.contain,
+                  height: 30,
+                  width: 30,
                 ),
                 const SizedBox(width: 5),
                 AutoSizeText(
