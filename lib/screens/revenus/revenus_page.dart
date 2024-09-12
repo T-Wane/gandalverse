@@ -68,6 +68,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
         if (id == 'share_contact') {
           // L'utilisateur a choisi de partager le contact
           print('L\'utilisateur a choisi de partager le contact');
+          _telegramClient.telegram.requestContact();
           _telegramClient.telegram.onEvent(ContactRequestedEvent(onEvent));
           // Vous pouvez maintenant gérer le partage de contact
         } else if (id == 'cancel') {
