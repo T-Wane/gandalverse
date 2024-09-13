@@ -146,7 +146,8 @@ class _buildCommunautyCardState extends State<buildCommunautyCard>
                           _linkService.openLinkAndUpdateStatus(
                               widget.socialLinkModel.id,
                               widget.socialLinkModel
-                                  .subscriptionLink); // socialLinkModel.openLink().whenComplete(() async =>
+                                  .subscriptionLink);
+                                  //.whenComplete(() => RewardAnimation.show(context)); // socialLinkModel.openLink().whenComplete(() async =>
                           //     await _linkService.setSubscriptionStatus(
                           //         socialLinkModel.id, true));
                         }

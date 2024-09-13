@@ -3,6 +3,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:gandalverse/core/modeles/social_link/social_link.dart';
+import 'package:gandalverse/data/telegram_client.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -192,9 +194,9 @@ class SocialLinkService with ChangeNotifier {
     try {
       if (await canLaunch(url)) {
         // Ouvre le lien
-        await launch(url);
-         TelegramClient _telegramClient = getIt<TelegramClient>();
-
+        //await launch(url);
+        TelegramClient _telegramClient = getIt<TelegramClient>();
+        _telegramClient.telegram.openTelegramLink(url);
         // Mettre à jour le statut après la visite
         await setSubscriptionStatus(id, true);
         print('Le lien a été visité et le statut a été mis à jour.');
