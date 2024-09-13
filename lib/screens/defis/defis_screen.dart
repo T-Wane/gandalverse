@@ -44,7 +44,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
             showBackArrow: true,
           ),
           Flexible(
-            child: Column(
+            child: ListView(
                 // padding: const EdgeInsets.only(bottom: 50),
                 children: [
                   Padding(
@@ -150,7 +150,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                               width: double.infinity,
                               margin: const EdgeInsets.all(5),
                               child: ListView.builder(
-                                  physics: const BouncingScrollPhysics(),
+                                  physics: const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   itemCount: socialLinkData.length,
                                   scrollDirection: Axis.vertical,

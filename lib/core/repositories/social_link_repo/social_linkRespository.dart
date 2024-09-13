@@ -193,6 +193,7 @@ class SocialLinkService with ChangeNotifier {
       if (await canLaunch(url)) {
         // Ouvre le lien
         await launch(url);
+         TelegramClient _telegramClient = getIt<TelegramClient>();
 
         // Mettre à jour le statut après la visite
         await setSubscriptionStatus(id, true);
