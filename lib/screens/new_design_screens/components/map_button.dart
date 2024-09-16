@@ -66,17 +66,18 @@ class MapButton extends StatelessWidget {
                           blurRadius: realW(36)),
                     ]),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     image != null
                         ? CustomImageView(
                             imagePath: image,
                             fit: BoxFit.contain,
-                            width: realW(28),
-                            height: realW(28),
+                            width: realW(30),
+                            height: realW(30),
                           )
                         : Icon(
                             icon,
-                            size: realW(28),
+                            size: realW(30),
                             color: iconColor ?? Colors.black,
                           ),
                     if (title != null) ...[
