@@ -141,7 +141,7 @@ abstract class SocialLinkModel
   DateTime? get subscribeAt;
 
   @BuiltValueField(wireName: 'isClaimed')
-  bool get isClaimed;
+  bool? get isClaimed;
 
   SocialLinkModel._();
   factory SocialLinkModel([void Function(SocialLinkModelBuilder) updates]) =
@@ -177,6 +177,6 @@ abstract class SocialLinkModel
     }
     // Vérifier si une heure s'est écoulée depuis la souscription
     final DateTime now = DateTime.now();
-    return now.difference(subscribeAt!).inHours >= 1 && !isClaimed;
+    return now.difference(subscribeAt!).inHours >= 1 && !(isClaimed ?? false);
   }
 }

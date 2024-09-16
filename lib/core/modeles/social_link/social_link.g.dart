@@ -43,9 +43,6 @@ class _$SocialLinkModelSerializer
       'isVisible',
       serializers.serialize(object.isVisible,
           specifiedType: const FullType(bool)),
-      'isClaimed',
-      serializers.serialize(object.isClaimed,
-          specifiedType: const FullType(bool)),
     ];
     Object? value;
     value = object.subscribeAt;
@@ -54,6 +51,13 @@ class _$SocialLinkModelSerializer
         ..add('subscribeAt')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(DateTime)));
+    }
+    value = object.isClaimed;
+    if (value != null) {
+      result
+        ..add('isClaimed')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
     }
     return result;
   }
@@ -108,7 +112,7 @@ class _$SocialLinkModelSerializer
           break;
         case 'isClaimed':
           result.isClaimed = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
       }
     }
@@ -137,7 +141,7 @@ class _$SocialLinkModel extends SocialLinkModel {
   @override
   final DateTime? subscribeAt;
   @override
-  final bool isClaimed;
+  final bool? isClaimed;
 
   factory _$SocialLinkModel([void Function(SocialLinkModelBuilder)? updates]) =>
       (new SocialLinkModelBuilder()..update(updates))._build();
@@ -152,7 +156,7 @@ class _$SocialLinkModel extends SocialLinkModel {
       required this.isSubscribed,
       required this.isVisible,
       this.subscribeAt,
-      required this.isClaimed})
+      this.isClaimed})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, r'SocialLinkModel', 'id');
     BuiltValueNullFieldError.checkNotNull(title, r'SocialLinkModel', 'title');
@@ -166,8 +170,6 @@ class _$SocialLinkModel extends SocialLinkModel {
         isSubscribed, r'SocialLinkModel', 'isSubscribed');
     BuiltValueNullFieldError.checkNotNull(
         isVisible, r'SocialLinkModel', 'isVisible');
-    BuiltValueNullFieldError.checkNotNull(
-        isClaimed, r'SocialLinkModel', 'isClaimed');
   }
 
   @override
@@ -327,8 +329,7 @@ class SocialLinkModelBuilder
             isVisible: BuiltValueNullFieldError.checkNotNull(
                 isVisible, r'SocialLinkModel', 'isVisible'),
             subscribeAt: subscribeAt,
-            isClaimed: BuiltValueNullFieldError.checkNotNull(
-                isClaimed, r'SocialLinkModel', 'isClaimed'));
+            isClaimed: isClaimed);
     replace(_$result);
     return _$result;
   }
