@@ -102,7 +102,6 @@
 //   }
 // }
 
-
 import 'dart:convert';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -138,6 +137,12 @@ abstract class SocialLinkModel
   @BuiltValueField(wireName: 'isVisible')
   bool get isVisible;
 
+  @BuiltValueField(wireName: 'subscribeAt')
+  DateTime? get subscribeAt;
+
+  @BuiltValueField(wireName: 'isClaimed')
+  bool get isClaimed;
+
   SocialLinkModel._();
   factory SocialLinkModel([void Function(SocialLinkModelBuilder) updates]) =
       _$SocialLinkModel;
@@ -165,4 +170,13 @@ abstract class SocialLinkModel
     }
   }
 
+  // Fonction pour vérifier si l'utilisateur peut réclamer le gain
+  bool canClaimReward() {
+    if (subscribeAt == null) {
+      return false;
+    }
+    // Vérifier si une heure s'est écoulée depuis la souscription
+    final DateTime now = DateTime.now();
+    return now.difference(subscribeAt!).inHours >= 1 && !isClaimed;
+  }
 }

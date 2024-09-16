@@ -9,6 +9,7 @@ import 'package:gandalverse/screens/defis/components/annonceCard.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
+import 'package:gandalverse/widgets/countTime/claim_link_coins.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/reward/reward_animation.dart';
 
@@ -122,35 +123,39 @@ class _buildCommunautyCardState extends State<buildCommunautyCard>
                     const SizedBox(
                       height: 5,
                     ),
+                    ClaimLinkCoins_btn(
+                      socialLinkModel: widget.socialLinkModel,
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
                     DefaultButton(
                       backColor:
-                          widget.socialLinkModel.subscriptionLink.trim() ==
+                          /* widget.socialLinkModel.subscriptionLink.trim() ==
                                       '' ||
                                   widget.socialLinkModel.isSubscribed
                               ? Colors.grey.shade300
-                              : Colors.purple.shade400,
+                              :*/
+                          Colors.purple.shade400,
                       text: 'Rejoindre',
                       elevation: 1.0,
                       textColor:
-                          widget.socialLinkModel.subscriptionLink.trim() ==
+                          /*widget.socialLinkModel.subscriptionLink.trim() ==
                                       '' ||
                                   widget.socialLinkModel.isSubscribed
                               ? Colors.grey.shade800
-                              : Colors.white,
+                              :*/
+                          Colors.white,
                       fontSize: 15,
                       height: 50,
                       press: () async {
-                        if (widget.socialLinkModel.subscriptionLink.trim() !=
+                        /*if (widget.socialLinkModel.subscriptionLink.trim() !=
                                 '' ||
-                            !widget.socialLinkModel.isSubscribed) {
-                          _linkService.openLinkAndUpdateStatus(
-                              widget.socialLinkModel.id,
-                              widget.socialLinkModel
-                                  .subscriptionLink);
-                                  //.whenComplete(() => RewardAnimation.show(context)); // socialLinkModel.openLink().whenComplete(() async =>
-                          //     await _linkService.setSubscriptionStatus(
-                          //         socialLinkModel.id, true));
-                        }
+                            !widget.socialLinkModel.isSubscribed) {*/
+                        _linkService.openLinkAndUpdateStatus(
+                            widget.socialLinkModel.id,
+                            widget.socialLinkModel.subscriptionLink);
+                        //   }
                       },
                     )
                   ],
