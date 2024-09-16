@@ -32,11 +32,14 @@ class SocialLinkService with ChangeNotifier {
 
   Future<List<SocialLinkModel>> getSocialLinks() async {
     //   if (socialLinksData.isNotEmpty) return socialLinksData;
-    final data = await loadAndMergeItems();
-    notifyListeners();
+    // final data = await loadAndMergeItems();
+    // notifyListeners();
 
-    print("getSocialLinks => data ${data.length}");
-    return List<SocialLinkModel>.from(data);
+    loadSocialLinks();
+    return socialLinksData;
+
+    // print("getSocialLinks => data ${data.length}");
+    // return List<SocialLinkModel>.from(data);
   }
 
   SocialLinkModel fromJson(Map<String, dynamic> json) =>
@@ -200,6 +203,7 @@ class SocialLinkService with ChangeNotifier {
           json.encode(socialLinksData.map((link) => link.toJson()).toList());
       await prefs.setString(socialLinksSaveKey, jsonString);
 
+      loadSocialLinks();
       notifyListeners();
     }
   }
@@ -229,7 +233,7 @@ class SocialLinkService with ChangeNotifier {
               ((userProvider.user?.coins ?? 0) + updatedLink.reward.round()));
         userProvider.updateUserPointLocal(updatedUser);
       }
-
+      loadSocialLinks();
       notifyListeners();
     }
   }

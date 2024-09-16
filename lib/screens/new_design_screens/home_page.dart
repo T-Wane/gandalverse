@@ -193,7 +193,10 @@ class _GoogleMapState extends State<HomeVrScreen>
                 alignment: Alignment.topCenter,
                 child: PointerInterceptor(
                   debug: false,
-                  child: userTopInfos(showVisibleEye: true, changeVisibility: changeVisibility,),
+                  child: userTopInfos(
+                    showVisibleEye: true,
+                    changeVisibility: changeVisibility,
+                  ),
                 ),
               ),
 
@@ -313,6 +316,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                   isRight: false,
                   icon: Icons.school_rounded,
                   iconColor: Themecolors.Color3,
+                  title: "Formations",
                   press: () => context.pushNamed(learn_home_view),
                 ),
               ),
@@ -332,6 +336,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                     Color(0xFF59C2FF),
                     Color(0xFF1270E3),
                   ]),
+                  title: "Revenus",
                   press: () {
                     context.pushNamed(revenu_view);
                   },
@@ -347,6 +352,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                   icon: CupertinoIcons.flame,
                   //icon: Icons.directions,
                   iconColor: Themecolors.Color3,
+                  title: "Défis",
                   press: () {
                     context.pushNamed(defi_view);
                   },
@@ -378,6 +384,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                   height: 71,
                   icon: Icons.group_rounded,
                   iconColor: Themecolors.Color3,
+                  title: "Amis",
                   press: () {
                     context.pushNamed(amis_view);
                   },
@@ -393,6 +400,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                   height: 71,
                   icon: Icons.business_rounded,
                   iconColor: Themecolors.Color3,
+                  title: "QG",
                   press: () {
                     context.pushNamed(qg_view);
                   },
@@ -409,6 +417,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                   image: Images.scanQr,
                   iconColor: Themecolors.Color3,
                   icon: null,
+                  title: "Scan",
                   press: () {
                     _showScanQrPopup();
                     // Navigator.push<void>(
