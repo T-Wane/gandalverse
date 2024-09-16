@@ -239,7 +239,7 @@ class SocialLinkService with ChangeNotifier {
     try {
       if (await canLaunch(url)) {
         // Ouvre le lien
-        await launch( url);
+        await launch(url);
         //TelegramClient _telegramClient = getIt<TelegramClient>();
         //_telegramClient.telegram.openTelegramLink(url);
         // Mettre à jour le statut après la visite
@@ -261,15 +261,16 @@ class SocialLinkService with ChangeNotifier {
   //   }
   // }
 
-  Duration getTimeUntil60Minutes() {
+  Duration getTimeUntil60Minutes(SocialLinkModel link) {
     final now = DateTime.now();
-    final in60Minutes = now.add(Duration(minutes: 60));
+
+    final in60Minutes = link.subscribeAt!.add(Duration(minutes: 60));
     return in60Minutes.difference(now);
   }
 
   // Méthode pour obtenir le temps restant en heures, minutes et secondes
-  Map<String, int> getTimeRemaining() {
-    final duration = getTimeUntil60Minutes();
+  Map<String, int> getTimeRemaining(SocialLinkModel link) {
+    final duration = getTimeUntil60Minutes(link);
     final hours = duration.inHours;
     final minutes = duration.inMinutes.remainder(60);
     final seconds = duration.inSeconds.remainder(60);
