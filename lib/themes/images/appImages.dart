@@ -36,6 +36,7 @@ class Images {
   static String leftArrow = "$ressourcePath/Vector.png";
   static String soon = "$ressourcePath/soon.png";
   static String education = "$ressourcePath/education.png";
+  static String spin = "$ressourcePath/spin.png";
 
   //Btn back
   static String circleBtn = "$ressourcePath/circleBtn.png";

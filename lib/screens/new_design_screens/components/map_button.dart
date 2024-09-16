@@ -17,6 +17,7 @@ class MapButton extends StatelessWidget {
   Color? iconColor;
   final bool isRight;
   Gradient? gradient;
+  Color? titleColor = Themecolors.Color3;
 
   final Function? press;
 
@@ -27,6 +28,7 @@ class MapButton extends StatelessWidget {
       required this.width,
       required this.height,
       required this.icon,
+      this.titleColor,
       this.title,
       this.image,
       this.iconColor,
@@ -86,7 +88,7 @@ class MapButton extends StatelessWidget {
                         title ?? '',
                         style: TextStyle(
                             fontWeight: FontWeight.w300,
-                            color: Themecolors.Color3,
+                            color: titleColor,
                             fontFamily: "Aller",
                             fontSize: 8),
                       )

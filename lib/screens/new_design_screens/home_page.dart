@@ -22,6 +22,7 @@ import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
+import 'package:gandalverse/widgets/small_spin_widget/small_spin_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
@@ -211,6 +212,15 @@ class _GoogleMapState extends State<HomeVrScreen>
               //       ),
               //     )),
 
+              Visibility(
+                visible: showAllbtns,
+                child: Positioned(
+                  top: 70,
+                  left: 0,
+                  child: SmallSpinWidget(),
+                ),
+              ),
+
               // Positioned(
               //   bottom: 50,
               //   left: 10,
@@ -316,7 +326,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                   isRight: false,
                   icon: Icons.school_rounded,
                   iconColor: Themecolors.Color3,
-                  title: "Formations",
+                  title: "Learn",
                   press: () => context.pushNamed(learn_home_view),
                 ),
               ),
@@ -332,6 +342,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                   icon: null,
                   //icon: Icons.directions,
                   iconColor: Colors.white,
+                  titleColor: Colors.white,
                   gradient: const LinearGradient(colors: [
                     Color(0xFF59C2FF),
                     Color(0xFF1270E3),
