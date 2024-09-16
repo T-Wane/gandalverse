@@ -3,14 +3,14 @@ import 'package:gandalverse/init.dart';
 import 'package:gandalverse/main.dart';
 import 'package:gandalverse/screens/QG_screen/QG_screen.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
-import 'package:gandalverse/screens/bnda/agances_map_screen.dart';
+import 'package:gandalverse/screens/bm_bank/agances_map_screen.dart';
 import 'package:gandalverse/screens/defis/defis_screen.dart';
 import 'package:gandalverse/screens/learn_screens/learn_home/learn_home_screen.dart';
 import 'package:gandalverse/screens/new_design_screens/home_page.dart';
 import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../screens/bnda/map_markers.dart';
+import '../../screens/bm_bank/map_markers.dart';
 import 'route_name.dart';
 /*
 class RootNavigator {

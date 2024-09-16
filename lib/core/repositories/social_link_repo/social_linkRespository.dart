@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:gandalverse/core/modeles/social_link/social_link.dart';
+import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/data/telegram_client.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:injectable/injectable.dart';
@@ -15,9 +16,11 @@ class SocialLinkService with ChangeNotifier {
   String socialLinksJsonPath = "assets/json/socialLinksData.json";
   String socialLinksSaveKey = "socialLinksDataKey4";
 
+  UserProvider userProvider;
+
   List<SocialLinkModel> socialLinksData = [];
 
-  SocialLinkService() {
+  SocialLinkService(this.userProvider) {
     loadSocialLinks();
   }
 
@@ -177,7 +180,7 @@ class SocialLinkService with ChangeNotifier {
     return data;
   }
 
-  Future<void> setSubscriptionStatus(String id, bool isSubscribed ) async {
+  Future<void> setSubscriptionStatus(String id, bool isSubscribed) async {
     // Rechercher le lien par son id
     final index = socialLinksData.indexWhere((link) => link.id == id);
 
@@ -201,12 +204,12 @@ class SocialLinkService with ChangeNotifier {
     }
   }
 
-  Future<void> setLinkIsClaimed(String id) async{
- // Rechercher le lien par son id
+  Future<void> setLinkIsClaimed(String id) async {
+    // Rechercher le lien par son id
     final index = socialLinksData.indexWhere((link) => link.id == id);
 
     if (index != -1) {
-      // Mettre à jour lelink status 
+      // Mettre à jour lelink status
       final updatedLink = socialLinksData[index].rebuild((b) => b
         ..isSubscribed = true
         ..isClaimed = true);
@@ -218,6 +221,14 @@ class SocialLinkService with ChangeNotifier {
       final jsonString =
           json.encode(socialLinksData.map((link) => link.toJson()).toList());
       await prefs.setString(socialLinksSaveKey, jsonString);
+
+      print("Le lien a été déja souscris, on le met à jour");
+      if (userProvider.user != null) {
+        final updatedUser = userProvider.user!.rebuild((b) => b
+          ..coins =
+              ((userProvider.user?.coins ?? 0) + updatedLink.reward.round()));
+        userProvider.updateUserPointLocal(updatedUser);
+      }
 
       notifyListeners();
     }
