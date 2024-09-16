@@ -100469,7 +100469,7 @@ ao(){this.aC()
 this.acQ()},
 acQ(){this.Rm()
 this.e=A.Zy(A.bZ(0,0,0,1),new A.aBl(this))},
-Rm(){this.a5(new A.aBm(this))},
+Rm(){if(this.a.c.x!=null)this.a5(new A.aBm(this))},
 m(){var s=this.e
 s===$&&A.b()
 s.aO(0)
