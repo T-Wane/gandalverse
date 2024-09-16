@@ -237,9 +237,9 @@ class SocialLinkService with ChangeNotifier {
   // Dans SocialLinkModel ou SocialLinkService
   Future<void> openLinkAndUpdateStatus(String id, String url) async {
     try {
-      if (await canLaunchUrl(Uri(scheme: url))) {
+      if (await canLaunch(url)) {
         // Ouvre le lien
-        await launchUrl(Uri(scheme: url), mode: LaunchMode.inAppWebView);
+        await launch( url);
         //TelegramClient _telegramClient = getIt<TelegramClient>();
         //_telegramClient.telegram.openTelegramLink(url);
         // Mettre à jour le statut après la visite
