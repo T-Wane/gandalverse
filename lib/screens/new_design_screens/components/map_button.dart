@@ -68,17 +68,21 @@ class MapButton extends StatelessWidget {
                 child: Column(
                   children: [
                     image != null
-                        ? CustomImageView(
-                            imagePath: image,
-                            fit: BoxFit.contain,
-                            width: realW(34),
-                            height: realW(34),
-                          )
-                        : Icon(
-                            icon,
-                            size: realW(34),
-                            color: iconColor ?? Colors.black,
-                          ),
+                        ? Expanded(
+                          child: CustomImageView(
+                              imagePath: image,
+                              fit: BoxFit.contain,
+                              width:double.infinity,
+                              height: double.infinity,
+                            ),
+                        )
+                        : Expanded(
+                          child: Icon(
+                              icon,
+                              size: double.infinity,
+                              color: iconColor ?? Colors.black,
+                            ),
+                        ),
                     if (title != null) ...[
                       const SizedBox(height: 2),
                       Text(
