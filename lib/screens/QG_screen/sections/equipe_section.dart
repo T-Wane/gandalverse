@@ -23,7 +23,7 @@ class _EquipeSectionState extends State<EquipeSection> {
   @override
   void initState() {
     super.initState();
-    _equipeService.loadInitialData();
+   // _equipeService.loadInitialData();
     // Écoute du stream pour les mises à jour des données
     _equipeService.equipeStream.listen((dataList) {
       setState(() {

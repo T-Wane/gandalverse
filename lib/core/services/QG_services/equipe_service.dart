@@ -16,7 +16,7 @@ class EquipeService extends QGService<CarteModel> {
     synchronizeCards();
   }
 
-  List<Map<String, dynamic>>? purchasedCards;
+  List<Map<String, dynamic>>? purchasedCards; 
 
   @override
   String get assetPath => 'assets/json/equipeData.json';

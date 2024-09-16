@@ -1,6 +1,9 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
+import 'package:gandalverse/core/services/QG_services/equipe_service.dart';
+import 'package:gandalverse/core/services/QG_services/partenaire_service.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/new_design_screens/home_page.dart';
 import '../main.dart';
 
@@ -12,7 +15,6 @@ class InitializationPage extends StatefulWidget {
 }
 
 class _InitializationPageState extends State<InitializationPage> {
-
   @override
   void initState() {
     super.initState();
@@ -29,9 +31,9 @@ class _InitializationPageState extends State<InitializationPage> {
       home: FutureBuilder(
         future: Init.initialize(),
         builder: (context, snapshot) {
-           if (snapshot.connectionState == ConnectionState.done) {
-            return   HomeVrScreen();
-          } else { 
+          if (snapshot.connectionState == ConnectionState.done) {
+            return HomeVrScreen();
+          } else {
             return const SplashScreen();
           }
         },
@@ -53,13 +55,19 @@ class Init {
 
   static _loadSettings() async {
     print("debut chargement setting");
+    PartenaireService _partenaireService = getIt<PartenaireService>();
+    EquipeService _equipeService = getIt<EquipeService>();
+
+    await Future.wait([
+      _partenaireService.loadInitialData(),
+      _equipeService.loadInitialData()
+    ]);
+    
     await Future.delayed(const Duration(seconds: 1));
     print("debut chargement");
     print("fin chargement setting");
   }
 }
-
-
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -72,10 +80,11 @@ class SplashScreen extends StatelessWidget {
           Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/images/GverseToken_OnboardingPage.png"),
+                  image: AssetImage(
+                      "assets/images/GverseToken_OnboardingPage.png"),
                   fit: BoxFit.cover),
             ),
-          ), 
+          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -95,10 +104,10 @@ class SplashScreen extends StatelessWidget {
           ),
           Scaffold(
             backgroundColor: Colors.transparent,
-         body: Column(
+            body: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-               /* const SizedBox(
+                /* const SizedBox(
                   height: 10,
                 ),
                 Align(
@@ -147,7 +156,7 @@ class SplashScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            ), 
+            ),
             floatingActionButton: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               child: CircularProgressIndicator(
