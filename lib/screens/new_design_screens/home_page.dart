@@ -338,7 +338,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                   offsetX: 0,
                   width: 68,
                   height: 71,
-                  image: Images.spin,
+                  image: Images.gvt,
                   icon: null,
                   //icon: Icons.directions,
                   iconColor: Colors.white,
