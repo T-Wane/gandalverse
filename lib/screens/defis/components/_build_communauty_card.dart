@@ -66,6 +66,7 @@ class _buildCommunautyCardState extends State<buildCommunautyCard>
           Colors.white,
         ],
         fit: BoxFit.contain,
+        isComplete: widget.socialLinkModel.isClaimed ?? false,
         press: () {
           CardContentBottomSheet.show(context,
               child: Padding(
@@ -139,13 +140,7 @@ class _buildCommunautyCardState extends State<buildCommunautyCard>
                           Colors.purple.shade400,
                       text: 'Rejoindre',
                       elevation: 1.0,
-                      textColor:
-                          /*widget.socialLinkModel.subscriptionLink.trim() ==
-                                      '' ||
-                                  widget.socialLinkModel.isSubscribed
-                              ? Colors.grey.shade800
-                              :*/
-                          Colors.white,
+                      textColor: Colors.white,
                       fontSize: 15,
                       height: 50,
                       press: () async {
@@ -155,6 +150,7 @@ class _buildCommunautyCardState extends State<buildCommunautyCard>
                         _linkService.openLinkAndUpdateStatus(
                             widget.socialLinkModel.id,
                             widget.socialLinkModel.subscriptionLink);
+                        setState(() {});
                         //   }
                       },
                     )

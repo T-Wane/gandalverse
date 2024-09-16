@@ -65,6 +65,13 @@ class _userTopInfosState extends State<userTopInfos> {
     setState(() {});
   }
 
+  final GlobalKey _tooltipKey = GlobalKey();
+
+  void _showTooltip() {
+    final dynamic tooltip = _tooltipKey.currentState;
+    tooltip.ensureTooltipVisible(); // Montre le tooltip
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<UserProvider>(builder: (context, _userProvider, child) {
@@ -232,39 +239,45 @@ class _userTopInfosState extends State<userTopInfos> {
                   const SizedBox(
                     width: 5,
                   ),
-                  Tooltip(
-                    message: "${_userProvider.user?.profitPerHour ?? '00'}",
-                    padding: const EdgeInsets.all(10),
-                    margin: const EdgeInsets.only(top: 80, left: 50),
-                    decoration: BoxDecoration(
-                        color: Themecolors.Color3,
-                        borderRadius: BorderRadius.circular(15)),
-                    textStyle: const TextStyle(
-                        fontSize: 10,
-                        fontStyle: FontStyle.italic,
-                        color: Colors.white),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            _userProvider.user?.gradleFormate ?? '00',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w300,
-                                color: Colors.white70,
-                                fontFamily: "Aller",
-                                fontSize: 12),
-                          ),
-                          const SizedBox(height: 2),
-                          const Text(
-                            "Grade",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w300,
-                                color: Colors.white70,
-                                fontFamily: "Aller",
-                                fontSize: 7),
-                          ),
-                        ]),
+                  GestureDetector(
+                    onTap: _showTooltip,
+                    child: Tooltip(
+                      key: _tooltipKey,
+                      message: "${_userProvider.user?.profitPerHour ?? '00'}",
+                      padding: const EdgeInsets.all(5),
+                      margin: const EdgeInsets.only(
+                        top: 40,
+                      ),
+                      decoration: BoxDecoration(
+                          color: Themecolors.Color3.withOpacity(0.8),
+                          borderRadius: BorderRadius.circular(15)),
+                      textStyle: const TextStyle(
+                          fontSize: 10,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.white),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              _userProvider.user?.gradleFormate ?? '00',
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w300,
+                                  color: Colors.white70,
+                                  fontFamily: "Aller",
+                                  fontSize: 12),
+                            ),
+                            const SizedBox(height: 2),
+                            const Text(
+                              "Grade",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w300,
+                                  color: Colors.white70,
+                                  fontFamily: "Aller",
+                                  fontSize: 7),
+                            ),
+                          ]),
+                    ),
                   ),
                 ]),
                 PointerInterceptor(
