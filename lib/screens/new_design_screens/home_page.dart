@@ -23,6 +23,7 @@ import 'package:gandalverse/screens/webPage/webpage.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/fortune_spin/small_spin_widget/small_spin_widget.dart';
+import 'package:gandalverse/widgets/fortune_spin/wheelSpin_fortune_modal.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
@@ -228,16 +229,18 @@ class _GoogleMapState extends State<HomeVrScreen>
               Visibility(
                 visible: showAllbtns,
                 child: MapButton(
-                  bottom: 314,
-                  offsetX: 0,
-                  width: 68,
-                  height: 71,
-                  isRight: false,
-                  icon: Icons.school_rounded,
-                  iconColor: Themecolors.Color3,
-                  title: "Learn",
-                  press: () => context.pushNamed(learn_home_view),
-                ),
+                    bottom: 314,
+                    offsetX: 0,
+                    width: 68,
+                    height: 71,
+                    isRight: false,
+                    icon: Icons.school_rounded,
+                    iconColor: Themecolors.Color3,
+                    title: "Learn",
+                    press: () => WheelspinFortuneModal.show(
+                          context,
+                        ) // context.pushNamed(learn_home_view),
+                    ),
               ),
               //directions button
               Visibility(
