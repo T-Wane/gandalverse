@@ -332,7 +332,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-              child: Row(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
@@ -347,40 +347,82 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                     width: 2,
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox.square(
-                        dimension: 20,
-                        child: Stack(
-                          children: [
-                            CustomImageView(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox.square(
+                            dimension: 20,
+                            child: CustomImageView(
                               imagePath: Images.coin_dollar,
                               fit: BoxFit.contain,
                               height: 20,
                               width: 20,
                             ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: CustomImageView(
-                                imagePath: Images.up_arrow,
-                                fit: BoxFit.contain,
-                                height: 15,
-                                width: 10,
-                              ),
+                          ),
+                          const SizedBox(width: 5),
+                          AutoSizeText(
+                            widget.carte.forceFormate,
+                            maxLines: 1,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: widget.Color3,
+                              fontWeight: FontWeight.normal,
                             ),
-                          ],
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(),
+                        child: SizedBox.square(
+                          dimension: 20,
+                          child: CustomImageView(
+                            imagePath: Images.right_arrow,
+                            fit: BoxFit.contain,
+                            height: 20,
+                            width: 20,
+                          ),
                         ),
                       ),
-                      const SizedBox(width: 5),
-                      AutoSizeText(
-                        widget.carte.forceFormate,
-                        maxLines: 1,
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontSize: 15,
-                          color: widget.Color3,
-                          fontWeight: FontWeight.normal,
-                        ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox.square(
+                            dimension: 25,
+                            child: Stack(
+                              children: [
+                                CustomImageView(
+                                  imagePath: Images.coin_dollar,
+                                  fit: BoxFit.contain,
+                                  height: 25,
+                                  width: 25,
+                                ),
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: CustomImageView(
+                                    imagePath: Images.up_arrow,
+                                    fit: BoxFit.contain,
+                                    height: 15,
+                                    width: 15,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: 5),
+                          AutoSizeText(
+                            widget.carte
+                                .formatValue(widget.carte.forceNextReelle),
+                            maxLines: 1,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: widget.Color3,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),

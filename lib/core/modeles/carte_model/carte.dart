@@ -77,7 +77,6 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
   /// Calcule l'augmentation basée sur le niveau et le taux
   double _calculateAugmentation(double baseValue, double taux) {
     return niveau > 0 ? baseValue * (1 + taux * niveau) : baseValue;
-  
   }
 
   double _calculateAugmentationForce(double baseValue, double taux) {
@@ -90,7 +89,7 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
 
   /// Force réelle après augmentation
   double get forceReelle => force * (tauxAugmentationForce * niveau);
-  double get forceNextReelle => force * (tauxAugmentationForce * (niveau+1));
+  double get forceNextReelle => force * (tauxAugmentationForce * (niveau + 1));
 
   //--------------------------------------------------------//
   // Nouveaux getters pour récupérer les valeurs sous forme de String
@@ -115,12 +114,12 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
     }
   }
 
-  String get formatValue(double value){
+  String formatValue(double value) {
     if (value >= 1000000) {
       return '${(value / 1000000).toStringAsFixed(1)}M';
     } else if (value >= 1000) {
       return '${(value / 1000).toStringAsFixed(1)}K';
-    } else {    
+    } else {
       return value.toStringAsFixed(1);
     }
   }
