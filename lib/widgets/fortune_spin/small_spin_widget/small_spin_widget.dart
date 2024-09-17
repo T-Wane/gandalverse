@@ -79,93 +79,86 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
 
     bool canClaimed =
         (hours == 0 && minutes == 0 && seconds == 0) ? true : false;
-    return Positioned(
-      top: 70,
-      left: 0,
-      child: GestureDetector(
-        onTap: () {
-          print("show spin");
-          if (canClaimed && !widget.boutonStyle) {
-            WheelspinFortuneModal.show(
-              context,
-            );
-          }
-        },
-        child: PointerInterceptor(
-          debug: false,
-          child: !widget.boutonStyle
-              ? ShakeAnimation(
-                  child: PointerInterceptor(
-                    debug: false,
-                    child: SizedBox.square(
-                      dimension: 60,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Card(
-                            elevation: 1.0,
-                            shadowColor: Themecolors.greyDeep.withOpacity(0.5),
-                            surfaceTintColor: Colors.transparent,
-                            shape: const CircleBorder(
-                                /* side:
+    return !widget.boutonStyle
+        ? Positioned(
+            top: 70,
+            left: 0,
+            child: ShakeAnimation(
+                child: GestureDetector(
+              onTap: () {
+                print("show spin");
+                if (canClaimed && !widget.boutonStyle) {
+                  WheelspinFortuneModal.show(
+                    context,
+                  );
+                }
+              },
+              child: PointerInterceptor(
+                debug: false,
+                child: SizedBox.square(
+                  dimension: 60,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Card(
+                          elevation: 1.0,
+                          shadowColor: Themecolors.greyDeep.withOpacity(0.5),
+                          surfaceTintColor: Colors.transparent,
+                          shape: const CircleBorder(
+                              /* side:
                             BorderSide(width: 1.0, color: Themecolors.ColorWhite)*/
-                                ),
-                            child: CustomImageView(
-                              imagePath: Images.spin,
-                              height: 40,
-                              width: 40,
-                              radius: BorderRadius.circular(20),
-                              fit: BoxFit.cover,
-                            ),
+                              ),
+                          child: CustomImageView(
+                            imagePath: Images.spin,
+                            height: 40,
+                            width: 40,
+                            radius: BorderRadius.circular(20),
+                            fit: BoxFit.cover,
                           ),
-                          Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color:
-                                        Themecolors.ColorWhite.withOpacity(0.2),
-                                    width: 1.0),
-                                color: Themecolors.ColorWhite,
-                                borderRadius: BorderRadius.circular(8.0)),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 5, vertical: 5),
-                            child: RichText(
-                              textAlign: TextAlign.center,
-                              text: TextSpan(children: [
-                                TextSpan(
-                                  text: (hours > 0 &&
-                                          minutes == 0 &&
-                                          seconds == 0)
-                                      ? displayTime.trim()
-                                      : "Lancer",
-                                  style: const TextStyle(
-                                    color: Themecolors.greyDeep,
-                                    fontSize: 12,
-                                  ),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color:
+                                      Themecolors.ColorWhite.withOpacity(0.2),
+                                  width: 1.0),
+                              color: Themecolors.ColorWhite,
+                              borderRadius: BorderRadius.circular(8.0)),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 5, vertical: 5),
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(children: [
+                              TextSpan(
+                                text:
+                                    (hours > 0 && minutes == 0 && seconds == 0)
+                                        ? displayTime.trim()
+                                        : "Lancer",
+                                style: const TextStyle(
+                                  color: Themecolors.greyDeep,
+                                  fontSize: 12,
                                 ),
-                              ]),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                )
-              : DefaultButton(
-                  backColor: canClaimed
-                      ? Colors.purple.shade400
-                      : Colors.grey.shade300,
-                  text: canClaimed ? "Tourner" : displayTime,
-                  elevation: 1.0,
-                  textColor: canClaimed ? Colors.white : Colors.grey.shade600,
-                  fontSize: 14,
-                  height: 50,
-                  press: () {
-                    widget.rollWheel?.call();
-                  },
+                              ),
+                            ]),
+                          ),
+                        )
+                      ]),
                 ),
-        ),
-      ),
-    );
+              ),
+            )),
+          )
+        : DefaultButton(
+            backColor:
+                canClaimed ? Colors.purple.shade400 : Colors.grey.shade300,
+            text: canClaimed ? "Tourner" : displayTime,
+            elevation: 1.0,
+            textColor: canClaimed ? Colors.white : Colors.grey.shade600,
+            fontSize: 14,
+            height: 50,
+            press: () {
+              widget.rollWheel?.call();
+            },
+          );
   }
 }
