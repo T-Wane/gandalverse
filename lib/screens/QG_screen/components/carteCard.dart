@@ -347,42 +347,27 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                     width: 2,
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox.square(
-                            dimension: 20,
-                            child: CustomImageView(
-                              imagePath: Images.coin_dollar,
-                              fit: BoxFit.contain,
-                              height: 20,
-                              width: 20,
-                            ),
-                          ),
-                          const SizedBox(width: 5),
-                          AutoSizeText(
-                            widget.carte.forceFormate,
-                            maxLines: 1,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: widget.Color3,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                        ],
+                      AutoSizeText(
+                        widget.carte.forceFormate,
+                        maxLines: 1,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: widget.Color3,
+                            fontWeight: FontWeight.normal,
+                            decoration: TextDecoration.overline),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(),
-                        child: SizedBox.square(
-                          dimension: 20,
-                          child: CustomImageView(
-                            imagePath: Images.right_arrow,
-                            fit: BoxFit.contain,
-                            height: 20,
-                            width: 20,
-                          ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        width: 30,
+                        height: 15,
+                        child: CustomImageView(
+                          imagePath: Images.right_arrow,
+                          fit: BoxFit.contain,
+                          height: 20,
+                          width: 20,
                         ),
                       ),
                       Row(

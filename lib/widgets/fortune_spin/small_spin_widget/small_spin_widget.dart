@@ -75,59 +75,64 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
       if (displayTime.isNotEmpty) displayTime += ':';
       displayTime += '$seconds s';
     }
-    return GestureDetector(
-      onTap: () {
-        WheelspinFortuneModal.show(
-          context,
-        );
-      },
-      child: PointerInterceptor(
-        debug: false,
-        child: ShakeAnimation(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Card(
-                elevation: 1.0,
-                shadowColor: Themecolors.greyDeep.withOpacity(0.5),
-                surfaceTintColor: Colors.transparent,
-                shape: const CircleBorder(
-                    /* side:
+    return Positioned(
+      top: 70,
+      left: 0,
+      child: GestureDetector(
+        onTap: () {
+          WheelspinFortuneModal.show(
+            context,
+          );
+        },
+        child: PointerInterceptor(
+          debug: false,
+          child: ShakeAnimation(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Card(
+                  elevation: 1.0,
+                  shadowColor: Themecolors.greyDeep.withOpacity(0.5),
+                  surfaceTintColor: Colors.transparent,
+                  shape: const CircleBorder(
+                      /* side:
                         BorderSide(width: 1.0, color: Themecolors.ColorWhite)*/
-                    ),
-                child: CustomImageView(
-                  imagePath: Images.spin,
-                  height: 40,
-                  width: 40,
-                  radius: BorderRadius.circular(20),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    border: Border.all(
-                        color: Themecolors.ColorWhite.withOpacity(0.2),
-                        width: 1.0),
-                    color: Themecolors.ColorWhite,
-                    borderRadius: BorderRadius.circular(8.0)),
-                padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                child: RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(children: [
-                    TextSpan(
-                      text: (hours > 0 && minutes == 0 && seconds == 0)
-                          ? displayTime.trim()
-                          : "Lancer",
-                      style: const TextStyle(
-                        color: Themecolors.greyDeep,
-                        fontSize: 12,
                       ),
-                    ),
-                  ]),
+                  child: CustomImageView(
+                    imagePath: Images.spin,
+                    height: 40,
+                    width: 40,
+                    radius: BorderRadius.circular(20),
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              )
-            ],
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Themecolors.ColorWhite.withOpacity(0.2),
+                          width: 1.0),
+                      color: Themecolors.ColorWhite,
+                      borderRadius: BorderRadius.circular(8.0)),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(children: [
+                      TextSpan(
+                        text: (hours > 0 && minutes == 0 && seconds == 0)
+                            ? displayTime.trim()
+                            : "Lancer",
+                        style: const TextStyle(
+                          color: Themecolors.greyDeep,
+                          fontSize: 12,
+                        ),
+                      ),
+                    ]),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

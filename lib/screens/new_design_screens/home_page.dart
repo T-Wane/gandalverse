@@ -226,11 +226,8 @@ class _GoogleMapState extends State<HomeVrScreen>
 
               Visibility(
                 visible: showAllbtns,
-                child: Positioned(
-                  top: 70,
-                  left: 0,
-                  child: SmallSpinWidget(),
-                ),
+                child:  SmallSpinWidget(),
+                
               ),
  
               //layer button
