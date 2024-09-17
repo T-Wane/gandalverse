@@ -158,6 +158,9 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
             height: 50,
             press: () {
               widget.rollWheel?.call();
+              _spinRewardManager
+                  .claimReward()
+                  .whenComplete(() => _startTimer());
             },
           );
   }
