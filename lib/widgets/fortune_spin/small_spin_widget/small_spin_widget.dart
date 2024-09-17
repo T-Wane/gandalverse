@@ -85,10 +85,11 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
       child: GestureDetector(
         onTap: () {
           print("show spin");
-
-          WheelspinFortuneModal.show(
-            context,
-          );
+          if (canClaimed && !widget.boutonStyle) {
+            WheelspinFortuneModal.show(
+              context,
+            );
+          }
         },
         child: PointerInterceptor(
           debug: false,

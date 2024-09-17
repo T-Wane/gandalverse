@@ -91,69 +91,26 @@ class _WheelspinFortuneModalState extends State<WheelspinFortuneModal> {
   Widget build(BuildContext context) {
     return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
       Align(alignment: Alignment.centerRight, child: closeIcon(context)),
-      Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(12)),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: AutoSizeText(
-                'Roue de la Fortune',
-                maxLines: 1,
-                minFontSize: 20,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Themecolors.Color3,
-                    fontFamily: "Aller"),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: AutoSizeText(
-                'Tournez la roue pour gagner des jetons',
-                maxLines: 2,
-                minFontSize: 17,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Themecolors.Color3,
-                    fontFamily: "Aller"),
-              ),
-            ),
-            //Spin
-            /*  Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CustomImageView(
-                    imagePath: Images.coin_dollar,
-                    fit: BoxFit.contain,
-                    height: 35,
-                    width: 35,
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  AutoSizeText(
-                    "${context.watch<UserProvider>().user?.coins ?? 0}",
-                    maxLines: 1,
-                    presetFontSizes: const [25, 22, 20, 18, 15, 14],
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontFamily: "Aller",
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
-            ),*/
-          ],
+      Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: AutoSizeText(
+          'Roue de la Fortune',
+          maxLines: 1,
+          minFontSize: 20,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 25, color: Themecolors.Color3, fontFamily: "Aller"),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: AutoSizeText(
+          'Tournez la roue pour gagner des jetons',
+          maxLines: 2,
+          minFontSize: 17,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 18, color: Themecolors.Color3, fontFamily: "Aller"),
         ),
       ),
       FortuneWheelWidget(),
