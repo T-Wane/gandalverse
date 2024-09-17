@@ -127,7 +127,7 @@ class _WheelspinFortuneModalState extends State<WheelspinFortuneModal> {
           ],
         ),
       ),
-      Flexible(child: FortuneWheelPage()),
+      // Flexible(child: FortuneWheelPage()),
       // earnToTapBottomWidget(),
     ]);
   }

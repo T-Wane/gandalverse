@@ -357,7 +357,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                             fontSize: 15,
                             color: widget.Color3,
                             fontWeight: FontWeight.normal,
-                            decoration: TextDecoration.overline),
+                            decoration: TextDecoration.lineThrough),
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
