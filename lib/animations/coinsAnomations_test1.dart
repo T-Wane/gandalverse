@@ -130,15 +130,13 @@ class FlyCoinAnimationState extends State<FlyCoinAnimation>
                   opacity: opacityAnimation,
                   child: Transform.translate(
                     offset: Offset(x, y),
-                    child: Center(
-                      child: Text(
-                        '+1',
-                        style: TextStyle(
-                            fontSize: 45,
-                            color: Colors.yellow,
-                            fontFamily: "Aller",
-                            fontWeight: FontWeight.w500),
-                      ),
+                    child: const Text(
+                      '+1',
+                      style: TextStyle(
+                          fontSize: 45,
+                          color: Colors.yellow,
+                          fontFamily: "Aller",
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                 );

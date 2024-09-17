@@ -45,7 +45,7 @@ class RollButtonWithPreview extends StatelessWidget {
       direction: Axis.vertical,
       children: [
         RollButton(onPressed: onPressed),
-        Text('Rolled Value: ${items[selected]}'),
+        //  Text('Rolled Value: ${items[selected]}'),
       ],
     );
   }

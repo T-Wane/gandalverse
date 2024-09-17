@@ -8,6 +8,7 @@ import 'package:gandalverse/core/repositories/spinRewardRepository.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
+import 'package:gandalverse/widgets/bottomSheet_modal.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:provider/provider.dart';
 
@@ -89,6 +90,7 @@ class _WheelspinFortuneModalState extends State<WheelspinFortuneModal> {
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+      Align(alignment: Alignment.centerRight, child: closeIcon(context)),
       Container(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
@@ -113,11 +115,11 @@ class _WheelspinFortuneModalState extends State<WheelspinFortuneModal> {
               padding: const EdgeInsets.all(5.0),
               child: AutoSizeText(
                 'Tournez la roue pour gagner des jetons',
-                maxLines: 1,
-                minFontSize: 18,
+                maxLines: 2,
+                minFontSize: 17,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 25,
+                    fontSize: 18,
                     color: Themecolors.Color3,
                     fontFamily: "Aller"),
               ),
@@ -154,7 +156,9 @@ class _WheelspinFortuneModalState extends State<WheelspinFortuneModal> {
           ],
         ),
       ),
-      Flexible(child: FortuneWheelPage()),
+      Flexible(
+          child: StatefulBuilder(
+              builder: (context, setState) => FortuneWheelWidget())),
       // earnToTapBottomWidget(),
     ]);
   }

@@ -24,6 +24,7 @@ class Images {
   static String coin = "$ressourcePath/coin.png";
   static String coin_dollar = "$ressourcePath/coin_dollar.png";
   static String up_arrow = "$ressourcePath/up-arrow.png";
+  static String down_arrow = "$ressourcePath/arrow-down.png";
   static String right_arrow = "$ressourcePath/right-arrow.png";
   static String coin_dollar_update = "$ressourcePath/coin_dollar_update.png";
   static String coins = "$ressourcePath/coins.jpg";
@@ -40,6 +41,7 @@ class Images {
   static String spin = "$ressourcePath/spin.png";
 
   //Btn back
+  static String circleBorder = "$ressourcePath/wheel-border.png"; 
   static String circleBtn = "$ressourcePath/circleBtn.png";
   static String avatarPMU2 = "$ressourceAvatar/AvatarPMU2.png";
   static String aatarYaraOil = "$ressourceAvatar/AvatarYaraOil.png";
