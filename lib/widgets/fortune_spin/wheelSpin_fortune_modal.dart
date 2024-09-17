@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/core/repositories/spinRewardRepository.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
+import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:provider/provider.dart';
@@ -95,8 +96,34 @@ class _WheelspinFortuneModalState extends State<WheelspinFortuneModal> {
             borderRadius: BorderRadius.circular(12)),
         child: Column(
           children: [
-            //Spin
             Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: AutoSizeText(
+                'Roue de la Fortune',
+                maxLines: 1,
+                minFontSize: 20,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Themecolors.Color3,
+                    fontFamily: "Aller"),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: AutoSizeText(
+                'Tournez la roue pour gagner des jetons',
+                maxLines: 1,
+                minFontSize: 18,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Themecolors.Color3,
+                    fontFamily: "Aller"),
+              ),
+            ),
+            //Spin
+            /*  Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -123,11 +150,11 @@ class _WheelspinFortuneModalState extends State<WheelspinFortuneModal> {
                   ),
                 ],
               ),
-            ),
+            ),*/
           ],
         ),
       ),
-      // Flexible(child: FortuneWheelPage()),
+      Flexible(child: FortuneWheelPage()),
       // earnToTapBottomWidget(),
     ]);
   }
