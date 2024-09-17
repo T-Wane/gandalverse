@@ -109,23 +109,35 @@ class SocialLinkService with ChangeNotifier {
       List<SocialLinkModel> mergedData = localData;
 
       for (SocialLinkModel jsonItem in jsonAdminData) {
-        // Vérifier si l'élément du JSON existe déjà dans les données locales
-        SocialLinkModel? localItem;
-// Parcourir la liste `localData` pour trouver un élément qui correspond
-        for (SocialLinkModel item in localData) {
-          if (isSameLink(item, jsonItem)) {
-            localItem = item;
-            break; // On sort de la boucle dès qu'on trouve une correspondance
-          }
-        }
+        // Chercher l'élément correspondant dans `localData`
+        int indexToUpdate =
+            localData.indexWhere((item) => isSameLink(item, jsonItem));
 
-        if (localItem == null) {
-          // Si l'élément JSON n'existe pas dans les données locales, on l'ajoute
-          mergedData.add(jsonItem);
+        if (indexToUpdate != -1) {
+          // Si l'élément existe, on le met à jour
+          mergedData[indexToUpdate] = SocialLinkModel((b) => b
+            ..id = localData[indexToUpdate].id // Conserver l'ID existant
+            ..description = jsonItem.description
+            ..image = jsonItem.image
+            ..isSubscribed = localData[indexToUpdate]
+                .isSubscribed // Conserver le statut d'abonnement
+            ..subscriptionLink = jsonItem.subscriptionLink
+            ..reward = jsonItem.reward
+            ..title = jsonItem.title
+            ..isVisible = jsonItem.isVisible);
+          log("Mise à jour de l'élément à l'index $indexToUpdate");
         } else {
-          // Si l'élément JSON existe dans les données locales, on garde l'élément local (on pourrait le mettre à jour selon certaines conditions)
-          // mergedData.add(localItem); // L'élément local reste inchangé dans ce cas
-          print("L'élément local reste inchangé dans ce cas");
+          // Si l'élément n'existe pas, on l'ajoute
+          mergedData.add(SocialLinkModel((b) => b
+            ..id = jsonItem.id // Utiliser l'ID du nouvel élément
+            ..description = jsonItem.description
+            ..image = jsonItem.image
+            ..isSubscribed = jsonItem.isSubscribed
+            ..subscriptionLink = jsonItem.subscriptionLink
+            ..reward = jsonItem.reward
+            ..title = jsonItem.title
+            ..isVisible = jsonItem.isVisible));
+          log("Ajout d'un nouvel élément : ${jsonItem.title}");
         }
       }
 
@@ -175,22 +187,29 @@ class SocialLinkService with ChangeNotifier {
     }
   }
 
-  
   // Dans SocialLinkModel ou SocialLinkService
-Future<void> openLinkAndUpdateStatus(String id, String url) async {
-  try {
-    if (await canLaunch(url)) {
-      // Ouvre le lien
-      await launch(url);
+  Future<void> openLinkAndUpdateStatus(String id, String url) async {
+    try {
+      if (await canLaunch(url)) {
+        // Ouvre le lien
+        await launch(url);
 
-      // Mettre à jour le statut après la visite
-      await setSubscriptionStatus(id, true);
-      print('Le lien a été visité et le statut a été mis à jour.');
-    } else {
-      throw 'Impossible d’ouvrir $url';
+        // Mettre à jour le statut après la visite
+        await setSubscriptionStatus(id, true);
+        print('Le lien a été visité et le statut a été mis à jour.');
+      } else {
+        throw 'Impossible d’ouvrir $url';
+      }
+    } catch (e) {
+      print('Erreur lors de l’ouverture du lien: $e');
     }
-  } catch (e) {
-    print('Erreur lors de l’ouverture du lien: $e');
   }
-}
+
+  //  Future<void> openLink(String id, String url) async {
+  //   if (await canLaunch(url)) {
+  //     await launch(url);
+  //   } else {
+  //     throw 'Impossible d’ouvrir $url';
+  //   }
+  // }
 }

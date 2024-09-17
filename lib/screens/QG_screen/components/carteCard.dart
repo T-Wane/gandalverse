@@ -195,7 +195,7 @@ class CarteCard extends StatelessWidget {
                               Row(children: [
                                 Opacity(
                                   opacity: (_userProvider.user?.coins ?? 0) >
-                                          carte.getPrix_inDouble
+                                          carte.prixReel
                                       ? 1
                                       : 0.7,
                                   child: CustomImageView(
@@ -349,11 +349,27 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CustomImageView(
-                        imagePath: Images.coin_dollar,
-                        fit: BoxFit.contain,
-                        height: 20,
-                        width: 20,
+                      SizedBox.square(
+                        dimension: 20,
+                        child: Stack(
+                          children: [
+                            CustomImageView(
+                              imagePath: Images.coin_dollar,
+                              fit: BoxFit.contain,
+                              height: 20,
+                              width: 20,
+                            ),
+                            Align(
+                              alignment: Alignment.topLeft,
+                              child: CustomImageView(
+                                imagePath: Images.up_arrow,
+                                fit: BoxFit.contain,
+                                height: 5,
+                                width: 5,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       const SizedBox(width: 5),
                       AutoSizeText(
@@ -387,15 +403,31 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomImageView(
-                  imagePath: Images.coin_dollar,
-                  fit: BoxFit.contain,
-                  height: 30,
-                  width: 30,
+                SizedBox.square(
+                  dimension: 30,
+                  child: Stack(
+                    children: [
+                      CustomImageView(
+                        imagePath: Images.coin_dollar,
+                        fit: BoxFit.contain,
+                        height: 30,
+                        width: 30,
+                      ),
+                      Align(
+                        alignment: Alignment.topLeft,
+                        child: CustomImageView(
+                          imagePath: Images.up_arrow,
+                          fit: BoxFit.contain,
+                          height: 8,
+                          width: 8,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(width: 5),
                 AutoSizeText(
-                  "${widget.carte.getPrix}",
+                  "${widget.carte.prixReel}",
                   maxLines: 1,
                   presetFontSizes: const [22, 20, 18, 15, 14],
                   textAlign: TextAlign.center,
@@ -486,7 +518,7 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                                       ..prix = widget.carte.prix
                                       ..tauxAugmentation =
                                           widget.carte.tauxAugmentation
-                                      ..niveau = widget.carte.niveau + 1
+                                      ..niveau = widget.carte.niveau
                                       ..estAchete = widget.carte.estAchete
                                       ..force = widget.carte.force
                                       ..tauxAugmentationForce =
