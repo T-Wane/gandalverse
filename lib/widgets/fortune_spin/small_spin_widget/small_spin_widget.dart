@@ -85,6 +85,7 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
       child: GestureDetector(
         onTap: () {
           print("show spin");
+
           WheelspinFortuneModal.show(
             context,
           );
