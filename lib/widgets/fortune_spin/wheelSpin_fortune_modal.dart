@@ -113,7 +113,7 @@ class _WheelspinFortuneModalState extends State<WheelspinFortuneModal> {
               fontSize: 18, color: Themecolors.Color3, fontFamily: "Aller"),
         ),
       ),
-      FortuneWheelWidget(),
+      Flexible(child: FortuneWheelWidget()),
     ]);
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/widgets/reward/reward_animation.dart';
@@ -29,7 +30,7 @@ class _FortuneWheelWidgetState extends State<FortuneWheelWidget> {
   //     roll(Constants.fortuneValues.length),
   //   );
   // }
-  
+
   StreamController<int> _selected = StreamController<int>();
   int _selectedIndex = 0;
   bool _isAnimating = false;
@@ -60,7 +61,6 @@ class _FortuneWheelWidgetState extends State<FortuneWheelWidget> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -68,7 +68,8 @@ class _FortuneWheelWidgetState extends State<FortuneWheelWidget> {
       child: Column(
         children: [
           const SizedBox(height: 8),
-          Expanded(
+          SizedBox.square(
+            dimension: MediaQuery.of(context).size.width * 0.8,
             child: Container(
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.all(10),
@@ -133,9 +134,7 @@ class _FortuneWheelWidgetState extends State<FortuneWheelWidget> {
                           width: 40,
                           fit: BoxFit.contain,
                           color: Colors.white,
-                        )
-                        
-                        ),
+                        )),
                   ],
                   items: [
                     for (Map<String, dynamic> it in Constants.fortuneValues)
@@ -176,7 +175,7 @@ class _FortuneWheelWidgetState extends State<FortuneWheelWidget> {
           SizedBox(height: 8),
           SmallSpinWidget(
             boutonStyle: true,
-            rollWheel:  _isAnimating
+            rollWheel: _isAnimating
                 ? null
                 : !isClaimed
                     ? _handleRoll
