@@ -156,9 +156,7 @@ class _WheelspinFortuneModalState extends State<WheelspinFortuneModal> {
           ],
         ),
       ),
-      Flexible(
-          child: StatefulBuilder(
-              builder: (context, setState) => FortuneWheelWidget())),
+      Flexible(child: FortuneWheelWidget()),
       // earnToTapBottomWidget(),
     ]);
   }
