@@ -86,9 +86,10 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
                 elevation: 1.0,
                 shadowColor: Themecolors.greyDeep.withOpacity(0.5),
                 surfaceTintColor: Colors.transparent,
-                shape: CircleBorder(
-                    side:
-                        BorderSide(width: 1.0, color: Themecolors.ColorWhite)),
+                shape: const CircleBorder(
+                    /* side:
+                        BorderSide(width: 1.0, color: Themecolors.ColorWhite)*/
+                    ),
                 child: CustomImageView(
                   imagePath: Images.spin,
                   height: 40,
@@ -109,7 +110,7 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
                   textAlign: TextAlign.center,
                   text: TextSpan(children: [
                     TextSpan(
-                      text: displayTime.trim().isNotEmpty
+                      text: (hours > 0 && minutes == 0 && seconds == 0)
                           ? displayTime.trim()
                           : "Lancer",
                       style: const TextStyle(
