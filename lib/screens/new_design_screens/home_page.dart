@@ -214,37 +214,6 @@ class _GoogleMapState extends State<HomeVrScreen>
 
               Visibility(
                 visible: showAllbtns,
-                child:  Positioned(
-                  top: 70,
-                  left: 0,
-                  child: SmallSpinWidget(),
-                ),
-              ),
-
-              // Positioned(
-              //   bottom: 50,
-              //   left: 10,
-              //   width: 50,
-              //   height: 50,
-              //   child: PointerInterceptor(
-              //     debug: true,
-              //     child: GestureDetector(
-              //       onTap: () {
-              //         animateMenu(true);
-              //       },
-              //       child: Container(
-              //         decoration: const BoxDecoration(
-              //             shape: BoxShape.circle, color: Colors.white),
-              //         height: 50,
-              //         width: 50,
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              //explore
-
-              Visibility(
-                visible: showAllbtns,
                 child: ExploreWidget(
                   currentExplorePercent: currentExplorePercent,
                   currentSearchPercent: currentSearchPercent,
@@ -255,66 +224,15 @@ class _GoogleMapState extends State<HomeVrScreen>
                 ),
               ),
 
-              //blur
-              offsetSearch != 0
-                  ? BackdropFilter(
-                      filter: ImageFilter.blur(
-                          sigmaX: 10 * currentSearchPercent,
-                          sigmaY: 10 * currentSearchPercent),
-                      child: Container(
-                        color: Colors.white
-                            .withOpacity(0.1 * currentSearchPercent),
-                        width: screenWidth,
-                        height: screenHeight,
-                      ),
-                    )
-                  : const Padding(
-                      padding: const EdgeInsets.all(0),
-                    ),
-
-              //recent search
-              RecentSearchWidget(
-                currentSearchPercent: currentSearchPercent,
+              Visibility(
+                visible: showAllbtns,
+                child: Positioned(
+                  top: 70,
+                  left: 0,
+                  child: SmallSpinWidget(),
+                ),
               ),
-              //search menu background
-              offsetSearch != 0
-                  ? Positioned(
-                      bottom: realH(88),
-                      left: realW((standardWidth - 320) / 2),
-                      width: realW(320),
-                      height: realH(135 * currentSearchPercent),
-                      child: Opacity(
-                        opacity: currentSearchPercent,
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(realW(33)),
-                                  topRight: Radius.circular(realW(33)))),
-                        ),
-                      ),
-                    )
-                  : const Padding(
-                      padding: EdgeInsets.all(0),
-                    ),
-              //search menu
-              // SearchMenuWidget(
-              //   currentSearchPercent: currentSearchPercent,
-              // ),
-              // //search
-              // SearchWidget(
-              //   currentSearchPercent: currentSearchPercent,
-              //   currentExplorePercent: currentExplorePercent,
-              //   isSearchOpen: isSearchOpen,
-              //   animateSearch: animateSearch,
-              //   onHorizontalDragUpdate: onSearchHorizontalDragUpdate,
-              //   onPanDown: () => animationControllerSearch?.stop(),
-              // ),
-              // //search back
-              // SearchBackWidget(
-              //   currentSearchPercent: currentSearchPercent,
-              //   animateSearch: animateSearch,
-              // ),
+ 
               //layer button
               Visibility(
                 visible: showAllbtns,

@@ -75,14 +75,14 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
       if (displayTime.isNotEmpty) displayTime += ':';
       displayTime += '$seconds s';
     }
-    return PointerInterceptor(
-      debug: false,
-      child: GestureDetector(
-        onTap: () {
-           WheelspinFortuneModal.show(
-                    context, 
-                  );
-        },
+    return GestureDetector(
+      onTap: () {
+        WheelspinFortuneModal.show(
+          context,
+        );
+      },
+      child: PointerInterceptor(
+        debug: false,
         child: ShakeAnimation(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
