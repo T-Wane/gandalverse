@@ -361,8 +361,8 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                       ),
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 8),
-                        width: 30,
-                        height: 15,
+                        width: 50,
+                        height: 20,
                         child: CustomImageView(
                           imagePath: Images.right_arrow,
                           fit: BoxFit.contain,

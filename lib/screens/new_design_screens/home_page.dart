@@ -214,11 +214,6 @@ class _GoogleMapState extends State<HomeVrScreen>
 
               Visibility(
                 visible: showAllbtns,
-                child:  SmallSpinWidget(),
-                
-              ),
-              Visibility(
-                visible: showAllbtns,
                 child: ExploreWidget(
                   currentExplorePercent: currentExplorePercent,
                   currentSearchPercent: currentSearchPercent,
@@ -229,7 +224,6 @@ class _GoogleMapState extends State<HomeVrScreen>
                 ),
               ),
 
- 
               //layer button
               Visibility(
                 visible: showAllbtns,
@@ -355,7 +349,10 @@ class _GoogleMapState extends State<HomeVrScreen>
                   },
                 ),
               ),
-
+              Visibility(
+                visible: showAllbtns,
+                child: SmallSpinWidget(),
+              ),
               //menu button
               /* Positioned(
                 bottom: realH(53),
