@@ -66,10 +66,11 @@ class _FortuneWheelWidgetState extends State<FortuneWheelWidget> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           const SizedBox(height: 8),
           SizedBox.square(
-            dimension: MediaQuery.of(context).size.width * 0.8,
+            dimension: MediaQuery.of(context).size.width * 0.9,
             child: Container(
               padding: EdgeInsets.all(10),
               margin: EdgeInsets.all(10),
@@ -86,7 +87,7 @@ class _FortuneWheelWidgetState extends State<FortuneWheelWidget> {
                 // constraints: const BoxConstraints.expand(),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Themecolors.Color3.withOpacity(0.9),
+                  color: Themecolors.Color3.withOpacity(0.95),
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -127,14 +128,18 @@ class _FortuneWheelWidgetState extends State<FortuneWheelWidget> {
                   animateFirst: false,
                   indicators: [
                     FortuneIndicator(
-                        alignment: Alignment.topCenter,
-                        child: CustomImageView(
+                      alignment: Alignment.topCenter,
+                      child: TriangleIndicator(
+                        color: Colors.white,
+                        elevation: 5.0,
+                      ), /*CustomImageView(
                           imagePath: Images.down_arrow,
-                          height: 40,
-                          width: 40,
+                          height: 35,
+                          width: 35,
                           fit: BoxFit.contain,
                           color: Colors.white,
-                        )),
+                        )*/
+                    ),
                   ],
                   items: [
                     for (Map<String, dynamic> it in Constants.fortuneValues)

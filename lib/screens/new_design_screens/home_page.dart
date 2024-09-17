@@ -237,9 +237,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                     icon: Icons.school_rounded,
                     iconColor: Themecolors.Color3,
                     title: "Learn",
-                    press: () => WheelspinFortuneModal.show(
-                          context,
-                        ) // context.pushNamed(learn_home_view),
+                    press: () => context.pushNamed(learn_home_view),
                     ),
               ),
               //directions button
