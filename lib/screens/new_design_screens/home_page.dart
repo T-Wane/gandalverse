@@ -22,7 +22,7 @@ import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
-import 'package:gandalverse/widgets/small_spin_widget/small_spin_widget.dart';
+import 'package:gandalverse/widgets/fortune_spin/small_spin_widget/small_spin_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
@@ -214,7 +214,7 @@ class _GoogleMapState extends State<HomeVrScreen>
 
               Visibility(
                 visible: showAllbtns,
-                child: Positioned(
+                child:  Positioned(
                   top: 70,
                   left: 0,
                   child: SmallSpinWidget(),

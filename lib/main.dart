@@ -15,6 +15,8 @@ import 'package:webview_flutter_web/webview_flutter_web.dart';
 import 'core/route/router_navigator.dart';
 import 'core/services/explorer_service/explorer_service.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
+
+import 'widgets/fortune_spin/config/web_config.dart';
 // Pour JSON parsing
 
 // import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
@@ -26,6 +28,7 @@ Future main() async {
   // await getIt<FirebaseClient>().initializeApp();
   //await getIt<TelegramClient>().initializeApp();
   WebViewPlatform.instance = WebWebViewPlatform();
+  configureApp();
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
