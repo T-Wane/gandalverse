@@ -23,7 +23,7 @@ class _PartenaireSectionState extends State<PartenaireSection> {
   @override
   void initState() {
     super.initState();
-    _partenaireService.loadInitialData();
+    //_partenaireService.loadInitialData();
     // Écoute du stream pour les mises à jour des données
     _partenaireService.partenaireStream.listen((dataList) {
       setState(() {

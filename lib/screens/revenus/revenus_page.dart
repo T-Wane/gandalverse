@@ -1,14 +1,24 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/rounded_btn_back.dart';
+import 'package:gandalverse/core/providers/user_provider.dart';
+import 'package:gandalverse/data/telegram_client.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/revenus/data/revenus_data.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
+import 'package:telegram_web_app/telegram_web_app.dart';
 
 import '../../components/user_top_infos.dart';
 import '../../themes/images/appImages.dart';
 import '../defis/components/annonceCard.dart';
 import 'components/plus_details_btn.dart';
+
+// Classe concrète pour l'événement "contactRequested"
+class ContactRequestedEvent extends TelegramEvent {
+  ContactRequestedEvent(Function eventHandler)
+      : super(TelegramEventType.contactRequested, eventHandler);
+}
 
 class AllRevenusPage extends StatefulWidget {
   const AllRevenusPage({super.key});
@@ -19,6 +29,64 @@ class AllRevenusPage extends StatefulWidget {
 
 class _AllRevenusPageState extends State<AllRevenusPage> {
   Color Color3 = const Color.fromARGB(255, 18, 40, 70);
+
+  TelegramClient _telegramClient = getIt<TelegramClient>();
+
+  UserProvider _userProvider = getIt<UserProvider>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    /*WidgetsBinding.instance.addPostFrameCallback((_) {
+      // _telegramClient.telegram.requestContact();
+       _telegramClient.telegram.onEvent(ContactRequestedEvent(onEvent));
+       
+    });
+  }*/
+
+    // Fonction pour gérer les événements Telegram
+    _telegramClient.telegram.onEvent(
+        ContactRequestedEvent(onEvent)); // Configurez l'écoute des événements
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      //  requestContact();
+    });
+  }
+
+  // Méthode pour gérer les événements
+  void onEvent(TelegramEvent event) {
+    print('Event received: ${event.eventType}');
+    print('Event received: ${event.eventType.eventName}');
+
+    // Traitez l'événement ici
+    if (event.eventType == TelegramEventType.contactRequested) {
+      // Traitement pour les contacts demandés
+      final contact = event.eventHandler as Map<String, dynamic>;
+      final phoneNumber = contact['phone_number'];
+      final firstName = contact['first_name'];
+      final lastName = contact['last_name'];
+      print('Contact reçu: $phoneNumber, $firstName $lastName');
+    }
+  }
+
+  void requestContact() {
+    _telegramClient.telegram.showPopup(
+      title: 'Partager votre contact',
+      message: 'Veuillez partager votre contact avec nous.',
+      buttons: [
+        PopupButton.defaultType('share_contact', 'Partager le contact'),
+        PopupButton.cancel('Annuler'),
+      ],
+      callback: (String id) {
+        if (id == 'share_contact') {
+          print('L\'utilisateur a choisi de partager le contact');
+          _telegramClient.telegram.requestContact();
+        } else if (id == 'cancel') {
+          print('L\'utilisateur a annulé');
+        }
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +190,7 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
               AnnonceCard(
                   title: 'AirDrop',
                   text: 'Airdrop du token GVT à venir',
-                  imagePath: Images.coin,
+                  imagePath: Images.gvtWithLight,
                   backColors: const [
                     Colors.white,
                     Colors.white,

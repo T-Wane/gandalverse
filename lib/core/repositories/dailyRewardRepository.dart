@@ -73,4 +73,23 @@ class DailyRewardManager {
     // Marquer la récompense comme réclamée
     await prefs.setBool(_isRewardClaimedKey, true);
   }
+ // Méthode pour calculer le temps restant jusqu'à minuit
+  Duration getTimeUntilMidnight() {
+    final now = DateTime.now();
+    final midnight = DateTime(now.year, now.month, now.day + 1);
+    return midnight.difference(now);
+  }
+
+  // Méthode pour obtenir le temps restant en heures, minutes et secondes
+  Map<String, int> getTimeRemaining() {
+    final duration = getTimeUntilMidnight();
+    final hours = duration.inHours;
+    final minutes = duration.inMinutes.remainder(60);
+    final seconds = duration.inSeconds.remainder(60);
+    return {
+      'hours': hours,
+      'minutes': minutes,
+      'seconds': seconds,
+    };
+  }
 }

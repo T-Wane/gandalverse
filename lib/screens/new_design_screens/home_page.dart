@@ -22,6 +22,7 @@ import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
+import 'package:gandalverse/widgets/small_spin_widget/small_spin_widget.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
@@ -193,7 +194,10 @@ class _GoogleMapState extends State<HomeVrScreen>
                 alignment: Alignment.topCenter,
                 child: PointerInterceptor(
                   debug: false,
-                  child: userTopInfos(showVisibleEye: true, changeVisibility: changeVisibility,),
+                  child: userTopInfos(
+                    showVisibleEye: true,
+                    changeVisibility: changeVisibility,
+                  ),
                 ),
               ),
 
@@ -207,6 +211,15 @@ class _GoogleMapState extends State<HomeVrScreen>
               //         child: const SizedBox.shrink(),
               //       ),
               //     )),
+
+              Visibility(
+                visible: showAllbtns,
+                child: Positioned(
+                  top: 70,
+                  left: 0,
+                  child: SmallSpinWidget(),
+                ),
+              ),
 
               // Positioned(
               //   bottom: 50,
@@ -313,6 +326,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                   isRight: false,
                   icon: Icons.school_rounded,
                   iconColor: Themecolors.Color3,
+                  title: "Learn",
                   press: () => context.pushNamed(learn_home_view),
                 ),
               ),
@@ -328,10 +342,12 @@ class _GoogleMapState extends State<HomeVrScreen>
                   icon: null,
                   //icon: Icons.directions,
                   iconColor: Colors.white,
+                  titleColor: Colors.white,
                   gradient: const LinearGradient(colors: [
                     Color(0xFF59C2FF),
                     Color(0xFF1270E3),
                   ]),
+                  title: "Revenus",
                   press: () {
                     context.pushNamed(revenu_view);
                   },
@@ -347,6 +363,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                   icon: CupertinoIcons.flame,
                   //icon: Icons.directions,
                   iconColor: Themecolors.Color3,
+                  title: "Défis",
                   press: () {
                     context.pushNamed(defi_view);
                   },
@@ -378,6 +395,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                   height: 71,
                   icon: Icons.group_rounded,
                   iconColor: Themecolors.Color3,
+                  title: "Amis",
                   press: () {
                     context.pushNamed(amis_view);
                   },
@@ -393,6 +411,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                   height: 71,
                   icon: Icons.business_rounded,
                   iconColor: Themecolors.Color3,
+                  title: "QG",
                   press: () {
                     context.pushNamed(qg_view);
                   },
@@ -409,6 +428,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                   image: Images.scanQr,
                   iconColor: Themecolors.Color3,
                   icon: null,
+                  title: "Scan",
                   press: () {
                     _showScanQrPopup();
                     // Navigator.push<void>(

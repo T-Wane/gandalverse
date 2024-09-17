@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gandalverse/screens/new_design_screens/helper/ui_helper.dart';
+import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
@@ -9,11 +10,14 @@ class MapButton extends StatelessWidget {
   final double width;
   final double height;
 
+  final String? title;
+
   final String? image;
   final IconData? icon;
   Color? iconColor;
   final bool isRight;
   Gradient? gradient;
+  Color? titleColor = Themecolors.Color3;
 
   final Function? press;
 
@@ -24,6 +28,8 @@ class MapButton extends StatelessWidget {
       required this.width,
       required this.height,
       required this.icon,
+      this.titleColor,
+      this.title,
       this.image,
       this.iconColor,
       this.isRight = true,
@@ -42,38 +48,53 @@ class MapButton extends StatelessWidget {
           child: GestureDetector(
             onTap: press as void Function()?,
             child: Container(
-              width: realW(width),
-              height: realH(height),
-              alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(left: realW(17)),
-              decoration: BoxDecoration(
-                  color: gradient == null ? Colors.white : null,
-                  gradient: gradient,
-                  borderRadius: isRight
-                      ? BorderRadius.only(
-                          bottomLeft: Radius.circular(realW(36)),
-                          topLeft: Radius.circular(realW(36)))
-                      : BorderRadius.only(
-                          bottomRight: Radius.circular(realW(36)),
-                          topRight: Radius.circular(realW(36))),
-                  boxShadow: [
-                    BoxShadow(
-                        color: Color.fromRGBO(0, 0, 0, 0.3),
-                        blurRadius: realW(36)),
-                  ]),
-              child: image != null
-                  ? CustomImageView(
-                      imagePath: image,
-                      fit: BoxFit.contain,
-                      width: realW(34),
-                      height: realW(34),
-                    )
-                  : Icon(
-                      icon,
-                      size: realW(34),
-                      color: iconColor ?? Colors.black,
-                    ),
-            ),
+                width: realW(width),
+                height: realH(height),
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.only(left: realW(17)),
+                decoration: BoxDecoration(
+                    color: gradient == null ? Colors.white : null,
+                    gradient: gradient,
+                    borderRadius: isRight
+                        ? BorderRadius.only(
+                            bottomLeft: Radius.circular(realW(36)),
+                            topLeft: Radius.circular(realW(36)))
+                        : BorderRadius.only(
+                            bottomRight: Radius.circular(realW(36)),
+                            topRight: Radius.circular(realW(36))),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 0.3),
+                          blurRadius: realW(36)),
+                    ]),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    image != null
+                        ? CustomImageView(
+                            imagePath: image,
+                            fit: BoxFit.contain,
+                            width: realW(30),
+                            height: realW(30),
+                          )
+                        : Icon(
+                            icon,
+                            size: realW(30),
+                            color: iconColor ?? Colors.black,
+                          ),
+                    if (title != null) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        title ?? '',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            color: titleColor,
+                            fontFamily: "Aller",
+                            fontSize: 8),
+                      )
+                    ]
+                  ],
+                )),
           ),
         ));
   }

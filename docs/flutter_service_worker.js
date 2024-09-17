@@ -3,9 +3,9 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "bbebd97a0a5a2c12ef963585809b9183",
-"assets/AssetManifest.bin.json": "1bb901f89f035b5e386db95eddeaa1a6",
-"assets/AssetManifest.json": "75303d348a5eb5688cb18d2261393ed1",
+const RESOURCES = {"assets/AssetManifest.bin": "d4b0203a1de1852435e0da9de2dada06",
+"assets/AssetManifest.bin.json": "0c4125041f373fdba4aae858bc57b5ae",
+"assets/AssetManifest.json": "04c4c55c75c495e71569c9c46df02c4e",
 "assets/assets/AssetManifest.bin": "c85bcc7489efa79fc6ad3fe57dd52e3e",
 "assets/assets/AssetManifest.bin.json": "7dba2718645bee383e32a237b5dea4a5",
 "assets/assets/AssetManifest.json": "eef43b9362dfb365aef650a403e2c9e5",
@@ -105,6 +105,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "bbebd97a0a5a2c12ef963585809b9183
 "assets/assets/images/social_black/twitter.png": "6352d995b0c2a0f882503daa1d99a2e7",
 "assets/assets/images/social_black/youtube.png": "4aa43a7d58e9899c0d0bcbf516285e02",
 "assets/assets/images/soon.png": "2a3a489e4836cde82133f466b551a05c",
+"assets/assets/images/spin.png": "fee22f5ea8606e5f2970e148fdf70150",
 "assets/assets/images/telegram.png": "0b010ffa480ee2e2c422c187811d4ed9",
 "assets/assets/images/tiktok.png": "af0831a3b70b49c307fa20ded7de25cd",
 "assets/assets/images/twitter.png": "33249779c69d217384d439be743e8da9",
@@ -120,7 +121,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "bbebd97a0a5a2c12ef963585809b9183
 "assets/assets/json/eventsData.json": "9898205ea436fb047e7bbad200cfcfe5",
 "assets/assets/json/partenaireData.json": "5e19e28ac4434ade08e2d731e50747d7",
 "assets/assets/json/reward.json": "73e339fd6cb732df3778b52461a5b344",
-"assets/assets/json/socialLinksData.json": "51d7780911d506a0c072a8936500d581",
+"assets/assets/json/socialLinksData.json": "7caad065c09a55b97e63bca9a8ba6bea",
 "assets/assets/NOTICES": "ec1b6da017079d55ef1687361c8af88a",
 "assets/back_new_verse.jpg": "f7fd074e3739e2cfb77ab1b0cc5c6f58",
 "assets/FontManifest.json": "2a5267a8ba1e6aa47542e873e50f2700",
@@ -149,9 +150,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "bbebd97a0a5a2c12ef963585809b9183
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "1175b77dbd1f864da1478304f9240c52",
-"/": "1175b77dbd1f864da1478304f9240c52",
-"main.dart.js": "3af2ac44cf86fd9b00683e7bb403b502",
+"index.html": "006fde88bb22d71c3e0078f89365f1ee",
+"/": "006fde88bb22d71c3e0078f89365f1ee",
+"main.dart.js": "ad1875336ef45acf6200dd1808719562",
 "manifest.json": "9f6f1bf5b67cd2b30e68a99551f02cad",
 "version.json": "bdbf5533cd872db8379bf13ff58db6f3"};
 // The application shell files that are downloaded before a service worker can

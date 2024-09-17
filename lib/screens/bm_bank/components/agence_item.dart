@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/default_btn.dart';
-import 'package:gandalverse/screens/bnda/modeles/agence.dart';
+import 'package:gandalverse/screens/bm_bank/modeles/agence.dart';
 import 'package:gandalverse/screens/profil/components/infoLigne.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';

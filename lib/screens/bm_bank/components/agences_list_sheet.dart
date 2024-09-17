@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gandalverse/screens/bnda/components/agence_item.dart';
-import 'package:gandalverse/screens/bnda/modeles/agence.dart';
+import 'package:gandalverse/screens/bm_bank/components/agence_item.dart';
+import 'package:gandalverse/screens/bm_bank/modeles/agence.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 
 class AgencesListSheet extends StatelessWidget {

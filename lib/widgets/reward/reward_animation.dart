@@ -6,6 +6,7 @@ import 'dart:math' as math;
 class RewardAnimation extends StatefulWidget {
   static void show(BuildContext context) => showDialog<void>(
         context: context,
+        barrierColor: Colors.transparent,
         useRootNavigator: false,
         barrierDismissible: false,
         builder: (_) => RewardAnimation(),

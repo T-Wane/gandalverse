@@ -116,9 +116,9 @@ class UserRepository {
   }
 
   Future<void> createUser({required CreateUserFields fields}) async {
-    final userId = Uuid().v4();
+   // final userId = Uuid().v4();
     final user = UserModel((b) => b
-      ..id = userId
+      ..id = '${fields.telegramId}'
       ..telegramId = fields.telegramId
       ..firstName = fields.firstName
       ..lastName = fields.lastName
@@ -130,7 +130,7 @@ class UserRepository {
       ..profileImage = '');
 
     try {
-      await _firestore.collection('users').doc(userId).set(user.toJson());
+      await _firestore.collection('users').doc("${fields.telegramId}").set(user.toJson());
     } catch (e) {
       print('Error creating user: $e');
     }

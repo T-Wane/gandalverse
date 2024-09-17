@@ -3,6 +3,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:gandalverse/core/modeles/social_link/social_link.dart';
+import 'package:gandalverse/core/providers/user_provider.dart';
+import 'package:gandalverse/data/telegram_client.dart';
+import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -13,9 +16,11 @@ class SocialLinkService with ChangeNotifier {
   String socialLinksJsonPath = "assets/json/socialLinksData.json";
   String socialLinksSaveKey = "socialLinksDataKey4";
 
+  UserProvider userProvider;
+
   List<SocialLinkModel> socialLinksData = [];
 
-  SocialLinkService() {
+  SocialLinkService(this.userProvider) {
     loadSocialLinks();
   }
 
@@ -27,11 +32,14 @@ class SocialLinkService with ChangeNotifier {
 
   Future<List<SocialLinkModel>> getSocialLinks() async {
     //   if (socialLinksData.isNotEmpty) return socialLinksData;
-    final data = await loadAndMergeItems();
-    notifyListeners();
+    // final data = await loadAndMergeItems();
+    // notifyListeners();
 
-    print("getSocialLinks => data ${data.length}");
-    return List<SocialLinkModel>.from(data);
+    loadSocialLinks();
+    return socialLinksData;
+
+    // print("getSocialLinks => data ${data.length}");
+    // return List<SocialLinkModel>.from(data);
   }
 
   SocialLinkModel fromJson(Map<String, dynamic> json) =>
@@ -50,12 +58,17 @@ class SocialLinkService with ChangeNotifier {
   ///
   /// Emits a notification to listeners when the update is complete.
   Future<void> updateSocialLink(String id,
-      {bool? isSubscribed, double? reward}) async {
+      {bool? isSubscribed,
+      bool? isClaimed,
+      DateTime? subscribeAt,
+      double? reward}) async {
     final index = socialLinksData.indexWhere((link) => link.id == id);
     if (index == -1) return;
 
     final updatedLink = socialLinksData[index].rebuild((b) => b
       ..isSubscribed = isSubscribed ?? socialLinksData[index].isSubscribed
+      ..isClaimed = isClaimed ?? socialLinksData[index].isClaimed
+      ..subscribeAt = subscribeAt?.toUtc() ?? socialLinksData[index].subscribeAt
       ..reward = reward ?? socialLinksData[index].reward);
 
     socialLinksData[index] = updatedLink;
@@ -124,6 +137,8 @@ class SocialLinkService with ChangeNotifier {
             ..subscriptionLink = jsonItem.subscriptionLink
             ..reward = jsonItem.reward
             ..title = jsonItem.title
+            ..isClaimed = localData[indexToUpdate].isClaimed
+            ..subscribeAt = localData[indexToUpdate].subscribeAt
             ..isVisible = jsonItem.isVisible);
           log("Mise à jour de l'élément à l'index $indexToUpdate");
         } else {
@@ -136,6 +151,8 @@ class SocialLinkService with ChangeNotifier {
             ..subscriptionLink = jsonItem.subscriptionLink
             ..reward = jsonItem.reward
             ..title = jsonItem.title
+            ..isClaimed = false
+            ..subscribeAt = null
             ..isVisible = jsonItem.isVisible));
           log("Ajout d'un nouvel élément : ${jsonItem.title}");
         }
@@ -172,8 +189,11 @@ class SocialLinkService with ChangeNotifier {
 
     if (index != -1) {
       // Mettre à jour le champ isSubscribed
-      final updatedLink =
-          socialLinksData[index].rebuild((b) => b..isSubscribed = isSubscribed);
+      if (isSubscribed == socialLinksData[index].isSubscribed) return;
+      final updatedLink = socialLinksData[index].rebuild((b) => b
+        ..isSubscribed = isSubscribed
+        ..subscribeAt = DateTime.now().toUtc()
+        ..isClaimed = false);
 
       socialLinksData[index] = updatedLink;
 
@@ -183,6 +203,37 @@ class SocialLinkService with ChangeNotifier {
           json.encode(socialLinksData.map((link) => link.toJson()).toList());
       await prefs.setString(socialLinksSaveKey, jsonString);
 
+      loadSocialLinks();
+      notifyListeners();
+    }
+  }
+
+  Future<void> setLinkIsClaimed(String id) async {
+    // Rechercher le lien par son id
+    final index = socialLinksData.indexWhere((link) => link.id == id);
+
+    if (index != -1) {
+      // Mettre à jour lelink status
+      final updatedLink = socialLinksData[index].rebuild((b) => b
+        ..isSubscribed = true
+        ..isClaimed = true);
+
+      socialLinksData[index] = updatedLink;
+
+      // Sauvegarder la mise à jour dans les SharedPreferences
+      final prefs = await SharedPreferences.getInstance();
+      final jsonString =
+          json.encode(socialLinksData.map((link) => link.toJson()).toList());
+      await prefs.setString(socialLinksSaveKey, jsonString);
+
+      print("Le lien a été déja souscris, on le met à jour");
+      if (userProvider.user != null) {
+        final updatedUser = userProvider.user!.rebuild((b) => b
+          ..coins =
+              ((userProvider.user?.coins ?? 0) + updatedLink.reward.round()));
+        userProvider.updateUserPointLocal(updatedUser);
+      }
+      loadSocialLinks();
       notifyListeners();
     }
   }
@@ -193,7 +244,8 @@ class SocialLinkService with ChangeNotifier {
       if (await canLaunch(url)) {
         // Ouvre le lien
         await launch(url);
-
+        //TelegramClient _telegramClient = getIt<TelegramClient>();
+        //_telegramClient.telegram.openTelegramLink(url);
         // Mettre à jour le statut après la visite
         await setSubscriptionStatus(id, true);
         print('Le lien a été visité et le statut a été mis à jour.');
@@ -212,4 +264,24 @@ class SocialLinkService with ChangeNotifier {
   //     throw 'Impossible d’ouvrir $url';
   //   }
   // }
+
+  Duration getTimeUntil60Minutes(SocialLinkModel link) {
+    final now = DateTime.now();
+
+    final in60Minutes = link.subscribeAt!.add(Duration(minutes: 60));
+    return in60Minutes.difference(now);
+  }
+
+  // Méthode pour obtenir le temps restant en heures, minutes et secondes
+  Map<String, int> getTimeRemaining(SocialLinkModel link) {
+    final duration = getTimeUntil60Minutes(link);
+    final hours = duration.inHours;
+    final minutes = duration.inMinutes.remainder(60);
+    final seconds = duration.inSeconds.remainder(60);
+    return {
+      'hours': hours,
+      'minutes': minutes,
+      'seconds': seconds,
+    };
+  }
 }

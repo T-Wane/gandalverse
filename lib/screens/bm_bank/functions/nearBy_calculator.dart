@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:gandalverse/screens/bnda/modeles/agence.dart';
+import 'package:gandalverse/screens/bm_bank/modeles/agence.dart';
 
 // Fonction pour calculer la distance entre deux coordonnées géographiques
 double _calculateDistance(double lat1, double lon1, double lat2, double lon2) {

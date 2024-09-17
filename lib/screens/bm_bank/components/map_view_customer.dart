@@ -3,8 +3,8 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:gandalverse/screens/bnda/utils/tile_servers.dart';
-import 'package:gandalverse/screens/bnda/utils/utils.dart';
+import 'package:gandalverse/screens/bm_bank/utils/tile_servers.dart';
+import 'package:gandalverse/screens/bm_bank/utils/utils.dart';
 import 'package:latlng/latlng.dart';
 import 'package:map/map.dart';
 

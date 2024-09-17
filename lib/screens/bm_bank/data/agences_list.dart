@@ -1,4 +1,4 @@
-import 'package:gandalverse/screens/bnda/modeles/agence.dart';
+import 'package:gandalverse/screens/bm_bank/modeles/agence.dart';
 
 List<Agence> bndaAgences = [
   Agence(
