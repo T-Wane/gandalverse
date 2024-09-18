@@ -131,7 +131,7 @@ const RESOURCES = {"assets/AssetManifest.bin": "9b3f5030c0d52226270d1a62f19055aa
 "assets/fonts/MaterialIcons-Regular.otf": "b211bee5f3d7e9d8b7659774548af51c",
 "assets/GverseToken_OnboardingPage.png": "820b9e0e98327dc8cc26971d46a9dfaf",
 "assets/GverseToken_OnboardingPage2.png": "8128e5bbeed2bdd3b9de842f9fed4ea1",
-"assets/NOTICES": "61b4dbe27a83516ff63c6f62d897a7fa",
+"assets/NOTICES": "daf637ffb62095ff1eb344e1d3ecd963",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "c4dc2c0e87feea6a008bc589ed32b2fe",
 "assets/packages/flutter_inappwebview/assets/t_rex_runner/t-rex.css": "5a8d0222407e388155d7d1395a75d5b9",
 "assets/packages/flutter_inappwebview/assets/t_rex_runner/t-rex.html": "16911fcc170c8af1c5457940bd0bf055",
@@ -153,9 +153,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "9b3f5030c0d52226270d1a62f19055aa
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "83d9e1a89366e98245f85e39e0c90865",
-"/": "83d9e1a89366e98245f85e39e0c90865",
-"main.dart.js": "bb07d11b26d95852082ffe524fe7ddbb",
+"index.html": "054527693fb02403c606d23eb00fef6d",
+"/": "054527693fb02403c606d23eb00fef6d",
+"main.dart.js": "f5dd7759003d2477495f98c958dafe6c",
 "manifest.json": "9f6f1bf5b67cd2b30e68a99551f02cad",
 "version.json": "bdbf5533cd872db8379bf13ff58db6f3"};
 // The application shell files that are downloaded before a service worker can

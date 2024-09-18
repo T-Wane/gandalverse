@@ -93,11 +93,11 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
                 child: GestureDetector(
               onTap: () {
                 print("show spin");
-                if (canClaimed && !widget.boutonStyle) {
+                //if (canClaimed && !widget.boutonStyle) {
                   WheelspinFortuneModal.show(
                     context,
                   );
-                }
+               // }
               },
               child: PointerInterceptor(
                 debug: false,
@@ -154,20 +154,53 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
               ),
             )),
           )
-        : DefaultButton(
-            backColor:
-                canClaimed ? Colors.purple.shade400 : Colors.grey.shade300,
-            text: canClaimed ? "Tourner" : displayTime,
-            elevation: 1.0,
-            textColor: canClaimed ? Colors.white : Colors.grey.shade600,
-            fontSize: 14,
-            height: 50,
-            press: () {
+        : GestureDetector(
+            onTap: () {
               widget.rollWheel?.call();
               _spinRewardManager
                   .claimReward()
                   .whenComplete(() => _startTimer());
             },
+            child: Container(
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: Colors.white, width: 1.2),
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: canClaimed
+                        ? [
+                            Colors.deepPurple.shade300,
+                            Colors.deepPurple.shade400,
+                            Colors.deepPurple.shade500,
+                            Colors.deepPurple.shade600,
+                          ]
+                        : [
+                            Colors.grey.shade300,
+                            Colors.grey.shade300,
+                            Colors.grey.shade400,
+                            Colors.grey.shade500
+                          ]),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DefaultTextStyle(
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Colors.white, fontFamily: "Aller"),
+                  child: Text(
+                    canClaimed ? "Tourner" : displayTime,
+                    style: TextStyle(
+                      fontFamily: 'Aller',
+                      fontSize: 14,
+                      color: canClaimed ? Colors.white : Colors.grey.shade600,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           );
   }
 }

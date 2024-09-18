@@ -21,6 +21,7 @@ import 'package:provider/provider.dart';
 
 import 'package:telegram_web_app/telegram_web_app.dart';
 
+import '../core/functions/coins_value_formateur.dart';
 import 'profil_details.dart';
 
 class userTopInfos extends StatefulWidget {
@@ -243,14 +244,15 @@ class _userTopInfosState extends State<userTopInfos> {
                     onTap: _showTooltip,
                     child: Tooltip(
                       key: _tooltipKey,
-                      message: "${_userProvider.user?.profitPerHour ?? '00'}",
+                      message: coins_value_formateur(
+                          _userProvider.user?.profitPerHour ?? 0),
                       padding: const EdgeInsets.all(5),
                       margin: const EdgeInsets.only(
-                        top: 40,
+                        top: 10,
                       ),
                       decoration: BoxDecoration(
                           color: Themecolors.Color3.withOpacity(0.8),
-                          borderRadius: BorderRadius.circular(15)),
+                          borderRadius: BorderRadius.circular(5)),
                       textStyle: const TextStyle(
                           fontSize: 10,
                           fontStyle: FontStyle.italic,
