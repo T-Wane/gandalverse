@@ -187,12 +187,14 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: DefaultTextStyle(
+                  textAlign: TextAlign.center,
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium!
                       .copyWith(color: Colors.white, fontFamily: "Aller"),
                   child: Text(
                     canClaimed ? "Tourner" : displayTime,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Aller',
                       fontSize: 14,
