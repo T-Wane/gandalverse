@@ -187,7 +187,7 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
                           ]),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(2.0),
                 child: DefaultTextStyle(
                   textAlign: TextAlign.center,
                   style: Theme.of(context)
@@ -199,7 +199,7 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Aller',
-                      fontSize: 14,
+                      fontSize: 12,
                       color: canClaimed ? Colors.white : Colors.grey.shade600,
                     ),
                   ),

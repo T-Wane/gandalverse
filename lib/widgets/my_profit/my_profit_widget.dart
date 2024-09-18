@@ -87,7 +87,7 @@ class _MyProfitWidgetState extends State<MyProfitWidget> {
         (hours == 0 && minutes == 0 && seconds == 0) ? true : false;
     return !widget.boutonStyle
         ? Positioned(
-            top: 110,
+            top: 130,
             left: 0,
             child: /*ShakeAnimation(
                 child: */
@@ -167,7 +167,7 @@ class _MyProfitWidgetState extends State<MyProfitWidget> {
                       .bodyMedium!
                       .copyWith(color: Colors.white, fontFamily: "Aller"),
                   child: Text(
-                    canClaimed ? "Tourner" : displayTime,
+                    canClaimed ? "Récupérer" : displayTime,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontFamily: 'Aller',

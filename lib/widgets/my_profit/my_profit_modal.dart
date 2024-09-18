@@ -129,13 +129,13 @@ class _MyProfitModalState extends State<MyProfitModal> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CustomImageView(
-                imagePath: Images.coin_dollar,
-                fit: BoxFit.contain,
-                height: 30,
-                width: 30,
-              ),
-              const SizedBox(width: 5),
+              // CustomImageView(
+              //   imagePath: Images.coin_dollar,
+              //   fit: BoxFit.contain,
+              //   height: 30,
+              //   width: 30,
+              // ),
+              // const SizedBox(width: 5),
               AutoSizeText(
                 "15 000",
                 maxLines: 1,
@@ -153,8 +153,10 @@ class _MyProfitModalState extends State<MyProfitModal> {
             boutonStyle: true,
             claimed: () {
               RewardAnimation.show(context);
-              _spinRewardManager.claimReward().then((value) {
-                RewardAnimation.hide(context);
+              _spinRewardManager.claimReward().whenComplete(() {
+                Future.delayed(Duration(seconds: 3), () {
+                  RewardAnimation.hide(context);
+                });
               });
             })
       ]),
