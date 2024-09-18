@@ -87,7 +87,7 @@ class _MyProfitWidgetState extends State<MyProfitWidget> {
         (hours == 0 && minutes == 0 && seconds == 0) ? true : false;
     return !widget.boutonStyle
         ? Positioned(
-            top: 130,
+            top: 140,
             left: 0,
             child: /*ShakeAnimation(
                 child: */
