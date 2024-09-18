@@ -94,10 +94,10 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
               onTap: () {
                 print("show spin");
                 //if (canClaimed && !widget.boutonStyle) {
-                  WheelspinFortuneModal.show(
-                    context,
-                  );
-               // }
+                WheelspinFortuneModal.show(
+                  context,
+                );
+                // }
               },
               child: PointerInterceptor(
                 debug: false,
@@ -163,6 +163,7 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
             },
             child: Container(
               height: 50,
+              width: MediaQuery.of(context).size.width * 0.8,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: Colors.white, width: 1.2),
