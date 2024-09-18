@@ -20,6 +20,7 @@ class Images {
 
   //OTHERS
   static String gift = "$ressourcePath/gift.png";
+  static String gold = "$ressourcePath/gold.png";
   static String dailyCalendar = "$ressourcePath/availability.png";
   static String coin = "$ressourcePath/coin.png";
   static String coin_dollar = "$ressourcePath/coin_dollar.png";

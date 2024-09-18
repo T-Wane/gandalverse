@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:gandalverse/animations/shakeAnimation.dart';
 import 'package:gandalverse/components/default_btn.dart';
+import 'package:gandalverse/core/repositories/myProfitRepository.dart';
 import 'package:gandalverse/core/repositories/spinRewardRepository.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
@@ -13,22 +14,20 @@ import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
-import '../wheelSpin_fortune_modal.dart';
-
-class SmallSpinWidget extends StatefulWidget {
-  SmallSpinWidget({super.key, this.boutonStyle = false, this.rollWheel});
+class MyProfitWidget extends StatefulWidget {
+  MyProfitWidget({super.key, this.boutonStyle = false, this.claimed});
 
   bool boutonStyle;
-  VoidCallback? rollWheel;
+  VoidCallback? claimed;
 
   @override
-  State<SmallSpinWidget> createState() => _SmallSpinWidgetState();
+  State<MyProfitWidget> createState() => _MyProfitWidgetState();
 }
 
-class _SmallSpinWidgetState extends State<SmallSpinWidget> {
+class _MyProfitWidgetState extends State<MyProfitWidget> {
   late Timer _timer;
 
-  SpinRewardManager _spinRewardManager = getIt<SpinRewardManager>();
+  MyProfitManager _myProfitManager = getIt<MyProfitManager>();
   Map<String, int> _timeRemaining = {'hours': 0, 'minutes': 0, 'seconds': 0};
 
   @override
@@ -39,7 +38,7 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
   }
 
   void _startTimer() {
-    checkSpinIsAvailable();
+    checkProfitIsAvailable();
     _updateTimeRemaining(); // Mettre à jour immédiatement
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       _updateTimeRemaining(); // Mettre à jour chaque seconde
@@ -47,12 +46,12 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
   }
 
   void _updateTimeRemaining() async {
-    _timeRemaining = await _spinRewardManager.getTimeRemaining();
+    _timeRemaining = await _myProfitManager.getTimeRemaining();
     setState(() {});
   }
 
-  void checkSpinIsAvailable() async {
-    await _spinRewardManager.isRewardAvailable();
+  void checkProfitIsAvailable() async {
+    await _myProfitManager.canClaimedProfit();
   }
 
   @override
@@ -87,16 +86,17 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
         (hours == 0 && minutes == 0 && seconds == 0) ? true : false;
     return !widget.boutonStyle
         ? Positioned(
-            top: 70,
+            top: 110,
             left: 0,
-            child: ShakeAnimation(
-                child: GestureDetector(
+            child: /*ShakeAnimation(
+                child: */
+                GestureDetector(
               onTap: () {
                 print("show spin");
                 //if (canClaimed && !widget.boutonStyle) {
-                WheelspinFortuneModal.show(
-                  context,
-                );
+                // WheelspinFortuneModal.show(
+                //   context,
+                // );
                 // }
               },
               child: PointerInterceptor(
@@ -108,60 +108,31 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Card(
-                          elevation: 1.0,
-                          shadowColor: Themecolors.greyDeep.withOpacity(0.5),
+                          elevation: 0.0,
+                          color: Colors.transparent,
+                          //  shadowColor: Themecolors.greyDeep.withOpacity(0.5),
                           surfaceTintColor: Colors.transparent,
-                          shape: const CircleBorder(
-                              /* side:
-                            BorderSide(width: 1.0, color: Themecolors.ColorWhite)*/
-                              ),
+                          // shape: const CircleBorder(
+                          //     /* side:
+                          //   BorderSide(width: 1.0, color: Themecolors.ColorWhite)*/
+                          //     ),
                           child: CustomImageView(
-                            imagePath: Images.spin,
+                            imagePath: Images.gold,
                             height: 40,
                             width: 40,
-                            radius: BorderRadius.circular(20),
-                            fit: BoxFit.cover,
+                            //radius: BorderRadius.circular(20),
+                            fit: BoxFit.contain,
                           ),
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color:
-                                      Themecolors.ColorWhite.withOpacity(0.2),
-                                  width: 1.0),
-                              color: Themecolors.ColorWhite,
-                              borderRadius: BorderRadius.circular(8.0)),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 5, vertical: 5),
-                          child: RichText(
-                            textAlign: TextAlign.center,
-                            text: TextSpan(children: [
-                              TextSpan(
-                                text:
-                                    (hours > 0 && minutes == 0 && seconds == 0)
-                                        ? displayTime.trim()
-                                        : "Lancer",
-                                style: const TextStyle(
-                                  color: Themecolors.greyDeep,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ]),
-                          ),
-                        )
                       ]),
                 ),
               ),
-            )),
-          )
+            ) //),
+            )
         : GestureDetector(
             onTap: () {
-              if (canClaimed) {
-                widget.rollWheel?.call();
-                _spinRewardManager
-                    .claimReward()
-                    .whenComplete(() => _startTimer());
-              }
+              widget.claimed?.call();
+              _myProfitManager.claimProfit().whenComplete(() => _startTimer());
             },
             child: Container(
               height: 50,
