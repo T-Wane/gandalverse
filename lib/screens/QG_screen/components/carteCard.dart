@@ -282,205 +282,203 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
     return Consumer<UserProvider>(builder: (context, _userProvider, child) {
       return Padding(
         padding: const EdgeInsets.all(5.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              widget.carte.nom,
-              maxLines: 1,
-              textAlign: TextAlign.center,
-              textDirection: TextDirection.ltr,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                  fontSize: 15,
-                  color: widget.Color3,
-                  fontFamily: "Aller",
-                  fontWeight: FontWeight.w500),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            // AutoSizeText(
-            //   widget.carte.carteId ?? '--',
-            //   maxLines: 1,
-            //   textAlign: TextAlign.right,
-            //   style: Theme.of(context).textTheme.labelSmall!.copyWith(
-            //         color: Colors.red,
-            //         fontWeight: FontWeight.w400,
-            //       ),
-            // ),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          Text(
+            widget.carte.nom,
+            maxLines: 1,
+            textAlign: TextAlign.center,
+            textDirection: TextDirection.ltr,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+                fontSize: 15,
+                color: widget.Color3,
+                fontFamily: "Aller",
+                fontWeight: FontWeight.w500),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          // AutoSizeText(
+          //   widget.carte.carteId ?? '--',
+          //   maxLines: 1,
+          //   textAlign: TextAlign.right,
+          //   style: Theme.of(context).textTheme.labelSmall!.copyWith(
+          //         color: Colors.red,
+          //         fontWeight: FontWeight.w400,
+          //       ),
+          // ),
+          AutoSizeText(
+            widget.carte.description,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: widget.Color3.withOpacity(0.95),
+                  fontWeight: FontWeight.normal,
+                ),
+          ),
+          if ((widget.carte.competences?.toList() ?? []).isNotEmpty) ...[
             AutoSizeText(
-              widget.carte.description,
+              "Compétences: ${widget.carte.competences?.join(" - ")}",
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.labelSmall!.copyWith(
                     color: widget.Color3.withOpacity(0.95),
                     fontWeight: FontWeight.normal,
                   ),
-            ),
-            if ((widget.carte.competences?.toList() ?? []).isNotEmpty) ...[
-              AutoSizeText(
-                "Compétences: ${widget.carte.competences?.join(" - ")}",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                      color: widget.Color3.withOpacity(0.95),
-                      fontWeight: FontWeight.normal,
-                    ),
-              )
-            ],
-            const SizedBox(
-              height: 5,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Grade Apporté : ",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w300,
-                        color: widget.Color3,
-                        fontFamily: "Aller",
-                        fontSize: 12),
-                  ),
-                  const SizedBox(
-                    width: 2,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      AutoSizeText(
-                        widget.carte.forceFormate,
-                        maxLines: 1,
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: widget.Color3,
-                            fontWeight: FontWeight.normal,
-                            decoration: TextDecoration.lineThrough),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
-                        width: 50,
-                        height: 20,
-                        child: CustomImageView(
-                          imagePath: Images.right_arrow,
-                          fit: BoxFit.contain,
-                          height: 20,
-                          width: 20,
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox.square(
-                            dimension: 25,
-                            child: Stack(
-                              children: [
-                                CustomImageView(
-                                  imagePath: Images.coin_dollar,
-                                  fit: BoxFit.contain,
-                                  height: 25,
-                                  width: 25,
-                                ),
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: CustomImageView(
-                                    imagePath: Images.up_arrow,
-                                    fit: BoxFit.contain,
-                                    height: 15,
-                                    width: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(width: 5),
-                          AutoSizeText(
-                            widget.carte
-                                .formatValue(widget.carte.forceNextReelle),
-                            maxLines: 1,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: widget.Color3,
-                              fontWeight: FontWeight.normal,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            //  AutoSizeText(
-            //     "local coins ${widget.carte.getPrix}",
-            //     maxLines: 1,
-            //     presetFontSizes: const [22, 20, 18, 15, 14],
-            //     textAlign: TextAlign.center,
-            //     style: TextStyle(
-            //       color: widget.Color3,
-            //       fontWeight: FontWeight.bold,
-            //     ),
-            //   ),
-            const SizedBox(
-              height: 8,
-            ),
-            Row(
+            )
+          ],
+          const SizedBox(
+            height: 5,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CustomImageView(
-                  imagePath: Images.coin_dollar,
-                  fit: BoxFit.contain,
-                  height: 30,
-                  width: 30,
-                ),
-                const SizedBox(width: 5),
-                AutoSizeText(
-                  "${widget.carte.prixReel}",
-                  maxLines: 1,
-                  presetFontSizes: const [22, 20, 18, 15, 14],
-                  textAlign: TextAlign.center,
+                Text(
+                  "Grade Apporté : ",
                   style: TextStyle(
-                    color: widget.Color3,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      fontWeight: FontWeight.w300,
+                      color: widget.Color3,
+                      fontFamily: "Aller",
+                      fontSize: 12),
+                ),
+                const SizedBox(
+                  width: 2,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AutoSizeText(
+                      widget.carte.forceFormate,
+                      maxLines: 1,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: widget.Color3,
+                          fontWeight: FontWeight.normal,
+                          decoration: TextDecoration.lineThrough),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      width: 50,
+                      height: 20,
+                      child: CustomImageView(
+                        imagePath: Images.right_arrow,
+                        fit: BoxFit.contain,
+                        height: 20,
+                        width: 20,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox.square(
+                          dimension: 25,
+                          child: Stack(
+                            children: [
+                              CustomImageView(
+                                imagePath: Images.coin_dollar,
+                                fit: BoxFit.contain,
+                                height: 25,
+                                width: 25,
+                              ),
+                              Align(
+                                alignment: Alignment.topLeft,
+                                child: CustomImageView(
+                                  imagePath: Images.up_arrow,
+                                  fit: BoxFit.contain,
+                                  height: 15,
+                                  width: 15,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 5),
+                        AutoSizeText(
+                          widget.carte
+                              .formatValue(widget.carte.forceNextReelle),
+                          maxLines: 1,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: widget.Color3,
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),
+          ),
+          //  AutoSizeText(
+          //     "local coins ${widget.carte.getPrix}",
+          //     maxLines: 1,
+          //     presetFontSizes: const [22, 20, 18, 15, 14],
+          //     textAlign: TextAlign.center,
+          //     style: TextStyle(
+          //       color: widget.Color3,
+          //       fontWeight: FontWeight.bold,
+          //     ),
+          //   ),
+          const SizedBox(
+            height: 8,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomImageView(
+                imagePath: Images.coin_dollar,
+                fit: BoxFit.contain,
+                height: 30,
+                width: 30,
+              ),
+              const SizedBox(width: 5),
+              AutoSizeText(
+                "${widget.carte.prixReel}",
+                maxLines: 1,
+                presetFontSizes: const [22, 20, 18, 15, 14],
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: widget.Color3,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          if (widget.contrainteMessage != null) ...[
+            Text(
+              widget.contrainteMessage ?? 'Verrouillée',
+              maxLines: 1,
+              textAlign: TextAlign.center,
+              textDirection: TextDirection.ltr,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 13,
+                color: widget.Color3,
+                fontFamily: "Aller",
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             const SizedBox(
               height: 5,
             ),
-            if (widget.contrainteMessage != null) ...[
-              Text(
-                widget.contrainteMessage ?? 'Verrouillée',
-                maxLines: 1,
-                textAlign: TextAlign.center,
-                textDirection: TextDirection.ltr,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 13,
-                  color: widget.Color3,
-                  fontFamily: "Aller",
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              const SizedBox(
-                height: 5,
-              ),
-            ],
-            if (!widget.isUnlocked) ...[
-              DefaultButton(
-                  backColor: Colors.grey.shade200,
-                  text: 'Go',
-                  elevation: 1.0,
-                  textColor: Colors.grey.shade500,
-                  fontSize: 15,
-                  height: 50,
-                  press: () async {})
-            ] else ...[
-              StreamBuilder<bool>(
+          ],
+          if (!widget.isUnlocked) ...[
+            DefaultButton(
+                backColor: Colors.grey.shade200,
+                text: 'Go',
+                elevation: 1.0,
+                textColor: Colors.grey.shade500,
+                fontSize: 15,
+                height: 50,
+                press: () async {})
+          ] else ...[
+            StreamBuilder<bool>(
                 stream: widget.qgService.loadingStream,
                 builder: (context, snapshot) {
                   if (snapshot.data == true) {
@@ -539,17 +537,15 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                                       ..valeurContrainte =
                                           widget.carte.valeurContrainte))
                                 .whenComplete(() {
-                              //Navigator.of(context).pop();
+                              Navigator.of(context).pop();
                               setState(() {});
                             });
                           }
                         });
                   }
-                },
-              ),
-            ]
-          ],
-        ),
+                }),
+          ]
+        ]),
       );
     });
   }
