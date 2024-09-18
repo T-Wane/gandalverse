@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+    <base href="/starbrigVerse/" />
+
+    <meta charset="UTF-8" />
+    <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
+    <meta name="description" content="Go GandalVerse" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+
+
+    <!-- iOS meta tags & icons -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="gandalverse" />
+    <link rel="apple-touch-icon" href="icons/Icon-192.png" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <title>Go GV</title>
+    <link rel="manifest" href="manifest.json" />
+
+    <script>
+      // The value below is injected by flutter build, do not touch.
+      const serviceWorkerVersion = "839738655";
+    </script>
+    <!-- This script adds the flutter initialization JS code -->
+    <script src="flutter.js" defer></script>
+    <script src="https://telegram.org/js/telegram-web-app.js" defer></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1bOgxhKr9Ef4uGyo7RL_4QyNSsKRuA3k"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@googlemaps/markerclusterer@2.5.3/dist/index.umd.min.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+    -->
+
+  <!-- CSS Styles -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: url('./assets/back_new_verse.jpg') no-repeat center center;
+      /* background-size: cover; */
+      /* object-fit: contain; 
+      overflow: hidden; */
+      /* background-size: 100% auto;  L'image s'adapte à la largeur, et garde les proportions en hauteur */
+      /*overflow: hidden; Pour éviter tout débordement */
+      background-size: 100% 100%; /* Étend l'image à toute la largeur et hauteur de l'écran */
+      overflow: hidden; /* Empêche le débordement */
+    }
+
+    .progress-bar {
+      width: 100vw;
+      position: absolute;
+      top: 0;
+      background-color: #f3f3f3;
+      border-radius: 4px;
+    }
+
+    .progress-bar-fill {
+      height: 5px;
+      background-color: #143d58;
+      border-radius: 4px;
+      animation: progress 5s ease-in-out forwards;
+    }
+
+    @keyframes progress {
+      0% {
+        width: 50%;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+
+    .circular-progress-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      bottom: 5px; /* Adjust position as needed */
+      width: 100vw;
+
+  
+    }
+ 
+
+    .circular-progress {
+      border: 5px solid #f3f3f3;
+      border-top: 5px solid #ffffff;
+      border-radius: 50%;
+      width: 50;
+      height: 50;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+     
+  </style>
+</head>
+<body>
+  <div id="loading_indicator" class="container">
+    <!-- Progress Bar on Top -->
+    <div class="progress-bar">
+      <div class="progress-bar-fill"></div>
+    </div>
+
+    <!-- Circular Progress Indicator at the Bottom -->
+    <div class="circular-progress-container">
+      <div class="circular-progress"></div>
+    </div>  
+    <!-- <div class="loading-text">Chargement...</div> -->
+  </div>
+
+  <script src="flutter_bootstrap.js" async></script>
+
+  <!-- Script to remove Splash Screen after 10 seconds -->
+  <script>
+    window.onload = function() {
+      setTimeout(() => {
+        var loadingIndicator = document.getElementById('loading_indicator');
+        if (loadingIndicator) loadingIndicator.remove();
+      }, 10000); // Adjust the delay as needed
+    }
+  </script>
+    <script defer>
+      window.addEventListener("load", function (ev) {
+          // Récupère les paramètres d'initialisation de l'application Telegram
+        const startParam = window.Telegram.WebApp.initDataUnsafe.start_param;
+        
+        // Utilisez startParam pour gérer la logique de parrainage ou autre
+        console.log('Paramètre de démarrage :', startParam);
+        // Download main.dart.js
+        _flutter.loader.loadEntrypoint({
+          serviceWorker: {
+            serviceWorkerVersion: serviceWorkerVersion,
+          },
+          onEntrypointLoaded: function (engineInitializer) {
+            engineInitializer.initializeEngine().then(function (appRunner) {
+              appRunner.runApp();
+            });
+          },
+        });
+ 
+
+      });
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"></script>
+    <!-- <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyBq--4t1eJlvVRGq-BK6n4iwqzLqYXSzis",
+        authDomain: "gandalversego.firebaseapp.com",
+        projectId: "gandalversego",
+        storageBucket: "gandalversego.appspot.com",
+        messagingSenderId: "366940087617",
+        appId: "1:366940087617:web:876ada4485b421a10e6dc0",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script> -->
+    <script type="module" defer>
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyBq--4t1eJlvVRGq-BK6n4iwqzLqYXSzis",
+        authDomain: "gandalversego.firebaseapp.com",
+        projectId: "gandalversego",
+        storageBucket: "gandalversego.appspot.com",
+        messagingSenderId: "366940087617",
+        appId: "1:366940087617:web:876ada4485b421a10e6dc0"
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+    </script>
+  </body>
+</html>
