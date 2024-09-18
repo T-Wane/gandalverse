@@ -393,7 +393,7 @@ class _UserLevelProgressState extends State<UserLevelProgress> {
       }
     }
 
-    // S'il n'y a aucun niveau suivant, 
+    // S'il n'y a aucun niveau suivant,
     // le nextLevelCoinsRequired est égal aux pièces requises pour le niveau actuel
     final nextLevelCoinsRequired = nextLevelDetails.isNotEmpty
         ? nextLevelDetails['coins_required'] as int

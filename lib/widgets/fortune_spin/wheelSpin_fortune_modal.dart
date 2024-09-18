@@ -32,41 +32,43 @@ class WheelspinFortuneModal extends StatefulWidget {
             topStart: Radius.circular(15),
           ),
         ),
-        builder: (context) => BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 2, sigmaY: 4),
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            decoration: BoxDecoration(
-                color: Colors.purpleAccent.withOpacity(0.6),
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.purpleAccent.withOpacity(0.5),
-                      offset: const Offset(1, 1),
-                      blurRadius: 10,
-                      spreadRadius: 4)
-                ]),
+        builder: (context) => PointerInterceptor(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 2, sigmaY: 4),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
-              margin: const EdgeInsets.only(top: 2),
-              padding: const EdgeInsetsDirectional.symmetric(
-                horizontal: 5,
-                vertical: 5,
-              ),
               decoration: BoxDecoration(
-                color: backColor,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
+                  color: Colors.purpleAccent.withOpacity(0.6),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(15),
+                    topRight: Radius.circular(15),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                        color: Colors.purpleAccent.withOpacity(0.5),
+                        offset: const Offset(1, 1),
+                        blurRadius: 10,
+                        spreadRadius: 4)
+                  ]),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                margin: const EdgeInsets.only(top: 2),
+                padding: const EdgeInsetsDirectional.symmetric(
+                  horizontal: 5,
+                  vertical: 5,
                 ),
-              ),
-              child: Padding(
-                padding: MediaQuery.of(context).viewInsets,
-                child: WheelspinFortuneModal(
-                  key: key,
+                decoration: BoxDecoration(
+                  color: backColor,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(15),
+                    topRight: Radius.circular(15),
+                  ),
+                ),
+                child: Padding(
+                  padding: MediaQuery.of(context).viewInsets,
+                  child: WheelspinFortuneModal(
+                    key: key,
+                  ),
                 ),
               ),
             ),
