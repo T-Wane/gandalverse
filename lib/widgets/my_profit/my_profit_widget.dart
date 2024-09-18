@@ -12,6 +12,7 @@ import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
+import 'package:gandalverse/widgets/my_profit/my_profit_modal.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
 class MyProfitWidget extends StatefulWidget {
@@ -94,9 +95,9 @@ class _MyProfitWidgetState extends State<MyProfitWidget> {
               onTap: () {
                 print("show spin");
                 //if (canClaimed && !widget.boutonStyle) {
-                // WheelspinFortuneModal.show(
-                //   context,
-                // );
+                MyProfitModal.show(
+                  context,
+                );
                 // }
               },
               child: PointerInterceptor(

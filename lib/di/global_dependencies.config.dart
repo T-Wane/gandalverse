@@ -12,25 +12,26 @@ import 'package:gandalverse/core/providers/charge_provider.dart' as _i7;
 import 'package:gandalverse/core/providers/user_provider.dart' as _i10;
 import 'package:gandalverse/core/repositories/dailyRewardRepository.dart'
     as _i12;
+import 'package:gandalverse/core/repositories/myProfitRepository.dart' as _i13;
 import 'package:gandalverse/core/repositories/social_link_repo/social_linkRespository.dart'
     as _i11;
 import 'package:gandalverse/core/repositories/spinRewardRepository.dart'
     as _i14;
 import 'package:gandalverse/core/repositories/tabAndEarnRepository.dart'
-    as _i13;
+    as _i15;
 import 'package:gandalverse/core/repositories/user_repository.dart' as _i9;
 import 'package:gandalverse/core/services/explorer_service/explorer_service.dart'
     as _i8;
 import 'package:gandalverse/core/services/QG_services/equipe_service.dart'
-    as _i15;
-import 'package:gandalverse/core/services/QG_services/partenaire_service.dart'
     as _i16;
+import 'package:gandalverse/core/services/QG_services/partenaire_service.dart'
+    as _i17;
 import 'package:gandalverse/data/firebase_client.dart' as _i6;
 import 'package:gandalverse/data/shared_preferences/shared_preferences_client.dart'
     as _i3;
 import 'package:gandalverse/data/telegram_client.dart' as _i5;
 import 'package:gandalverse/data/tg_storage/telegram_cloudStorage.dart' as _i4;
-import 'package:gandalverse/di/global_dependencies_module.dart' as _i17;
+import 'package:gandalverse/di/global_dependencies_module.dart' as _i18;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -74,16 +75,18 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i11.SocialLinkService(gh<_i10.UserProvider>()));
     gh.singleton<_i12.DailyRewardManager>(
         () => _i12.DailyRewardManager(gh<_i10.UserProvider>()));
-    gh.singleton<_i13.TapAndEarnRepository>(
-        () => _i13.TapAndEarnRepository(gh<_i10.UserProvider>()));
+    gh.singleton<_i13.MyProfitManager>(
+        () => _i13.MyProfitManager(gh<_i10.UserProvider>()));
     gh.singleton<_i14.SpinRewardManager>(
         () => _i14.SpinRewardManager(gh<_i10.UserProvider>()));
-    gh.lazySingleton<_i15.EquipeService>(
-        () => _i15.EquipeService(gh<_i10.UserProvider>()));
-    gh.lazySingleton<_i16.PartenaireService>(
-        () => _i16.PartenaireService(gh<_i10.UserProvider>()));
+    gh.singleton<_i15.TapAndEarnRepository>(
+        () => _i15.TapAndEarnRepository(gh<_i10.UserProvider>()));
+    gh.lazySingleton<_i16.EquipeService>(
+        () => _i16.EquipeService(gh<_i10.UserProvider>()));
+    gh.lazySingleton<_i17.PartenaireService>(
+        () => _i17.PartenaireService(gh<_i10.UserProvider>()));
     return this;
   }
 }
 
-class _$GlobalDependenciesModule extends _i17.GlobalDependenciesModule {}
+class _$GlobalDependenciesModule extends _i18.GlobalDependenciesModule {}
