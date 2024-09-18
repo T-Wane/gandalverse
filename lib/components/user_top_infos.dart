@@ -373,7 +373,7 @@ class _UserLevelProgressState extends State<UserLevelProgress> {
   Widget build(BuildContext context) {
     // Récupérer les détails du niveau actuel
     final currentLevelDetails = levels.values.firstWhere(
-      (level) => level['index'] == (widget.userLevelIndex + 1),
+      (level) => level['index'] == (widget.userLevelIndex),
       orElse: () => {},
     );
 
@@ -393,18 +393,20 @@ class _UserLevelProgressState extends State<UserLevelProgress> {
       }
     }
 
-    // Si aucun niveau suivant, le nextLevelCoinsRequired est égal aux pièces requises pour le niveau actuel
+    // S'il n'y a aucun niveau suivant, 
+    // le nextLevelCoinsRequired est égal aux pièces requises pour le niveau actuel
     final nextLevelCoinsRequired = nextLevelDetails.isNotEmpty
         ? nextLevelDetails['coins_required'] as int
         : currentLevelCoinsRequired;
 
-    // Si les coins de l'utilisateur sont inférieurs aux coins requis du niveau actuel
+    // Si les coins de l'utilisateur sont inférieurs aux coins requis du niveau suivant
     // Calculer la progression entre 0 et le currentLevelCoinsRequired
-    if (widget.userCoins < currentLevelCoinsRequired) {
-      final progress = widget.userCoins / currentLevelCoinsRequired;
+    if (widget.userCoins < nextLevelCoinsRequired) {
+      final progress = widget.userCoins / nextLevelCoinsRequired;
 
       print("widget.userCoins : ${widget.userCoins}");
       print("currentLevelCoinsRequired : $currentLevelCoinsRequired");
+      print("nextLevelCoinsRequired : $nextLevelCoinsRequired");
       print("progress : $progress");
 
       return LinearPercentIndicator(
@@ -417,7 +419,7 @@ class _UserLevelProgressState extends State<UserLevelProgress> {
     }
 
     // Si l'utilisateur a plus de coins que le minimum requis pour le niveau actuel
-    final progress = (widget.userCoins - currentLevelCoinsRequired) /
+/*    final progress = (widget.userCoins - currentLevelCoinsRequired) /
         (nextLevelCoinsRequired - currentLevelCoinsRequired);
 
     // Clamp la progression entre 0 et 1
@@ -428,9 +430,9 @@ class _UserLevelProgressState extends State<UserLevelProgress> {
     print("nextLevelCoinsRequired : $nextLevelCoinsRequired");
     print("progress : $progress");
     print("clampedProgress : $clampedProgress");
-
+*/
     return LinearPercentIndicator(
-      percent: clampedProgress,
+      percent: 1,
       backgroundColor: Colors.grey.shade200.withOpacity(0.2),
       progressColor: Colors.deepPurple.shade400,
       lineHeight: 5.0,
