@@ -273,16 +273,18 @@ class UserRepository {
           'nom': carte.nom,
           'categorie_carte':
               (qgService is EquipeService) ? "Equipe Card" : "Paternaire Card",
-          'niveau': 0,
+          'niveau': 1,
           'est_achete': true,
-          'profilParHeure': carte.force * carte.tauxAugmentationForce,
+          'profilParHeure': carte.forceNextReelle // passer de 0 à la force n+1 de la carte
+          //Raison pour laquelle l'user achete la carte
         });
 
         // Mise à jour des coins de l'utilisateur
+        // incrementer de la différence entre la grade actuelle de la carte et le next grade
         transaction.update(userRef, {
           'coins': userCoins - cardPrice,
           'profitPerHour': userDoc['profitPerHour'] +
-              (carte.force * carte.tauxAugmentationForce)
+              (carte.forceNextReelle - carte.forceReelle)
         });
 
         // Mise à jour du niveau de l'utilisateur en local
@@ -367,25 +369,20 @@ class UserRepository {
 
       // Récupération du document de la carte dans la sous-collection de l'utilisateur
       DocumentSnapshot userCardDoc = await transaction.get(userCardRef);
-
-      // Calcul de la nouvelle force et du profit par heure après la mise à jour du niveau
-      double newForce = carteData.forceReelle;
-      double newProfit =
-          carteData.forceReelle * carteData.tauxAugmentationForce;
+ 
 
       // Mise à jour du niveau de la carte et du profil de la carte
       transaction.update(userCardRef, {
-        'niveau': carteData.niveau,
-        'profilParHeure':
-            newProfit, // Mise à jour du profit avec la nouvelle force
-        //'force': newForce, // Mise à jour de la force locale
+        'niveau': carteData.niveau+1,
+        'profilParHeure': carteData.forceNextReelle
+           , // Mise à jour du profit avec la nouvelle force 
       });
 
       // Mise à jour des coins et du profit par heure de l'utilisateur
       transaction.update(userRef, {
         'coins': userCoins - cardPrice,
         'profitPerHour':
-            userDoc['profitPerHour'] + newProfit, // Ajustement du profit
+            userDoc['profitPerHour'] + (carteData.forceNextReelle - carteData.forceReelle), // Ajustement du profit
       });
       isOk = true;
       // Mise à jour des données de la carte dans le service local

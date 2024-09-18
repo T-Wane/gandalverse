@@ -20,6 +20,7 @@ class SmallSpinWidget extends StatefulWidget {
 
   bool boutonStyle;
   VoidCallback? rollWheel;
+
   @override
   State<SmallSpinWidget> createState() => _SmallSpinWidgetState();
 }
@@ -38,6 +39,7 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
   }
 
   void _startTimer() {
+    checkSpinIsAvailable();
     _updateTimeRemaining(); // Mettre à jour immédiatement
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       _updateTimeRemaining(); // Mettre à jour chaque seconde
@@ -47,6 +49,10 @@ class _SmallSpinWidgetState extends State<SmallSpinWidget> {
   void _updateTimeRemaining() async {
     _timeRemaining = await _spinRewardManager.getTimeRemaining();
     setState(() {});
+  }
+
+  void checkSpinIsAvailable() async {
+    await _spinRewardManager.isRewardAvailable();
   }
 
   @override

@@ -57,7 +57,7 @@ class PartenaireService extends QGService<CarteModel> {
           ..image = _card.image
           ..prix = _card.prix
           ..tauxAugmentation = _card.tauxAugmentation
-          ..niveau = purchasedCard['niveau']+1
+          ..niveau = purchasedCard['niveau']
           ..estAchete = purchasedCard['est_achete']
           ..force = _card.force
           ..tauxAugmentationForce = _card.tauxAugmentationForce
