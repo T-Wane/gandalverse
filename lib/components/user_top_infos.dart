@@ -76,21 +76,24 @@ class _userTopInfosState extends State<userTopInfos> {
   @override
   Widget build(BuildContext context) {
     return Consumer<UserProvider>(builder: (context, _userProvider, child) {
-      return Card(
-        margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
-        elevation: 1.2,
-        borderOnForeground: true,
-        surfaceTintColor: Color3.withOpacity(0.9),
-        color: Color3.withOpacity(0.9),
-        shadowColor: const Color.fromARGB(255, 151, 116, 211).withOpacity(0.5),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
-          height: 50,
-          child: PointerInterceptor(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+      return PointerInterceptor(
+        debug: false,
+        child: Card(
+          margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+          elevation: 1.2,
+          borderOnForeground: true,
+          surfaceTintColor: Color3.withOpacity(0.9),
+          color: Color3.withOpacity(0.9),
+          shadowColor:
+              const Color.fromARGB(255, 151, 116, 211).withOpacity(0.5),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
+            height: 50,
+            child: PointerInterceptor(
+              child:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 if (widget.showBackArrow) ...[
                   GestureDetector(
                     onTap: () {
@@ -144,62 +147,57 @@ class _userTopInfosState extends State<userTopInfos> {
                     ),
                   ),
                   Expanded(
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(left: 10),
-                            child: Text(
-                              //  "UserName",
-                              "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
-                              textAlign: TextAlign.left,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontFamily: "Aller",
-                                fontSize: 13,
-                                color: Colors.white,
+                    child: PointerInterceptor(
+                      debug: false,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                //  "UserName",
+                                "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
+                                textAlign: TextAlign.left,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontFamily: "Aller",
+                                  fontSize: 13,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 1,
-                          ),
-                          SizedBox(
-                            width: 120,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    "${_userProvider.getUserLevelDetails()?['title'] ?? '---'}",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w300,
-                                        color: Colors.purple.shade100,
-                                        fontFamily: "Aller",
-                                        fontSize: 10),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 1,
-                                ),
-                                UserLevelProgress(
-                                    userLevelIndex:
-                                        _userProvider.user?.level ?? 1,
-                                    userCoins: _userProvider.user?.coins ?? 0)
-                                // LinearPercentIndicator(
-                                //   percent: 0.5,
-                                //   backgroundColor:
-                                //       Colors.grey.shade200.withOpacity(0.2),
-                                //   progressColor: Colors.deepPurple.shade400,
-                                //   lineHeight: 5.0,
-                                //   barRadius: const Radius.circular(10),
-                                // ),
-                              ],
+                            const SizedBox(
+                              height: 1,
                             ),
-                          )
-                        ]),
+                            SizedBox(
+                              width: 120,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      "${_userProvider.getUserLevelDetails()?['title'] ?? '---'}",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w300,
+                                          color: Colors.purple.shade100,
+                                          fontFamily: "Aller",
+                                          fontSize: 10),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 1,
+                                  ),
+                                  UserLevelProgress(
+                                      userLevelIndex:
+                                          _userProvider.user?.level ?? 1,
+                                      userCoins: _userProvider.user?.coins ?? 0) 
+                                ],
+                              ),
+                            )
+                          ]),
+                    ),
                   ),
                 ],
                 const SizedBox(
@@ -286,7 +284,7 @@ class _userTopInfosState extends State<userTopInfos> {
                   // debug: true,
                   child: _setting(),
                 ),
-              ],
+              ]),
             ),
           ),
         ),

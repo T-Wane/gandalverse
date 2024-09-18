@@ -92,31 +92,34 @@ class _WheelspinFortuneModalState extends State<WheelspinFortuneModal> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
-      Align(alignment: Alignment.centerRight, child: closeIcon(context)),
-      Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: AutoSizeText(
-          'Roue de la Fortune',
-          maxLines: 1,
-          minFontSize: 20,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 25, color: Themecolors.Color3, fontFamily: "Aller"),
+    return PointerInterceptor(
+      debug: false,
+      child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+        Align(alignment: Alignment.centerRight, child: closeIcon(context)),
+        Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: AutoSizeText(
+            'Roue de la Fortune',
+            maxLines: 1,
+            minFontSize: 20,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 25, color: Themecolors.Color3, fontFamily: "Aller"),
+          ),
         ),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(5.0),
-        child: AutoSizeText(
-          'Tournez la roue pour gagner des jetons',
-          maxLines: 2,
-          minFontSize: 17,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 18, color: Themecolors.Color3, fontFamily: "Aller"),
+        Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: AutoSizeText(
+            'Tournez la roue pour gagner des jetons',
+            maxLines: 2,
+            minFontSize: 17,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 18, color: Themecolors.Color3, fontFamily: "Aller"),
+          ),
         ),
-      ),
-      Flexible(child: FortuneWheelWidget()),
-    ]);
+        Flexible(child: FortuneWheelWidget()),
+      ]),
+    );
   }
 }
