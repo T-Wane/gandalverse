@@ -73,13 +73,13 @@ class _ClaimLinkCoins_btnState extends State<ClaimLinkCoins_btn> {
       if (displayTime.isNotEmpty) displayTime += ':';
       displayTime += '$seconds s';
     }
-    return (!(widget.socialLinkModel.isClaimed ?? false) &&
+    return ((widget.socialLinkModel.isClaimed ?? false) == false &&
             widget.socialLinkModel.isSubscribed)
         ? DefaultButton(
             backColor: widget.socialLinkModel.canClaimReward()
                 ? Colors.purple.shade400
                 : Colors.grey.shade300,
-            text: displayTime.trim().isNotEmpty
+            text: !widget.socialLinkModel.canClaimReward()
                 ? "Récompense [${displayTime.trim()}]"
                 : "Récupérer",
             elevation: 1.0,

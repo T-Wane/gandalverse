@@ -14,7 +14,7 @@ import 'package:flutter/services.dart' show rootBundle;
 @singleton
 class SocialLinkService with ChangeNotifier {
   String socialLinksJsonPath = "assets/json/socialLinksData.json";
-  String socialLinksSaveKey = "socialLinksDataKey4";
+  String socialLinksSaveKey = "socialLinksDataKey";
 
   UserProvider userProvider;
 
@@ -268,12 +268,13 @@ class SocialLinkService with ChangeNotifier {
   Duration getTimeUntil60Minutes(SocialLinkModel link) {
     final now = DateTime.now();
 
-    final in60Minutes = link.subscribeAt!.add(Duration(minutes: 60));
+    final in60Minutes = (link.subscribeAt??DateTime.now()).add(Duration(minutes: 60));
     return in60Minutes.difference(now);
   }
 
   // Méthode pour obtenir le temps restant en heures, minutes et secondes
   Map<String, int> getTimeRemaining(SocialLinkModel link) {
+    
     final duration = getTimeUntil60Minutes(link);
     final hours = duration.inHours;
     final minutes = duration.inMinutes.remainder(60);

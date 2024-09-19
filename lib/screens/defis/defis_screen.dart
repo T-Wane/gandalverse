@@ -73,7 +73,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                       ),
                     ),
                   ),
-                  buildGoWords(),
+                 // buildGoWords(),
                   buildScanQrPartenaire(Color3: Color3),
                   // AnnonceCard(
                   //     title: 'Enigmes',

@@ -31,7 +31,7 @@ class _buildScanQrPartenaireState extends State<buildScanQrPartenaire> {
         // title: 'Scanner & Gagner',
         text: 'Scanne le QR de nos partenaires et gagne',
         reward: " 50.000",
-        isComplete: true,
+        isComplete: false,
         imagePath: Images.black_barcodescanner,
         backColors: const [
           Colors.white,
@@ -51,7 +51,7 @@ class _buildScanQrPartenaireState extends State<buildScanQrPartenaire> {
 }
 
 class ShowScanQrSheetContent extends StatelessWidget {
-    ShowScanQrSheetContent({
+  ShowScanQrSheetContent({
     super.key,
   });
 

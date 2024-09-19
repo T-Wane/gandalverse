@@ -349,10 +349,50 @@ class _ProfilDetailsContentBottomSheetState
                                                 const SizedBox(
                                                   height: 5,
                                                 ),
-                                                Expanded(
-                                                    child: _buildPlayersList(
-                                                        levelIndex: entry
-                                                            .value['index']))
+
+                                                Flexible(
+                                                    child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    CustomImageView(
+                                                      imagePath: Images.soon,
+                                                      height: 200,
+                                                      width: 200,
+                                                      fit: BoxFit.contain,
+                                                      margin:
+                                                          const EdgeInsets.all(
+                                                              10),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: AutoSizeText(
+                                                        'Bientôt...',
+                                                        maxLines: 1,
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        style: Theme.of(context)
+                                                            .textTheme
+                                                            .headlineSmall!
+                                                            .copyWith(
+                                                                color:
+                                                                    Themecolors
+                                                                        .Color3,
+                                                                fontFamily:
+                                                                    "Aller",
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )),
+                                                // Expanded(
+                                                //     child: _buildPlayersList(
+                                                //         levelIndex: entry
+                                                //             .value['index']))
                                               ]),
                                         ),
                                       ),

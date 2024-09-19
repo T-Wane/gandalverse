@@ -7,6 +7,7 @@
     "image": "assets/images/social_black/youtube.png",
     "reward": 10000.0,
     "isSubscribed": false,
+    "isClaimed": false,
     "isVisible": false
   },
   {
@@ -17,6 +18,7 @@
     "image": "assets/images/social_black/telegram.png",
     "reward": 25000.0,
     "isSubscribed": false,
+    "isClaimed": false,
     "isVisible": true
   },
   {
@@ -27,6 +29,7 @@
     "image": "assets/images/social_black/twitter.png",
     "reward": 25000.0,
     "isSubscribed": false,
+    "isClaimed": false,
     "isVisible": true
   },
   {
@@ -37,6 +40,7 @@
     "image": "assets/images/social_black/facebook.png",
     "reward": 20000.0,
     "isSubscribed": false,
+    "isClaimed": false,
     "isVisible": true
   },
   {
@@ -47,6 +51,7 @@
     "image": "assets/images/social_black/tiktok.png",
     "reward": 20000.0,
     "isSubscribed": false,
+    "isClaimed": false,
     "isVisible": true
   }
 ]

@@ -147,56 +147,60 @@ class _userTopInfosState extends State<userTopInfos> {
                     ),
                   ),
                   Expanded(
-                    child: PointerInterceptor(
-                      debug: false,
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 5),
-                              child: Text(
-                                //  "UserName",
-                                "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
-                                textAlign: TextAlign.left,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontFamily: "Aller",
-                                  fontSize: 13,
-                                  color: Colors.white,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: PointerInterceptor(
+                        debug: false,
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: 5),
+                                child: Text(
+                                  //  "UserName",
+                                  "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
+                                  textAlign: TextAlign.left,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontFamily: "Aller",
+                                    fontSize: 13,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 1,
-                            ),
-                            SizedBox(
-                              width: 120,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    child: Text(
-                                      "${_userProvider.getUserLevelDetails()?['title'] ?? '---'}",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w300,
-                                          color: Colors.purple.shade100,
-                                          fontFamily: "Aller",
-                                          fontSize: 10),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 1,
-                                  ),
-                                  UserLevelProgress(
-                                      userLevelIndex:
-                                          _userProvider.user?.level ?? 1,
-                                      userCoins: _userProvider.user?.coins ?? 0)
-                                ],
+                              const SizedBox(
+                                height: 1,
                               ),
-                            )
-                          ]),
+                              SizedBox(
+                                width: 120,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 5),
+                                      child: Text(
+                                        "${_userProvider.getUserLevelDetails()?['title'] ?? '---'}",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w300,
+                                            color: Colors.purple.shade100,
+                                            fontFamily: "Aller",
+                                            fontSize: 10),
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 1,
+                                    ),
+                                    UserLevelProgress(
+                                        userLevelIndex:
+                                            _userProvider.user?.level ?? 1,
+                                        userCoins:
+                                            _userProvider.user?.coins ?? 0)
+                                  ],
+                                ),
+                              )
+                            ]),
+                      ),
                     ),
                   ),
                 ],
@@ -226,7 +230,7 @@ class _userTopInfosState extends State<userTopInfos> {
                   ),
                 ],
                 const SizedBox(
-                  width: 4,
+                  width: 5,
                 ),
                 Row(children: [
                   CustomImageView(
@@ -291,7 +295,7 @@ class _userTopInfosState extends State<userTopInfos> {
       );
     });
   }
-  
+
   Widget _setting() => Padding(
         padding: const EdgeInsets.only(left: 2, right: 5),
         child: PopupMenuButton<int>(

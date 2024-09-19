@@ -132,7 +132,7 @@ abstract class SocialLinkModel
   double get reward; // Le champ reward est maintenant de type double
 
   @BuiltValueField(wireName: 'isSubscribed')
-  bool get isSubscribed;
+  bool get isSubscribed; 
 
   @BuiltValueField(wireName: 'isVisible')
   bool get isVisible;
@@ -172,11 +172,12 @@ abstract class SocialLinkModel
 
   // Fonction pour vérifier si l'utilisateur peut réclamer le gain
   bool canClaimReward() {
-    if (subscribeAt == null) {
+    if (subscribeAt == null || isClaimed == true) {
       return false;
     }
+    
     // Vérifier si une heure s'est écoulée depuis la souscription
     final DateTime now = DateTime.now();
-    return now.difference(subscribeAt!).inHours >= 1 && !(isClaimed ?? false);
+    return now.difference(subscribeAt!).inHours >= 1;
   }
 }

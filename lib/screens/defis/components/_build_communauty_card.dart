@@ -131,13 +131,7 @@ class _buildCommunautyCardState extends State<buildCommunautyCard>
                       height: 5,
                     ),
                     DefaultButton(
-                      backColor:
-                          /* widget.socialLinkModel.subscriptionLink.trim() ==
-                                      '' ||
-                                  widget.socialLinkModel.isSubscribed
-                              ? Colors.grey.shade300
-                              :*/
-                          Colors.purple.shade400,
+                      backColor: Colors.purple.shade400,
                       text: 'Rejoindre',
                       elevation: 1.0,
                       textColor: Colors.white,
@@ -147,6 +141,7 @@ class _buildCommunautyCardState extends State<buildCommunautyCard>
                         /*if (widget.socialLinkModel.subscriptionLink.trim() !=
                                 '' ||
                             !widget.socialLinkModel.isSubscribed) {*/
+                        Navigator.of(context).pop();
                         _linkService.openLinkAndUpdateStatus(
                             widget.socialLinkModel.id,
                             widget.socialLinkModel.subscriptionLink);
