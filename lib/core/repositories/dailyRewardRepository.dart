@@ -12,7 +12,7 @@ class DailyRewardManager {
 
   DailyRewardManager(this._userProvider);
 
-  Future<int> getCurrentDay() async {
+  /*Future<int> getCurrentDay() async {
     final prefs = await SharedPreferences.getInstance();
     final lastDateStr = prefs.getString(_lastLoginDateKey);
     final lastDay = prefs.getInt(_currentDayKey) ?? 1;
@@ -35,6 +35,44 @@ class DailyRewardManager {
     } else if (difference > 1) {
       currentDay = 1;
       // Réinitialiser l'état de la récompense si l'utilisateur a manqué plusieurs jours
+      await prefs.setBool(_isRewardClaimedKey, false);
+    } else {
+      currentDay = lastDay;
+    }
+
+    await prefs.setString(_lastLoginDateKey, now.toIso8601String());
+    await prefs.setInt(_currentDayKey, currentDay);
+
+    return currentDay;
+  }*/
+
+   // Méthode pour extraire la date au format dd-mm-yyyy
+  String _formatDate(DateTime date) {
+    return '${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year}';
+  }
+
+  Future<int> getCurrentDay() async {
+    final prefs = await SharedPreferences.getInstance();
+    final lastDateStr = prefs.getString(_lastLoginDateKey);
+    final lastDay = prefs.getInt(_currentDayKey) ?? 1;
+
+    DateTime lastLoginDate;
+    if (lastDateStr != null) {
+      lastLoginDate = DateTime.parse(lastDateStr);
+    } else {
+      lastLoginDate = DateTime.now();
+    }
+
+    final now = DateTime.now();
+
+    // Comparer les dates au format dd-mm-yyyy
+    final lastDateFormatted = _formatDate(lastLoginDate);
+    final nowDateFormatted = _formatDate(now);
+
+    int currentDay;
+    if (lastDateFormatted != nowDateFormatted) {
+      // Le jour a changé, donc réinitialiser le jour et l'état de la récompense
+      currentDay = (lastDay % 7) + 1;
       await prefs.setBool(_isRewardClaimedKey, false);
     } else {
       currentDay = lastDay;
