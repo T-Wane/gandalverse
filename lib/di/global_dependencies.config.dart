@@ -14,14 +14,14 @@ import 'package:gandalverse/core/providers/user_provider.dart' as _i12;
 import 'package:gandalverse/core/repositories/dailyRewardRepository.dart'
     as _i14;
 import 'package:gandalverse/core/repositories/myProfitRepository.dart' as _i15;
-import 'package:gandalverse/core/repositories/playersRepository.dart' as _i10;
+import 'package:gandalverse/core/repositories/playersRepository.dart' as _i9;
 import 'package:gandalverse/core/repositories/social_link_repo/social_linkRespository.dart'
     as _i13;
 import 'package:gandalverse/core/repositories/spinRewardRepository.dart'
     as _i16;
 import 'package:gandalverse/core/repositories/tabAndEarnRepository.dart'
     as _i17;
-import 'package:gandalverse/core/repositories/user_repository.dart' as _i9;
+import 'package:gandalverse/core/repositories/user_repository.dart' as _i10;
 import 'package:gandalverse/core/services/explorer_service/explorer_service.dart'
     as _i8;
 import 'package:gandalverse/core/services/QG_services/equipe_service.dart'
@@ -67,15 +67,15 @@ extension GetItInjectableX on _i1.GetIt {
     );
     gh.singleton<_i7.ChargeManager>(() => _i7.ChargeManager());
     gh.singleton<_i8.ExplorerService>(() => _i8.ExplorerService());
-    gh.lazySingleton<_i9.UserRepository>(
-        () => _i9.UserRepository(gh<_i4.TelegramCloudStorage>()));
-    gh.lazySingleton<_i10.PlayerRepository>(
-        () => _i10.PlayerRepository(gh<_i4.TelegramCloudStorage>()));
+    gh.lazySingleton<_i9.PlayerRepository>(
+        () => _i9.PlayerRepository(gh<_i4.TelegramCloudStorage>()));
+    gh.lazySingleton<_i10.UserRepository>(
+        () => _i10.UserRepository(gh<_i4.TelegramCloudStorage>()));
     gh.singleton<_i11.PlayerProvider>(
-        () => _i11.PlayerProvider(gh<_i10.PlayerRepository>()));
+        () => _i11.PlayerProvider(gh<_i9.PlayerRepository>()));
     gh.singleton<_i12.UserProvider>(() => _i12.UserProvider(
           gh<_i5.TelegramClient>(),
-          gh<_i9.UserRepository>(),
+          gh<_i10.UserRepository>(),
         ));
     gh.singleton<_i13.SocialLinkService>(
         () => _i13.SocialLinkService(gh<_i12.UserProvider>()));
