@@ -100,7 +100,7 @@ abstract class QGService<T> {
         } else {
           // Si l'élément JSON existe dans les données locales, on garde l'élément local (on pourrait le mettre à jour selon certaines conditions)
           // mergedData.add(localItem); // L'élément local reste inchangé dans ce cas
-          print("L'élément local reste inchangé dans ce cas");
+      //print("L'élément local reste inchangé dans ce cas");
         }
       }
 

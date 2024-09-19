@@ -16,6 +16,7 @@ import 'package:gandalverse/core/services/QG_services/partenaire_service.dart';
 import 'package:gandalverse/data/telegram_client.dart';
 import 'package:injectable/injectable.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:telegram_web_app/telegram_web_app.dart';
 
 @singleton
@@ -52,7 +53,9 @@ class UserProvider extends ChangeNotifier {
   Future<void> fetchUserByTelegramId() async {
     _user = await _userRepository.getUserByTelegramId(telegramUserId);
 
+    final prefs = await SharedPreferences.getInstance();
     if (_user == null) {
+      await prefs.clear();
       TelegramUser user = _telegramClient.telegram.initData.user;
       String? startParam = _telegramClient.telegram.initDataUnsafe?.startParam;
       StartParam parsedParam = (startParam ?? '').parseStartParam();
