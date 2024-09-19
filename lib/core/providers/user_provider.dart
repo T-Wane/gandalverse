@@ -64,7 +64,7 @@ class UserProvider extends ChangeNotifier {
         parrainId: getParrainId(parsedParam),
         photoUrl: _telegramClient.telegram.initDataUnsafe?.user?.photoUrl,
       );
-      
+
       // createUser(
       //   telegramId: 1016029253,
       //   firstName: "joe",
@@ -82,12 +82,14 @@ class UserProvider extends ChangeNotifier {
       } else {
         int localPoints = await _userRepository.getPoints();
         _localPoint = localPoints;
-       UserModel? user_sync = 
-            await _userRepository.syncUserCoins(localPoints, _user?.id ?? '');
-      if(user_sync!=null){
-        _user = user_sync;
-      }
+        // UserModel? user_sync =
+        await _userRepository.syncUserCoins(localPoints, _user?.id ?? '');
+        // if(user_sync!=null){
+        //   _user = user_sync;
+        // }
+        _user = await _userRepository.getUserByTelegramId(telegramUserId);
         await updateUserPointLocal(_user!);
+        //await updateUserPointLocal(_user!);
       }
     }
 

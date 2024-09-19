@@ -480,9 +480,9 @@ class UserRepository {
       // Mise à jour des coins de l'utilisateur
       transaction.update(userRef, {'coins': localCoins});
       setPointsSaved(true);
-      UserModel user =
-          UserModel.fromJson(userDoc.data() as Map<String, dynamic>);
-      return user;
+      // UserModel user =
+      //     UserModel.fromJson(userDoc.data() as Map<String, dynamic>);
+      // return user;
     });
   }
 }
