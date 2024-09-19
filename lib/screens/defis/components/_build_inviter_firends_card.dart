@@ -98,6 +98,7 @@ class BuildInviterFirends extends StatelessWidget {
                   ],
                 ),
               ),
+              fit: BoxFit.contain,
               image: Images.add_friends);
         },
         textColor: Colors.black,

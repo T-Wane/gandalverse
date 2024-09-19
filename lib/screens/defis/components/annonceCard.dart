@@ -92,7 +92,7 @@ class AnnonceCard extends StatelessWidget {
                               fontFamily: 'Aller',
                               color: Themecolors.Color3.withOpacity(0.9),
                               fontSize: 14,
-                              fontWeight: FontWeight.normal,
+                              fontWeight: FontWeight.w600,
                             ),
                           ),
                         )

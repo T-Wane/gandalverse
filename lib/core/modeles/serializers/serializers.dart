@@ -2,6 +2,7 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart';
 import 'package:gandalverse/core/modeles/explorer/categorie/categorie.dart';
+import 'package:gandalverse/core/modeles/player/player_model.dart';
 import 'package:gandalverse/core/modeles/purchasedCard/user_purchase_card.dart';
 import 'package:gandalverse/core/modeles/social_link/social_link.dart';
 import 'package:gandalverse/core/modeles/user_model/user_model.dart';
@@ -18,7 +19,8 @@ part 'serializers.g.dart'; // Le fichier généré par build_runner
   CategorieModel,
   EvenementModel,
   SocialLinkModel,
-  UserPurchaseCard
+  UserPurchaseCard,
+  PlayerModel
 ])
 final Serializers serializers =
     (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();
