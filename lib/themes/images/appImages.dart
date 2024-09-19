@@ -41,6 +41,8 @@ class Images {
   static String education = "$ressourcePath/education.png";
   static String spin = "$ressourcePath/spin.png";
   static String add_friends = "$ressourcePath/add_friends.png";
+  static String invites3Amis = "$ressourcePath/Invites3Amis.png";
+
 
   //Btn back
   static String circleBorder = "$ressourcePath/wheel-border.png";

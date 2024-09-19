@@ -19,7 +19,7 @@ class BuildInviterFirends extends StatelessWidget {
         // title: 'Youtube',
         text: 'Inviter 3 Amis \n',
         reward: "20 000",
-        imagePath: Images.add_friends,
+        imagePath: Images.invites3Amis,
         backColors: const [
           Colors.white,
           Colors.white,
@@ -99,7 +99,7 @@ class BuildInviterFirends extends StatelessWidget {
                 ),
               ),
               fit: BoxFit.contain,
-              image: Images.add_friends);
+              image: Images.invites3Amis);
         },
         textColor: Colors.black,
         titleColor: Themecolors.Color3);

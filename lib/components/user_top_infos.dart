@@ -125,7 +125,7 @@ class _userTopInfosState extends State<userTopInfos> {
 
                       ProfilDetailsContentBottomSheet.show(context,
                           telegram: telegram);
-                     // context.pushNamed(profil_view);
+                      // context.pushNamed(profil_view);
                     },
                     child: Container(
                       decoration: BoxDecoration(
@@ -154,7 +154,7 @@ class _userTopInfosState extends State<userTopInfos> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(left: 10),
+                              padding: EdgeInsets.only(left: 5),
                               child: Text(
                                 //  "UserName",
                                 "${telegram.initData.user.firstname ?? ''} ${telegram.initData.user.lastname ?? ''} ",
@@ -192,7 +192,7 @@ class _userTopInfosState extends State<userTopInfos> {
                                   UserLevelProgress(
                                       userLevelIndex:
                                           _userProvider.user?.level ?? 1,
-                                      userCoins: _userProvider.user?.coins ?? 0) 
+                                      userCoins: _userProvider.user?.coins ?? 0)
                                 ],
                               ),
                             )
@@ -226,7 +226,7 @@ class _userTopInfosState extends State<userTopInfos> {
                   ),
                 ],
                 const SizedBox(
-                  width: 5,
+                  width: 4,
                 ),
                 Row(children: [
                   CustomImageView(
@@ -291,7 +291,7 @@ class _userTopInfosState extends State<userTopInfos> {
       );
     });
   }
-
+  
   Widget _setting() => Padding(
         padding: const EdgeInsets.only(left: 2, right: 5),
         child: PopupMenuButton<int>(

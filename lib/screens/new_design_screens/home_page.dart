@@ -351,14 +351,15 @@ class _GoogleMapState extends State<HomeVrScreen>
                   },
                 ),
               ),
-              Visibility(
-                visible: showAllbtns,
-                child: SmallSpinWidget(),
-              ),
-              Visibility(
-                visible: showAllbtns,
-                child: MyProfitWidget(),
-              ),
+              // Visibility(
+              //   visible: showAllbtns,
+              //   child: SmallSpinWidget(),
+              // ),
+              // Visibility(
+              //   visible: showAllbtns,
+              //   child: MyProfitWidget(),
+              // ),
+              
               //menu button
               /* Positioned(
                 bottom: realH(53),
