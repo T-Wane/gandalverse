@@ -123,9 +123,9 @@ class _userTopInfosState extends State<userTopInfos> {
                       //     fit: BoxFit.contain,
                       //     setCircle: true);
 
-                      // ProfilDetailsContentBottomSheet.show(context,
-                      //     telegram: telegram);
-                      context.pushNamed(profil_view);
+                      ProfilDetailsContentBottomSheet.show(context,
+                          telegram: telegram);
+                     // context.pushNamed(profil_view);
                     },
                     child: Container(
                       decoration: BoxDecoration(

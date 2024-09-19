@@ -59,7 +59,7 @@ class _buildCommunautyCardState extends State<buildCommunautyCard>
     return AnnonceCard(
         // title: 'Facebook',
         text: widget.socialLinkModel.description,
-        reward: "${widget.socialLinkModel.reward}",
+        reward: "\n ${widget.socialLinkModel.reward}",
         imagePath: widget.socialLinkModel.image,
         backColors: const [
           Colors.white,

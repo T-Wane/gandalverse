@@ -1,26 +1,25 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/default_btn.dart';
+import 'package:gandalverse/screens/amis/components/bottom_invite_btns.dart';
 import 'package:gandalverse/screens/defis/components/annonceCard.dart';
+import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
-class buildYoutubeCommunauty extends StatelessWidget {
-  const buildYoutubeCommunauty({
+class BuildInviterFirends extends StatelessWidget {
+  const BuildInviterFirends({
     super.key,
-    required this.Color3,
   });
-
-  final Color Color3;
 
   @override
   Widget build(BuildContext context) {
     return AnnonceCard(
         // title: 'Youtube',
-        text: 'Abonné toi à la chaîne YouTube \n',
-        reward: "- 10.000",
-        imagePath: Images.black_youtube,
+        text: 'Inviter 3 Amis \n',
+        reward: "20 000",
+        imagePath: Images.add_friends,
         backColors: const [
           Colors.white,
           Colors.white,
@@ -34,14 +33,14 @@ class buildYoutubeCommunauty extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Chaine Youtube",
+                      "Inviter vos amis",
                       maxLines: 1,
                       textAlign: TextAlign.center,
                       textDirection: TextDirection.ltr,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           fontSize: 15,
-                          color: Color3,
+                          color: Themecolors.Color3,
                           fontFamily: "Aller",
                           fontWeight: FontWeight.normal),
                     ),
@@ -49,10 +48,10 @@ class buildYoutubeCommunauty extends StatelessWidget {
                       height: 5,
                     ),
                     AutoSizeText(
-                      'Abonné toi à notre chaîne YouTube',
+                      'Invitez 3 amis et obtenez un bonus exceptionnel !',
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                            color: Color3.withOpacity(0.95),
+                            color: Themecolors.Color3.withOpacity(0.95),
                             fontWeight: FontWeight.normal,
                           ),
                     ),
@@ -69,12 +68,12 @@ class buildYoutubeCommunauty extends StatelessWidget {
                           width: 40,
                         ),
                         AutoSizeText(
-                          '10.000',
+                          '20 000',
                           maxLines: 1,
                           presetFontSizes: [22, 20, 18, 15, 14],
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Color3,
+                            color: Themecolors.Color3,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -84,21 +83,24 @@ class buildYoutubeCommunauty extends StatelessWidget {
                       height: 5,
                     ),
                     DefaultButton(
-                      backColor:
-                          Colors.grey.shade300, // Colors.purple.shade400,
-                      text: 'Rejoindre',
+                      backColor: Colors.grey.shade300,
+                      text: 'Vérifier',
                       elevation: 1.0,
                       textColor: Colors.grey.shade800,
-                      fontSize: 15,
-                      height: 50,
+                      fontSize: 13,
+                      height: 40,
                       press: () {},
-                    )
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const bottomInviteBtns(),
                   ],
                 ),
               ),
-              image: Images.black_youtube);
+              image: Images.add_friends);
         },
         textColor: Colors.black,
-        titleColor: Color3);
+        titleColor: Themecolors.Color3);
   }
 }

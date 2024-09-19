@@ -8,7 +8,6 @@ import 'package:gandalverse/screens/defis/components/annonceCard.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
 import 'package:gandalverse/widgets/countTime/countTimer.dart';
-import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/reward/reward_animation.dart';
 
 class buildDailyDays extends StatefulWidget {

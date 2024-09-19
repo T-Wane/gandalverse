@@ -1,26 +1,15 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/components/user_top_infos.dart';
 import 'package:gandalverse/core/modeles/social_link/social_link.dart';
 import 'package:gandalverse/core/repositories/social_link_repo/social_linkRespository.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/defis/components/_build_communauty_card.dart';
-import 'package:gandalverse/screens/defis/components/_build_facebook_communauty.dart';
-import 'package:gandalverse/screens/defis/components/_build_tiktok_communauty.dart';
-import 'package:gandalverse/screens/defis/components/annonceCard.dart';
-import 'package:gandalverse/themes/images/appImages.dart';
-import 'package:gandalverse/widgets/bottomSheet_cardContent.dart';
+import 'package:gandalverse/screens/defis/components/_build_inviter_firends_card.dart';
 
-import '../../widgets/customImageView.dart';
 import 'components/_build_daily_days.dart';
 import 'components/_build_go_words.dart';
 import 'components/_build_scanQr_partenaire.dart';
-import 'components/_build_telegram_communauty.dart';
-import 'components/_build_twitter_communauty.dart';
-import 'components/_build_youtube_communauty.dart';
-import 'components/detailsAnnonceAlert.dart';
 
 class AnnoncesPage extends StatefulWidget {
   const AnnoncesPage({super.key});
@@ -115,18 +104,6 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                       ),
                     ),
                   ),
-                  /*
-                      buildTelegramCommunauty(Color3: Color3),
-                      buildYoutubeCommunauty(Color3: Color3),
-                      buildFacebookCommunauty(
-                        Color3: Color3,
-                      ),
-                      buildTiktokCommunauty(
-                        Color3: Color3,
-                      ),
-                      buildTwitterCommunauty(
-                        Color3: Color3,
-                      ),*/
 
                   FutureBuilder<List<SocialLinkModel>>(
                       future: getIt<SocialLinkService>().getSocialLinks(),
@@ -152,11 +129,15 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                               itemBuilder: (context, index) {
                                 SocialLinkModel socialItem =
                                     socialLinkData[index];
-                                return buildCommunautyCard(
-                                    socialLinkModel: socialItem);
+                                return socialItem.isVisible
+                                    ? buildCommunautyCard(
+                                        socialLinkModel: socialItem)
+                                    : const SizedBox.shrink();
                               });
                         }
                       }),
+
+                  const BuildInviterFirends(),
                 ]),
           ),
         ]),

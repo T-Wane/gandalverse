@@ -40,9 +40,10 @@ class Images {
   static String soon = "$ressourcePath/soon.png";
   static String education = "$ressourcePath/education.png";
   static String spin = "$ressourcePath/spin.png";
+  static String add_friends = "$ressourcePath/add_friends.png";
 
   //Btn back
-  static String circleBorder = "$ressourcePath/wheel-border.png"; 
+  static String circleBorder = "$ressourcePath/wheel-border.png";
   static String circleBtn = "$ressourcePath/circleBtn.png";
   static String avatarPMU2 = "$ressourceAvatar/AvatarPMU2.png";
   static String aatarYaraOil = "$ressourceAvatar/AvatarYaraOil.png";

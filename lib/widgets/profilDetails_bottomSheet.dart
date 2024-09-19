@@ -98,7 +98,7 @@ class _ProfilDetailsContentBottomSheetState
   Widget build(BuildContext context) {
     return PointerInterceptor(
       child: SizedBox(
-          height: MediaQuery.of(context).size.height * 0.8,
+          height: MediaQuery.of(context).size.height * 0.95,
           child: PageView(
             controller: _scrollController,
             scrollDirection: Axis.horizontal,
@@ -128,9 +128,9 @@ class _ProfilDetailsContentBottomSheetState
                             horizontal: 5,
                             vertical: 5,
                           ),
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             color: Colors.white,
-                            borderRadius: const BorderRadius.only(
+                            borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(10),
                               topRight: Radius.circular(10),
                             ),
@@ -329,7 +329,7 @@ class _ProfilDetailsContentBottomSheetState
                           ),
                         ),
                       ),
-                      Positioned(
+                      const Positioned(
                         bottom: 0,
                         left: 0,
                         right: 0,

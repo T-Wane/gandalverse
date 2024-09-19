@@ -15,7 +15,7 @@
     "description": "Rejoins notre communauté !",
     "subscriptionLink": "https://t.me/gandalverse/start",
     "image": "assets/images/social_black/telegram.png",
-    "reward": 10000.0,
+    "reward": 25000.0,
     "isSubscribed": false,
     "isVisible": true
   },
@@ -25,7 +25,7 @@
     "description": "Suis-nous sur X !",
     "subscriptionLink": "https://x.com/gandalverse",
     "image": "assets/images/social_black/twitter.png",
-    "reward": 10000.0,
+    "reward": 25000.0,
     "isSubscribed": false,
     "isVisible": true
   },
@@ -35,7 +35,7 @@
     "description": "Rejoins-nous sur Facebook !",
     "subscriptionLink": "https://www.facebook.com/gandalverse",
     "image": "assets/images/social_black/facebook.png",
-    "reward": 10000.0,
+    "reward": 20000.0,
     "isSubscribed": false,
     "isVisible": true
   },
@@ -45,7 +45,7 @@
     "description": "Suis-nous sur TikTok !",
     "subscriptionLink": "http://tiktok.com/@gandalverse",
     "image": "assets/images/social_black/tiktok.png",
-    "reward": 10000.0,
+    "reward": 20000.0,
     "isSubscribed": false,
     "isVisible": true
   }
