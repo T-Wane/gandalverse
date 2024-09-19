@@ -23,6 +23,7 @@ class BuildInviterFirends extends StatefulWidget {
 
 class _BuildInviterFirendsState extends State<BuildInviterFirends> {
   String task_inviterThreeFriendsKey = "task_inviter_3_amis_KEY";
+
   late SharedPreferences prefs;
 
   void claimed() async {
@@ -54,7 +55,7 @@ class _BuildInviterFirendsState extends State<BuildInviterFirends> {
     super.dispose();
   }
 
-  Widget _buildClaimedBtn(int nFriends) {
+  Widget _buildClaimedBtn(int nFriends, UserProvider userProvider) {
     if (nFriends >= 3 && !isClaimed()) {
       return DefaultButton(
         backColor: Colors.purple.shade300,
@@ -66,6 +67,11 @@ class _BuildInviterFirendsState extends State<BuildInviterFirends> {
         press: () {
           RewardAnimation.show(context);
           claimed();
+          if (userProvider.user != null) {
+            final updatedUser = userProvider.user!.rebuild(
+                (b) => b..coins = ((userProvider.user?.coins ?? 0) + 20000));
+            userProvider.updateUserPointLocal(updatedUser);
+          }
           Future.delayed(const Duration(seconds: 3), () {
             RewardAnimation.hide(context);
           });
@@ -147,7 +153,8 @@ class _BuildInviterFirendsState extends State<BuildInviterFirends> {
                       const SizedBox(
                         height: 5,
                       ),
-                      _buildClaimedBtn(_userProvider.friends.length),
+                      _buildClaimedBtn(
+                          _userProvider.friends.length, _userProvider),
                       const SizedBox(
                         height: 5,
                       ),
