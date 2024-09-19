@@ -1,15 +1,13 @@
-// ignore_for_file: must_be_immutable
-
+import 'dart:convert';
 import 'dart:io';
-
-//import 'package:cached_network_image/cached_network_image.dart';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gandalverse/data/web_image_cache_manager/web_image_cache_manager.dart'; 
 
 class CustomImageView extends StatelessWidget {
-  ///[imagePath] is required parameter for showing image
   String? imagePath;
-
   double? height;
   double? width;
   Color? color;
@@ -23,8 +21,6 @@ class CustomImageView extends StatelessWidget {
 
   GlobalKey<State<StatefulWidget>>? Key;
 
-  ///a [CustomImageView] it can be used for showing any type of images
-  /// it will shows the placeholder image if image is not found on network image
   CustomImageView({
     this.imagePath,
     this.height,
@@ -61,7 +57,6 @@ class CustomImageView extends StatelessWidget {
     );
   }
 
-  ///build the image with border radius
   _buildCircleImage() {
     if (radius != null) {
       return ClipRRect(
@@ -73,7 +68,6 @@ class CustomImageView extends StatelessWidget {
     }
   }
 
-  ///build the image with border and border radius style
   _buildImageWithBorder() {
     if (border != null) {
       return Container(
@@ -101,7 +95,6 @@ class CustomImageView extends StatelessWidget {
               width: width,
               fit: fit ?? BoxFit.contain,
               color: color,
-              //colorFilter: ColorFilter.mode(Colors.red, BlendMode.srcIn),
             ),
           );
         case ImageType.file:
@@ -117,9 +110,7 @@ class CustomImageView extends StatelessWidget {
             height: height,
             width: width,
             fit: fit,
-            image: NetworkImage(
-              imagePath!,
-            ),
+            image: NetworkImage(imagePath!),
             placeholder: AssetImage(placeHolder),
             imageErrorBuilder: (context, error, stackTrace) {
               return Image.asset(
@@ -129,36 +120,35 @@ class CustomImageView extends StatelessWidget {
                 fit: fit ?? BoxFit.contain,
               );
             },
-          ) /*CachedNetworkImage(
-            height: height,
-            width: width,
-            fit: fit,
-            imageUrl: imagePath!,
-            color: color,
-            placeholder: (context, url) => Container(
-              height: 30,
-              width: 30,
-              child: LinearProgressIndicator(
-                color: Colors.grey.shade200,
-                backgroundColor: Colors.grey.shade100,
-              ),
-            ),
-            errorWidget: (context, url, error) => Image.asset(
-              placeHolder,
-              height: height,
-              width: width,
-              fit: fit ?? BoxFit.cover,
-            ),
-          )*/
-              ;
+          );
         case ImageType.png:
         default:
-          return Image.asset(
-            imagePath!,
-            height: height,
-            width: width,
-            fit: fit ?? BoxFit.cover,
-            color: color,
+          return FutureBuilder<String>(
+            future: WebImageCacheManager().getImageAsBase64(imagePath!),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Container(
+                  height: height,
+                  width: width,
+                  child: CircularProgressIndicator(), // Placeholder pendant le chargement
+                );
+              } else if (snapshot.hasError) {
+                return Image.asset(
+                  placeHolder,
+                  height: height,
+                  width: width,
+                  fit: fit ?? BoxFit.cover,
+                );
+              } else {
+                return Image.memory(
+                  base64Decode(snapshot.data!),
+                  height: height,
+                  width: width,
+                  fit: fit ?? BoxFit.cover,
+                  color: color,
+                );
+              }
+            },
           );
       }
     }
