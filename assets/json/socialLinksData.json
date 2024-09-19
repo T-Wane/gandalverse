@@ -1,18 +1,18 @@
 [
   {
     "id": "youtube",
-    "title": "Communauté YouTube",
-    "description": "Abonne-toi à notre chaîne YouTube pour obtenir des récompenses !",
+    "title": "YouTube",
+    "description": "Abonne-toi à notre chaîne !",
     "subscriptionLink": "https://www.youtube.com/channel/your_channel_id?sub_confirmation=1",
     "image": "assets/images/social_black/youtube.png",
     "reward": 10000.0,
     "isSubscribed": false,
-    "isVisible": true
+    "isVisible": false
   },
   {
     "id": "telegram",
-    "title": "Communauté Telegram",
-    "description": "Rejoins notre communauté Telegram pour obtenir des récompenses !",
+    "title": "Telegram",
+    "description": "Rejoins notre communauté !",
     "subscriptionLink": "https://t.me/gandalverse/start",
     "image": "assets/images/social_black/telegram.png",
     "reward": 10000.0,
@@ -21,8 +21,8 @@
   },
   {
     "id": "x",
-    "title": "Communauté X",
-    "description": "Suivez-nous sur X pour obtenir des récompenses !",
+    "title": "X",
+    "description": "Suis-nous sur X !",
     "subscriptionLink": "https://x.com/gandalverse",
     "image": "assets/images/social_black/twitter.png",
     "reward": 10000.0,
@@ -31,8 +31,8 @@
   },
   {
     "id": "facebook",
-    "title": "Communauté Facebook",
-    "description": "Rejoins notre communauté Facebook pour obtenir des récompenses !",
+    "title": "Facebook",
+    "description": "Rejoins-nous sur Facebook !",
     "subscriptionLink": "https://www.facebook.com/gandalverse",
     "image": "assets/images/social_black/facebook.png",
     "reward": 10000.0,
@@ -41,8 +41,8 @@
   },
   {
     "id": "tiktok",
-    "title": "Communauté TikTok",
-    "description": "Suivez-nous sur TikTok pour obtenir des récompenses !",
+    "title": "TikTok",
+    "description": "Suis-nous sur TikTok !",
     "subscriptionLink": "http://tiktok.com/@gandalverse",
     "image": "assets/images/social_black/tiktok.png",
     "reward": 10000.0,
