@@ -127,6 +127,7 @@ class UserRepository {
       ..parrainId = fields.parrainId
       ..level = 1
       ..coins = fields.initialCoin
+      ..friends = []
       ..profitPerHour = 100
       ..profileImage = '');
 
@@ -135,8 +136,40 @@ class UserRepository {
           .collection('users')
           .doc("${fields.telegramId}")
           .set(user.toJson());
+
+      addMetoParrainFriends(fields.parrainId, "${fields.telegramId}");
     } catch (e) {
       print('Error creating user: $e');
+    }
+  }
+
+  void addMetoParrainFriends(String? parrainId, String myId) async {
+    if (parrainId == null) return;
+    // Référence au document que tu souhaites mettre à jour
+    DocumentReference documentRef =
+        FirebaseFirestore.instance.collection('users').doc(parrainId);
+
+    // Récupération du document pour obtenir la liste actuelle
+    DocumentSnapshot snapshot = await documentRef.get();
+    if (snapshot.exists) {
+      Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
+
+      // Accès à la list des Firends
+      List<Map<String, dynamic>> currentItems = data['friends'] ?? [];
+
+      // Ajouter de nouveaux éléments à la liste existante (si nécessaire)
+      Map<String, dynamic> newFriend = {'id': myId, 'reward_isClaimed': false};
+      currentItems
+          .add(newFriend); // Ajoute les nouveaux éléments à la liste existante
+
+      // Mettre à jour la liste dans Firestore
+      await documentRef.update({
+        'friends':
+            currentItems, // Mettre à jour la liste avec les éléments ajoutés
+      });
+      print("Liste mise à jour avec succès !");
+    } else {
+      print("Le document n'existe pas.");
     }
   }
 
@@ -349,6 +382,7 @@ class UserRepository {
       QGService qgService, String userId, CarteModel carteData) async {
     DocumentReference userRef = _firestore.collection('users').doc(userId);
     bool isOk = false;
+    qgService.loadingController.add(true);
 
     bool localpointIsSaved = await userPointIsSaved();
     if (!localpointIsSaved == true) {
@@ -363,6 +397,7 @@ class UserRepository {
 
       if (!userDoc.exists) {
         log("User does not exist");
+        qgService.loadingController.add(false);
         return;
       }
 
@@ -371,6 +406,7 @@ class UserRepository {
 
       if (userCoins < cardPrice) {
         log("Not enough coins");
+        qgService.loadingController.add(false);
         return;
       }
 
@@ -416,6 +452,8 @@ class UserRepository {
         log("Failed to retrieve updated user data.");
       }
     }
+
+    qgService.loadingController.add(false);
   }
 
 /*

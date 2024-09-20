@@ -298,22 +298,38 @@ class _ProfilDetailsContentBottomSheetState
                                                           )),
                                                     )
                                                   ] else ...[
-                                                    Text(
-                                                      "${entry.value['coins_required']}",
-                                                      maxLines: 1,
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      textDirection:
-                                                          TextDirection.ltr,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      style: TextStyle(
-                                                          fontSize: 15,
-                                                          color: Themecolors
-                                                              .Color3,
-                                                          fontFamily: "Aller",
-                                                          fontWeight: FontWeight
-                                                              .normal),
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          "${entry.value['coins_required']}",
+                                                          maxLines: 1,
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          textDirection:
+                                                              TextDirection.ltr,
+                                                          overflow: TextOverflow
+                                                              .ellipsis,
+                                                          style: TextStyle(
+                                                              fontSize: 15,
+                                                              color: Themecolors
+                                                                  .Color3,
+                                                              fontFamily:
+                                                                  "Aller",
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 5,
+                                                        ),
+                                                        CustomImageView(
+                                                          imagePath: Images
+                                                              .coin_dollar,
+                                                          fit: BoxFit.contain,
+                                                          height: 15,
+                                                          width: 15,
+                                                        ),
+                                                      ],
                                                     ),
                                                   ],
                                                   const SizedBox(

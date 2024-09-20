@@ -33,7 +33,7 @@
     "force": 250.0,
     "taux_augmentation_force": 20.0,
     "contrainte_type": "carteRequise",
-    "valeur_contrainte": "Analyste Financier,d4a9f848-8b93-46b7-9c4d-0f6fa16e28f5,4"
+    "valeur_contrainte": "Responsable de la Communication,d4a9f848-8b93-46b7-9c4d-0f6fa16e28f5,2"
   },
   {
     "id": "0f782cd8-63d3-453e-9233-03742d923f64",
@@ -68,8 +68,8 @@
     "est_achete": false,
     "force": 110.0,
     "taux_augmentation_force": 12.0,
-    "contrainte_type": "codeRequis",
-    "valeur_contrainte": "CODE1234"
+    "contrainte_type": "carteRequise",
+    "valeur_contrainte": "Support Client,0f782cd8-63d3-453e-9233-03742d923f64,3"
   },
   {
     "id": "d9cfe019-5288-46b1-ae8c-6efb3a8e9d8c",
@@ -88,6 +88,6 @@
     "force": 220.0,
     "taux_augmentation_force": 20.0,
     "contrainte_type": "amisRequis",
-    "valeur_contrainte": "10"
+    "valeur_contrainte": "1"
   }
 ]

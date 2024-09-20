@@ -72,8 +72,10 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
       result
         ..add('friends')
         ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(List, const [const FullType(String)])));
+            specifiedType: const FullType(List, const [
+              const FullType(
+                  Map, const [const FullType(String), const FullType(dynamic)])
+            ])));
     }
     value = object.profileImage;
     if (value != null) {
@@ -126,9 +128,10 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
           break;
         case 'friends':
           result.friends = serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(List, const [const FullType(String)]))
-              as List<String>?;
+              specifiedType: const FullType(List, const [
+                const FullType(Map,
+                    const [const FullType(String), const FullType(dynamic)])
+              ])) as List<Map<String, dynamic>>?;
           break;
         case 'level':
           result.level = serializers.deserialize(value,
@@ -169,7 +172,7 @@ class _$UserModel extends UserModel {
   @override
   final String? parrainId;
   @override
-  final List<String>? friends;
+  final List<Map<String, dynamic>>? friends;
   @override
   final int level;
   @override
@@ -299,9 +302,9 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
   String? get parrainId => _$this._parrainId;
   set parrainId(String? parrainId) => _$this._parrainId = parrainId;
 
-  List<String>? _friends;
-  List<String>? get friends => _$this._friends;
-  set friends(List<String>? friends) => _$this._friends = friends;
+  List<Map<String, dynamic>>? _friends;
+  List<Map<String, dynamic>>? get friends => _$this._friends;
+  set friends(List<Map<String, dynamic>>? friends) => _$this._friends = friends;
 
   int? _level;
   int? get level => _$this._level;

@@ -229,9 +229,9 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
         String? carteName = valeurContrainte!.split(',')[0];
         String? carteId = valeurContrainte!.split(',')[1];
         String? carteLevel = valeurContrainte!.split(',')[2];
-        return cartesPossedees.contains(carteId as String) &&
+        return cartesPossedees.contains(carteId) &&
             niveauxCartesPossedees[carteId]! >=
-                (int.parse(carteLevel ?? '0') ?? 0);
+                (int.parse(carteLevel));
       case ContrainteType.niveauCarteRequise:
         final carteRequiseId = valeurContrainte as String;
         return niveauxCartesPossedees.containsKey(carteRequiseId) &&
