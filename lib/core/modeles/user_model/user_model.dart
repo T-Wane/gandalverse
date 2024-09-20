@@ -12,7 +12,7 @@ abstract class UserModel implements Built<UserModel, UserModelBuilder> {
   String? get username;
   String? get photoUrl;
   String? get parrainId;
-  List<Map<String, dynamic>>? get friends;
+  List<Map>? get friends;
   int get level;
   int get coins;
   double get profitPerHour;
