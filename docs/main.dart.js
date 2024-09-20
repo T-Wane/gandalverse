@@ -96441,35 +96441,39 @@ case 6:case 1:return A.r(q,r)
 case 2:return A.q(o,r)}})
 return A.t($async$DW,r)},
 xu(a){return this.atq(a)},
-atq(a){var s=0,r=A.u(t.H),q,p=2,o,n=this,m,l,k,j,i,h,g,f
-var $async$xu=A.p(function(b,c){if(b===1){o=c
-s=p}while(true)switch(s){case 0:p=4
-j=n.a
-i=""+a.a
-s=7
-return A.m(A.l_(j,j.geH().eY("users")).dZ(i).i8(0),$async$xu)
-case 7:m=c
-if(m.gjE()){A.c2("Un utilisateur avec cet ID existe d\xe9j\xe0.")
-s=1
-break}h=new A.lT()
-new A.ay2(a).$1(h)
-l=h.Jd()
+atq(a){var s=0,r=A.u(t.H),q=1,p,o=this,n,m,l,k,j,i,h,g,f
+var $async$xu=A.p(function(b,c){if(b===1){p=c
+s=q}while(true)switch(s){case 0:q=3
+k=o.a
+j=""+a.a
+s=6
+return A.m(A.l_(k,k.geH().eY("users")).dZ(j).i8(0),$async$xu)
+case 6:i=c
+n=i
+s=n.gjE()?7:9
+break
+case 7:A.c2("Un utilisateur avec cet ID existe d\xe9j\xe0.")
 s=8
-return A.m(A.l_(j,j.geH().eY("users")).dZ(i).a4p(0,t.a.a($.dP().hs($.Po(),l))),$async$xu)
-case 8:n.wU(a.f,i)
-p=2
-s=6
 break
-case 4:p=3
-f=o
-k=A.ae(f)
-A.c2("Error creating user: "+A.i(k))
-s=6
+case 9:h=new A.lT()
+new A.ay2(a).$1(h)
+m=h.Jd()
+s=10
+return A.m(A.l_(k,k.geH().eY("users")).dZ(j).a4p(0,t.a.a($.dP().hs($.Po(),m))),$async$xu)
+case 10:o.wU(a.f,j)
+case 8:q=1
+s=5
 break
-case 3:s=2
+case 3:q=2
+f=p
+l=A.ae(f)
+A.c2("Error creating user: "+A.i(l))
+s=5
 break
-case 6:case 1:return A.r(q,r)
-case 2:return A.q(o,r)}})
+case 2:s=1
+break
+case 5:return A.r(null,r)
+case 1:return A.q(p,r)}})
 return A.t($async$xu,r)},
 wU(a,b){return this.aqt(a,b)},
 aqt(a,b){var s=0,r=A.u(t.H),q,p,o,n,m,l

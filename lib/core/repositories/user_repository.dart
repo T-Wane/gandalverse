@@ -143,40 +143,42 @@ class UserRepository {
 
   Future<void> createUser({required CreateUserFields fields}) async {
     try {
-      // Vérifie si un utilisateur avec ce telegramId existe déjà
-      final docSnapshot = await _firestore
-          .collection('users')
-          .doc("${fields.telegramId}")
-          .get();
+      if (fields.telegramId != null) {
+        // Vérifie si un utilisateur avec ce telegramId existe déjà
+        final docSnapshot = await _firestore
+            .collection('users')
+            .doc("${fields.telegramId}")
+            .get();
 
-      // Si l'utilisateur existe déjà, on ne fait rien
-      if (docSnapshot.exists) {
-        print('Un utilisateur avec cet ID existe déjà.');
-        return;
+        // Si l'utilisateur existe déjà, on ne fait rien
+        if (docSnapshot.exists) {
+          print('Un utilisateur avec cet ID existe déjà.');
+          
+        } else {
+          // Si l'utilisateur n'existe pas, crée un nouveau document
+          final user = UserModel((b) => b
+            ..id = '${fields.telegramId}'
+            ..telegramId = fields.telegramId
+            ..firstName = fields.firstName
+            ..lastName = fields.lastName
+            ..username = fields.username
+            ..photoUrl = fields.photoUrl
+            ..parrainId = fields.parrainId
+            ..level = 1
+            ..coins = fields.initialCoin
+            ..friends = ListBuilder([])
+            ..profitPerHour = 100
+            ..profileImage = '');
+
+          await _firestore
+              .collection('users')
+              .doc("${fields.telegramId}")
+              .set(user.toJson());
+
+          // Ajoute cet utilisateur à la liste des amis de son parrain
+          addMetoParrainFriends(fields.parrainId, "${fields.telegramId}");
+        }
       }
-
-      // Si l'utilisateur n'existe pas, crée un nouveau document
-      final user = UserModel((b) => b
-        ..id = '${fields.telegramId}'
-        ..telegramId = fields.telegramId
-        ..firstName = fields.firstName
-        ..lastName = fields.lastName
-        ..username = fields.username
-        ..photoUrl = fields.photoUrl
-        ..parrainId = fields.parrainId
-        ..level = 1
-        ..coins = fields.initialCoin
-        ..friends = ListBuilder([])
-        ..profitPerHour = 100
-        ..profileImage = '');
-
-      await _firestore
-          .collection('users')
-          .doc("${fields.telegramId}")
-          .set(user.toJson());
-
-      // Ajoute cet utilisateur à la liste des amis de son parrain
-      addMetoParrainFriends(fields.parrainId, "${fields.telegramId}");
     } catch (e) {
       print('Error creating user: $e');
     }
