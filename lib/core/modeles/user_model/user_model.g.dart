@@ -73,10 +73,8 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
         ..add('friends')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(BuiltList, const [
-              const FullType(List, const [
-                const FullType(Map,
-                    const [const FullType(dynamic), const FullType(dynamic)])
-              ])
+              const FullType(
+                  Map, const [const FullType(String), const FullType(dynamic)])
             ])));
     }
     value = object.profileImage;
@@ -131,10 +129,8 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
         case 'friends':
           result.friends.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltList, const [
-                const FullType(List, const [
-                  const FullType(Map,
-                      const [const FullType(dynamic), const FullType(dynamic)])
-                ])
+                const FullType(Map,
+                    const [const FullType(String), const FullType(dynamic)])
               ]))! as BuiltList<Object?>);
           break;
         case 'level':
@@ -176,7 +172,7 @@ class _$UserModel extends UserModel {
   @override
   final String? parrainId;
   @override
-  final BuiltList<List<Map<dynamic, dynamic>>>? friends;
+  final BuiltList<Map<String, dynamic>>? friends;
   @override
   final int level;
   @override
@@ -306,10 +302,10 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
   String? get parrainId => _$this._parrainId;
   set parrainId(String? parrainId) => _$this._parrainId = parrainId;
 
-  ListBuilder<List<Map<dynamic, dynamic>>>? _friends;
-  ListBuilder<List<Map<dynamic, dynamic>>> get friends =>
-      _$this._friends ??= new ListBuilder<List<Map<dynamic, dynamic>>>();
-  set friends(ListBuilder<List<Map<dynamic, dynamic>>>? friends) =>
+  ListBuilder<Map<String, dynamic>>? _friends;
+  ListBuilder<Map<String, dynamic>> get friends =>
+      _$this._friends ??= new ListBuilder<Map<String, dynamic>>();
+  set friends(ListBuilder<Map<String, dynamic>>? friends) =>
       _$this._friends = friends;
 
   int? _level;

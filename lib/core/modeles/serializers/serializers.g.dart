@@ -18,12 +18,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UserPurchaseCard.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [
-            const FullType(List, const [
-              const FullType(
-                  Map, const [const FullType(dynamic), const FullType(dynamic)])
-            ])
+            const FullType(
+                Map, const [const FullType(String), const FullType(dynamic)])
           ]),
-          () => new ListBuilder<List<Map<dynamic, dynamic>>>())
+          () => new ListBuilder<Map<String, dynamic>>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>()))
