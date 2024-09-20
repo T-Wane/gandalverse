@@ -501,7 +501,12 @@ class UserRepository {
       });
       isOk = true;
       // Mise à jour des données de la carte dans le service local
-      await qgService.updateItem(carteData.carteId!, carteData);
+      await qgService.updateItem(carteData.carteId!, carteData.rebuild((crt) => crt..niveau = carteData.niveau+1));
+       // Mise à jour du niveau de l'utilisateur en local
+        //ici
+ 
+
+        isOk = true; // Indique que la transaction a réussi
     });
 
     // Si la transaction est réussie, nous mettons à jour la carte en local
