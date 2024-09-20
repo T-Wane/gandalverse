@@ -35,12 +35,38 @@ class UserRepository {
 
   Future<UserModel?> getUserByTelegramId(int telegramId) async {
     try {
+      // Récupération du document dont l'ID est le telegramId
+      final docSnapshot =
+          await _firestore.collection('users').doc("$telegramId").get();
+
+      // Vérifie si le document existe
+      if (docSnapshot.exists) {
+        // Récupère les données du document
+        final docData = docSnapshot.data();
+        if (docData != null) {
+          final user = UserModel.fromJson(docData as Map<String, dynamic>);
+          return user;
+        }
+      }
+
+      // Retourne null si le document n'existe pas ou s'il n'y a pas de données
+      return null;
+    } catch (e) {
+      log('Error getting user: $e');
+      return null;
+    }
+  }
+
+/*
+  Future<UserModel?> getUserByTelegramId(int telegramId) async {
+    try {
       // Récupération des documents avec le même telegramId
       final querySnapshot = await _firestore
           .collection('users')
           .where('telegramId', isEqualTo: telegramId)
           .get();
 
+//.where('telegramId', isEqualTo: telegramId)
       // Vérifie si la requête renvoie des résultats
       if (querySnapshot.docs.isNotEmpty) {
         // Si plusieurs documents sont trouvés, on supprime les doublons
@@ -70,7 +96,7 @@ class UserRepository {
       return null;
     }
   }
-
+*/
   Future<List<UserModel>> getUserFriends(int telegramId) async {
     try {
       final querySnapshot = await _firestore

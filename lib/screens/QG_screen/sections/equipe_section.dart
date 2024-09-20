@@ -23,7 +23,7 @@ class _EquipeSectionState extends State<EquipeSection> {
   @override
   void initState() {
     super.initState();
-   // _equipeService.loadInitialData();
+    // _equipeService.loadInitialData();
     // Écoute du stream pour les mises à jour des données
     _equipeService.equipeStream.listen((dataList) {
       setState(() {
@@ -31,6 +31,12 @@ class _EquipeSectionState extends State<EquipeSection> {
         // Mise à jour de l'interface utilisateur avec les nouvelles données
       });
     });
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
   }
 
   @override
@@ -52,15 +58,13 @@ class _EquipeSectionState extends State<EquipeSection> {
                 final equipeList = snapshot.data!;
 
                 final niveauUtilisateur = _userProvider.user?.level;
-                final cartesPossedees = BuiltList<String>(
-                   _userProvider.getPurchaseCardsIds()
-                    );
+                final cartesPossedees =
+                    BuiltList<String>(_userProvider.getPurchaseCardsIds());
                 final niveauxCartesPossedees = BuiltMap<String, int>(
-                   _userProvider.getPurchaseCardsLevelAndId()
-                    );
+                    _userProvider.getPurchaseCardsLevelAndId());
                 final profitParHeure = _userProvider.user?.profitPerHour;
                 final codeSaisi = '';
-                final nombreAmis = _userProvider.user?.friends?.length ?? 0;
+                final nombreAmis = _userProvider.friends.length ?? 0;
 
                 return Padding(
                   padding: const EdgeInsets.all(5.0),
