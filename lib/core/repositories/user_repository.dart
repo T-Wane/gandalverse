@@ -142,6 +142,48 @@ class UserRepository {
   }
 
   Future<void> createUser({required CreateUserFields fields}) async {
+    try {
+      // Vérifie si un utilisateur avec ce telegramId existe déjà
+      final docSnapshot = await _firestore
+          .collection('users')
+          .doc("${fields.telegramId}")
+          .get();
+
+      // Si l'utilisateur existe déjà, on ne fait rien
+      if (docSnapshot.exists) {
+        print('Un utilisateur avec cet ID existe déjà.');
+        return;
+      }
+
+      // Si l'utilisateur n'existe pas, crée un nouveau document
+      final user = UserModel((b) => b
+        ..id = '${fields.telegramId}'
+        ..telegramId = fields.telegramId
+        ..firstName = fields.firstName
+        ..lastName = fields.lastName
+        ..username = fields.username
+        ..photoUrl = fields.photoUrl
+        ..parrainId = fields.parrainId
+        ..level = 1
+        ..coins = fields.initialCoin
+        ..friends = ListBuilder([])
+        ..profitPerHour = 100
+        ..profileImage = '');
+
+      await _firestore
+          .collection('users')
+          .doc("${fields.telegramId}")
+          .set(user.toJson());
+
+      // Ajoute cet utilisateur à la liste des amis de son parrain
+      addMetoParrainFriends(fields.parrainId, "${fields.telegramId}");
+    } catch (e) {
+      print('Error creating user: $e');
+    }
+  }
+
+/*
+  Future<void> createUser({required CreateUserFields fields}) async {
     // final userId = Uuid().v4();
     final user = UserModel((b) => b
       ..id = '${fields.telegramId}'
@@ -167,7 +209,7 @@ class UserRepository {
     } catch (e) {
       print('Error creating user: $e');
     }
-  }
+  }*/
 
   void addMetoParrainFriends(String? parrainId, String myId) async {
     if (parrainId == null) return;
@@ -199,13 +241,13 @@ class UserRepository {
     }
   }
 
-  Future<void> updateUser(UserModel user) async {
-    try {
-      await _firestore.collection('users').doc(user.id).update(user.toJson());
-    } catch (e) {
-      print('Error updating user: $e');
-    }
-  }
+  // Future<void> updateUser(UserModel user) async {
+  //   try {
+  //     await _firestore.collection('users').doc(user.id).update(user.toJson());
+  //   } catch (e) {
+  //     print('Error updating user: $e');
+  //   }
+  // }
 
   Future<void> deleteUser(String userId) async {
     try {

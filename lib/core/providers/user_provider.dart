@@ -146,18 +146,19 @@ class UserProvider extends ChangeNotifier {
   /// Si une erreur survient, un message d'erreur est affiché
   ///
   /// La méthode est asynchrone
-  Future<void> updateUser(UserModel user) async {
-    try {
-      //need
-      await _userRepository.updateUser(user);
+  /// ---------
+  // Future<void> updateUser(UserModel user) async {
+  //   try {
+  //     //need
+  //     await _userRepository.updateUser(user);
 
-      _user = user;
-      log("########## ${user.toString()}################");
-    } catch (e) {
-      print("#### error $e");
-    }
-    notifyListeners();
-  }
+  //     _user = user;
+  //     log("########## ${user.toString()}################");
+  //   } catch (e) {
+  //     print("#### error $e");
+  //   }
+  //   notifyListeners();
+  // }
 
   /// Renvoie les détails du niveau de l'utilisateur courant
   ///
