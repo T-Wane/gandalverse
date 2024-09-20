@@ -468,8 +468,16 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
               height: 5,
             ),
           ],
-          if (!widget.isUnlocked ||
-              (_userProvider.user?.coins ?? 0) < widget.carte.prix) ...[
+          if (!widget.isUnlocked) ...[
+            DefaultButton(
+                backColor: Colors.grey.shade200,
+                text: 'Go',
+                elevation: 1.0,
+                textColor: Colors.grey.shade500,
+                fontSize: 15,
+                height: 50,
+                press: () async {})
+          ] else if ((_userProvider.user?.coins ?? 0) < widget.carte.prixReel) ...[
             DefaultButton(
                 backColor: Colors.grey.shade200,
                 text: 'Go',
@@ -498,20 +506,20 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                   } else {
                     return DefaultButton(
                         backColor: (_userProvider.user?.coins ?? 0) >=
-                                widget.carte.prix
+                                widget.carte.prixReel
                             ? Colors.purple.shade400
                             : Colors.grey.shade200,
                         text: 'Go',
                         elevation: 1.0,
                         textColor: (_userProvider.user?.coins ?? 0) >=
-                                widget.carte.prix
+                                widget.carte.prixReel
                             ? Colors.white
                             : Colors.grey.shade500,
                         fontSize: 15,
                         height: 50,
                         press: () async {
                           if ((_userProvider.user?.coins ?? 0) >=
-                              widget.carte.prix) {
+                              widget.carte.prixReel) {
                             await _userProvider
                                 .updateCardLevel(
                                     widget.qgService,
