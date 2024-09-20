@@ -124,9 +124,10 @@ class UserRepository {
       ..lastName = fields.lastName
       ..username = fields.username
       ..photoUrl = fields.photoUrl
+      ..parrainId = fields.parrainId
       ..level = 1
       ..coins = fields.initialCoin
-      ..profitPerHour = 5.0
+      ..profitPerHour = 100
       ..profileImage = '');
 
     try {
