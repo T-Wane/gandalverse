@@ -178,9 +178,14 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
         String? carteName = valeurContrainte!.split(',')[0];
         String? carteId = valeurContrainte!.split(',')[1];
         String? carteLevel = valeurContrainte!.split(',')[2];
-        if (!cartesPossedees.contains(carteId)) {
+
+        if (!cartesPossedees.contains(carteId) &&
+            niveauxCartesPossedees[carteId]! >= (int.parse(carteLevel))) {
           return " $carteName Niv$carteLevel";
         }
+        // if (!cartesPossedees.contains(carteId)) {
+        //   return " $carteName Niv$carteLevel";
+        // }
         break;
       case ContrainteType.niveauCarteRequise:
         final carteRequiseId = valeurContrainte as String;
@@ -230,8 +235,7 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
         String? carteId = valeurContrainte!.split(',')[1];
         String? carteLevel = valeurContrainte!.split(',')[2];
         return cartesPossedees.contains(carteId) &&
-            niveauxCartesPossedees[carteId]! >=
-                (int.parse(carteLevel));
+            niveauxCartesPossedees[carteId]! >= (int.parse(carteLevel));
       case ContrainteType.niveauCarteRequise:
         final carteRequiseId = valeurContrainte as String;
         return niveauxCartesPossedees.containsKey(carteRequiseId) &&

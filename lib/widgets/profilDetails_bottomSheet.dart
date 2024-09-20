@@ -299,16 +299,17 @@ class _ProfilDetailsContentBottomSheetState
                                                     )
                                                   ] else ...[
                                                     Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
                                                       children: [
                                                         Text(
-                                                          "${entry.value['coins_required']}",
+                                                          formatValue(entry
+                                                                  .value[
+                                                              'coins_required']),
                                                           maxLines: 1,
                                                           textAlign:
                                                               TextAlign.center,
-                                                          textDirection:
-                                                              TextDirection.ltr,
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
                                                           style: TextStyle(
                                                               fontSize: 15,
                                                               color: Themecolors
@@ -326,8 +327,8 @@ class _ProfilDetailsContentBottomSheetState
                                                           imagePath: Images
                                                               .coin_dollar,
                                                           fit: BoxFit.contain,
-                                                          height: 15,
-                                                          width: 15,
+                                                          height: 20,
+                                                          width: 20,
                                                         ),
                                                       ],
                                                     ),
