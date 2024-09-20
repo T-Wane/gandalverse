@@ -17,6 +17,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UserModel.serializer)
       ..add(UserPurchaseCard.serializer)
       ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(List, const [
+              const FullType(
+                  Map, const [const FullType(dynamic), const FullType(dynamic)])
+            ])
+          ]),
+          () => new ListBuilder<List<Map<dynamic, dynamic>>>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>()))
     .build();

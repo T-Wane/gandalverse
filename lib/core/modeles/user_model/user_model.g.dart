@@ -72,9 +72,11 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
       result
         ..add('friends')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(List, const [
-              const FullType(
-                  Map, const [const FullType(dynamic), const FullType(dynamic)])
+            specifiedType: const FullType(BuiltList, const [
+              const FullType(List, const [
+                const FullType(Map,
+                    const [const FullType(dynamic), const FullType(dynamic)])
+              ])
             ])));
     }
     value = object.profileImage;
@@ -127,11 +129,13 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
               specifiedType: const FullType(String)) as String?;
           break;
         case 'friends':
-          result.friends = serializers.deserialize(value,
-              specifiedType: const FullType(List, const [
-                const FullType(Map,
-                    const [const FullType(dynamic), const FullType(dynamic)])
-              ])) as List<Map<dynamic, dynamic>>?;
+          result.friends.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(List, const [
+                  const FullType(Map,
+                      const [const FullType(dynamic), const FullType(dynamic)])
+                ])
+              ]))! as BuiltList<Object?>);
           break;
         case 'level':
           result.level = serializers.deserialize(value,
@@ -172,7 +176,7 @@ class _$UserModel extends UserModel {
   @override
   final String? parrainId;
   @override
-  final List<Map<dynamic, dynamic>>? friends;
+  final BuiltList<List<Map<dynamic, dynamic>>>? friends;
   @override
   final int level;
   @override
@@ -302,9 +306,10 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
   String? get parrainId => _$this._parrainId;
   set parrainId(String? parrainId) => _$this._parrainId = parrainId;
 
-  List<Map<dynamic, dynamic>>? _friends;
-  List<Map<dynamic, dynamic>>? get friends => _$this._friends;
-  set friends(List<Map<dynamic, dynamic>>? friends) =>
+  ListBuilder<List<Map<dynamic, dynamic>>>? _friends;
+  ListBuilder<List<Map<dynamic, dynamic>>> get friends =>
+      _$this._friends ??= new ListBuilder<List<Map<dynamic, dynamic>>>();
+  set friends(ListBuilder<List<Map<dynamic, dynamic>>>? friends) =>
       _$this._friends = friends;
 
   int? _level;
@@ -336,7 +341,7 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
       _username = $v.username;
       _photoUrl = $v.photoUrl;
       _parrainId = $v.parrainId;
-      _friends = $v.friends;
+      _friends = $v.friends?.toBuilder();
       _level = $v.level;
       _coins = $v.coins;
       _profitPerHour = $v.profitPerHour;
@@ -361,24 +366,37 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
   UserModel build() => _build();
 
   _$UserModel _build() {
-    final _$result = _$v ??
-        new _$UserModel._(
-            id: BuiltValueNullFieldError.checkNotNull(id, r'UserModel', 'id'),
-            telegramId: BuiltValueNullFieldError.checkNotNull(
-                telegramId, r'UserModel', 'telegramId'),
-            firstName: firstName,
-            lastName: lastName,
-            username: username,
-            photoUrl: photoUrl,
-            parrainId: parrainId,
-            friends: friends,
-            level: BuiltValueNullFieldError.checkNotNull(
-                level, r'UserModel', 'level'),
-            coins: BuiltValueNullFieldError.checkNotNull(
-                coins, r'UserModel', 'coins'),
-            profitPerHour: BuiltValueNullFieldError.checkNotNull(
-                profitPerHour, r'UserModel', 'profitPerHour'),
-            profileImage: profileImage);
+    _$UserModel _$result;
+    try {
+      _$result = _$v ??
+          new _$UserModel._(
+              id: BuiltValueNullFieldError.checkNotNull(id, r'UserModel', 'id'),
+              telegramId: BuiltValueNullFieldError.checkNotNull(
+                  telegramId, r'UserModel', 'telegramId'),
+              firstName: firstName,
+              lastName: lastName,
+              username: username,
+              photoUrl: photoUrl,
+              parrainId: parrainId,
+              friends: _friends?.build(),
+              level: BuiltValueNullFieldError.checkNotNull(
+                  level, r'UserModel', 'level'),
+              coins: BuiltValueNullFieldError.checkNotNull(
+                  coins, r'UserModel', 'coins'),
+              profitPerHour: BuiltValueNullFieldError.checkNotNull(
+                  profitPerHour, r'UserModel', 'profitPerHour'),
+              profileImage: profileImage);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'friends';
+        _friends?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'UserModel', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

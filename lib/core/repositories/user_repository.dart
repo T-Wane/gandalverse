@@ -127,7 +127,7 @@ class UserRepository {
       ..parrainId = fields.parrainId
       ..level = 1
       ..coins = fields.initialCoin
-      ..friends = []
+      ..friends = ListBuilder([])
       ..profitPerHour = 100
       ..profileImage = '');
 
