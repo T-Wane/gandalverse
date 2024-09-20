@@ -10,6 +10,7 @@ import 'package:gandalverse/core/providers/user_provider.dart';
 import 'package:gandalverse/core/repositories/social_link_repo/social_linkRespository.dart';
 import 'package:gandalverse/core/repositories/tabAndEarnRepository.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
+import 'package:gh_asset_pre_cache/gh_asset_pre_cache.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:webview_flutter_web/webview_flutter_web.dart';
@@ -28,6 +29,7 @@ import 'widgets/fortune_spin/config/web_config.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  GhAssetPreCache().startImageCache();
   await configureDependencies();
   // await getIt<FirebaseClient>().initializeApp();
   //await getIt<TelegramClient>().initializeApp();

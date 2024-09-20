@@ -544,6 +544,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.7.0"
+  gh_asset_pre_cache:
+    dependency: "direct main"
+    description:
+      name: gh_asset_pre_cache
+      sha256: b997b7495077aa604a1909ca860f7c319669cc566aa73584f345a0ae22f88468
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   glob:
     dependency: transitive
     description:
