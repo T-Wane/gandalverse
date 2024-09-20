@@ -95035,10 +95035,10 @@ case B.oc:s=n.as
 r=s.split(",")[0]
 q=s.split(",")[1]
 p=s.split(",")[2]
-if(!B.b.v(a.a,q)){s=d.b.i(0,q)
-s.toString
-s=s>=A.df(p,m)}else s=!1
-if(s)return" "+r+" Niv"+p
+if(!B.b.v(a.a,q))return" "+r+" Niv"+p
+s=d.b.i(0,q)
+if(s==null)s=0
+if(s<A.df(p,m))return" "+r+" Niv"+p
 break
 case B.oe:o=n.as
 if(o==null)o=A.as(o)

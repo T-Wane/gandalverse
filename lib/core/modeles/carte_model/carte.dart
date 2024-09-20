@@ -179,8 +179,10 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
         String? carteId = valeurContrainte!.split(',')[1];
         String? carteLevel = valeurContrainte!.split(',')[2];
 
-        if (!cartesPossedees.contains(carteId) &&
-            niveauxCartesPossedees[carteId]! >= (int.parse(carteLevel))) {
+        if (!cartesPossedees.contains(carteId)) {
+          return " $carteName Niv$carteLevel";
+        }
+        if ((niveauxCartesPossedees[carteId] ?? 0) < (int.parse(carteLevel))) {
           return " $carteName Niv$carteLevel";
         }
         // if (!cartesPossedees.contains(carteId)) {
