@@ -468,7 +468,8 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
               height: 5,
             ),
           ],
-          if (!widget.isUnlocked) ...[
+          if (!widget.isUnlocked ||
+              (_userProvider.user?.coins ?? 0) < widget.carte.prix) ...[
             DefaultButton(
                 backColor: Colors.grey.shade200,
                 text: 'Go',

@@ -97651,7 +97651,11 @@ j=k.a
 s=j.r
 if(s!=null)B.b.E(q,A.a([A.bn(s,m,m,1,B.a8,m,m,m,A.bt(m,m,j.c,m,m,m,m,m,l,m,m,13,m,m,B.ad,m,m,!0,m,m,m,m,m,m,m,m),B.N,B.G,m),B.ah],p))
 j=k.a
-if(!j.f)B.b.E(q,A.a([A.mm(B.fM,1,15,50,new A.aKq(),"Go",B.je)],p))
+if(j.f){s=b.e
+s=s==null?m:s.y
+if(s==null)s=0
+s=s<j.d.f}else s=!0
+if(s)B.b.E(q,A.a([A.mm(B.fM,1,15,50,new A.aKq(),"Go",B.je)],p))
 else{j=j.e.a
 B.b.E(q,A.a([A.aQ6(new A.aKr(k,b),new A.d7(j,A.k(j).h("d7<1>")),t.y)],p))}return new A.ar(B.H,A.bw(q,B.l,B.x,B.aU),m)},
 $C:"$3",
