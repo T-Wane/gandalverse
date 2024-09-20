@@ -52,52 +52,95 @@ class UserProvider extends ChangeNotifier {
   /// et synchronisés avec l'API
   Future<void> fetchUserByTelegramId() async {
     _user = await _userRepository.getUserByTelegramId("$telegramUserId");
-    log("user from online ${user?.toJson()}");
+    log("User from online: ${_user?.toJson()}");
+
     final prefs = await SharedPreferences.getInstance();
+
     if (_user == null) {
       await prefs.clear();
+
       TelegramUser user = _telegramClient.telegram.initData.user;
       String? startParam = _telegramClient.telegram.initDataUnsafe?.startParam;
       StartParam parsedParam = (startParam ?? '').parseStartParam();
+
       await createUser(
-        telegramId: _telegramClient.telegram.initData.user.id,
+        telegramId: user.id,
         firstName: user.firstname,
         lastName: user.lastname,
         username: user.username,
         parrainId: getParrainId(parsedParam),
         photoUrl: _telegramClient.telegram.initDataUnsafe?.user?.photoUrl,
       );
-
-      // createUser(
-      //   telegramId: 1016029253,
-      //   firstName: "joe",
-      //   lastName: "Testeur",
-      //   username: "joe@45",
-      //   parrainId: "bySystem",
-      //   photoUrl: null,
-      // );
     } else {
-      //Mettre à jour les points/coins de l'user en local
       await loadUserPurchasedCards();
-      bool localpointIsSaved = await _userRepository.userPointIsSaved();
-      if (localpointIsSaved == true) {
+
+      bool localPointIsSaved = await _userRepository.userPointIsSaved();
+
+      if (localPointIsSaved) {
         await updateUserPointLocal(_user!);
       } else {
         int localPoints = await _userRepository.getPoints();
         _localPoint = localPoints;
-        // UserModel? user_sync =
+
         await _userRepository.syncUserCoins(localPoints, _user?.id ?? '');
-        // if(user_sync!=null){
-        //   _user = user_sync;
-        // }
-        _user = await _userRepository.getUserByTelegramId( _user?.id??"$telegramUserId");
+        _user = await _userRepository
+            .getUserByTelegramId(_user?.id ?? "$telegramUserId");
+
         await updateUserPointLocal(_user!);
-        //await updateUserPointLocal(_user!);
       }
     }
 
     notifyListeners();
   }
+
+  // Future<void> fetchUserByTelegramId() async {
+  //   _user = await _userRepository.getUserByTelegramId("$telegramUserId");
+  //   log("user from online ${user?.toJson()}");
+  //   final prefs = await SharedPreferences.getInstance();
+  //   if (_user == null) {
+  //     await prefs.clear();
+  //     TelegramUser user = _telegramClient.telegram.initData.user;
+  //     String? startParam = _telegramClient.telegram.initDataUnsafe?.startParam;
+  //     StartParam parsedParam = (startParam ?? '').parseStartParam();
+  //     await createUser(
+  //       telegramId: _telegramClient.telegram.initData.user.id,
+  //       firstName: user.firstname,
+  //       lastName: user.lastname,
+  //       username: user.username,
+  //       parrainId: getParrainId(parsedParam),
+  //       photoUrl: _telegramClient.telegram.initDataUnsafe?.user?.photoUrl,
+  //     );
+
+  //     // createUser(
+  //     //   telegramId: 1016029253,
+  //     //   firstName: "joe",
+  //     //   lastName: "Testeur",
+  //     //   username: "joe@45",
+  //     //   parrainId: "bySystem",
+  //     //   photoUrl: null,
+  //     // );
+  //   } else {
+  //     //Mettre à jour les points/coins de l'user en local
+  //     await loadUserPurchasedCards();
+  //     bool localpointIsSaved = await _userRepository.userPointIsSaved();
+  //     if (localpointIsSaved == true) {
+  //       await updateUserPointLocal(_user!);
+  //     } else {
+  //       int localPoints = await _userRepository.getPoints();
+  //       _localPoint = localPoints;
+  //       // UserModel? user_sync =
+  //       await _userRepository.syncUserCoins(localPoints, _user?.id ?? '');
+  //       // if(user_sync!=null){
+  //       //   _user = user_sync;
+  //       // }
+  //       _user = await _userRepository.getUserByTelegramId( _user?.id??"$telegramUserId");
+  //       await updateUserPointLocal(_user!);
+  //       //await updateUserPointLocal(_user!);
+  //     }
+  //   }
+
+  //   notifyListeners();
+  // }
 
   /// Creer un utilisateur en fonction des données passées en paramètres
   /// Si l'utilisateur existe déjà, il est mise à jour en local
