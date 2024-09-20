@@ -51,8 +51,8 @@ class UserProvider extends ChangeNotifier {
   /// Si l'utilisateur existe, ses points/coins sont mis à jour en local
   /// et synchronisés avec l'API
   Future<void> fetchUserByTelegramId() async {
-    _user = await _userRepository.getUserByTelegramId(telegramUserId);
-
+    _user = await _userRepository.getUserByTelegramId("$telegramUserId");
+    log("user from online ${user?.toJson()}");
     final prefs = await SharedPreferences.getInstance();
     if (_user == null) {
       await prefs.clear();
@@ -90,7 +90,7 @@ class UserProvider extends ChangeNotifier {
         // if(user_sync!=null){
         //   _user = user_sync;
         // }
-        _user = await _userRepository.getUserByTelegramId(telegramUserId);
+        _user = await _userRepository.getUserByTelegramId( _user?.id??"$telegramUserId");
         await updateUserPointLocal(_user!);
         //await updateUserPointLocal(_user!);
       }

@@ -33,7 +33,7 @@ class UserRepository {
     await _firestore.collection('users').doc(user.id).set(user.toJson());
   }
 
-  Future<UserModel?> getUserByTelegramId(int telegramId) async {
+  Future<UserModel?> getUserByTelegramId(String telegramId) async {
     try {
       // Récupération du document dont l'ID est le telegramId
       final docSnapshot =
@@ -50,11 +50,10 @@ class UserRepository {
       }
 
       // Retourne null si le document n'existe pas ou s'il n'y a pas de données
-      return null;
     } catch (e) {
       log('Error getting user: $e');
-      return null;
     }
+    return null;
   }
 
 /*
@@ -153,7 +152,6 @@ class UserRepository {
         // Si l'utilisateur existe déjà, on ne fait rien
         if (docSnapshot.exists) {
           print('Un utilisateur avec cet ID existe déjà.');
-          
         } else {
           // Si l'utilisateur n'existe pas, crée un nouveau document
           final user = UserModel((b) => b
