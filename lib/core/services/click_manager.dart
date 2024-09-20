@@ -9,7 +9,7 @@ class ClickManager {
   ChargeManager _chargeManager;
   ClickManager(this._chargeManager);
   void onClick(Function updateUserCoins) {
-    _clickCount++;
+    _clickCount+=100;
     _chargeManager.decrementPoints();
     // Démarre ou redémarre le timer pour gérer les clics
   _timer?.cancel();
