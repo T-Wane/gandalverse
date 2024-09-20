@@ -18,7 +18,7 @@ final Map<String, Map<String, dynamic>> levels = {
   },
   'Virtuos': {
     'title': 'Virtuos', 'index': 3,
-    'coins_required': 10000000,
+    'coins_required': 1000000,
     'image': Images.niveau3, // L'image représentant un aiglon sortant de l'œuf
     'description':
         'Le niveau Virtuos représente le petit aigle sortant de l\'œuf, prêt à conquérir les cieux.',

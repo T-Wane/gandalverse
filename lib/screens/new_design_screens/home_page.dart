@@ -280,7 +280,9 @@ class _GoogleMapState extends State<HomeVrScreen>
                   },
                 ),
               ),
-              Visibility(
+              /* 
+            //BDM Part
+             Visibility(
                 visible: showAllbtns,
                 child: MapButton(
                   bottom: 140,
@@ -295,7 +297,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                     context.pushNamed(bnda_view);
                   },
                 ),
-              ),
+              ),*/
               //my_location button
               Visibility(
                 visible: showAllbtns,
@@ -359,7 +361,7 @@ class _GoogleMapState extends State<HomeVrScreen>
               //   visible: showAllbtns,
               //   child: MyProfitWidget(),
               // ),
-              
+
               //menu button
               /* Positioned(
                 bottom: realH(53),

@@ -4,6 +4,7 @@ import 'dart:io';
 
 //import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_avif/flutter_avif.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CustomImageView extends StatelessWidget {
@@ -104,6 +105,20 @@ class CustomImageView extends StatelessWidget {
               //colorFilter: ColorFilter.mode(Colors.red, BlendMode.srcIn),
             ),
           );
+
+        // case ImageType.avif:
+        //   return Container(
+        //     height: height,
+        //     width: width,
+        //     child: AvifImage.asset(
+        //       imagePath!,
+        //       height: height,
+        //       width: width,
+        //       fit: fit ?? BoxFit.contain,
+        //       color: color,
+        //       //colorFilter: ColorFilter.mode(Colors.red, BlendMode.srcIn),
+        //     ),
+        //   );
         case ImageType.file:
           return Image.file(
             File(imagePath!),
@@ -172,6 +187,8 @@ extension ImageTypeExtension on String {
       return ImageType.network;
     } else if (this.endsWith('.svg')) {
       return ImageType.svg;
+    } else if (this.endsWith('.avif')) {
+      return ImageType.avif;
     } else if (this.startsWith('file://')) {
       return ImageType.file;
     } else {
@@ -180,7 +197,7 @@ extension ImageTypeExtension on String {
   }
 }
 
-enum ImageType { svg, png, network, file, unknown }
+enum ImageType { svg, png, network, file, avif, unknown }
 
 
 

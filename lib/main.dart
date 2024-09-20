@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'dart:async';
-
+ 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gandalverse/core/providers/charge_provider.dart';
@@ -17,9 +17,13 @@ import 'core/route/router_navigator.dart';
 import 'core/services/explorer_service/explorer_service.dart';
 import 'package:webview_flutter_platform_interface/webview_flutter_platform_interface.dart';
 
+// Dépendance FFI (importée conditionnellement)
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 import 'widgets/fortune_spin/config/web_config.dart';
 // Pour JSON parsing
-
+//import  "dart:ffi";
+ 
 // import 'package:google_maps_flutter_android/google_maps_flutter_android.dart';
 // import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
 

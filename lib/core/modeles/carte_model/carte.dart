@@ -114,12 +114,31 @@ abstract class CarteModel implements Built<CarteModel, CarteModelBuilder> {
     }
   }
 
+  // String formatValue(double value) {
+  //   if (value >= 1000000) {
+  //     return '${(value / 1000000).toStringAsFixed(1)}M';
+  //   } else if (value >= 1000) {
+  //     return '${(value / 1000).toStringAsFixed(1)}K';
+  //   } else {
+  //     return value.toStringAsFixed(1);
+  //   }
+  // }
+
   String formatValue(double value) {
-    if (value >= 1000000) {
+    if (value >= 1000000000000) {
+      // Trillions
+      return '${(value / 1000000000000).toStringAsFixed(1)}T';
+    } else if (value >= 1000000000) {
+      // Billions
+      return '${(value / 1000000000).toStringAsFixed(1)}B';
+    } else if (value >= 1000000) {
+      // Millions
       return '${(value / 1000000).toStringAsFixed(1)}M';
     } else if (value >= 1000) {
+      // Thousands
       return '${(value / 1000).toStringAsFixed(1)}K';
     } else {
+      // Less than 1000
       return value.toStringAsFixed(1);
     }
   }

@@ -116,7 +116,7 @@ class UserRepository {
   }
 
   Future<void> createUser({required CreateUserFields fields}) async {
-   // final userId = Uuid().v4();
+    // final userId = Uuid().v4();
     final user = UserModel((b) => b
       ..id = '${fields.telegramId}'
       ..telegramId = fields.telegramId
@@ -130,7 +130,10 @@ class UserRepository {
       ..profileImage = '');
 
     try {
-      await _firestore.collection('users').doc("${fields.telegramId}").set(user.toJson());
+      await _firestore
+          .collection('users')
+          .doc("${fields.telegramId}")
+          .set(user.toJson());
     } catch (e) {
       print('Error creating user: $e');
     }
@@ -235,6 +238,8 @@ class UserRepository {
     DocumentReference userRef = _firestore.collection('users').doc(userId);
     bool isOk = false;
 
+    qgService.loadingController.add(true);
+
     bool localpointIsSaved = await userPointIsSaved();
     if (!localpointIsSaved == true) {
       int localPoints = await getPoints();
@@ -248,6 +253,7 @@ class UserRepository {
 
       if (!userDoc.exists) {
         log("User does not exist");
+        qgService.loadingController.add(false);
         return;
       }
 
@@ -256,6 +262,7 @@ class UserRepository {
 
       if (userCoins < cardPrice) {
         log("Not enough coins");
+        qgService.loadingController.add(false);
         return;
       }
 
@@ -275,7 +282,8 @@ class UserRepository {
               (qgService is EquipeService) ? "Equipe Card" : "Paternaire Card",
           'niveau': 1,
           'est_achete': true,
-          'profilParHeure': carte.forceNextReelle // passer de 0 à la force n+1 de la carte
+          'profilParHeure':
+              carte.forceNextReelle // passer de 0 à la force n+1 de la carte
           //Raison pour laquelle l'user achete la carte
         });
 
@@ -332,6 +340,8 @@ class UserRepository {
         log("Failed to retrieve updated user data.");
       }
     }
+
+    qgService.loadingController.add(false);
   }
 
   Future<void> updateCardLevel(
@@ -369,20 +379,20 @@ class UserRepository {
 
       // Récupération du document de la carte dans la sous-collection de l'utilisateur
       DocumentSnapshot userCardDoc = await transaction.get(userCardRef);
- 
 
       // Mise à jour du niveau de la carte et du profil de la carte
       transaction.update(userCardRef, {
-        'niveau': carteData.niveau+1,
-        'profilParHeure': carteData.forceNextReelle
-           , // Mise à jour du profit avec la nouvelle force 
+        'niveau': carteData.niveau + 1,
+        'profilParHeure': carteData
+            .forceNextReelle, // Mise à jour du profit avec la nouvelle force
       });
 
       // Mise à jour des coins et du profit par heure de l'utilisateur
       transaction.update(userRef, {
         'coins': userCoins - cardPrice,
-        'profitPerHour':
-            userDoc['profitPerHour'] + (carteData.forceNextReelle - carteData.forceReelle), // Ajustement du profit
+        'profitPerHour': userDoc['profitPerHour'] +
+            (carteData.forceNextReelle -
+                carteData.forceReelle), // Ajustement du profit
       });
       isOk = true;
       // Mise à jour des données de la carte dans le service local

@@ -16,9 +16,11 @@ import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/percent_indicator/linear_percent_indicator.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
+import 'package:provider/provider.dart';
 
 import 'package:telegram_web_app/telegram_web_app.dart';
 
+import '../core/functions/coins_value_formateur.dart';
 import 'bottomSheet_modal.dart';
 
 class ProfilDetailsContentBottomSheet extends StatefulWidget {
@@ -100,349 +102,337 @@ class _ProfilDetailsContentBottomSheetState
   //  entry.value['image']
   @override
   Widget build(BuildContext context) {
-    return PointerInterceptor(
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height * 0.95,
-        child: PointerInterceptor(
-            debug: false,
-            child: PageView(
-              controller: _scrollController,
-              scrollDirection: Axis.horizontal,
-              children: levels.entries
-                  .map((entry) => Stack(children: [
-                        PointerInterceptor(
-                          debug: false,
-                          child: AnimatedContainer(
-                            duration: const Duration(milliseconds: 200),
-                            margin: const EdgeInsets.only(top: 100),
-                            decoration: BoxDecoration(
-                                color: Colors.purpleAccent.withOpacity(0.6),
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  topRight: Radius.circular(10),
-                                ),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.purpleAccent.withOpacity(0.5),
-                                    offset: const Offset(1, 1),
-                                    blurRadius: 10,
-                                    spreadRadius: 4,
-                                  )
-                                ]),
+    return Consumer<UserProvider>(builder: (context, _userProvider, child) {
+      return PointerInterceptor(
+        child: SizedBox(
+          height: MediaQuery.of(context).size.height * 0.95,
+          child: PointerInterceptor(
+              debug: false,
+              child: PageView(
+                controller: _scrollController,
+                scrollDirection: Axis.horizontal,
+                children: levels.entries
+                    .map((entry) => Stack(children: [
+                          PointerInterceptor(
+                            debug: false,
                             child: AnimatedContainer(
                               duration: const Duration(milliseconds: 200),
-                              margin: const EdgeInsets.only(top: 2),
-                              padding: const EdgeInsetsDirectional.symmetric(
-                                horizontal: 5,
-                                vertical: 5,
-                              ),
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  topRight: Radius.circular(10),
+                              margin: const EdgeInsets.only(top: 100),
+                              decoration: BoxDecoration(
+                                  color: Colors.purpleAccent.withOpacity(0.6),
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    topRight: Radius.circular(10),
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color:
+                                          Colors.purpleAccent.withOpacity(0.5),
+                                      offset: const Offset(1, 1),
+                                      blurRadius: 10,
+                                      spreadRadius: 4,
+                                    )
+                                  ]),
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 200),
+                                margin: const EdgeInsets.only(top: 2),
+                                padding: const EdgeInsetsDirectional.symmetric(
+                                  horizontal: 5,
+                                  vertical: 5,
                                 ),
-                              ),
-                              child: Padding(
-                                padding: MediaQuery.of(context).viewInsets,
-                                child: Column(
-                                    // mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      Padding(
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    topRight: Radius.circular(10),
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: MediaQuery.of(context).viewInsets,
+                                  child: Column(
+                                      // mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 8, vertical: 5),
+                                            child: Align(
+                                                alignment:
+                                                    Alignment.centerRight,
+                                                child: closeIcon(context))),
+                                        Padding(
                                           padding: const EdgeInsets.symmetric(
-                                              horizontal: 8, vertical: 5),
-                                          child: Align(
-                                              alignment: Alignment.centerRight,
-                                              child: closeIcon(context))),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 15, vertical: 2),
-                                        child: Divider(
-                                          color: Colors.grey.shade200,
+                                              horizontal: 15, vertical: 2),
+                                          child: Divider(
+                                            color: Colors.grey.shade200,
+                                          ),
                                         ),
-                                      ),
-                                      Flexible(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(5.0),
-                                          child: Column(
-                                              //  mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: IconButton(
-                                                        onPressed: () {
-                                                          _scrollLeft();
-                                                        },
-                                                        icon: Icon(
-                                                          CupertinoIcons
-                                                              .chevron_left,
-                                                          color: Themecolors
-                                                              .Color3,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      child: Padding(
+                                        Flexible(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(5.0),
+                                            child: Column(
+                                                //  mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Padding(
                                                         padding:
                                                             const EdgeInsets
-                                                                .symmetric(
-                                                                horizontal: 10,
-                                                                vertical: 2),
-                                                        child: Text(
-                                                          "${entry.value['title']}",
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              color: Themecolors
-                                                                      .Color3
-                                                                  .withOpacity(
-                                                                      0.9),
-                                                              fontFamily:
-                                                                  "Aller",
-                                                              fontSize: 17),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: IconButton(
-                                                        onPressed: () {
-                                                          _scrollRight();
-                                                        },
-                                                        icon: Icon(
-                                                          CupertinoIcons
-                                                              .chevron_right,
-                                                          color: Themecolors
-                                                              .Color3,
-                                                        ),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                                if (entry.value['title'] ==
-                                                    "Neo") ...[
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                        vertical: 2,
-                                                        horizontal: 10),
-                                                    child:
-                                                        LinearPercentIndicator(
-                                                      percent: 0.5,
-                                                      isRTL: false,
-                                                      backgroundColor:
-                                                          Themecolors.Color3
-                                                              .withOpacity(0.2),
-                                                      animateFromLastPercent:
-                                                          true,
-                                                      restartAnimation: true,
-                                                      linearGradient:
-                                                          LinearGradient(
-                                                              begin: Alignment
-                                                                  .topCenter,
-                                                              end: Alignment
-                                                                  .bottomCenter,
-                                                              colors: [
-                                                            Colors.deepPurple
-                                                                .shade200,
-                                                            Colors.deepPurple
-                                                                .shade300,
-                                                            Colors.deepPurple
-                                                                .shade400,
-                                                            Colors.deepPurple
-                                                                .shade400,
-                                                            Colors.deepPurple
-                                                                .shade500,
-                                                            Colors.deepPurple
-                                                                .shade600,
-                                                            Colors.deepPurple
-                                                                .shade700,
-                                                          ]),
-                                                      lineHeight: 20.0,
-                                                      barRadius:
-                                                          const Radius.circular(
-                                                              5),
-                                                      leading: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                left: 5,
-                                                                right: 2),
-                                                        child: Text(
-                                                          "10k",
-                                                          style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w400,
+                                                                .all(8.0),
+                                                        child: IconButton(
+                                                          onPressed: () {
+                                                            _scrollLeft();
+                                                          },
+                                                          icon: Icon(
+                                                            CupertinoIcons
+                                                                .chevron_left,
                                                             color: Themecolors
                                                                 .Color3,
-                                                            fontFamily: "Aller",
-                                                            fontSize: 12,
                                                           ),
                                                         ),
                                                       ),
-                                                      trailing: Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(
-                                                                left: 5,
-                                                                right: 2),
-                                                        child: Text(
-                                                          "${entry.value['coins_required']}",
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              color: Colors
-                                                                  .purple
-                                                                  .shade400,
-                                                              fontFamily:
-                                                                  "Aller",
-                                                              fontSize: 13),
+                                                      Expanded(
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .symmetric(
+                                                                  horizontal:
+                                                                      10,
+                                                                  vertical: 2),
+                                                          child: Text(
+                                                            "${entry.value['title']}",
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                color: Themecolors
+                                                                        .Color3
+                                                                    .withOpacity(
+                                                                        0.9),
+                                                                fontFamily:
+                                                                    "Aller",
+                                                                fontSize: 17),
+                                                          ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  )
-                                                ] else ...[
-                                                  Text(
-                                                    "${entry.value['coins_required']}",
-                                                    maxLines: 1,
-                                                    textAlign: TextAlign.center,
-                                                    textDirection:
-                                                        TextDirection.ltr,
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        color:
-                                                            Themecolors.Color3,
-                                                        fontFamily: "Aller",
-                                                        fontWeight:
-                                                            FontWeight.normal),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: IconButton(
+                                                          onPressed: () {
+                                                            _scrollRight();
+                                                          },
+                                                          icon: Icon(
+                                                            CupertinoIcons
+                                                                .chevron_right,
+                                                            color: Themecolors
+                                                                .Color3,
+                                                          ),
+                                                        ),
+                                                      )
+                                                    ],
                                                   ),
-                                                ],
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                AutoSizeText(
-                                                  'le classement des joueurs',
-                                                  textAlign: TextAlign.center,
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .labelSmall!
-                                                      .copyWith(
-                                                        color: Themecolors
-                                                                .Color3
-                                                            .withOpacity(0.95),
-                                                        fontWeight:
-                                                            FontWeight.normal,
-                                                      ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-
-                                                Flexible(
-                                                    child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    CustomImageView(
-                                                      imagePath: Images.soon,
-                                                      height: 200,
-                                                      width: 200,
-                                                      fit: BoxFit.contain,
-                                                      margin:
-                                                          const EdgeInsets.all(
-                                                              10),
-                                                    ),
+                                                  if (entry.value['index'] ==
+                                                      (_userProvider
+                                                              .user?.level ??
+                                                          1)) ...[
                                                     Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: AutoSizeText(
-                                                        'Bientôt...',
-                                                        maxLines: 1,
-                                                        textAlign:
-                                                            TextAlign.left,
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .headlineSmall!
-                                                            .copyWith(
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
+                                                          vertical: 2,
+                                                          horizontal: 10),
+                                                      child: coinsProgress(
+                                                          userCoins:
+                                                              _userProvider.user
+                                                                      ?.coins ??
+                                                                  0,
+                                                          userLevelCoins: entry
+                                                                  .value[
+                                                              'coins_required'],
+                                                          leading: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left: 5,
+                                                                    right: 2),
+                                                            child: Text(
+                                                              formatValue(
+                                                                  double.parse(
+                                                                      "${_userProvider.user?.coins ?? 0}")),
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
                                                                 color:
                                                                     Themecolors
                                                                         .Color3,
                                                                 fontFamily:
                                                                     "Aller",
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w400),
-                                                      ),
+                                                                fontSize: 13,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          trailling: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .only(
+                                                                    left: 5,
+                                                                    right: 2),
+                                                            child: Text(
+                                                              formatValue(entry
+                                                                      .value[
+                                                                  'coins_required']),
+                                                              style: TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: Colors
+                                                                      .purple
+                                                                      .shade400,
+                                                                  fontFamily:
+                                                                      "Aller",
+                                                                  fontSize: 14),
+                                                            ),
+                                                          )),
+                                                    )
+                                                  ] else ...[
+                                                    Text(
+                                                      "${entry.value['coins_required']}",
+                                                      maxLines: 1,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      textDirection:
+                                                          TextDirection.ltr,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      style: TextStyle(
+                                                          fontSize: 15,
+                                                          color: Themecolors
+                                                              .Color3,
+                                                          fontFamily: "Aller",
+                                                          fontWeight: FontWeight
+                                                              .normal),
                                                     ),
                                                   ],
-                                                )),
-                                                // Expanded(
-                                                //     child: _buildPlayersList(
-                                                //         levelIndex: entry
-                                                //             .value['index']))
-                                              ]),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  AutoSizeText(
+                                                    'le classement des joueurs',
+                                                    textAlign: TextAlign.center,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .labelSmall!
+                                                        .copyWith(
+                                                          color:
+                                                              Themecolors.Color3
+                                                                  .withOpacity(
+                                                                      0.95),
+                                                          fontWeight:
+                                                              FontWeight.normal,
+                                                        ),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 5,
+                                                  ),
+
+                                                  Flexible(
+                                                      child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      CustomImageView(
+                                                        imagePath: Images.soon,
+                                                        height: 200,
+                                                        width: 200,
+                                                        fit: BoxFit.contain,
+                                                        margin: const EdgeInsets
+                                                            .all(10),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: AutoSizeText(
+                                                          'Bientôt...',
+                                                          maxLines: 1,
+                                                          textAlign:
+                                                              TextAlign.left,
+                                                          style: Theme.of(
+                                                                  context)
+                                                              .textTheme
+                                                              .headlineSmall!
+                                                              .copyWith(
+                                                                  color:
+                                                                      Themecolors
+                                                                          .Color3,
+                                                                  fontFamily:
+                                                                      "Aller",
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  )),
+                                                  // Expanded(
+                                                  //     child: _buildPlayersList(
+                                                  //         levelIndex: entry
+                                                  //             .value['index']))
+                                                ]),
+                                          ),
                                         ),
-                                      ),
-                                    ]),
+                                      ]),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        //---------------//
-                        Positioned(
-                          top: 0,
-                          left: 0,
-                          right: 0,
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Container(
-                              padding: const EdgeInsets.all(5),
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color3.withOpacity(0.1),
-                              ),
+                          //---------------//
+                          Positioned(
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            child: Align(
+                              alignment: Alignment.center,
                               child: Container(
                                 padding: const EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Colors.purpleAccent.withOpacity(0.1),
+                                  color: Color3.withOpacity(0.1),
                                 ),
-                                child: CustomImageView(
-                                  height: 150,
-                                  width: 150,
-                                  imagePath:
-                                      entry.value['image'], //image du niveau
-                                  radius: BorderRadius.circular(75),
-                                  fit: BoxFit.cover,
+                                child: Container(
+                                  padding: const EdgeInsets.all(5),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.purpleAccent.withOpacity(0.1),
+                                  ),
+                                  child: CustomImageView(
+                                    height: 150,
+                                    width: 150,
+                                    imagePath:
+                                        entry.value['image'], //image du niveau
+                                    radius: BorderRadius.circular(75),
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        const Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          child: shareGvBtn(),
-                        )
-                      ]))
-                  .toList(),
-            )),
-      ),
-    );
+                          const Positioned(
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            child: shareGvBtn(),
+                          )
+                        ]))
+                    .toList(),
+              )),
+        ),
+      );
+    });
   }
 
   Widget _buildPlayersList({int levelIndex = 1}) {
@@ -695,6 +685,53 @@ class playerItem extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class coinsProgress extends StatefulWidget {
+  final int userLevelCoins; // Niveau actuel de l'utilisateur
+  final int userCoins; // Coins de l'utilisateur
+  Widget? leading;
+  Widget? trailling;
+
+  coinsProgress(
+      {required this.userLevelCoins,
+      required this.userCoins,
+      this.leading,
+      this.trailling});
+
+  @override
+  State<coinsProgress> createState() => _coinsProgressState();
+}
+
+class _coinsProgressState extends State<coinsProgress> {
+  @override
+  Widget build(BuildContext context) {
+    final progress = widget.userCoins / widget.userLevelCoins;
+
+    return LinearPercentIndicator(
+      percent: progress.clamp(0.0, 1.0),
+      isRTL: false,
+      backgroundColor: Themecolors.Color3.withOpacity(0.2),
+      animateFromLastPercent: true,
+      restartAnimation: true,
+      linearGradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Colors.deepPurple.shade200,
+            Colors.deepPurple.shade300,
+            Colors.deepPurple.shade400,
+            Colors.deepPurple.shade400,
+            Colors.deepPurple.shade500,
+            Colors.deepPurple.shade600,
+            Colors.deepPurple.shade700,
+          ]),
+      lineHeight: 20.0,
+      leading: widget.leading,
+      trailing: widget.trailling,
+      barRadius: const Radius.circular(8),
     );
   }
 }
