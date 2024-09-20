@@ -5,6 +5,7 @@ import 'package:gandalverse/core/data/levels.dart';
 import 'package:gandalverse/core/functions/shareLink.dart';
 import 'package:gandalverse/core/modeles/carte_model/carte.dart';
 import 'package:gandalverse/core/modeles/fields/createUser_fields/createUser_fields.dart';
+import 'package:gandalverse/core/modeles/friend/friend_model.dart';
 import 'package:gandalverse/core/modeles/purchasedCard/user_purchase_card.dart';
 import 'package:gandalverse/core/modeles/user_model/user_model.dart';
 import 'package:gandalverse/core/repositories/startparam/start_param.dart';
@@ -362,6 +363,8 @@ class UserProvider extends ChangeNotifier {
       List<UserModel> friendsList =
           await _userRepository.getUserFriends(telegramUserId);
       friends = friendsList;
+      // user?.rebuild((usr)=> usr..friends = friendsList.map((frd) =>  FriendModel((f)=> f..id = frd.id
+      // ..reward_isClaimed = )).toList());
       notifyListeners();
       return friendsList;
     } catch (e) {
