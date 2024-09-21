@@ -160,7 +160,7 @@ class UserProvider extends ChangeNotifier {
         lastName: lastName,
         username: username,
         parrainId: parrainId,
-        initialCoin: parrainId != null ? 7500 : 2500,
+        initialCoin: parrainId != null ? 10000 : 1500,
         photoUrl: photoUrl);
     await _userRepository.createUser(fields: fields);
     await fetchUserByTelegramId();
