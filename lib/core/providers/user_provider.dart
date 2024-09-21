@@ -249,17 +249,17 @@ class UserProvider extends ChangeNotifier {
     final currentLevelIndex = _user?.level ?? 1;
     final userCoins = _user?.coins ?? 0;
 
-    // final nextLevel = levels.values
-    //     .where((level) => level['index'] > currentLevelIndex)
-    //     .reduce((current, next) =>
-    //         current['index'] < next['index'] ? current : next);
-
-    final currentLevel = levels.values
-        .where((level) => level['index'] == currentLevelIndex)
+    final nextLevel = levels.values
+        .where((level) => level['index'] > currentLevelIndex)
         .reduce((current, next) =>
             current['index'] < next['index'] ? current : next);
 
-    if (userCoins >= currentLevel['coins_required']) {
+    // final currentLevel = levels.values
+    //     .where((level) => level['index'] == currentLevelIndex)
+    //     .reduce((current, next) =>
+    //         current['index'] < next['index'] ? current : next);
+
+    if (userCoins >= nextLevel['coins_required']) {
       await Future.wait([
         _userRepository.updateUserLevel(_user!.id),
         fetchUserByTelegramId()

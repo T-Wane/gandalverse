@@ -276,7 +276,7 @@ class UserRepository {
   ///
   /// Si une erreur survient, on l'enregistre dans les logs.
 
-  /* Future<void> updateUserLevel(String userId) async {
+  Future<void> updateUserLevel(String userId) async {
     try {
       final userRef = _firestore.collection('users').doc(userId);
 
@@ -296,7 +296,6 @@ class UserRepository {
             .reduce((current, next) =>
                 current['index'] < next['index'] ? current : next);
 
-     
         if (userCoins >= nextLevel['coins_required']) {
           final newLevelIndex = nextLevel['index'];
           transaction.update(userRef, {
@@ -308,8 +307,8 @@ class UserRepository {
     } catch (e) {
       log('Error updating user level: $e');
     }
-  }*/
-
+  }
+/*
   Future<void> updateUserLevel(String userId) async {
     try {
       final userRef = _firestore.collection('users').doc(userId);
@@ -352,7 +351,7 @@ class UserRepository {
     } catch (e) {
       log('Error updating user level: $e');
     }
-  }
+  }*/
 
   //-----------------------------------------//
   Future<void> updatePoints(int newPoints) async {
