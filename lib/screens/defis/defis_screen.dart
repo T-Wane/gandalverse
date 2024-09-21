@@ -73,7 +73,7 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                       ),
                     ),
                   ),
-                 // buildGoWords(),
+                  // buildGoWords(),
                   buildScanQrPartenaire(Color3: Color3),
                   // AnnonceCard(
                   //     title: 'Enigmes',
@@ -131,6 +131,9 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                                     socialLinkData[index];
                                 return socialItem.isVisible
                                     ? buildCommunautyCard(
+                                        refresh: () {
+                                          setState(() {});
+                                        },
                                         socialLinkModel: socialItem)
                                     : const SizedBox.shrink();
                               });

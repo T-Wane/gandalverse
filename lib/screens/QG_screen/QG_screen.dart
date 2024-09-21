@@ -72,6 +72,14 @@ class _QGScreenState extends State<QGScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screen_size_width = MediaQuery.of(context).size.width;
+    final screen_size_height = MediaQuery.of(context).size.height;
+    // Calculer la largeur de l'écran
+    final screenWidth = MediaQuery.of(context).size.width;
+    // Définir une largeur fixe pour chaque carte
+    final cardWidth = 180.0;
+    // Calculer le nombre de colonnes basé sur la largeur de l'écran
+    final crossAxisCount = (screenWidth / cardWidth).floor();
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 12, 17, 19),
       extendBody: true,
@@ -149,12 +157,21 @@ class _QGScreenState extends State<QGScreen> {
                             shrinkWrap: true,
                             padding: const EdgeInsets.only(bottom: 100),
                             physics: const NeverScrollableScrollPhysics(),
+                            // gridDelegate:
+                            //     const SliverGridDelegateWithMaxCrossAxisExtent(
+                            //   maxCrossAxisExtent: 180,
+                            //   mainAxisExtent: 170,
+                            //   crossAxisSpacing: 1,
+                            //   mainAxisSpacing: 1,
+                            // ),
                             gridDelegate:
-                                const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 180,
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: crossAxisCount,
                               mainAxisExtent: 170,
-                              crossAxisSpacing: 1,
-                              mainAxisSpacing: 1,
+                              // childAspectRatio:
+                              //     cardWidth / 100, // Ratio largeur/hauteur
+                              crossAxisSpacing: 5,
+                              mainAxisSpacing: 5,
                             ),
                             itemCount: 8,
                             itemBuilder: (BuildContext ctx, index) {
