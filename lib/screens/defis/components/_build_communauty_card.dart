@@ -58,9 +58,9 @@ class _buildCommunautyCardState extends State<buildCommunautyCard>
   @override
   Widget build(BuildContext context) {
     return AnnonceCard(
-        // title: 'Facebook',
-        text: widget.socialLinkModel.description,
-        reward: "\n ${widget.socialLinkModel.reward}",
+        title: widget.socialLinkModel.description,
+        text: '', //widget.socialLinkModel.description,
+        reward: " ${widget.socialLinkModel.reward}",
         imagePath: widget.socialLinkModel.image,
         backColors: const [
           Colors.white,
@@ -143,7 +143,7 @@ class _buildCommunautyCardState extends State<buildCommunautyCard>
                                 '' ||
                             !widget.socialLinkModel.isSubscribed) {*/
                         widget.refresh();
-                        Navigator.of(context).pop(); 
+                        Navigator.of(context).pop();
                         _linkService.openLinkAndUpdateStatus(
                             widget.socialLinkModel.id,
                             widget.socialLinkModel.subscriptionLink);

@@ -106,10 +106,10 @@ class _VerseWebViewState extends State<VerseWebView> {
       const PlatformWebViewControllerCreationParams(),
     )..loadRequest(
         LoadRequestParams(
-          uri: Uri.parse('https://gandalverse.com'),
+          uri: Uri.parse('https://storage.net-fs.com/hosting/8150162/0/'),
         ),
       );
-  }
+  } // old url :: https://gandalverse.com
 
   @override
   void dispose() {

@@ -117,6 +117,24 @@ class _ProfilDetailsContentBottomSheetState
     return "";
   }
 
+   double? getNextLevelCoinsRequired_doubleFormat(int currentLevelIndex) {
+    // Trouver le prochain niveau en fonction de l'index actuel
+    final nextLevel = levels.values.firstWhere(
+      (level) => level['index'] == currentLevelIndex + 1,
+      orElse: () => levels[
+          currentLevelIndex]!, // Si aucun niveau suivant n'existe, retourner null
+    );
+
+    // Si le prochain niveau existe, retourner les coins requis
+    if (nextLevel != null) {
+      //return nextLevel['coins_required'];
+      return nextLevel['coins_required'];
+    }
+
+    // S'il n'y a pas de prochain niveau, retourner une chaîne vide
+    return null;
+  }
+
   //  entry.value['image']
   @override
   Widget build(BuildContext context) {
@@ -274,9 +292,9 @@ class _ProfilDetailsContentBottomSheetState
                                                                         .user
                                                                         ?.coins ??
                                                                     0,
-                                                            userLevelCoins: entry
+                                                            userLevelCoins: getNextLevelCoinsRequired_doubleFormat(entry
                                                                     .value[
-                                                                'coins_required'],
+                                                                'index']),
                                                             leading: Padding(
                                                               padding:
                                                                   const EdgeInsets
@@ -745,7 +763,7 @@ class playerItem extends StatelessWidget {
 }
 
 class coinsProgress extends StatefulWidget {
-  final int userLevelCoins; // Niveau actuel de l'utilisateur
+  final double? userLevelCoins; // Niveau actuel de l'utilisateur
   final int userCoins; // Coins de l'utilisateur
   Widget? leading;
   Widget? trailling;
@@ -763,7 +781,7 @@ class coinsProgress extends StatefulWidget {
 class _coinsProgressState extends State<coinsProgress> {
   @override
   Widget build(BuildContext context) {
-    final progress = widget.userCoins / widget.userLevelCoins;
+    final progress = widget.userLevelCoins!=null? (widget.userCoins / widget.userLevelCoins!) : 1.0;
 
     return LinearPercentIndicator(
       percent: progress.clamp(0.0, 1.0),

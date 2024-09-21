@@ -129,7 +129,7 @@ class _ShowGetDailyRewardSheetContentState
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: AutoSizeText(
-              'Récupérer votre récompence journalière',
+              'Récupérez votre récompence journalière',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.labelSmall!.copyWith(
                     color: Themecolors.Color3.withOpacity(0.95),
@@ -202,7 +202,7 @@ class _ShowGetDailyRewardSheetContentState
           ] else ...[
             DefaultButton(
               backColor: Colors.purple.shade400,
-              text: 'Reclammer',
+              text: 'Réclammer',
               elevation: 1.0,
               textColor: Colors.white,
               fontSize: 15,
