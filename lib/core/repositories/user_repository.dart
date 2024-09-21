@@ -449,6 +449,10 @@ class UserRepository {
   Future<void> updateCardLevel(
       QGService qgService, String userId, CarteModel carteData) async {
     DocumentReference userRef = _firestore.collection('users').doc(userId);
+      // Référence de la sous-collection "cards" de l'utilisateur
+      DocumentReference userCardRef =
+          userRef.collection('cards').doc(carteData.carteId);
+
     bool isOk = false;
     qgService.loadingController.add(true);
 
@@ -478,10 +482,7 @@ class UserRepository {
         return;
       }
 
-      // Référence de la sous-collection "cards" de l'utilisateur
-      DocumentReference userCardRef =
-          userRef.collection('cards').doc(carteData.carteId);
-
+    
       // Récupération du document de la carte dans la sous-collection de l'utilisateur
       DocumentSnapshot userCardDoc = await transaction.get(userCardRef);
 
