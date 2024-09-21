@@ -6,14 +6,13 @@ import "package:flutter/foundation.dart";
 
 class FirebaseClient {
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBq--4t1eJlvVRGq-BK6n4iwqzLqYXSzis',
-    appId: '1:366940087617:web:876ada4485b421a10e6dc0',
-    messagingSenderId: '366940087617',
-    projectId: 'gandalversego',
-    authDomain: 'gandalversego.firebaseapp.com',
-    storageBucket: 'gandalversego.appspot.com',
-  );
-
+      apiKey: "AIzaSyDgdJn-vTKTijPbhn15yKRW-PX6OyC1CzU",
+      authDomain: "gandalverselive.firebaseapp.com",
+      projectId: "gandalverselive",
+      storageBucket: "gandalverselive.appspot.com",
+      messagingSenderId: "894133258853",
+      appId: "1:894133258853:web:a1f247cd24df438756948c",
+      measurementId: "G-2W1MRMZMZ4");
   static Future<FirebaseClient> init() async {
     await initializeApp();
     return FirebaseClient();
@@ -23,13 +22,13 @@ class FirebaseClient {
     if (kIsWeb) {
       await Firebase.initializeApp(
           options: const FirebaseOptions(
-        apiKey: 'AIzaSyBq--4t1eJlvVRGq-BK6n4iwqzLqYXSzis',
-        appId: '1:366940087617:web:876ada4485b421a10e6dc0',
-        messagingSenderId: '366940087617',
-        projectId: 'gandalversego',
-        authDomain: 'gandalversego.firebaseapp.com',
-        storageBucket: 'gandalversego.appspot.com',
-      ));
+              apiKey: "AIzaSyDgdJn-vTKTijPbhn15yKRW-PX6OyC1CzU",
+              authDomain: "gandalverselive.firebaseapp.com",
+              projectId: "gandalverselive",
+              storageBucket: "gandalverselive.appspot.com",
+              messagingSenderId: "894133258853",
+              appId: "1:894133258853:web:a1f247cd24df438756948c",
+              measurementId: "G-2W1MRMZMZ4"));
     } else {
       await Firebase.initializeApp();
     }
