@@ -10,9 +10,9 @@ import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/widgets/reward/reward_animation.dart';
 
 class ClaimLinkCoins_btn extends StatefulWidget {
-  final SocialLinkModel socialLinkModel;
+  SocialLinkModel socialLinkModel;
 
-  const ClaimLinkCoins_btn({required this.socialLinkModel, Key? key})
+  ClaimLinkCoins_btn({required this.socialLinkModel, Key? key})
       : super(key: key);
 
   @override
@@ -43,6 +43,15 @@ class _ClaimLinkCoins_btnState extends State<ClaimLinkCoins_btn> {
       setState(() {
         _timeRemaining = _linkService.getTimeRemaining(widget.socialLinkModel);
       });
+    } else {
+      List<SocialLinkModel> data = _linkService.socialLinksData
+          .where((element) => element.id == widget.socialLinkModel.id)
+          .toList();
+      if (data.isNotEmpty) {
+        setState(() {
+          widget.socialLinkModel = data[0];
+        });
+      }
     }
   }
 
