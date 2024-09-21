@@ -72,6 +72,14 @@ class _QGScreenState extends State<QGScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screen_size_width = MediaQuery.of(context).size.width;
+    final screen_size_height = MediaQuery.of(context).size.height;
+    // Calculer la largeur de l'écran
+    final screenWidth = MediaQuery.of(context).size.width;
+    // Définir une largeur fixe pour chaque carte
+    final cardWidth = 180.0;
+    // Calculer le nombre de colonnes basé sur la largeur de l'écran
+    final crossAxisCount = (screenWidth / cardWidth).floor();
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 12, 17, 19),
       extendBody: true,
