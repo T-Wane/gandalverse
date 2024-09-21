@@ -99,6 +99,24 @@ class _ProfilDetailsContentBottomSheetState
     }
   }
 
+  String getNextLevelCoinsRequired(int currentLevelIndex) {
+    // Trouver le prochain niveau en fonction de l'index actuel
+    final nextLevel = levels.values.firstWhere(
+      (level) => level['index'] == currentLevelIndex + 1,
+      orElse: () => levels[
+          currentLevelIndex]!, // Si aucun niveau suivant n'existe, retourner null
+    );
+
+    // Si le prochain niveau existe, retourner les coins requis
+    if (nextLevel != null) {
+      //return nextLevel['coins_required'];
+      return formatValue(nextLevel['coins_required']);
+    }
+
+    // S'il n'y a pas de prochain niveau, retourner une chaîne vide
+    return "";
+  }
+
   //  entry.value['image']
   @override
   Widget build(BuildContext context) {
@@ -290,9 +308,13 @@ class _ProfilDetailsContentBottomSheetState
                                                                       left: 5,
                                                                       right: 2),
                                                               child: Text(
-                                                                formatValue(entry
-                                                                        .value[
-                                                                    'coins_required']),
+                                                                // formatValue(entry
+                                                                //         .value[
+                                                                //     'coins_required']),
+
+                                                                getNextLevelCoinsRequired(
+                                                                    entry.value[
+                                                                        'index']),
                                                                 style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight

@@ -104,7 +104,7 @@ class _CategoriesSectionState extends State<CategoriesSection> {
               margin: const EdgeInsets.all(5),
               child: const Center(
                 child: Text(
-                  'No category found',
+                  'En cours de négociation 😎',
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white),
                 ),
