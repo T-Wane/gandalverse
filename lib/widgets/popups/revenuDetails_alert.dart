@@ -110,8 +110,7 @@ class RevenuDetails_PopUpState extends State<RevenuDetails_PopUp>
                                           color: Colors.black,
                                         ),
                                   ),
-                                ),
-
+                                ), 
                                 //--------------------------------//
                                 title(text: "Formule de redistribution"),
                                 subTitle(text: "Comment ça marche ?"),

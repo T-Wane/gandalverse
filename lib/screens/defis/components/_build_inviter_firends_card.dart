@@ -86,8 +86,8 @@ class _BuildInviterFirendsState extends State<BuildInviterFirends> {
   Widget build(BuildContext context) {
     return Consumer<UserProvider>(builder: (context, _userProvider, child) {
       return AnnonceCard(
-          // title: 'Youtube',
-          text: 'Inviter 3 Amis \n',
+          title: 'Invites 3 Amis',
+          text: '',
           reward: "30 000",
           imagePath: Images.invites3Amis,
           isComplete: isClaimed(),

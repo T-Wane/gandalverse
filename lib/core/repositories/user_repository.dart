@@ -276,7 +276,7 @@ class UserRepository {
   ///
   /// Si une erreur survient, on l'enregistre dans les logs.
 
-  Future<void> updateUserLevel(String userId) async {
+  /* Future<void> updateUserLevel(String userId) async {
     try {
       final userRef = _firestore.collection('users').doc(userId);
 
@@ -296,12 +296,57 @@ class UserRepository {
             .reduce((current, next) =>
                 current['index'] < next['index'] ? current : next);
 
+     
         if (userCoins >= nextLevel['coins_required']) {
           final newLevelIndex = nextLevel['index'];
           transaction.update(userRef, {
             'level': newLevelIndex,
           });
           log('User level updated to $newLevelIndex');
+        }
+      });
+    } catch (e) {
+      log('Error updating user level: $e');
+    }
+  }*/
+
+  Future<void> updateUserLevel(String userId) async {
+    try {
+      final userRef = _firestore.collection('users').doc(userId);
+
+      await _firestore.runTransaction((transaction) async {
+        final userDoc = await transaction.get(userRef);
+        if (!userDoc.exists) {
+          log("User does not exist");
+          return;
+        }
+
+        final userData = userDoc.data() as Map<String, dynamic>;
+        final currentLevelIndex = userData['level'];
+        final userCoins = userData['coins'];
+
+        // Trouver le niveau actuel en utilisant son index
+        final currentLevel = levels.values
+            .firstWhere((level) => level['index'] == currentLevelIndex);
+
+        // Vérifier si l'utilisateur a assez de coins pour quitter le niveau actuel
+        if (userCoins >= currentLevel['coins_required']) {
+          // Trouver le niveau suivant
+          final nextLevel = levels.values.firstWhere(
+              (level) => level['index'] == currentLevelIndex + 1,
+              orElse: () => currentLevelIndex);
+
+          if (nextLevel != null) {
+            // Mettre à jour l'utilisateur au niveau suivant
+            transaction.update(userRef, {
+              'level': nextLevel['index'],
+            });
+            log('User level updated to ${nextLevel['title']}');
+          } else {
+            log('No higher level found.');
+          }
+        } else {
+          log('Not enough coins to upgrade. Current coins: $userCoins, Required: ${currentLevel['coins_required']}');
         }
       });
     } catch (e) {
@@ -453,9 +498,9 @@ class UserRepository {
   Future<void> updateCardLevel(
       QGService qgService, String userId, CarteModel carteData) async {
     DocumentReference userRef = _firestore.collection('users').doc(userId);
-      // Référence de la sous-collection "cards" de l'utilisateur
-      DocumentReference userCardRef =
-          userRef.collection('cards').doc(carteData.carteId);
+    // Référence de la sous-collection "cards" de l'utilisateur
+    DocumentReference userCardRef =
+        userRef.collection('cards').doc(carteData.carteId);
 
     bool isOk = false;
     qgService.loadingController.add(true);
@@ -486,7 +531,6 @@ class UserRepository {
         return;
       }
 
-    
       // Récupération du document de la carte dans la sous-collection de l'utilisateur
       DocumentSnapshot userCardDoc = await transaction.get(userCardRef);
 

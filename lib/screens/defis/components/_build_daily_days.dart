@@ -42,8 +42,8 @@ class _buildDailyDaysState extends State<buildDailyDays> {
   @override
   Widget build(BuildContext context) {
     return AnnonceCard(
-        title: 'Daily',
-        text: 'Récupérer votre récompense quotidienne',
+        title: 'Daily Quest',
+        text: 'Récupérez votre récompense quotidienne',
         imagePath: Images.dailyCalendar,
         isComplete: isClaimed,
         backColors: const [

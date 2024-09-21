@@ -43,7 +43,7 @@ class inviterAmiCard extends StatelessWidget {
                         width: 23,
                       ),
                       AutoSizeText(
-                        '+7500',
+                        '+10000',
                         maxLines: 1,
                         textAlign: TextAlign.right,
                         style: Theme.of(context).textTheme.labelSmall!.copyWith(
@@ -87,7 +87,7 @@ class inviterAmiWithPremiumCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElementCard(
-        title: 'GVT Communauté',
+        title: 'Les Piliers',
         leadingWidget: CustomImageView(
           imagePath: Images.group,
           height: 55,
@@ -95,7 +95,7 @@ class inviterAmiWithPremiumCard extends StatelessWidget {
           fit: BoxFit.contain,
         ),
         SubWidget: Text(
-          'Voir vos influenceurs ou gagner grâce à vos atistes préférés',
+          'Les plus influents de la communauté! [ comming soon ]',
           textAlign: TextAlign.start,
           style: TextStyle(
             color: Color3.withOpacity(0.7),

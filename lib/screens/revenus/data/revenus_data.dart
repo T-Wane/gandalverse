@@ -18,7 +18,7 @@ List<Map<String, dynamic>> eligibilitesData = [
 ];
 
 Map<String, String> panneauxData = {
-  "title": "Panneaux publicitaires",
+  "title": "Vos commissions : oct 2024 - oct 2025",
   "content":
-      "Recevez jusqu'à 20 % des frais de location des espaces publicitaires dans Gandalverse grâce à la commission partagée avec la communauté. Profitez de cette opportunité pour maximiser vos gains tout en contribuant à un écosystème dynamique !"
+      "Recevez 100% des photos de frais de location des panneaux publicitaires dans Gandalverse !"
 };

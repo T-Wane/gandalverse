@@ -68,7 +68,7 @@ class _CountdownTimerState extends State<CountdownTimer> {
     }
     return DefaultButton(
       backColor: Colors.grey.shade300,
-      text: displayTime,
+      text: "Revenez Demain", //displayTime,
       elevation: 1.0,
       textColor: Colors.grey.shade600,
       fontSize: 14,
