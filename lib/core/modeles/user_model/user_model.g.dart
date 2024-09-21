@@ -82,6 +82,13 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
+    value = object.createdAt;
+    if (value != null) {
+      result
+        ..add('createdAt')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(DateTime)));
+    }
     return result;
   }
 
@@ -146,6 +153,10 @@ class _$UserModelSerializer implements StructuredSerializer<UserModel> {
           result.profileImage = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String?;
           break;
+        case 'createdAt':
+          result.createdAt = serializers.deserialize(value,
+              specifiedType: const FullType(DateTime)) as DateTime?;
+          break;
       }
     }
 
@@ -178,6 +189,8 @@ class _$UserModel extends UserModel {
   final double profitPerHour;
   @override
   final String? profileImage;
+  @override
+  final DateTime? createdAt;
 
   factory _$UserModel([void Function(UserModelBuilder)? updates]) =>
       (new UserModelBuilder()..update(updates))._build();
@@ -194,7 +207,8 @@ class _$UserModel extends UserModel {
       required this.level,
       required this.coins,
       required this.profitPerHour,
-      this.profileImage})
+      this.profileImage,
+      this.createdAt})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(id, r'UserModel', 'id');
     BuiltValueNullFieldError.checkNotNull(
@@ -227,7 +241,8 @@ class _$UserModel extends UserModel {
         level == other.level &&
         coins == other.coins &&
         profitPerHour == other.profitPerHour &&
-        profileImage == other.profileImage;
+        profileImage == other.profileImage &&
+        createdAt == other.createdAt;
   }
 
   @override
@@ -245,6 +260,7 @@ class _$UserModel extends UserModel {
     _$hash = $jc(_$hash, coins.hashCode);
     _$hash = $jc(_$hash, profitPerHour.hashCode);
     _$hash = $jc(_$hash, profileImage.hashCode);
+    _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -263,7 +279,8 @@ class _$UserModel extends UserModel {
           ..add('level', level)
           ..add('coins', coins)
           ..add('profitPerHour', profitPerHour)
-          ..add('profileImage', profileImage))
+          ..add('profileImage', profileImage)
+          ..add('createdAt', createdAt))
         .toString();
   }
 }
@@ -321,6 +338,10 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
   String? get profileImage => _$this._profileImage;
   set profileImage(String? profileImage) => _$this._profileImage = profileImage;
 
+  DateTime? _createdAt;
+  DateTime? get createdAt => _$this._createdAt;
+  set createdAt(DateTime? createdAt) => _$this._createdAt = createdAt;
+
   UserModelBuilder();
 
   UserModelBuilder get _$this {
@@ -338,6 +359,7 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
       _coins = $v.coins;
       _profitPerHour = $v.profitPerHour;
       _profileImage = $v.profileImage;
+      _createdAt = $v.createdAt;
       _$v = null;
     }
     return this;
@@ -377,7 +399,8 @@ class UserModelBuilder implements Builder<UserModel, UserModelBuilder> {
                   coins, r'UserModel', 'coins'),
               profitPerHour: BuiltValueNullFieldError.checkNotNull(
                   profitPerHour, r'UserModel', 'profitPerHour'),
-              profileImage: profileImage);
+              profileImage: profileImage,
+              createdAt: createdAt);
     } catch (_) {
       late String _$failedField;
       try {

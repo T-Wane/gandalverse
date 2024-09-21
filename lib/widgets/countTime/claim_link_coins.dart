@@ -82,7 +82,7 @@ class _ClaimLinkCoins_btnState extends State<ClaimLinkCoins_btn> {
       if (displayTime.isNotEmpty) displayTime += ':';
       displayTime += '$seconds s';
     }
-    return ((widget.socialLinkModel.isClaimed ?? false) == false &&
+    return ((widget.socialLinkModel.isClaimed !=true) &&
             widget.socialLinkModel.isSubscribed)
         ? DefaultButton(
             backColor: widget.socialLinkModel.canClaimReward()
@@ -98,15 +98,16 @@ class _ClaimLinkCoins_btnState extends State<ClaimLinkCoins_btn> {
             fontSize: 14,
             height: 50,
             press: () {
+              
               _linkService.setLinkIsClaimed(
                 widget.socialLinkModel.id,
               );
               RewardAnimation.show(context);
               Future.delayed(const Duration(seconds: 3), () {
                 RewardAnimation.hide(context);
-              });
-
-              Navigator.of(context).pop(true);
+                 Navigator.of(context).pop(true);
+              }); 
+              
             },
           )
         : const SizedBox.shrink();

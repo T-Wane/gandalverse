@@ -103,7 +103,7 @@ class inviterAmiWithPremiumCard extends StatelessWidget {
             ),
             children: <TextSpan>[
               TextSpan(
-                text: '[ comming soon ]', // Texte en gras
+                text: '\n[coming soon]', // Texte en gras
                 style: TextStyle(
                   fontWeight: FontWeight.bold, // Appliquer le gras ici
                   color: Color3.withOpacity(0.7),

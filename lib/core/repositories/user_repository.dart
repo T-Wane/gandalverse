@@ -170,7 +170,9 @@ class UserRepository {
             ..coins = fields.initialCoin
             ..friends = ListBuilder([])
             ..profitPerHour = 0
-            ..profileImage = '');
+            ..profileImage = ''
+            ..createdAt = DateTime.now().toUtc()
+            );
 
           await _firestore
               .collection('users')

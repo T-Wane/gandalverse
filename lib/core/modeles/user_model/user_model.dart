@@ -20,7 +20,7 @@ abstract class UserModel implements Built<UserModel, UserModelBuilder> {
   int get coins;
   double get profitPerHour;
   String? get profileImage;
-  DateTime? createdAt;
+  DateTime? get createdAt;
 
   UserModel._();
   factory UserModel([void Function(UserModelBuilder) updates]) = _$UserModel;
