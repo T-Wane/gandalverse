@@ -14,10 +14,11 @@ import 'package:gandalverse/widgets/customImageView.dart';
 import 'package:gandalverse/widgets/reward/reward_animation.dart';
 
 class buildCommunautyCard extends StatefulWidget {
-  buildCommunautyCard({super.key, required this.socialLinkModel});
+  buildCommunautyCard(
+      {super.key, required this.socialLinkModel, required this.refresh});
 
   SocialLinkModel socialLinkModel;
-
+  Function() refresh;
   @override
   State<buildCommunautyCard> createState() => _buildCommunautyCardState();
 }
@@ -141,7 +142,8 @@ class _buildCommunautyCardState extends State<buildCommunautyCard>
                         /*if (widget.socialLinkModel.subscriptionLink.trim() !=
                                 '' ||
                             !widget.socialLinkModel.isSubscribed) {*/
-                        Navigator.of(context).pop();
+                        widget.refresh();
+                        Navigator.of(context).pop(); 
                         _linkService.openLinkAndUpdateStatus(
                             widget.socialLinkModel.id,
                             widget.socialLinkModel.subscriptionLink);

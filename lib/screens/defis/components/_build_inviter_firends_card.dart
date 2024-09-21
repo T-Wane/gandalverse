@@ -69,7 +69,7 @@ class _BuildInviterFirendsState extends State<BuildInviterFirends> {
           claimed();
           if (userProvider.user != null) {
             final updatedUser = userProvider.user!.rebuild(
-                (b) => b..coins = ((userProvider.user?.coins ?? 0) + 20000));
+                (b) => b..coins = ((userProvider.user?.coins ?? 0) + 30000));
             userProvider.updateUserPointLocal(updatedUser);
           }
           Future.delayed(const Duration(seconds: 3), () {
@@ -88,7 +88,7 @@ class _BuildInviterFirendsState extends State<BuildInviterFirends> {
       return AnnonceCard(
           // title: 'Youtube',
           text: 'Inviter 3 Amis \n',
-          reward: "20 000",
+          reward: "30 000",
           imagePath: Images.invites3Amis,
           isComplete: isClaimed(),
           backColors: const [

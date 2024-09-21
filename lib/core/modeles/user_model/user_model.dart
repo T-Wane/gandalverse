@@ -3,6 +3,8 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:gandalverse/core/modeles/serializers/serializers.dart';
 
+import '../friend/friend_model.dart';
+
 part 'user_model.g.dart';
 
  
@@ -15,7 +17,7 @@ abstract class UserModel implements Built<UserModel, UserModelBuilder> {
   String? get username;
   String? get photoUrl;
   String? get parrainId;
-  BuiltList<Map<String, dynamic>>? get friends;
+  BuiltList<FriendModel>? get friends;
   int get level;
   int get coins;
   double get profitPerHour;

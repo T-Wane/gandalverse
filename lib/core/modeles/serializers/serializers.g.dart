@@ -12,16 +12,14 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CategorieType.serializer)
       ..add(ContrainteType.serializer)
       ..add(EvenementModel.serializer)
+      ..add(FriendModel.serializer)
       ..add(PlayerModel.serializer)
       ..add(SocialLinkModel.serializer)
       ..add(UserModel.serializer)
       ..add(UserPurchaseCard.serializer)
       ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(
-                Map, const [const FullType(String), const FullType(dynamic)])
-          ]),
-          () => new ListBuilder<Map<String, dynamic>>())
+          const FullType(BuiltList, const [const FullType(FriendModel)]),
+          () => new ListBuilder<FriendModel>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>()))

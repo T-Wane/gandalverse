@@ -152,6 +152,10 @@ class UserRepository {
         // Si l'utilisateur existe déjà, on ne fait rien
         if (docSnapshot.exists) {
           print('Un utilisateur avec cet ID existe déjà.');
+          Map<String, dynamic>? doc = docSnapshot.data();
+          if (doc != null) {
+            final user = UserModel.fromJson(doc);
+          }
         } else {
           // Si l'utilisateur n'existe pas, crée un nouveau document
           final user = UserModel((b) => b
@@ -502,12 +506,12 @@ class UserRepository {
       });
       isOk = true;
       // Mise à jour des données de la carte dans le service local
-      await qgService.updateItem(carteData.carteId!, carteData.rebuild((crt) => crt..niveau = carteData.niveau+1));
-       // Mise à jour du niveau de l'utilisateur en local
-        //ici
- 
+      await qgService.updateItem(carteData.carteId!,
+          carteData.rebuild((crt) => crt..niveau = carteData.niveau + 1));
+      // Mise à jour du niveau de l'utilisateur en local
+      //ici
 
-        isOk = true; // Indique que la transaction a réussi
+      isOk = true; // Indique que la transaction a réussi
     });
 
     // Si la transaction est réussie, nous mettons à jour la carte en local

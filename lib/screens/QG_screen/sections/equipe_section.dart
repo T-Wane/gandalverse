@@ -64,7 +64,9 @@ class _EquipeSectionState extends State<EquipeSection> {
                     _userProvider.getPurchaseCardsLevelAndId());
                 final profitParHeure = _userProvider.user?.profitPerHour;
                 final codeSaisi = '';
-                final nombreAmis = _userProvider.friends.length ?? 0;
+                final nombreAmis = _userProvider.friends.isNotEmpty
+                    ? _userProvider.friends.length
+                    : _userProvider.user?.friends?.length ?? 0;
 
                 return Padding(
                   padding: const EdgeInsets.all(5.0),

@@ -9,6 +9,7 @@ import 'package:gandalverse/core/modeles/user_model/user_model.dart';
 
 import '../carte_model/carte.dart';
 import '../explorer/evenement/evenement.dart';
+import '../friend/friend_model.dart';
 
 part 'serializers.g.dart'; // Le fichier généré par build_runner
 
@@ -20,7 +21,8 @@ part 'serializers.g.dart'; // Le fichier généré par build_runner
   EvenementModel,
   SocialLinkModel,
   UserPurchaseCard,
-  PlayerModel
+  PlayerModel,
+  FriendModel
 ])
 final Serializers serializers =
     (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();
