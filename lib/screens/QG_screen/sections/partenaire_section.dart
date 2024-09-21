@@ -35,6 +35,13 @@ class _PartenaireSectionState extends State<PartenaireSection> {
 
   @override
   Widget build(BuildContext context) {
+       final screen_size_width = MediaQuery.of(context).size.width;
+    final screen_size_height = MediaQuery.of(context).size.height;
+    // Calculer la largeur de l'écran
+    final screenWidth = MediaQuery.of(context).size.width;
+    // Définir une largeur fixe pour chaque carte
+    final cardWidth = 180.0;
+    // Calculer le nombre de colonnes basé sur la largeur de l'écran
     _partenaireService.loadInitialData();
     return Consumer<UserProvider>(builder: (context, _userProvider, child) {
       return Stack(children: [
@@ -66,13 +73,22 @@ class _PartenaireSectionState extends State<PartenaireSection> {
                     shrinkWrap: true,
                     padding: const EdgeInsets.only(bottom: 20),
                     // physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 180,
-                      mainAxisExtent: 200,
-                      crossAxisSpacing: 1,
-                      mainAxisSpacing: 1,
-                    ),
+                    // gridDelegate:
+                    //     const SliverGridDelegateWithMaxCrossAxisExtent(
+                    //   maxCrossAxisExtent: 180,
+                    //   mainAxisExtent: 200,
+                    //   crossAxisSpacing: 1,
+                    //   mainAxisSpacing: 1,
+                    // ),
+                     gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: crossAxisCount,
+                              mainAxisExtent: 200,
+                              // childAspectRatio:
+                              //     cardWidth / 100, // Ratio largeur/hauteur
+                              crossAxisSpacing: 1,
+                              mainAxisSpacing: 1,
+                            ),
                     itemCount: partenaireList.length,
                     itemBuilder: (BuildContext ctx, index) {
                       CarteModel carte = partenaireList[index];
