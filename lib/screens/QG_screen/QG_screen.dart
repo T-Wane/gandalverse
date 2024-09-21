@@ -157,12 +157,21 @@ class _QGScreenState extends State<QGScreen> {
                             shrinkWrap: true,
                             padding: const EdgeInsets.only(bottom: 100),
                             physics: const NeverScrollableScrollPhysics(),
+                            // gridDelegate:
+                            //     const SliverGridDelegateWithMaxCrossAxisExtent(
+                            //   maxCrossAxisExtent: 180,
+                            //   mainAxisExtent: 170,
+                            //   crossAxisSpacing: 1,
+                            //   mainAxisSpacing: 1,
+                            // ),
                             gridDelegate:
-                                const SliverGridDelegateWithMaxCrossAxisExtent(
-                              maxCrossAxisExtent: 180,
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: crossAxisCount,
                               mainAxisExtent: 170,
-                              crossAxisSpacing: 1,
-                              mainAxisSpacing: 1,
+                              // childAspectRatio:
+                              //     cardWidth / 100, // Ratio largeur/hauteur
+                              crossAxisSpacing: 5,
+                              mainAxisSpacing: 5,
                             ),
                             itemCount: 8,
                             itemBuilder: (BuildContext ctx, index) {
