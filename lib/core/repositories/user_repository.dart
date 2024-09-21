@@ -169,7 +169,7 @@ class UserRepository {
             ..level = 1
             ..coins = fields.initialCoin
             ..friends = ListBuilder([])
-            ..profitPerHour = 100
+            ..profitPerHour = 0
             ..profileImage = '');
 
           await _firestore
@@ -245,6 +245,7 @@ class UserRepository {
     }
   }
 
+  
   // Future<void> updateUser(UserModel user) async {
   //   try {
   //     await _firestore.collection('users').doc(user.id).update(user.toJson());

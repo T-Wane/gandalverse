@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:gandalverse/components/default_btn.dart';
 import 'package:gandalverse/core/modeles/explorer/categorie/categorie.dart';
+import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:gandalverse/widgets/customImageView.dart';
 
@@ -123,10 +124,10 @@ class CategorieDetails_PopUpState extends State<CategorieDetails_PopUp>
                                 ),
                               ),
                               DefaultButton(
-                                backColor: Colors.purple.shade400,
-                                text: 'Visiter',
+                                backColor: Colors.grey.shade300,
+                                text: 'En chantier',
                                 elevation: 1.0,
-                                textColor: Colors.white,
+                                textColor: Themecolors.greyDeep,
                                 fontSize: 15,
                                 height: 40,
                                 press: () {},

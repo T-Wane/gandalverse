@@ -104,7 +104,7 @@ class _EventsSectionState extends State<EventsSection> {
                         child: Padding(
                           padding: const EdgeInsets.all(5.0),
                           child: Text(
-                            "Festival Acoustik Bamako",
+                            evenement.titre ?? "",
                             style: TextStyle(
                                 color: Colors.white, fontSize: realW(14)),
                           ),

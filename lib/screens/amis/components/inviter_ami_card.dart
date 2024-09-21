@@ -94,13 +94,24 @@ class inviterAmiWithPremiumCard extends StatelessWidget {
           width: 55,
           fit: BoxFit.contain,
         ),
-        SubWidget: Text(
-          'Les plus influents de la communauté! [ comming soon ]',
-          textAlign: TextAlign.start,
-          style: TextStyle(
-            color: Color3.withOpacity(0.7),
-            fontSize: 12,
+        SubWidget: Text.rich(
+          TextSpan(
+            text: 'Les plus influents de la communauté! ', // Texte normal
+            style: TextStyle(
+              color: Color3.withOpacity(0.7),
+              fontSize: 12,
+            ),
+            children: <TextSpan>[
+              TextSpan(
+                text: '[ comming soon ]', // Texte en gras
+                style: TextStyle(
+                  fontWeight: FontWeight.bold, // Appliquer le gras ici
+                  color: Color3.withOpacity(0.7),
+                ),
+              ),
+            ],
           ),
+          textAlign: TextAlign.start,
         ),
         backColors: const [
           Colors.white,

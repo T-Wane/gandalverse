@@ -8,6 +8,8 @@ import 'package:gandalverse/core/modeles/fields/createUser_fields/createUser_fie
 import 'package:gandalverse/core/modeles/friend/friend_model.dart';
 import 'package:gandalverse/core/modeles/purchasedCard/user_purchase_card.dart';
 import 'package:gandalverse/core/modeles/user_model/user_model.dart';
+import 'package:gandalverse/core/modeles/user_model/user_model_ext.dart';
+import 'package:gandalverse/core/repositories/extensions/friends_repo_ext.dart';
 import 'package:gandalverse/core/repositories/startparam/start_param.dart';
 import 'package:gandalverse/core/repositories/startparam/start_param_parsing.dart';
 import 'package:gandalverse/core/repositories/user_repository.dart';
@@ -370,6 +372,11 @@ class UserProvider extends ChangeNotifier {
       friends = friendsList;
       // user?.rebuild((usr)=> usr..friends = friendsList.map((frd) =>  FriendModel((f)=> f..id = frd.id
       // ..reward_isClaimed = )).toList());
+      // Réclamer les coins des amis et mettre à jour l'utilisateur
+      final updatedUser = user!.claimCoinsFromFriends();
+      updateUserPointLocal(updatedUser);
+      // Uploader la mise à jour vers Firebase
+      _userRepository.updateUserFriendsInFirebase(updatedUser);
       notifyListeners();
       return friendsList;
     } catch (e) {

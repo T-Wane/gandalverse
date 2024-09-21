@@ -12,10 +12,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 @singleton
 class ExplorerService with ChangeNotifier {
   String cateorieJsonPath = "assets/json/categorieData.json";
-  String cateoriesSaveKey = "categoriesDataKey2";
+  String cateoriesSaveKey = "categoriesDataKey3";
 
   String eventsJsonPath = "assets/json/eventsData.json";
-  String eventsSaveKey = "eventsDataKey2";
+  String eventsSaveKey = "eventsDataKey3";
 
   List<CategorieModel> categoriesData = [];
   List<EvenementModel> evenementsData = [];

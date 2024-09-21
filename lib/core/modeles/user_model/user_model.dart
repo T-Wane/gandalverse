@@ -7,8 +7,6 @@ import '../friend/friend_model.dart';
 
 part 'user_model.g.dart';
 
- 
-
 abstract class UserModel implements Built<UserModel, UserModelBuilder> {
   String get id;
   int get telegramId;
@@ -22,6 +20,7 @@ abstract class UserModel implements Built<UserModel, UserModelBuilder> {
   int get coins;
   double get profitPerHour;
   String? get profileImage;
+  DateTime? createdAt;
 
   UserModel._();
   factory UserModel([void Function(UserModelBuilder) updates]) = _$UserModel;

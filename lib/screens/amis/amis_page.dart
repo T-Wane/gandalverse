@@ -98,7 +98,8 @@ class _AmisPageState extends State<AmisPage> {
                           ),
                           IconButton(
                             onPressed: () async {
-                              await _userProvider.refreshFriends();
+                              //await _userProvider.refreshFriends();
+                              setState(() {});
                             },
                             icon: Icon(
                               CupertinoIcons.refresh_thick,
