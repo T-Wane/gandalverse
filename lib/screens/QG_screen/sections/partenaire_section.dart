@@ -42,6 +42,7 @@ class _PartenaireSectionState extends State<PartenaireSection> {
     // Définir une largeur fixe pour chaque carte
     final cardWidth = 180.0;
     // Calculer le nombre de colonnes basé sur la largeur de l'écran
+    final crossAxisCount = (screenWidth / cardWidth).floor();
     _partenaireService.loadInitialData();
     return Consumer<UserProvider>(builder: (context, _userProvider, child) {
       return Stack(children: [

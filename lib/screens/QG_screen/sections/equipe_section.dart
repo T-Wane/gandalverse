@@ -48,6 +48,7 @@ class _EquipeSectionState extends State<EquipeSection> {
     // Définir une largeur fixe pour chaque carte
     final cardWidth = 180.0;
     // Calculer le nombre de colonnes basé sur la largeur de l'écran
+    final crossAxisCount = (screenWidth / cardWidth).floor();
     _equipeService.loadInitialData();
     return Consumer<UserProvider>(builder: (context, _userProvider, child) {
       return Stack(
