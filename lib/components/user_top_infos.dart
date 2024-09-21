@@ -284,10 +284,13 @@ class _userTopInfosState extends State<userTopInfos> {
                     ),
                   ),
                 ]),
-                PointerInterceptor(
-                  // debug: true,
-                  child: _setting(),
-                ),
+                 const SizedBox(
+                    width: 3,
+                  ),
+                // PointerInterceptor(
+                //   // debug: true,
+                //   child: _setting(),
+                // ),
               ]),
             ),
           ),
