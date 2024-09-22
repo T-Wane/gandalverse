@@ -47,29 +47,28 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDgdJn-vTKTijPbhn15yKRW-PX6OyC1CzU',
-    appId: '1:894133258853:web:a1f247cd24df438756948c',
-    messagingSenderId: '894133258853',
-    projectId: 'gandalverselive',
-    authDomain: 'gandalverselive.firebaseapp.com',
-    storageBucket: 'gandalverselive.appspot.com',
-    measurementId: 'G-2W1MRMZMZ4',
+    apiKey: 'AIzaSyBq--4t1eJlvVRGq-BK6n4iwqzLqYXSzis',
+    appId: '1:366940087617:web:876ada4485b421a10e6dc0',
+    messagingSenderId: '366940087617',
+    projectId: 'gandalversego',
+    authDomain: 'gandalversego.firebaseapp.com',
+    storageBucket: 'gandalversego.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD6b4Y3lmffOu559OMemgBE-wPvtnibb30',
-    appId: '1:894133258853:android:79b39ed8ad442b5c56948c',
-    messagingSenderId: '894133258853',
-    projectId: 'gandalverselive',
-    storageBucket: 'gandalverselive.appspot.com',
+    apiKey: 'AIzaSyB0jUm5k2B-B_Mz0xO7B-hgPIjywOYKjBo',
+    appId: '1:366940087617:android:b45e24505e3852470e6dc0',
+    messagingSenderId: '366940087617',
+    projectId: 'gandalversego',
+    storageBucket: 'gandalversego.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBUGohFA7t0-4wPFQwJlZxVz8ZtthG_c7k',
-    appId: '1:894133258853:ios:f8b65458da3bfc1256948c',
-    messagingSenderId: '894133258853',
-    projectId: 'gandalverselive',
-    storageBucket: 'gandalverselive.appspot.com',
+    apiKey: 'AIzaSyCxdFP2ZTaIbCyIROQRrH1qb5jl-pJAQJE',
+    appId: '1:366940087617:ios:419c284abbe7e0da0e6dc0',
+    messagingSenderId: '366940087617',
+    projectId: 'gandalversego',
+    storageBucket: 'gandalversego.appspot.com',
     iosBundleId: 'com.example.gandalverse',
   );
 }
