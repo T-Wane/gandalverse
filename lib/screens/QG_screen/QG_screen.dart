@@ -94,7 +94,7 @@ class _QGScreenState extends State<QGScreen> {
             //     child: BtnRoundedIconBack(
             //       onpress: () {
             //         // Navigator.of(context).pop();
-            //         context.pop();
+            //          Navigator.pop(context);
             //       },
             //     ),
             //   ),

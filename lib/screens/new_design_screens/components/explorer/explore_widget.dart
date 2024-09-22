@@ -12,8 +12,7 @@ class ExploreWidget extends StatelessWidget {
   final double currentExplorePercent;
 
   final Function(bool) animateExplore;
-
-  final Function(DragUpdateDetails) onVerticalDragUpdate;
+ 
   final Function() onPanDown;
 
   final bool isExploreOpen;
@@ -23,8 +22,7 @@ class ExploreWidget extends StatelessWidget {
       required this.currentSearchPercent,
       required this.currentExplorePercent,
       required this.animateExplore,
-      required this.isExploreOpen,
-      required this.onVerticalDragUpdate,
+      required this.isExploreOpen, 
       required this.onPanDown})
       : super(key: key);
 
@@ -43,8 +41,7 @@ class ExploreWidget extends StatelessWidget {
           //     builder: (BuildContext context) => MonProfilScreen(),
           //   ),
           // );
-        },
-        onVerticalDragUpdate: onVerticalDragUpdate,
+        }, 
         onVerticalDragEnd: (_) {
           _dispatchExploreOffset();
         },

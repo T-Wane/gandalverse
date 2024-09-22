@@ -97,7 +97,7 @@ class _userTopInfosState extends State<userTopInfos> {
                 if (widget.showBackArrow) ...[
                   GestureDetector(
                     onTap: () {
-                      context.pop();
+                       Navigator.pop(context);
                     },
                     child: Container(
                       decoration: const BoxDecoration(

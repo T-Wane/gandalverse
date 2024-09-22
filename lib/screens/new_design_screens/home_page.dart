@@ -39,19 +39,15 @@ class HomeVrScreen extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return _GoogleMapState();
+    return _HomeVrScreenState();
   }
 }
 
-class _GoogleMapState extends State<HomeVrScreen>
+class _HomeVrScreenState extends State<HomeVrScreen>
     with TickerProviderStateMixin {
-  late AnimationController animationControllerExplore;
-  late AnimationController animationControllerSearch;
-  late AnimationController animationControllerMenu;
+  late AnimationController animationControllerExplore; 
   late CurvedAnimation curve;
-  late Animation<double> animation;
-  late Animation<double> animationW;
-  late Animation<double> animationR;
+  late Animation<double> animation; 
 
   /// get currentOffset percent
   double get currentExplorePercent => max(0.0, min(0.9, 0.1));
@@ -68,26 +64,6 @@ class _GoogleMapState extends State<HomeVrScreen>
   bool isMenuOpen = false;
 
   /// search drag callback
-  void onSearchHorizontalDragUpdate(details) {
-    offsetSearch -= details.delta.dx;
-    if (offsetSearch < 0) {
-      offsetSearch = 0;
-    } else if (offsetSearch > (347 - 68.0)) {
-      offsetSearch = 347 - 68.0;
-    }
-    setState(() {});
-  }
-
-  /// explore drag callback
-  void onExploreVerticalUpdate(details) {
-    offsetExplore -= details.delta.dy;
-    if (offsetExplore > 644) {
-      offsetExplore = 644;
-    } else if (offsetExplore < 0) {
-      offsetExplore = 0;
-    }
-    setState(() {});
-  }
 
   /// animate Explore
   void animateExplore(bool open) {
@@ -100,52 +76,7 @@ class _GoogleMapState extends State<HomeVrScreen>
     animationControllerExplore.forward();
   }
 
-  void animateSearch(bool open) {
-    animationControllerSearch = AnimationController(
-        duration: Duration(
-            milliseconds: 1 +
-                (800 *
-                        (isSearchOpen
-                            ? currentSearchPercent
-                            : (1 - currentSearchPercent)))
-                    .toInt()),
-        vsync: this);
-    curve =
-        CurvedAnimation(parent: animationControllerSearch, curve: Curves.ease);
-    animation = Tween(begin: offsetSearch, end: open ? 347.0 - 68.0 : 0.0)
-        .animate(curve)
-      ..addListener(() {
-        setState(() {
-          offsetSearch = animation.value;
-        });
-      })
-      ..addStatusListener((status) {
-        if (status == AnimationStatus.completed) {
-          isSearchOpen = open;
-        }
-      });
-    animationControllerSearch.forward();
-  }
-
-  void animateMenu(bool open) {
-    animationControllerMenu =
-        AnimationController(duration: Duration(milliseconds: 500), vsync: this);
-    curve =
-        CurvedAnimation(parent: animationControllerMenu, curve: Curves.ease);
-    animation =
-        Tween(begin: open ? 0.0 : 358.0, end: open ? 358.0 : 0.0).animate(curve)
-          ..addListener(() {
-            setState(() {
-              offsetMenu = animation.value;
-            });
-          })
-          ..addStatusListener((status) {
-            if (status == AnimationStatus.completed) {
-              isMenuOpen = open;
-            }
-          });
-    animationControllerMenu.forward();
-  }
+ 
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -221,7 +152,6 @@ class _GoogleMapState extends State<HomeVrScreen>
                   currentSearchPercent: currentSearchPercent,
                   animateExplore: animateExplore,
                   isExploreOpen: isExploreOpen,
-                  onVerticalDragUpdate: onExploreVerticalUpdate,
                   onPanDown: () => animationControllerExplore?.stop(),
                 ),
               ),
@@ -473,8 +403,6 @@ class _GoogleMapState extends State<HomeVrScreen>
   @override
   void dispose() {
     super.dispose();
-    animationControllerExplore?.dispose();
-    animationControllerSearch?.dispose();
-    animationControllerMenu?.dispose();
+    animationControllerExplore?.dispose(); 
   }
 }
