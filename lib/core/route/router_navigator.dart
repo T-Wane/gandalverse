@@ -12,67 +12,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../screens/bm_bank/map_markers.dart';
 import 'route_name.dart';
-/*
-class RootNavigator {
-  final GoRouter makeRoutes = GoRouter(
-    initialLocation: "/",
-    routes: [
-      // Route pour l'écran d'initialisation
-      GoRoute(
-        name: welcome_view,
-        path: '/',
-        builder: (context, state) => const InitializationPage(),
-      ),
-      GoRoute(
-        name: 'initializationWithParam',
-        path: '/:tgWebAppData',
-        builder: (BuildContext context, GoRouterState state) {
-          final tgWebAppData = state.pathParameters['tgWebAppData'];
-          return InitializationPage(
-           // tgWebAppData: tgWebAppData, // Passer les paramètres ici si nécessaire
-          );
-        },
-      ),
-      GoRoute(
-        name: "telegram",
-        path: '/telegram',
-        builder: (context, state) {
-          // Extraire les paramètres de l'URL
-          final queryParams = state.extra as Map<String, String>;
-          return TelegramWebAppPage(queryParams: queryParams);
-        },
-      ),
-      // Autres routes...
-      GoRoute(
-        name: home_view,
-        path: '/home_vr',
-        builder: (BuildContext context, GoRouterState state) => HomeVrScreen(),
-        routes: <RouteBase>[
-          GoRoute(
-            name: amis_view,
-            path: 'amis',
-            builder: (context, state) => const AmisPage(),
-          ),
-          GoRoute(
-            name: revenu_view,
-            path: 'revenu',
-            builder: (context, state) => const AllRevenusPage(),
-          ),
-          GoRoute(
-            name: qg_view,
-            path: 'qg',
-            builder: (context, state) => QGScreen(),
-          ),
-          GoRoute(
-            name: defi_view,
-            path: 'defi',
-            builder: (context, state) => AnnoncesPage(),
-          ),
-        ],
-      ),
-    ],
-  );
-}*/
+ 
 
 class RootNavigator {
   final GoRouter makeRoutes = GoRouter(
@@ -110,7 +50,7 @@ class RootNavigator {
               context: context,
               state: state,
               child: const AmisPage(),
-              type: 'fade', // fade|rotation|scale|size
+              type: 'slide', // fade|rotation|scale|size
             ),
           ),
           GoRoute(
@@ -122,7 +62,7 @@ class RootNavigator {
               context: context,
               state: state,
               child: const AllRevenusPage(),
-              type: 'scale', // fade|rotation|scale|size
+              type: 'slide', // fade|rotation|scale|size
             ),
           ),
           GoRoute(
@@ -134,7 +74,7 @@ class RootNavigator {
               context: context,
               state: state,
               child: QGScreen(),
-              type: 'fade', // fade|rotation|scale|size
+              type: 'slide', // fade|rotation|scale|size
             ),
           ),
           GoRoute(
@@ -255,7 +195,7 @@ class RouterTransitionFactory {
           case 'custom_curve':
             final curvedAnimation = CurvedAnimation(
               parent: animation,
-              curve: Curves.easeInOutCubic, // Example of a custom curve
+              curve: Curves.easeInToLinear, // Example of a custom curve
             );
             return FadeTransition(opacity: curvedAnimation, child: child);
           default:

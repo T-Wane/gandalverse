@@ -48,11 +48,9 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                         textAlign: TextAlign.left,
                         textDirection: TextDirection.ltr,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Color3,
-                            fontFamily: "Aller",
-                            fontWeight: FontWeight.normal),
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Color3.withOpacity(0.7),
+                            fontFamily: "Aller"),
                       ),
                     ),
                   ),
@@ -68,11 +66,9 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                         textAlign: TextAlign.left,
                         textDirection: TextDirection.ltr,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Color3,
-                            fontFamily: "Aller",
-                            fontWeight: FontWeight.normal),
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Color3.withOpacity(0.7),
+                            fontFamily: "Aller"),
                       ),
                     ),
                   ),
@@ -99,11 +95,9 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                         textAlign: TextAlign.left,
                         textDirection: TextDirection.ltr,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Color3,
-                            fontFamily: "Aller",
-                            fontWeight: FontWeight.normal),
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Color3.withOpacity(0.7),
+                            fontFamily: "Aller"),
                       ),
                     ),
                   ),

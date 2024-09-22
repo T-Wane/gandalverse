@@ -117,7 +117,6 @@ class CarteCard extends StatelessWidget {
                             style: TextStyle(
                                 fontWeight: FontWeight.w300,
                                 color: Colors.white70,
-                                fontFamily: "Aller",
                                 fontSize: 7),
                           ),
                         ],
@@ -147,6 +146,7 @@ class CarteCard extends StatelessWidget {
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.w400,
+                              fontFamily: "Aller",
                             ),
                       ),
                       const Padding(
@@ -158,7 +158,7 @@ class CarteCard extends StatelessWidget {
                       ),
                       if (!isUnlocked) ...[
                         Text(
-                          contrainteMessage ?? 'Verrouillé',
+                          contrainteMessage ?? 'Verrouillée',
                           maxLines: 2,
                           textAlign: TextAlign.center,
                           style:
@@ -477,7 +477,8 @@ class _bureauCarteDetailsState extends State<bureauCarteDetails> {
                 fontSize: 15,
                 height: 50,
                 press: () async {})
-          ] else if ((_userProvider.user?.coins ?? 0) < widget.carte.prixReel) ...[
+          ] else if ((_userProvider.user?.coins ?? 0) <
+              widget.carte.prixReel) ...[
             DefaultButton(
                 backColor: Colors.grey.shade200,
                 text: 'Go',
