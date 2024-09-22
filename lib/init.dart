@@ -152,7 +152,7 @@ class SplashScreen extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     child: Text(
-                      "build en cours ...",
+                      "Veuillez patienter...",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontFamily: 'Aller',

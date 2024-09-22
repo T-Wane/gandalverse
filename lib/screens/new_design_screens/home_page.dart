@@ -152,6 +152,7 @@ class _GoogleMapState extends State<HomeVrScreen>
   bool showExplorerContent = false;
 
   bool showAllbtns = true;
+  double _opacity = 1;
 
   /// Switches the visibility of the buttons on the map screen.
   void changeVisibility() {
@@ -215,69 +216,88 @@ class _GoogleMapState extends State<HomeVrScreen>
               //     )),
 
               Visibility(
-                visible: showAllbtns,
-                child: ExploreWidget(
-                  currentExplorePercent: currentExplorePercent,
-                  currentSearchPercent: currentSearchPercent,
-                  animateExplore: animateExplore,
-                  isExploreOpen: isExploreOpen,
-                  onVerticalDragUpdate: onExploreVerticalUpdate,
-                  onPanDown: () => animationControllerExplore?.stop(),
+                visible:
+                    showAllbtns, // Assure que le widget reste dans l'arbre pour l'animation
+                child: AnimatedOpacity(
+                  opacity: showAllbtns ? 1.0 : 0.0, // Transition vers 0 ou 1
+                  duration: Duration(seconds: 1),
+                  child: ExploreWidget(
+                    currentExplorePercent: currentExplorePercent,
+                    currentSearchPercent: currentSearchPercent,
+                    animateExplore: animateExplore,
+                    isExploreOpen: isExploreOpen,
+                    onVerticalDragUpdate: onExploreVerticalUpdate,
+                    onPanDown: () => animationControllerExplore?.stop(),
+                  ),
                 ),
               ),
 
               //layer button
               Visibility(
-                visible: showAllbtns,
-                child: MapButton(
-                  bottom: 314,
-                  offsetX: 0,
-                  width: 68,
-                  height: 71,
-                  isRight: false,
-                  icon: Icons.school_rounded,
-                  iconColor: Themecolors.Color3,
-                  title: "Learn",
-                  press: () => context.pushNamed(learn_home_view),
-                ),
-              ),
+                  visible:
+                      showAllbtns, // Assure que le widget reste dans l'arbre pour l'animation
+                  child: AnimatedOpacity(
+                    opacity: showAllbtns ? 1.0 : 0.0, // Transition vers 0 ou 1
+                    duration: Duration(seconds: 1),
+                    child: MapButton(
+                      bottom: 314,
+                      offsetX: 0,
+                      width: 68,
+                      height: 71,
+                      isRight: false,
+                      icon: Icons.school_rounded,
+                      iconColor: Themecolors.Color3,
+                      title: "Learn",
+                      press: () => context.pushNamed(learn_home_view),
+                    ),
+                  )),
               //directions button
               Visibility(
-                visible: showAllbtns,
-                child: MapButton(
-                  bottom: 314,
-                  offsetX: 0,
-                  width: 68,
-                  height: 71,
-                  image: Images.gvt,
-                  icon: null,
-                  //icon: Icons.directions,
-                  iconColor: Colors.white,
-                  titleColor: Colors.white,
-                  gradient: const LinearGradient(colors: [
-                    Color(0xFF59C2FF),
-                    Color(0xFF1270E3),
-                  ]),
-                  title: "Revenus",
-                  press: () {
-                    context.pushNamed(revenu_view);
-                  },
+                visible:
+                    showAllbtns, // Assure que le widget reste dans l'arbre pour l'animation
+                child: AnimatedOpacity(
+                  opacity: showAllbtns ? 1.0 : 0.0, // Transition vers 0 ou 1
+                  duration: Duration(seconds: 1),
+                  child: MapButton(
+                    bottom: 314,
+                    offsetX: 0,
+                    width: 68,
+                    height: 71,
+                    image: Images.gvt,
+                    icon: null,
+                    //icon: Icons.directions,
+                    iconColor: Colors.white,
+                    titleColor: Colors.white,
+                    gradient: const LinearGradient(colors: [
+                      Color(0xFF59C2FF),
+                      Color(0xFF1270E3),
+                    ]),
+                    title: "Revenus",
+                    press: () {
+                      context.pushNamed(revenu_view);
+                    },
+                  ),
                 ),
               ),
               Visibility(
-                visible: showAllbtns,
-                child: MapButton(
-                  bottom: 227,
-                  offsetX: 0,
-                  width: 68,
-                  height: 71,
-                  icon: CupertinoIcons.flame,
-                  //icon: Icons.directions,
-                  iconColor: Themecolors.Color3,
-                  title: "Défis",
-                  press: () {
-                    context.pushNamed(defi_view);
-                  },
+                visible:
+                    showAllbtns, // Assure que le widget reste dans l'arbre pour l'animation
+                child: AnimatedOpacity(
+                  opacity: showAllbtns ? 1.0 : 0.0, // Transition vers 0 ou 1
+                  duration: Duration(seconds: 1),
+                  child: MapButton(
+                    bottom: 227,
+                    offsetX: 0,
+                    width: 68,
+                    height: 71,
+                    icon: CupertinoIcons.flame,
+                    //icon: Icons.directions,
+                    iconColor: Themecolors.Color3,
+                    title: "Défis",
+                    press: () {
+                      context.pushNamed(defi_view);
+                    },
+                  ),
                 ),
               ),
               /* 
@@ -300,57 +320,69 @@ class _GoogleMapState extends State<HomeVrScreen>
               ),*/
               //my_location button
               Visibility(
-                visible: showAllbtns,
-                child: MapButton(
-                  bottom: 140,
-                  offsetX: 0,
-                  width: 68,
-                  height: 71,
-                  icon: Icons.group_rounded,
-                  iconColor: Themecolors.Color3,
-                  title: "Amis",
-                  press: () {
-                    context.pushNamed(amis_view);
-                  },
+                visible:
+                    showAllbtns, // Assure que le widget reste dans l'arbre pour l'animation
+                child: AnimatedOpacity(
+                  opacity: showAllbtns ? 1.0 : 0.0, // Transition vers 0 ou 1
+                  duration: Duration(seconds: 1),
+                  child: MapButton(
+                      bottom: 140,
+                      offsetX: 0,
+                      width: 68,
+                      height: 71,
+                      icon: Icons.group_rounded,
+                      iconColor: Themecolors.Color3,
+                      title: "Amis",
+                      press: () {
+                        context.pushNamed(amis_view);
+                      }),
                 ),
               ),
               //layer button
               Visibility(
-                visible: showAllbtns,
-                child: MapButton(
-                  bottom: 53,
-                  offsetX: 0,
-                  width: 65,
-                  height: 71,
-                  icon: Icons.business_rounded,
-                  iconColor: Themecolors.Color3,
-                  title: "QG",
-                  press: () {
-                    context.pushNamed(qg_view);
-                  },
+                visible:
+                    showAllbtns, // Assure que le widget reste dans l'arbre pour l'animation
+                child: AnimatedOpacity(
+                  opacity: showAllbtns ? 1.0 : 0.0, // Transition vers 0 ou 1
+                  duration: Duration(seconds: 1),
+                  child: MapButton(
+                      bottom: 53,
+                      offsetX: 0,
+                      width: 65,
+                      height: 71,
+                      icon: Icons.business_rounded,
+                      iconColor: Themecolors.Color3,
+                      title: "QG",
+                      press: () {
+                        context.pushNamed(qg_view);
+                      }),
                 ),
               ),
               Visibility(
-                visible: showAllbtns,
-                child: MapButton(
-                  bottom: 53,
-                  offsetX: 0,
-                  width: 65,
-                  height: 71,
-                  isRight: false,
-                  image: Images.scanQr,
-                  iconColor: Themecolors.Color3,
-                  icon: null,
-                  title: "Scan",
-                  press: () {
-                    _showScanQrPopup();
-                    // Navigator.push<void>(
-                    //   context,
-                    //   MaterialPageRoute<void>(
-                    //     builder: (BuildContext context) => QGScreen(),
-                    //   ),
-                    // );
-                  },
+                visible:
+                    showAllbtns, // Assure que le widget reste dans l'arbre pour l'animation
+                child: AnimatedOpacity(
+                  opacity: showAllbtns ? 1.0 : 0.0, // Transition vers 0 ou 1
+                  duration: Duration(seconds: 1),
+                  child: MapButton(
+                      bottom: 53,
+                      offsetX: 0,
+                      width: 65,
+                      height: 71,
+                      isRight: false,
+                      image: Images.scanQr,
+                      iconColor: Themecolors.Color3,
+                      icon: null,
+                      title: "Scan",
+                      press: () {
+                        _showScanQrPopup();
+                        // Navigator.push<void>(
+                        //   context,
+                        //   MaterialPageRoute<void>(
+                        //     builder: (BuildContext context) => QGScreen(),
+                        //   ),
+                        // );
+                      }),
                 ),
               ),
               // Visibility(
@@ -362,50 +394,6 @@ class _GoogleMapState extends State<HomeVrScreen>
               //   child: MyProfitWidget(),
               // ),
 
-              //menu button
-              /* Positioned(
-                bottom: realH(53),
-                left: realW(-71 * (currentExplorePercent + currentSearchPercent)),
-                child: GestureDetector(
-                  onTap: () {
-                    animateMenu(true);
-                  },
-                  child: PointerInterceptor(
-                    child: Opacity(
-                      opacity: 1 - (currentSearchPercent + currentExplorePercent),
-                      child: Container(
-                        width: realW(71),
-                        height: realH(71),
-                        alignment: Alignment.centerLeft,
-                        padding: EdgeInsets.only(left: realW(17)),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(realW(36)),
-                                topRight: Radius.circular(realW(36))),
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Color.fromRGBO(0, 0, 0, 0.3),
-                                  blurRadius: realW(36)),
-                            ]),
-                        child: Icon(
-                          Icons.menu,
-                          size: realW(34),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),*/
-              //menu
-              // MenuWidget(
-              //     currentMenuPercent: currentMenuPercent,
-              //     animateMenu: animateMenu),
-
-              // // //menu
-              // MenuWidget(
-              //     currentMenuPercent: currentMenuPercent,
-              //     animateMenu: animateMenu),
               //explore content
               Visibility(
                 visible: showExplorerContent,

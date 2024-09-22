@@ -31,7 +31,7 @@ class CardContentBottomSheet extends StatelessWidget {
           filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
           child: Stack(children: [
             AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 800),
               margin: const EdgeInsets.only(top: 100),
               decoration: BoxDecoration(
                   color: Colors.purpleAccent.withOpacity(0.6),

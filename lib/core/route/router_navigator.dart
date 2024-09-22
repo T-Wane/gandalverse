@@ -110,7 +110,7 @@ class RootNavigator {
               context: context,
               state: state,
               child: const AmisPage(),
-              type: 'scale', // fade|rotation|scale|size
+              type: 'fade', // fade|rotation|scale|size
             ),
           ),
           GoRoute(
@@ -146,7 +146,7 @@ class RootNavigator {
               context: context,
               state: state,
               child: AnnoncesPage(),
-              type: 'size', // fade|rotation|scale|size
+              type: 'slide', // fade|rotation|scale|size
             ),
           ),
           GoRoute(
@@ -158,7 +158,7 @@ class RootNavigator {
               context: context,
               state: state,
               child: const LearnHomeScreen(),
-              type: 'scale', // fade|rotation|scale|size
+              type: 'custom_curve', // fade|rotation|scale|size
             ),
           ),
           GoRoute(
@@ -217,50 +217,51 @@ class NotFoundPage extends StatelessWidget {
 }
 
 class RouterTransitionFactory {
-  static CustomTransitionPage getTransitionPage(
-      {required BuildContext context,
-      required GoRouterState state,
-      required Widget child,
-      required String type}) {
+  static CustomTransitionPage getTransitionPage({
+    required BuildContext context,
+    required GoRouterState state,
+    required Widget child,
+    required String type,
+  }) {
     return CustomTransitionPage(
-        key: state.pageKey,
-        child: child,
-        transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          switch (type) {
-            case 'fade':
-              return FadeTransition(opacity: animation, child: child);
-            case 'rotation':
-              return RotationTransition(turns: animation, child: child);
-            case 'size':
-              return SizeTransition(sizeFactor: animation, child: child);
-            case 'scale':
-              return ScaleTransition(scale: animation, child: child);
-            default:
-              return FadeTransition(opacity: animation, child: child);
-          }
-        });
+      key: state.pageKey,
+      child: child,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        switch (type) {
+          case 'fade':
+            return FadeTransition(opacity: animation, child: child);
+          case 'rotation':
+            return RotationTransition(turns: animation, child: child);
+          case 'size':
+            return SizeTransition(sizeFactor: animation, child: child);
+          case 'scale':
+            return ScaleTransition(scale: animation, child: child);
+          case 'slide':
+            return SlideTransition(
+              position: Tween<Offset>(
+                begin: Offset(1.0, 0.0), // Start from the right
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            );
+          case 'scale_rotation':
+            return ScaleTransition(
+              scale: animation,
+              child: RotationTransition(
+                turns: animation,
+                child: child,
+              ),
+            );
+          case 'custom_curve':
+            final curvedAnimation = CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeInOutCubic, // Example of a custom curve
+            );
+            return FadeTransition(opacity: curvedAnimation, child: child);
+          default:
+            return FadeTransition(opacity: animation, child: child);
+        }
+      },
+    );
   }
 }
-
-CustomTransitionPage buildPageWithDefaultTransition<T>({
-  required BuildContext context,
-  required GoRouterState state,
-  required Widget child,
-}) {
-  return CustomTransitionPage<T>(
-    key: state.pageKey,
-    child: child,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) =>
-        FadeTransition(opacity: animation, child: child),
-  );
-}
-
-Page<dynamic> Function(BuildContext, GoRouterState) defaultPageBuilder<T>(
-        Widget child) =>
-    (BuildContext context, GoRouterState state) {
-      return buildPageWithDefaultTransition<T>(
-        context: context,
-        state: state,
-        child: child,
-      );
-    };
