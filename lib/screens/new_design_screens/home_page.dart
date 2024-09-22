@@ -181,7 +181,7 @@ class _GoogleMapState extends State<HomeVrScreen>
           child: Stack(
             children: <Widget>[
               //A decommenter
-              VerseWebView(),
+              // VerseWebView(),
 
               // Container(
               //   width: screenWidth,
