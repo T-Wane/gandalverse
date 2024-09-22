@@ -34,11 +34,11 @@ class _InitializationPageState extends State<InitializationPage> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             // return HomeVrScreen();
-            // Navigation vers HomeVrScreen une fois l'initialisation terminée
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              context.go(
-                  '/home_vr'); // Assurez-vous que ce chemin correspond à la route définie
-            });
+            // // Navigation vers HomeVrScreen une fois l'initialisation terminée
+            // WidgetsBinding.instance.addPostFrameCallback((_) {
+            //   context.go(
+            //       '/home_vr'); // Assurez-vous que ce chemin correspond à la route définie
+            // });
             return HomeVrScreen(); // Retourne un widget vide pendant la navigation
           } else {
             return const SplashScreen();
