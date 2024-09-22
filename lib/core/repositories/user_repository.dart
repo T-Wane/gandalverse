@@ -51,7 +51,7 @@ class UserRepository {
 
       // Retourne null si le document n'existe pas ou s'il n'y a pas de données
     } catch (e) {
-      log('Error getting user: $e');
+      //log('Error getting user: $e');
     }
     return null;
   }
@@ -81,7 +81,7 @@ class UserRepository {
             await _firestore.collection('users').doc(docs[i].id).delete();
           }
 
-          log('Doublons supprimés, seul le premier document est conservé.');
+          //log('Doublons supprimés, seul le premier document est conservé.');
         }
 
         // Récupère le premier document restant
@@ -91,7 +91,7 @@ class UserRepository {
       }
       return null;
     } catch (e) {
-      log('Error getting user: $e');
+      //log('Error getting user: $e');
       return null;
     }
   }
@@ -135,7 +135,7 @@ class UserRepository {
 
       return cards;
     } catch (e) {
-      log("Erreur lors du chargement des cartes : $e");
+      //log("Erreur lors du chargement des cartes : $e");
       return [];
     }
   }
@@ -171,8 +171,7 @@ class UserRepository {
             ..friends = ListBuilder([])
             ..profitPerHour = 0
             ..profileImage = ''
-            ..createdAt = DateTime.now().toUtc()
-            );
+            ..createdAt = DateTime.now().toUtc());
 
           await _firestore
               .collection('users')
@@ -247,7 +246,6 @@ class UserRepository {
     }
   }
 
-  
   // Future<void> updateUser(UserModel user) async {
   //   try {
   //     await _firestore.collection('users').doc(user.id).update(user.toJson());
@@ -286,7 +284,7 @@ class UserRepository {
       await _firestore.runTransaction((transaction) async {
         final userDoc = await transaction.get(userRef);
         if (!userDoc.exists) {
-          log("User does not exist");
+          //log("User does not exist");
           return;
         }
 
@@ -304,11 +302,11 @@ class UserRepository {
           transaction.update(userRef, {
             'level': newLevelIndex,
           });
-          log('User level updated to $newLevelIndex');
+          //log('User level updated to $newLevelIndex');
         }
       });
     } catch (e) {
-      log('Error updating user level: $e');
+      //log('Error updating user level: $e');
     }
   }
 /*
@@ -319,7 +317,7 @@ class UserRepository {
       await _firestore.runTransaction((transaction) async {
         final userDoc = await transaction.get(userRef);
         if (!userDoc.exists) {
-          log("User does not exist");
+          //log("User does not exist");
           return;
         }
 
@@ -343,16 +341,16 @@ class UserRepository {
             transaction.update(userRef, {
               'level': nextLevel['index'],
             });
-            log('User level updated to ${nextLevel['title']}');
+            //log('User level updated to ${nextLevel['title']}');
           } else {
-            log('No higher level found.');
+            //log('No higher level found.');
           }
         } else {
-          log('Not enough coins to upgrade. Current coins: $userCoins, Required: ${currentLevel['coins_required']}');
+          //log('Not enough coins to upgrade. Current coins: $userCoins, Required: ${currentLevel['coins_required']}');
         }
       });
     } catch (e) {
-      log('Error updating user level: $e');
+      //log('Error updating user level: $e');
     }
   }*/
 
@@ -405,7 +403,7 @@ class UserRepository {
       DocumentSnapshot userDoc = await transaction.get(userRef);
 
       if (!userDoc.exists) {
-        log("User does not exist");
+        //log("User does not exist");
         qgService.loadingController.add(false);
         return;
       }
@@ -414,7 +412,7 @@ class UserRepository {
       double cardPrice = carte.prix;
 
       if (userCoins < cardPrice) {
-        log("Not enough coins");
+        //log("Not enough coins");
         qgService.loadingController.add(false);
         return;
       }
@@ -473,7 +471,7 @@ class UserRepository {
 
         isOk = true; // Indique que la transaction a réussi
       } else {
-        log("Card already exists in user's collection.");
+        //log("Card already exists in user's collection.");
       }
     });
 
@@ -490,7 +488,7 @@ class UserRepository {
         await updatePoints(updatedCoins);
         await setPointsSaved(true);
       } else {
-        log("Failed to retrieve updated user data.");
+        //log("Failed to retrieve updated user data.");
       }
     }
 
@@ -519,7 +517,7 @@ class UserRepository {
       DocumentSnapshot userDoc = await transaction.get(userRef);
 
       if (!userDoc.exists) {
-        log("User does not exist");
+        //log("User does not exist");
         qgService.loadingController.add(false);
         return;
       }
@@ -528,7 +526,7 @@ class UserRepository {
       double cardPrice = carteData.prixReel;
 
       if (userCoins < cardPrice) {
-        log("Not enough coins");
+        //log("Not enough coins");
         qgService.loadingController.add(false);
         return;
       }
@@ -573,7 +571,7 @@ class UserRepository {
         await updatePoints(updatedCoins);
         await setPointsSaved(true);
       } else {
-        log("Failed to retrieve updated user data.");
+        //log("Failed to retrieve updated user data.");
       }
     }
 
@@ -592,7 +590,7 @@ class UserRepository {
       DocumentSnapshot userDoc = await transaction.get(userRef);
 
       if (!userDoc.exists) {
-        log("User does not exist");
+        //log("User does not exist");
         return;
       }
 
@@ -600,7 +598,7 @@ class UserRepository {
       double cardPrice = carteData.getPrix_inDouble;
 
       if (userCoins < cardPrice) {
-        log("Not enough coins");
+        //log("Not enough coins");
         return;
       }
 
@@ -646,7 +644,7 @@ class UserRepository {
       DocumentSnapshot userDoc = await transaction.get(userRef);
 
       if (!userDoc.exists) {
-        log("User does not exist");
+        //log("User does not exist");
         return null;
       }
 

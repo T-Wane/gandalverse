@@ -55,7 +55,7 @@ class UserProvider extends ChangeNotifier {
   /// et synchronisés avec l'API
   Future<void> fetchUserByTelegramId() async {
     _user = await _userRepository.getUserByTelegramId("$telegramUserId");
-    log("User from online: ${_user?.toJson()}");
+    ////log("User from online: ${_user?.toJson()}");
 
     final prefs = await SharedPreferences.getInstance();
 
@@ -98,7 +98,7 @@ class UserProvider extends ChangeNotifier {
 
   // Future<void> fetchUserByTelegramId() async {
   //   _user = await _userRepository.getUserByTelegramId("$telegramUserId");
-  //   log("user from online ${user?.toJson()}");
+  //   //log("user from online ${user?.toJson()}");
   //   final prefs = await SharedPreferences.getInstance();
   //   if (_user == null) {
   //     await prefs.clear();
@@ -199,7 +199,7 @@ class UserProvider extends ChangeNotifier {
   //     await _userRepository.updateUser(user);
 
   //     _user = user;
-  //     log("########## ${user.toString()}################");
+  //     //log("########## ${user.toString()}################");
   //   } catch (e) {
   //     print("#### error $e");
   //   }

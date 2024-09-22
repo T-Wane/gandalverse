@@ -140,7 +140,7 @@ class SocialLinkService with ChangeNotifier {
             ..isClaimed = localData[indexToUpdate].isClaimed
             ..subscribeAt = localData[indexToUpdate].subscribeAt
             ..isVisible = jsonItem.isVisible);
-          log("Mise à jour de l'élément à l'index $indexToUpdate");
+          //log("Mise à jour de l'élément à l'index $indexToUpdate");
         } else {
           // Si l'élément n'existe pas, on l'ajoute
           mergedData.add(SocialLinkModel((b) => b
@@ -154,7 +154,7 @@ class SocialLinkService with ChangeNotifier {
             ..isClaimed = false
             ..subscribeAt = null
             ..isVisible = jsonItem.isVisible));
-          log("Ajout d'un nouvel élément : ${jsonItem.title}");
+          //log("Ajout d'un nouvel élément : ${jsonItem.title}");
         }
       }
 
@@ -168,8 +168,8 @@ class SocialLinkService with ChangeNotifier {
     } catch (e, stacktrace) {
       // 6. Gestion des erreurs et affichage du stacktrace
       print("######[ ERROR in loadAndMergeItems: $e ]######");
-      log("######[ ERROR in loadAndMergeItems: $e ]######");
-      log("######[ SSocialLinkModelACKSocialLinkModelRACE: $stacktrace ]######");
+      //log("######[ ERROR in loadAndMergeItems: $e ]######");
+      //log("######[ SSocialLinkModelACKSocialLinkModelRACE: $stacktrace ]######");
       return []; // Retourner une liste vide en cas d'erreur
     }
   }
@@ -268,13 +268,13 @@ class SocialLinkService with ChangeNotifier {
   Duration getTimeUntil60Minutes(SocialLinkModel link) {
     final now = DateTime.now();
 
-    final in60Minutes = (link.subscribeAt??DateTime.now()).add(Duration(minutes: 60));
+    final in60Minutes =
+        (link.subscribeAt ?? DateTime.now()).add(Duration(minutes: 60));
     return in60Minutes.difference(now);
   }
 
   // Méthode pour obtenir le temps restant en heures, minutes et secondes
   Map<String, int> getTimeRemaining(SocialLinkModel link) {
-    
     final duration = getTimeUntil60Minutes(link);
     final hours = duration.inHours;
     final minutes = duration.inMinutes.remainder(60);

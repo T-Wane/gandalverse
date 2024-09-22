@@ -24,8 +24,8 @@ extension ExplorerServiceExtension<T> on ExplorerService {
 
       return data;
     } catch (e, stacktrace) {
-      log("######[ ERROR in loadItems $e ]######");
-      log("######[ STACKTRACE $stacktrace ]######");
+      //log("######[ ERROR in loadItems $e ]######");
+      //log("######[ STACKTRACE $stacktrace ]######");
       return [];
     }
   }

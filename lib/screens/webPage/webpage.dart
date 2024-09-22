@@ -109,6 +109,19 @@ class _VerseWebViewState extends State<VerseWebView> {
           uri: Uri.parse('https://storage.net-fs.com/hosting/8150162/0/'),
         ),
       );
+
+    //     PlatformWebViewControllerCreationParams params;
+    // if (WebViewPlatform.instance is WebKitWebViewPlatform) {
+    //   params = WebKitWebViewControllerCreationParams();
+    // } else {
+    //   params = const PlatformWebViewControllerCreationParams();
+    // }
+
+    // _webViewController = WebViewController.fromPlatformCreationParams(params);
+    // if (controller.platform is WebKitWebViewController) {
+    //   (controller.platform as WebKitWebViewController).setInspectable(true);
+    // }
+    // }
   } // old url :: https://gandalverse.com
 
   @override

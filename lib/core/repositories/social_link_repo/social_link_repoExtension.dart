@@ -79,8 +79,8 @@
 //     } catch (e, stacktrace) {
 //       // 6. Gestion des erreurs et affichage du stacktrace
 //       print("######[ ERROR in loadAndMergeItems: $e ]######");
-//       log("######[ ERROR in loadAndMergeItems: $e ]######");
-//       log("######[ STACKTRACE: $stacktrace ]######");
+//       //log("######[ ERROR in loadAndMergeItems: $e ]######");
+//       //log("######[ STACKTRACE: $stacktrace ]######");
 //       return []; // Retourner une liste vide en cas d'erreur
 //     }
 //   }

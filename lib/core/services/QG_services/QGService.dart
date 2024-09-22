@@ -16,7 +16,7 @@ abstract class QGService<T> {
     // SharedPreferences prefs = await SharedPreferences.getInstance();
     // String? jsonString = prefs.getString(storageKey);
 
-    // //log("####### loadItems ${jsonString}  # #############");
+    // ////log("####### loadItems ${jsonString}  # #############");
 
     // if (jsonString == null) {
     //   jsonString = await rootBundle.loadString(assetPath);
@@ -24,14 +24,14 @@ abstract class QGService<T> {
     // }
 
     // final List<dynamic> jsonData = json.decode(jsonString);
-    // // log("####### loadItems to list ${jsonData}  # #############");
+    // // //log("####### loadItems to list ${jsonData}  # #############");
     // try {
     //   List<T> data = jsonData.map((data) => fromJson(data)).toList();
-    //   // log("####### data loadItems to list ${jsonData}  # #############");
+    //   // //log("####### data loadItems to list ${jsonData}  # #############");
     //   return data;
     // } catch (e, stacktrace) {
-    //   log("######[ ERROR in loadItems $e ]######");
-    //   log("######[ STACKTRACE $stacktrace ]######");
+    //   //log("######[ ERROR in loadItems $e ]######");
+    //   //log("######[ STACKTRACE $stacktrace ]######");
     //   return [];
     // }
     List<T> data = await loadAndMergeItems(
@@ -113,7 +113,7 @@ abstract class QGService<T> {
     } catch (e, stacktrace) {
       // 6. Gestion des erreurs et affichage du stacktrace
       print("######[ ERROR in loadAndMergeItems: $e ]######");
-      log("######[ STACKTRACE: $stacktrace ]######");
+      //log("######[ STACKTRACE: $stacktrace ]######");
       return []; // Retourner une liste vide en cas d'erreur
     }
   }

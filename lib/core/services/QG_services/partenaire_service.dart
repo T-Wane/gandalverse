@@ -40,7 +40,7 @@ class PartenaireService extends QGService<CarteModel> {
       List<Map<String, dynamic>> purchasedCards) async {
     final baseCards = await loadBaseCards();
 
-    log("############ purchasedCards ${purchasedCards.length}");
+    //log("############ purchasedCards ${purchasedCards.length}");
 
     for (var purchasedCard in purchasedCards) {
       final index =
@@ -86,7 +86,7 @@ class PartenaireService extends QGService<CarteModel> {
   @override
   String? getCarteId(CarteModel item) => item.carteId;
 
-   @override
+  @override
   bool isSameLink(CarteModel carteModel, CarteModel carteJson) {
     return carteModel.carteId == carteJson.carteId;
   }
