@@ -1,5 +1,4 @@
-import 'package:auto_size_text/auto_size_text.dart';
-import 'package:clipboard/clipboard.dart';
+import 'package:auto_size_text/auto_size_text.dart'; 
 import 'package:flutter/material.dart';
 
 class infoItem extends StatelessWidget {
@@ -43,36 +42,36 @@ class infoItem extends StatelessWidget {
                   text: '$data  ',
                   children: [
                     if (showCopy == true) ...[
-                      WidgetSpan(
-                        child: GestureDetector(
-                          onTap: () => FlutterClipboard.copy(data).then(
-                            (value) =>
-                                ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: const Text(
-                                  "Code Copié",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontFamily: 'Aller',
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.black),
-                                ),
-                                elevation: 1.0,
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 5, horizontal: 10),
-                                dismissDirection: DismissDirection.horizontal,
-                                backgroundColor: Colors.grey.shade400,
-                              ),
-                            ),
-                          ),
-                          child: Icon(
-                            Icons.copy,
-                            size: 22,
-                            color: Colors.deepPurple.shade400,
-                          ),
-                        ),
-                      ),
+                      // WidgetSpan(
+                      //   child: GestureDetector(
+                      //     onTap: () => FlutterClipboard.copy(data).then(
+                      //       (value) =>
+                      //           ScaffoldMessenger.of(context).showSnackBar(
+                      //         SnackBar(
+                      //           content: const Text(
+                      //             "Code Copié",
+                      //             textAlign: TextAlign.center,
+                      //             style: TextStyle(
+                      //                 fontFamily: 'Aller',
+                      //                 fontSize: 12,
+                      //                 fontWeight: FontWeight.w500,
+                      //                 color: Colors.black),
+                      //           ),
+                      //           elevation: 1.0,
+                      //           padding: const EdgeInsets.symmetric(
+                      //               vertical: 5, horizontal: 10),
+                      //           dismissDirection: DismissDirection.horizontal,
+                      //           backgroundColor: Colors.grey.shade400,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     child: Icon(
+                      //       Icons.copy,
+                      //       size: 22,
+                      //       color: Colors.deepPurple.shade400,
+                      //     ),
+                      //   ),
+                      // ),
                     ]
                   ],
                   style: TextStyle(

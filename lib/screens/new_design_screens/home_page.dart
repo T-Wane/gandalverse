@@ -194,12 +194,12 @@ class _GoogleMapState extends State<HomeVrScreen>
               //A decommenter
               Align(
                 alignment: Alignment.topCenter,
-                child: /*PointerInterceptor(
+                child: PointerInterceptor(
                   debug: false,
-                  child:*/ userTopInfos(
+                  child: userTopInfos(
                     showVisibleEye: true,
                     changeVisibility: changeVisibility,
-                //  ),
+                  ),
                 ),
               ),
 
@@ -221,7 +221,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                   currentSearchPercent: currentSearchPercent,
                   animateExplore: animateExplore,
                   isExploreOpen: isExploreOpen,
-                 // onVerticalDragUpdate: onExploreVerticalUpdate,
+                  onVerticalDragUpdate: onExploreVerticalUpdate,
                   onPanDown: () => animationControllerExplore?.stop(),
                 ),
               ),
@@ -409,15 +409,15 @@ class _GoogleMapState extends State<HomeVrScreen>
               //explore content
               Visibility(
                 visible: showExplorerContent,
-                child: /*PointerInterceptor(
+                child: PointerInterceptor(
                   debug: false,
-                  child:*/ ExploreContentWidget(close: () {
+                  child: ExploreContentWidget(close: () {
                     setState(() {
                       showExplorerContent = false;
                     });
                   }),
                   // currentExplorePercent: currentExplorePercent,
-                //),
+                ),
               ),
             ],
           ),

@@ -76,9 +76,9 @@ class _userTopInfosState extends State<userTopInfos> {
   @override
   Widget build(BuildContext context) {
     return Consumer<UserProvider>(builder: (context, _userProvider, child) {
-      return /* PointerInterceptor(
+      return PointerInterceptor(
         debug: false,
-        child:*/ Card(
+        child: Card(
           margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
           elevation: 1.2,
           borderOnForeground: true,
@@ -91,8 +91,8 @@ class _userTopInfosState extends State<userTopInfos> {
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 1),
             height: 50,
-            child: /*PointerInterceptor(
-              child:*/
+            child: PointerInterceptor(
+              child:
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 if (widget.showBackArrow) ...[
                   GestureDetector(
@@ -149,9 +149,9 @@ class _userTopInfosState extends State<userTopInfos> {
                   Expanded(
                     child: Align(
                       alignment: Alignment.centerLeft,
-                      child: /*PointerInterceptor(
+                      child: PointerInterceptor(
                         debug: false,
-                        child: */Column(
+                        child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -202,7 +202,7 @@ class _userTopInfosState extends State<userTopInfos> {
                             ]),
                       ),
                     ),
-                 // ),
+                  ),
                 ],
                 const SizedBox(
                   width: 2,
@@ -292,9 +292,9 @@ class _userTopInfosState extends State<userTopInfos> {
                 //   child: _setting(),
                 // ),
               ]),
-             ),
-        //   ),
-        // ),
+            ),
+          ),
+        ),
       );
     });
   }
@@ -311,22 +311,20 @@ class _userTopInfosState extends State<userTopInfos> {
           itemBuilder: (context) => [
             PopupMenuItem(
                 value: 1,
-                child: /*PointerInterceptor(
-                    child:*/ _actionList(CupertinoIcons.refresh, "Rafraîchir")
-                    //)
-                    ),
+                child: PointerInterceptor(
+                    child: _actionList(CupertinoIcons.refresh, "Rafraîchir"))),
             PopupMenuItem(
               value: 2,
-              child:/* PointerInterceptor(
-                child:*/ _actionList(CupertinoIcons.shield_lefthalf_fill,
+              child: PointerInterceptor(
+                child: _actionList(CupertinoIcons.shield_lefthalf_fill,
                     "Politique de confidentialité"),
-             // ),
+              ),
             ),
             PopupMenuItem(
               value: 3,
-              child:/* PointerInterceptor(
-                child:*/ _actionList(CupertinoIcons.power, "Quitter"),
-              //),
+              child: PointerInterceptor(
+                child: _actionList(CupertinoIcons.power, "Quitter"),
+              ),
             ),
           ],
           offset: const Offset(0, 40),
