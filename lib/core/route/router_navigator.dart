@@ -84,16 +84,16 @@ class RootNavigator {
         path: '/',
         builder: (context, state) => const InitializationPage(),
       ),
-      GoRoute(
-        name: 'initializationWithParam',
-        path: '/:tgWebAppData',
-        builder: (BuildContext context, GoRouterState state) {
-          final tgWebAppData = state.pathParameters['tgWebAppData'];
-          return InitializationPage(
-              // tgWebAppData: tgWebAppData, // Passer les paramètres ici si nécessaire
-              );
-        },
-      ),
+      // GoRoute(
+      //   name: 'initializationWithParam',
+      //   path: '/:tgWebAppData',
+      //   builder: (BuildContext context, GoRouterState state) {
+      //     final tgWebAppData = state.pathParameters['tgWebAppData'];
+      //     return InitializationPage(
+      //         // tgWebAppData: tgWebAppData, // Passer les paramètres ici si nécessaire
+      //         );
+      //   },
+      // ),
 
       // Autres routes...
       GoRoute(

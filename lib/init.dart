@@ -39,8 +39,7 @@ class _InitializationPageState extends State<InitializationPage> {
               context.go(
                   '/home_vr'); // Assurez-vous que ce chemin correspond à la route définie
             });
-            return const SizedBox
-                .shrink(); // Retourne un widget vide pendant la navigation
+            return HomeVrScreen(); // Retourne un widget vide pendant la navigation
           } else {
             return const SplashScreen();
           }

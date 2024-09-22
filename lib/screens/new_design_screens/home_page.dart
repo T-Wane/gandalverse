@@ -18,6 +18,8 @@ import 'package:gandalverse/data/telegram_client.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/QG_screen/QG_screen.dart';
 import 'package:gandalverse/screens/amis/amis_page.dart';
+import 'package:gandalverse/screens/defis/defis_screen.dart';
+import 'package:gandalverse/screens/learn_screens/learn_home/learn_home_screen.dart';
 import 'package:gandalverse/screens/revenus/revenus_page.dart';
 import 'package:gandalverse/screens/webPage/webpage.dart';
 import 'package:gandalverse/themes/color/themeColors.dart';
@@ -45,9 +47,9 @@ class HomeVrScreen extends StatefulWidget {
 
 class _HomeVrScreenState extends State<HomeVrScreen>
     with TickerProviderStateMixin {
-  late AnimationController animationControllerExplore; 
+  late AnimationController animationControllerExplore;
   late CurvedAnimation curve;
-  late Animation<double> animation; 
+  late Animation<double> animation;
 
   /// get currentOffset percent
   double get currentExplorePercent => max(0.0, min(0.9, 0.1));
@@ -75,8 +77,6 @@ class _HomeVrScreenState extends State<HomeVrScreen>
 
     animationControllerExplore.forward();
   }
-
- 
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -160,16 +160,22 @@ class _HomeVrScreenState extends State<HomeVrScreen>
               Visibility(
                 visible: showAllbtns,
                 child: MapButton(
-                  bottom: 314,
-                  offsetX: 0,
-                  width: 68,
-                  height: 71,
-                  isRight: false,
-                  icon: Icons.school_rounded,
-                  iconColor: Themecolors.Color3,
-                  title: "Learn",
-                  press: () => context.pushNamed(learn_home_view),
-                ),
+                    bottom: 314,
+                    offsetX: 0,
+                    width: 68,
+                    height: 71,
+                    isRight: false,
+                    icon: Icons.school_rounded,
+                    iconColor: Themecolors.Color3,
+                    title: "Learn",
+                    press: () => Navigator.push<void>(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) =>
+                                const LearnHomeScreen(),
+                          ),
+                        ) //context.pushNamed(learn_home_view),
+                    ),
               ),
               //directions button
               Visibility(
@@ -190,7 +196,14 @@ class _HomeVrScreenState extends State<HomeVrScreen>
                   ]),
                   title: "Revenus",
                   press: () {
-                    context.pushNamed(revenu_view);
+                    // context.pushNamed(revenu_view);
+                    Navigator.push<void>(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) =>
+                            const AllRevenusPage(),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -206,7 +219,13 @@ class _HomeVrScreenState extends State<HomeVrScreen>
                   iconColor: Themecolors.Color3,
                   title: "Défis",
                   press: () {
-                    context.pushNamed(defi_view);
+                    //context.pushNamed(defi_view);
+                    Navigator.push<void>(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => const AnnoncesPage(),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -240,7 +259,13 @@ class _HomeVrScreenState extends State<HomeVrScreen>
                   iconColor: Themecolors.Color3,
                   title: "Amis",
                   press: () {
-                    context.pushNamed(amis_view);
+                    /// context.pushNamed(amis_view);
+                    Navigator.push<void>(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => const AmisPage(),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -256,7 +281,13 @@ class _HomeVrScreenState extends State<HomeVrScreen>
                   iconColor: Themecolors.Color3,
                   title: "QG",
                   press: () {
-                    context.pushNamed(qg_view);
+                    //context.pushNamed(qg_view);
+                    Navigator.push<void>(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) => QGScreen(),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -403,6 +434,6 @@ class _HomeVrScreenState extends State<HomeVrScreen>
   @override
   void dispose() {
     super.dispose();
-    animationControllerExplore?.dispose(); 
+    animationControllerExplore?.dispose();
   }
 }
