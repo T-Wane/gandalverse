@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gandalverse/screens/profil/profil_screen.dart';
+import 'package:gandalverse/themes/color/themeColors.dart';
 import 'package:gandalverse/themes/images/appImages.dart';
 import 'package:pointer_interceptor/pointer_interceptor.dart';
 
@@ -30,10 +31,18 @@ class ExploreWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      bottom: 0,
+      bottom: realH(0),
+      left: 0,
+      right: 0,
       child: GestureDetector(
         onTap: () {
           animateExplore(!isExploreOpen);
+          // Navigator.push<void>(
+          //   context,
+          //   MaterialPageRoute<void>(
+          //     builder: (BuildContext context) => MonProfilScreen(),
+          //   ),
+          // );
         },
         onVerticalDragUpdate: onVerticalDragUpdate,
         onVerticalDragEnd: (_) {
@@ -41,58 +50,43 @@ class ExploreWidget extends StatelessWidget {
         },
         onPanDown: (_) => onPanDown(),
         child: Opacity(
-          opacity: 1 - currentSearchPercent,
-          child: Container(
-            alignment: Alignment.bottomCenter,
-            width: realW(159 + (standardWidth - 159) * currentExplorePercent),
-            height: realH(122 + (766 - 122) * currentExplorePercent),
-            decoration: BoxDecoration(
-                gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-                  Color(0xFF5496FF),
-                  Color(0xFF8739E5),
-                ]),
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(
-                        realW(80 + (50 - 80) * currentExplorePercent)),
-                    topRight: Radius.circular(
-                        realW(80 + (50 - 80) * currentExplorePercent)))),
-            child: Stack(
-              children: [
-                Positioned(
-                    top: realH(65 + (-5 * currentExplorePercent)),
-                    left: realW(49 + (91 - 49) * currentExplorePercent),
-                    child: Text(
-                      "Explore",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize:
-                              realW(18 + (32 - 18) * currentExplorePercent)),
-                    )),
-                Positioned(
-                    top: realH(20 + (60 - 20) * currentExplorePercent),
-                    left: realW(63 + (44 - 63) * currentExplorePercent),
-                    child: Icon(
-                      Icons.location_on,
-                      size: realW(34),
-                      color: Colors.white,
-                    )),
-                Positioned(
-                    top: realH(currentExplorePercent < 0.9
-                        ? realH(-35)
-                        : realH(-35 +
-                            (6 + 35) * (currentExplorePercent - 0.9) * 8)),
-                    left: realW(63 + (170 - 63) * currentExplorePercent),
-                    child: GestureDetector(
-                      onTap: () {
-                        animateExplore(false);
-                      },
-                      child: Image.asset(
-                        Images.vr,
-                        width: realH(35),
-                        height: realH(35),
-                      ),
-                    )),
-              ],
+          opacity: 1,
+          child: PointerInterceptor(
+            child: Container(
+              alignment: Alignment.bottomCenter,
+              width: realW(159),
+              height: realH(122),
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Colors.deepPurple.shade300,
+                        Colors.deepPurple.shade400,
+                        Colors.deepPurple.shade600,
+                        Colors.deepPurple,
+                      ]),
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(80),
+                    topRight: Radius.circular(80),
+                  )),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Explorer",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize:
+                            realW(18 + (32 - 18) * currentExplorePercent)),
+                  ),
+                  Icon(
+                    Icons.location_on,
+                    size: realW(34),
+                    color: Colors.white,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -102,7 +96,7 @@ class ExploreWidget extends StatelessWidget {
 
   /// dispatch Explore state
   ///
-  /// handle it by [isExploreOpen] and [currentExplorePercent]
+  /// handle it by [widget.isExploreOpen] and [widget.currentExplorePercent]
   void _dispatchExploreOffset() {
     if (!isExploreOpen) {
       if (currentExplorePercent < 0.3) {
