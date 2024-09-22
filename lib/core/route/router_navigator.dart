@@ -105,26 +105,61 @@ class RootNavigator {
             name: amis_view,
             path: 'amis',
             builder: (context, state) => const AmisPage(),
+            pageBuilder: (context, state) =>
+                RouterTransitionFactory.getTransitionPage(
+              context: context,
+              state: state,
+              child: const AmisPage(),
+              type: 'scale', // fade|rotation|scale|size
+            ),
           ),
           GoRoute(
             name: revenu_view,
             path: 'revenu',
             builder: (context, state) => const AllRevenusPage(),
+            pageBuilder: (context, state) =>
+                RouterTransitionFactory.getTransitionPage(
+              context: context,
+              state: state,
+              child: const AllRevenusPage(),
+              type: 'scale', // fade|rotation|scale|size
+            ),
           ),
           GoRoute(
             name: qg_view,
             path: 'qg',
             builder: (context, state) => QGScreen(),
+            pageBuilder: (context, state) =>
+                RouterTransitionFactory.getTransitionPage(
+              context: context,
+              state: state,
+              child: QGScreen(),
+              type: 'fade', // fade|rotation|scale|size
+            ),
           ),
           GoRoute(
             name: defi_view,
             path: 'defi',
             builder: (context, state) => AnnoncesPage(),
+            pageBuilder: (context, state) =>
+                RouterTransitionFactory.getTransitionPage(
+              context: context,
+              state: state,
+              child: AnnoncesPage(),
+              type: 'size', // fade|rotation|scale|size
+            ),
           ),
           GoRoute(
             name: learn_home_view,
             path: 'learn_home',
             builder: (context, state) => LearnHomeScreen(),
+            pageBuilder: (context, state) =>
+                RouterTransitionFactory.getTransitionPage(
+              context: context,
+              state: state,
+              child: const LearnHomeScreen(),
+              type: 'scale', // fade|rotation|scale|size
+            ),
           ),
           GoRoute(
             name: bnda_view,
@@ -180,3 +215,52 @@ class NotFoundPage extends StatelessWidget {
     );
   }
 }
+
+class RouterTransitionFactory {
+  static CustomTransitionPage getTransitionPage(
+      {required BuildContext context,
+      required GoRouterState state,
+      required Widget child,
+      required String type}) {
+    return CustomTransitionPage(
+        key: state.pageKey,
+        child: child,
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          switch (type) {
+            case 'fade':
+              return FadeTransition(opacity: animation, child: child);
+            case 'rotation':
+              return RotationTransition(turns: animation, child: child);
+            case 'size':
+              return SizeTransition(sizeFactor: animation, child: child);
+            case 'scale':
+              return ScaleTransition(scale: animation, child: child);
+            default:
+              return FadeTransition(opacity: animation, child: child);
+          }
+        });
+  }
+}
+
+CustomTransitionPage buildPageWithDefaultTransition<T>({
+  required BuildContext context,
+  required GoRouterState state,
+  required Widget child,
+}) {
+  return CustomTransitionPage<T>(
+    key: state.pageKey,
+    child: child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+        FadeTransition(opacity: animation, child: child),
+  );
+}
+
+Page<dynamic> Function(BuildContext, GoRouterState) defaultPageBuilder<T>(
+        Widget child) =>
+    (BuildContext context, GoRouterState state) {
+      return buildPageWithDefaultTransition<T>(
+        context: context,
+        state: state,
+        child: child,
+      );
+    };
