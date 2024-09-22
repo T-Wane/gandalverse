@@ -145,8 +145,7 @@ class CarteCard extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodySmall!.copyWith(
                               color: Colors.white,
-                              fontWeight: FontWeight.w400,
-                              fontFamily: "Aller",
+                              fontWeight: FontWeight.w400, 
                             ),
                       ),
                       const Padding(
