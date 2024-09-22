@@ -43,9 +43,9 @@ class MapButton extends StatelessWidget {
         bottom: realH(bottom),
         left: !isRight ? realW(offsetX) : null,
         right: isRight ? realW(offsetX) : null,
-        child: PointerInterceptor(
+        child: /*PointerInterceptor(
           debug: false,
-          child: GestureDetector(
+          child:*/ GestureDetector(
             onTap: press as void Function()?,
             child: Container(
                 width: realW(width),
@@ -95,7 +95,7 @@ class MapButton extends StatelessWidget {
                     ]
                   ],
                 )),
-          ),
+         // ),
         ));
   }
 }

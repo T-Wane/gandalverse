@@ -101,6 +101,9 @@ class _QGScreenState extends State<QGScreen> {
             // ),
             userTopInfos(
               showBackArrow: true,
+              goBack: () {
+                Navigator.pop(context);
+              },
             ), // Toujours en haut
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),

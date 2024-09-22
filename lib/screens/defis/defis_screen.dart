@@ -31,6 +31,9 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
         child: Column(children: [
           userTopInfos(
             showBackArrow: true,
+            goBack: () {
+              Navigator.pop(context);
+            },
           ),
           Flexible(
             child: ListView(

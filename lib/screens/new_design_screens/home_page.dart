@@ -125,12 +125,12 @@ class _HomeVrScreenState extends State<HomeVrScreen>
               //A decommenter
               Align(
                 alignment: Alignment.topCenter,
-                child: PointerInterceptor(
+                child:/* PointerInterceptor(
                   debug: false,
-                  child: userTopInfos(
+                  child:*/ userTopInfos(
                     showVisibleEye: true,
                     changeVisibility: changeVisibility,
-                  ),
+                 // ),
                 ),
               ),
 
@@ -370,15 +370,15 @@ class _HomeVrScreenState extends State<HomeVrScreen>
               //explore content
               Visibility(
                 visible: showExplorerContent,
-                child: PointerInterceptor(
+                child: /*PointerInterceptor(
                   debug: false,
-                  child: ExploreContentWidget(close: () {
+                  child:*/ ExploreContentWidget(close: () {
                     setState(() {
                       showExplorerContent = false;
                     });
                   }),
                   // currentExplorePercent: currentExplorePercent,
-                ),
+                //),
               ),
             ],
           ),

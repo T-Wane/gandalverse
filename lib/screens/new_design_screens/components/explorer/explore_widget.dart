@@ -48,8 +48,8 @@ class ExploreWidget extends StatelessWidget {
         onPanDown: (_) => onPanDown(),
         child: Opacity(
           opacity: 1,
-          child: PointerInterceptor(
-            child: Container(
+          child: /*PointerInterceptor(
+            child: */Container(
               alignment: Alignment.bottomCenter,
               width: realW(159),
               height: realH(122),
@@ -85,7 +85,7 @@ class ExploreWidget extends StatelessWidget {
                 ],
               ),
             ),
-          ),
+           //),
         ),
       ),
     );
