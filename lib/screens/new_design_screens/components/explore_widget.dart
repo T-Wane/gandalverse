@@ -130,4 +130,3 @@ class ExploreWidget extends StatelessWidget {
     }
   }
 }
-
