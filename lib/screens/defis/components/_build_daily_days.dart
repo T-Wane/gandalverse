@@ -129,7 +129,7 @@ class _ShowGetDailyRewardSheetContentState
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: AutoSizeText(
-              'Récupérez votre récompence journalière',
+              'Récupérez votre récompense journalière',
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.labelSmall!.copyWith(
                     color: Themecolors.Color3.withOpacity(0.95),

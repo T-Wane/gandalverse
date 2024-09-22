@@ -110,6 +110,9 @@ class _AllRevenusPageState extends State<AllRevenusPage> {
           // ),
           userTopInfos(
             showBackArrow: true,
+            goBack: () {
+              Navigator.pop(context);
+            },
           ),
           Flexible(
             child: ListView(children: [

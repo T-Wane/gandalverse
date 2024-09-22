@@ -97,7 +97,7 @@ class _userTopInfosState extends State<userTopInfos> {
                 if (widget.showBackArrow) ...[
                   GestureDetector(
                     onTap: () {
-                      context.pop();
+                      widget.goBack?.call();
                     },
                     child: Container(
                       decoration: const BoxDecoration(
@@ -284,9 +284,9 @@ class _userTopInfosState extends State<userTopInfos> {
                     ),
                   ),
                 ]),
-                 const SizedBox(
-                    width: 3,
-                  ),
+                const SizedBox(
+                  width: 3,
+                ),
                 // PointerInterceptor(
                 //   // debug: true,
                 //   child: _setting(),

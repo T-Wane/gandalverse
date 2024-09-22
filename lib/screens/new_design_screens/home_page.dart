@@ -242,6 +242,7 @@ class _GoogleMapState extends State<HomeVrScreen>
                 ),
               ),
               //directions button
+              
               Visibility(
                 visible: showAllbtns,
                 child: MapButton(

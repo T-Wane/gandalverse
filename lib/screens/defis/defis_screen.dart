@@ -31,6 +31,9 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
         child: Column(children: [
           userTopInfos(
             showBackArrow: true,
+            goBack: () {
+              Navigator.pop(context);
+            },
           ),
           Flexible(
             child: ListView(
@@ -45,11 +48,9 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                         textAlign: TextAlign.left,
                         textDirection: TextDirection.ltr,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Color3,
-                            fontFamily: "Aller",
-                            fontWeight: FontWeight.normal),
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Color3.withOpacity(0.7),
+                            fontFamily: "Aller"),
                       ),
                     ),
                   ),
@@ -65,11 +66,9 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                         textAlign: TextAlign.left,
                         textDirection: TextDirection.ltr,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Color3,
-                            fontFamily: "Aller",
-                            fontWeight: FontWeight.normal),
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Color3.withOpacity(0.7),
+                            fontFamily: "Aller"),
                       ),
                     ),
                   ),
@@ -96,11 +95,9 @@ class _AnnoncesPageState extends State<AnnoncesPage> {
                         textAlign: TextAlign.left,
                         textDirection: TextDirection.ltr,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: Color3,
-                            fontFamily: "Aller",
-                            fontWeight: FontWeight.normal),
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: Color3.withOpacity(0.7),
+                            fontFamily: "Aller"),
                       ),
                     ),
                   ),

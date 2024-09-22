@@ -5,6 +5,7 @@ import 'package:gandalverse/core/services/QG_services/equipe_service.dart';
 import 'package:gandalverse/core/services/QG_services/partenaire_service.dart';
 import 'package:gandalverse/di/global_dependencies.dart';
 import 'package:gandalverse/screens/new_design_screens/home_page.dart';
+import 'package:go_router/go_router.dart';
 import '../main.dart';
 
 class InitializationPage extends StatefulWidget {
@@ -32,7 +33,13 @@ class _InitializationPageState extends State<InitializationPage> {
         future: Init.initialize(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            return HomeVrScreen();
+            // return HomeVrScreen();
+            // // Navigation vers HomeVrScreen une fois l'initialisation terminée
+            // WidgetsBinding.instance.addPostFrameCallback((_) {
+            //   context.go(
+            //       '/home_vr'); // Assurez-vous que ce chemin correspond à la route définie
+            // });
+            return HomeVrScreen(); // Retourne un widget vide pendant la navigation
           } else {
             return const SplashScreen();
           }
@@ -62,7 +69,7 @@ class Init {
       _partenaireService.loadInitialData(),
       _equipeService.loadInitialData()
     ]);
-    
+
     await Future.delayed(const Duration(seconds: 1));
     print("debut chargement");
     print("fin chargement setting");
@@ -145,7 +152,7 @@ class SplashScreen extends StatelessWidget {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     child: Text(
-                      "build en cours ...",
+                      "Veuillez patienter...",
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontFamily: 'Aller',

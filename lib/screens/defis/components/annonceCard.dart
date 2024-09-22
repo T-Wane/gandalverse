@@ -90,9 +90,9 @@ class AnnonceCard extends StatelessWidget {
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               fontFamily: 'Aller',
-                              color: Themecolors.Color3.withOpacity(0.9),
+                              color: Themecolors.Color3.withOpacity(0.85),
                               fontSize: 14,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         )
