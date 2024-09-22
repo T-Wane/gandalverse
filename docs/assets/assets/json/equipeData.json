@@ -9,11 +9,11 @@
       "Stratégie de marque"
     ],
     "image": "assets/images/qg_images/responsableCommunication.jpg",
-    "prix": 1300.0,
-    "taux_augmentation": 6.0,
+    "prix": 1000.0,
+    "taux_augmentation": 9.0,
     "niveau": 0,
     "est_achete": false,
-    "force": 150.0,
+    "force": 10.0,
     "taux_augmentation_force": 15.0
   },
   {
