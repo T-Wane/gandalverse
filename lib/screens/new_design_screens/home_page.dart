@@ -67,17 +67,7 @@ class _GoogleMapState extends State<HomeVrScreen>
   bool isSearchOpen = false;
   bool isMenuOpen = false;
 
-  /// search drag callback
-  void onSearchHorizontalDragUpdate(details) {
-    offsetSearch -= details.delta.dx;
-    if (offsetSearch < 0) {
-      offsetSearch = 0;
-    } else if (offsetSearch > (347 - 68.0)) {
-      offsetSearch = 347 - 68.0;
-    }
-    setState(() {});
-  }
-
+ 
   /// explore drag callback
   void onExploreVerticalUpdate(details) {
     offsetExplore -= details.delta.dy;
@@ -474,8 +464,8 @@ class _GoogleMapState extends State<HomeVrScreen>
   @override
   void dispose() {
     super.dispose();
-    animationControllerExplore?.dispose();
-    animationControllerSearch?.dispose();
-    animationControllerMenu?.dispose();
+    animationControllerExplore.dispose();
+    animationControllerSearch.dispose();
+    animationControllerMenu.dispose();
   }
 }
