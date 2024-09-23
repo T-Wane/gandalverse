@@ -1,37 +1,37 @@
 {
-    "flutter": {
-      "platforms": {
-        "android": {
-          "default": {
-            "projectId": "gandalverselive",
-            "appId": "1:894133258853:android:79b39ed8ad442b5c56948c",
-            "fileOutput": "android/app/google-services.json"
-          }
-        },
-        "dart": {
-          "lib/firebase_options.dart": {
-            "projectId": "gandalverselive",
-            "configurations": {
-              "android": "1:894133258853:android:79b39ed8ad442b5c56948c",
-              "ios": "1:894133258853:ios:f8b65458da3bfc1256948c",
-              "web": "1:894133258853:web:a1f247cd24df438756948c"
-            }
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "gandalverselive",
+          "appId": "1:894133258853:android:79b39ed8ad442b5c56948c",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "gandalverselive",
+          "configurations": {
+            "android": "1:894133258853:android:79b39ed8ad442b5c56948c",
+            "ios": "1:894133258853:ios:f8b65458da3bfc1256948c",
+            "web": "1:894133258853:web:a1f247cd24df438756948c"
           }
         }
       }
-    },
-    "hosting": {
-      "public": "build/web",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
     }
+  },
+  "hosting": {
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
   }
+}
