@@ -102,11 +102,11 @@ class _ClaimLinkCoins_btnState extends State<ClaimLinkCoins_btn> {
               _linkService.setLinkIsClaimed(
                 widget.socialLinkModel.id,
               );
-              RewardAnimation.show(context);
-              Future.delayed(const Duration(seconds: 3), () {
-                RewardAnimation.hide(context);
+              //RewardAnimation.show(context);
+              //Future.delayed(const Duration(seconds: 3), () {
+               /// RewardAnimation.hide(context);
                  Navigator.of(context).pop(true);
-              }); 
+              //}); 
               
             },
           )

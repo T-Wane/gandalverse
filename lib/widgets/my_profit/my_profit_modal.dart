@@ -152,11 +152,11 @@ class _MyProfitModalState extends State<MyProfitModal> {
         MyProfitWidget(
             boutonStyle: true,
             claimed: () {
-              RewardAnimation.show(context);
+            //  RewardAnimation.show(context);
               _spinRewardManager.claimReward().whenComplete(() {
-                Future.delayed(Duration(seconds: 3), () {
-                  RewardAnimation.hide(context);
-                });
+                // Future.delayed(Duration(seconds: 3), () {
+                //   RewardAnimation.hide(context);
+                // });
               });
             })
       ]),

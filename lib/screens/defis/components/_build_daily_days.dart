@@ -101,10 +101,10 @@ class _ShowGetDailyRewardSheetContentState
   void claimReward() async {
     await dailyManager.claimReward();
     updateDailyReward();
-    RewardAnimation.show(context);
-    Future.delayed(const Duration(seconds: 3), () {
-      RewardAnimation.hide(context);
-    });
+    // RewardAnimation.show(context);
+    // Future.delayed(const Duration(seconds: 3), () {
+    //   RewardAnimation.hide(context);
+    // });
   }
 
   @override

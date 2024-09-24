@@ -56,6 +56,16 @@
          }(HTMLCanvasElement.prototype.getContext)
       }
    </script>
+    <!-- * Safari Renderer *
+    <script src="https://unpkg.com/platform@1.3.5/platform.js"></script>
+    <script>
+      if (platform.name.toLowerCase() == "safari" && parseInt(platform.version.split(".")[0]) >= 15) {
+          window.flutterWebRenderer = "html";
+      } else {
+          // Optional, default is `auto`
+          window.flutterWebRenderer = "canvaskit";
+      }
+    </script> -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1bOgxhKr9Ef4uGyo7RL_4QyNSsKRuA3k"></script>
     <script src="https://cdn.jsdelivr.net/npm/@googlemaps/markerclusterer@2.5.3/dist/index.umd.min.js"></script> -->
     <!-- <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script>

@@ -48,10 +48,10 @@ class _buildCommunautyCardState extends State<buildCommunautyCard>
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       // Lorsque l'application revient au premier plan
-      RewardAnimation.show(context);
-      Future.delayed(const Duration(seconds: 3), () {
-        RewardAnimation.hide(context);
-      });
+      // RewardAnimation.show(context);
+      // Future.delayed(const Duration(seconds: 3), () {
+      //   RewardAnimation.hide(context);
+      // });
     }
   }
 

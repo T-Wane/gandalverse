@@ -116,10 +116,10 @@ class _FortuneWheelWidgetState extends State<FortuneWheelWidget> {
                     setState(() {
                       _isAnimating = false;
                       isClaimed = true;
-                      RewardAnimation.show(context);
-                      Future.delayed(const Duration(seconds: 3), () {
-                        RewardAnimation.hide(context);
-                      });
+                      // RewardAnimation.show(context);
+                      // Future.delayed(const Duration(seconds: 3), () {
+                      //   RewardAnimation.hide(context);
+                      // });
                     });
                   },
                   onFling: !isClaimed ? _handleRoll : null,

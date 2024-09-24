@@ -65,16 +65,16 @@ class _BuildInviterFirendsState extends State<BuildInviterFirends> {
         fontSize: 13,
         height: 40,
         press: () {
-          RewardAnimation.show(context);
+          //RewardAnimation.show(context);
           claimed();
           if (userProvider.user != null) {
             final updatedUser = userProvider.user!.rebuild(
                 (b) => b..coins = ((userProvider.user?.coins ?? 0) + 30000));
             userProvider.updateUserPointLocal(updatedUser);
           }
-          Future.delayed(const Duration(seconds: 3), () {
-            RewardAnimation.hide(context);
-          });
+          // Future.delayed(const Duration(seconds: 3), () {
+          //   RewardAnimation.hide(context);
+          // });
           Navigator.of(context).pop();
         },
       );
